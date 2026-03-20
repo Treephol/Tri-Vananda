@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tri Vananda — Before we show you anything</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #233f2f;
+      --green-mid:  #2e5040;
+      --terra:      #CF554E;
+      --stone:      #BAB9AF;
+      --offwhite:   #EDEBE9;
+      --cream:      #f5f2ed;
+      --dark:       #1a1a18;
+      --mid:        #3d3d38;
+      --muted:      #7a7a72;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Jost', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: #d8d5cf;
+      font-family: var(--sans);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* ── Fake email client chrome ─────────────────────────── */
+    .chrome-bar {
+      background: #242422;
+      padding: 13px 24px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .chrome-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .chrome-dot:nth-child(1) { background: #ff5f57; }
+    .chrome-dot:nth-child(2) { background: #febc2e; }
+    .chrome-dot:nth-child(3) { background: #28c840; }
+    .chrome-label {
+      margin-left: 14px;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: #666662;
+    }
+
+    /* ── Email meta strip ────────────────────────────────── */
+    .email-meta-strip {
+      max-width: 660px;
+      margin: 0 auto;
+      background: #eeebe5;
+      border-bottom: 1px solid #ccc9c2;
+      padding: 16px 44px 0;
+    }
+    .meta-row {
+      display: flex;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+      padding-bottom: 5px;
+    }
+    .meta-label { color: #b0ada6; width: 36px; flex-shrink: 0; }
+    .meta-value { color: var(--mid); }
+
+    .email-subject-strip {
+      max-width: 660px;
+      margin: 0 auto;
+      background: #eeebe5;
+      border-bottom: 1px solid #ccc9c2;
+      padding: 12px 44px 14px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dark);
+      font-family: var(--sans);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Email wrapper ───────────────────────────────────── */
+    .email-wrapper {
+      max-width: 660px;
+      margin: 0 auto;
+      background: var(--cream);
+      box-shadow: 0 8px 60px rgba(0,0,0,0.14);
+      margin-bottom: 60px;
+    }
+
+    /* ── Header — dark green ─────────────────────────────── */
+    .email-header {
+      background: var(--green);
+      padding: 30px 48px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-area { display: flex; align-items: center; }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .header-right {
+      font-family: var(--sans);
+      font-size: 8.5px;
+      font-weight: 300;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+      text-align: right;
+      line-height: 2;
+    }
+
+    /* ── Terra accent ────────────────────────────────────── */
+    .accent-bar {
+      height: 3px;
+      background: linear-gradient(to right, var(--terra) 0%, var(--terra) 35%, rgba(207,85,78,0.15) 70%, transparent 100%);
+    }
+
+    /* ── Email body ──────────────────────────────────────── */
+    .email-body {
+      padding: 36px 48px 0;
+    }
+
+    .salutation {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .body-text {
+      font-family: var(--serif);
+      font-size: 17.5px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--mid);
+      margin-bottom: 14px;
+    }
+
+    /* ── Centerpiece ─────────────────────────────────────── */
+    .centerpiece {
+      margin: 28px 0;
+      padding: 26px 32px 22px 28px;
+      background: transparent;
+      border-left: 2px solid var(--terra);
+      position: relative;
+    }
+
+    .centerpiece p {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--mid);
+    }
+
+    .centerpiece-label {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Bullet list ─────────────────────────────────────── */
+    .bullet-list {
+      list-style: none;
+      margin: 0 0 22px;
+      padding: 0;
+      border-top: 1px solid rgba(186,185,175,0.35);
+    }
+
+    .bullet-list li {
+      font-family: var(--serif);
+      font-size: 17.5px;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--mid);
+      padding: 7px 0 7px 22px;
+      position: relative;
+      border-bottom: 1px solid rgba(186,185,175,0.35);
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--terra);
+    }
+
+    .subtle-em { font-style: italic; color: var(--dark); }
+
+    /* ── Signature ───────────────────────────────────────── */
+    .signature {
+      padding: 28px 48px 34px;
+    }
+
+    .warmly {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+
+    .sig-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .email-footer {
+      background: var(--green);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-adage {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--stone);
+      letter-spacing: 0.03em;
+    }
+
+    .footer-contact {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      text-align: right;
+      line-height: 2.2;
+    }
+
+    .footer-contact a {
+      color: rgba(237,235,233,0.75);
+      text-decoration: none;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 620px) {
+      .email-header      { padding: 22px 26px; flex-direction: column; align-items: flex-start; gap: 14px; }
+      .header-right      { text-align: left; }
+      .email-body        { padding: 34px 26px 0; }
+      .centerpiece       { padding: 24px 22px; margin: 32px -2px; }
+      .centerpiece p     { font-size: 18px; }
+      .signature         { padding: 28px 26px 32px; }
+      .email-footer      { padding: 22px 26px; flex-direction: column; align-items: flex-start; }
+      .footer-contact    { text-align: left; }
+      .email-meta-strip  { padding: 14px 22px 0; }
+      .email-subject-strip { padding: 12px 22px 14px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Fake email client chrome -->
+  <div class="chrome-bar">
+    <span class="chrome-dot"></span>
+    <span class="chrome-dot"></span>
+    <span class="chrome-dot"></span>
+    <span class="chrome-label">Mail — Inbox</span>
+  </div>
+
+  <!-- Email meta -->
+  <div class="email-meta-strip">
+    <div class="meta-row"><span class="meta-label">From</span><span class="meta-value">Tri Vananda &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9b0b7bfb699adabb0afb8b7b8b7bdb8f7bab6b4">[email&#160;protected]</a>&gt;</span></div>
+    <div class="meta-row"><span class="meta-label">To</span><span class="meta-value">You</span></div>
+    <div class="meta-row"><span class="meta-label">Date</span><span class="meta-value">Today, 9:14 AM</span></div>
+  </div>
+  <div class="email-subject-strip">Before we show you anything</div>
+
+  <!-- Email -->
+  <div class="email-wrapper">
+
+    <header class="email-header">
+      <div class="logo-area">
+        <img src="logo-white.png" alt="Tri Vananda" class="logo-img" />
+      </div>
+      <div class="header-right">Phuket, Thailand</div>
+    </header>
+
+    <div class="accent-bar"></div>
+
+    <div class="email-body">
+
+      <p class="salutation">Dear friend,</p>
+
+      <p class="body-text">Thank you for your interest.</p>
+
+      <p class="body-text">Before we speak about villas, availability, or visits, it is more useful to begin with a simple question:</p>
+
+      <blockquote class="centerpiece">
+        <p>What role would a place like this need to play in your life to be worth your time?</p>
+        <span class="centerpiece-label">The question worth starting with</span>
+      </blockquote>
+
+      <p class="body-text">Tri Vananda was not created as a retreat, nor as a statement asset. It was designed as a base—one that improves how time is actually lived.</p>
+
+      <p class="body-text">For some, that means:</p>
+
+      <ul class="bullet-list">
+        <li>Making family time more intentional</li>
+        <li>Making health easier to maintain, not something to chase</li>
+        <li>Creating a setting where hosting, thinking, and recovery happen naturally</li>
+      </ul>
+
+      <p class="body-text">For others, it means something else entirely.</p>
+
+      <p class="body-text">Over the coming days, we will share a few perspectives—<span class="subtle-em">not marketing, but structure</span>—so you can decide whether this is relevant to you.</p>
+
+      <p class="body-text">If at any point it feels aligned, we will continue the conversation.</p>
+
+    </div>
+
+    <div class="signature">
+      <p class="warmly">Warmly,</p>
+      <p class="sig-name">Tri Vananda, Phuket</p>
+    </div>
+
+    <footer class="email-footer">
+      <span class="footer-adage">Build, Belong &amp; Bloom.</span>
+      <div class="footer-contact">
+        <a href="/cdn-cgi/l/e
