@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Place Worth Building Time Around — Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #181614;
+  --ink-2:   #3d3a37;
+  --ink-3:   #6e6a65;
+  --ink-4:   #9e9a95;
+  --paper:   #f4f1ec;
+  --paper-2: #ece8e1;
+  --rule:    #d4cfc8;
+  --accent:  #233f2f;
+  --serif:   'EB Garamond', Georgia, serif;
+  --display: 'Playfair Display', 'Times New Roman', serif;
+  --sans:    'Jost', 'Helvetica Neue', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; }
+body { background:#161412; font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+
+.book { max-width:920px; margin:0 auto; padding:40px 20px 80px; }
+
+.page { background:var(--paper); position:relative; padding:52px 60px 64px; border-bottom:1px solid #111; }
+
+.page-stripe, .page-foot {
+  display:flex; justify-content:space-between; align-items:baseline;
+  border-bottom:0.5px solid var(--rule); padding-bottom:10px; margin-bottom:44px;
+}
+.page-foot {
+  border-top:0.5px solid var(--rule); border-bottom:none;
+  padding-top:10px; padding-bottom:0; margin-top:48px; margin-bottom:0;
+}
+.page-stripe span, .page-foot span {
+  font-family:var(--sans); font-size:8.5px; font-weight:400;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-4);
+}
+
+.p1-kicker { font-family:var(--sans); font-size:8.5px; letter-spacing:0.28em; text-transform:uppercase; color:var(--ink-4); margin-bottom:18px; }
+.p1-title { font-family:var(--display); font-size:clamp(38px,5.5vw,60px); font-weight:400; line-height:1.06; letter-spacing:-0.015em; color:var(--ink); margin-bottom:26px; max-width:580px; }
+.p1-title em { font-style:italic; }
+.title-rule { width:36px; height:0.5px; background:var(--ink-3); margin-bottom:22px; }
+.byline { display:flex; align-items:baseline; gap:20px; margin-bottom:32px; padding-bottom:20px; border-bottom:0.5px solid var(--rule); }
+.byline-author { font-family:var(--sans); font-size:9px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); }
+.byline-date { font-family:var(--sans); font-size:9px; letter-spacing:0.1em; color:var(--ink-4); }
+
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.grid-2-1 { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+.col-span-2 { grid-column:span 2; }
+.col-span-3 { grid-column:span 3; }
+.col-with-rule { border-left:0.5px solid var(--rule); padding-left:24px; }
+
+.standfirst { font-family:var(--serif); font-size:17px; line-height:1.6; color:var(--ink-2); font-style:italic; letter-spacing:0.005em; }
+.body { font-family:var(--serif); font-size:14.5px; line-height:1.72; color:var(--ink-2); letter-spacing:0.005em; }
+.body p { margin-bottom:0.9em; }
+.body p:last-child { margin-bottom:0; }
+.body b { font-weight:500; color:var(--ink); }
+.dropcap::first-letter { font-family:var(--display); font-size:68px; font-weight:400; line-height:0.82; float:left; margin-right:6px; margin-top:6px; color:var(--ink); }
+
+.img-block { position:relative; overflow:hidden; background:var(--paper-2); border-top:0.5px solid var(--rule); border-bottom:0.5px solid var(--rule); }
+.img-caption { margin-top:8px; font-family:var(--sans); font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); line-height:1.6; }
+.img-caption b { color:var(--ink-3); font-weight:500; }
+
+.sec-marker { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.sec-num { font-family:var(--sans); font-size:8px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-4); }
+.sec-rule { width:20px; height:0.5px; background:var(--rule); flex-shrink:0; }
+.sec-title { font-family:var(--sans); font-size:8px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-4); }
+.section-head { font-family:var(--display); font-size:21px; font-weight:400; font-style:italic; line-height:1.25; color:var(--ink); letter-spacing:-0.005em; margin-bottom:14px; }
+
+.moment-bar { border-left:1.5px solid var(--accent); padding:18px 0 18px 20px; margin:28px 0; }
+.moment-bar p { font-family:var(--display); font-size:22px; font-weight:400; font-style:italic; line-height:1.25; color:var(--ink); letter-spacing:-0.01em; }
+.moment-bar .moment-attr { font-family:var(--sans); font-size:8px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-4); margin-top:10px; }
+
+.pull-full { border-top:0.5px solid var(--rule); border-bottom:0.5px solid var(--rule); padding:32px 0; margin:36px 0; text-align:center; }
+.pull-full p { font-family:var(--display); font-size:clamp(20px,2.8vw,30px); font-weight:400; font-style:italic; line-height:1.25; color:var(--ink); letter-spacing:-0.01em; max-width:560px; margin:0 auto 12px; }
+.pull-full .pull-sub { font-family:var(--sans); font-size:8.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-4); }
+
+.aside-box { border-top:1px solid var(--ink-2); padding-top:16px; }
+.aside-box h3 { font-family:var(--sans); font-size:8.5px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+.aside-body { font-family:var(--serif); font-size:12.5px; line-height:1.65; color:var(--ink-3); font-style:italic; }
+.aside-body p { margin-bottom:0.8em; }
+.aside-stat { font-family:var(--display); font-size:36px; font-weight:400; color:var(--ink); line-height:1; margin-bottom:4px; }
+.aside-stat-label { font-family:var(--sans); font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4); line-height:1.5; margin-bottom:16px; }
+
+.data-list { margin:20px 0; }
+.data-item { display:grid; grid-template-columns:90px 1fr; gap:12px; padding:11px 0; border-bottom:0.5px solid var(--rule); align-items:baseline; }
+.data-item:first-child { border-top:0.5px solid var(--rule); }
+.data-key { font-family:var(--sans); font-size:8px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); line-height:1.5; }
+.data-val { font-family:var(--serif); font-size:13px; line-height:1.6; color:var(--ink-2); }
+.data-val em { color:var(--ink); font-style:normal; font-weight:500; }
+
+.struck-q { font-family:var(--display); font-size:18px; font-weight:400; font-style:italic; color:var(--ink-4); text-decoration:line-through; text-decoration-color:var(--rule); margin-bottom:8px; }
+.pivot-label { font-family:var(--sans); font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-4); margin-bottom:6px; }
+.decision-q { font-family:var(--display); font-size:clamp(24px,3.8vw,42px); font-weight:400; font-style:italic; line-height:1.18; letter-spacing:-0.02em; color:var(--ink); border-left:2px solid var(--accent); padding-left:24px; margin:18px 0 36px; }
+
+.footnotes { border-top:0.5px solid var(--rule); margin-top:36px; padding-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:5px 28px; }
+.fn { font-family:var(--sans); font-size:8px; letter-spacing:0.04em; color:var(--ink-4); line-height:1.55; }
+.fn b { font-weight:500; color:var(--ink-3); }
+
+sup.cite { font-family:var(--sans); font-size:7px; font-weight:500; color:var(--accent); vertical-align:super; margin-left:1px; }
+.h-rule { width:100%; height:0.5px; background:var(--rule); margin:28px 0; }
+.sp-8{height:8px} .sp-16{height:16px} .sp-24{height:24px} .sp-32{height:32px}
+
+@media(max-width:680px){
+  .page{padding:32px 24px 40px;}
+  .grid-3,.grid-2,.grid-2-1{grid-template-columns:1fr;}
+  .col-span-2,.col-span-3{grid-column:span 1;}
+  .col-with-rule{border-left:none;padding-left:0;border-top:0.5px solid var(--rule);padding-top:20px;}
+  .footnotes{grid-template-columns:1fr;}
+  .book{padding:20px 8px 60px;}
+}
+</style>
+</head>
+<body>
+<div class="book">
+
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — OPENING
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-stripe">
+    <span>Perspective — Life &amp; Place</span>
+    <span>Long-form</span>
+  </div>
+
+  <p class="p1-kicker">Residence · Family · Belonging</p>
+  <h1 class="p1-title">A Place Worth<br><em>Building Time</em><br>Around</h1>
+  <div class="title-rule"></div>
+
+  <div class="byline">
+    <span class="byline-author">Editorial</span>
+    <span class="byline-date">March 2026</span>
+  </div>
+
+  <div class="img-block" style="margin-bottom:0;">
+    <img src="editorial.jpg" alt="Thep Krasatti, Phuket, Thailand" style="width:100%;height:210px;object-fit:cover;object-position:center;display:block;">
+  </div>
+  <div class="sp-8"></div>
+  <p class="img-caption"><b>Above:</b> Above: Late afternoon across Phuket’s agricultural interior — a landscape that shifts the question from what a place offers to what it quietly enables.</p>
+
+  <div class="sp-24"></div>
+
+  <div class="grid-3">
+    <div class="col-span-2">
+      <p class="standfirst">There is a category of life decision that resists the usual frameworks. Not a financial calculation. Not a career move. Something closer to an honest answer to a question that has been deferred for years: what does the shape of my days — the actual texture of how I live, not how I intend to live — say about what I value? And more practically: does where I am make it easier or harder to be with the people I love, in a way that compounds over time rather than simply accumulates?</p>
+    </div>
+    <div class="col-with-rule">
+      <div class="aside-box">
+        <div class="aside-stat">78%</div>
+        <p class="aside-stat-label">of UHNW individuals report that family and close friendships are now more important to them than at any earlier point in their lives<sup class="cite">1</sup></p>
+        <div class="aside-stat">$124tn</div>
+        <p class="aside-stat-label">projected global intergenerational wealth transfer between 2024 and 2048 — the largest in recorded history<sup class="cite">2</sup></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp-16"></div>
+
+  <div class="grid-3">
+    <div class="body dropcap">
+      <p>The wealthiest cohort of people alive today has, by most conventional measures, solved the problem of comfort. The houses are well-chosen. The travel is impeccably organised. The professional support structure is, in many cases, institutional in its sophistication. And yet there is a pattern in this cohort — documented with some consistency by wealth researchers, family office advisors, and the people themselves — that speaks to something the infrastructure has not resolved.</p>
+      <p>The Luxury Institute's longitudinal research into ultra-high-net-worth lifestyle priorities found something that surprised even its own analysts: <b>across every generation surveyed, family and close friendship had become the primary concern</b> — not investment returns, not business succession, not even health.<sup class="cite">1</sup> The same research identified a quiet tension beneath the headline figures: wealthy individuals report that genuine friendship is harder to maintain than it has ever been. That the distances involved in a global life make continuity of real relationship — not professional relationship, not occasional relationship, but the kind that accumulates meaning through repetition — something that requires active, structural design to protect.</p>
+    </div>
+    <div class="body">
+      <p>This is the problem that the residential market has largely failed to address. The premium property world has become very good at selling environments that are beautiful, prestigious, and financially sound. It has not become good at building environments that make a rich human life easier to sustain — where the connections that matter most are not something you have to work against the grain of daily logistics to maintain, but something the place itself makes natural.</p>
+
+      <div class="moment-bar">
+        <p>They favour familiar places — where they can engage with familiar people and create joyful, memorable experiences, treated as individuals rather than as wealthy individuals.</p>
+        <p class="moment-attr">Luxury Institute, UHNW Values Research, 2022</p>
+      </div>
+
+      <p>The drift the researchers describe is not dramatic. It is accumulative. A child's school in one city. A spouse's family in another. A business that requires quarterly visits to three more. The life that results is not unhappy — it is scattered. High in content, low in coherence. Rich in events, thin in the kind of ordinary, repeated, unhurried time together that turns a family into a culture rather than a calendar of occasions.</p>
+    </div>
+    <div class="col-with-rule body">
+      <p>Julius Baer's Family Wealth Barometer, surveying affluent families across every major wealth region in 2024, found that intergenerational continuity had become the defining preoccupation of UHNW families globally — not in a financial sense, but in a values sense.<sup class="cite">3</sup> The question being asked, repeatedly, was: how do we build something that means something to the generation that inherits it? How do we transmit not just assets but the orientation that shaped them?</p>
+      <p>That question has a residential dimension that is rarely spoken about plainly. Whether a family has a gravitational centre — a place that pulls generations together regularly rather than letting them drift into their respective geographies — shapes how that transmission happens. Or whether it happens at all.</p>
+      <p>The answer, when it exists, is almost never a property. It is a place. The distinction is worth examining carefully.</p>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>1</span>
+    <span>For private circulation</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — FAMILY · COMMUNITY · PLACE
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-stripe">
+    <span>Perspective — Life &amp; Place</span>
+    <span>The Argument</span>
+  </div>
+
+  <div class="grid-2-1">
+    <div>
+      <div class="sec-marker">
+        <span class="sec-num">I</span>
+        <div class="sec-rule"></div>
+        <span class="sec-title">The Family Question</span>
+      </div>
+      <h2 class="section-head">What a family actually needs from a place is different from what the residential market has trained us to ask for.</h2>
+
+      <div class="body dropcap">
+        <p>Consider what happens to family life under the conditions most commonly produced by serious professional success. The children grow up in the best schools, which are in the best cities for the business, which are not the cities where the grandparents live, which are not the cities where the wider family has its roots. Each decision is locally rational. The aggregate is a family that has been systematically dispersed. The annual gathering — which becomes the primary site of family life — substitutes event for continuity. It produces memories, but not the ordinary accumulated familiarity that makes a family feel like a family rather than a set of people who share an origin and a WhatsApp group.</p>
+
+        <p>Research published in 2024 in <em>Developmental Cognitive Neuroscience</em> has begun to offer a biological account of what proximity between generations actually produces. Using multi-brain neuroimaging models, researchers found that <b>grandparent-grandchild interactions may generate higher inter-brain coupling than equivalent parent-child interactions</b> — with the effect most pronounced when all three generations are present together.<sup class="cite">4</sup> The researchers attribute this, tentatively, to the particular quality of grandparental attention: unhurried, emotionally rich, freed from the anxieties of primary caregiving. It is, in any case, a scientific argument for something most families know by instinct — that time with grandparents is different in kind, and that it requires proximity in order to happen at all.</p>
+
+        <p>A 2025 systematic review in <em>Health and Social Care in the Community</em> — drawing on 62 studies across 16 countries and nearly 300,000 participants — found that mental health outcomes for both adults and children in multigenerational living arrangements were significantly shaped not just by co-residence, but by the quality of the shared environment.<sup class="cite">5</sup> The space, the design, the rhythms the place made possible or obstructed — these determined whether the proximity produced connection or friction. Proximity is a necessary condition. It is not, on its own, sufficient.</p>
+
+        <p>Most premium residential environments are not designed with any of this in mind. They are designed for an individual at a specific stage of professional life. The grandparent who visits is accommodated. The adult child who returns is catered for. But the environment itself does not actively draw generations together — it tolerates proximity rather than cultivating it. The common territory is thin. The shared rhythms are absent. The place offers space, but not the particular kind of space that makes intergenerational life feel natural rather than arranged.</p>
+      </div>
+    </div>
+
+    <div class="col-with-rule">
+      <div class="aside-box">
+        <h3>What Intergenerational Research Finds</h3>
+        <div class="aside-body">
+          <p>Campbell Collaboration systematic reviews in 2023 and 2024 examined intergenerational activity interventions across hundreds of randomised controlled trials. The consistent finding: structured contact between generations — between people with at least one generation between them — improves mental health and wellbeing for both older adults and children, with the operative mechanism running through a sense of being valued and a genuine sense of belonging.<sup class="cite">6</sup></p>
+          <p>The operative word in both bodies of research is <em>design</em>. The benefits of intergenerational proximity are not automatic. They require an environment whose organisation makes the encounter between generations easy rather than effortful — where different age groups cross paths in unscripted ways, and where there is enough shared territory to give those crossings substance.</p>
+          <p>The environment, in other words, is doing active work. A well-designed multigenerational setting is not a background. It is a participant.</p>
+        </div>
+      </div>
+
+      <div class="sp-24"></div>
+
+      <div class="aside-box">
+        <h3>The Succession Dimension</h3>
+        <div class="aside-body">
+          <p>Citco's 2024 analysis of family office priorities found that the single most pressing concern across UHNW families globally was intergenerational values transfer — how to ensure that the rising generation inherits not just wealth, but the orientation that created it.<sup class="cite">7</sup></p>
+          <p>That transfer happens through repeated, unhurried time together. Through stories told over meals. Through values demonstrated in ordinary decisions. Through relationships formed in the unscripted texture of daily shared life rather than the organised space of annual gatherings. It is a process that requires proximity, and proximity requires a place.</p>
+          <p>The residential question and the succession question are, at this level, the same question.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-full">
+    <p>"What UHNWs are seeking is not more. They are seeking better — more ordinary time with the people they love, in places that make that time feel like enough."</p>
+    <span class="pull-sub">Luxury Institute — UHNW Values &amp; Priorities Research <sup class="cite">1</sup></span>
+  </div>
+
+  <div class="grid-3">
+    <div class="col-span-3">
+      <div class="sec-marker">
+        <span class="sec-num">II</span>
+        <div class="sec-rule"></div>
+        <span class="sec-title">The Community Problem</span>
+      </div>
+      <h2 class="section-head">Belonging at this level of life is not automatic. It is, in fact, one of the hardest things to build — and one of the easiest to let slip.</h2>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="body">
+      <p>The Luxury Institute researchers noted, with some precision, that loneliness may be "one of the best-kept secrets" of ultra-wealthy life.<sup class="cite">1</sup> The phrase earns its care. It is not that wealthy individuals lack social contact — they often have more of it than they want. It is that the contact available tends to be professional, transactional, or performance-adjacent. The peer group is small. The trust required for genuine friendship takes time to establish. And the mobility that wealth enables — a genuine advantage in almost every other domain — actively works against the accumulation of the kind of relationship that develops through repetition and ordinariness. You cannot shortcut your way to a close friend. You can only be in the same place, over time, often enough for one to form.</p>
+      <p>This matters not as a personal complaint but as a design problem. Community — the kind that is actually sustaining, rather than merely sociable — does not emerge naturally from proximity. Research into what makes residential communities function, rather than simply co-exist, points consistently to three things: genuine diversity of age and perspective; shared purpose that gives people something to orient toward together; and informal territory — ground that is neither fully public nor fully private, where people encounter each other without an agenda.<sup class="cite">8</sup></p>
+    </div>
+    <div class="body">
+      <p>Most premium residential developments fail this test. The residents are broadly similar in profile, age, and aspiration. The common spaces, where they exist, are facilities rather than territory. The social architecture produces acquaintance rather than community — people know each other's names but not their histories. The setting is prestigious but not particularly alive.</p>
+
+      <div class="moment-bar">
+        <p>What is increasingly sought, and rarely found, is a place where the people around you are genuinely worth knowing — and where the place itself makes the knowing easy.</p>
+      </div>
+
+      <p>Knight Frank's residential research team, tracking the priorities of UHNW buyers across major global markets, has documented a consistent shift away from address-as-status toward environment-as-infrastructure: a growing preference for places that contribute actively to the quality of daily life rather than simply reflecting its success.<sup class="cite">8</sup> That shift is most visible among millennial and Generation X inheritors — those who will determine where the next generation of family wealth is anchored — for whom ecological quality, community depth, and multigenerational vitality register as serious residential criteria in a way they did not for their predecessors.</p>
+    </div>
+    <div class="col-with-rule body">
+      <p>Sand Hill Global Advisors' research into UHNW family priorities found that <b>balancing lifestyle and legacy</b> — supporting how life is actually lived today while ensuring the environment means something to the generation that follows — had emerged as one of the seven defining concerns of this cohort.<sup class="cite">9</sup></p>
+      <p>Legacy, in this reading, is not primarily a financial concept. It is a relational one. It is what a family is, collectively, across time — and it is built in places, not portfolios. The residential decision is therefore not peripheral to the succession question. It is close to its centre.</p>
+      <p>The environment that supports this is not one that offers community as an amenity — a social calendar to opt into. It is one whose design, scale, and organisation make connection across ages and backgrounds the natural outcome of daily life. Where running into someone interesting is not an event but a pattern. Where children grow up knowing adults outside their immediate family. Where the definition of neighbour carries genuine weight.</p>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>2</span>
+    <span>For private circulation</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — PLACE, THE SYSTEM & DECISION
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-stripe">
+    <span>Perspective — Life &amp; Place</span>
+    <span>Conclusion</span>
+  </div>
+
+  <div class="grid-2-1">
+    <div>
+      <div class="sec-marker">
+        <span class="sec-num">III</span>
+        <div class="sec-rule"></div>
+        <span class="sec-title">What Place Actually Does</span>
+      </div>
+      <h2 class="section-head">The role of place in a well-lived family life is consistently underestimated. It is also, once changed, unmistakeable.</h2>
+
+      <div class="body">
+        <p>There is a version of the residential question that treats location as a background variable: the setting within which life happens, chosen for its practical merits and otherwise left to function as scenery. The evidence — and the honest account of families who have lived this decision — suggests this is wrong. Place is an active participant in how a life unfolds.</p>
+
+        <p>The ecological quality of where people spend their days affects mood, energy, and cognitive clarity in ways that accumulate slowly and are difficult to attribute to any single cause, which is precisely why they are so often ignored until the environment changes. The scale of the land around a family home — whether there is genuine natural territory for children to move freely through, for adults to walk in without structure, for the pace of a day to vary without requiring a plan — shapes the texture of daily life in ways that no interior design, no matter how accomplished, can replicate. The particular quality of light, of green space, of proximity to water: these are not aesthetic preferences. They are physiological conditions. The science of biophilic design has made this case with increasing precision over the past decade.<sup class="cite">10</sup> What the science confirms is what the body already knows.</p>
+
+        <p>The social architecture of a community shapes who people become friends with, which shapes what they value, which shapes what they eventually pass on. An environment populated by people of genuine range — in age, in background, in what they bring to a shared space — is one in which the encounter that changes something has a chance of happening. An environment of demographic similarity, however comfortable, produces a narrower version of life.</p>
+
+        <p>Asia, and Thailand specifically, has emerged in this context with structural advantages that were not fully legible a decade ago. The ecological scale available — land that is genuinely biodiverse, not merely landscaped — remains possible in ways it has long ceased to be in coastal Europe or urban America. The climate supports outdoor daily life year-round, making the kind of unstructured time in natural surroundings that childhood and family connection depend on not a holiday mode but a daily condition. And the operational culture — the particular combination of warmth, attentiveness, and professional excellence that characterises the best Thai hospitality — creates the kind of daily environment in which life can be simply lived rather than continuously managed.</p>
+      </div>
+    </div>
+
+    <div class="col-with-rule">
+      <div class="aside-box">
+        <h3>Asia's Residential Moment</h3>
+        <div class="aside-body">
+          <p>Altrata forecasts the global ultra-wealthy population will reach nearly 677,000 individuals by 2030, with Asia accounting for the fastest growth. India, Indonesia, and Malaysia are each projected to expand their UHNW populations by 30–50% across the decade.<sup class="cite">11</sup></p>
+          <p>Knight Frank's Wealth Report notes that established wealth hubs are being challenged by destinations offering what they increasingly cannot: ecological scale, genuine privacy, year-round outdoor living, and community depth that emerges from intentional design rather than historical accident.<sup class="cite">8</sup></p>
+          <p>Thailand's combination of ecological scale, Andaman Sea proximity, a 15-minute drive from an international airport, and land availability at residential scale positions it distinctively — not as an exotic departure, but as a structurally sound answer to a question that older wealth geographies no longer resolve cleanly.</p>
+        </div>
+      </div>
+
+      <div class="sp-24"></div>
+
+      <p style="font-family:var(--sans);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);border-top:1px solid var(--ink-3);padding-top:14px;margin-bottom:14px;">Four Conditions for a Life That Coheres</p>
+      <div class="data-list">
+        <div class="data-item">
+          <span class="data-key">Land</span>
+          <span class="data-val">600 rai of <em>regenerative ecological landscape</em> — nine lakes, regrown forest, botanical environment. Not a garden. Scale that changes what daily life feels like.</span>
+        </div>
+        <div class="data-item">
+          <span class="data-key">Health</span>
+          <span class="data-val"><em>Clinique La Prairie</em> longevity science, woven into daily life — not a clinic to visit on a schedule, but a health framework the environment sustains.</span>
+        </div>
+        <div class="data-item">
+          <span class="data-key">Service</span>
+          <span class="data-val"><em>Trisara-level</em> operational trust — the environment works, continuously, without requiring management. The family is freed to simply be present.</span>
+        </div>
+        <div class="data-item">
+          <span class="data-key">Community</span>
+          <span class="data-val">Multi-generational <em>by design</em>, not by accident — social architecture built so that connection across ages is what naturally happens, every day.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"></div>
+
+  <div class="grid-3">
+    <div class="col-span-3">
+      <div class="sec-marker">
+        <span class="sec-num">IV</span>
+        <div class="sec-rule"></div>
+        <span class="sec-title">The Multigenerational Case</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="body col-span-2">
+      <p>Knight Frank estimates that roughly $90 trillion in assets will transfer between generations in the United States alone over the next two decades. The global figure, according to Altrata analysis, approaches $124 trillion between 2024 and 2048.<sup class="cite">2</sup> The rising generation that inherits this wealth arrives with different residential priorities: a stronger orientation toward environmental quality, toward community with genuine depth, toward places designed to hold multiple generations simultaneously rather than accommodating them on rotation.<sup class="cite">8</sup></p>
+
+      <p>What the multigenerational residential question requires is a different answer from what the market currently provides. Not a large house in a prestigious location where generations can stay when they visit. But an environment designed from its origins to hold an eight-year-old and a seventy-year-old in the same daily life — where the space between those ages is filled with genuine encounter rather than managed family time, and where the rhythms of the place support the unhurried quality of presence that makes relationship actually deepen.</p>
+
+      <p>A child who grows up in an environment of genuine ecological scale — who has territory, who encounters a range of adults and ages as part of ordinary daily life, who knows a place intimately rather than as a series of scheduled activities — is growing up differently from a child in a well-appointed apartment in a well-serviced building. The difference is not one of privilege. It is one of experience: the particular experience of being somewhere that has character, that changes across the hours and seasons, that rewards attention. That kind of childhood produces a kind of adult, and a kind of orientation to place and family, that no amount of structured enrichment can substitute for.</p>
+
+      <p>The families who think most carefully about this — who have looked past the property question to ask what they actually want daily life to feel like for the people they love — tend to arrive at similar conclusions. That the gravitational centre a family needs is not a property but a place: somewhere with enough character, enough ecological and social richness, enough quality of daily life across ages, that it becomes worth returning to — not out of obligation but out of genuine preference. The kind of place that earns its way into the centre of a family's sense of itself, slowly, across the seasons and years of being there.</p>
+    </div>
+    <div class="col-with-rule body" style="font-size:13.5px;line-height:1.68;">
+      <p style="font-family:var(--serif);font-size:13.5px;line-height:1.7;color:var(--ink-2);font-style:italic;">"Philanthropy provides a way to engage younger family members, strengthen bonds, and reinforce a shared sense of mission."</p>
+      <p style="font-family:var(--sans);font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-4);margin-top:8px;margin-bottom:20px;">Sand Hill Global Advisors — UHNW Family Priorities<sup class="cite">9</sup></p>
+
+      <p>The shared sense of mission that wealth advisors identify as the differentiator between families that hold together across generations and those that fragment is not transmitted through governance documents. It is transmitted through shared experience — through particular memories accumulated in a particular place, through relationships formed in unscripted daily life rather than arranged occasions, through the values demonstrated in ordinary decisions made in a specific context over time.</p>
+
+      <p>This is why place matters to legacy in a way that is rarely made explicit in the residential conversation. A family without a gravitational centre — without somewhere that draws its generations together in ordinary time, not just extraordinary time — is a family whose transmission of meaning is left to chance. The estate plan is in order. The succession structure is sound. But the actual passing on of what matters — the orientation, the values, the sense of what kind of people we are — happens elsewhere, in the spaces between the formal arrangements. It happens in places.</p>
+
+      <p>The advisors who work most closely with UHNW families tend to say this carefully, and to note that the residential question is almost never engaged with at this level of seriousness in the initial property decision. It tends to become clear later. When the children are adults with their own geographies. When the gathering that used to happen naturally no longer does. When the question of how to be together — in ordinary time, in a place that means something — finds no structural answer in the life that was built.</p>
+    </div>
+  </div>
+
+  <div class="h-rule"></div>
+
+  <div class="sec-marker">
+    <span class="sec-num">V</span>
+    <div class="sec-rule"></div>
+    <span class="sec-title">The Real Decision</span>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <p class="struck-q">"Is this beautiful?"</p>
+      <p class="pivot-label">The question that actually resolves the decision</p>
+      <div class="decision-q">"Does this make the life I want for my family easier to build?"</div>
+
+      <div class="body">
+        <p>The reframe is not rhetorical. It moves the evaluation from the aesthetic to the structural — from what the place feels like on a first visit to what it produces over years of use. Beauty, prestige, and financial soundness are satisfied by a reasonably large number of options at this level. The environment that actively supports multigenerational family life, genuine community across ages, the unstructured daily time that makes belonging feel real rather than arranged — that is considerably rarer.</p>
+        <p>It requires ecological scale that is not decorative. Social architecture designed for connection, not accommodation. Operational quality that removes the friction of management and leaves simply life. And — perhaps most of all — the kind of unhurried proximity between generations that allows the slow work of family culture to happen: the stories accumulated, the values demonstrated, the relationships formed across the full range of the age spectrum without an itinerary.</p>
+      </div>
+    </div>
+    <div class="col-with-rule">
+      <div class="body">
+        <p>The Luxury Institute researchers, having traced the values of ultra-wealthy families across years of longitudinal study, offered a formulation that reads like a conclusion earned rather than manufactured: <em>what this cohort is seeking is not more. It is better.</em><sup class="cite">1</sup> Not more properties, more experiences, more structured enrichment. But better daily texture — more ordinary time with the people who matter most, in a place that makes that time feel, without effort, like enough.</p>
+
+        <div class="moment-bar" style="margin-top:24px;">
+          <p>A place worth building time around is not one that fills every day with things to do. It is one that makes the unscheduled day feel like the right answer.</p>
+        </div>
+
+        <p>The closing observation that wealth advisors most often share — the one that tends to arrive with clients who are past the first generation of serious wealth — is that the measure of a life is not its portfolio or its property inventory. It is the quality of the relationships sustained within it, and the degree to which the choices made in building that life actively supported those relationships, or made them harder.</p>
+
+        <p>Residential choice is one of those choices. Among the most consequential. It shapes, more than almost any other single decision, the geography of family life — who can be in the same room without a flight booked, what childhood actually looks and feels like, whether the gathering that everyone intends to have becomes the gathering that actually happens. And whether, in the decades that follow the decision, the place chosen turns out to be one worth returning to.</p>
+
+        <p style="font-family:var(--serif);font-size:14.5px;line-height:1.72;color:var(--ink-2);font-style:italic;margin-top:0.9em;">For those where the environment answers the question correctly — where it genuinely makes the life wanted easier to build and easier to share — it becomes, over time, difficult to imagine having chosen otherwise.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnotes">
+    <p class="fn"><b>1</b> Luxury Institute, <em>Evolving Values and Priorities of Ultra-High-Net-Worth Families</em>, 2022. In-depth interviews across USA and Europe; collaboration with The UHNW Institute.</p>
+    <p class="fn"><b>2</b> Altrata / Wealth-X, intergenerational transfer projections, 2025; Knight Frank supplementary data on US succession dynamics. Global figure: $124tn, 2024–2048.</p>
+    <p class="fn"><b>3</b> Julius Baer, <em>Family Barometer 2024</em>. Global survey of affluent family priorities; intergenerational transfer cited as top concern across every region.</p>
+    <p class="fn"><b>4</b> Dikker, S., Brito, N.H., Dumas, G., <em>Developmental Cognitive Neuroscience</em>, 2024. Multi-brain neurocomputational models of grandparent-grandchild inter-brain coupling.</p>
+    <p class="fn"><b>5</b> Jones, K., <em>Health &amp; Social Care in the Community</em>, 2025. Scoping systematic review: multigenerational living and mental health outcomes across 62 studies, 16 countries, 289,071 participants.</p>
+    <p class="fn"><b>6</b> Campbell Collaboration, <em>Campbell Systematic Reviews</em>, 2023 &amp; 2024. Intergenerational activity interventions and wellbeing outcomes for older adults and children, 500+ evaluations reviewed.</p>
+    <p class="fn"><b>7</b> Citco, <em>10 Key Challenges for Family Offices in 2024</em>. Intergenerational values transfer cited as primary non-investment concern across global family offices.</p>
+    <p class="fn"><b>8</b> Knight Frank, <em>The Wealth Report 2024</em>. UHNWI residential priorities, generational divergence in criteria, and emerging market growth projections.</p>
+    <p class="fn"><b>9</b> Sand Hill Global Advisors, <em>Beyond Wealth: The Top 7 Priorities of UHNW Families</em>, 2025. Lifestyle-legacy balance; philanthropy as intergenerational bonding mechanism.</p>
+    <p class="fn"><b>10</b> Gonçalves et al., <em>Int. J. Environmental Research and Public Health</em>, 2023. Biophilic design and restorative outcomes across 16 peer-reviewed workplace studies.</p>
+    <p class="fn"><b>11</b> Altrata, <em>World Ultra Wealth Report 2025</em>. Population data H1 2025; 2030 projections by geography including India, Indonesia, Malaysia growth forecasts.</p>
+  </div>
+
+  <div class="page-foot">
+    <span>3</span>
+    <span>For private circulation</span>
+  </div>
+</div>
+
+
+</div>
+</body>
+</html>
