@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Villa Sales Kit — Tri Vananda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --green:   #233f2f;
+  --green-2: #2f5440;
+  --rust:    #CF554E;
+  --sand:    #BAB9AF;
+  --sand-2:  #d4cfc8;
+  --cream:   #EDEBE9;
+  --paper:   #f5f2ee;
+  --ink:     #1a1714;
+  --ink-2:   #3d3a37;
+  --ink-3:   #6b6760;
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --sans:    'Jost', 'Helvetica Neue', sans-serif;
+}
+
+html, body { font-family:var(--sans); background:#111; -webkit-font-smoothing:antialiased; overflow:hidden; }
+
+.deck { width:100vw; height:100vh; position:relative; }
+
+.slide {
+  position:absolute; inset:0; opacity:0; pointer-events:none;
+  transition:opacity 0.7s ease; display:flex; flex-direction:column;
+}
+.slide.active { opacity:1; pointer-events:all; }
+
+/* NAV */
+.nav {
+  position:fixed; bottom:36px; left:50%; transform:translateX(-50%);
+  display:flex; align-items:center; gap:20px; z-index:100;
+}
+.nav-btn {
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.25); background:rgba(0,0,0,0.3);
+  color:white; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(8px); transition:all 0.2s; font-size:14px;
+}
+.nav-btn:hover { border-color:rgba(255,255,255,0.6); background:rgba(0,0,0,0.5); }
+.nav-dots { display:flex; gap:8px; align-items:center; }
+.nav-dot { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.25); cursor:pointer; transition:all 0.3s; }
+.nav-dot.active { background:white; transform:scale(1.4); }
+
+/* LOGO */
+.real-logo { height:40px; width:auto; display:block; }
+
+/* SHARED HEADER / FOOTER */
+.slide-header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:28px 56px 0; flex-shrink:0;
+}
+.slide-header-label {
+  font-family:var(--sans); font-size:8px; font-weight:400;
+  letter-spacing:0.25em; text-transform:uppercase;
+}
+.slide-footer {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 56px 28px; flex-shrink:0; margin-top:auto;
+}
+.slide-footer span {
+  font-family:var(--sans); font-size:8px; font-weight:400;
+  letter-spacing:0.2em; text-transform:uppercase; opacity:0.5;
+}
+.footer-dark span { color:rgba(255,255,255,0.3) !important; opacity:1 !important; }
+
+/* ══════════════════════════════════════
+   SLIDE 01 — COVER
+══════════════════════════════════════ */
+#s01 { background:var(--green); justify-content:space-between; }
+
+#s01 .cover-body {
+  padding:0 56px; flex:1; display:flex;
+  flex-direction:column; justify-content:center;
+}
+#s01 .cover-label {
+  font-family:var(--sans); font-size:8.5px; font-weight:400;
+  letter-spacing:0.3em; text-transform:uppercase;
+  color:rgba(255,255,255,0.45); margin-bottom:28px;
+}
+#s01 .cover-title {
+  font-family:var(--serif); font-size:clamp(48px,6.5vw,80px); font-weight:300;
+  line-height:0.95; color:var(--cream); letter-spacing:-0.02em; margin-bottom:40px;
+}
+#s01 .cover-title em { font-style:italic; font-weight:300; }
+#s01 .cover-rule { width:48px; height:0.5px; background:rgba(255,255,255,0.3); margin-bottom:32px; }
+#s01 .cover-meta { display:flex; gap:48px; }
+#s01 .cover-meta-item { display:flex; flex-direction:column; gap:6px; }
+#s01 .cover-meta-label {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.2em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35);
+}
+#s01 .cover-meta-value {
+  font-family:var(--serif); font-size:15px; font-weight:400;
+  color:rgba(255,255,255,0.8); letter-spacing:0.02em;
+}
+
+/* ══════════════════════════════════════
+   SLIDE 02 — BEFORE THE NUMBERS
+══════════════════════════════════════ */
+#s02 { background:var(--paper); justify-content:space-between; }
+#s02 .s02-body {
+  flex:1; padding:40px 56px 0; display:flex; flex-direction:column; justify-content:center;
+}
+#s02 .s02-kicker {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:32px;
+}
+#s02 .s02-statement {
+  font-family:var(--serif); font-size:clamp(24px,3.4vw,42px); font-weight:300;
+  font-style:italic; line-height:1.2; color:var(--ink); letter-spacing:-0.01em;
+  max-width:740px; margin-bottom:44px;
+}
+#s02 .s02-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:1px;
+  border-top:0.5px solid var(--sand); padding-top:32px; max-width:660px;
+}
+#s02 .s02-cell { padding-right:32px; }
+#s02 .s02-cell-label {
+  font-family:var(--sans); font-size:7.5px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:8px;
+}
+#s02 .s02-cell-text { font-family:var(--serif); font-size:15px; line-height:1.65; color:var(--ink-2); }
+
+/* ══════════════════════════════════════
+   SLIDE 03 — THE ECOSYSTEM (split dark)
+══════════════════════════════════════ */
+#s03 { background:#1a1714; flex-direction:row; overflow:hidden; }
+#s03 .s03-left {
+  width:42%; background:var(--green); display:flex; flex-direction:column;
+  justify-content:center; padding:64px 52px;
+}
+#s03 .s03-right {
+  flex:1; display:flex; flex-direction:column; justify-content:center; padding:56px 52px;
+}
+#s03 .s03-section-label {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.25em;
+  text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:32px;
+}
+#s03 .s03-heading {
+  font-family:var(--serif); font-size:clamp(32px,4vw,52px); font-weight:300;
+  color:var(--cream); line-height:1.05; letter-spacing:-0.02em; margin-bottom:36px;
+}
+#s03 .s03-heading em { font-style:italic; }
+#s03 .s03-subtext {
+  font-family:var(--sans); font-size:12px; font-weight:300;
+  color:rgba(255,255,255,0.45); line-height:1.65; letter-spacing:0.01em; max-width:320px;
+}
+#s03 .s03-items { display:flex; flex-direction:column; gap:0; }
+#s03 .s03-item {
+  display:grid; grid-template-columns:28px 1fr;
+  gap:0 16px; padding:20px 0;
+  border-bottom:0.5px solid rgba(255,255,255,0.07);
+  align-items:start;
+}
+#s03 .s03-item:last-child { border-bottom:none; }
+#s03 .s03-item-num {
+  font-family:var(--sans); font-size:8px; font-weight:400;
+  letter-spacing:0.15em; color:rgba(255,255,255,0.2); padding-top:3px;
+}
+#s03 .s03-item-content {}
+#s03 .s03-item-title {
+  font-family:var(--serif); font-size:17px; font-weight:400;
+  color:rgba(255,255,255,0.85); line-height:1.2; margin-bottom:5px;
+}
+#s03 .s03-item-desc {
+  font-family:var(--sans); font-size:11px; font-weight:300;
+  line-height:1.65; color:rgba(255,255,255,0.4); letter-spacing:0.01em;
+}
+#s03 .s03-item-tag {
+  display:inline-block; margin-top:6px; font-family:var(--sans); font-size:7px;
+  font-weight:500; letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); padding:3px 8px; border:0.5px solid rgba(255,255,255,0.12);
+}
+#s03 .s03-item-tag.tag-live { color:rgba(255,255,255,0.5); border-color:rgba(255,255,255,0.2); }
+
+/* ══════════════════════════════════════
+   SLIDE 04 — TWO ARCHITECTURES
+══════════════════════════════════════ */
+#s04 { background:var(--cream); justify-content:space-between; }
+#s04 .s04-body {
+  flex:1; padding:32px 56px 0; display:flex; flex-direction:column; justify-content:center;
+}
+#s04 .s04-kicker {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:28px;
+}
+#s04 .s04-heading {
+  font-family:var(--serif); font-size:clamp(28px,3.6vw,44px); font-weight:300;
+  line-height:1.1; color:var(--ink); letter-spacing:-0.02em; margin-bottom:36px;
+}
+#s04 .s04-heading em { font-style:italic; color:var(--green); }
+#s04 .s04-cols { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+#s04 .s04-col {
+  padding:28px 32px; display:flex; flex-direction:column; gap:16px;
+}
+#s04 .col-vana { background:white; }
+#s04 .col-nanda { background:var(--green); }
+#s04 .col-name {
+  font-family:var(--serif); font-size:28px; font-weight:300;
+  letter-spacing:0.06em; line-height:1;
+}
+.col-vana .col-name { color:var(--ink); }
+.col-nanda .col-name { color:var(--cream); }
+#s04 .col-tagline {
+  font-family:var(--serif); font-size:13px; font-style:italic; line-height:1.4;
+}
+.col-vana .col-tagline { color:var(--ink-3); }
+.col-nanda .col-tagline { color:rgba(237,235,233,0.5); }
+#s04 .col-rule { height:0.5px; }
+.col-vana .col-rule { background:var(--sand-2); }
+.col-nanda .col-rule { background:rgba(255,255,255,0.15); }
+#s04 .col-specs { display:flex; flex-direction:column; gap:8px; }
+#s04 .col-spec { display:flex; justify-content:space-between; align-items:baseline; }
+#s04 .col-spec-label {
+  font-family:var(--sans); font-size:7.5px; font-weight:400;
+  letter-spacing:0.15em; text-transform:uppercase;
+}
+#s04 .col-spec-value { font-family:var(--serif); font-size:14px; font-weight:400; }
+.col-vana .col-spec-label { color:var(--ink-3); }
+.col-vana .col-spec-value { color:var(--ink); }
+.col-nanda .col-spec-label { color:rgba(255,255,255,0.35); }
+.col-nanda .col-spec-value { color:var(--cream); }
+#s04 .col-ethos {
+  font-family:var(--sans); font-size:11px; font-weight:300; line-height:1.65;
+}
+.col-vana .col-ethos { color:var(--ink-3); }
+.col-nanda .col-ethos { color:rgba(255,255,255,0.45); }
+
+/* ══════════════════════════════════════
+   SLIDE 05 — VILLA TYPES TABLE
+══════════════════════════════════════ */
+#s05 { background:var(--paper); justify-content:space-between; }
+#s05 .s05-body { flex:1; padding:0 56px; display:flex; flex-direction:column; justify-content:center; gap:24px; }
+#s05 .s05-kicker {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+#s05 .s05-heading {
+  font-family:var(--serif); font-size:clamp(26px,3.2vw,38px); font-weight:300;
+  line-height:1.1; letter-spacing:-0.015em; color:var(--ink);
+}
+#s05 .s05-heading em { font-style:italic; }
+#s05 .s05-table { width:100%; border-collapse:collapse; }
+#s05 .s05-table th {
+  font-family:var(--sans); font-size:7.5px; font-weight:500; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--ink-3); padding:8px 12px;
+  border-bottom:1px solid var(--sand); text-align:left;
+}
+#s05 .s05-table th:last-child { text-align:right; }
+#s05 .s05-table td {
+  font-family:var(--serif); font-size:14px; font-weight:400; color:var(--ink-2);
+  padding:10px 12px; border-bottom:0.5px solid var(--sand-2); vertical-align:middle;
+}
+#s05 .s05-table td:last-child { text-align:right; }
+#s05 .s05-table tr:last-child td { border-bottom:none; }
+#s05 .s05-table tr.row-vana td { background:rgba(255,255,255,0.5); }
+#s05 .s05-table tr.row-nanda td { background:rgba(35,63,47,0.04); }
+#s05 .td-type { font-size:8px !important; font-family:var(--sans) !important; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3) !important; }
+#s05 .td-villa { font-weight:500 !important; color:var(--ink) !important; }
+#s05 .td-price { font-family:var(--sans) !important; font-size:11px !important; font-weight:500; color:var(--green) !important; }
+#s05 .s05-note {
+  font-family:var(--serif); font-size:13px; font-style:italic;
+  color:var(--ink-3); padding-top:12px; border-top:0.5px solid var(--sand-2);
+}
+
+/* ══════════════════════════════════════
+   SLIDE 06 — OWNERSHIP MODELS
+══════════════════════════════════════ */
+#s06 { background:var(--green); justify-content:space-between; }
+#s06 .s06-body {
+  flex:1; padding:32px 56px 0; display:flex; flex-direction:column; justify-content:center; gap:28px;
+}
+#s06 .s06-section {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35);
+}
+#s06 .s06-heading {
+  font-family:var(--serif); font-size:clamp(26px,3.4vw,42px); font-weight:300;
+  color:var(--cream); line-height:1.1; letter-spacing:-0.02em;
+}
+#s06 .s06-heading em { font-style:italic; }
+#s06 .s06-models { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; background:rgba(255,255,255,0.08); }
+#s06 .s06-model {
+  background:var(--green); padding:24px 24px 20px;
+  display:flex; flex-direction:column; gap:12px;
+}
+#s06 .s06-model-name {
+  font-family:var(--sans); font-size:8px; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.4);
+}
+#s06 .s06-model-price {
+  font-family:var(--serif); font-size:28px; font-weight:300;
+  color:var(--cream); line-height:1; letter-spacing:-0.01em;
+}
+#s06 .s06-model-price span { font-size:14px; color:rgba(237,235,233,0.5); }
+#s06 .s06-model-rule { height:0.5px; background:rgba(255,255,255,0.12); }
+#s06 .s06-model-items { display:flex; flex-direction:column; gap:6px; }
+#s06 .s06-model-item {
+  font-family:var(--sans); font-size:11px; font-weight:300;
+  color:rgba(255,255,255,0.5); line-height:1.5; letter-spacing:0.01em;
+}
+#s06 .s06-model-item strong { color:rgba(255,255,255,0.75); font-weight:400; }
+#s06 .s06-carbon {
+  display:flex; align-items:flex-start; gap:20px;
+  padding:16px 20px; background:rgba(255,255,255,0.06);
+  border:0.5px solid rgba(255,255,255,0.1);
+}
+#s06 .s06-carbon-label {
+  font-family:var(--sans); font-size:7.5px; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.3);
+  flex-shrink:0; padding-top:2px;
+}
+#s06 .s06-carbon-steps { display:flex; gap:0; flex:1; }
+#s06 .s06-carbon-step {
+  flex:1; display:flex; flex-direction:column; gap:4px;
+  padding-right:16px; border-right:0.5px solid rgba(255,255,255,0.1);
+  margin-right:16px;
+}
+#s06 .s06-carbon-step:last-child { border-right:none; margin-right:0; padding-right:0; }
+#s06 .s06-cs-pct {
+  font-family:var(--serif); font-size:20px; font-weight:300; color:var(--cream);
+}
+#s06 .s06-cs-label {
+  font-family:var(--sans); font-size:9px; font-weight:300;
+  color:rgba(255,255,255,0.4); line-height:1.45; letter-spacing:0.01em;
+}
+
+/* ══════════════════════════════════════
+   SLIDE 07 — LIFE HERE
+══════════════════════════════════════ */
+#s07 { background:var(--paper); justify-content:space-between; }
+#s07 .s07-body {
+  flex:1; padding:0 56px; display:flex; flex-direction:column; justify-content:center; gap:28px;
+}
+#s07 .s07-kicker {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+#s07 .s07-heading {
+  font-family:var(--serif); font-size:clamp(26px,3.2vw,40px); font-weight:300;
+  line-height:1.12; letter-spacing:-0.015em; color:var(--ink); max-width:560px;
+}
+#s07 .s07-heading em { font-style:italic; }
+#s07 .s07-systems { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; background:var(--sand-2); }
+#s07 .s07-sys {
+  display:flex; flex-direction:column; gap:10px; padding:20px 18px;
+}
+#s07 .s07-sys:nth-child(odd) { background:white; }
+#s07 .s07-sys:nth-child(even) { background:var(--cream); }
+#s07 .s07-sys-num {
+  font-family:var(--sans); font-size:7px; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-3);
+}
+#s07 .s07-sys-name {
+  font-family:var(--serif); font-size:18px; font-weight:400;
+  font-style:italic; color:var(--green); line-height:1;
+}
+#s07 .s07-sys-desc {
+  font-family:var(--sans); font-size:11px; font-weight:300;
+  line-height:1.65; color:var(--ink-3); letter-spacing:0.01em;
+}
+#s07 .s07-timeline {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  border-top:0.5px solid var(--sand-2); padding-top:20px;
+}
+#s07 .s07-tl-item { padding-right:20px; }
+#s07 .s07-tl-date {
+  font-family:var(--sans); font-size:9px; font-weight:500;
+  letter-spacing:0.12em; color:var(--green); margin-bottom:5px;
+}
+#s07 .s07-tl-text {
+  font-family:var(--serif); font-size:13px; color:var(--ink-2); line-height:1.45;
+}
+
+/* ══════════════════════════════════════
+   SLIDE 08 — PARTNERS & LOCATION
+══════════════════════════════════════ */
+#s08 { background:var(--paper); justify-content:space-between; }
+#s08 .s08-body {
+  flex:1; padding:0 56px; display:grid;
+  grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+}
+#s08 .s08-left {}
+#s08 .s08-kicker {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:24px;
+  display:flex; align-items:center; gap:12px;
+}
+#s08 .s08-kicker::before {
+  content:''; display:block; width:20px; height:0.5px; background:var(--sand-2);
+}
+#s08 .s08-heading {
+  font-family:var(--serif); font-size:clamp(26px,3.4vw,42px); font-weight:300;
+  line-height:1.1; letter-spacing:-0.02em; color:var(--ink); margin-bottom:28px;
+}
+#s08 .s08-heading em { font-style:italic; }
+#s08 .s08-loc-items { display:flex; flex-direction:column; gap:0; }
+#s08 .s08-loc-item {
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding:10px 0; border-bottom:0.5px solid var(--sand-2);
+}
+#s08 .s08-loc-item:last-child { border-bottom:none; }
+#s08 .s08-loc-place { font-family:var(--serif); font-size:15px; color:var(--ink-2); }
+#s08 .s08-loc-time {
+  font-family:var(--sans); font-size:8.5px; font-weight:400;
+  letter-spacing:0.1em; color:var(--ink-3);
+}
+#s08 .s08-right {
+  border-left:0.5px solid var(--sand-2); padding-left:56px;
+  display:flex; flex-direction:column; gap:24px;
+}
+#s08 .s08-partner-block { display:flex; flex-direction:column; gap:8px; }
+#s08 .s08-partner-label {
+  font-family:var(--sans); font-size:7.5px; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-3);
+  padding-bottom:8px; border-bottom:0.5px solid var(--sand-2);
+  margin-bottom:4px;
+}
+#s08 .s08-partner { display:flex; flex-direction:column; gap:2px; padding:8px 0; border-bottom:0.5px solid var(--sand-2); }
+#s08 .s08-partner:last-child { border-bottom:none; }
+#s08 .s08-partner-name { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--ink); }
+#s08 .s08-partner-role {
+  font-family:var(--sans); font-size:10px; font-weight:300; color:var(--ink-3); line-height:1.5;
+}
+
+/* ══════════════════════════════════════
+   SLIDE 09 — THE CONVERSATION
+══════════════════════════════════════ */
+#s09 { background:#111; position:relative; overflow:hidden; justify-content:space-between; }
+#s09 .s09-bg {
+  position:absolute; bottom:-40px; right:-20px;
+  font-family:var(--serif); font-size:26vw; font-weight:300; font-style:italic;
+  color:rgba(35,63,47,0.1); letter-spacing:-0.05em; line-height:1; pointer-events:none;
+  white-space:nowrap;
+}
+#s09 .s09-body {
+  flex:1; padding:0 56px; display:flex; flex-direction:column;
+  justify-content:center; position:relative; z-index:2; gap:36px;
+}
+#s09 .s09-section {
+  font-family:var(--sans); font-size:8px; letter-spacing:0.28em;
+  text-transform:uppercase; color:rgba(255,255,255,0.3);
+}
+#s09 .s09-statement {
+  font-family:var(--serif); font-size:clamp(28px,3.8vw,50px); font-weight:300;
+  font-style:italic; line-height:1.12; color:var(--cream); letter-spacing:-0.02em;
+  max-width:680px;
+}
+#s09 .s09-contact {
+  display:flex; flex-direction:column; gap:8px;
+  padding-top:32px; border-top:0.5px solid rgba(255,255,255,0.1); max-width:420px;
+}
+#s09 .s09-contact-label {
+  font-family:var(--sans); font-size:7.5px; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.25);
+  margin-bottom:4px;
+}
+#s09 .s09-contact-line {
+  font-family:var(--serif); font-size:16px; font-weight:400; color:rgba(255,255,255,0.75);
+}
+#s09 .s09-contact-note {
+  font-family:var(--sans); font-size:9px; font-weight:300;
+  color:rgba(255,255,255,0.3); letter-spacing:0.05em; margin-top:6px; line-height:1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+<!-- ══ SLIDE 01 — COVER ══ -->
+<div class="slide active" id="s01">
+  <div class="slide-header" style="padding-top:32px;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,0.25);letter-spacing:0.2em;font-size:8px;font-family:var(--sans);">The Villa Sales Kit</span>
+  </div>
+  <div class="cover-body">
+    <div class="cover-label">A home built around the life you already live</div>
+    <div class="cover-title">
+      The Villa<br><em>Sales</em><br>Kit.
+    </div>
+    <div class="cover-rule"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Project</span>
+        <span class="cover-meta-value">Tri Vananda, Phuket</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Scale</span>
+        <span class="cover-meta-value">237 Acres · 9 Lakes · 7 Villa Types</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Delivered when</span>
+        <span class="cover-meta-value">The decision is already forming</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer footer-dark">
+    <span>01 / 09</span>
+    <span>For private circulation</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 02 — BEFORE THE NUMBERS ══ -->
+<div class="slide" id="s02">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink-3);">I — Before the numbers</span>
+  </div>
+  <div class="s02-body">
+    <div class="s02-kicker">I — Before the numbers</div>
+    <div class="s02-statement">
+      "We did not design this for buyers. We designed it for people who intend to actually live here — and whose standards for what that means are already high."
+    </div>
+    <div class="s02-grid">
+      <div class="s02-cell">
+        <div class="s02-cell-label">What this document is</div>
+        <div class="s02-cell-text">A complete picture of what ownership at Tri Vananda means — the ecosystem, the architecture, the models, and the life it makes possible. Not a sales pitch. A reference for a decision already forming.</div>
+      </div>
+      <div class="s02-cell">
+        <div class="s02-cell-label">What this document is not</div>
+        <div class="s02-cell-text">The beginning of the conversation. By the time this reaches you, you have already visited, already asked the questions that matter, and already decided whether this is the kind of life you want to build.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>02 / 09</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 03 — THE ECOSYSTEM ══ -->
+<div class="slide" id="s03">
+  <div style="position:absolute;top:28px;left:56px;z-index:10;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+  </div>
+  <div class="s03-left">
+    <div class="s03-section-label">II — What you are buying into</div>
+    <div class="s03-heading">An ecosystem,<br>not a<br><em>property.</em></div>
+    <div class="s03-subtext">Everything here is already operating at the standard you hold elsewhere. The brands below are not aspirations. They are the infrastructure of daily life at Tri Vananda, today and arriving.</div>
+  </div>
+  <div class="s03-right">
+    <div class="s03-items">
+      <div class="s03-item">
+        <div class="s03-item-num">01</div>
+        <div class="s03-item-content">
+          <div class="s03-item-title">Trisara — Benchmark Luxury Resort</div>
+          <div class="s03-item-desc">Phuket's benchmark for privacy, impeccable service, and world-class hospitality. Estate management by Trisara ensures your villa operates at resort standard when you are not in residence.</div>
+          <span class="s03-item-tag tag-live">Operational</span>
+        </div>
+      </div>
+      <div class="s03-item">
+        <div class="s03-item-num">02</div>
+        <div class="s03-item-content">
+          <div class="s03-item-title">PRU — Michelin ★ · Jampa — Farm to Table</div>
+          <div class="s03-item-desc">PRU holds two Michelin stars. Jampa — locally grown, live fire, zero waste — supplies daily produce to residents from the community farm. Both are your dining, not a restaurant you visit nearby.</div>
+          <span class="s03-item-tag tag-live">Operational</span>
+        </div>
+      </div>
+      <div class="s03-item">
+        <div class="s03-item-num">03</div>
+        <div class="s03-item-content">
+          <div class="s03-item-title">Health Resort by Clinique La Prairie</div>
+          <div class="s03-item-desc">Southeast Asia's debut of the world's foremost longevity institution. Medical assessments, preventive programs, and the four-pillar CLP philosophy — Medical, Wellbeing, Nutrition, Movement — arriving at your address.</div>
+          <span class="s03-item-tag">Q4 2026</span>
+        </div>
+      </div>
+      <div class="s03-item">
+        <div class="s03-item-num">04</div>
+        <div class="s03-item-content">
+          <div class="s03-item-title">CLP Residences · New Montara Wellness Brand</div>
+          <div class="s03-item-desc">Branded wellness real estate integrated with clinical longevity care. And a new Montara-owned wellness ecosystem connecting mindfulness, community, nature, and science — completing the picture.</div>
+          <span class="s03-item-tag">2026–2027</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 04 — TWO ARCHITECTURES ══ -->
+<div class="slide" id="s04">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink-3);">III — The two architectures</span>
+  </div>
+  <div class="s04-body">
+    <div class="s04-kicker">III — The two architectures</div>
+    <div class="s04-heading">Two expressions of the<br>same <em>intention.</em></div>
+    <div class="s04-cols">
+      <div class="s04-col col-vana">
+        <div class="col-name">VANA</div>
+        <div class="col-tagline">The biophilic design perfection — comfort-centric, forest-rooted, built for families.</div>
+        <div class="col-rule"></div>
+        <div class="col-specs">
+          <div class="col-spec">
+            <span class="col-spec-label">Types</span>
+            <span class="col-spec-value">3 · Vana 2, 3, 4</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Bedrooms</span>
+            <span class="col-spec-value">2–4 bedrooms</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Size</span>
+            <span class="col-spec-value">333–780 sqm</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Pool</span>
+            <span class="col-spec-value">10–20 m</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Ceiling</span>
+            <span class="col-spec-value">4.0–6.7 m</span>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="col-ethos">Private courtyards with carbon credit trees. Warm timber and open volumes. Designed around family togetherness and the unhurried rhythm of daily life in nature.</div>
+      </div>
+      <div class="s04-col col-nanda">
+        <div class="col-name">NANDA</div>
+        <div class="col-tagline">A modernist homage to nature — curved glass, softened lightness, panoramic living.</div>
+        <div class="col-rule"></div>
+        <div class="col-specs">
+          <div class="col-spec">
+            <span class="col-spec-label">Types</span>
+            <span class="col-spec-value">4 · Nanda 2, 2+, 3, 4+</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Bedrooms</span>
+            <span class="col-spec-value">2–4 bedrooms</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Size</span>
+            <span class="col-spec-value">325–779 sqm</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Pool</span>
+            <span class="col-spec-value">11.25–21 m</span>
+          </div>
+          <div class="col-spec">
+            <span class="col-spec-label">Ceiling</span>
+            <span class="col-spec-value">4.3–7.1 m</span>
+          </div>
+        </div>
+        <div class="col-rule"></div>
+        <div class="col-ethos">Uninterrupted curved glass, microclimate design, and universal access. Contemporary wellness architecture — the outdoors brought fully inside.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>04 / 09</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 05 — VILLA TYPES ══ -->
+<div class="slide" id="s05">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink-3);">IV — Villa types at a glance</span>
+  </div>
+  <div class="s05-body">
+    <div class="s05-kicker">IV — Villa types at a glance</div>
+    <div class="s05-heading">Choose your <em>location first.</em><br>Then choose your layout.</div>
+    <table class="s05-table">
+      <thead>
+        <tr>
+          <th>Style</th>
+          <th>Villa</th>
+          <th>Size</th>
+          <th>Bedrooms</th>
+          <th>Pool</th>
+          <th>Ceiling</th>
+          <th>Starting from</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-vana">
+          <td class="td-type">Vana</td>
+          <td class="td-villa">Vana 2</td>
+          <td>333 sqm</td>
+          <td>2 BR</td>
+          <td>10 m</td>
+          <td>4.0 m</td>
+          <td class="td-price">58 MB · USD 1.8M</td>
+        </tr>
+        <tr class="row-vana">
+          <td class="td-type">Vana</td>
+          <td class="td-villa">Vana 3</td>
+          <td>404 sqm</td>
+          <td>3 BR</td>
+          <td>10 m</td>
+          <td>4.0 m</td>
+          <td class="td-price">On request</td>
+        </tr>
+        <tr class="row-vana">
+          <td class="td-type">Vana</td>
+          <td class="td-villa">Vana 4</td>
+          <td>780 sqm</td>
+          <td>4 BR</td>
+          <td>20 m</td>
+          <td>6.7 m</td>
+          <td class="td-price">On request</td>
+        </tr>
+        <tr class="row-nanda">
+          <td class="td-type">Nanda</td>
+          <td class="td-villa">Nanda 2</td>
+          <td>325 sqm</td>
+          <td>2 BR</td>
+          <td>11.25 m</td>
+          <td>4.3 m</td>
+          <td class="td-price">58 MB · USD 1.8M</td>
+        </tr>
+        <tr class="row-nanda">
+          <td class="td-type">Nanda</td>
+          <td class="td-villa">Nanda 2+</td>
+          <td>345 sqm</td>
+          <td>2 BR</td>
+          <td>15 m</td>
+          <td>5.0 m</td>
+          <td class="td-price">On request</td>
+        </tr>
+        <tr class="row-nanda">
+          <td class="td-type">Nanda</td>
+          <td class="td-villa">Nanda 3</td>
+          <td>525 sqm</td>
+          <td>3 BR</td>
+          <td>21 m</td>
+          <td>4.2 m</td>
+          <td class="td-price">On request</td>
+        </tr>
+        <tr class="row-nanda">
+          <td class="td-type">Nanda</td>
+          <td class="td-villa">Nanda 4+</td>
+          <td>779 sqm</td>
+          <td>4 BR</td>
+          <td>21 m</td>
+          <td>7.1 m</td>
+          <td class="td-price">79.6 MB · USD 2.5M</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="s05-note">All villas fully furnished and equipped. Show villas from 71 MB (USD 2.2M). Leasehold and freehold available — see ownership models.</div>
+  </div>
+  <div class="slide-footer">
+    <span>05 / 09</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 06 — OWNERSHIP MODELS ══ -->
+<div class="slide" id="s06">
+  <div class="slide-header" style="padding-top:32px;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,0.25);letter-spacing:0.2em;font-size:8px;font-family:var(--sans);">V — Ownership models</span>
+  </div>
+  <div class="s06-body">
+    <div class="s06-section">V — Ownership models</div>
+    <div class="s06-heading">Three paths.<br><em>One address.</em></div>
+    <div class="s06-models">
+      <div class="s06-model">
+        <div class="s06-model-name">Leasehold</div>
+        <div class="s06-model-price">58 MB <span>/ USD 1.8M</span></div>
+        <div class="s06-model-rule"></div>
+        <div class="s06-model-items">
+          <div class="s06-model-item">Land <strong>558–1,895 sqm</strong></div>
+          <div class="s06-model-item">All <strong>7 villa types</strong> available</div>
+          <div class="s06-model-item">Vana 2, 3, 4 · Nanda 2, 2+, 3, 4+</div>
+          <div class="s06-model-item">Fully furnished &amp; equipped</div>
+          <div class="s06-model-item">Estate managed by <strong>Trisara</strong></div>
+        </div>
+      </div>
+      <div class="s06-model">
+        <div class="s06-model-name">Freehold</div>
+        <div class="s06-model-price">79.6 MB <span>/ USD 2.5M</span></div>
+        <div class="s06-model-rule"></div>
+        <div class="s06-model-items">
+          <div class="s06-model-item">Land <strong>600–1,440 sqm</strong></div>
+          <div class="s06-model-item"><strong>5 villa types</strong> available</div>
+          <div class="s06-model-item">Vana 2, 3, 4 · Nanda 2+, 4+</div>
+          <div class="s06-model-item">Fully furnished &amp; equipped</div>
+          <div class="s06-model-item">Estate managed by <strong>Trisara</strong></div>
+        </div>
+      </div>
+      <div class="s06-model">
+        <div class="s06-model-name">Show Villas</div>
+        <div class="s06-model-price">71 MB <span>/ USD 2.2M</span></div>
+        <div class="s06-model-rule"></div>
+        <div class="s06-model-items">
+          <div class="s06-model-item">Land <strong>634–1,853 sqm</strong></div>
+          <div class="s06-model-item"><strong>5 villa types</strong> · completed now</div>
+          <div class="s06-model-item">Vana 2, 3, 4 · Nanda 3, 4+</div>
+          <div class="s06-model-item">Fully furnished &amp; equipped</div>
+          <div class="s06-model-item">Observable at your site visit</div>
+        </div>
+      </div>
+    </div>
+    <div class="s06-carbon">
+      <div class="s06-carbon-label">Carbon Pathway</div>
+      <div class="s06-carbon-steps">
+        <div class="s06-carbon-step">
+          <div class="s06-cs-pct">−40%</div>
+          <div class="s06-cs-label">Stage 1<br>Passive design &amp; low-carbon materials</div>
+        </div>
+        <div class="s06-carbon-step">
+          <div class="s06-cs-pct">−55%</div>
+          <div class="s06-cs-label">Stage 2<br>Solar roof added to operational carbon</div>
+        </div>
+        <div class="s06-carbon-step">
+          <div class="s06-cs-pct">Net Zero</div>
+          <div class="s06-cs-label">Stage 3<br>Carbon absorption over 30 years</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer footer-dark">
+    <span>06 / 09</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 07 — LIFE HERE ══ -->
+<div class="slide" id="s07">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink-3);">VI — Life here, day to day</span>
+  </div>
+  <div class="s07-body">
+    <div class="s07-kicker">VI — Life here, day to day</div>
+    <div class="s07-heading">Not features.<br><em>Rhythm.</em></div>
+    <div class="s07-systems">
+      <div class="s07-sys">
+        <div class="s07-sys-num">01</div>
+        <div class="s07-sys-name">Land</div>
+        <div class="s07-sys-desc">237 acres · nine lakes · wetland nature reserve · biking and forest trails. Less than 15% developed. The remaining 85% is yours to move through, daily.</div>
+      </div>
+      <div class="s07-sys">
+        <div class="s07-sys-num">02</div>
+        <div class="s07-sys-name">Health</div>
+        <div class="s07-sys-desc">CLP longevity programs · medical assessments · movement studio · Manorah Grand Hall for meditation. Daily, not scheduled as an activity on a calendar.</div>
+      </div>
+      <div class="s07-sys">
+        <div class="s07-sys-num">03</div>
+        <div class="s07-sys-name">Community</div>
+        <div class="s07-sys-desc">Tweenie Club for children · multigenerational daily life · Community House · organic farm programs. Unscripted encounter across ages — the kind that actually builds belonging.</div>
+      </div>
+      <div class="s07-sys">
+        <div class="s07-sys-num">04</div>
+        <div class="s07-sys-name">Service</div>
+        <div class="s07-sys-desc">Farm to Villa daily produce · personal concierge · estate management by Trisara. The friction of ownership removed. What remains is simply life.</div>
+      </div>
+      <div class="s07-sys">
+        <div class="s07-sys-num">05</div>
+        <div class="s07-sys-name">Time</div>
+        <div class="s07-sys-desc">A place worth returning to — not out of obligation but preference. The measure of success here is not occupancy. It is whether your family chooses to come back.</div>
+      </div>
+    </div>
+    <div class="s07-timeline">
+      <div class="s07-tl-item">
+        <div class="s07-tl-date">Feb 2022</div>
+        <div class="s07-tl-text">Phase One operational — lake &amp; forest pool villas, Community House, Jampa</div>
+      </div>
+      <div class="s07-tl-item">
+        <div class="s07-tl-date">Q4 2026</div>
+        <div class="s07-tl-text">Health Resort by Clinique La Prairie · CLP Residences launch</div>
+      </div>
+      <div class="s07-tl-item">
+        <div class="s07-tl-date">2027</div>
+        <div class="s07-tl-text">New Montara Wellness Brand · Phase Two residential villas</div>
+      </div>
+      <div class="s07-tl-item">
+        <div class="s07-tl-date">2028</div>
+        <div class="s07-tl-text">Full ecosystem operational — the complete Tri Vananda vision in residence</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>07 / 09</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 08 — PARTNERS & LOCATION ══ -->
+<div class="slide" id="s08">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink-3);">VII — Location &amp; partners</span>
+  </div>
+  <div class="s08-body">
+    <div class="s08-left">
+      <div class="s08-kicker">Central Phuket</div>
+      <div class="s08-heading">At the <em>heart</em><br>of the island.</div>
+      <div class="s08-loc-items">
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">Phuket International Airport</span>
+          <span class="s08-loc-time">15 min</span>
+        </div>
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">Trisara Resort</span>
+          <span class="s08-loc-time">20 min</span>
+        </div>
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">Khao Phra Thaeo National Park</span>
+          <span class="s08-loc-time">10 min</span>
+        </div>
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">UWC International School</span>
+          <span class="s08-loc-time">15 min</span>
+        </div>
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">Royal Phuket Marina</span>
+          <span class="s08-loc-time">25 min</span>
+        </div>
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">Bangkok Hospital Phuket</span>
+          <span class="s08-loc-time">30 min</span>
+        </div>
+        <div class="s08-loc-item">
+          <span class="s08-loc-place">Pristine beaches (Nai Thon, Bang Tao)</span>
+          <span class="s08-loc-time">15–20 min</span>
+        </div>
+      </div>
+    </div>
+    <div class="s08-right">
+      <div class="s08-partner-block">
+        <div class="s08-partner-label">Brand Partners</div>
+        <div class="s08-partner">
+          <div class="s08-partner-name">Clinique La Prairie</div>
+          <div class="s08-partner-role">Switzerland · Est. 1931 · World's foremost longevity institution · Southeast Asian debut at Tri Vananda Q4 2026</div>
+        </div>
+        <div class="s08-partner">
+          <div class="s08-partner-name">Trisara</div>
+          <div class="s08-partner-role">Phuket's benchmark luxury resort · Estate management · Branded residential villa operations</div>
+        </div>
+      </div>
+      <div class="s08-partner-block">
+        <div class="s08-partner-label">Design Partners</div>
+        <div class="s08-partner">
+          <div class="s08-partner-name">Habita Architects · P49 Deesign</div>
+          <div class="s08-partner-role">Masterplan and community architecture</div>
+        </div>
+        <div class="s08-partner">
+          <div class="s08-partner-name">Arsomsilp · ATOM Design</div>
+          <div class="s08-partner-role">Environmental and community architecture</div>
+        </div>
+        <div class="s08-partner">
+          <div class="s08-partner-name">AvroKO</div>
+          <div class="s08-partner-role">Interior design · Community House · Bar &amp; Lounge · Tweenie Club</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>08 / 09</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+<!-- ══ SLIDE 09 — THE CONVERSATION ══ -->
+<div class="slide" id="s09">
+  <div class="slide-header" style="padding-top:32px;position:relative;z-index:2;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,0.25);letter-spacing:0.2em;font-size:8px;font-family:var(--sans);">VIII — The next step</span>
+  </div>
+  <div class="s09-bg">Home.</div>
+  <div class="s09-body">
+    <div class="s09-section">The next step</div>
+    <div class="s09-statement">
+      "The next step is not a purchase decision. It is a visit. We would like you to see Tri Vananda at the pace it was designed to be seen — unhurried, with context, and with someone who can answer the questions that matter."
+    </div>
+    <div class="s09-contact">
+      <div class="s09-contact-label">To arrange a hosted visit</div>
+      <div class="s09-contact-line">info@trivananda.com</div>
+      <div class="s09-contact-line">+66 95-371-9494</div>
+      <div class="s09-contact-note">Hosted site visits by appointment only.<br>Tri Vananda · Thep Krasatti, Thalang District, Phuket 83110</div>
+    </div>
+  </div>
+  <div class="slide-footer footer-dark" style="position:relative;z-index:2;">
+    <span>09 / 09</span>
+    <span>Build, Belong &amp; Bloom</span>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8592;</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8594;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+const dotsEl = document.getElementById('navDots');
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+});
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dotsEl.children[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, slides.length - 1));
+  slides[current].classList.add('active');
+  dotsEl.children[current].classList.add('active');
+}
+function changeSlide(dir) { goTo(current + dir); }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+});
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+});
+</script>
+</body>
+</html>
