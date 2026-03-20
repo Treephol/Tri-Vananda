@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coherence Map — Tri Vananda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --green:  #233f2f;
+  --sand:   #BAB9AF;
+  --sand2:  #d4cfc8;
+  --cream:  #EDEBE9;
+  --paper:  #f5f2ee;
+  --ink:    #1a1714;
+  --ink2:   #3d3a37;
+  --ink3:   #6b6760;
+  --ink4:   #9e9a95;
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'Jost', sans-serif;
+  --cW: #b8a070;
+  --cL: #5a8a72;
+  --cH: #6a8a9a;
+  --cC: #CF554E;
+  --cD: #b08050;
+  --cM: #233f2f;
+}
+
+html, body {
+  background: #dedad4;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  padding: 32px 20px;
+  min-height: 100vh;
+}
+
+/* A4 portrait at 96dpi = 794 × 1123px */
+.page {
+  width: 794px;
+  min-height: 1123px;
+  background: var(--paper);
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 48px rgba(0,0,0,0.18);
+}
+
+/* ── HEADER ── */
+.hd {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+  border-bottom: 0.5px solid var(--sand2);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+.hd-eye {
+  font-size: 6.5px; font-weight: 400; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--ink4); margin-bottom: 4px;
+  display: block;
+}
+.hd-title {
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  color: var(--ink); letter-spacing: -0.02em; line-height: 1.05;
+}
+.hd-title em { font-style: italic; color: var(--ink); }
+.hd-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.hd-desc { font-size: 7.5px; font-weight: 300; color: var(--ink4); line-height: 1.55; text-align: right; max-width: 200px; }
+.logo-img { height: 28px; width: auto; }
+
+/* ── LEGEND ── */
+.leg {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 10px; flex-shrink: 0;
+}
+.li  { display: flex; align-items: center; gap: 5px; }
+.ld  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.ld-w { background: white; border: 0.8px solid var(--sand); }
+.ld-m { background: var(--green); }
+.ld-u { background: white; border: 1.2px solid var(--green); }
+.lt  { font-size: 6.5px; font-weight: 300; color: var(--ink3); white-space: nowrap; }
+.lsep { width: 0.5px; height: 10px; background: var(--sand2); }
+
+/* ── TABLE ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  flex: 1;
+  table-layout: fixed;
+}
+
+col.c-cat   { width: 72px; }
+col.c-world { width: 310px; }
+col.c-div   { width: 10px; }
+col.c-mont  { width: 148px; }
+col.c-arr   { width: 16px; }
+col.c-conv  { width: 180px; }
+
+thead th {
+  font-size: 6px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink4);
+  padding: 0 6px 6px; border-bottom: 0.5px solid var(--sand2);
+  vertical-align: bottom; white-space: nowrap;
+}
+thead th.th-l { text-align: left; padding-left: 10px; }
+thead th.th-r { text-align: left; padding-left: 6px; }
+thead th.th-c { text-align: left; padding-left: 10px; }
+
+tbody tr { border-bottom: 0.5px solid var(--sand2); }
+tbody tr:last-child { border-bottom: none; }
+
+td {
+  vertical-align: middle;
+  padding: 0;
+  height: 140px;
+}
+
+/* CATEGORY */
+td.cat {
+  text-align: right; padding-right: 8px; padding-left: 0;
+  border-right: 0.5px solid var(--sand2);
+  vertical-align: middle;
+}
+.ct-main { display: block; font-size: 7px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+.ct-sub  { display: block; font-size: 7.5px; font-weight: 300; font-style: italic; font-family: var(--serif); color: var(--ink4); margin-top: 2px; line-height: 1.3; }
+
+/* colour accents */
+tr[data-c="W"] td.world { border-left: 2px solid var(--cW); }
+tr[data-c="L"] td.world { border-left: 2px solid var(--cL); }
+tr[data-c="H"] td.world { border-left: 2px solid var(--cH); }
+tr[data-c="C"] td.world { border-left: 2px solid var(--cC); }
+tr[data-c="D"] td.world { border-left: 2px solid var(--cD); }
+tr[data-c="M"] td.world { border-left: 2px solid var(--cM); background: rgba(35,63,47,0.03); }
+tr[data-c="M"] td.mont  { background: rgba(35,63,47,0.03); }
+
+/* WORLD */
+td.world { padding: 10px 6px 10px 10px; vertical-align: middle; }
+.brands { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+
+/* DIVIDER */
+td.tdiv { padding: 0; text-align: center; vertical-align: middle; }
+.vline { width: 0.5px; height: 40px; background: var(--sand2); margin: 0 auto; }
+.vline-g { background: var(--green); }
+
+/* MONTARA */
+td.mont { padding: 10px 6px; vertical-align: middle; }
+
+/* ARROW */
+td.tarr { padding: 0; text-align: center; vertical-align: middle; }
+
+/* CONVERGENCE — rowspan 6 */
+td.conv {
+  padding: 0 0 0 12px;
+  vertical-align: top;
+  border-left: 0.5px solid var(--sand2);
+}
+.conv-inner {
+  display: flex; flex-direction: column; gap: 8px;
+  height: 100%; padding: 10px 0;
+}
+
+/* ── CHIPS ── */
+.c { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0; }
+.o {
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  text-align: center; font-family: var(--serif); line-height: 1.1;
+}
+.c.xl .o { width: 52px; height: 52px; font-size: 9px; }
+.c.lg .o { width: 42px; height: 42px; font-size: 8.5px; }
+.c.md .o { width: 34px; height: 34px; font-size: 8px; }
+.c.sm .o { width: 26px; height: 26px; font-size: 7px; }
+.c.xs .o { width: 19px; height: 19px; font-size: 6px; }
+
+.c.world    .o { background: white; border: 0.8px solid var(--sand2); color: var(--ink2); }
+.c.mont     .o { background: var(--green); color: var(--cream); }
+.c.upcoming .o { background: white; border: 1.5px solid var(--green); color: var(--green); }
+
+.cl   { font-size: 6px; font-weight: 300; color: var(--ink4); text-align: center; max-width: 52px; line-height: 1.2; display: block; }
+.cl-g { color: var(--green); font-weight: 500; font-size: 6.5px; }
+.cl-m { color: var(--ink4); }
+
+.note { font-size: 7.5px; font-weight: 300; font-style: italic; font-family: var(--serif); color: var(--ink4); line-height: 1.5; margin-left: 8px; flex-shrink: 0; }
+
+/* ── CONVERGENCE PANEL ── */
+.tv {
+  background: var(--green); padding: 12px 14px 10px;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.tv::before {
+  content:'TV'; position:absolute; bottom:-10px; right:-2px;
+  font-family:var(--serif); font-size:72px; font-weight:300;
+  color:rgba(255,255,255,0.04); pointer-events:none;
+}
+.tv-eye  { font-size: 6px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.tv-name { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--cream); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+.tv-name em { font-style: italic; }
+.tv-line { font-family: var(--serif); font-size: 8px; font-style: italic; color: rgba(237,235,233,0.5); line-height: 1.45; margin-bottom: 10px; }
+.tv-sys  { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6px; background: rgba(255,255,255,0.08); border: 0.6px solid rgba(255,255,255,0.08); }
+.sys     { background: var(--green); padding: 4px 6px; }
+.sys-n   { font-size: 5px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; display: block; }
+.sys-l   { font-family: var(--serif); font-size: 10px; font-style: italic; color: var(--cream); display: block; }
+.sys.s2  { grid-column: span 2; }
+
+.uc   { background: white; border: 0.5px solid var(--sand2); padding: 8px 10px; flex-shrink: 0; }
+.uc-t { font-size: 6px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); padding-bottom: 5px; border-bottom: 0.4px solid var(--sand2); margin-bottom: 6px; }
+.uc-i { padding-bottom: 5px; margin-bottom: 5px; border-bottom: 0.4px solid var(--sand2); }
+.uc-i:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+.uc-n { font-family: var(--serif); font-size: 10px; color: var(--ink); display: block; line-height: 1.2; }
+.uc-m { font-size: 6.5px; font-weight: 300; color: var(--ink4); display: block; margin-top: 2px; line-height: 1.4; }
+
+.gq   { background: var(--cream); border: 0.5px solid var(--sand2); padding: 8px 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.gq-t { font-size: 6px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink4); margin-bottom: 5px; }
+.gq-q { font-family: var(--serif); font-size: 9px; font-style: italic; color: var(--ink2); line-height: 1.6; }
+.gq-a { font-size: 6px; font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink4); margin-top: 6px; line-height: 1.5; }
+
+/* ── FOOTER ── */
+.ft {
+  margin-top: 10px; padding-top: 7px; border-top: 0.5px solid var(--sand2);
+  display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+}
+.ft-l { font-size: 6px; font-weight: 300; letter-spacing: 0.08em; color: var(--ink4); }
+.ft-r { font-family: var(--serif); font-size: 8.5px; font-style: italic; color: var(--ink4); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div>
+      <span class="hd-eye">The Coherence Map</span>
+      <div class="hd-title">You already live in this<br><em>ecosystem.</em></div>
+    </div>
+    <div class="hd-right">
+      <img src="logo-cream-bg.jpg" class="logo-img" alt="Tri Vananda">
+      <p class="hd-desc">Your existing standards — organised by category. Read left to right to where they converge.</p>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="leg">
+    <div class="li"><div class="ld ld-w"></div><span class="lt">Brands you already use</span></div>
+    <div class="lsep"></div>
+    <div class="li"><div class="ld ld-m"></div><span class="lt">At Tri Vananda now</span></div>
+    <div class="lsep"></div>
+    <div class="li"><div class="ld ld-u"></div><span class="lt">Arriving 2026–27</span></div>
+    <div class="lsep"></div>
+    <div class="li">
+      <svg width="22" height="8" viewBox="0 0 22 8"><line x1="0" y1="4" x2="16" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="13,1.5 16,4 13,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="lt">Convergence → Tri Vananda</span>
+    </div>
+    <div class="lsep"></div>
+    <span class="lt" style="font-style:italic;font-family:var(--serif);font-size:8px;color:var(--ink3);">Circle size = relevance to this buyer</span>
+  </div>
+
+  <!-- TABLE -->
+  <table>
+    <colgroup>
+      <col class="c-cat">
+      <col class="c-world">
+      <col class="c-div">
+      <col class="c-mont">
+      <col class="c-arr">
+      <col class="c-conv">
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th class="th-l">Your world — standards already held</th>
+        <th></th>
+        <th class="th-r">At Tri Vananda</th>
+        <th></th>
+        <th class="th-c">Where it converges</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- WEALTH -->
+      <tr data-c="W">
+        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cW);">Wealth</span><span class="ct-sub">Capital &amp;<br>planning</span></div></td>
+        <td class="world"><div class="brands">
+          <div class="c xl world"><div class="o">Julius<br>Baer</div><span class="cl">Private Bank</span></div>
+          <div class="c lg world"><div class="o">UBS</div><span class="cl">Wealth Mgmt</span></div>
+          <div class="c md world"><div class="o">Pictet</div><span class="cl">Family Office</span></div>
+          <div class="c md world"><div class="o">Black-<br>stone</div><span class="cl">Alternatives</span></div>
+          <div class="c sm world"><div class="o">KKR</div><span class="cl">PE</span></div>
+          <div class="c sm world"><div class="o">Bain<br>&amp; Co</div><span class="cl">Strategy</span></div>
+        </div></td>
+        <td class="tdiv"><div class="vline"></div></td>
+        <td class="mont"><div class="brands">
+          <div class="c md mont"><div class="o">Trisara<br>Resi.</div><span class="cl cl-m">Asset + Life</span></div>
+          <div class="c sm upcoming"><div class="o">CLP<br>Resi.</div><span class="cl cl-g">2026</span></div>
+        </div></td>
+        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="conv" rowspan="6">
+          <div class="conv-inner">
+            <div class="tv">
+              <div class="tv-eye">The convergence point</div>
+              <div class="tv-name"><em>Tri</em><br>Vananda</div>
+              <div class="tv-line">The only address where every standard you already hold exists in one life, together.</div>
+              <div class="tv-sys">
+                <div class="sys"><span class="sys-n">01</span><span class="sys-l">Land</span></div>
+                <div class="sys"><span class="sys-n">02</span><span class="sys-l">Health</span></div>
+                <div class="sys"><span class="sys-n">03</span><span class="sys-l">Community</span></div>
+                <div class="sys"><span class="sys-n">04</span><span class="sys-l">Service</span></div>
+                <div class="sys s2"><span class="sys-n">05</span><span class="sys-l">Time — in one place, for the long term</span></div>
+              </div>
+            </div>
+            <div class="uc">
+              <div class="uc-t">Arriving at Tri Vananda</div>
+              <div class="uc-i"><span class="uc-n">Health Resort by Clinique La Prairie</span><span class="uc-m">Medical longevity · Q4 2026</span></div>
+              <div class="uc-i"><span class="uc-n">CLP Residences</span><span class="uc-m">Branded wellness real estate · Q4 2026</span></div>
+              <div class="uc-i"><span class="uc-n">New Montara Wellness Brand</span><span class="uc-m">Integrated ecosystem · 2027</span></div>
+            </div>
+            <div class="gq">
+              <div>
+                <div class="gq-t">The gap this closes</div>
+                <div class="gq-q">"You have stayed in Aman. Your wealth is at Julius Baer. You see Clinique La Prairie for longevity. But none of them is your home. That is the only gap Tri Vananda is designed to close."</div>
+              </div>
+              <div class="gq-a">Kittisak Pattamasaevi<br>CEO, Montara Hospitality Group</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- LONGEVITY -->
+      <tr data-c="L">
+        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cL);">Longevity</span><span class="ct-sub">Health &amp;<br>science</span></div></td>
+        <td class="world"><div class="brands">
+          <div class="c xl world"><div class="o">Clinique<br>La<br>Prairie</div><span class="cl">Longevity Sci.</span></div>
+          <div class="c lg world"><div class="o">Lan-<br>serhof</div><span class="cl">Medical</span></div>
+          <div class="c md world"><div class="o">Equi-<br>nox</div><span class="cl">Fitness</span></div>
+          <div class="c md world"><div class="o">SHA</div><span class="cl">Integrative</span></div>
+          <div class="c sm world"><div class="o">OSIM</div><span class="cl">Daily</span></div>
+          <div class="c xs world"><div class="o">Six<br>S.</div><span class="cl">Mind</span></div>
+        </div></td>
+        <td class="tdiv"><div class="vline"></div></td>
+        <td class="mont"><div class="brands">
+          <div class="c lg upcoming"><div class="o">CLP<br>Resort</div><span class="cl cl-g">Q4 2026</span></div>
+          <div class="c md mont"><div class="o">TV<br>Well.</div><span class="cl cl-m">Daily</span></div>
+        </div></td>
+        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+      </tr>
+
+      <!-- HOSPITALITY -->
+      <tr data-c="H">
+        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cH);">Hospitality</span><span class="ct-sub">Stays &amp;<br>retreats</span></div></td>
+        <td class="world"><div class="brands">
+          <div class="c xl world"><div class="o">Aman</div><span class="cl">Privacy &amp; Soul</span></div>
+          <div class="c lg world"><div class="o">Rose-<br>wood</div><span class="cl">Refined Lux.</span></div>
+          <div class="c lg world"><div class="o">Four<br>Seasons</div><span class="cl">Service Std.</span></div>
+          <div class="c md world"><div class="o">Six<br>Senses</div><span class="cl">Wellness</span></div>
+          <div class="c sm world"><div class="o">Capu-<br>cines</div><span class="cl">Boutique</span></div>
+        </div></td>
+        <td class="tdiv"><div class="vline"></div></td>
+        <td class="mont"><div class="brands">
+          <div class="c xl mont"><div class="o">Trisara</div><span class="cl cl-m">Benchmark</span></div>
+          <div class="c md mont"><div class="o">Praya<br>P.</div><span class="cl cl-m">Heritage</span></div>
+        </div></td>
+        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+      </tr>
+
+      <!-- COMMUNITY -->
+      <tr data-c="C">
+        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cC);">Community</span><span class="ct-sub">Peers &amp;<br>belonging</span></div></td>
+        <td class="world"><div class="brands">
+          <div class="c xl world"><div class="o">YPO</div><span class="cl">Peer Network</span></div>
+          <div class="c lg world"><div class="o">Soho<br>House</div><span class="cl">Creative</span></div>
+          <div class="c lg world"><div class="o">Aman<br>Club</div><span class="cl">Global</span></div>
+          <div class="c md world"><div class="o">Tiger<br>21</div><span class="cl">Wealth</span></div>
+          <div class="c md world"><div class="o">WEF</div><span class="cl">Forum</span></div>
+          <div class="c sm world"><div class="o">INSEAD</div><span class="cl">Intellect.</span></div>
+        </div></td>
+        <td class="tdiv"><div class="vline"></div></td>
+        <td class="mont"><div class="brands">
+          <div class="c lg mont"><div class="o">TV<br>Comm.</div><span class="cl cl-m">Multi-Gen</span></div>
+          <div class="c sm upcoming"><div class="o">Well.<br>Brand</div><span class="cl cl-g">2027</span></div>
+        </div></td>
+        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+      </tr>
+
+      <!-- DINING -->
+      <tr data-c="D">
+        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cD);">Dining</span><span class="ct-sub">Food &amp;<br>craft</span></div></td>
+        <td class="world"><div class="brands">
+          <div class="c xl world"><div class="o" style="font-size:7px;">Michelin<br>★★–★★★</div><span class="cl">The Standard</span></div>
+          <div class="c lg world"><div class="o">Noma</div><span class="cl">Farm Ethos</span></div>
+          <div class="c md world"><div class="o">Blue<br>Hill</div><span class="cl">Nature</span></div>
+          <div class="c md world"><div class="o">Bo.lan</div><span class="cl">Thai Craft</span></div>
+          <div class="c sm world"><div class="o">El<br>Celler</div><span class="cl">Technique</span></div>
+        </div></td>
+        <td class="tdiv"><div class="vline"></div></td>
+        <td class="mont"><div class="brands">
+          <div class="c xl mont"><div class="o">PRU</div><span class="cl cl-m">Michelin ★★</span></div>
+          <div class="c md mont"><div class="o">Jampa</div><span class="cl cl-m">Farm Table</span></div>
+          <div class="c sm mont"><div class="o">La<br>Crique</div><span class="cl cl-m">Sea-View</span></div>
+          <div class="c xs mont"><div class="o">Bar<br>7.8°</div><span class="cl cl-m">Social</span></div>
+        </div></td>
+        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+      </tr>
+
+      <!-- HOME -->
+      <tr data-c="M">
+        <td class="cat" style="border-bottom:none;"><div class="ct"><span class="ct-main" style="color:var(--cM);">Home</span><span class="ct-sub">Where life<br>happens</span></div></td>
+        <td class="world" style="border-bottom:none;"><div class="brands">
+          <div class="c xl world"><div class="o">Aman<br>Resi.</div><span class="cl">Branded</span></div>
+          <div class="c lg world"><div class="o">Rose-<br>wood<br>Resi.</div><span class="cl">Lifestyle</span></div>
+          <div class="c md world"><div class="o">Four<br>S. R.</div><span class="cl">Service</span></div>
+          <div class="c md world"><div class="o">CLP<br>Resi.</div><span class="cl">Wellness</span></div>
+          <span class="note">Stayed in all of these.<br>But none is <em>home.</em></span>
+        </div></td>
+        <td class="tdiv" style="border-bottom:none;"><div class="vline vline-g"></div></td>
+        <td class="mont" style="border-bottom:none;"><div class="brands">
+          <div class="c xl mont"><div class="o" style="border:1.5px solid rgba(255,255,255,0.18);font-size:9px;">Tri<br>Vananda</div><span class="cl" style="color:var(--green);font-weight:500;">Your Home</span></div>
+          <div class="c lg upcoming"><div class="o">CLP<br>Resi.</div><span class="cl cl-g">Q4 2026</span></div>
+        </div></td>
+        <td class="tarr" style="border-bottom:none;"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#233f2f" stroke-width="1.2"/><polyline points="6,1.5 9,4 6,6.5" stroke="#233f2f" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- FOOTER -->
+  <div class="ft">
+    <span class="ft-l">Tri Vananda · Thep Krasatti, Thalang District, Phuket 83110 · info@trivananda.com · For private circulation</span>
+    <span class="ft-r">"Hard challenges give rise to beautiful legacies."</span>
+  </div>
+
+</div>
+</body>
+</html>
