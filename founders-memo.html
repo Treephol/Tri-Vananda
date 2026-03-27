@@ -10,17 +10,16 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 :root {
-  --green:   #233f2f;
-  --green-2: #2f5440;
-  --rust:    #CF554E;
-  --sand:    #BAB9AF;
-  --cream:   #EDEBE9;
-  --ink:     #1a1714;
-  --ink-2:   #3d3a37;
-  --ink-3:   #6b6760;
-  --paper:   #f5f2ee;
-  --serif:   'Cormorant Garamond', Georgia, serif;
-  --sans:    'Jost', 'Helvetica Neue', sans-serif;
+  --green:  #233f2f;
+  --rust:   #CF554E;
+  --sand:   #BAB9AF;
+  --cream:  #EDEBE9;
+  --ink:    #1a1714;
+  --ink2:   #3d3a37;
+  --ink3:   #6b6760;
+  --paper:  #f5f2ee;
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'Jost', 'Helvetica Neue', sans-serif;
 }
 
 html, body {
@@ -30,1115 +29,910 @@ html, body {
   overflow: hidden;
 }
 
-/* ── DECK SHELL ── */
-.deck {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
+.deck { width:100vw; height:100vh; position:relative; }
 
 .slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.7s ease;
-  display: flex;
-  flex-direction: column;
+  position:absolute; inset:0; opacity:0;
+  pointer-events:none; transition:opacity .7s ease;
+  display:flex; flex-direction:column;
 }
+.slide.active { opacity:1; pointer-events:all; }
 
-.slide.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* ── NAVIGATION ── */
+/* ── NAV ── */
 .nav {
-  position: fixed;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  z-index: 100;
+  position:fixed; bottom:36px; left:50%;
+  transform:translateX(-50%);
+  display:flex; align-items:center; gap:20px; z-index:100;
 }
-
 .nav-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(0,0,0,0.3);
-  color: white;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s;
-  font-size: 14px;
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.3); color:white; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(8px); transition:all .2s; font-size:14px;
 }
-.nav-btn:hover { border-color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.5); }
-
-.nav-dots {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
+.nav-btn:hover { border-color:rgba(255,255,255,.6); background:rgba(0,0,0,.5); }
+.nav-dots { display:flex; gap:8px; align-items:center; }
 .nav-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  cursor: pointer;
-  transition: all 0.3s;
+  width:5px; height:5px; border-radius:50%;
+  background:rgba(255,255,255,.25); cursor:pointer; transition:all .3s;
 }
-.nav-dot.active { background: white; transform: scale(1.4); }
-.nav-dot.section-start { width: 8px; height: 8px; background: rgba(255,255,255,0.15); }
-.nav-dot.section-start.active { background: white; }
+.nav-dot.active { background:white; transform:scale(1.4); }
 
+/* ── SHARED ELEMENTS ── */
+.real-logo { height:44px; width:auto; display:block; }
 
-.real-logo {
-  height: 44px;
-  width: auto;
-  display: block;
-}
-
-/* ── LOGO MARK SVG (replaced) ── */
-.logo-mark {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-}
-.logo-mark .s1 { width:14px; height:8px; background:#9da89d; border-radius:4px 4px 4px 4px; }
-.logo-mark .s2 { width:11px; height:7px; background:#CF554E; border-radius:3px; }
-.logo-mark .s3 { width:18px; height:11px; background:#233f2f; border-radius:5px 5px 8px 8px; }
-
-.logo-type {
-  font-family: var(--sans);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: white;
-  margin-top: 6px;
-}
-
-.logo-type-dark { color: var(--ink-3); }
-
-/* ── HEADER BAR (shared) ── */
 .slide-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 28px 56px 0;
-  flex-shrink: 0;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:28px 56px 0; flex-shrink:0;
 }
-
 .slide-header-label {
-  font-family: var(--sans);
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
+  font-family:var(--sans); font-size:8px; font-weight:400;
+  letter-spacing:.25em; text-transform:uppercase;
 }
-
 .slide-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 56px 28px;
-  flex-shrink: 0;
-  margin-top: auto;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 56px 28px; flex-shrink:0; margin-top:auto;
 }
-
 .slide-footer span {
-  font-family: var(--sans);
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.5;
+  font-family:var(--sans); font-size:8px; font-weight:400;
+  letter-spacing:.2em; text-transform:uppercase; opacity:.5;
 }
+.footer-dark span { color:rgba(255,255,255,.35) !important; opacity:1 !important; }
+
+/* logo invert helper for light slides */
+.logo-dark { filter:invert(1) brightness(.25) sepia(.2); }
+
 
 /* ══════════════════════════════════════
-   SLIDE 01 — COVER
+   01 — COVER  (dark green)
 ══════════════════════════════════════ */
-#s01 {
-  background: var(--green);
-  justify-content: space-between;
+#s01 { background:var(--green); justify-content:space-between; }
+
+.cv-body {
+  padding:0 56px; flex:1;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.cv-label {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:28px;
+}
+.cv-title {
+  font-family:var(--serif); font-size:clamp(52px,7vw,86px);
+  font-weight:300; line-height:.93; color:var(--cream);
+  letter-spacing:-.02em; margin-bottom:44px;
+}
+.cv-title em { font-style:italic; }
+.cv-rule { width:48px; height:.5px; background:rgba(255,255,255,.25); margin-bottom:32px; }
+.cv-meta { display:flex; gap:48px; }
+.cv-meta-item { display:flex; flex-direction:column; gap:6px; }
+.cv-meta-label {
+  font-family:var(--sans); font-size:8px; letter-spacing:.2em;
+  text-transform:uppercase; color:rgba(255,255,255,.3);
+}
+.cv-meta-value {
+  font-family:var(--serif); font-size:16px; font-weight:400;
+  color:rgba(255,255,255,.78); letter-spacing:.02em;
 }
 
-#s01 .cover-body {
-  padding: 0 56px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#s01 .cover-label {
-  font-family: var(--sans);
-  font-size: 8.5px;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 28px;
-}
-
-#s01 .cover-title {
-  font-family: var(--serif);
-  font-size: clamp(52px, 7vw, 84px);
-  font-weight: 300;
-  line-height: 0.95;
-  color: var(--cream);
-  letter-spacing: -0.02em;
-  margin-bottom: 40px;
-}
-
-#s01 .cover-title em {
-  font-style: italic;
-  font-weight: 300;
-}
-
-#s01 .cover-rule {
-  width: 48px;
-  height: 0.5px;
-  background: rgba(255,255,255,0.3);
-  margin-bottom: 32px;
-}
-
-#s01 .cover-meta {
-  display: flex;
-  gap: 48px;
-}
-
-#s01 .cover-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-#s01 .cover-meta-label {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-}
-
-#s01 .cover-meta-value {
-  font-family: var(--serif);
-  font-size: 15px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.8);
-  letter-spacing: 0.02em;
-}
 
 /* ══════════════════════════════════════
-   SLIDE 02 — OPENING STATEMENT
+   02 — OPENING STATEMENT  (paper)
 ══════════════════════════════════════ */
-#s02 {
-  background: var(--paper);
-  justify-content: space-between;
+#s02 { background:var(--paper); justify-content:space-between; }
+
+.s2-body {
+  flex:1; padding:0 56px;
+  display:flex; flex-direction:column; justify-content:center; gap:36px;
+}
+.s2-kicker {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.s2-statement {
+  font-family:var(--serif); font-size:clamp(26px,3.6vw,46px);
+  font-weight:300; font-style:italic; line-height:1.16;
+  color:var(--green); letter-spacing:-.01em; max-width:780px;
+}
+.s2-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; max-width:860px;
+}
+.s2-cell-label {
+  font-family:var(--sans); font-size:8px; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--ink3);
+  margin-bottom:12px; padding-bottom:12px; border-bottom:.5px solid var(--sand);
+}
+.s2-cell-text {
+  font-family:var(--sans); font-size:14px; font-weight:300;
+  line-height:1.75; color:var(--ink2); letter-spacing:.01em;
 }
 
-#s02 .s02-body {
-  flex: 1;
-  padding: 40px 56px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#s02 .s02-kicker {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 32px;
-}
-
-#s02 .s02-statement {
-  font-family: var(--serif);
-  font-size: clamp(26px, 3.6vw, 44px);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.18;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  max-width: 720px;
-  margin-bottom: 40px;
-}
-
-#s02 .s02-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  border-top: 0.5px solid var(--sand);
-  padding-top: 32px;
-  max-width: 640px;
-}
-
-#s02 .s02-cell {
-  padding-right: 32px;
-}
-
-#s02 .s02-cell-label {
-  font-family: var(--sans);
-  font-size: 7.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 8px;
-}
-
-#s02 .s02-cell-text {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--ink-2);
-}
 
 /* ══════════════════════════════════════
-   SLIDE 03 — THE PROBLEM (split)
+   03 — EXTREMELY HARD  (paper, split)
+   04 — EXTREMELY BEAUTIFUL  (paper, split)
+   shared layout
 ══════════════════════════════════════ */
-#s03 {
-  background: #1a1714;
-  flex-direction: row;
-  overflow: hidden;
+.split-slide { background:var(--paper); }
+.split-slide .split-body {
+  flex:1; display:grid; grid-template-columns:1fr 2fr; overflow:hidden;
 }
-
-#s03 .s03-left {
-  width: 45%;
-  background: var(--green);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 64px 56px;
-  position: relative;
+.split-left {
+  padding:44px 48px 44px 56px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  border-right:.5px solid var(--sand);
 }
-
-#s03 .s03-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 64px 56px;
+.split-kicker {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--ink3); margin-bottom:24px;
 }
-
-#s03 .s03-section-label {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 36px;
+.split-heading {
+  font-family:var(--serif); font-size:clamp(44px,6.2vw,76px);
+  font-weight:300; color:var(--green); line-height:.98;
+  letter-spacing:-.025em;
 }
-
-#s03 .s03-heading {
-  font-family: var(--serif);
-  font-size: clamp(36px, 4.5vw, 58px);
-  font-weight: 300;
-  color: var(--cream);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+.split-heading em { font-style:italic; }
+.split-right {
+  padding:36px 56px 36px 48px;
+  display:flex; flex-direction:column; justify-content:center;
+  overflow:hidden;
 }
-
-#s03 .s03-heading em { font-style: italic; }
-
-#s03 .s03-items {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+.split-items { display:flex; flex-direction:column; }
+.split-item {
+  padding:20px 0; border-bottom:.5px solid var(--sand);
 }
-
-#s03 .s03-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-bottom: 28px;
-  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+.split-item:first-child { border-top:.5px solid var(--sand); }
+.split-item-hd { display:flex; align-items:baseline; gap:16px; margin-bottom:10px; }
+.split-item-num {
+  font-family:var(--sans); font-size:8px; font-weight:500;
+  letter-spacing:.2em; color:var(--sand); flex-shrink:0;
 }
-
-#s03 .s03-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-#s03 .s03-item-title {
-  font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.2;
+.split-item-title {
+  font-family:var(--serif); font-size:21px; font-weight:500;
+  color:var(--ink); line-height:1.2;
 }
-
-#s03 .s03-item-desc {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.01em;
+.split-item-desc {
+  font-family:var(--sans); font-size:13.5px; font-weight:300;
+  line-height:1.72; color:var(--ink2); letter-spacing:.01em;
 }
+.split-item-tag {
+  display:inline-block; margin-top:9px;
+  font-family:var(--sans); font-size:10.5px; font-weight:400;
+  letter-spacing:.04em; padding-top:9px; border-top:.5px solid;
+}
+.tag-rust { color:var(--rust); border-color:rgba(207,85,78,.2); }
+.tag-green { color:var(--green); border-color:rgba(35,63,47,.18); }
+
 
 /* ══════════════════════════════════════
-   SLIDE 04 — THE SHIFT (quote slide)
+   05 — THE PIVOT  (paper, centered)
 ══════════════════════════════════════ */
-#s04 {
-  background: var(--cream);
-  justify-content: space-between;
+#s05 { background:var(--paper); justify-content:space-between; }
+
+.s5-body {
+  flex:1; padding:0 80px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:40px;
+}
+.s5-venn { flex-shrink:0; }
+.s5-venn svg { width:min(460px,48vw); height:auto; display:block; }
+.s5-bottom {
+  display:flex; flex-direction:column; align-items:center;
+  gap:18px; max-width:820px; text-align:center;
+}
+.s5-kicker {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.s5-quote {
+  font-family:var(--serif); font-size:clamp(20px,2.5vw,32px);
+  font-weight:300; font-style:italic; line-height:1.35;
+  color:var(--green); letter-spacing:-.01em;
+}
+.s5-attr {
+  font-family:var(--sans); font-size:11px; font-weight:300;
+  color:var(--ink3); letter-spacing:.08em;
 }
 
-#s04 .s04-body {
-  flex: 1;
-  padding: 40px 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#s04 .s04-venn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-  flex-shrink: 0;
-  height: 160px;
-}
-
-#s04 .venn-circle {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-#s04 .vc-hard {
-  background: var(--green);
-  margin-right: -30px;
-}
-
-#s04 .vc-beautiful {
-  background: #d4a5a0;
-  margin-left: -30px;
-}
-
-#s04 .vc-label {
-  font-family: var(--serif);
-  font-size: 13px;
-  font-weight: 400;
-  font-style: italic;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.2;
-}
-
-#s04 .vc-life {
-  width: 80px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  font-family: var(--serif);
-  font-size: 12px;
-  font-style: italic;
-  color: white;
-  font-weight: 400;
-}
-
-#s04 .s04-quote {
-  font-family: var(--serif);
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.25;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  max-width: 680px;
-  margin: 0 auto 32px;
-  text-align: center;
-}
-
-#s04 .s04-attr {
-  text-align: center;
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
 
 /* ══════════════════════════════════════
-   SLIDE 05 — THE ORIGIN
+   06 — THE ORIGIN  (paper, two columns)
 ══════════════════════════════════════ */
-#s05 {
-  background: var(--paper);
-  justify-content: space-between;
+#s06 { background:var(--paper); justify-content:space-between; }
+
+.s6-body {
+  flex:1; display:grid; grid-template-columns:1fr 1fr; overflow:hidden;
+}
+.s6-left {
+  padding:40px 48px 40px 56px;
+  display:flex; flex-direction:column; justify-content:center; gap:22px;
+  border-right:.5px solid var(--sand);
+}
+.s6-kicker {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.s6-heading {
+  font-family:var(--serif); font-size:clamp(28px,3.6vw,46px);
+  font-weight:300; color:var(--ink); line-height:1.1; letter-spacing:-.015em;
+}
+.s6-heading em { font-style:italic; }
+.s6-text p {
+  font-family:var(--sans); font-size:14px; font-weight:300;
+  line-height:1.78; color:var(--ink2); letter-spacing:.01em;
+  margin-bottom:14px;
+}
+.s6-text p:last-child { margin-bottom:0; }
+.s6-right {
+  padding:40px 56px 40px 48px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.s6-name-block {
+  margin-bottom:32px; padding-bottom:32px; border-bottom:.5px solid var(--sand);
+}
+.s6-name {
+  font-family:var(--serif); font-size:clamp(38px,5vw,60px);
+  font-weight:300; color:var(--green); letter-spacing:-.02em;
+  line-height:.95; margin-bottom:10px;
+}
+.s6-name-label {
+  font-family:var(--sans); font-size:9px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.s6-meanings { display:flex; flex-direction:column; gap:22px; }
+.s6-meaning-item { display:flex; gap:22px; align-items:baseline; }
+.s6-meaning-word {
+  font-family:var(--serif); font-size:26px; font-weight:400;
+  color:var(--green); min-width:68px;
+}
+.s6-meaning-def {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  line-height:1.72; color:var(--ink2); letter-spacing:.01em;
 }
 
-#s05 .s05-body {
-  flex: 1;
-  padding: 0 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
-}
-
-#s05 .s05-left {}
-
-#s05 .s05-kicker {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-#s05 .s05-kicker::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 0.5px;
-  background: var(--sand);
-}
-
-#s05 .s05-heading {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.5vw, 46px);
-  font-weight: 300;
-  line-height: 1.1;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  margin-bottom: 28px;
-}
-
-#s05 .s05-heading em { font-style: italic; }
-
-#s05 .s05-text {
-  font-family: var(--serif);
-  font-size: 15.5px;
-  line-height: 1.7;
-  color: var(--ink-2);
-  letter-spacing: 0.005em;
-}
-
-#s05 .s05-text p { margin-bottom: 0.8em; }
-#s05 .s05-text p:last-child { margin-bottom: 0; }
-
-#s05 .s05-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-left: 0.5px solid var(--sand);
-  padding-left: 56px;
-}
-
-#s05 .s05-name-block {
-  padding-bottom: 32px;
-  margin-bottom: 32px;
-  border-bottom: 0.5px solid var(--sand);
-}
-
-#s05 .s05-name {
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-
-#s05 .s05-name-label {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-#s05 .s05-meaning-items {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-#s05 .s05-meaning-item {}
-
-#s05 .s05-meaning-word {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--green);
-  margin-bottom: 4px;
-}
-
-#s05 .s05-meaning-def {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--ink-3);
-  letter-spacing: 0.03em;
-  line-height: 1.5;
-}
 
 /* ══════════════════════════════════════
-   SLIDE 06 — THE INTENTION
+   07 — THE INTENTION  (dark green, 4 pillars)
 ══════════════════════════════════════ */
-#s06 {
-  background: var(--green);
-  justify-content: space-between;
+#s07 { background:var(--green); justify-content:space-between; }
+
+.s7-body {
+  flex:1; padding:0 56px;
+  display:flex; flex-direction:column; justify-content:center; gap:32px;
+}
+.s7-section {
+  font-family:var(--sans); font-size:8px; letter-spacing:.28em;
+  text-transform:uppercase; color:rgba(255,255,255,.32);
+}
+.s7-heading {
+  font-family:var(--serif); font-size:clamp(28px,3.6vw,46px);
+  font-weight:300; color:var(--cream); line-height:1.1;
+  letter-spacing:-.02em; max-width:620px;
+}
+.s7-heading em { font-style:italic; }
+.s7-pillars {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.07);
+}
+.s7-pillar {
+  background:var(--green); padding:28px 22px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.s7-pillar-num {
+  font-family:var(--sans); font-size:8px; letter-spacing:.2em;
+  color:rgba(255,255,255,.28);
+}
+.s7-pillar-title {
+  font-family:var(--serif); font-size:20px; font-weight:400;
+  font-style:italic; color:var(--cream); line-height:1.15;
+}
+.s7-pillar-desc {
+  font-family:var(--sans); font-size:12.5px; font-weight:300;
+  line-height:1.68; color:rgba(255,255,255,.46); letter-spacing:.01em;
+}
+.s7-pillar-stat {
+  font-family:var(--sans); font-size:10.5px; font-weight:400;
+  color:rgba(207,85,78,.82); letter-spacing:.03em;
+  margin-top:4px; padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.1);
 }
 
-#s06 .s06-body {
-  flex: 1;
-  padding: 32px 56px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#s06 .s06-section {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 32px;
-}
-
-#s06 .s06-heading {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 300;
-  color: var(--cream);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 40px;
-  max-width: 600px;
-}
-
-#s06 .s06-heading em { font-style: italic; }
-
-#s06 .s06-pillars {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-#s06 .s06-pillar {
-  background: var(--green);
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-#s06 .s06-pillar-num {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.3);
-}
-
-#s06 .s06-pillar-title {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--cream);
-  line-height: 1.15;
-}
-
-#s06 .s06-pillar-desc {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.01em;
-}
 
 /* ══════════════════════════════════════
-   SLIDE 07 — THE STANDARD
-══════════════════════════════════════ */
-#s07 {
-  background: var(--paper);
-  justify-content: space-between;
-}
-
-#s07 .s07-body {
-  flex: 1;
-  padding: 0 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 36px;
-}
-
-#s07 .s07-kicker {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-#s07 .s07-heading {
-  font-family: var(--serif);
-  font-size: clamp(26px, 3.2vw, 40px);
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  max-width: 560px;
-}
-
-#s07 .s07-heading em { font-style: italic; }
-
-#s07 .s07-standards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 32px;
-}
-
-#s07 .s07-std {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-top: 20px;
-  border-top: 1.5px solid var(--green);
-}
-
-#s07 .s07-std-title {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.2;
-}
-
-#s07 .s07-std-desc {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: var(--ink-3);
-  letter-spacing: 0.01em;
-}
-
-/* ══════════════════════════════════════
-   SLIDE 08 — THE LONG VIEW (closing)
+   08 — TRI VANANDA IN PRACTICE  (dark green — different from 07)
 ══════════════════════════════════════ */
 #s08 {
-  background: #111;
-  position: relative;
-  overflow: hidden;
-  justify-content: space-between;
+  background:#1a3025;  /* slightly different shade of green — richer */
+  justify-content:space-between;
 }
 
-#s08 .s08-bg-text {
-  position: absolute;
-  bottom: -40px;
-  right: -20px;
-  font-family: var(--serif);
-  font-size: 28vw;
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(35,63,47,0.12);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  pointer-events: none;
-  white-space: nowrap;
+.s8-body {
+  flex:1; padding:0 56px;
+  display:flex; flex-direction:column; justify-content:center; gap:40px;
+}
+.s8-kicker {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:rgba(255,255,255,.35);
+}
+.s8-heading {
+  font-family:var(--serif); font-size:clamp(34px,4.4vw,58px);
+  font-weight:300; font-style:italic; color:var(--cream);
+  line-height:1.06; letter-spacing:-.02em; max-width:700px;
+}
+.s8-grid {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  gap:1px; background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.07);
+}
+.s8-col {
+  background:#1a3025; padding:28px 24px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.s8-col-title {
+  font-family:var(--serif); font-size:22px; font-weight:400;
+  color:var(--cream); line-height:1.2;
+}
+.s8-col-rule { height:.5px; background:rgba(255,255,255,.14); }
+.s8-col-desc {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  line-height:1.72; color:rgba(255,255,255,.52); letter-spacing:.01em;
+}
+.s8-col-stat {
+  font-family:var(--sans); font-size:10.5px; font-weight:400;
+  color:rgba(186,185,175,.6); letter-spacing:.04em;
+  margin-top:2px; padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.1);
 }
 
-#s08 .s08-body {
-  flex: 1;
-  padding: 0 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
+
+/* ══════════════════════════════════════
+   09 — THE STANDARDS  (paper — clearly different from 08)
+══════════════════════════════════════ */
+#s09 { background:var(--paper); justify-content:space-between; }
+
+.s9-body {
+  flex:1; padding:0 56px;
+  display:flex; flex-direction:column; justify-content:center; gap:40px;
+}
+.s9-kicker {
+  font-family:var(--sans); font-size:8.5px; letter-spacing:.3em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.s9-heading {
+  font-family:var(--serif); font-size:clamp(28px,3.6vw,46px);
+  font-weight:300; color:var(--ink); line-height:1.1;
+  letter-spacing:-.015em; max-width:580px;
+}
+.s9-heading em { font-style:italic; }
+.s9-standards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+.s9-std {
+  display:flex; flex-direction:column; gap:14px;
+  padding-top:22px; border-top:2px solid var(--green);
+}
+.s9-std-title {
+  font-family:var(--serif); font-size:22px; font-weight:500;
+  color:var(--ink); line-height:1.2;
+}
+.s9-std-desc {
+  font-family:var(--sans); font-size:13.5px; font-weight:300;
+  line-height:1.72; color:var(--ink3); letter-spacing:.01em;
 }
 
-#s08 .s08-section {
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 36px;
-}
 
-#s08 .s08-statement {
-  font-family: var(--serif);
-  font-size: clamp(30px, 4vw, 52px);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.12;
-  color: var(--cream);
-  letter-spacing: -0.02em;
-  max-width: 700px;
-  margin-bottom: 48px;
+/* ══════════════════════════════════════
+   10 — THE LONG VIEW  (near-black)
+══════════════════════════════════════ */
+#s10 {
+  background:#111; position:relative;
+  overflow:hidden; justify-content:space-between;
 }
-
-#s08 .s08-sign {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 32px;
-  border-top: 0.5px solid rgba(255,255,255,0.12);
-  max-width: 380px;
+.s10-bg-text {
+  position:absolute; bottom:-40px; right:-20px;
+  font-family:var(--serif); font-size:28vw; font-weight:300;
+  font-style:italic; color:rgba(35,63,47,.1);
+  letter-spacing:-.05em; line-height:1;
+  pointer-events:none; white-space:nowrap; z-index:1;
 }
-
-#s08 .s08-sign-name {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.85);
+.s10-body {
+  flex:1; padding:0 56px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; z-index:2;
 }
-
-#s08 .s08-sign-title {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.4);
+.s10-section {
+  font-family:var(--sans); font-size:8px; letter-spacing:.28em;
+  text-transform:uppercase; color:rgba(255,255,255,.28);
+  margin-bottom:36px;
 }
-
-#s08 .s08-sign-org {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-top: 2px;
+.s10-statement {
+  font-family:var(--serif); font-size:clamp(30px,4vw,54px);
+  font-weight:300; font-style:italic; line-height:1.1;
+  color:var(--cream); letter-spacing:-.02em;
+  max-width:720px; margin-bottom:52px;
 }
-
-/* FOOTER on dark slides */
-.footer-dark span { color: rgba(255,255,255,0.25) !important; }
-.header-dark .slide-header-label { color: rgba(255,255,255,0.25); }
-.header-light .slide-header-label { color: var(--ink-3); }
+.s10-sign {
+  display:flex; flex-direction:column; gap:8px;
+  padding-top:32px; border-top:.5px solid rgba(255,255,255,.1);
+  max-width:380px;
+}
+.s10-sign-name {
+  font-family:var(--serif); font-size:23px; font-weight:400;
+  color:rgba(255,255,255,.82);
+}
+.s10-sign-title {
+  font-family:var(--sans); font-size:10px; font-weight:300;
+  letter-spacing:.12em; color:rgba(255,255,255,.35);
+}
+.s10-sign-org {
+  font-family:var(--sans); font-size:10px; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.25); margin-top:2px;
+}
 
 </style>
 </head>
 <body>
-
 <div class="deck">
 
-  <!-- ══ SLIDE 01 — COVER ══ -->
-  <div class="slide active" id="s01">
-    <div class="slide-header" style="padding-top:32px;">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
-      </div>
-      <span class="slide-header-label" style="color:rgba(255,255,255,0.25);letter-spacing:0.2em;font-size:8px;font-family:var(--sans);">The Founder's Memo</span>
-    </div>
 
-    <div class="cover-body">
-      <div class="cover-label">A personal articulation of intent</div>
-      <div class="cover-title">
-        Hard challenges<br>give rise to<br><em>beautiful</em> legacies.<br>
-      </div>
-      <div class="cover-rule"></div>
-      <div class="cover-meta">
-        <div class="cover-meta-item">
-          <span class="cover-meta-label">From</span>
-          <span class="cover-meta-value">Kittisak Pattamasaevi</span>
-        </div>
-        <div class="cover-meta-item">
-          <span class="cover-meta-label">Role</span>
-          <span class="cover-meta-value">CEO, Montara Hospitality Group</span>
-        </div>
-        <div class="cover-meta-item">
-          <span class="cover-meta-label">Project</span>
-          <span class="cover-meta-value">Tri Vananda, Phuket</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide-footer footer-dark">
-      <span>01 / 08</span>
-      <span>For private circulation</span>
-    </div>
+<!-- ══════════════════════════════════════════════════════
+     01  COVER
+══════════════════════════════════════════════════════ -->
+<div class="slide active" id="s01">
+  <div class="slide-header" style="padding-top:32px;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,.22);letter-spacing:.22em;">The Founder's Memo</span>
   </div>
 
-  <!-- ══ SLIDE 02 — OPENING STATEMENT ══ -->
-  <div class="slide" id="s02">
-    <div class="slide-header header-light">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+  <div class="cv-body">
+    <div class="cv-label">A personal articulation of intent</div>
+    <div class="cv-title">
+      Hard challenges<br>give rise to<br><em>beautiful</em> legacies.
+    </div>
+    <div class="cv-rule"></div>
+    <div class="cv-meta">
+      <div class="cv-meta-item">
+        <span class="cv-meta-label">From</span>
+        <span class="cv-meta-value">Kittisak Pattamasaevi</span>
       </div>
-      <span class="slide-header-label" style="color:var(--ink-3);">The Founder's Memo</span>
-    </div>
-
-    <div class="s02-body">
-      <div class="s02-kicker">I — Why this exists</div>
-
-      <div class="s02-statement">
-        "Life is the intersection between extremely hard things and extremely beautiful things. Tri Vananda is built in that space."
+      <div class="cv-meta-item">
+        <span class="cv-meta-label">Role</span>
+        <span class="cv-meta-value">CEO, Montara Hospitality Group</span>
       </div>
-
-      <div class="s02-grid">
-        <div class="s02-cell">
-          <div class="s02-cell-label">The problem we face</div>
-          <div class="s02-cell-text">People are growing older before they grow wealthier. Families are fracturing. Nature is diminishing. Anxiety is rising faster than the systems that were meant to contain it.</div>
-        </div>
-        <div class="s02-cell">
-          <div class="s02-cell-label">The response we chose</div>
-          <div class="s02-cell-text">Not to build another resort. Not to sell another concept. But to design a living environment where the difficulty of life and the beauty of life can be held together — across generations.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide-footer">
-      <span>02 / 08</span>
-      <span>Tri Vananda · Phuket, Thailand</span>
-    </div>
-  </div>
-
-  <!-- ══ SLIDE 03 — THE HARD THINGS ══ -->
-  <div class="slide" id="s03">
-    <div style="position:absolute;top:28px;left:56px;z-index:10;display:flex;align-items:center;gap:14px;">
-      <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
-    </div>
-
-    <div class="s03-left">
-      <div class="s03-section-label">II — The hard things</div>
-      <div class="s03-heading">Extremely<br><em>Hard.</em></div>
-    </div>
-
-    <div class="s03-right">
-      <div class="s03-items">
-        <div class="s03-item">
-          <div class="s03-item-title">Growing Old Before Growing Rich</div>
-          <div class="s03-item-desc">Thailand is aging faster than its economy. Low birth rates, rising elder dependency, and a generation of young people caught between their own futures and their parents' care — this is the context we build within.</div>
-        </div>
-        <div class="s03-item">
-          <div class="s03-item-title">The Anxious Generation</div>
-          <div class="s03-item-desc">Screen dependency, social fragmentation, and the compression of childhood into performance — the children growing up now carry a weight that the environment they live in is not helping them put down.</div>
-        </div>
-        <div class="s03-item">
-          <div class="s03-item-title">A Climate Crisis with a 30-Year Bill</div>
-          <div class="s03-item-desc">Coral bleaching. Flood cycles. Tourism under threat. The land we build on is already absorbing the consequences of decisions made before us. We do not get to ignore that.</div>
-        </div>
+      <div class="cv-meta-item">
+        <span class="cv-meta-label">Project</span>
+        <span class="cv-meta-value">Tri Vananda, Phuket</span>
       </div>
     </div>
   </div>
 
-  <!-- ══ SLIDE 04 — THE PIVOT ══ -->
-  <div class="slide" id="s04">
-    <div class="slide-header header-light">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
-      </div>
-      <span class="slide-header-label" style="color:var(--ink-3);">III — The pivot</span>
+  <div class="slide-footer footer-dark">
+    <span>01 / 10</span>
+    <span>For private circulation</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     02  OPENING STATEMENT
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s02">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo logo-dark" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink3);">I — Why this exists</span>
+  </div>
+
+  <div class="s2-body">
+    <div class="s2-kicker">The founding premise</div>
+    <div class="s2-statement">
+      "Life is the intersection between extremely hard things and extremely beautiful things. Tri Vananda is built in that space."
     </div>
-
-    <div class="s04-body">
-      <div class="s04-venn">
-        <div class="venn-circle vc-hard"><span class="vc-label">Extremely<br>Hard</span></div>
-        <div class="vc-life">Life</div>
-        <div class="venn-circle vc-beautiful"><span class="vc-label">Extremely<br>Beautiful</span></div>
+    <div class="s2-grid">
+      <div>
+        <div class="s2-cell-label">The context we cannot ignore</div>
+        <div class="s2-cell-text">Thailand is aging faster than it is growing wealthy. Families are fracturing under economic pressure. A generation of children is growing up distracted and anxious. Our coastlines and coral reefs are losing the battle. These are not abstract problems — they are the conditions our residents carry with them when they arrive.</div>
       </div>
-
-      <div class="s04-quote">
-        "But we have also seen what is possible when people are given the right environment. Blue zones. Harvard's 85-year happiness study. The science is not ambiguous. Community heals. Nature restores. Belonging extends life."
+      <div>
+        <div class="s2-cell-label">The response we chose</div>
+        <div class="s2-cell-text">Not to build another resort. Not to sell another concept. But to design a living environment — grounded in science, rooted in Thai culture, built for multiple generations — where the difficulty of life and the beauty of life can be held together. Permanently. Meaningfully. Across time.</div>
       </div>
-
-      <div class="s04-attr">Kittisak Pattamasaevi · CEO, Montara Hospitality Group</div>
-    </div>
-
-    <div class="slide-footer">
-      <span>04 / 08</span>
-      <span>Tri Vananda · Phuket, Thailand</span>
     </div>
   </div>
 
-  <!-- ══ SLIDE 05 — THE ORIGIN ══ -->
-  <div class="slide" id="s05">
-    <div class="slide-header header-light">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
-      </div>
-      <span class="slide-header-label" style="color:var(--ink-3);">IV — The origin</span>
+  <div class="slide-footer">
+    <span>02 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     03  EXTREMELY HARD
+══════════════════════════════════════════════════════ -->
+<div class="slide split-slide" id="s03">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo logo-dark" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink3);">II — The hard things</span>
+  </div>
+
+  <div class="split-body">
+    <div class="split-left">
+      <div class="split-kicker">II — The hard things</div>
+      <div class="split-heading">Extremely<br><em>Hard.</em></div>
     </div>
 
-    <div class="s05-body">
-      <div class="s05-left">
-        <div class="s05-kicker">Where the name came from</div>
-        <div class="s05-heading">Built from<br><em>personal</em><br>understanding.</div>
-        <div class="s05-text">
-          <p>This project began with illness — a family's encounter with cancer, and a recovery that came not from medicine alone, but from a change in how they lived. That experience is not a marketing story. It is the reason Tri Vananda exists.</p>
-          <p>We did not begin with a plot of land in Phuket. We began with a question: what kind of environment actually helps people live longer, and better, and more connected to the people they love? Everything that followed was an attempt to answer it honestly.</p>
-        </div>
-      </div>
+    <div class="split-right">
+      <div class="split-items">
 
-      <div class="s05-right">
-        <div class="s05-name-block">
-          <div class="s05-name">Tri Vananda</div>
-          <div class="s05-name-label">Phuket, Thailand · 232 Acres</div>
-        </div>
-
-        <div class="s05-meaning-items">
-          <div class="s05-meaning-item">
-            <div class="s05-meaning-word">Tri</div>
-            <div class="s05-meaning-def">Three sons. Brotherhood across generations. The transgenerational bond this place is designed to hold.</div>
+        <div class="split-item">
+          <div class="split-item-hd">
+            <span class="split-item-num">01</span>
+            <div class="split-item-title">Growing Old Before Growing Rich</div>
           </div>
-          <div class="s05-meaning-item">
-            <div class="s05-meaning-word">Vana</div>
-            <div class="s05-meaning-def">Forest in Thai. Nature is not a backdrop here — it is the infrastructure. 232 acres of botanical garden, nine lakes, and regrown forest.</div>
+          <div class="split-item-desc">Thailand is aging faster than almost any economy in Southeast Asia — without the wealth buffer of Singapore, Japan, or Korea. By 2023, 20% of the population was over 60. Birth rates have declined at a CAGR of −1.94% over two decades. GDP growth has averaged 5.34% annually. Only 5% of elderly Thais have sufficient income to save for retirement. The younger generation is being asked to carry more than any generation before them.</div>
+          <span class="split-item-tag tag-rust">20% over 60 · Birth rate among lowest in ASEAN · Only 5% confident in retirement</span>
+        </div>
+
+        <div class="split-item">
+          <div class="split-item-hd">
+            <span class="split-item-num">02</span>
+            <div class="split-item-title">The Anxious Generation</div>
           </div>
-          <div class="s05-meaning-item">
-            <div class="s05-meaning-word">Nanda</div>
-            <div class="s05-meaning-def">Ultimate happiness in Sanskrit. Not comfort. Not luxury. The deeper state that comes from living well, together, over time.</div>
+          <div class="split-item-desc">Thai children average 4 hours of daily screen time — double the WHO recommendation, and more than any comparable ASEAN peer group. Social media exposure is linked directly to rising teenage anxiety. A generation growing up with devices instead of territory, with algorithms instead of community, with performance pressure instead of play.</div>
+          <span class="split-item-tag tag-rust">4 hrs/day screen time · Double WHO limit · Anxiety rising across all age groups</span>
+        </div>
+
+        <div class="split-item">
+          <div class="split-item-hd">
+            <span class="split-item-num">03</span>
+            <div class="split-item-title">A Climate Crisis with a 30-Year Bill</div>
           </div>
+          <div class="split-item-desc">Coral bleaching has damaged over 85 sq km of reef in the Gulf of Thailand. Rainfall patterns swung from a 40-year high to a near-record drought within three years. Tourism — one fifth of Thailand's GDP — is under direct threat. So are the 12 million farmers who make up one sixth of the population. The land we build on is already absorbing consequences we did not create.</div>
+          <span class="split-item-tag tag-rust">85 sq km reef damage · Tourism = 1/5 of GDP · 12M farmers at risk</span>
         </div>
-      </div>
-    </div>
 
-    <div class="slide-footer">
-      <span>05 / 08</span>
-      <span>Tri Vananda · Phuket, Thailand</span>
+      </div>
     </div>
   </div>
 
-  <!-- ══ SLIDE 06 — THE INTENTION ══ -->
-  <div class="slide" id="s06">
-    <div class="slide-header" style="padding-top:32px;">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
-      </div>
-      <span class="slide-header-label" style="color:rgba(255,255,255,0.25);letter-spacing:0.2em;font-size:8px;font-family:var(--sans);">V — The intention</span>
+  <div class="slide-footer">
+    <span>03 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     04  EXTREMELY BEAUTIFUL
+══════════════════════════════════════════════════════ -->
+<div class="slide split-slide" id="s04">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo logo-dark" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink3);">III — The beautiful things</span>
+  </div>
+
+  <div class="split-body">
+    <div class="split-left">
+      <div class="split-kicker">III — The beautiful things</div>
+      <div class="split-heading">Extremely<br><em>Beautiful.</em></div>
     </div>
 
-    <div class="s06-body">
-      <div class="s06-section">What we are building, and why</div>
-      <div class="s06-heading">A community-based<br>answer to <em>growing old<br>before growing rich.</em></div>
+    <div class="split-right">
+      <div class="split-items">
 
-      <div class="s06-pillars">
-        <div class="s06-pillar">
-          <div class="s06-pillar-num">01</div>
-          <div class="s06-pillar-title">Regenerative Land</div>
-          <div class="s06-pillar-desc">Net-zero, carbon-absorbing, biophilically designed. The land does not just hold the community — it actively contributes to the health of everyone in it.</div>
+        <div class="split-item">
+          <div class="split-item-hd">
+            <span class="split-item-num">01</span>
+            <div class="split-item-title">Community-Based Solutions to Health</div>
+          </div>
+          <div class="split-item-desc">Harvard's 85-year happiness study found that strong social relationships are a greater predictor of long-term health than genetics, social class, or education. People with deep social bonds retain memory function longer and live measurably healthier lives. Blue Zones research confirms it: ikigai — a sense of purpose within a community — is the most consistent factor in populations that live past 100.</div>
+          <span class="split-item-tag tag-green">Harvard Happiness Study · Blue Zones / Ikigai · Social connection as medicine</span>
         </div>
-        <div class="s06-pillar">
-          <div class="s06-pillar-num">02</div>
-          <div class="s06-pillar-title">Multigenerational Design</div>
-          <div class="s06-pillar-desc">Spaces that work for an eight-year-old and a seventy-year-old in the same daily life. Community built to hold families in ordinary time, not just extraordinary occasions.</div>
+
+        <div class="split-item">
+          <div class="split-item-hd">
+            <span class="split-item-num">02</span>
+            <div class="split-item-title">Conscious Parenting</div>
+          </div>
+          <div class="split-item-desc">Dr. Shefali Tsabary's work demonstrates that children flourish not when parents control outcomes, but when parents are present, emotionally aware, and willing to listen. Thai culture and Buddhist practice already hold this understanding — in the values of harmony, respect, and intergenerational care that have shaped family life here for centuries.</div>
+          <span class="split-item-tag tag-green">Dr. Shefali Tsabary · The Conscious Parent · Rooted in Thai Buddhist tradition</span>
         </div>
-        <div class="s06-pillar">
-          <div class="s06-pillar-num">03</div>
-          <div class="s06-pillar-title">Conscious Parenting</div>
-          <div class="s06-pillar-desc">An environment where children grow up with territory, with intergenerational encounter, with the particular experience of belonging somewhere that rewards attention and presence.</div>
+
+        <div class="split-item">
+          <div class="split-item-hd">
+            <span class="split-item-num">03</span>
+            <div class="split-item-title">Regenerative Investment</div>
+          </div>
+          <div class="split-item-desc">Global investment in clean energy exceeded USD 2 trillion in 2024 — surpassing fossil fuels for the first time. The ASEAN green bond market reached USD 10 billion by late 2022. Thailand ranked 24th on the Climate Change Performance Index 2025 and is on course for carbon neutrality by 2050. Capital and purpose are moving in the same direction.</div>
+          <span class="split-item-tag tag-green">Clean energy $2T+ · ASEAN green bonds $10B · Thailand CCPI ranked 24th</span>
         </div>
-        <div class="s06-pillar">
-          <div class="s06-pillar-num">04</div>
-          <div class="s06-pillar-title">Regenerative Investment</div>
-          <div class="s06-pillar-desc">Carbon-neutral villas reaching net-zero over 30 years. Ownership that produces returns to the land and the community over time — not extraction, but contribution.</div>
-        </div>
+
       </div>
-    </div>
-
-    <div class="slide-footer footer-dark">
-      <span>06 / 08</span>
-      <span>Tri Vananda · Phuket, Thailand</span>
     </div>
   </div>
 
-  <!-- ══ SLIDE 07 — THE STANDARDS ══ -->
-  <div class="slide" id="s07">
-    <div class="slide-header header-light">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
-      </div>
-      <span class="slide-header-label" style="color:var(--ink-3);">VI — The standards we hold</span>
+  <div class="slide-footer">
+    <span>04 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     05  THE PIVOT  (Venn)
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s05">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo logo-dark" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink3);">IV — The pivot</span>
+  </div>
+
+  <div class="s5-body">
+
+    <!-- Venn — viewBox fully contains both circles with generous padding -->
+    <div class="s5-venn">
+      <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            .vc-hard   { fill:#233f2f; }
+            .vc-beauty { fill:#c8a09a; mix-blend-mode:multiply; }
+          </style>
+        </defs>
+        <!-- r=118, centers at y=130 → top=12, bottom=248, well within 260 -->
+        <!-- left circle cx=182, right cx=318, overlap ~64px for clean intersection -->
+        <circle class="vc-hard"   cx="182" cy="130" r="118"/>
+        <circle class="vc-beauty" cx="318" cy="130" r="118"/>
+        <!-- Extremely Hard label — sits in left non-overlapping region -->
+        <text x="120" y="122" font-family="Cormorant Garamond,serif" font-size="22"
+              font-style="italic" fill="rgba(255,255,255,.92)" text-anchor="middle">Extremely</text>
+        <text x="120" y="148" font-family="Cormorant Garamond,serif" font-size="22"
+              font-style="italic" fill="rgba(255,255,255,.92)" text-anchor="middle">Hard</text>
+        <!-- Extremely Beautiful label — sits in right non-overlapping region -->
+        <text x="380" y="122" font-family="Cormorant Garamond,serif" font-size="22"
+              font-style="italic" fill="rgba(255,255,255,.92)" text-anchor="middle">Extremely</text>
+        <text x="380" y="148" font-family="Cormorant Garamond,serif" font-size="22"
+              font-style="italic" fill="rgba(255,255,255,.92)" text-anchor="middle">Beautiful</text>
+        <!-- Life label — intersection centre -->
+        <text x="250" y="137" font-family="Cormorant Garamond,serif" font-size="24"
+              font-style="italic" fill="white" text-anchor="middle">Life</text>
+      </svg>
     </div>
 
-    <div class="s07-body">
-      <div class="s07-kicker">What we will not compromise on</div>
+    <div class="s5-bottom">
+      <div class="s5-kicker">IV — The pivot</div>
+      <div class="s5-quote">
+        "But we have also seen what is possible when people are given the right environment. Blue zones. Harvard's 85-year happiness study. The research on conscious parenting. The global shift toward regenerative investment. The science is not ambiguous — community heals, nature restores, belonging extends life."
+      </div>
+      <div class="s5-attr">Kittisak Pattamasaevi · CEO, Montara Hospitality Group</div>
+    </div>
 
-      <div class="s07-heading">These are not<br>aspirations. They are<br><em>operating conditions.</em></div>
+  </div>
 
-      <div class="s07-standards">
-        <div class="s07-std">
-          <div class="s07-std-title">Nature as Infrastructure</div>
-          <div class="s07-std-desc">Every decision — architectural, operational, horticultural — is evaluated against what the land requires. Nature is not a feature we add. It is the frame everything else sits inside.</div>
-        </div>
-        <div class="s07-std">
-          <div class="s07-std-title">Community as Medicine</div>
-          <div class="s07-std-desc">Social architecture is designed intentionally — not to fill the calendar, but to create the conditions for genuine encounter. The unscripted afternoon matters as much as the curated program.</div>
-        </div>
-        <div class="s07-std">
-          <div class="s07-std-title">Time as the Unit of Value</div>
-          <div class="s07-std-desc">We are not building a place to visit. We are building a place to return to. The measure of success is not occupancy or revenue. It is whether families choose to come back — out of preference, not obligation.</div>
-        </div>
+  <div class="slide-footer">
+    <span>05 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     06  THE ORIGIN
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s06">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo logo-dark" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink3);">V — The origin</span>
+  </div>
+
+  <div class="s6-body">
+    <div class="s6-left">
+      <div class="s6-kicker">Where the name came from</div>
+      <div class="s6-heading">Built from<br><em>personal</em><br>understanding.</div>
+      <div class="s6-text">
+        <p>This project began with illness — a family's encounter with cancer, and a recovery that came not from medicine alone, but from a change in how they lived. That experience is not a marketing story. It is the reason Tri Vananda exists.</p>
+        <p>We did not begin with a plot of land in Phuket. We began with a question: what kind of environment actually helps people live longer, and better, and more connected to the people they love? Everything that followed was an attempt to answer it honestly.</p>
       </div>
     </div>
 
-    <div class="slide-footer">
-      <span>07 / 08</span>
-      <span>Tri Vananda · Phuket, Thailand</span>
+    <div class="s6-right">
+      <div class="s6-name-block">
+        <div class="s6-name">Tri Vananda</div>
+        <div class="s6-name-label">Phuket, Thailand · 232 Acres</div>
+      </div>
+      <div class="s6-meanings">
+        <div class="s6-meaning-item">
+          <div class="s6-meaning-word">Tri</div>
+          <div class="s6-meaning-def">Three sons. Brotherhood across generations. The transgenerational bond this place is designed to hold.</div>
+        </div>
+        <div class="s6-meaning-item">
+          <div class="s6-meaning-word">Vana</div>
+          <div class="s6-meaning-def">Forest in Thai. Nature is not a backdrop — it is the infrastructure. 232 acres of botanical garden, nine lakes, and regrown forest.</div>
+        </div>
+        <div class="s6-meaning-item">
+          <div class="s6-meaning-word">Nanda</div>
+          <div class="s6-meaning-def">Ultimate happiness in Sanskrit. Not comfort. Not luxury. The deeper state that comes from living well, together, over time.</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ══ SLIDE 08 — THE LONG VIEW ══ -->
-  <div class="slide" id="s08">
-    <div class="slide-header" style="padding-top:32px;position:relative;z-index:2;">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+  <div class="slide-footer">
+    <span>06 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     07  THE INTENTION  (dark green)
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s07">
+  <div class="slide-header" style="padding-top:32px;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,.22);">VI — The intention</span>
+  </div>
+
+  <div class="s7-body">
+    <div class="s7-section">What we are building, and why</div>
+    <div class="s7-heading">A community-based<br>answer to <em>growing old<br>before growing rich.</em></div>
+
+    <div class="s7-pillars">
+      <div class="s7-pillar">
+        <div class="s7-pillar-num">01</div>
+        <div class="s7-pillar-title">Community-Based Health</div>
+        <div class="s7-pillar-desc">Proud Family hospitality, Be Wellness programming, and Local Roots Market — a living social infrastructure designed to produce the longevity outcomes that Harvard and the Blue Zones identify as determinants of a long, well life.</div>
+        <div class="s7-pillar-stat">Wellness economy: $6.3T globally · Larger than Thailand's entire GDP</div>
       </div>
-      <span class="slide-header-label" style="color:rgba(255,255,255,0.25);letter-spacing:0.2em;font-size:8px;font-family:var(--sans);">VII — The long view</span>
-    </div>
-
-    <div class="s08-bg-text">Life</div>
-
-    <div class="s08-body">
-      <div class="s08-section">A final word</div>
-
-      <div class="s08-statement">
-        "We chose to build in the space where hard challenges give rise to beautiful legacies. That is not a tagline. It is the only reason a project like this makes sense to attempt."
+      <div class="s7-pillar">
+        <div class="s7-pillar-num">02</div>
+        <div class="s7-pillar-title">Conscious Parenting Spaces</div>
+        <div class="s7-pillar-desc">Manorah Grand Hall, rooted in Southern Thai drama and culture. The Tweenie Club for children to explore and connect. Pru Jampa Farm for families to work the land together. Environments that make mindfulness a daily practice, not a retreat activity.</div>
+        <div class="s7-pillar-stat">Clinique La Prairie partnership · Global health resort at Tri Vananda</div>
       </div>
-
-      <div class="s08-sign">
-        <div class="s08-sign-name">Kittisak Pattamasaevi</div>
-        <div class="s08-sign-title">Chief Executive Officer</div>
-        <div class="s08-sign-org">Montara Hospitality Group</div>
+      <div class="s7-pillar">
+        <div class="s7-pillar-num">03</div>
+        <div class="s7-pillar-title">Multigenerational Design</div>
+        <div class="s7-pillar-desc">Spaces that work for an eight-year-old and a seventy-year-old in the same daily life. 85% of land returned to nature. Community built to hold families across ordinary time — not just extraordinary occasions.</div>
+        <div class="s7-pillar-stat">60% green · 25% water · 10% building · 5% infrastructure</div>
       </div>
-    </div>
-
-    <div class="slide-footer footer-dark" style="position:relative;z-index:2;">
-      <span>08 / 08</span>
-      <span>Build, Belong &amp; Bloom</span>
+      <div class="s7-pillar">
+        <div class="s7-pillar-num">04</div>
+        <div class="s7-pillar-title">Regenerative Investment</div>
+        <div class="s7-pillar-desc">Carbon-neutral villas on a 30-year path to net-zero: passive design reduces 40%, solar roofs a further 15%, green land absorption eliminates the rest. Every rai absorbs 2.5 tonnes of CO₂ per year. Ownership that contributes to the planet.</div>
+        <div class="s7-pillar-stat">100% → 60% → 45% → Net-Zero · 1 Rai = 2.5t CO₂e / year</div>
+      </div>
     </div>
   </div>
+
+  <div class="slide-footer footer-dark">
+    <span>07 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     08  TRI VANANDA IN PRACTICE  (richer dark green — 3 open columns)
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s08">
+  <div class="slide-header" style="padding-top:32px;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,.22);">VII — The intersection in practice</span>
+  </div>
+
+  <div class="s8-body">
+    <div class="s8-kicker">Enhancing life through purposeful development</div>
+    <div class="s8-heading">The things we set out<br>to build <em>are working.</em></div>
+
+    <div class="s8-grid">
+      <div class="s8-col">
+        <div class="s8-col-title">Strong Community Purpose</div>
+        <div class="s8-col-rule"></div>
+        <div class="s8-col-desc">A vision rooted in community, fostering proud family values that strengthen meaningful connections within and beyond. Through community outreach, market days, cultural programming, and intergenerational celebration, we extend this ethos outward — building lasting bonds and a shared sense of purpose that residents feel on an ordinary Tuesday, not just a holiday.</div>
+        <div class="s8-col-stat">Proud Family · Be Wellness · Local Roots Market</div>
+      </div>
+      <div class="s8-col">
+        <div class="s8-col-title">Intergenerational Well-being</div>
+        <div class="s8-col-rule"></div>
+        <div class="s8-col-desc">Tri Vananda creates a wellness-focused lifestyle designed for longevity. Anchored by a Health Resort by Clinique La Prairie — one of the world's most respected preventive health institutions — and layered with meaningful intergenerational experiences, families can embrace mindful living and the kind of well-being that accumulates, rather than depletes, over time.</div>
+        <div class="s8-col-stat">Clinique La Prairie · Global wellness economy $6.3T in 2023</div>
+      </div>
+      <div class="s8-col">
+        <div class="s8-col-title">Regeneration as Legacy</div>
+        <div class="s8-col-rule"></div>
+        <div class="s8-col-desc">The project will achieve a net-negative carbon footprint within one generation. Villas blend seamlessly with nature through biophilic design, low-carbon materials, renewable energy, and biodiversity preservation. This is not an environmental offset — it is an architectural commitment made permanent in the land itself, for the children who will inherit it.</div>
+        <div class="s8-col-stat">Net-negative carbon · 30 years · One generation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer footer-dark">
+    <span>08 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     09  THE STANDARDS  (paper — clear contrast from 08)
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s09">
+  <div class="slide-header">
+    <img src="logo-white.png" class="real-logo logo-dark" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:var(--ink3);">VIII — The standards we hold</span>
+  </div>
+
+  <div class="s9-body">
+    <div class="s9-kicker">What we will not compromise on</div>
+    <div class="s9-heading">These are not<br>aspirations. They are<br><em>operating conditions.</em></div>
+
+    <div class="s9-standards">
+      <div class="s9-std">
+        <div class="s9-std-title">Nature as Infrastructure</div>
+        <div class="s9-std-desc">Every decision — architectural, operational, horticultural — is evaluated against what the land requires. 85% of the site is returned to nature. The green area is sized precisely to absorb the carbon emissions of every residence over 30 years. Nature is not a feature we add. It is the frame everything else sits inside.</div>
+      </div>
+      <div class="s9-std">
+        <div class="s9-std-title">Community as Medicine</div>
+        <div class="s9-std-desc">Social architecture is designed intentionally — not to fill the calendar, but to create the conditions for genuine encounter. The science of Blue Zones and Harvard's longitudinal research confirms what good cultures have always known: belonging is not a luxury. It is a biological requirement. The unscripted afternoon matters as much as the curated programme.</div>
+      </div>
+      <div class="s9-std">
+        <div class="s9-std-title">Time as the Unit of Value</div>
+        <div class="s9-std-desc">We are not building a place to visit. We are building a place to return to. The measure of success is not occupancy or revenue — it is whether families choose to come back out of preference, not obligation. Whether children grow up with roots. Whether a grandparent's final years are spent well. These are the returns that matter.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>09 / 10</span>
+    <span>Tri Vananda · Phuket, Thailand</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     10  THE LONG VIEW
+══════════════════════════════════════════════════════ -->
+<div class="slide" id="s10">
+  <div class="slide-header" style="padding-top:32px;position:relative;z-index:2;">
+    <img src="logo-white.png" class="real-logo" alt="Tri Vananda">
+    <span class="slide-header-label" style="color:rgba(255,255,255,.22);">IX — The long view</span>
+  </div>
+
+  <div class="s10-bg-text">Life</div>
+
+  <div class="s10-body">
+    <div class="s10-section">A final word</div>
+    <div class="s10-statement">
+      "We chose to build in the space where hard challenges give rise to beautiful legacies. That is not a tagline. It is the only reason a project like this makes sense to attempt."
+    </div>
+    <div class="s10-sign">
+      <div class="s10-sign-name">Kittisak Pattamasaevi</div>
+      <div class="s10-sign-title">Chief Executive Officer</div>
+      <div class="s10-sign-org">Montara Hospitality Group</div>
+    </div>
+  </div>
+
+  <div class="slide-footer footer-dark" style="position:relative;z-index:2;">
+    <span>10 / 10</span>
+    <span>Create, Belong &amp; Bloom</span>
+  </div>
+</div>
+
 
 </div><!-- /deck -->
 
 <!-- ══ NAV ══ -->
 <div class="nav">
-  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">&#8592;</button>
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8592;</button>
   <div class="nav-dots" id="navDots"></div>
-  <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">&#8594;</button>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8594;</button>
 </div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-let current = 0;
+const total  = slides.length;
+let cur = 0;
 
-// Build dots
 const dotsEl = document.getElementById('navDots');
 slides.forEach((_, i) => {
   const d = document.createElement('div');
@@ -1148,28 +942,25 @@ slides.forEach((_, i) => {
 });
 
 function goTo(n) {
-  slides[current].classList.remove('active');
-  dotsEl.children[current].classList.remove('active');
-  current = Math.max(0, Math.min(n, totalSlides - 1));
-  slides[current].classList.add('active');
-  dotsEl.children[current].classList.add('active');
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(n, total - 1));
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
 }
-
-function changeSlide(dir) { goTo(current + dir); }
+function changeSlide(dir) { goTo(cur + dir); }
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changeSlide(-1);
 });
 
-// Touch support
-let touchStartX = 0;
-document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-document.addEventListener('touchend', e => {
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+document.addEventListener('touchend',   e => {
+  const d = tx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 50) changeSlide(d > 0 ? 1 : -1);
 });
 </script>
-
 </body>
 </html>
