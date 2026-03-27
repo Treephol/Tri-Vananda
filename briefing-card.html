@@ -3,188 +3,690 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Before You Arrive — Tri Vananda</title>
+<title>Tri Vananda — Private Briefing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink:    #1a1916;
-    --ink-2:  #4a4740;
-    --ink-3:  #8a8680;
-    --paper:  #f5f2ec;
-    --paper-2:#ede9e1;
-    --rule:   #d6d1c8;
-    --green:  #233f2f;
-    --serif:  'EB Garamond', Georgia, serif;
-    --display:'Playfair Display', 'Times New Roman', serif;
-    --sans:   'Jost', 'Helvetica Neue', sans-serif;
-  }
 
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+/* ─── TOKENS ─── */
+:root {
+  --ink:      #1a1916;
+  --ink-2:    #4a4740;
+  --ink-3:    #8a8680;
+  --paper:    #f5f2ec;
+  --paper-2:  #ede9e1;
+  --paper-3:  #e3ded5;
+  --rule:     #d0cbc0;
+  --green:    #233f2f;
+  --green-l:  #2f5540;
+  --rust:     #CF554E;
+  --serif:    'EB Garamond', Georgia, serif;
+  --display:  'Playfair Display', 'Times New Roman', serif;
+  --sans:     'Jost', 'Helvetica Neue', sans-serif;
+}
 
-  html, body {
-    width:100%; min-height:100%;
-    background:#2a2620;
-    display:flex; align-items:center; justify-content:center;
-    padding:40px 20px;
-    font-family:var(--sans);
-    -webkit-font-smoothing:antialiased;
-  }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  /* ── CARD ── */
-  .card {
-    width:100%;
-    max-width:720px;
-    background:var(--paper);
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto;
-    min-height:960px;
-    box-shadow: 0 32px 80px rgba(0,0,0,.38), 0 4px 16px rgba(0,0,0,.18);
-    animation: fadeIn 1.1s ease both;
-  }
+html {
+  background: #252220;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
 
-  @keyframes fadeIn {
-    from { opacity:0; transform:translateY(12px); }
-    to   { opacity:1; transform:none; }
-  }
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 20px 60px;
+}
 
-  /* ── LEFT COLUMN — COPY ── */
-  .col-copy {
-    padding: 64px 48px 56px 56px;
-    display:flex; flex-direction:column;
-    border-right:0.5px solid var(--rule);
-  }
+/* ─── SHARED PAGE SHELL ─── */
+.page {
+  width: 794px;
+  height: 1123px;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.2);
+  flex-shrink: 0;
+  animation: rise .9s ease both;
+}
+.page:nth-child(2) { animation-delay: .12s; }
 
-  .col-map {
-    display:flex; flex-direction:column;
-  }
+@keyframes rise {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:none; }
+}
 
-  .card-title {
-    font-family:var(--display);
-    font-size:clamp(32px, 4vw, 42px);
-    font-weight:400; font-style:italic;
-    line-height:1.12; letter-spacing:-0.01em;
-    color:var(--ink);
-    margin-bottom:36px;
-  }
+/* ─── IMAGE PLACEHOLDER ─── */
+.img-ph {
+  background: var(--paper-3);
+  position: relative;
+  overflow: hidden;
+}
+.img-ph::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 18px,
+      rgba(0,0,0,.04) 18px,
+      rgba(0,0,0,.04) 19px
+    );
+}
+.img-ph .img-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+.img-ph .img-label span {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.img-ph .img-label svg {
+  opacity: .3;
+}
 
-  .card-rule {
-    width:32px; height:0.5px;
-    background:var(--green);
-    margin-bottom:32px;
-  }
+/* ════════════════════════════════════════
+   PAGE 1 — THE PROJECT
+════════════════════════════════════════ */
 
-  .card-lead {
-    font-family:var(--serif);
-    font-size:16px; font-style:italic;
-    line-height:1.7; color:var(--ink-2);
-    margin-bottom:28px;
-    letter-spacing:0.005em;
-  }
+/* Header bar */
+.p1-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px 0 48px;
+  z-index: 10;
+}
+.p1-header-logo {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.9);
+  text-transform: uppercase;
+}
+.p1-header-tag {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
 
-  .card-body {
-    font-family:var(--serif);
-    font-size:14px; line-height:1.82;
-    color:var(--ink-2); letter-spacing:0.005em;
-    margin-bottom:28px;
-  }
+/* Left column — image */
+.p1-image {
+  position: absolute;
+  top: 52px; left: 0;
+  width: 316px;
+  bottom: 0;
+}
+.p1-image .img-ph {
+  width: 100%;
+  height: 100%;
+}
 
-  .card-closing {
-    margin-top:auto;
-    padding-top:32px;
-    border-top:0.5px solid var(--rule);
-  }
+/* Vertical divider */
+.p1-divider {
+  position: absolute;
+  top: 52px;
+  left: 316px;
+  width: .5px;
+  bottom: 0;
+  background: var(--rule);
+}
 
-  .card-closing p {
-    font-family:var(--display);
-    font-size:16px; font-style:italic;
-    line-height:1.5; color:var(--ink);
-    letter-spacing:-0.005em;
-  }
-  .card-closing p + p {
-    margin-top:6px;
-  }
+/* Right column — copy */
+.p1-copy {
+  position: absolute;
+  top: 52px; left: 316px; right: 0; bottom: 0;
+  padding: 56px 48px 52px 48px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .card-logo {
-    margin-top:32px;
-    height:48px;
-    width:auto;
-    display:block;
-    opacity:0.75;
-  }
+.p1-eyebrow {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 24px;
+}
 
-  .map-area {
-    flex:1;
-    position:relative;
-    overflow:hidden;
-    min-height:440px;
-  }
+.p1-headline {
+  font-family: var(--display);
+  font-size: 38px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
 
-  .map-area img {
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit:cover; object-position:center;
-    display:block;
-  }
+.p1-rule {
+  width: 28px;
+  height: .5px;
+  background: var(--green);
+  margin-bottom: 26px;
+}
 
-  /* ── PRINT / A4 FEEL ── */
-  @media print {
-    html, body { background:white; padding:0; }
-    .card { box-shadow:none; max-width:100%; min-height:100vh; }
-  }
+.p1-lead {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+  font-style: italic;
+}
 
-  @media (max-width:600px) {
-    .card { grid-template-columns:1fr; min-height:auto; }
-    .col-copy { padding:48px 32px 44px; border-right:none; border-bottom:0.5px solid var(--rule); }
-    .col-map .map-header { padding:44px 32px 0; }
-    .map-area { margin:24px 32px 44px; min-height:300px; }
+.p1-body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+  letter-spacing: .003em;
+}
+
+/* Stats row */
+.p1-stats {
+  display: flex;
+  gap: 0;
+  margin-top: auto;
+  padding-top: 28px;
+  border-top: .5px solid var(--rule);
+}
+.p1-stat {
+  flex: 1;
+  padding-right: 20px;
+  border-right: .5px solid var(--rule);
+  padding-left: 0;
+}
+.p1-stat:not(:first-child) {
+  padding-left: 20px;
+}
+.p1-stat:last-child {
+  border-right: none;
+}
+.p1-stat-num {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 5px;
+  letter-spacing: -.01em;
+}
+.p1-stat-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+/* Page number */
+.p1-pagenum {
+  position: absolute;
+  bottom: 24px;
+  left: 48px;
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* Three institutions strip at bottom of left image */
+.p1-institutions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 316px;
+  background: rgba(35,63,47,.9);
+  padding: 18px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 5;
+}
+.p1-inst-label {
+  font-family: var(--sans);
+  font-size: 7.5px;
+  font-weight: 300;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: 8px;
+}
+.p1-inst-name {
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,.88);
+  line-height: 1.5;
+}
+
+/* ════════════════════════════════════════
+   PAGE 2 — THE LIFESTYLE
+════════════════════════════════════════ */
+
+/* Page 2 top strip: full-width hero image placeholder */
+.p2-hero {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 310px;
+}
+.p2-hero .img-ph {
+  width: 100%;
+  height: 100%;
+}
+/* Gradient overlay so text sits on top */
+.p2-hero-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 160px;
+  background: linear-gradient(to top, rgba(245,242,236,1) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+.p2-hero-caption {
+  position: absolute;
+  top: 24px; left: 40px;
+  z-index: 5;
+}
+.p2-hero-caption-logo {
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.8);
+}
+.p2-hero-caption-sub {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-top: 4px;
+}
+
+/* Content below hero */
+.p2-content {
+  position: absolute;
+  top: 268px; left: 0; right: 0; bottom: 0;
+  padding: 0 40px 0;
+}
+
+.p2-section-title {
+  font-family: var(--display);
+  font-size: 34px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.p2-section-sub {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 22px;
+}
+
+/* 4-pillar grid */
+.p2-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.p2-pillar {
+  display: flex;
+  flex-direction: column;
+}
+
+.p2-pillar-img {
+  height: 168px;
+  background: var(--paper-3);
+  margin-bottom: 0;
+}
+
+.p2-pillar-body {
+  padding: 14px 0 0;
+  border-top: .5px solid var(--rule);
+  margin-top: 0;
+}
+
+.p2-pillar-name {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.p2-pillar-title {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 7px;
+}
+
+.p2-pillar-desc {
+  font-family: var(--serif);
+  font-size: 11.5px;
+  line-height: 1.72;
+  color: var(--ink-2);
+}
+
+/* Bottom bar */
+.p2-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 62px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.p2-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.p2-footer-address {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.6);
+}
+.p2-footer-contact {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.85);
+}
+
+.p2-footer-cta {
+  text-align: right;
+}
+.p2-footer-cta-label {
+  font-family: var(--sans);
+  font-size: 7.5px;
+  font-weight: 300;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: 3px;
+}
+.p2-footer-cta-link {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,.9);
+}
+
+.p2-rule {
+  width: 28px;
+  height: .5px;
+  background: var(--green);
+  margin-bottom: 16px;
+}
+
+/* Page number */
+.p2-pagenum {
+  position: absolute;
+  bottom: 74px;
+  right: 40px;
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* ─── Print ─── */
+@media print {
+  html { background: white; }
+  body { gap: 0; padding: 0; }
+  .page {
+    box-shadow: none;
+    page-break-after: always;
   }
+}
+
 </style>
 </head>
 <body>
 
-<div class="card">
+<!-- ══════════════════════════════════════════
+     PAGE 1 — THE PROJECT
+══════════════════════════════════════════ -->
+<div class="page">
 
-  <!-- LEFT — COPY -->
-  <div class="col-copy">
+  <!-- Header bar -->
+  <div class="p1-header">
+    <div class="p1-header-logo">Tri Vananda</div>
+    <div class="p1-header-tag">Private Briefing · Phuket, Thailand</div>
+  </div>
 
-    <h1 class="card-title">Before You<br>Arrive</h1>
+  <!-- Left — full-height image -->
+  <div class="p1-image">
+    <img src="hero-crop.jpg" alt="Tri Vananda" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <!-- Institutions overlay -->
+    <div class="p1-institutions">
+      <div class="p1-inst-label">Three Institutions · One Address</div>
+      <div class="p1-inst-name">Clinique La Prairie</div>
+      <div class="p1-inst-name">Trisara</div>
+      <div class="p1-inst-name">Montara Hospitality Group</div>
+    </div>
+  </div>
 
-    <div class="card-rule"></div>
+  <!-- Divider -->
+  <div class="p1-divider"></div>
 
-    <p class="card-lead">
-      This isn't really a tour.<br>
-      Take your time with it.
+  <!-- Right — copy -->
+  <div class="p1-copy">
+
+    <div class="p1-eyebrow">Thep Krasatti · Thalang · Phuket</div>
+
+    <h1 class="p1-headline">Where Your<br>Time Starts<br>Behaving<br>Differently</h1>
+
+    <div class="p1-rule"></div>
+
+    <p class="p1-lead">
+      A multigenerational well-living community on 232 acres of restored
+      botanical landscape in Phuket's peaceful interior.
     </p>
 
-    <p class="card-body">
-      Notice how the land opens as you move, how the day finds its own rhythm,
-      and how easily things begin to align.
+    <p class="p1-body">
+      Tri Vananda brings together three world-class institutions — Clinique La Prairie's
+      90-year longevity science, Trisara's renowned service, and Montara's operational
+      excellence — into one permanent address for 77 private families.
     </p>
 
-    <p class="card-body">
-      A simple map is included for reference. We suggest light, comfortable
-      clothing for walking. There's no set pace — move as you feel.
+    <p class="p1-body">
+      Nine lakes, regrown forest, a working regenerative farm. Only 15% of the land
+      is committed to construction. The rest is the condition the whole address rests on —
+      a living ecology designed to be inhabited, not observed.
     </p>
 
-    <div class="card-closing">
-      <p>There's nothing to assess.</p>
-      <p>Just notice if it feels right.</p>
-
-      <img src="logo-cream-bg.jpg" alt="Tri Vananda" class="card-logo">
+    <!-- Stats -->
+    <div class="p1-stats">
+      <div class="p1-stat">
+        <div class="p1-stat-num">232</div>
+        <div class="p1-stat-label">Acres of regenerative<br>botanical landscape</div>
+      </div>
+      <div class="p1-stat">
+        <div class="p1-stat-num">77</div>
+        <div class="p1-stat-label">Private ownership<br>families · by invitation</div>
+      </div>
+      <div class="p1-stat">
+        <div class="p1-stat-num">15</div>
+        <div class="p1-stat-label">Minutes from Phuket<br>International Airport</div>
+      </div>
     </div>
 
   </div>
 
-  <!-- RIGHT — MAP IMAGE -->
-  <div class="col-map">
-    <div class="map-area">
-      <img src="site-map.jpg" alt="Tri Vananda Site Map">
-    </div>
-  </div>
+  <div class="p1-pagenum">01 of 02</div>
 
 </div>
 
-</body>
-</html>
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — THE LIFESTYLE
+══════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- Hero image placeholder -->
+  <div class="p2-hero">
+    <img src="com-02.jpg" alt="Tri Vananda Lifestyle" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="p2-hero-overlay"></div>
+    <div class="p2-hero-caption">
+      <div class="p2-hero-caption-logo">Tri Vananda</div>
+      <div class="p2-hero-caption-sub">Build, Belong &amp; Bloom</div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p2-content">
+
+    <div class="p2-section-title">A glimpse of daily life</div>
+
+    <!-- 4-pillar grid -->
+    <div class="p2-pillars">
+
+      <!-- Pillar 1: Nature -->
+      <div class="p2-pillar">
+        <div class="p2-pillar-img">
+          <img src="landscape.jpg" alt="Nature" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="p2-pillar-body">
+          <div class="p2-pillar-name">Nature</div>
+          <div class="p2-pillar-title">85% living<br>landscape</div>
+          <div class="p2-pillar-desc">Nine lakes, regrown forest, farm. Not a garden — territory that changes across seasons.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Health -->
+      <div class="p2-pillar">
+        <div class="p2-pillar-img">
+          <img src="clp.jpg" alt="Longevity" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="p2-pillar-body">
+          <div class="p2-pillar-name">Longevity · CLP</div>
+          <div class="p2-pillar-title">90 years of<br>clinical science</div>
+          <div class="p2-pillar-desc">Clinique La Prairie longevity protocols woven into daily life — not a clinic to visit, a framework you live inside.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dining -->
+      <div class="p2-pillar">
+        <div class="p2-pillar-img">
+          <img src="jampa.jpg" alt="Jampa Dining" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="p2-pillar-body">
+          <div class="p2-pillar-name">Dining</div>
+          <div class="p2-pillar-title">Jampa &amp; the<br>Green Star</div>
+          <div class="p2-pillar-desc">Michelin Green Star dining grown from the estate's own farm. Provenance you can walk to before you eat it.</div>
+        </div>
+      </div>
+
+      <!-- Pillar 4: Community -->
+      <div class="p2-pillar">
+        <div class="p2-pillar-img">
+          <img src="villa-01.jpg" alt="Community" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="p2-pillar-body">
+          <div class="p2-pillar-name">Community</div>
+          <div class="p2-pillar-title">77 families,<br>by invitation</div>
+          <div class="p2-pillar-desc">Multi-generational by design. Real encounters in unscripted spaces — the farm, the lake, the path between.</div>
+        </div>
+      </div>
+
+    </div><!-- /pillars -->
+
+    <!-- Residences line -->
+    <div style="display:flex; align-items:center; gap:28px; padding-top:14px; border-top:.5px solid var(--rule); margin-top:2px;">
+      <div style="display:flex; flex-direction:column; gap:3px;">
+        <span style="font-family:var(--serif); font-size:10px; font-style:italic; color:var(--ink-3);">Residences</span>
+        <span style="font-family:var(--serif); font-size:14px; font-style:italic; color:var(--ink);">2–5 Bedroom Private Villas &nbsp;·&nbsp; Available Now</span>
+      </div>
+      <div style="width:.5px; height:36px; background:var(--rule); flex-shrink:0;"></div>
+      <div style="display:flex; flex-direction:column; gap:3px;">
+        <span style="font-family:var(--serif); font-size:10px; font-style:italic; color:var(--ink-3);">CLP Branded Residences</span>
+        <span style="font-family:var(--serif); font-size:14px; font-style:italic; color:var(--ink);">Wellness Villas &nbsp;·&nbsp; Q4 2026</span>
+      </div>
+      <div style="width:.5px; height:36px; background:var(--rule); flex-shrink:0;"></div>
+      <div style="display:flex; flex-direction:column; gap:3px;">
+        <span style="font-family:var(--serif); font-size:10px; font-style:italic; color:var(--ink-3);">Net Zero · 232 Acres · Phuket</span>
+        <span style="font-family:var(--serif); font-size:14px; font-style:italic; color:var(--ink);">Thep Krasatti, Thalang District</span>
+      </div>
+    </div>
+
+  </div><!-- /p2-content -->
+
+  <div class="p2-pagenum">02 of 02</div>
+
+  <!-- QR Code — bottom right, above footer -->
+  <div style="position:absolute; bottom:160px; right:40px; display:flex; flex-direction:column; align-items:center; gap:7px; z-index:10;">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=4&color=233f2f&bgcolor=f5f2ec&data=https%3A%2F%2Fmaps.google.com%2F%3Fq%3DTri%2BVananda%2C%2BThep%2BKrasatti%2C%2BThalang%2C%2BPhuket%2B83110" alt="Google Maps" style="width:96px;height:96px;display:block;">
+    <span style="font-family:var(--serif); font-size:13px; font-style:italic; color:var(--ink-2); white-space:nowrap;">Scan for location</span>
+  </div>
+
+  <!-- Footer bar -->
+  <div class="p2-footer">
+    <div class="p2-footer-left">
+      <div class="p2-footer-address">Thep Krasatti, Thalang District, Phuket 83110</div>
+      <div class="p2-footer-contact"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abc2c5cdc4ebdfd9c2ddcac5cac5cfca85c8c4c6">[email&#160;protected]</a> &nbsp;·&nbsp; +66 95 371 9494 &nbsp;·&nbsp; trivananda.com</div>
+    </div>
+    <div class="p2-footer-cta">
+      <div class="p2-footer-cta-label">Begin a private conversation</div>
+  
