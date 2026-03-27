@@ -9,424 +9,381 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 :root {
-  --green:  #233f2f;
-  --sand:   #BAB9AF;
-  --sand2:  #d4cfc8;
-  --cream:  #EDEBE9;
-  --paper:  #f5f2ee;
-  --ink:    #1a1714;
-  --ink2:   #3d3a37;
-  --ink3:   #6b6760;
-  --ink4:   #9e9a95;
-  --serif:  'Cormorant Garamond', Georgia, serif;
-  --sans:   'Jost', sans-serif;
+  --bg:    #0d1e15;
+  --ln:    rgba(255,255,255,0.09);
+  --ln2:   rgba(255,255,255,0.14);
+  --cream: #f0ece6;
+  --dim:   #cec9c2;
+  --muted: #9a958e;
+  --quiet: #5a5753;
+  --gold:  #b8a070;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Jost', sans-serif;
   --cW: #b8a070;
   --cL: #5a8a72;
-  --cH: #6a8a9a;
-  --cC: #CF554E;
-  --cD: #b08050;
-  --cM: #233f2f;
+  --cH: #7a9aaa;
+  --cC: #cf554e;
+  --cD: #c09060;
+  --cM: rgba(255,255,255,0.5);
 }
-
 html, body {
-  background: #dedad4;
+  background: #0a1510;
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
-  color: var(--ink);
+  color: var(--cream);
   display: flex;
   justify-content: center;
-  padding: 32px 20px;
+  padding: 36px 20px;
   min-height: 100vh;
 }
 
-/* A4 portrait at 96dpi = 794 × 1123px */
+/* ── PAGE ── */
 .page {
   width: 794px;
-  min-height: 1123px;
-  background: var(--paper);
-  padding: 28px 28px 24px;
+  background: var(--bg);
+  padding: 30px 28px 22px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 6px 48px rgba(0,0,0,0.18);
+  box-shadow: 0 12px 80px rgba(0,0,0,0.6);
 }
 
 /* ── HEADER ── */
 .hd {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 16px;
+  gap: 18px;
   align-items: start;
-  border-bottom: 0.5px solid var(--sand2);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  flex-shrink: 0;
+  border-bottom: 0.5px solid var(--ln2);
+  padding-bottom: 14px;
+  margin-bottom: 12px;
 }
 .hd-eye {
-  font-size: 6.5px; font-weight: 400; letter-spacing: 0.28em;
-  text-transform: uppercase; color: var(--ink4); margin-bottom: 4px;
-  display: block;
+  font-size: 10px; font-weight: 400; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--quiet); margin-bottom: 5px; display: block;
 }
 .hd-title {
-  font-family: var(--serif); font-size: 28px; font-weight: 300;
-  color: var(--ink); letter-spacing: -0.02em; line-height: 1.05;
+  font-family: var(--serif); font-size: 34px; font-weight: 300;
+  color: var(--cream); letter-spacing: -0.02em; line-height: 1.06;
 }
-.hd-title em { font-style: italic; color: var(--ink); }
-.hd-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-.hd-desc { font-size: 7.5px; font-weight: 300; color: var(--ink4); line-height: 1.55; text-align: right; max-width: 200px; }
-.logo-img { height: 28px; width: auto; }
-
-/* ── LEGEND ── */
-.leg {
-  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  margin-bottom: 10px; flex-shrink: 0;
+.hd-title em { font-style: italic; }
+.hd-right { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+.hd-sub {
+  font-size: 11px; font-weight: 300; color: var(--muted);
+  line-height: 1.55; text-align: right; max-width: 180px;
 }
-.li  { display: flex; align-items: center; gap: 5px; }
-.ld  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.ld-w { background: white; border: 0.8px solid var(--sand); }
-.ld-m { background: var(--green); }
-.ld-u { background: white; border: 1.2px solid var(--green); }
-.lt  { font-size: 6.5px; font-weight: 300; color: var(--ink3); white-space: nowrap; }
-.lsep { width: 0.5px; height: 10px; background: var(--sand2); }
+.logo { height: 26px; width: auto; }
 
 /* ── TABLE ── */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  flex: 1;
-  table-layout: fixed;
-}
-
-col.c-cat   { width: 72px; }
-col.c-world { width: 310px; }
-col.c-div   { width: 10px; }
-col.c-mont  { width: 148px; }
-col.c-arr   { width: 16px; }
-col.c-conv  { width: 180px; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+col.c-cat  { width: 70px; }
+col.c-std  { width: 246px; }
+col.c-arr  { width: 24px; }
+col.c-ans  { width: 206px; }
+col.c-conv { width: 192px; }
 
 thead th {
-  font-size: 6px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--ink4);
-  padding: 0 6px 6px; border-bottom: 0.5px solid var(--sand2);
-  vertical-align: bottom; white-space: nowrap;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--quiet);
+  padding: 0 6px 8px; border-bottom: 0.5px solid var(--ln2);
+  vertical-align: bottom; white-space: nowrap; text-align: left;
 }
-thead th.th-l { text-align: left; padding-left: 10px; }
-thead th.th-r { text-align: left; padding-left: 6px; }
-thead th.th-c { text-align: left; padding-left: 10px; }
+thead th.th-cat { text-align: right; padding-right: 10px; padding-left: 0; }
+thead th.th-std { padding-left: 12px; }
+thead th.th-ans { padding-left: 14px; }
+thead th.th-cv  { padding-left: 14px; }
 
-tbody tr { border-bottom: 0.5px solid var(--sand2); }
+tbody tr { border-bottom: 0.5px solid var(--ln); }
 tbody tr:last-child { border-bottom: none; }
-
-td {
-  vertical-align: middle;
-  padding: 0;
-  height: 140px;
-}
+td { vertical-align: middle; padding: 0; }
 
 /* CATEGORY */
 td.cat {
-  text-align: right; padding-right: 8px; padding-left: 0;
-  border-right: 0.5px solid var(--sand2);
-  vertical-align: middle;
+  text-align: right; padding: 18px 10px 18px 0;
+  border-right: 0.5px solid var(--ln2); vertical-align: middle;
 }
-.ct-main { display: block; font-size: 7px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
-.ct-sub  { display: block; font-size: 7.5px; font-weight: 300; font-style: italic; font-family: var(--serif); color: var(--ink4); margin-top: 2px; line-height: 1.3; }
+.ct-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; display: block;
+}
+.ct-sub {
+  font-size: 11px; font-weight: 300; font-style: italic;
+  font-family: var(--serif); color: var(--muted);
+  margin-top: 3px; line-height: 1.3; display: block;
+}
 
-/* colour accents */
-tr[data-c="W"] td.world { border-left: 2px solid var(--cW); }
-tr[data-c="L"] td.world { border-left: 2px solid var(--cL); }
-tr[data-c="H"] td.world { border-left: 2px solid var(--cH); }
-tr[data-c="C"] td.world { border-left: 2px solid var(--cC); }
-tr[data-c="D"] td.world { border-left: 2px solid var(--cD); }
-tr[data-c="M"] td.world { border-left: 2px solid var(--cM); background: rgba(35,63,47,0.03); }
-tr[data-c="M"] td.mont  { background: rgba(35,63,47,0.03); }
+/* STANDARD */
+td.std { vertical-align: middle; }
+.std-inner { padding: 18px 10px 18px 12px; }
 
-/* WORLD */
-td.world { padding: 10px 6px 10px 10px; vertical-align: middle; }
-.brands { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+tr[data-c="W"] .std-inner { border-left: 2px solid var(--cW); }
+tr[data-c="L"] .std-inner { border-left: 2px solid var(--cL); }
+tr[data-c="H"] .std-inner { border-left: 2px solid var(--cH); }
+tr[data-c="C"] .std-inner { border-left: 2px solid var(--cC); }
+tr[data-c="D"] .std-inner { border-left: 2px solid var(--cD); }
+tr[data-c="M"] .std-inner { border-left: 2px solid rgba(255,255,255,0.32); }
+tr[data-c="M"] td.std,
+tr[data-c="M"] td.ans { background: rgba(255,255,255,0.02); }
 
-/* DIVIDER */
-td.tdiv { padding: 0; text-align: center; vertical-align: middle; }
-.vline { width: 0.5px; height: 40px; background: var(--sand2); margin: 0 auto; }
-.vline-g { background: var(--green); }
-
-/* MONTARA */
-td.mont { padding: 10px 6px; vertical-align: middle; }
+.std-hl {
+  font-family: var(--serif); font-style: italic; font-size: 17px;
+  font-weight: 300; color: var(--dim); line-height: 1.4; margin-bottom: 7px;
+}
+.std-body {
+  font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.65;
+}
+.std-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.tag {
+  font-size: 8px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--quiet); background: rgba(255,255,255,0.04);
+  padding: 2px 6px; border: 0.4px solid rgba(255,255,255,0.07);
+}
 
 /* ARROW */
-td.tarr { padding: 0; text-align: center; vertical-align: middle; }
+td.tarr { text-align: center; vertical-align: middle; padding: 0 2px; }
 
-/* CONVERGENCE — rowspan 6 */
-td.conv {
-  padding: 0 0 0 12px;
-  vertical-align: top;
-  border-left: 0.5px solid var(--sand2);
+/* ANSWER */
+td.ans { vertical-align: middle; border-left: 0.5px solid var(--ln2); }
+.ans-inner { padding: 18px 10px 18px 14px; }
+.ans-hl {
+  font-family: var(--serif); font-style: italic; font-size: 17px;
+  font-weight: 300; color: var(--cream); line-height: 1.4; margin-bottom: 7px;
 }
-.conv-inner {
-  display: flex; flex-direction: column; gap: 8px;
-  height: 100%; padding: 10px 0;
+.ans-body { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+.ans-pill {
+  display: inline-block; margin-top: 8px;
+  font-size: 8px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--gold); border: 0.5px solid rgba(184,160,112,0.3);
+  padding: 2.5px 7px;
 }
-
-/* ── CHIPS ── */
-.c { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0; }
-.o {
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  text-align: center; font-family: var(--serif); line-height: 1.1;
-}
-.c.xl .o { width: 52px; height: 52px; font-size: 9px; }
-.c.lg .o { width: 42px; height: 42px; font-size: 8.5px; }
-.c.md .o { width: 34px; height: 34px; font-size: 8px; }
-.c.sm .o { width: 26px; height: 26px; font-size: 7px; }
-.c.xs .o { width: 19px; height: 19px; font-size: 6px; }
-
-.c.world    .o { background: white; border: 0.8px solid var(--sand2); color: var(--ink2); }
-.c.mont     .o { background: var(--green); color: var(--cream); }
-.c.upcoming .o { background: white; border: 1.5px solid var(--green); color: var(--green); }
-
-.cl   { font-size: 6px; font-weight: 300; color: var(--ink4); text-align: center; max-width: 52px; line-height: 1.2; display: block; }
-.cl-g { color: var(--green); font-weight: 500; font-size: 6.5px; }
-.cl-m { color: var(--ink4); }
-
-.note { font-size: 7.5px; font-weight: 300; font-style: italic; font-family: var(--serif); color: var(--ink4); line-height: 1.5; margin-left: 8px; flex-shrink: 0; }
+.ans-pill.soon { color: var(--cL); border-color: rgba(90,138,114,0.3); margin-left: 4px; }
 
 /* ── CONVERGENCE PANEL ── */
-.tv {
-  background: var(--green); padding: 12px 14px 10px;
-  position: relative; overflow: hidden; flex-shrink: 0;
+td.conv { padding: 18px 14px; vertical-align: top; border-left: 0.5px solid var(--ln2); }
+.cv-eye {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--quiet); margin-bottom: 6px; display: block;
 }
-.tv::before {
-  content:'TV'; position:absolute; bottom:-10px; right:-2px;
-  font-family:var(--serif); font-size:72px; font-weight:300;
-  color:rgba(255,255,255,0.04); pointer-events:none;
+.cv-name {
+  font-family: var(--serif); font-size: 38px; font-weight: 300;
+  font-style: italic; color: var(--cream); line-height: 0.88;
+  margin-bottom: 10px; letter-spacing: -0.01em;
 }
-.tv-eye  { font-size: 6px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
-.tv-name { font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--cream); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
-.tv-name em { font-style: italic; }
-.tv-line { font-family: var(--serif); font-size: 8px; font-style: italic; color: rgba(237,235,233,0.5); line-height: 1.45; margin-bottom: 10px; }
-.tv-sys  { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6px; background: rgba(255,255,255,0.08); border: 0.6px solid rgba(255,255,255,0.08); }
-.sys     { background: var(--green); padding: 4px 6px; }
-.sys-n   { font-size: 5px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; display: block; }
-.sys-l   { font-family: var(--serif); font-size: 10px; font-style: italic; color: var(--cream); display: block; }
-.sys.s2  { grid-column: span 2; }
+.cv-name span { font-style: normal; }
+.cv-line { font-size: 12px; font-weight: 300; color: var(--dim); line-height: 1.6; margin-bottom: 14px; }
+.cv-sys { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.sys { display: flex; align-items: baseline; gap: 6px; }
+.sys-n { font-size: 9px; color: var(--quiet); min-width: 14px; }
+.sys-l { font-size: 11px; font-weight: 300; color: var(--muted); line-height: 1.5; }
+.sys.s2 .sys-l { color: var(--gold); font-weight: 400; }
 
-.uc   { background: white; border: 0.5px solid var(--sand2); padding: 8px 10px; flex-shrink: 0; }
-.uc-t { font-size: 6px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); padding-bottom: 5px; border-bottom: 0.4px solid var(--sand2); margin-bottom: 6px; }
-.uc-i { padding-bottom: 5px; margin-bottom: 5px; border-bottom: 0.4px solid var(--sand2); }
-.uc-i:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
-.uc-n { font-family: var(--serif); font-size: 10px; color: var(--ink); display: block; line-height: 1.2; }
-.uc-m { font-size: 6.5px; font-weight: 300; color: var(--ink4); display: block; margin-top: 2px; line-height: 1.4; }
+.cv-sep { width: 100%; height: 0.5px; background: var(--ln2); margin: 12px 0; }
 
-.gq   { background: var(--cream); border: 0.5px solid var(--sand2); padding: 8px 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-.gq-t { font-size: 6px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink4); margin-bottom: 5px; }
-.gq-q { font-family: var(--serif); font-size: 9px; font-style: italic; color: var(--ink2); line-height: 1.6; }
-.gq-a { font-size: 6px; font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink4); margin-top: 6px; line-height: 1.5; }
+.cv-block-eye {
+  font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--quiet); margin-bottom: 7px; display: block;
+}
+.uc-row { margin-bottom: 7px; }
+.uc-n { font-size: 12px; font-weight: 400; color: var(--dim); display: block; line-height: 1.3; }
+.uc-m { font-size: 10px; font-weight: 300; color: var(--muted); }
+
+.gq-q {
+  font-family: var(--serif); font-size: 13px; font-style: italic;
+  font-weight: 300; color: var(--dim); line-height: 1.6; margin-bottom: 8px;
+}
+.gq-a { font-size: 9.5px; font-weight: 300; color: var(--muted); line-height: 1.6; }
 
 /* ── FOOTER ── */
 .ft {
-  margin-top: 10px; padding-top: 7px; border-top: 0.5px solid var(--sand2);
-  display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+  border-top: 0.5px solid var(--ln2); padding-top: 8px; margin-top: 10px;
+  display: flex; justify-content: space-between; align-items: center;
 }
-.ft-l { font-size: 6px; font-weight: 300; letter-spacing: 0.08em; color: var(--ink4); }
-.ft-r { font-family: var(--serif); font-size: 8.5px; font-style: italic; color: var(--ink4); }
+.ft-l { font-size: 9px; font-weight: 300; color: var(--quiet); }
+.ft-r { font-family: var(--serif); font-size: 11px; font-style: italic; color: var(--quiet); }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- HEADER -->
   <div class="hd">
     <div>
-      <span class="hd-eye">The Coherence Map</span>
-      <div class="hd-title">You already live in this<br><em>ecosystem.</em></div>
+      <span class="hd-eye">The Coherence Map · Tri Vananda · Montara Hospitality Group</span>
+      <div class="hd-title">Where every <em>standard you hold</em><br>converges in one address.</div>
     </div>
     <div class="hd-right">
-      <img src="logo.jpg" class="logo-img" alt="Tri Vananda">
-      <p class="hd-desc">Your existing standards — organised by category. Read left to right to where they converge.</p>
+      <img class="logo" src="https://treephol.github.io/Tri-Vananda/logo-white.png" alt="Tri Vananda">
+      <p class="hd-sub">For the family that has solved comfort — and is asking a different question. Read left to right.</p>
     </div>
   </div>
 
-  <!-- LEGEND -->
-  <div class="leg">
-    <div class="li"><div class="ld ld-w"></div><span class="lt">Brands you already use</span></div>
-    <div class="lsep"></div>
-    <div class="li"><div class="ld ld-m"></div><span class="lt">At Tri Vananda now</span></div>
-    <div class="lsep"></div>
-    <div class="li"><div class="ld ld-u"></div><span class="lt">Arriving 2026–27</span></div>
-    <div class="lsep"></div>
-    <div class="li">
-      <svg width="22" height="8" viewBox="0 0 22 8"><line x1="0" y1="4" x2="16" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="13,1.5 16,4 13,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="lt">Convergence → Tri Vananda</span>
-    </div>
-    <div class="lsep"></div>
-    <span class="lt" style="font-style:italic;font-family:var(--serif);font-size:8px;color:var(--ink3);">Circle size = relevance to this buyer</span>
-  </div>
-
-  <!-- TABLE -->
   <table>
     <colgroup>
       <col class="c-cat">
-      <col class="c-world">
-      <col class="c-div">
-      <col class="c-mont">
+      <col class="c-std">
       <col class="c-arr">
+      <col class="c-ans">
       <col class="c-conv">
     </colgroup>
     <thead>
       <tr>
+        <th class="th-cat"></th>
+        <th class="th-std">The standard you already hold</th>
         <th></th>
-        <th class="th-l">Your world — standards already held</th>
-        <th></th>
-        <th class="th-r">At Tri Vananda</th>
-        <th></th>
-        <th class="th-c">Where it converges</th>
+        <th class="th-ans">Tri Vananda's answer</th>
+        <th class="th-cv">Where it converges</th>
       </tr>
     </thead>
     <tbody>
 
       <!-- WEALTH -->
       <tr data-c="W">
-        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cW);">Wealth</span><span class="ct-sub">Capital &amp;<br>planning</span></div></td>
-        <td class="world"><div class="brands">
-          <div class="c xl world"><div class="o">Julius<br>Baer</div><span class="cl">Private Bank</span></div>
-          <div class="c lg world"><div class="o">UBS</div><span class="cl">Wealth Mgmt</span></div>
-          <div class="c md world"><div class="o">Pictet</div><span class="cl">Family Office</span></div>
-          <div class="c md world"><div class="o">Black-<br>stone</div><span class="cl">Alternatives</span></div>
-          <div class="c sm world"><div class="o">KKR</div><span class="cl">PE</span></div>
-          <div class="c sm world"><div class="o">Bain<br>&amp; Co</div><span class="cl">Strategy</span></div>
-        </div></td>
-        <td class="tdiv"><div class="vline"></div></td>
-        <td class="mont"><div class="brands">
-          <div class="c md mont"><div class="o">Trisara<br>Resi.</div><span class="cl cl-m">Asset + Life</span></div>
-          <div class="c sm upcoming"><div class="o">CLP<br>Resi.</div><span class="cl cl-g">2026</span></div>
-        </div></td>
-        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
-        <td class="conv" rowspan="6">
-          <div class="conv-inner">
-            <div class="tv">
-              <div class="tv-eye">The convergence point</div>
-              <div class="tv-name"><em>Tri</em><br>Vananda</div>
-              <div class="tv-line">The only address where every standard you already hold exists in one life, together.</div>
-              <div class="tv-sys">
-                <div class="sys"><span class="sys-n">01</span><span class="sys-l">Land</span></div>
-                <div class="sys"><span class="sys-n">02</span><span class="sys-l">Health</span></div>
-                <div class="sys"><span class="sys-n">03</span><span class="sys-l">Community</span></div>
-                <div class="sys"><span class="sys-n">04</span><span class="sys-l">Service</span></div>
-                <div class="sys s2"><span class="sys-n">05</span><span class="sys-l">Time — in one place, for the long term</span></div>
-              </div>
-            </div>
-            <div class="uc">
-              <div class="uc-t">Arriving at Tri Vananda</div>
-              <div class="uc-i"><span class="uc-n">Health Resort by Clinique La Prairie</span><span class="uc-m">Medical longevity · Q4 2026</span></div>
-              <div class="uc-i"><span class="uc-n">CLP Residences</span><span class="uc-m">Branded wellness real estate · Q4 2026</span></div>
-              <div class="uc-i"><span class="uc-n">New Montara Wellness Brand</span><span class="uc-m">Integrated ecosystem · 2027</span></div>
-            </div>
-            <div class="gq">
-              <div>
-                <div class="gq-t">The gap this closes</div>
-                <div class="gq-q">"You have stayed in Aman. Your wealth is at Julius Baer. You see Clinique La Prairie for longevity. But none of them is your home. That is the only gap Tri Vananda is designed to close."</div>
-              </div>
-              <div class="gq-a">Kittisak Pattamasaevi<br>CEO, Montara Hospitality Group</div>
-            </div>
+        <td class="cat">
+          <span class="ct-label" style="color:var(--cW);">Wealth</span>
+          <span class="ct-sub">Capital &amp;<br>legacy</span>
+        </td>
+        <td class="std"><div class="std-inner">
+          <div class="std-hl">Institutional stewardship. Capital structured for the generation that inherits it.</div>
+          <div class="std-body">Multi-generational discipline across asset classes and jurisdictions. The return that interests you now is the kind that outlasts you.</div>
+          <div class="std-tags">
+            <span class="tag">Family office</span><span class="tag">Succession</span><span class="tag">Long-horizon</span>
           </div>
+        </div></td>
+        <td class="tarr"><svg width="14" height="8" viewBox="0 0 14 8"><line x1="0" y1="4" x2="10" y2="4" stroke="var(--cW)" stroke-width="0.8"/><polyline points="8,1.5 11,4 8,6.5" stroke="var(--cW)" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="ans"><div class="ans-inner">
+          <div class="ans-hl">Hard asset inside a living estate. Value that holds across generations.</div>
+          <div class="ans-body">A considered stake within 232 acres of regenerative land — use value and asset value, passed intact to the generation that inherits it.</div>
+          <span class="ans-pill">Tri Vananda Residences · Now</span><span class="ans-pill soon">CLP Residences · Q4 2026</span>
+        </div></td>
+
+        <td class="conv" rowspan="6">
+          <span class="cv-eye">The convergence point</span>
+          <div class="cv-name"><em>Tri</em><br><span>Vananda</span></div>
+          <div class="cv-line">The only address where every standard you hold exists in one life, together — permanently.</div>
+          <div class="cv-sys">
+            <div class="sys"><span class="sys-n">01</span><span class="sys-l">Land — 232 regenerative acres</span></div>
+            <div class="sys"><span class="sys-n">02</span><span class="sys-l">Health — longevity science, daily</span></div>
+            <div class="sys"><span class="sys-n">03</span><span class="sys-l">Community — 77 ownership families</span></div>
+            <div class="sys"><span class="sys-n">04</span><span class="sys-l">Service — world-renowned Thai hospitality</span></div>
+            <div class="sys s2"><span class="sys-n">05</span><span class="sys-l">Time — one place, for the long term</span></div>
+          </div>
+          <div class="cv-sep"></div>
+          <span class="cv-block-eye">Arriving at Tri Vananda</span>
+          <div class="uc-row"><span class="uc-n">Health Resort by Clinique La Prairie</span><span class="uc-m">Medical longevity · Q4 2026</span></div>
+          <div class="uc-row"><span class="uc-n">CLP Residences</span><span class="uc-m">Branded wellness residences · Q4 2026</span></div>
+          <div class="uc-row"><span class="uc-n">New Montara Wellness Brand</span><span class="uc-m">Integrated ecosystem · 2027</span></div>
+          <div class="cv-sep"></div>
+          <span class="cv-block-eye">The gap this closes</span>
+          <div class="gq-q">"You have stayed in Aman. Your wealth is at Julius Baer. You see Clinique La Prairie for longevity. But none of them is your home. That is the only gap Tri Vananda is designed to close."</div>
+          <div class="gq-a">Montara Hospitality Group</div>
         </td>
       </tr>
 
       <!-- LONGEVITY -->
       <tr data-c="L">
-        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cL);">Longevity</span><span class="ct-sub">Health &amp;<br>science</span></div></td>
-        <td class="world"><div class="brands">
-          <div class="c xl world"><div class="o">Clinique<br>La<br>Prairie</div><span class="cl">Longevity Sci.</span></div>
-          <div class="c lg world"><div class="o">Lan-<br>serhof</div><span class="cl">Medical</span></div>
-          <div class="c md world"><div class="o">Equi-<br>nox</div><span class="cl">Fitness</span></div>
-          <div class="c md world"><div class="o">SHA</div><span class="cl">Integrative</span></div>
-          <div class="c sm world"><div class="o">OSIM</div><span class="cl">Daily</span></div>
-          <div class="c xs world"><div class="o">Six<br>S.</div><span class="cl">Mind</span></div>
+        <td class="cat">
+          <span class="ct-label" style="color:var(--cL);">Longevity</span>
+          <span class="ct-sub">Health &amp;<br>science</span>
+        </td>
+        <td class="std"><div class="std-inner">
+          <div class="std-hl">Evidence-based preventive medicine. You engineer your health — you don't guess at it.</div>
+          <div class="std-body">Cellular health, biomarker precision, and the highest clinical protocols available. Not wellness tourism — a permanent standard held year-round.</div>
+          <div class="std-tags">
+            <span class="tag">Preventive medicine</span><span class="tag">Cellular longevity</span><span class="tag">Precision health</span>
+          </div>
         </div></td>
-        <td class="tdiv"><div class="vline"></div></td>
-        <td class="mont"><div class="brands">
-          <div class="c lg upcoming"><div class="o">CLP<br>Resort</div><span class="cl cl-g">Q4 2026</span></div>
-          <div class="c md mont"><div class="o">TV<br>Well.</div><span class="cl cl-m">Daily</span></div>
+        <td class="tarr"><svg width="14" height="8" viewBox="0 0 14 8"><line x1="0" y1="4" x2="10" y2="4" stroke="var(--cL)" stroke-width="0.8"/><polyline points="8,1.5 11,4 8,6.5" stroke="var(--cL)" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="ans"><div class="ans-inner">
+          <div class="ans-hl">Clinique La Prairie longevity science at your own address — woven into daily life.</div>
+          <div class="ans-body">90 years of Swiss cellular research, resident-accessible from Q4 2026. Not a clinic you travel to — a health framework that lives where you do.</div>
+          <span class="ans-pill">Daily Wellness · Now</span><span class="ans-pill soon">CLP Health Resort · Q4 2026</span>
         </div></td>
-        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
       </tr>
 
       <!-- HOSPITALITY -->
       <tr data-c="H">
-        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cH);">Hospitality</span><span class="ct-sub">Stays &amp;<br>retreats</span></div></td>
-        <td class="world"><div class="brands">
-          <div class="c xl world"><div class="o">Aman</div><span class="cl">Privacy &amp; Soul</span></div>
-          <div class="c lg world"><div class="o">Rose-<br>wood</div><span class="cl">Refined Lux.</span></div>
-          <div class="c lg world"><div class="o">Four<br>Seasons</div><span class="cl">Service Std.</span></div>
-          <div class="c md world"><div class="o">Six<br>Senses</div><span class="cl">Wellness</span></div>
-          <div class="c sm world"><div class="o">Capu-<br>cines</div><span class="cl">Boutique</span></div>
+        <td class="cat">
+          <span class="ct-label" style="color:var(--cH);">Hospitality</span>
+          <span class="ct-sub">Stays &amp;<br>retreats</span>
+        </td>
+        <td class="std"><div class="std-inner">
+          <div class="std-hl">Privacy, craft, anticipatory service. You notice it only when it is absent.</div>
+          <div class="std-body">A place designed with genuine intelligence — where service is anticipatory, privacy is architectural, and nothing requires management from you.</div>
+          <div class="std-tags">
+            <span class="tag">Absolute privacy</span><span class="tag">Anticipatory service</span><span class="tag">No friction</span>
+          </div>
         </div></td>
-        <td class="tdiv"><div class="vline"></div></td>
-        <td class="mont"><div class="brands">
-          <div class="c xl mont"><div class="o">Trisara</div><span class="cl cl-m">Benchmark</span></div>
-          <div class="c md mont"><div class="o">Praya<br>P.</div><span class="cl cl-m">Heritage</span></div>
+        <td class="tarr"><svg width="14" height="8" viewBox="0 0 14 8"><line x1="0" y1="4" x2="10" y2="4" stroke="var(--cH)" stroke-width="0.8"/><polyline points="8,1.5 11,4 8,6.5" stroke="var(--cH)" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="ans"><div class="ans-inner">
+          <div class="ans-hl">The warmth and precision of world-renowned Thai hospitality — made permanent, for every ordinary day.</div>
+          <div class="ans-body">The operational grace that has defined Thailand's finest addresses applied to your residence, every day. Your family freed from all friction of management. Simply left to be present.</div>
+          <span class="ans-pill">Trisara · Now</span>
         </div></td>
-        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
       </tr>
 
       <!-- COMMUNITY -->
       <tr data-c="C">
-        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cC);">Community</span><span class="ct-sub">Peers &amp;<br>belonging</span></div></td>
-        <td class="world"><div class="brands">
-          <div class="c xl world"><div class="o">YPO</div><span class="cl">Peer Network</span></div>
-          <div class="c lg world"><div class="o">Soho<br>House</div><span class="cl">Creative</span></div>
-          <div class="c lg world"><div class="o">Aman<br>Club</div><span class="cl">Global</span></div>
-          <div class="c md world"><div class="o">Tiger<br>21</div><span class="cl">Wealth</span></div>
-          <div class="c md world"><div class="o">WEF</div><span class="cl">Forum</span></div>
-          <div class="c sm world"><div class="o">INSEAD</div><span class="cl">Intellect.</span></div>
+        <td class="cat">
+          <span class="ct-label" style="color:var(--cC);">Community</span>
+          <span class="ct-sub">Peers &amp;<br>belonging</span>
+        </td>
+        <td class="std"><div class="std-inner">
+          <div class="std-hl">You don't need a social calendar. You need people worth knowing.</div>
+          <div class="std-body">High-trust peers. Founders, stewards, thinkers. This kind of community cannot be manufactured — only earned through proximity across time. You have looked for it. Rarely found it.</div>
+          <div class="std-tags">
+            <span class="tag">High-trust peers</span><span class="tag">Multi-generational</span><span class="tag">Shared purpose</span>
+          </div>
         </div></td>
-        <td class="tdiv"><div class="vline"></div></td>
-        <td class="mont"><div class="brands">
-          <div class="c lg mont"><div class="o">TV<br>Comm.</div><span class="cl cl-m">Multi-Gen</span></div>
-          <div class="c sm upcoming"><div class="o">Well.<br>Brand</div><span class="cl cl-g">2027</span></div>
+        <td class="tarr"><svg width="14" height="8" viewBox="0 0 14 8"><line x1="0" y1="4" x2="10" y2="4" stroke="var(--cC)" stroke-width="0.8"/><polyline points="8,1.5 11,4 8,6.5" stroke="var(--cC)" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="ans"><div class="ans-inner">
+          <div class="ans-hl">Reserved for just 77 families. An intimacy that cannot be scaled — by design.</div>
+          <div class="ans-body">A community earned through proximity — a shared farm, nine lakes, 232 acres of common ground. The real encounters happen in the unscripted spaces between.</div>
+          <span class="ans-pill">77 Families · By Invitation</span>
         </div></td>
-        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
       </tr>
 
       <!-- DINING -->
       <tr data-c="D">
-        <td class="cat"><div class="ct"><span class="ct-main" style="color:var(--cD);">Dining</span><span class="ct-sub">Food &amp;<br>craft</span></div></td>
-        <td class="world"><div class="brands">
-          <div class="c xl world"><div class="o" style="font-size:7px;">Michelin<br>★★–★★★</div><span class="cl">The Standard</span></div>
-          <div class="c lg world"><div class="o">Noma</div><span class="cl">Farm Ethos</span></div>
-          <div class="c md world"><div class="o">Blue<br>Hill</div><span class="cl">Nature</span></div>
-          <div class="c md world"><div class="o">Bo.lan</div><span class="cl">Thai Craft</span></div>
-          <div class="c sm world"><div class="o">El<br>Celler</div><span class="cl">Technique</span></div>
+        <td class="cat">
+          <span class="ct-label" style="color:var(--cD);">Dining</span>
+          <span class="ct-sub">Food &amp;<br>craft</span>
+        </td>
+        <td class="std"><div class="std-inner">
+          <div class="std-hl">Michelin standard is your baseline. You know when farm-to-table is genuine.</div>
+          <div class="std-body">Provenance, technique, and the table as ritual. You want the restaurant that matches what you already know — where land and plate have a real relationship.</div>
+          <div class="std-tags">
+            <span class="tag">Michelin standard</span><span class="tag">Farm provenance</span><span class="tag">Table as ritual</span>
+          </div>
         </div></td>
-        <td class="tdiv"><div class="vline"></div></td>
-        <td class="mont"><div class="brands">
-          <div class="c xl mont"><div class="o">PRU</div><span class="cl cl-m">Michelin ★</span></div>
-          <div class="c md mont"><div class="o">Jampa</div><span class="cl cl-m">Farm Table</span></div>
-          <div class="c sm mont"><div class="o">La<br>Crique</div><span class="cl cl-m">Sea-View</span></div>
-          <div class="c xs mont"><div class="o">Bar<br>7.8°</div><span class="cl cl-m">Social</span></div>
+        <td class="tarr"><svg width="14" height="8" viewBox="0 0 14 8"><line x1="0" y1="4" x2="10" y2="4" stroke="var(--cD)" stroke-width="0.8"/><polyline points="8,1.5 11,4 8,6.5" stroke="var(--cD)" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="ans"><div class="ans-inner">
+          <div class="ans-hl">Michelin ★ and a working estate farm — at your address, without a reservation.</div>
+          <div class="ans-body">PRU (Michelin ★), Jampa Farm Table, La Crique, Thai Library, Cielo &amp; Spice. Five venues, one working farm at the centre of the estate — grown from the land your family lives on.</div>
+          <span class="ans-pill">PRU · Jampa · La Crique · Thai Library · Cielo &amp; Spice</span>
         </div></td>
-        <td class="tarr"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#BAB9AF" stroke-width="0.8"/><polyline points="6,1.5 9,4 6,6.5" stroke="#BAB9AF" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
       </tr>
 
       <!-- HOME -->
       <tr data-c="M">
-        <td class="cat" style="border-bottom:none;"><div class="ct"><span class="ct-main" style="color:var(--cM);">Home</span><span class="ct-sub">Where life<br>happens</span></div></td>
-        <td class="world" style="border-bottom:none;"><div class="brands">
-          <div class="c xl world"><div class="o">Aman<br>Resi.</div><span class="cl">Branded</span></div>
-          <div class="c lg world"><div class="o">Rose-<br>wood<br>Resi.</div><span class="cl">Lifestyle</span></div>
-          <div class="c md world"><div class="o">Four<br>S. R.</div><span class="cl">Service</span></div>
-          <div class="c md world"><div class="o">CLP<br>Resi.</div><span class="cl">Wellness</span></div>
-          <span class="note">Stayed in all of these.<br>But none is <em>home.</em></span>
+        <td class="cat" style="border-bottom:none;">
+          <span class="ct-label" style="color:var(--cM);">Home</span>
+          <span class="ct-sub">Where life<br>belongs</span>
+        </td>
+        <td class="std" style="border-bottom:none;"><div class="std-inner">
+          <div class="std-hl">You have stayed in all of them. Beautiful. Branded. Serviced. None became home.</div>
+          <div class="std-body">Aman Residences. Four Seasons Private. Rosewood Branded Homes. You hold their standards. But none has earned what matters: your family returning because it is where you belong.</div>
+          <div class="std-tags">
+            <span class="tag">Branded residences</span><span class="tag">World-class service</span><span class="tag">Still not home</span>
+          </div>
         </div></td>
-        <td class="tdiv" style="border-bottom:none;"><div class="vline vline-g"></div></td>
-        <td class="mont" style="border-bottom:none;"><div class="brands">
-          <div class="c xl mont"><div class="o" style="border:1.5px solid rgba(255,255,255,0.18);font-size:9px;">Tri<br>Vananda</div><span class="cl" style="color:var(--green);font-weight:500;">Your Home</span></div>
-          <div class="c lg upcoming"><div class="o">CLP<br>Resi.</div><span class="cl cl-g">Q4 2026</span></div>
+        <td class="tarr" style="border-bottom:none;"><svg width="14" height="8" viewBox="0 0 14 8"><line x1="0" y1="4" x2="10" y2="4" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/><polyline points="8,1.5 11,4 8,6.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+        <td class="ans" style="border-bottom:none;"><div class="ans-inner">
+          <div class="ans-hl">Phuket's interior. 232 acres of forest and water, 15 minutes from an international airport — and nowhere else on earth like it.</div>
+          <div class="ans-body">Not a resort destination — a place with genuine character: land that changes across seasons, a culture of warmth that runs deep, and the kind of daily life that earns its place in family memory without trying.</div>
+          <span class="ans-pill" style="color:rgba(255,255,255,0.5); border-color:rgba(255,255,255,0.14);">Thep Krasatti · Phuket · 232 Acres</span>
         </div></td>
-        <td class="tarr" style="border-bottom:none;"><svg width="12" height="8" viewBox="0 0 12 8"><line x1="0" y1="4" x2="8" y2="4" stroke="#233f2f" stroke-width="1.2"/><polyline points="6,1.5 9,4 6,6.5" stroke="#233f2f" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
       </tr>
 
     </tbody>
   </table>
 
-  <!-- FOOTER -->
   <div class="ft">
-    <span class="ft-l">Tri Vananda · Thep Krasatti, Thalang District, Phuket 83110 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3daddd5dcf3c7c1dac5d2ddd2ddd7d29dd0dcde">[email&#160;protected]</a> · For private circulation
+    <span class="ft-l">Tri Vananda · Thep Krasatti, Thalang District, Phuket 83110 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb3beb7b7b49bafa9b2adbab5bab5bfbaf5b8b4b6">[email&#160;protected]</a> · For p
