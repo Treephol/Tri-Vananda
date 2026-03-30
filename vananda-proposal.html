@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vananda — Brand Proposal 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Jost:wght@100;200;300&family=Cinzel:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--deep:#141c22;--forest:#1e2820;
+  --cream:#f4efe5;--warm:#ede6d8;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --stone:#9e9282;--sage:#6e8264;--white:#faf8f4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden}
+
+/* grain */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.022;pointer-events:none;z-index:9999}
+
+/* progress */
+#bar{position:fixed;top:0;left:0;height:1px;background:var(--gold);z-index:1000;transition:width .2s;width:0}
+#ctr{position:fixed;bottom:30px;right:44px;font-family:'Jost',sans-serif;font-weight:100;font-size:.55rem;letter-spacing:.35em;color:rgba(255,255,255,.15);z-index:100}
+
+/* ── SLIDE ── */
+.S{width:100%;min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:80px 100px}
+.S.cream{background:var(--warm);color:var(--ink)}
+.S.deep{background:var(--deep)}
+.S.forest{background:var(--forest)}
+.S.ink{background:var(--ink)}
+
+/* page num */
+.pg{position:absolute;bottom:32px;right:100px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.3em;color:rgba(255,255,255,.12)}
+.pg.d{color:rgba(0,0,0,.15)}
+
+/* typography */
+.eye{font-family:'Jost',sans-serif;font-weight:100;font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:40px}
+.eye.sage{color:var(--sage)}
+
+.D1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(3.5rem,7vw,7rem);line-height:1;color:var(--white)}
+.D2{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.05;color:var(--white)}
+.D3{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.8rem,3vw,3rem);line-height:1.1;color:var(--white)}
+.it{font-style:italic}.gd{color:var(--gold-lt)}.ink-c{color:var(--ink)}
+
+.body{font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.9;color:rgba(255,255,255,.55);max-width:640px}
+.body.dk{color:rgba(0,0,0,.5)}
+.body.lg{font-size:1rem;line-height:1.85}
+
+.rule{width:40px;height:1px;background:var(--gold);margin:32px 0}
+.rule.sage{background:var(--sage)}
+.rule.full{width:100%;opacity:.07;margin:36px 0}
+
+/* grid helpers */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+
+/* pull quote */
+.pq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.6rem,2.8vw,2.6rem);line-height:1.4;color:var(--white);border-left:2px solid var(--gold);padding:6px 0 6px 44px;max-width:900px}
+
+/* divider slides */
+.S.div-s{padding:80px 100px}
+.div-bgnum{position:absolute;right:50px;bottom:20px;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:20vw;color:rgba(255,255,255,.025);line-height:1;user-select:none;pointer-events:none}
+.S.div-s::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent 10%,var(--gold) 50%,transparent 90%)}
+
+/* card / box */
+.box{padding:36px 32px;border:1px solid rgba(255,255,255,.07)}
+.box.hi{border-color:var(--gold);background:rgba(184,148,88,.04)}
+.box.sage-b{border-color:rgba(110,130,100,.25);background:rgba(110,130,100,.04)}
+.box-label{font-family:'Jost',sans-serif;font-weight:100;font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.box-label.sage{color:var(--sage)}
+.box-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);margin-bottom:10px}
+.box-title.ink-c{color:var(--ink)}
+.box-body{font-family:'Jost',sans-serif;font-weight:300;font-size:.75rem;line-height:1.85;color:rgba(255,255,255,.38)}
+.box-body.dk{color:rgba(0,0,0,.45)}
+
+/* voice */
+.vc{padding:32px 36px;border-left:2px solid rgba(184,148,88,.25);margin-bottom:2px}
+.vc.hi{border-color:var(--gold);background:rgba(184,148,88,.04)}
+.vc.sage-b{border-color:var(--sage);background:rgba(110,130,100,.04)}
+.vc-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.1rem,1.8vw,1.6rem);line-height:1.45;color:var(--white);margin-bottom:10px}
+.vc-text.dk{color:var(--ink)}
+.vc-use{font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+.vc-use.sage{color:var(--sage)}
+
+/* wordmark study */
+.wm-row{display:grid;grid-template-columns:160px 1fr 1.6fr;gap:50px;align-items:center;padding:44px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.wm-row:first-of-type{border-top:1px solid rgba(255,255,255,.06)}
+.wm-tag{font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.wm-note{font-family:'Jost',sans-serif;font-weight:300;font-size:.72rem;line-height:1.8;color:rgba(255,255,255,.32)}
+.wm-a{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:3.4rem;letter-spacing:.04em;color:var(--white);line-height:1}
+.wm-b{font-family:'Jost',sans-serif;font-weight:100;font-size:1.7rem;letter-spacing:.65em;text-transform:uppercase;color:var(--white);line-height:1}
+.wm-c{font-family:'Cinzel',serif;font-weight:300;font-size:2rem;letter-spacing:.18em;color:var(--white);line-height:1}
+.wm-sub{display:block;font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-top:9px}
+
+/* colour strip */
+.cs{display:grid;grid-template-columns:repeat(6,1fr);height:160px;margin-top:40px}
+.cc{display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px}
+.cn{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;line-height:1.7}
+
+/* deliverables */
+.dr{display:grid;grid-template-columns:220px 1fr 90px;gap:36px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start}
+.dn{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.2}
+.dd{font-family:'Jost',sans-serif;font-weight:300;font-size:.75rem;line-height:1.8;color:rgba(255,255,255,.36)}
+.dp{font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+
+/* timeline */
+.tl{position:relative;margin-top:60px}
+.tl::before{content:'';position:absolute;top:10px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),rgba(184,148,88,.1))}
+.tl-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tl-item{padding-top:40px;position:relative}
+.tl-item::before{content:'';position:absolute;top:4px;left:0;width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(184,148,88,.12)}
+.tl-ph{font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.tl-ti{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:200;color:var(--white);margin-bottom:8px}
+.tl-de{font-family:'Jost',sans-serif;font-weight:300;font-size:.72rem;line-height:1.8;color:rgba(255,255,255,.33)}
+
+/* final */
+#sf{background:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px;position:relative;overflow:hidden}
+#sf::before{content:'वानन्द';position:absolute;font-family:serif;font-size:22vw;color:rgba(255,255,255,.02);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;line-height:1}
+.fi{position:relative;z-index:2;max-width:760px}
+.cta{display:inline-block;border:1px solid rgba(184,148,88,.4);padding:16px 56px;font-family:'Jost',sans-serif;font-weight:100;font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-top:44px}
+
+/* cover */
+#s1{grid-template-columns:1fr 1fr;display:grid;padding:0;min-height:100vh}
+.cl{padding:80px 90px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(255,255,255,.05)}
+.cr{padding:80px 90px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.cr::before{content:'VANANDA';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);font-family:'Jost',sans-serif;font-weight:100;font-size:7rem;letter-spacing:.8em;color:rgba(255,255,255,.022);white-space:nowrap;pointer-events:none}
+
+/* arch cols */
+.ac{padding:36px;border:1px solid rgba(255,255,255,.06)}
+.ac+.ac{border-left:none}
+.ac.hi{border-color:var(--gold);background:rgba(184,148,88,.04)}
+.ac-label{font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.ac-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:200;color:var(--white);margin-bottom:10px}
+.ac-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.75rem;line-height:1.8;color:rgba(255,255,255,.38)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fi-a{animation:fadeUp .9s ease both}
+.fi-a.d1{animation-delay:.15s}.fi-a.d2{animation-delay:.3s}.fi-a.d3{animation-delay:.45s}.fi-a.d4{animation-delay:.6s}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+<div id="ctr">01</div>
+
+<!-- ═══════════════════ 01 COVER ═══════════════════ -->
+<section class="S ink" id="s1" style="display:grid;grid-template-columns:1fr 1fr;padding:0">
+  <div class="cl">
+    <div>
+      <div class="eye fi-a" style="margin-bottom:56px">Brand Proposal · Montara Hospitality Group · 2026</div>
+      <div class="D1 fi-a d1" style="white-space:nowrap">Vananda</div>
+      <div class="D1 it gd fi-a d2" style="font-size:clamp(1rem,2.5vw,2rem);margin-top:14px;font-weight:200">A philosophy of living well.</div>
+    </div>
+    <div>
+      <div class="rule fi-a d3"></div>
+      <p class="body fi-a d4" style="max-width:360px">
+        Montara's unified wellness identity — naming the belief the group has always lived by.
+      </p>
+      <div style="margin-top:32px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.18);line-height:2.2" class="fi-a d4">
+        First Round Proposal · March 2026<br>Confidential
+      </div>
+    </div>
+  </div>
+  <div class="cr">
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.3rem,2.2vw,2rem);line-height:1.55;color:rgba(244,239,229,.35);margin-bottom:36px">
+      "Some things cannot be scheduled.<br>They can only be lived."
+    </div>
+    <div class="eye" style="opacity:.3">Campaign Line — Vananda</div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 02 THE CONTEXT ═══════════════════ -->
+<section class="S deep" id="s2">
+  <div class="eye">Context</div>
+  <div class="D2" style="max-width:700px;margin-bottom:36px">
+    The world is shifting.<br><span class="it gd">Montara is already there.</span>
+  </div>
+  <div class="g3" style="gap:0;margin-top:10px">
+    <div style="padding:36px 40px 36px 0;border-right:1px solid rgba(255,255,255,.06)">
+      <div class="box-label" style="margin-bottom:14px">The shift</div>
+      <div class="D3" style="margin-bottom:16px;font-size:1.5rem">Luxury is now defined by <em class="it">how you live</em>, not what you own.</div>
+      <p class="body" style="font-size:.82rem">The most trusted luxury groups are investing in philosophy, not product extension. Depth over breadth. Stewardship over expansion.</p>
+    </div>
+    <div style="padding:36px 40px;border-right:1px solid rgba(255,255,255,.06)">
+      <div class="box-label" style="margin-bottom:14px">The opportunity</div>
+      <div class="D3" style="margin-bottom:16px;font-size:1.5rem">$5.6 trillion wellness economy. <em class="it">One white space unclaimed.</em></div>
+      <p class="body" style="font-size:.82rem">Daily, lived, integrated wellbeing — not a retreat, not a clinic — remains almost entirely without a credible luxury voice.</p>
+    </div>
+    <div style="padding:36px 0 36px 40px">
+      <div class="box-label" style="margin-bottom:14px">Montara's position</div>
+      <div class="D3" style="margin-bottom:16px;font-size:1.5rem">Trisara was never scaled. PRU never franchised. <em class="it gd">This is legacy behaviour.</em></div>
+      <p class="body" style="font-size:.82rem">Vananda makes that behaviour visible as a brand — turning operating conviction into communicable identity.</p>
+    </div>
+  </div>
+  <div class="pg">02</div>
+</section>
+
+<!-- ═══════════════════ 03 WHY NOW ═══════════════════ -->
+<section class="S ink" id="s3">
+  <div class="eye">Why This Brand. Why Now.</div>
+  <div class="pq" style="margin-bottom:56px">
+    "Without a unifying wellness philosophy, each brand begins to tell its own story — and the whole becomes less than the sum of its parts."
+  </div>
+  <div class="g3" style="margin-top:0">
+    <div style="padding:0 40px 0 0;border-right:1px solid rgba(255,255,255,.06)">
+      <div class="box-label" style="margin-bottom:16px">The risk without Vananda</div>
+      <p class="body" style="font-size:.82rem">As the portfolio deepens — hospitality, residential, F&B, medical longevity — each brand will naturally develop its own wellness language. Guest understanding fragments. Brand equity disperses.</p>
+    </div>
+    <div style="padding:0 40px;border-right:1px solid rgba(255,255,255,.06)">
+      <div class="box-label" style="margin-bottom:16px">The strength with Vananda</div>
+      <p class="body" style="font-size:.82rem">A shared philosophy does not flatten the brands beneath it — it strengthens each one. When every touchpoint speaks from the same root belief, the group earns the coherence money cannot manufacture.</p>
+    </div>
+    <div style="padding:0 0 0 40px">
+      <div class="box-label" style="margin-bottom:16px">The right moment</div>
+      <p class="body" style="font-size:.82rem">Clinique La Prairie arrives Q4 2026. Vananda must exist before that moment — to provide the human and emotional dimension that science, by its nature, cannot. Together, they are complete.</p>
+    </div>
+  </div>
+  <div class="pg">03</div>
+</section>
+
+<!-- ═══════════════════ 04 DIV: STRATEGY ═══════════════════ -->
+<section class="S forest div-s" id="s4">
+  <div class="eye" style="margin-bottom:44px">Part One — The Space We Occupy</div>
+  <div class="D1" style="max-width:660px;margin-bottom:36px">Where every global<br>wellness leader <span class="it gd">stops.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:500px;color:rgba(255,255,255,.38)">Three dominant models. Three structural limits. One unclaimed territory.</p>
+  <div class="div-bgnum">I</div>
+  <div class="pg">04</div>
+</section>
+
+<!-- ═══════════════════ 05 GLOBAL WELLNESS LANDSCAPE ═══════════════════ -->
+<section class="S deep" id="s5">
+  <div class="eye">The Global Wellness Landscape</div>
+  <div class="D3" style="margin-bottom:44px;max-width:700px">Three boundaries. <span class="it gd">One unclaimed territory.</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0">
+
+    <!-- Box 1 — Medical -->
+    <div class="box" style="border-right:none">
+      <div class="box-label" style="margin-bottom:14px">Model 1 — Medical</div>
+      <div class="box-title">Medical &amp; Longevity</div>
+      <div class="box-body" style="margin-top:10px;margin-bottom:20px">Highly credible. Science-driven. Protocol-based. Measurable outcomes.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.25);line-height:2;margin-bottom:20px">
+        Clinique La Prairie · SHA Wellness<br>Lanserhof · Chiva-Som
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px">Limit</div>
+        <div class="box-body">Ends at the clinic door. Cannot become a daily lived philosophy.</div>
+      </div>
+    </div>
+
+    <!-- Box 2 — Hospitality -->
+    <div class="box" style="border-right:none">
+      <div class="box-label" style="margin-bottom:14px">Model 2 — Hospitality</div>
+      <div class="box-title">Experiential Wellness</div>
+      <div class="box-body" style="margin-top:10px;margin-bottom:20px">Environmentally rich. Emotionally soothing. Retreat-based and immersive.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.25);line-height:2;margin-bottom:20px">
+        Aman Wellness · Six Senses<br>COMO Shambhala · Kamalaya
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px">Limit</div>
+        <div class="box-body">Wellness remains episodic. Cannot sustain across daily life.</div>
+      </div>
+    </div>
+
+    <!-- Box 3 — Urban Social -->
+    <div class="box" style="border-right:none">
+      <div class="box-label" style="margin-bottom:14px">Model 3 — Urban Social</div>
+      <div class="box-title">Social Wellness</div>
+      <div class="box-body" style="margin-top:10px;margin-bottom:20px">Accessible. Ritualized. Lifestyle-adjacent and community-facing.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.25);line-height:2;margin-bottom:20px">
+        Remedy Place · Equinox<br>Soho House Wellness · Ultrahealth
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px">Limit</div>
+        <div class="box-body">Lacks nature, land, depth, and long-term gravitas.</div>
+      </div>
+    </div>
+
+    <!-- Box 4 — Vananda WHITE SPACE -->
+    <div class="box hi">
+      <div class="box-label" style="margin-bottom:14px">The White Space</div>
+      <div class="box-title" style="color:var(--gold-lt)">Lived Integration</div>
+      <div class="box-body" style="margin-top:10px;margin-bottom:20px;color:rgba(244,239,229,.65)">Daily wellness over years. Emotional and social wellbeing woven into ordinary life. Continuity across hospitality, residential, and land.</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;letter-spacing:.02em;color:var(--gold);line-height:1.8;margin-bottom:20px">
+        Vananda by Montara
+      </div>
+      <div style="border-top:1px solid rgba(184,148,88,.2);padding-top:16px">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Advantage</div>
+        <div class="box-body" style="color:rgba(244,239,229,.55)">Montara already operates this way. Vananda names it.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="pg">05</div>
+</section>
+
+<!-- ═══════════════════ 06 RIGHT TO WIN ═══════════════════ -->
+<section class="S forest" id="s6" style="padding-top:60px;padding-bottom:60px">
+
+  <!-- SVG dot helpers — rendered inline, guaranteed identical size -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <!-- full gold circle -->
+      <symbol id="dot-yes" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="6" fill="#b89458"/>
+      </symbol>
+      <!-- half gold circle (left half gold, right half transparent stroke) -->
+      <symbol id="dot-partial" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="6" fill="none" stroke="rgba(184,148,88,0.4)" stroke-width="1.5"/>
+        <path d="M8 2 A6 6 0 0 1 8 14 Z" fill="#b89458" opacity="0.55"/>
+      </symbol>
+      <!-- empty circle -->
+      <symbol id="dot-no" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="5.5" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="eye">Montara's Right to Win</div>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;gap:60px">
+    <div class="D2" style="white-space:nowrap">No other group holds <span class="it gd">all five.</span></div>
+    <p class="body it" style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:200;line-height:1.6;max-width:400px;flex-shrink:0">This brand cannot be licensed, franchised, or retrofitted. It must be lived into existence — which aligns with Montara's DNA.</p>
+  </div>
+
+  <!-- legend -->
+  <div style="display:flex;gap:36px;margin-bottom:22px;align-items:center">
+    <div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.25)">Key:</div>
+    <div style="display:flex;align-items:center;gap:10px;font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;color:rgba(255,255,255,.4)">
+      <svg width="16" height="16"><use href="#dot-yes"/></svg> Yes — core to identity
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;color:rgba(255,255,255,.4)">
+      <svg width="16" height="16"><use href="#dot-partial"/></svg> Partial / select properties
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;color:rgba(255,255,255,.4)">
+      <svg width="16" height="16"><use href="#dot-no"/></svg> Not present
+    </div>
+  </div>
+
+  <table style="width:100%;border-collapse:collapse">
+    <thead>
+      <tr style="border-bottom:1px solid rgba(255,255,255,.1)">
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);padding:0 0 16px 0;text-align:left;width:18%">Brand</th>
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 0 16px 0;text-align:center;width:10%">Social / Community</th>
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 0 16px 0;text-align:center;width:10%">Medical</th>
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 0 16px 0;text-align:center;width:12%">Hospitality</th>
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 0 16px 0;text-align:center;width:10%">Food System</th>
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 0 16px 0;text-align:center;width:10%">Residences</th>
+        <th style="font-family:'Jost',sans-serif;font-weight:100;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:0 0 16px 20px;text-align:left;width:30%">Structural Limit</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- helper macro via JS — dots rendered as inline SVG for perfect size parity -->
+
+      <!-- Clinique La Prairie — patients, not community. No social programming, no shared living, no belonging model -->
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.55);padding:15px 0;vertical-align:middle">Clinique La Prairie</td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;color:rgba(255,255,255,.32);padding:15px 0 15px 20px;vertical-align:middle;line-height:1.7">Clinic-only model. No emotional or daily-life integration by design.</td>
+      </tr>
+
+      <!-- Aman — privacy-led, intentionally anti-social. Guests are isolated, not gathered. No community model. -->
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.55);padding:15px 0;vertical-align:middle">Aman Wellness</td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;color:rgba(255,255,255,.32);padding:15px 0 15px 20px;vertical-align:middle;line-height:1.7">Wellness episodic and property-specific. Longevity is a programme, not a philosophy of living.</td>
+      </tr>
+
+      <!-- COMO Shambhala — retreat-based, guest wellness is individual. Some group classes but not a social/community model -->
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.55);padding:15px 0;vertical-align:middle">COMO Shambhala</td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;color:rgba(255,255,255,.32);padding:15px 0 15px 20px;vertical-align:middle;line-height:1.7">Retreat depth is strong. Not designed for continuous, multi-year residential living.</td>
+      </tr>
+
+      <!-- Six Senses — The Forestias Bangkok is explicitly intergenerational community-living. Comporta and Belize also have community programming. Strong social dimension at residential properties. -->
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.55);padding:15px 0;vertical-align:middle">Six Senses</td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;color:rgba(255,255,255,.32);padding:15px 0 15px 20px;vertical-align:middle;line-height:1.7">Residences are IHG-licensed, not owned. No unified medical dimension across the portfolio.</td>
+      </tr>
+
+      <!-- Remedy Place — "Social Wellness Club" is literally their brand identity. Community gathering, group classes, Watch & Drip, shared ice baths, social self-care. Strong social dimension. -->
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.55);padding:15px 0;vertical-align:middle">Remedy Place</td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;color:rgba(255,255,255,.32);padding:15px 0 15px 20px;vertical-align:middle;line-height:1.7">Strong clinical and social offering in 4 urban clubs. No hospitality, food system, or residential dimension. Urban-only, lacks nature and long-term depth.</td>
+      </tr>
+
+      <!-- Equinox — community through club membership (400k members) and programming. Hotels have curated social/community events. But it's performance tribe identity, not belonging in the deeper sense. -->
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.55);padding:15px 0;vertical-align:middle">Equinox</td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-no"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="text-align:center;padding:15px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-partial"/></svg></td>
+        <td style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;color:rgba(255,255,255,.32);padding:15px 0 15px 20px;vertical-align:middle;line-height:1.7">Expanding into hotels and residences but model is performance luxury, not holistic living. No medical diagnostics, no nature-rooted community continuity.</td>
+      </tr>
+
+      <!-- Vananda by Montara — Tri Vananda is explicitly a multigenerational wellness community. Community is the core proposition, not an add-on. -->
+      <tr style="background:rgba(184,148,88,.06);border-top:1px solid rgba(184,148,88,.3)">
+        <td style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--gold-lt);padding:18px 0;vertical-align:middle">Vananda by Montara</td>
+        <td style="text-align:center;padding:18px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:18px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:18px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:18px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="text-align:center;padding:18px 0;vertical-align:middle"><svg width="16" height="16"><use href="#dot-yes"/></svg></td>
+        <td style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;color:var(--gold);padding:18px 0 18px 20px;vertical-align:middle;line-height:1.7">Multigenerational community (Tri Vananda) · CLP medical · Trisara hospitality · PRU food system · Residential living</td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="pg">06</div>
+</section>
+
+<!-- ═══════════════════ 07 DIV: THE BRAND ═══════════════════ -->
+<section class="S ink div-s" id="s7">
+  <div class="eye" style="margin-bottom:44px">Part Two — The Brand</div>
+  <div class="D1" style="max-width:640px;margin-bottom:36px">Naming. Positioning. <span class="it gd">Belief.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:480px;color:rgba(255,255,255,.35)">A brand is a set of beliefs, expressed consistently enough that others begin to believe them too.</p>
+  <div class="div-bgnum">II</div>
+  <div class="pg">07</div>
+</section>
+
+<!-- ═══════════════════ 08 THE NAME ═══════════════════ -->
+<section class="S cream" id="s8">
+  <div class="eye sage">The Name</div>
+  <div class="g2" style="align-items:start;gap:80px">
+    <div>
+      <div class="D1 ink-c" style="white-space:nowrap;margin-bottom:8px">Vananda</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--sage);margin-bottom:32px">วานันดา · Sanskrit</div>
+      <div class="rule sage"></div>
+      <p class="body dk" style="margin-bottom:20px">
+        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ink)">Vana (वन)</strong> — Forest. The living world. Nature as teacher.
+      </p>
+      <p class="body dk" style="margin-bottom:20px">
+        <strong style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ink)">Ānanda (आनन्द)</strong> — Pure bliss. The deepest state of consciousness. Not pleasure, which is fleeting — but the stillness available when the body is at home in the world.
+      </p>
+      <p class="body dk" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--sage)">
+        Together: the bliss found within nature. Joy that requires no performance.
+      </p>
+    </div>
+    <div>
+      <div class="box sage-b" style="margin-bottom:2px">
+        <div class="box-label sage" style="margin-bottom:10px">Ownable</div>
+        <div class="box-title ink-c" style="font-size:1.3rem">No competitive footprint in luxury wellness</div>
+        <div class="box-body dk" style="margin-top:8px">Clean globally. Available for trademark across key markets. No inherited associations.</div>
+      </div>
+      <div class="box sage-b" style="margin-bottom:2px;border-top:none">
+        <div class="box-label sage" style="margin-bottom:10px">Pronounceable globally</div>
+        <div class="box-title ink-c" style="font-size:1.3rem">Va · NAN · da</div>
+        <div class="box-body dk" style="margin-top:8px">Three syllables. Intuitive. Works in English, Thai, French, Mandarin, Arabic. The phonetic rhythm is soft — unhurried, like the brand itself.</div>
+      </div>
+      <div class="box sage-b" style="border-top:none">
+        <div class="box-label sage" style="margin-bottom:10px">Enduring</div>
+        <div class="box-title ink-c" style="font-size:1.3rem">No trend reference. No decade marker.</div>
+        <div class="box-body dk" style="margin-top:8px">Like Aman. Like Como. A name that belongs to no specific era. It simply is.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg d">08</div>
+</section>
+
+<!-- ═══════════════════ 09 POSITIONING ═══════════════════ -->
+<section class="S ink" id="s9">
+  <div class="eye" style="margin-bottom:52px">Brand Positioning</div>
+  <div class="pq" style="margin-bottom:56px;font-size:clamp(1.5rem,2.6vw,2.5rem)">
+    "Vananda occupies the space between the wisdom of nature and the science of longevity — a philosophy of living for those who understand that wellbeing is not achieved. It is returned to, daily."
+  </div>
+  <div class="rule full"></div>
+  <div class="g4" style="margin-top:0">
+    <div><div class="eye" style="margin-bottom:12px">Essence</div><div class="D3 it" style="font-size:1.4rem">Return to balance</div></div>
+    <div><div class="eye" style="margin-bottom:12px">Promise</div><div class="D3 it" style="font-size:1.4rem">Wellness as a way of living</div></div>
+    <div><div class="eye" style="margin-bottom:12px">For</div><div class="D3 it" style="font-size:1.4rem">Those who seek roots, not retreats</div></div>
+    <div><div class="eye" style="margin-bottom:12px">Tone</div><div class="D3 it" style="font-size:1.4rem">Quietly confident. Never prescriptive.</div></div>
+  </div>
+  <div class="pg">09</div>
+</section>
+
+<!-- ═══════════════════ 09b ORIGIN STORY ═══════════════════ -->
+<section class="S deep" id="s9b">
+  <div class="eye" style="margin-bottom:44px">The Origin Story</div>
+  <div class="g2" style="align-items:start;gap:80px">
+    <div>
+      <div class="D3" style="margin-bottom:28px;max-width:460px">What Montara <span class="it gd">already was.</span></div>
+      <p class="body" style="margin-bottom:20px">Vananda was not created in a strategy session. It was uncovered — in the same way that the best names always are — by looking carefully at what already existed and finding the word that had been missing for it.</p>
+      <p class="body" style="margin-bottom:20px">Montara built Trisara without scaling it. They developed PRU without franchising it. They designed Tri Vananda across 232 acres of regrown forest, nine lakes, and net zero-emission land — not because a market analysis told them to, but because they believed that was the right way to build.</p>
+      <p class="body">That is a philosophy. It simply had no name. Vananda names it.</p>
+    </div>
+    <div>
+      <div class="pq" style="margin-bottom:40px;font-size:clamp(1.3rem,2.1vw,2rem)">"Without a unifying philosophy, each brand tells its own story — and the whole becomes less than the sum of its parts."</div>
+      <div class="rule" style="margin:0 0 28px"></div>
+      <p class="body" style="color:rgba(255,255,255,.3);margin-bottom:24px">As Clinique La Prairie arrives at Tri Vananda in Q4 2026, the need becomes urgent. Science can extend life. It cannot fill it with meaning, rhythm, belonging, or the specific joy of knowing you are living in accordance with something true.</p>
+      <p class="body" style="color:rgba(255,255,255,.3)">That is Vananda's territory. Not the science of longevity — but the art of living a life worth extending.</p>
+    </div>
+  </div>
+  <div class="pg">09b</div>
+</section>
+
+<!-- ═══════════════════ 09c NARRATIVE STRUCTURE ═══════════════════ -->
+<section class="S ink" id="s9c">
+  <div class="eye" style="margin-bottom:44px">How the Story Is Told</div>
+  <div class="D3" style="margin-bottom:14px;max-width:700px">Every piece of Vananda writing follows <span class="it gd">a four-part structure.</span></div>
+  <p class="body" style="margin-bottom:0">Not a formula — a logic. The four parts mirror the journey a person takes from recognising something is wrong, to understanding that Vananda is the answer they were already looking for.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:50px">
+    <div style="padding:36px 28px;border:1px solid rgba(255,255,255,.06)">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:4rem;line-height:1;color:rgba(255,255,255,.06);margin-bottom:16px">01</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.5rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Context</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);margin-bottom:10px;line-height:1.2">Name what is broken.</div>
+      <div class="box-body" style="margin-bottom:20px">Begin with the world as it is. The reader recognises themselves — speed, disconnection, the body treated as a machine.</div>
+      <div style="padding:16px 18px;border-left:1px solid rgba(184,148,88,.2)">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(184,148,88,.45);margin-bottom:6px">Example</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.38);line-height:1.6">Most people are not unwell. They are simply out of rhythm with themselves.</div>
+      </div>
+    </div>
+    <div style="padding:36px 28px;border:1px solid rgba(184,148,88,.25);background:rgba(184,148,88,.04)">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:4rem;line-height:1;color:rgba(255,255,255,.06);margin-bottom:16px">02</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.5rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Shift</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);margin-bottom:10px;line-height:1.2">Introduce the different possibility.</div>
+      <div class="box-body" style="margin-bottom:20px;color:rgba(244,239,229,.5)">Not a solution — a reframe. Wellbeing is not something to be achieved. It is a state to be returned to, daily.</div>
+      <div style="padding:16px 18px;border-left:1px solid rgba(184,148,88,.3)">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(184,148,88,.5);margin-bottom:6px">Example</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.6">Wellness is not achieved. It is returned to — in the way that sleep is not earned, but surrendered to.</div>
+      </div>
+    </div>
+    <div style="padding:36px 28px;border:1px solid rgba(255,255,255,.06)">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:4rem;line-height:1;color:rgba(255,255,255,.06);margin-bottom:16px">03</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.5rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Vananda's Role</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);margin-bottom:10px;line-height:1.2">Place Vananda as the answer already there.</div>
+      <div class="box-body" style="margin-bottom:20px">Not a new idea — the name for a conviction Montara has always held. The philosophy did not arrive from outside. It was found inside what Montara already built.</div>
+      <div style="padding:16px 18px;border-left:1px solid rgba(184,148,88,.2)">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(184,148,88,.45);margin-bottom:6px">Example</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.38);line-height:1.6">Vananda names what Montara has always lived. Not a programme — a philosophy the land itself insists upon.</div>
+      </div>
+    </div>
+    <div style="padding:36px 28px;border:1px solid rgba(255,255,255,.06)">
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:4rem;line-height:1;color:rgba(255,255,255,.06);margin-bottom:16px">04</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.5rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Outcome</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);margin-bottom:10px;line-height:1.2">Show what life looks like as a result.</div>
+      <div class="box-body" style="margin-bottom:20px">Not a list of features. A felt sense of the life available. Specific, honest, unhurried. The reader arrives at the conclusion themselves.</div>
+      <div style="padding:16px 18px;border-left:1px solid rgba(184,148,88,.2)">
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(184,148,88,.45);margin-bottom:6px">Example</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.38);line-height:1.6">A way of rising, eating, moving, resting — repeated, gently, for years. Not a stay. A life.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">09c</div>
+</section>
+
+<!-- ═══════════════════ 10 CAMPAIGN ═══════════════════ -->
+<section class="S deep" id="s10">
+  <div class="eye" style="margin-bottom:44px">Campaign Concept</div>
+  <div class="g2" style="align-items:center;gap:80px">
+    <div>
+      <div class="D1" style="font-size:clamp(4rem,8vw,8rem);line-height:.92;margin-bottom:32px">Live<br><span class="it gd">within.</span></div>
+      <div class="rule"></div>
+      <p class="body lg" style="max-width:400px">Not a destination. Not a protocol. Wellness lived from the inside — in rhythm with nature, community, and the unhurried pace of a life well-made.</p>
+    </div>
+    <div>
+      <div class="vc hi" style="margin-bottom:2px">
+        <div class="vc-use" style="margin-bottom:12px">Hero Headline</div>
+        <div class="vc-text" style="font-size:1.7rem">"Some things cannot be scheduled. They can only be lived."</div>
+      </div>
+      <div class="vc" style="margin-bottom:2px">
+        <div class="vc-use" style="margin-bottom:10px">Trisara</div>
+        <div class="vc-text">"This is not a retreat from life. It is a return to it."</div>
+      </div>
+      <div class="vc" style="margin-bottom:2px">
+        <div class="vc-use" style="margin-bottom:10px">Tri Vananda</div>
+        <div class="vc-text">"A way of rising, eating, moving, resting — repeated, gently, for years."</div>
+      </div>
+      <div class="vc">
+        <div class="vc-use" style="margin-bottom:10px">Clinique La Prairie Co-brand</div>
+        <div class="vc-text" style="font-size:1.5rem">"Science extends life. Vananda fills it."</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">10</div>
+</section>
+
+<!-- ═══════════════════ 11 DIV: IDENTITY ═══════════════════ -->
+<section class="S forest div-s" id="s11">
+  <div class="eye" style="margin-bottom:44px">Part Three — The Identity</div>
+  <div class="D1" style="max-width:620px;margin-bottom:36px">How Vananda <span class="it gd">appears.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:480px;color:rgba(255,255,255,.35)">Visual identity is not decoration. It is the physical embodiment of belief.</p>
+  <div class="div-bgnum">III</div>
+  <div class="pg">11</div>
+</section>
+
+<!-- ═══════════════════ 12 WORDMARKS ═══════════════════ -->
+<section class="S ink" id="s12" style="padding-bottom:100px">
+  <div class="eye" style="margin-bottom:44px">Wordmark Study — Three Directions</div>
+  <div class="D3" style="margin-bottom:8px;max-width:700px">The name must carry the brand's character <span class="it gd">before the guidelines are opened.</span></div>
+  <p class="body" style="margin-bottom:48px;font-size:.8rem">All three presented without colour — the mark must work in its rawest form.</p>
+
+  <div class="wm-row">
+    <div>
+      <div class="wm-tag">Direction A</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;color:rgba(255,255,255,.35)">Recommended</div>
+    </div>
+    <div>
+      <div class="wm-a">Vananda</div>
+      <span class="wm-sub">by Montara</span>
+    </div>
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:.92rem;color:var(--cream);display:block;margin-bottom:8px">Cormorant Garamond · Ultra Light Italic</div>
+      <div class="wm-note">The italic serif carries movement — something in flow, not fixed. At ultra-light weight it conveys the restraint and quiet confidence the brand holds. Classical proportions reference depth and heritage. The slight forward lean says the brand is always in gentle motion — living, never static.</div>
+    </div>
+  </div>
+
+  <div class="wm-row">
+    <div>
+      <div class="wm-tag">Direction B</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;color:rgba(255,255,255,.35)">Alternative</div>
+    </div>
+    <div>
+      <div class="wm-b">Vananda</div>
+      <span class="wm-sub">by Montara</span>
+    </div>
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:.92rem;color:var(--cream);display:block;margin-bottom:8px">Jost · Hairline · Wide Spaced Caps</div>
+      <div class="wm-note">Maximum restraint. The hairline weight communicates that Vananda does not need to announce itself. The extreme letter-spacing creates air — the same breathing space the brand offers to those who enter it. Pairs seamlessly with Montara's existing mark. Risk: can read as cold if not balanced by warm body typography.</div>
+    </div>
+  </div>
+
+  <div class="wm-row">
+    <div>
+      <div class="wm-tag">Direction C</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;color:rgba(255,255,255,.35)">Alternative</div>
+    </div>
+    <div>
+      <div class="wm-c">VANANDA</div>
+      <span class="wm-sub">by Montara</span>
+    </div>
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:.92rem;color:var(--cream);display:block;margin-bottom:8px">Cinzel · Light · Classical Roman</div>
+      <div class="wm-note">Roman inscription letterforms — the typography of permanence, of things carved to outlast their makers. Connects Vananda's Sanskrit roots to a typographic lineage of equal depth. Most naturally suited to environmental and architectural applications: wayfinding, stone, signage.</div>
+    </div>
+  </div>
+  <div class="pg">12</div>
+</section>
+
+<!-- ═══════════════════ 13 COLOUR ═══════════════════ -->
+<section class="S ink" id="s13">
+  <div class="eye" style="margin-bottom:44px">Visual Identity — Colour System</div>
+  <div class="g2" style="align-items:start;gap:60px">
+    <div>
+      <div class="D2" style="margin-bottom:28px;max-width:380px">A palette drawn from <span class="it gd">the living world.</span></div>
+      <div class="rule"></div>
+      <p class="body" style="margin-bottom:28px;font-size:.82rem">Every tone is observed, not invented — drawn from Phuket's forest canopy at dusk, Tri Vananda's stone terraces, morning light across the rice fields.</p>
+      <p class="body" style="font-size:.82rem">Six core tones. No accent colours without a referent in nature. Two modes: Dark (hospitality, resort) and Light (residential, wellness).</p>
+    </div>
+    <div>
+      <div class="cs">
+        <div class="cc" style="background:#0b0f13"><div class="cn" style="color:rgba(255,255,255,.4)">Deep Night<br>#0B0F13</div></div>
+        <div class="cc" style="background:#1e2820"><div class="cn" style="color:rgba(255,255,255,.4)">Forest<br>#1E2820</div></div>
+        <div class="cc" style="background:#6e8264"><div class="cn" style="color:rgba(255,255,255,.6)">Sage<br>#6E8264</div></div>
+        <div class="cc" style="background:#b89458"><div class="cn" style="color:rgba(255,255,255,.7)">Gold Earth<br>#B89458</div></div>
+        <div class="cc" style="background:#9e9282"><div class="cn" style="color:rgba(255,255,255,.6)">Stone<br>#9E9282</div></div>
+        <div class="cc" style="background:#f4efe5"><div class="cn" style="color:rgba(0,0,0,.4)">Morning Cream<br>#F4EFE5</div></div>
+      </div>
+      <div style="margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:0">
+        <div style="padding:24px 28px 24px 0;border-right:1px solid rgba(255,255,255,.06)">
+          <div class="box-label" style="margin-bottom:10px">Primary pair</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);margin-bottom:8px">Deep Night + Morning Cream</div>
+          <div class="box-body" style="font-size:.72rem">All brand communications anchor in this pairing.</div>
+        </div>
+        <div style="padding:24px 0 24px 28px">
+          <div class="box-label" style="margin-bottom:10px">Accent — used with discipline</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--gold-lt);margin-bottom:8px">Gold Earth</div>
+          <div class="box-body" style="font-size:.72rem">Never decorative. Only where emphasis carries meaning.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">13</div>
+</section>
+
+<!-- ═══════════════════ 14 VOICE ═══════════════════ -->
+<section class="S cream" id="s14">
+  <div class="eye sage">Verbal Identity</div>
+  <div class="g2" style="align-items:start;gap:80px">
+    <div>
+      <div class="D2 ink-c" style="margin-bottom:28px;max-width:360px">The voice of <span class="it" style="color:var(--sage)">Vananda.</span></div>
+      <div class="rule sage"></div>
+      <p class="body dk" style="margin-bottom:28px">One governing principle: say only what is true, and say it beautifully. Never more. Never less.</p>
+      <div style="border-top:1px solid rgba(0,0,0,.07);padding-top:28px">
+        <div class="eye sage" style="margin-bottom:14px">The voice never says:</div>
+        <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:2.4;text-decoration:line-through;color:rgba(0,0,0,.3)">
+          "World-class wellness experience"<br>
+          "Transformative journey of self-discovery"<br>
+          "Unparalleled holistic sanctuary"<br>
+          "Recharge, restore, revitalise"
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="vc sage-b" style="margin-bottom:2px">
+        <div class="vc-use sage" style="margin-bottom:10px">Campaign / Essence</div>
+        <div class="vc-text dk" style="font-size:1.7rem">"You do not need to find wellness here. You only need to stop searching."</div>
+      </div>
+      <div class="vc sage-b" style="border-color:rgba(110,130,100,.12);margin-bottom:2px">
+        <div class="vc-use sage" style="margin-bottom:10px">Trisara — Guest Welcome</div>
+        <div class="vc-text dk">"This morning, nothing is required of you. Only presence."</div>
+      </div>
+      <div class="vc sage-b" style="border-color:rgba(110,130,100,.12);margin-bottom:2px">
+        <div class="vc-use sage" style="margin-bottom:10px">Tri Vananda — Programme</div>
+        <div class="vc-text dk">"The body remembers the earth. Vananda gives it room to return."</div>
+      </div>
+      <div class="vc sage-b" style="border-color:rgba(110,130,100,.12)">
+        <div class="vc-use sage" style="margin-bottom:10px">CLP Co-brand</div>
+        <div class="vc-text dk" style="font-size:1.5rem">"Science extends life. Vananda fills it."</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg d">14</div>
+</section>
+
+<!-- ═══════════════════ 14b VOICE ESSENCE ═══════════════════ -->
+<section class="S deep" id="s14b">
+  <div class="eye" style="margin-bottom:44px">The Voice Essence</div>
+  <div class="D3" style="margin-bottom:14px">One sentence. <span class="it gd">The entire personality.</span></div>
+  <p class="body" style="margin-bottom:44px">Before writing a single line in Vananda's name, internalise this. Everything else follows from it.</p>
+  <div style="padding:56px 60px;border:1px solid rgba(184,148,88,.2);background:rgba(184,148,88,.03);text-align:center;margin-bottom:2px">
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:clamp(1.6rem,2.8vw,2.8rem);color:var(--white);line-height:1.5;max-width:760px;margin:0 auto">"The warmth of someone who has lived close to the land for a long time — and shares what they know without being asked."</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:2px">
+    <div style="padding:22px 24px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.015)">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Still</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.2rem;color:var(--white);margin-bottom:6px">Unhurried.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;line-height:1.8;color:rgba(255,255,255,.28)">Never urgent. Sentences breathe. Never pushed toward a close.</div>
+    </div>
+    <div style="padding:22px 24px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.015)">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Rooted</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.2rem;color:var(--white);margin-bottom:6px">Grounded in land.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;line-height:1.8;color:rgba(255,255,255,.28)">References nature as teacher. The soil, the light, the season always near.</div>
+    </div>
+    <div style="padding:22px 24px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.015)">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Generous</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.2rem;color:var(--white);margin-bottom:6px">Open-handed.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;line-height:1.8;color:rgba(255,255,255,.28)">Gives the reader something worth having. Never withholds meaning as a tease.</div>
+    </div>
+    <div style="padding:22px 24px;border:1px solid rgba(184,148,88,.15);background:rgba(184,148,88,.04)">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.46rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Certain</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.2rem;color:var(--white);margin-bottom:6px">Quietly confident.</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;line-height:1.8;color:rgba(255,255,255,.28)">Does not seek validation. Does not over-explain. States and moves on.</div>
+    </div>
+  </div>
+  <div class="pg">14b</div>
+</section>
+
+<!-- ═══════════════════ 14c SIX WRITING PRINCIPLES ═══════════════════ -->
+<section class="S ink" id="s14c">
+  <div class="eye" style="margin-bottom:44px">Six Writing Principles</div>
+  <div class="D3" style="margin-bottom:14px">Not guidelines. <span class="it gd">Non-negotiable rules.</span></div>
+  <p class="body" style="margin-bottom:36px">Each principle defines what Vananda copy must do — and must never do. If the writing violates any one of these, it is not finished.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+    <div>
+      <div class="vc hi" style="margin-bottom:2px">
+        <div class="vc-use" style="margin-bottom:8px">Principle One</div>
+        <div class="vc-text" style="font-size:1.25rem;margin-bottom:10px">Lead with the feeling. Let the fact follow.</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(184,148,88,.7)">✓ "The morning starts before it begins. The forest is already awake."</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(255,255,255,.2);text-decoration:line-through;margin-top:4px">✗ "Our wellness programmes begin daily at 6am."</div>
+      </div>
+      <div class="vc" style="margin-bottom:2px;border-color:rgba(184,148,88,.15)">
+        <div class="vc-use" style="margin-bottom:8px">Principle Two</div>
+        <div class="vc-text" style="font-size:1.25rem;margin-bottom:10px">Use economy. Every word must earn its place.</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(184,148,88,.7)">✓ "Wellbeing is not achieved. It is returned to."</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(255,255,255,.2);text-decoration:line-through;margin-top:4px">✗ "Here at Vananda, we truly believe that wellbeing can be gradually returned to through our holistic approach."</div>
+      </div>
+      <div class="vc" style="border-color:rgba(184,148,88,.15)">
+        <div class="vc-use" style="margin-bottom:8px">Principle Three</div>
+        <div class="vc-text" style="font-size:1.25rem;margin-bottom:10px">Name the specific. Avoid the general.</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(184,148,88,.7)">✓ "The light at six in the evening turns the lake the colour of old copper."</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(255,255,255,.2);text-decoration:line-through;margin-top:4px">✗ "Breathtaking natural surroundings create an atmosphere of peace."</div>
+      </div>
+    </div>
+    <div>
+      <div class="vc sage-b" style="margin-bottom:2px">
+        <div class="vc-use sage" style="margin-bottom:8px">Principle Four</div>
+        <div class="vc-text" style="font-size:1.25rem;margin-bottom:10px">Invite. Never instruct. Never sell.</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:var(--sage)">✓ "When you are ready, we would be glad to show you."</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(255,255,255,.2);text-decoration:line-through;margin-top:4px">✗ "Register your interest today — availability is limited."</div>
+      </div>
+      <div class="vc sage-b" style="margin-bottom:2px;border-color:rgba(110,130,100,.12)">
+        <div class="vc-use sage" style="margin-bottom:8px">Principle Five</div>
+        <div class="vc-text" style="font-size:1.25rem;margin-bottom:10px">Write from conviction. Not from persuasion.</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:var(--sage)">✓ "Nature is not decoration here. It is the reason for everything."</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(255,255,255,.2);text-decoration:line-through;margin-top:4px">✗ "We truly believe our exceptional natural setting sets us apart."</div>
+      </div>
+      <div class="vc sage-b" style="border-color:rgba(110,130,100,.12)">
+        <div class="vc-use sage" style="margin-bottom:8px">Principle Six — The Pause Test</div>
+        <div class="vc-text" style="font-size:1.25rem;margin-bottom:10px">Apply the Pause Test before any copy is final.</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:var(--sage)">✓ "Some things cannot be scheduled. They can only be lived."</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;color:rgba(255,255,255,.2);text-decoration:line-through;margin-top:4px">✗ "Experience the ultimate in wellness living at Vananda by Montara."</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">14c</div>
+</section>
+
+<!-- ═══════════════════ 15 ARCHITECTURE ═══════════════════ -->
+<section class="S deep" id="s15">
+  <div class="eye" style="margin-bottom:44px">Brand Architecture</div>
+  <div class="D2" style="margin-bottom:14px;max-width:700px">Vananda within the <span class="it gd">Montara ecosystem.</span></div>
+  <p class="body" style="margin-bottom:48px;max-width:600px">Not above the other brands — between them. A shared language and emotional thread that makes a portfolio feel like a family.</p>
+  <div class="g3" style="margin-bottom:2px">
+    <div class="ac">
+      <div class="ac-label">Inspiration & Reconnection</div>
+      <div class="ac-name">Trisara</div>
+      <div class="ac-desc">Vananda expressed through morning rituals, ecotherapy, and the quality of attention that great hospitality in nature makes possible. Where guests first encounter the philosophy.</div>
+    </div>
+    <div class="ac hi">
+      <div class="ac-label" style="font-size:.6rem">The Unifying Philosophy</div>
+      <div class="ac-name" style="font-size:2.4rem;color:var(--gold-lt)">Vananda</div>
+      <div class="ac-desc" style="color:rgba(244,239,229,.65)">The shared language. The human thread across the entire Montara wellness ecosystem. Not a spa brand. Not a programme. A philosophy of living — applicable everywhere, across every stage of life.</div>
+    </div>
+    <div class="ac">
+      <div class="ac-label">Community & Lived Integration</div>
+      <div class="ac-name">Tri Vananda</div>
+      <div class="ac-desc">Vananda as daily life — shared rhythms, regenerative farming, intergenerational belonging. The deepest expression: where the brand becomes inseparable from how you live.</div>
+    </div>
+  </div>
+  <div style="padding:22px 36px;border:1px solid rgba(255,255,255,.04);border-top:none;text-align:center">
+    <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;color:rgba(255,255,255,.2)">Clinique La Prairie — Clinical structure &amp; medical authority. If CLP optimises life, Vananda gives life texture, rhythm, and belonging.</span>
+  </div>
+  <div class="pg">15</div>
+</section>
+
+<!-- ═══════════════════ 16 DELIVERABLES ═══════════════════ -->
+<section class="S ink" id="s16">
+  <div class="eye" style="margin-bottom:44px">Scope of Work</div>
+  <div class="D2" style="margin-bottom:44px">What we deliver, <span class="it gd">in full.</span></div>
+  <div>
+    <div class="dr">
+      <div class="dn">Brand Strategy<br>&amp; Naming</div>
+      <div class="dd">Final name with linguistic screening. Positioning statement. Brand essence. Architectural clarity across Vananda, CLP, Trisara, and Tri Vananda.</div>
+      <div class="dp">Phase 1<br>Wk 1–7</div>
+    </div>
+    <div class="dr">
+      <div class="dn">Verbal Identity</div>
+      <div class="dd">Core narrative in short and long formats. Five messaging pillars. Tone of voice framework with language examples. Applied copy across all Montara brand contexts.</div>
+      <div class="dp">Phase 1<br>Wk 4–8</div>
+    </div>
+    <div class="dr">
+      <div class="dn">Visual Identity</div>
+      <div class="dd">Final wordmark suite. Colour system with full production specifications. Typography hierarchy. Photography art direction. All production files.</div>
+      <div class="dp">Phase 2<br>Wk 8–14</div>
+    </div>
+    <div class="dr">
+      <div class="dn">Brand Guidelines</div>
+      <div class="dd">Comprehensive governance manual: strategic foundations, visual system, CLP co-branding principles, governance for future expansion. A long-term brand stewardship tool.</div>
+      <div class="dp">Phase 2<br>Wk 12–16</div>
+    </div>
+    <div class="dr" style="border-bottom:none">
+      <div class="dn">Application<br>Toolkit</div>
+      <div class="dd">Website direction. Presentation templates. Guest welcome card, programme brochure, social framework. Environmental direction for Trisara and Tri Vananda spaces.</div>
+      <div class="dp">Phase 3<br>Wk 14–20</div>
+    </div>
+  </div>
+  <div class="pg">16</div>
+</section>
+
+<!-- ═══════════════════ 17 TIMELINE ═══════════════════ -->
+<section class="S forest" id="s17">
+  <div class="eye" style="margin-bottom:44px">Timeline</div>
+  <div class="D2" style="margin-bottom:14px">Ready for Trisara <span class="it gd">by Q3 2026.</span></div>
+  <p class="body" style="margin-bottom:0;max-width:580px">Structured to deliver the complete brand system before the Clinique La Prairie launch at Tri Vananda in Q4 2026.</p>
+  <div class="tl">
+    <div class="tl-cols">
+      <div class="tl-item">
+        <div class="tl-ph">Weeks 1–3</div>
+        <div class="tl-ti">Immersion</div>
+        <div class="tl-de">Stakeholder interviews. Site visits — Trisara, Tri Vananda, PRU farms. Cultural research and competitive audit.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-ph">Weeks 4–8</div>
+        <div class="tl-ti">Strategy & Naming</div>
+        <div class="tl-de">Brand positioning. Final naming with linguistic screening. Verbal identity framework. Leadership alignment session.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-ph">Weeks 8–14</div>
+        <div class="tl-ti">Visual Identity</div>
+        <div class="tl-de">Wordmark development. Colour and typography system. Art direction guidelines. Two rounds of refinement.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-ph">Weeks 14–20</div>
+        <div class="tl-ti">Guidelines & Toolkit</div>
+        <div class="tl-de">Full governance manual. Application toolkit. File handover and team training. Ready for Trisara Q3 2026.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">17</div>
+</section>
+
+<!-- ═══════════════════ 17b QUALITY CHECKLIST ═══════════════════ -->
+<section class="S forest" id="s17b">
+  <div class="eye" style="margin-bottom:44px">The Quality Checklist</div>
+  <div class="D3" style="margin-bottom:14px">Before any content leaves <span class="it gd">this brand — ask these.</span></div>
+  <p class="body" style="margin-bottom:0;max-width:600px">If any answer is no, the work is not finished. Return to the principle that was violated. Find the specific truth. Remove the noise around it. State it with care.</p>
+  <div style="display:flex;flex-direction:column;gap:0;margin-top:36px;border:1px solid rgba(255,255,255,.06)">
+    <div style="padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Does this make the reader stop — even for one second — and feel something?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">The Pause Test. The minimum standard for all Vananda copy. If no — find the specific truth and state it more directly.</div></div>
+    </div>
+    <div style="padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Is there a feeling before there is a fact?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">The experience must be established before the specification is offered. If the copy begins with a feature, it begins wrong.</div></div>
+    </div>
+    <div style="padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Could this copy appear, unchanged, in a competitor's communication?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">If yes — it is not Vananda copy. Find the specific, the particular, the thing that only this place can say.</div></div>
+    </div>
+    <div style="padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Is nature playing an active role — not just appearing as scenery?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">Every pillar touches the land in some way. Nature must do something in the writing, not simply be described.</div></div>
+    </div>
+    <div style="padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Has every word on the 'avoid' list been checked and removed?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">Rejuvenate, escape, sanctuary, holistic journey, world-class, paradise, transform, luxury, exclusive. None of these belong here.</div></div>
+    </div>
+    <div style="padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Is the tone inviting, not selling?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">No urgency. No scarcity. No "don't miss" language. Vananda opens a door — it does not push the reader through it.</div></div>
+    </div>
+    <div style="padding:18px 28px;display:flex;gap:18px;align-items:flex-start">
+      <div style="font-family:'Jost',sans-serif;font-weight:100;font-size:.6rem;color:rgba(184,148,88,.5);flex-shrink:0;margin-top:2px">○</div>
+      <div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.05rem;color:var(--white);line-height:1.4">Is this clearly Vananda — and only Vananda?</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.28);margin-top:3px;line-height:1.7">The final test. Read it without the brand name. Would you know who wrote it? If not, the voice is not specific enough yet.</div></div>
+    </div>
+  </div>
+  <div class="pg">17b</div>
+</section>
+
+<!-- ═══════════════════ 18 FINAL ═══════════════════ -->
+<section class="S" id="sf" style="background:var(--ink)">
+  <div class="fi">
+    <div class="eye" style="margin-bottom:44px">The Invitation</div>
+    <div class="D1" style="white-space:nowrap;margin-bottom:10px">Science extends life.</div>
+    <div class="D1 it gd" style="white-space:nowrap;margin-bottom:44px">Vananda fills it.</div>
+    <div class="rule" style="margin:0 auto 40px;display:block"></div>
+    <p class="body lg" style="max-width:540px;margin:0 auto 14px;color:var(--stone)">This is not a proposal to rebrand Montara. It is a proposal to give language to what Montara already is — and ensure that language endures.</p>
+    <p class="body" style="max-width:460px;margin:0 auto;font-size:.82rem">We propose beginning with a two-week immersion — walking the land, meeting the people, letting the brand surface from the place itself. As it must.</p>
+    <div class="cta">Begin the Conversation</div>
+    <div style="margin-top:60px;font-family:'Jost',sans-serif;font-weight:100;font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.1)">First Round Proposal · March 2026 · Montara Hospitality Group · Confidential</div>
+  </div>
+</section>
+
+<script>
+const slides = document.querySelectorAll('.S');
+const bar = document.getElementById('bar');
+const ctr = document.getElementById('ctr');
+const io = new IntersectionObserver(e => {
+  e.forEach(x => {
+    if(x.isIntersecting){
+      const i = [...slides].indexOf(x.target)+1;
+      bar.style.width=(i/slides.length*100)+'%';
+      ctr.textContent=String(i).padStart(2,'0');
+    }
+  });
+},{threshold:.5});
+slides.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
