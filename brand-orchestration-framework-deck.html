@@ -508,37 +508,8 @@
     margin-top:40px;
   }
 
-  /* Nav */
-  .nav{
-    position:fixed;
-    right:24px;
-    bottom:24px;
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    background:rgba(15,26,20,.75);
-    padding:12px 10px;
-    border:1px solid rgba(237,235,233,.15);
-    backdrop-filter:blur(6px);
-  }
-  .nav a{
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--cream);
-    border:none;
-    padding:5px 7px;
-    opacity:.75;
-    transition:opacity .15s, color .15s;
-    font-weight:500;
-  }
-  .nav a:hover{opacity:1;color:var(--red)}
-
   /* Print */
   @media print{
-    .nav{display:none}
     .slide{page-break-after:always;min-height:100vh}
   }
 
@@ -553,19 +524,6 @@
 </style>
 </head>
 <body>
-
-<nav class="nav">
-  <a href="#s1">01</a>
-  <a href="#s2">02</a>
-  <a href="#s3">03</a>
-  <a href="#s4">04</a>
-  <a href="#s5">05</a>
-  <a href="#s6">06</a>
-  <a href="#s7">07</a>
-  <a href="#s8">08</a>
-  <a href="#s9">09</a>
-  <a href="#s10">10</a>
-</nav>
 
 <main class="deck">
 
@@ -1028,24 +986,74 @@
 
 <script>
   // Keyboard navigation between slides
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  function currentIndex(){
-    const y = window.scrollY + window.innerHeight/3;
-    let idx = 0;
-    slides.forEach((s,i)=>{ if(s.offsetTop <= y) idx = i; });
-    return idx;
-  }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-      e.preventDefault();
-      const i = Math.min(slides.length-1, currentIndex()+1);
-      slides[i].scrollIntoView({behavior:'smooth', block:'start'});
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      const i = Math.max(0, currentIndex()-1);
-      slides[i].scrollIntoView({behavior:'smooth', block:'start'});
+  (function(){
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    if (!slides.length) return;
+
+    // Track current slide via an internal index so rapid keypresses
+    // during a smooth scroll don't get lost to stale scrollY reads.
+    let current = 0;
+
+    function goTo(i){
+      current = Math.max(0, Math.min(slides.length - 1, i));
+      slides[current].scrollIntoView({behavior: 'smooth', block: 'start'});
     }
-  });
+
+    // Keep internal index in sync when the user scrolls manually (wheel,
+    // trackpad). Uses rAF throttling + getBoundingClientRect
+    // so it's independent of offsetParent quirks.
+    let ticking = false;
+    function syncFromScroll(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const probe = window.innerHeight / 3;
+        let idx = 0;
+        for (let i = 0; i < slides.length; i++) {
+          const top = slides[i].getBoundingClientRect().top;
+          if (top - probe <= 0) idx = i;
+        }
+        current = idx;
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', syncFromScroll, {passive: true});
+    window.addEventListener('resize', syncFromScroll);
+    syncFromScroll();
+
+document.addEventListener('keydown', e => {
+      // Don't hijack keys when the user is typing in a form field
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+      const k = e.key;
+
+      // Next slide
+      if (k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'PageDown' || k === 'Enter') {
+        e.preventDefault();
+        goTo(current + 1);
+        return;
+      }
+      // Previous slide
+      if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') {
+        e.preventDefault();
+        goTo(current - 1);
+        return;
+      }
+      // First / last
+      if (k === 'Home') { e.preventDefault(); goTo(0); return; }
+      if (k === 'End')  { e.preventDefault(); goTo(slides.length - 1); return; }
+
+      // Number keys: 1–9 jump to slides 1–9, 0 jumps to slide 10
+      if (/^[0-9]$/.test(k)) {
+        e.preventDefault();
+        const n = k === '0' ? 10 : parseInt(k, 10);
+        goTo(n - 1);
+        return;
+      }
+    });
+  })();
 </script>
 
 </body>
