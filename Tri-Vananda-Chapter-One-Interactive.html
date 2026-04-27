@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Friends of Tri Vananda — Chapter One (Interactive)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #233f2f;
+    --forest-deep: #17291e;
+    --terracotta: #CF554E;
+    --terracotta-deep: #8a2d28;
+    --beige: #BAB9AF;
+    --cream: #EDEBE9;
+    --paper: #f5ecd8;
+    --paper-light: #fbf5e6;
+    --paper-dark: #e8d7b4;
+    --ink: #1f2b22;
+    --warm: #e4d3b0;
+    --sun: #f2b55a;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, #efdfb8 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, #d9c398 0%, transparent 55%),
+      var(--warm);
+    font-family: 'Lora', Georgia, serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 32px 16px;
+  }
+
+  .masthead {
+    max-width: 760px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 18px;
+    padding: 0 16px;
+  }
+  .masthead .eyebrow {
+    font-family: 'Fraunces', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: 0.55;
+  }
+  .masthead .title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 500;
+    color: var(--forest-deep);
+    margin: 4px 0 2px 0;
+    letter-spacing: -0.01em;
+  }
+  .masthead .subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--terracotta);
+  }
+  .progress {
+    max-width: 760px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 14px 0 10px 0;
+    padding: 0 16px;
+  }
+  .progress .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--paper-dark);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .progress .dot.visited {
+    background: var(--forest);
+  }
+  .progress .dot.current {
+    background: var(--terracotta);
+    transform: scale(1.5);
+  }
+
+  .book {
+    width: min(760px, 100%);
+    background: var(--paper);
+    border-radius: 6px;
+    box-shadow:
+      0 40px 70px -30px rgba(35,63,47,0.45),
+      0 12px 30px -15px rgba(35,63,47,0.35),
+      inset 0 0 0 1px rgba(35,63,47,0.08);
+    position: relative;
+    overflow: hidden;
+    min-height: 540px;
+  }
+  .book::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(135deg, rgba(120,90,50,0.02) 0 2px, transparent 2px 6px),
+      radial-gradient(ellipse at top, transparent 60%, rgba(80,60,30,0.08) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .scene {
+    position: relative;
+    z-index: 1;
+    padding: 44px 54px 40px 54px;
+    display: none;
+    animation: fadeIn 0.7s ease;
+  }
+  .scene.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .chrome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: 0.55;
+    margin-bottom: 14px;
+  }
+  .chrome .mark { display: flex; align-items: center; gap: 6px; }
+  .chrome .dot-mark {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  .chapter-tag {
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-align: center;
+    margin: 4px 0 0 0;
+  }
+  .chapter-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(22px, 2.8vw, 28px);
+    line-height: 1.2;
+    text-align: center;
+    color: var(--forest-deep);
+    margin: 6px 0 22px 0;
+  }
+  .illus {
+    display: block;
+    margin: 14px auto 20px auto;
+    width: 100%;
+    max-width: 520px;
+  }
+  .story {
+    font-family: 'Lora', serif;
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.75;
+    color: var(--ink);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .story p { margin: 0 0 12px 0; }
+  .story em { color: var(--forest); font-style: italic; }
+  .story .whisper { font-family: 'Caveat', cursive; font-size: 1.3em; color: var(--forest-deep); font-weight: 600;}
+
+  .drop-initial {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--terracotta);
+    float: left;
+    font-size: 3.4em;
+    line-height: 0.9;
+    padding: 6px 10px 0 0;
+  }
+
+  /* Choice screens */
+  .choice-panel {
+    max-width: 620px;
+    margin: 24px auto;
+    text-align: center;
+  }
+  .choice-question {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.4vw, 22px);
+    color: var(--forest-deep);
+    line-height: 1.45;
+    margin: 10px 0 24px 0;
+  }
+  .choice-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  @media (min-width: 640px) {
+    .choice-buttons { grid-template-columns: 1fr 1fr; }
+  }
+  .choice-btn {
+    background: var(--paper-light);
+    border: 1.5px solid var(--forest);
+    border-radius: 6px;
+    padding: 22px 20px;
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--forest-deep);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px -6px rgba(35,63,47,0.2);
+    line-height: 1.4;
+  }
+  .choice-btn:hover {
+    background: var(--forest);
+    color: var(--paper-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -8px rgba(35,63,47,0.4);
+  }
+  .choice-btn .btn-label {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .choice-btn:hover .btn-label { color: var(--sun); }
+  .choice-btn .btn-main {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .choice-btn .btn-hint {
+    display: block;
+    margin-top: 8px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12px;
+    opacity: 0.75;
+  }
+
+  /* Continue button */
+  .continue-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+    gap: 10px;
+  }
+  .continue-btn {
+    background: var(--forest);
+    color: var(--paper);
+    border: none;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .continue-btn:hover {
+    background: var(--terracotta);
+  }
+  .back-btn {
+    background: transparent;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    opacity: 0.6;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .back-btn:hover { opacity: 1; }
+
+  /* Closing card */
+  .closing-line {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.4vw, 24px);
+    text-align: center;
+    color: var(--forest-deep);
+    line-height: 1.4;
+    margin: 20px 0;
+  }
+  .path-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px auto;
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--forest);
+  }
+  .path-map .node {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--paper-dark);
+    border: 1px solid rgba(35,63,47,0.15);
+  }
+  .path-map .node.chosen {
+    background: var(--terracotta);
+    color: var(--paper);
+    border-color: var(--terracotta);
+  }
+  .path-map .arrow {
+    color: var(--forest);
+    opacity: 0.4;
+  }
+  .reset-card {
+    background: var(--paper-light);
+    border: 1px dashed var(--forest);
+    border-radius: 6px;
+    padding: 18px;
+    max-width: 540px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+  }
+  .reset-card p {
+    margin: 0 0 12px 0;
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    color: var(--forest);
+    line-height: 1.55;
+  }
+
+  .footer-note {
+    max-width: 760px;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: 0.5;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .scene { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="eyebrow">The Three Friends of Tri Vananda</div>
+  <div class="title">Chapter One</div>
+  <div class="subtitle">A New Home Under the Mango Trees</div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<div class="book" id="book">
+
+  <!-- SCENE 1: Opening -->
+  <div class="scene active" data-scene="opening">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>the beginning</span>
+      <span>everyone reads this</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky-a" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fce9c2"/>
+          <stop offset="1" stop-color="#eaf0cf"/>
+        </linearGradient>
+      </defs>
+      <rect width="520" height="220" fill="url(#sky-a)"/>
+      <path d="M 0 170 Q 260 155 520 170 L 520 220 L 0 220 Z" fill="#8fa86b"/>
+      <path d="M 0 190 Q 260 180 520 190 L 520 220 L 0 220 Z" fill="#6e8a4f"/>
+      <!-- Big mango tree -->
+      <g transform="translate(340,135)">
+        <path d="M -12 60 Q -8 20 -6 -6 L 6 -6 Q 8 20 12 60 Z" fill="#7a5432"/>
+        <circle cx="0" cy="-30" r="70" fill="#2c5a38"/>
+        <circle cx="-40" cy="-10" r="40" fill="#2c5a38"/>
+        <circle cx="40" cy="-10" r="40" fill="#2c5a38"/>
+        <circle cx="-20" cy="-55" r="34" fill="#2c5a38"/>
+        <circle cx="20" cy="-55" r="34" fill="#2c5a38"/>
+        <circle cx="0" cy="-30" r="60" fill="#4a7d4a"/>
+        <circle cx="-40" cy="-12" r="30" fill="#4a7d4a"/>
+        <circle cx="40" cy="-12" r="30" fill="#4a7d4a"/>
+        <!-- mangoes -->
+        <ellipse cx="-24" cy="-38" rx="5" ry="7" fill="#f2b55a"/>
+        <ellipse cx="8" cy="-24" rx="5" ry="7" fill="#f2b55a"/>
+        <ellipse cx="-40" cy="-8" rx="5" ry="7" fill="#f0a343"/>
+        <ellipse cx="30" cy="-6" rx="5" ry="7" fill="#f2b55a"/>
+        <ellipse cx="18" cy="-60" rx="4" ry="6" fill="#f0a343"/>
+        <ellipse cx="-26" cy="-70" rx="4" ry="6" fill="#f2b55a"/>
+      </g>
+      <!-- Small car outline -->
+      <g transform="translate(130,180)">
+        <rect x="-30" y="-14" width="60" height="14" rx="4" fill="#CF554E"/>
+        <path d="M -22 -14 L -16 -24 L 16 -24 L 22 -14 Z" fill="#8a2d28"/>
+        <circle cx="-18" cy="0" r="5" fill="#2a2a2a"/>
+        <circle cx="18" cy="0" r="5" fill="#2a2a2a"/>
+      </g>
+      <!-- Nara standing by car -->
+      <g transform="translate(180,178)">
+        <rect x="-3" y="-14" width="6" height="14" fill="#f2c94c"/>
+        <path d="M -6 -28 Q -7 -18 -4 -14 L 4 -14 Q 7 -18 6 -28 Z" fill="#4a7ba8"/>
+        <circle cx="0" cy="-34" r="6" fill="#d9a37a"/>
+        <path d="M -5 -36 Q -4 -42 0 -42 Q 4 -42 5 -36 L 5 -34 L -5 -34 Z" fill="#1b1b1b"/>
+      </g>
+      <!-- Falling mango -->
+      <g transform="translate(260,80)">
+        <ellipse cx="0" cy="0" rx="5" ry="7" fill="#f2b55a"/>
+      </g>
+      <!-- Birds -->
+      <g fill="none" stroke="#233f2f" stroke-width="1.5" opacity="0.5">
+        <path d="M 400 40 Q 406 34 412 40 Q 418 34 424 40"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><span class="drop-initial">N</span>ara pressed her nose to the car window. The road had been winding for a long time, and her little sister Ploy was asleep on the seat next to her — mouth a tiny bit open, cheek squashed against the seatbelt, one sandal fallen off.</p>
+      <p><em>"Are we there?"</em> Nara asked.</p>
+      <p>Her father smiled without turning his head. <em>"Look up."</em></p>
+      <p>Nara looked up — and there, rising out of the road ahead, was a tree. Not just a tree. A <em>tree</em>. The biggest tree Nara had ever seen. Its branches reached out like the arms of a grandmother welcoming the family home. And in its branches — oh, in its branches — were mangoes, each one glowing like a little orange sun.</p>
+      <p>The car rolled underneath the great tree. A mango — just one — fell softly onto the roof with a <em>thump</em>. Ploy woke up.</p>
+      <p><em>"Did someone throw a rock?"</em> she asked sleepily.</p>
+      <p><em>"No,"</em> said Nara. <em>"The tree gave us a present."</em></p>
+      <p>Nara opened the car door and stepped out — and she forgot to breathe. Because the air was <em>different</em>. It smelled green. It smelled wet. It smelled like a thousand things she did not yet know the names of.</p>
+      <p>Somewhere, a bird made a sound like a little silver bell. Somewhere else, far off, water moved.</p>
+      <p><em>"Welcome home,"</em> said her mother from the door of the house.</p>
+      <p>Nara didn't move. She didn't want to. She wanted to stand in the air a little longer. But then her mother called again.</p>
+      <p><span class="whisper">Nara? Can you bring your bag?</span></p>
+      <p>Nara picked up her small red suitcase. But before she went inside, she looked around. The garden was waiting. The mango tree was waiting. And from behind a bush — or was she imagining it? — something small and green and quiet was waiting too.</p>
+      <p><em>She had a choice to make.</em></p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('choice1')">Make your choice →</button>
+    </div>
+  </div>
+
+  <!-- CHOICE 1 -->
+  <div class="scene" data-scene="choice1">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>choice one</span>
+      <span>where does Nara go?</span>
+    </div>
+    <div class="choice-panel">
+      <div class="chapter-tag">a choice</div>
+      <p class="choice-question">Does Nara explore the garden first,<br/>or does she go inside to find her new room?</p>
+      <div class="choice-buttons">
+        <button class="choice-btn" onclick="goTo('pathA', 'A')">
+          <span class="btn-label">Path A</span>
+          <span class="btn-main">Step into the garden</span>
+          <span class="btn-hint">The grass is soft, and something small seems to be waiting there.</span>
+        </button>
+        <button class="choice-btn" onclick="goTo('pathB', 'B')">
+          <span class="btn-label">Path B</span>
+          <span class="btn-main">Go inside to your room</span>
+          <span class="btn-hint">Your mother says your window looks right into the tree.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATH A: Garden -->
+  <div class="scene" data-scene="pathA">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>Path A · the garden</span>
+      <span>you stayed outside</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky-pa" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#eaf1d9"/>
+          <stop offset="1" stop-color="#f6ead0"/>
+        </linearGradient>
+      </defs>
+      <rect width="520" height="220" fill="url(#sky-pa)"/>
+      <path d="M 0 150 Q 260 130 520 150 L 520 220 L 0 220 Z" fill="#7f9c5d"/>
+      <path d="M 0 180 Q 260 165 520 180 L 520 220 L 0 220 Z" fill="#638049"/>
+      <!-- Big leaf with frog -->
+      <g transform="translate(260,160)">
+        <path d="M -80 0 Q -96 -40 -30 -50 Q 40 -60 80 -35 Q 100 -10 60 6 Q 0 22 -80 0 Z" fill="#4d7638"/>
+        <path d="M -60 -6 Q 20 -24 70 -18" stroke="#2f4a22" stroke-width="1.4" fill="none"/>
+        <g transform="translate(10,-20)">
+          <ellipse cx="0" cy="3" rx="15" ry="9" fill="#6ea84a"/>
+          <ellipse cx="0" cy="0" rx="13" ry="7" fill="#88c560"/>
+          <circle cx="-5" cy="-7" r="4.5" fill="#b2d878"/>
+          <circle cx="5" cy="-7" r="4.5" fill="#b2d878"/>
+          <circle cx="-5" cy="-7" r="2.4" fill="#14261b"/>
+          <circle cx="5" cy="-7" r="2.4" fill="#14261b"/>
+          <circle cx="-4" cy="-8" r="1" fill="#fff"/>
+          <circle cx="6" cy="-8" r="1" fill="#fff"/>
+          <path d="M -3 3 Q 0 5 3 3" stroke="#14261b" stroke-width="1.1" fill="none"/>
+        </g>
+      </g>
+      <!-- Two sisters -->
+      <g transform="translate(140,175)">
+        <!-- Ploy in front -->
+        <g transform="translate(26,6)">
+          <rect x="-8" y="-8" width="16" height="14" fill="#f08a7e"/>
+          <circle cx="0" cy="-14" r="9" fill="#d9a37a"/>
+          <path d="M -8 -18 Q -6 -24 0 -24 Q 6 -24 8 -18 L 8 -14 L -8 -14 Z" fill="#1b1b1b"/>
+        </g>
+        <!-- Nara behind -->
+        <g transform="translate(-4,-6)">
+          <rect x="-9" y="-10" width="18" height="18" fill="#4a7ba8"/>
+          <circle cx="0" cy="-18" r="11" fill="#d9a37a"/>
+          <path d="M -10 -22 Q -8 -30 0 -30 Q 8 -30 10 -22 L 10 -18 L -10 -18 Z" fill="#1b1b1b"/>
+          <circle cx="-7" cy="-28" r="3" fill="#1b1b1b"/>
+          <circle cx="7" cy="-28" r="3" fill="#1b1b1b"/>
+        </g>
+      </g>
+      <!-- Grass blades -->
+      <g stroke="#3e6232" stroke-width="1.2" fill="none" stroke-linecap="round">
+        <path d="M 50 210 Q 48 195 54 188"/>
+        <path d="M 480 210 Q 482 195 476 188"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><span class="drop-initial">N</span>ara set the suitcase down by the step. <em>"I'll come in a minute, Mum! I just want to look!"</em></p>
+      <p>She stepped off the path and into the grass. The grass was soft. Not the hard, tired grass of a city park — this grass was thick and full and smelled like afternoons.</p>
+      <p>That is when she saw Ploy. Who had apparently woken up properly and escaped from the car without anyone noticing. Ploy was crouched in the middle of the garden, as still as a statue, staring at a leaf as if the leaf were trying to tell her an enormous secret.</p>
+      <p><em>"Ploy?"</em> whispered Nara. <em>"What are you doing?"</em></p>
+      <p>Ploy did not move. She only lifted one finger and pointed. Nara bent down.</p>
+      <p>And there, in the middle of a wide green leaf, sat a frog. The smallest frog in the whole world. Perfectly green, like a bead of dew that had learned how to sit very still.</p>
+      <p><em>"I think,"</em> said Ploy in her most serious voice, <em>"that he is trying to tell me something."</em></p>
+      <p><em>"What do you think he's saying?"</em> whispered Nara.</p>
+      <p>Ploy thought about this for a long time. <em>"He's saying that his name is Tua-Tua. And that he lives here. And that we are welcome."</em></p>
+      <p>Tua-Tua blinked once — slowly, with the dignity of someone who has lived in a garden for a long time — and then hopped off the leaf. Without a sound, he disappeared into the ferns.</p>
+      <p>The sisters sat for a moment in the warm grass. A breeze moved through the mango tree and the leaves whispered to each other. And then, from the direction the frog had hopped, came a new sound.</p>
+      <p style="text-align:center; color:var(--terracotta); font-style:italic;">Squeak — squeak — squeak.</p>
+      <p>Like old wheels. Coming closer.</p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('middle')">Continue →</button>
+    </div>
+  </div>
+
+  <!-- PATH B: Window -->
+  <div class="scene" data-scene="pathB">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>Path B · the window</span>
+      <span>you went inside</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky-pb" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f4e6b8"/>
+          <stop offset="1" stop-color="#eadc9a"/>
+        </linearGradient>
+      </defs>
+      <rect width="520" height="220" fill="#c4a878"/>
+      <!-- Window frame -->
+      <rect x="80" y="30" width="360" height="170" fill="url(#sky-pb)" stroke="#6b4a2a" stroke-width="6"/>
+      <!-- Window cross -->
+      <line x1="260" y1="30" x2="260" y2="200" stroke="#6b4a2a" stroke-width="4"/>
+      <line x1="80" y1="115" x2="440" y2="115" stroke="#6b4a2a" stroke-width="4"/>
+      <!-- Tree outside -->
+      <g transform="translate(340,140)">
+        <path d="M -8 60 Q -6 20 -4 -10 L 4 -10 Q 6 20 8 60 Z" fill="#7a5432"/>
+        <circle cx="0" cy="-30" r="60" fill="#2c5a38"/>
+        <circle cx="-30" cy="-10" r="40" fill="#2c5a38"/>
+        <circle cx="30" cy="-10" r="40" fill="#2c5a38"/>
+        <circle cx="0" cy="-30" r="50" fill="#4a7d4a"/>
+        <circle cx="-28" cy="-10" r="30" fill="#4a7d4a"/>
+        <circle cx="28" cy="-10" r="30" fill="#4a7d4a"/>
+        <ellipse cx="-14" cy="-30" rx="4" ry="6" fill="#f2b55a"/>
+        <ellipse cx="22" cy="-16" rx="4" ry="6" fill="#f0a343"/>
+      </g>
+      <!-- Butterfly -->
+      <g transform="translate(180,80)">
+        <ellipse cx="-4" cy="0" rx="5" ry="3" fill="#f2a23a"/>
+        <ellipse cx="4" cy="0" rx="5" ry="3" fill="#f2a23a"/>
+      </g>
+      <!-- Bird on branch -->
+      <g transform="translate(240,110)">
+        <ellipse cx="0" cy="0" rx="5" ry="3.5" fill="#CF554E"/>
+        <path d="M -3 -2 Q 0 -5 3 -2" fill="#CF554E"/>
+        <circle cx="1" cy="-1" r="0.8" fill="#fff"/>
+      </g>
+      <!-- Window sill -->
+      <rect x="76" y="194" width="368" height="10" fill="#8a6d3a"/>
+      <!-- Nara peeking from bottom of window -->
+      <g transform="translate(180,190)">
+        <circle cx="0" cy="0" r="12" fill="#d9a37a"/>
+        <path d="M -10 -4 Q -8 -14 0 -14 Q 8 -14 10 -4 L 10 0 L -10 0 Z" fill="#1b1b1b"/>
+        <circle cx="-7" cy="-10" r="3.5" fill="#1b1b1b"/>
+        <circle cx="7" cy="-10" r="3.5" fill="#1b1b1b"/>
+        <circle cx="-3" cy="-2" r="1.3" fill="#14261b"/>
+        <circle cx="3" cy="-2" r="1.3" fill="#14261b"/>
+        <path d="M -2 4 Q 0 6 2 4" stroke="#14261b" stroke-width="1.1" fill="none"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><span class="drop-initial">N</span>ara carried her small red suitcase through the doorway.</p>
+      <p>The house was big and full of light. There were wooden floors polished to the colour of honey, tall windows that looked out at the garden, and a ceiling fan that turned slowly in the warm afternoon air. It smelled like lemongrass and old wood and something else — something like rain that hadn't fallen yet.</p>
+      <p><em>"Your room is at the top of the stairs,"</em> her mother said. <em>"I thought you'd like the one with the window that opens."</em></p>
+      <p>Nara climbed the stairs. She found her room. And she forgot about everything else. Because her room had a window. And the window had a view. And the view was — <em>the tree</em>. The enormous mango tree, right there, so close she could almost reach out and touch its leaves. As if it had grown, over a hundred years, just to say hello to whoever would live in this room.</p>
+      <p>Nara opened the window. The air that came in was thick with the smell of ripe fruit and damp earth. A butterfly the colour of old gold drifted past. A bird with a bright red breast landed on a branch, tilted its head at her, and then flew off again — as if it had only wanted to check.</p>
+      <p>And then, down in the garden, something moved. It was small. It was green. It was hopping. And beside it — something bigger. A shadow that wasn't quite a bird and wasn't quite anything else. It was there, and then it wasn't, as if the garden had briefly opened a door and then shut it again.</p>
+      <p>From down in the garden, she heard a voice — <span class="whisper">I think he is trying to tell me something.</span> It was Ploy, crouched in the grass, talking in her most serious voice to something Nara couldn't quite see.</p>
+      <p>Nara stepped back from the window. She would go down in a moment. But first — first she wanted to watch. Because the whole garden seemed to be doing something. Quietly. As if everything in it was in on a very gentle secret.</p>
+      <p>And then, faintly, from the direction of the road, she heard it.</p>
+      <p style="text-align:center; color:var(--terracotta); font-style:italic;">Squeak — squeak — squeak.</p>
+      <p>Like old wheels. Coming closer.</p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('middle')">Continue →</button>
+    </div>
+  </div>
+
+  <!-- MIDDLE: Arun arrives -->
+  <div class="scene" data-scene="middle">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>the middle</span>
+      <span>a boy at the gate</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky-mid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe6b0"/>
+          <stop offset="1" stop-color="#f6d58a"/>
+        </linearGradient>
+      </defs>
+      <rect width="520" height="220" fill="url(#sky-mid)"/>
+      <circle cx="90" cy="50" r="28" fill="#fff0c8" opacity="0.9"/>
+      <circle cx="90" cy="50" r="18" fill="#ffd68a"/>
+      <path d="M 0 180 L 520 180 L 520 220 L 0 220 Z" fill="#c89e65"/>
+      <!-- bike and boy -->
+      <g transform="translate(260,160)">
+        <g stroke="#2a2a2a" stroke-width="2.5" fill="none">
+          <circle cx="-34" cy="28" r="16"/>
+          <circle cx="34" cy="28" r="16"/>
+        </g>
+        <g stroke="#CF554E" stroke-width="3" fill="none" stroke-linecap="round">
+          <line x1="-34" y1="28" x2="-4" y2="6"/>
+          <line x1="-4" y1="6" x2="34" y2="28"/>
+          <line x1="-14" y1="12" x2="22" y2="12"/>
+          <line x1="-4" y1="6" x2="-4" y2="-2"/>
+          <line x1="34" y1="28" x2="34" y2="-4"/>
+        </g>
+        <!-- basket mangoes -->
+        <g transform="translate(36,-8)">
+          <path d="M -8 0 L -10 10 L 10 10 L 8 0 Z" fill="#c79861" stroke="#6b4a2a" stroke-width="1.2"/>
+          <ellipse cx="-3" cy="-2" rx="4" ry="5" fill="#f2b55a"/>
+          <ellipse cx="3" cy="-3" rx="4" ry="5" fill="#f0a343"/>
+        </g>
+        <!-- body -->
+        <g transform="translate(0,-10)">
+          <path d="M -8 4 Q -10 14 -6 14 L 6 14 Q 10 14 8 4 Z" fill="#7a5432"/>
+          <path d="M -10 -10 Q -12 4 -8 6 L 8 6 Q 12 4 10 -10 Z" fill="#4c7a4a"/>
+          <!-- offering arm -->
+          <path d="M 8 -6 Q 22 -12 36 -4" fill="none" stroke="#a56b44" stroke-width="5" stroke-linecap="round"/>
+          <g transform="translate(40,-2)">
+            <ellipse cx="0" cy="0" rx="5" ry="7" fill="#f2b55a"/>
+          </g>
+          <!-- head -->
+          <circle cx="0" cy="-20" r="10" fill="#c58a5a"/>
+          <path d="M -9 -24 Q -7 -32 0 -32 Q 7 -32 9 -24 Q 10 -20 8 -18 Q 4 -28 0 -28 Q -4 -28 -8 -18 Q -10 -20 -9 -24 Z" fill="#1b1b1b"/>
+          <circle cx="-3" cy="-20" r="1.4" fill="#14261b"/>
+          <circle cx="3" cy="-20" r="1.4" fill="#14261b"/>
+          <path d="M -3 -14 Q 0 -12 3 -14" stroke="#14261b" stroke-width="1.2" fill="none"/>
+        </g>
+      </g>
+      <!-- motion lines -->
+      <g stroke="#8a6d3a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5">
+        <path d="M 180 170 L 200 170"/>
+        <path d="M 160 180 L 190 180"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><span class="drop-initial">T</span>he squeaking got louder. Nara looked toward the gate — and there it was.</p>
+      <p>A boy. On a bicycle. The bicycle was slightly too big for him, painted a faded red, and its bell was broken. The boy had messy black hair and no shoes, and in the basket on the front of the bicycle was a wobbling pyramid of mangoes that was trying <em>very hard</em> not to fall out.</p>
+      <p>He stopped at the gate. He looked at Nara. Nara looked at him.</p>
+      <p><em>"You're new,"</em> he said.</p>
+      <p><em>"Yes,"</em> said Nara.</p>
+      <p>He reached into the basket, took out a mango, and held it out with both hands, like someone presenting something important. <em>"I'm Arun. This is for you."</em></p>
+      <p>Nara took the mango carefully. It was warm from the sun. It smelled the way she imagined happiness would smell, if happiness were a fruit.</p>
+      <p><em>"Thank you,"</em> she said.</p>
+      <p><em>"Do you like lakes?"</em> Arun asked.</p>
+      <p><em>"I… I don't know. I've never really </em>had<em> a lake before."</em></p>
+      <p>Arun grinned. His grin had two missing teeth on the side. <em>"There are nine. I can show you. But not today. Tomorrow — early, before the sun is really awake. Meet me at the big tamarind."</em></p>
+      <p><em>"Where's the big tamarind?"</em></p>
+      <p>Arun looked at her as if she had asked where the sky was. <em>"Everyone knows where the big tamarind is."</em></p>
+      <p>And with that, he pushed off — <em>squeak — squeak — squeak</em> — and his bicycle rolled away down the path into the trees.</p>
+      <p>Nara stood there holding the mango. <em>She had another choice to make.</em></p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('choice2')">Make your next choice →</button>
+    </div>
+  </div>
+
+  <!-- CHOICE 2 -->
+  <div class="scene" data-scene="choice2">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>choice two</span>
+      <span>follow, or stay?</span>
+    </div>
+    <div class="choice-panel">
+      <div class="chapter-tag">another choice</div>
+      <p class="choice-question">Does Nara run after Arun to find the tamarind tree now,<br/>or does she stay by the mango tree and let tomorrow come?</p>
+      <div class="choice-buttons">
+        <button class="choice-btn" onclick="goTo('pathC', 'C')">
+          <span class="btn-label">Path C</span>
+          <span class="btn-main">Follow him</span>
+          <span class="btn-hint">Chase the boy on the bicycle and find the tamarind now.</span>
+        </button>
+        <button class="choice-btn" onclick="goTo('pathD', 'D')">
+          <span class="btn-label">Path D</span>
+          <span class="btn-main">Stay with the tree</span>
+          <span class="btn-hint">Sit against the mango tree and let the afternoon unfold.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATH C: Follow Arun -->
+  <div class="scene" data-scene="pathC">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>Path C · the tamarind</span>
+      <span>you chased the boy</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky-pc" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e6eecd"/>
+          <stop offset="1" stop-color="#c8d8a5"/>
+        </linearGradient>
+      </defs>
+      <rect width="520" height="220" fill="url(#sky-pc)"/>
+      <!-- ground -->
+      <path d="M 0 170 L 520 170 L 520 220 L 0 220 Z" fill="#8a9e5f"/>
+      <!-- Giant tamarind -->
+      <g transform="translate(260,150)">
+        <!-- trunk -->
+        <path d="M -16 60 Q -10 10 -6 -10 L 6 -10 Q 10 10 16 60 Z" fill="#6b4a2a"/>
+        <path d="M -14 50 L -12 10 M 12 48 L 14 12" stroke="#4c3420" stroke-width="1.2" fill="none"/>
+        <!-- canopy layered -->
+        <circle cx="0" cy="-40" r="85" fill="#3b6a3e"/>
+        <circle cx="-60" cy="-20" r="46" fill="#3b6a3e"/>
+        <circle cx="60" cy="-20" r="46" fill="#3b6a3e"/>
+        <circle cx="-30" cy="-70" r="40" fill="#3b6a3e"/>
+        <circle cx="30" cy="-70" r="40" fill="#3b6a3e"/>
+        <circle cx="0" cy="-40" r="72" fill="#5a8f5c"/>
+        <circle cx="-50" cy="-20" r="34" fill="#5a8f5c"/>
+        <circle cx="50" cy="-20" r="34" fill="#5a8f5c"/>
+      </g>
+      <!-- Falling leaf -->
+      <g transform="translate(280,80)">
+        <ellipse cx="0" cy="0" rx="4" ry="9" fill="#d9c48c" transform="rotate(-25 0 0)" stroke="#8a6d3a" stroke-width="0.8"/>
+      </g>
+      <!-- Nara looking up -->
+      <g transform="translate(200,180)">
+        <rect x="-5" y="-14" width="10" height="14" fill="#f2c94c"/>
+        <path d="M -8 -30 Q -10 -16 -6 -14 L 6 -14 Q 10 -16 8 -30 Z" fill="#4a7ba8"/>
+        <circle cx="0" cy="-36" r="8" fill="#d9a37a"/>
+        <path d="M -7 -40 Q -5 -46 0 -46 Q 5 -46 7 -40 L 7 -36 L -7 -36 Z" fill="#1b1b1b"/>
+        <!-- arm up -->
+        <path d="M 0 -26 Q 4 -42 6 -52" fill="none" stroke="#d9a37a" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <!-- Hornbill peek -->
+      <g transform="translate(280,70)">
+        <ellipse cx="0" cy="0" rx="8" ry="3" fill="#1b1b1b"/>
+        <path d="M -4 -3 Q 0 -6 4 -3" fill="#f2a23a"/>
+        <circle cx="-2" cy="-1" r="0.8" fill="#fff"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><em>"Wait!"</em> Nara called. <em>"Wait — I don't know where—"</em></p>
+      <p>But Arun was already gone. Well — not quite gone. She could still hear the <em>squeak-squeak-squeak</em> of his bicycle growing fainter through the trees.</p>
+      <p>Nara pushed the mango deep into her pocket. It was too big; it stuck out at an angle, like a small orange elbow. She began to run.</p>
+      <p>The path curved between tall bushes, and then between even taller trees, and then — quite suddenly — it opened into a wide clearing. And in the middle of the clearing was a tree.</p>
+      <p><em>The</em> tree. It was not as big as the mango tree at the gate. It was <em>bigger</em>. Its trunk was so thick that three children standing in a circle would not have been able to join hands around it. Underneath it, the light was cool and green, and moved like water moved.</p>
+      <p>Arun was there. He had stopped his bicycle and was standing very quietly, looking up into the branches.</p>
+      <p><em>"Is this it?"</em> Nara whispered. <em>"Is this the tamarind?"</em></p>
+      <p>Arun nodded without looking at her.</p>
+      <p><em>"Why are we whispering?"</em> whispered Nara.</p>
+      <p><em>"Because,"</em> said Arun, <em>"this tree is older than both our grandmothers. You don't shout near old things."</em></p>
+      <p>There was no wind in the clearing. None at all. And yet the leaves of the tamarind were moving — just a little. As if the tree itself were breathing. As if it were listening to them both.</p>
+      <p>And then — high up among the leaves — something let go. A single leaf. It spun down slowly. Down and down and down. And it landed, quite lightly, on the top of Nara's head.</p>
+      <p>Arun grinned. <em>"That means the tree likes you."</em></p>
+      <p><em>"How do you know?"</em></p>
+      <p><em>"Because it's true."</em></p>
+      <p>Nara took the leaf off her head. It was shaped like a teardrop. And on its surface — she looked closer — were tiny marks. Thin lines. Almost like writing. But surely that couldn't be. Surely leaves didn't—</p>
+      <p>Arun was already climbing back onto his bicycle. <em>"Your mum will be looking for you. I'll be here tomorrow."</em></p>
+      <p>As Nara turned to walk back, she thought she saw — just for a second — a flash of black and white and yellow, high up in the tamarind. A bird with a very large, very curved beak. Watching her.</p>
+      <p>When she looked again, it was gone.</p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('ending')">Continue →</button>
+    </div>
+  </div>
+
+  <!-- PATH D: Stay with tree -->
+  <div class="scene" data-scene="pathD">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>Path D · the quiet</span>
+      <span>you stayed</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky-pd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f4d89a"/>
+          <stop offset="1" stop-color="#e8b87a"/>
+        </linearGradient>
+      </defs>
+      <rect width="520" height="220" fill="url(#sky-pd)"/>
+      <path d="M 0 170 L 520 170 L 520 220 L 0 220 Z" fill="#8fa86b"/>
+      <!-- Mango tree -->
+      <g transform="translate(260,150)">
+        <path d="M -14 60 Q -10 10 -6 -10 L 6 -10 Q 10 10 14 60 Z" fill="#7a5432"/>
+        <circle cx="0" cy="-40" r="80" fill="#2c5a38"/>
+        <circle cx="-48" cy="-20" r="48" fill="#2c5a38"/>
+        <circle cx="48" cy="-20" r="48" fill="#2c5a38"/>
+        <circle cx="0" cy="-40" r="68" fill="#4a7d4a"/>
+        <circle cx="-46" cy="-20" r="36" fill="#4a7d4a"/>
+        <circle cx="46" cy="-20" r="36" fill="#4a7d4a"/>
+        <!-- mangoes -->
+        <ellipse cx="-30" cy="-46" rx="5" ry="7" fill="#f2b55a"/>
+        <ellipse cx="16" cy="-32" rx="5" ry="7" fill="#f0a343"/>
+        <ellipse cx="-50" cy="-14" rx="5" ry="7" fill="#f2b55a"/>
+        <ellipse cx="40" cy="-12" rx="5" ry="7" fill="#f0a343"/>
+        <ellipse cx="-22" cy="-70" rx="4" ry="6" fill="#f0a343"/>
+        <ellipse cx="24" cy="-72" rx="4" ry="6" fill="#f2b55a"/>
+      </g>
+      <!-- Nara sitting -->
+      <g transform="translate(250,170)">
+        <!-- legs crossed -->
+        <ellipse cx="0" cy="8" rx="18" ry="4" fill="#f2c94c"/>
+        <!-- body -->
+        <path d="M -10 -16 Q -12 -2 -10 6 L 10 6 Q 12 -2 10 -16 Z" fill="#4a7ba8"/>
+        <!-- head tilted back -->
+        <circle cx="0" cy="-24" r="9" fill="#d9a37a"/>
+        <path d="M -8 -28 Q -6 -34 0 -34 Q 6 -34 8 -28 L 8 -24 L -8 -24 Z" fill="#1b1b1b"/>
+        <circle cx="-5" cy="-32" r="2.5" fill="#1b1b1b"/>
+        <circle cx="5" cy="-32" r="2.5" fill="#1b1b1b"/>
+        <path d="M -2 -22 Q 0 -20 2 -22" stroke="#14261b" stroke-width="1.1" fill="none"/>
+        <!-- mango in lap -->
+        <ellipse cx="0" cy="4" rx="5" ry="6" fill="#f2b55a"/>
+      </g>
+      <!-- Drifting leaf -->
+      <g transform="translate(240,100)">
+        <ellipse cx="0" cy="0" rx="4" ry="9" fill="#d9c48c" transform="rotate(30 0 0)" stroke="#8a6d3a" stroke-width="0.8"/>
+      </g>
+      <!-- small birds -->
+      <g fill="none" stroke="#5a2d20" stroke-width="1.2" opacity="0.6">
+        <path d="M 400 40 Q 406 34 412 40 Q 418 34 424 40"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><span class="drop-initial">N</span>ara didn't chase him.</p>
+      <p>She didn't know why. It would have been easy. But somehow, the idea of staying felt more important than the idea of following. So instead, she walked back to the enormous mango tree at the gate, and she sat down against its trunk.</p>
+      <p>The bark was warm against her back. The ground was cool under her knees. She put the mango in her lap and looked up at the tree — which, from here, was a great green cathedral, every leaf whispering to every other leaf in a language she did not yet know.</p>
+      <p>She closed her eyes.</p>
+      <p>The mango tree <em>breathed</em>.</p>
+      <p>At least — that was what it felt like. A slow <em>in</em> and a slow <em>out</em>, that was not her breathing, because her breathing was quick and small. This was bigger. This was the breathing of something that had been alive for a very, very long time.</p>
+      <p>Somewhere, far off, a bird sang three notes. Somewhere nearer, her sister Ploy was still talking in her serious voice to something that might have been a frog.</p>
+      <p>And Nara felt — for the first time since the long car ride — that she was in <em>exactly the right place</em>. Not the right <em>house</em>, exactly. The right <em>place</em>. As if some small, lost part of her had been waiting here all along, and had just now been found.</p>
+      <p>She opened her eyes.</p>
+      <p>A leaf was drifting down.</p>
+      <p>It spiralled gently through the warm air. It landed on her lap — right next to the mango. As if it had been aiming.</p>
+      <p>Nara picked it up. It was shaped like a teardrop. And on its surface, if she held it up to the fading light, were tiny marks. Thin, neat lines. Almost like writing. Almost like—</p>
+      <p><span class="whisper">Nara? Come inside please, it's getting dark!</span></p>
+      <p>Nara folded the leaf carefully and put it in her pocket, next to the mango. As she walked toward the house, she thought she heard — just faintly, above her — the sound of wings. Slow. Heavy. Unhurried. Something big was up in the mango tree.</p>
+      <p>She tilted her head back. The leaves moved. But nothing else did.</p>
+      <p>And yet, as she walked toward the house, Nara was quite certain — although she could not have said how — that somebody, or some<em>thing</em>, had just watched her go.</p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('ending')">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ENDING -->
+  <div class="scene" data-scene="ending">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>the ending</span>
+      <span>all paths meet here</span>
+    </div>
+
+    <svg class="illus" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="night-e" cx="0.5" cy="0.5" r="0.9">
+          <stop offset="0" stop-color="#4a6282"/>
+          <stop offset="1" stop-color="#22344e"/>
+        </radialGradient>
+      </defs>
+      <rect width="520" height="220" fill="url(#night-e)"/>
+      <!-- stars -->
+      <g fill="#fff5c8" opacity="0.8">
+        <circle cx="60" cy="40" r="1.2"/>
+        <circle cx="120" cy="60" r="1"/>
+        <circle cx="180" cy="30" r="1.2"/>
+        <circle cx="260" cy="50" r="1"/>
+        <circle cx="340" cy="25" r="1.2"/>
+        <circle cx="420" cy="55" r="1"/>
+        <circle cx="480" cy="35" r="1.2"/>
+        <circle cx="80" cy="80" r="0.8"/>
+        <circle cx="460" cy="80" r="0.8"/>
+      </g>
+      <!-- Moon -->
+      <circle cx="400" cy="60" r="26" fill="#fff5c8" opacity="0.9"/>
+      <circle cx="400" cy="60" r="20" fill="#fffae0"/>
+      <!-- Table (bedside) -->
+      <rect x="120" y="160" width="280" height="8" fill="#a57442"/>
+      <rect x="120" y="168" width="280" height="30" fill="#7a5432"/>
+      <!-- Two leaves -->
+      <g transform="translate(210,155)">
+        <path d="M -30 0 Q -34 -16 0 -20 Q 30 -22 34 -6 Q 30 4 0 6 Q -26 6 -30 0 Z" fill="#d9c48c" stroke="#8a6d3a" stroke-width="1.2"/>
+        <text x="0" y="-2" font-family="Caveat, cursive" font-size="10" fill="#4c3420" text-anchor="middle" font-weight="700">Tomorrow.</text>
+      </g>
+      <g transform="translate(310,155)">
+        <path d="M -30 0 Q -34 -16 0 -20 Q 30 -22 34 -6 Q 30 4 0 6 Q -26 6 -30 0 Z" fill="#d9c48c" stroke="#8a6d3a" stroke-width="1.2"/>
+        <text x="0" y="-2" font-family="Caveat, cursive" font-size="9" fill="#4c3420" text-anchor="middle" font-weight="700">The nine lakes.</text>
+      </g>
+      <!-- window frame hint -->
+      <rect x="20" y="20" width="80" height="110" fill="#334c66" stroke="#1a2438" stroke-width="3"/>
+      <line x1="60" y1="20" x2="60" y2="130" stroke="#1a2438" stroke-width="2"/>
+      <line x1="20" y1="75" x2="100" y2="75" stroke="#1a2438" stroke-width="2"/>
+      <!-- small owl silhouette -->
+      <g transform="translate(60,110)">
+        <ellipse cx="0" cy="0" rx="6" ry="8" fill="#1a2438"/>
+        <circle cx="-2" cy="-4" r="1" fill="#fff5c8"/>
+        <circle cx="2" cy="-4" r="1" fill="#fff5c8"/>
+      </g>
+    </svg>
+
+    <div class="story">
+      <p><span class="drop-initial">T</span>hat night — after the unpacking and the dinner, after the stars had come out (and there were <em>so many stars</em>, more stars than Nara had ever seen, so many that the sky seemed to have been sprinkled with salt) — the two sisters sat on the edge of Nara's new bed.</p>
+      <p>Ploy had something in her hand.</p>
+      <p><em>"Look,"</em> she whispered. <em>"Tua-Tua dropped this. I think. Or it fell. I don't know. But I found it."</em></p>
+      <p>She held out a leaf. It was shaped like a teardrop. And on its surface, in tiny, careful handwriting, were four words:</p>
+      <p style="text-align:center; font-family:'Caveat', cursive; font-size:1.5em; color:var(--forest-deep); font-weight:700; line-height:1.2;">Tomorrow.<br/>The nine lakes.</p>
+      <p>Nara's hand went slowly to her own pocket. She drew out the leaf <em>she</em> had found — <span id="which-leaf">the one from the afternoon</span> — and laid it on the bed beside Ploy's.</p>
+      <p>They were the <em>same leaf</em>. The same shape. The same handwriting.</p>
+      <p>The two sisters stared.</p>
+      <p><em>"Who wrote it?"</em> whispered Ploy.</p>
+      <p><em>"I don't know."</em></p>
+      <p><em>"Do we go?"</em></p>
+      <p>Nara thought about the air that smelled green, and the boy on the squeaking bicycle, and the tree older than grandmothers. She thought about the shadow at the window, and the frog who had a name. She thought about how the mango tree had given them a present the moment they arrived.</p>
+      <p><em>"We go,"</em> she said.</p>
+      <p>Somewhere outside the window, an owl called softly. And somewhere further away, something with wings — something big — flew from one tree to another, making a sound like wings clapping.</p>
+      <p>Ploy got into bed. Nara turned off the light. But before she went to sleep, she laid both leaves side by side on the bedside table.</p>
+      <p><em>"Goodnight, mango tree,"</em> she whispered.</p>
+      <p>The mango tree said nothing. But outside the window, a warm wind moved through its leaves — and somehow, Nara was absolutely sure, it was saying goodnight back.</p>
+      <p style="text-align:center; font-family:'Fraunces', serif; font-style:italic; color:var(--terracotta); margin-top:18px;">— End of Chapter One —</p>
+    </div>
+
+    <div class="continue-row">
+      <button class="continue-btn" onclick="goTo('finale')">See your path →</button>
+    </div>
+  </div>
+
+  <!-- FINALE: Path review -->
+  <div class="scene" data-scene="finale">
+    <div class="chrome">
+      <span class="mark"><span class="dot-mark"></span>your journey</span>
+      <span>the path you took</span>
+    </div>
+    <div class="choice-panel">
+      <div class="chapter-tag">the way you read it</div>
+      <p class="choice-question">You finished Chapter One.<br/>Here's the path your reading took today.</p>
+
+      <div class="path-map" id="path-map"></div>
+
+      <p class="closing-line" style="font-size:17px; opacity:0.85;">
+        There are <strong>four</strong> ways to walk through this chapter.<br/>
+        You've found one. Three more are waiting.
+      </p>
+
+      <div class="reset-card">
+        <p><strong>Try a different path?</strong><br/>Turn back to the beginning and choose differently. Each route reveals a small thing the others don't.</p>
+        <button class="continue-btn" onclick="resetStory()">Read it again →</button>
+      </div>
+
+      <div style="margin-top:28px; font-family:'Fraunces',serif; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--forest); opacity:0.5;">
+        chapter two — the secret of the nine lakes — coming soon
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note">
+  Tri Vananda · Phuket — a storybook for kids' programming
+</div>
+
+<script>
+  // Scene flow
+  const scenes = ['opening','choice1','pathA','pathB','middle','choice2','pathC','pathD','ending','finale'];
+  // Progress dots represent the main 5 story beats
+  const beats = ['opening','choice1','middle','choice2','ending'];
+
+  const chosen = { c1: null, c2: null };
+
+  function goTo(sceneId, choice) {
+    // Record choice if given
+    if (choice === 'A' || choice === 'B') chosen.c1 = choice;
+    if (choice === 'C' || choice === 'D') chosen.c2 = choice;
+
+    // Hide all scenes
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    // Show target
+    const target = document.querySelector('[data-scene="' + sceneId + '"]');
+    if (target) target.classList.add('active');
+
+    // Scroll to top of book
+    document.getElementById('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Update ending references based on path
+    if (sceneId === 'ending') {
+      const which = document.getElementById('which-leaf');
+      if (which) {
+        if (chosen.c2 === 'C') which.textContent = 'the one the tamarind had dropped on her head';
+        else if (chosen.c2 === 'D') which.textContent = 'the one that had drifted into her lap';
+        else which.textContent = 'the one from the afternoon';
+      }
+    }
+
+    // Render finale path map
+    if (sceneId === 'finale') renderPathMap();
+
+    // Update progress
+    updateProgress(sceneId);
+  }
+
+  function updateProgress(sceneId) {
+    const prog = document.getElementById('progress');
+    prog.innerHTML = '';
+    // Determine current beat
+    let currentBeat = 0;
+    if (sceneId === 'opening') currentBeat = 0;
+    else if (sceneId === 'choice1' || sceneId === 'pathA' || sceneId === 'pathB') currentBeat = 1;
+    else if (sceneId === 'middle') currentBeat = 2;
+    else if (sceneId === 'choice2' || sceneId === 'pathC' || sceneId === 'pathD') currentBeat = 3;
+    else if (sceneId === 'ending' || sceneId === 'finale') currentBeat = 4;
+
+    beats.forEach((b, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      if (i < currentBeat) dot.classList.add('visited');
+      if (i === currentBeat) dot.classList.add('current');
+      prog.appendChild(dot);
+    });
+  }
+
+  function renderPathMap() {
+    const map = document.getElementById('path-map');
+    const c1Label = chosen.c1 === 'A' ? 'The Garden' : (chosen.c1 === 'B' ? 'The Window' : '—');
+    const c2Label = chosen.c2 === 'C' ? 'Follow Him' : (chosen.c2 === 'D' ? 'Stay With the Tree' : '—');
+    map.innerHTML =
+      '<span class="node chosen">Arrival</span>' +
+      '<span class="arrow">→</span>' +
+      '<span class="node chosen">' + c1Label + '</span>' +
+      '<span class="arrow">→</span>' +
+      '<span class="node chosen">Arun</span>' +
+      '<span class="arrow">→</span>' +
+      '<span class="node chosen">' + c2Label + '</span>' +
+      '<span class="arrow">→</span>' +
+      '<span class="node chosen">The Leaves</span>';
+  }
+
+  function resetStory() {
+    chosen.c1 = null;
+    chosen.c2 = null;
+    goTo('opening');
+  }
+
+  // Init
+  updateProgress('opening');
+</script>
+
+</body>
+</html>

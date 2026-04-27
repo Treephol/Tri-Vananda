@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tri Vananda — Marketing Campaigns 2026</title>
+<link rel="icon" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#233f2f;
+    --green-deep:#1a2f23;
+    --green-darker:#142420;
+    --red:#CF554E;
+    --earth:#BAB9AF;
+    --cream:#EDEBE9;
+    --ink:#1a1a17;
+    --serif:'Cormorant Garamond', 'Lao MN', Georgia, serif;
+    --sans:'Inter', -apple-system, Helvetica, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--green-deep);color:var(--cream);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  /* ===== Top frame ===== */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:24px 56px;
+    background:linear-gradient(180deg, rgba(20,36,32,.92) 0%, rgba(20,36,32,.5) 70%, transparent 100%);
+    font-family:var(--mono);font-size:13px;letter-spacing:.22em;
+    text-transform:uppercase;
+    backdrop-filter:blur(6px);
+  }
+  .topbar .brand{font-weight:500;letter-spacing:.28em}
+  .topbar .meta-tag{color:var(--earth);font-size:12px;letter-spacing:.2em}
+
+  /* ===== Side nav dots ===== */
+  .sidenav{
+    position:fixed;right:32px;top:50%;transform:translateY(-50%);
+    z-index:40;display:flex;flex-direction:column;gap:18px;
+  }
+  .sidenav a{
+    display:flex;align-items:center;gap:14px;
+    text-decoration:none;color:var(--earth);
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;
+    opacity:.55;transition:opacity .25s;
+  }
+  .sidenav a:hover{opacity:1;color:#fff}
+  .sidenav a .dot{
+    width:10px;height:10px;border-radius:50%;
+    border:1px solid var(--earth);
+    background:transparent;transition:all .25s;
+  }
+  .sidenav a.active{opacity:1;color:#fff}
+  .sidenav a.active .dot{background:var(--red);border-color:var(--red)}
+  .sidenav a .label{
+    opacity:0;transform:translateX(-6px);transition:all .25s;
+  }
+  .sidenav a:hover .label,
+  .sidenav a.active .label{opacity:1;transform:translateX(0)}
+
+  /* ===== Section frame ===== */
+  section{
+    width:100%;
+    padding:140px 88px 120px;
+    position:relative;
+    border-bottom:1px solid rgba(237,235,233,.08);
+  }
+  section.green{background:var(--green)}
+  section.deep{background:var(--green-deep)}
+  section.darker{background:var(--green-darker)}
+
+  .container{max-width:1320px;margin:0 auto}
+
+  /* ===== Typography (bigger for board) ===== */
+  .eyebrow{
+    font-family:var(--mono);font-size:14px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--red);margin-bottom:32px;
+    font-weight:500;
+  }
+  h1.display{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(72px, 9vw, 156px);line-height:.95;
+    letter-spacing:-.02em;
+  }
+  h1.display em{font-style:italic;font-weight:400}
+  h2.title{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(64px, 7.5vw, 120px);line-height:.95;
+    letter-spacing:-.015em;
+  }
+  h2.title em{font-style:italic;font-weight:400}
+  h3.section-h{
+    font-family:var(--serif);font-weight:400;
+    font-size:32px;line-height:1.25;
+    letter-spacing:-.005em;
+  }
+  p.lede{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(28px, 2.6vw, 38px);line-height:1.4;
+    color:rgba(237,235,233,.95);max-width:30ch;
+  }
+  p.body{
+    font-size:20px;line-height:1.6;
+    color:rgba(237,235,233,.92);max-width:64ch;
+  }
+
+  .rule{width:80px;height:2px;background:var(--red);margin:32px 0}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    background:var(--green-deep);
+    display:flex;align-items:center;justify-content:flex-start;
+    position:relative;overflow:hidden;
+    padding-top:140px;padding-bottom:80px;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(70% 60% at 12% 30%, rgba(207,85,78,.12) 0%, transparent 60%),
+      radial-gradient(60% 50% at 85% 75%, rgba(35,63,47,.6) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-content{position:relative;z-index:2}
+  .hero .lockup{
+    display:flex;align-items:center;gap:18px;
+    margin-bottom:36px;
+  }
+  .hero .lockup .bar{display:inline-block;width:64px;height:2px;background:var(--red)}
+  .hero .lockup span{
+    font-family:var(--mono);font-size:13px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--red);font-weight:500;
+  }
+  .hero h1{color:#fff;max-width:14ch}
+  .hero .subline{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(28px, 2.4vw, 36px);line-height:1.4;
+    margin-top:48px;max-width:42ch;
+    color:rgba(237,235,233,.9);
+  }
+  .hero .scroll-cue{
+    position:absolute;bottom:48px;left:88px;
+    display:flex;align-items:center;gap:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--earth);
+  }
+  .hero .scroll-cue .arrow{
+    display:inline-block;width:24px;height:24px;
+    border:1px solid var(--earth);border-radius:50%;
+    position:relative;
+  }
+  .hero .scroll-cue .arrow::before{
+    content:'↓';position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+  }
+
+  /* ===== INTRO INDEX ===== */
+  .intro-section{background:var(--green)}
+  .intro-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:1px;background:rgba(237,235,233,.18);
+    border:1px solid rgba(237,235,233,.18);
+    margin-top:72px;
+  }
+  .intro-card{
+    background:var(--green);padding:44px 36px 48px;
+    display:flex;flex-direction:column;gap:14px;
+    min-height:280px;
+    transition:background .25s;
+  }
+  .intro-card:hover{background:#1f3a2a}
+  .intro-card .ic-code{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:64px;line-height:.85;color:var(--red);
+    letter-spacing:-.02em;margin-bottom:8px;
+  }
+  .intro-card .ic-name{
+    font-family:var(--serif);font-weight:400;
+    font-size:34px;line-height:1.05;color:#fff;
+  }
+  .intro-card .ic-aud{
+    font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--earth);
+    margin-top:auto;padding-top:24px;
+    border-top:1px solid rgba(237,235,233,.22);
+  }
+
+  /* ===== CAMPAIGN SECTION ===== */
+  .camp-section{padding-top:160px;padding-bottom:160px}
+  .camp-marker{
+    display:flex;align-items:baseline;gap:36px;
+    margin-bottom:48px;
+    padding-bottom:40px;border-bottom:1px solid rgba(237,235,233,.18);
+  }
+  .camp-marker .cm-code{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(96px, 12vw, 200px);line-height:.85;
+    color:var(--red);letter-spacing:-.04em;
+  }
+  .camp-marker .cm-aud{
+    font-family:var(--mono);font-size:14px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--earth);font-weight:500;
+    margin-bottom:18px;
+  }
+
+  .camp-section h2.title{color:#fff;margin-bottom:48px}
+
+  .camp-narrative{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(28px, 2.6vw, 40px);line-height:1.4;
+    color:rgba(237,235,233,.95);max-width:42ch;
+    padding-left:36px;border-left:3px solid var(--red);
+    margin-bottom:96px;
+  }
+
+  /* Pillars + Initiatives blocks */
+  .blocks{
+    display:grid;grid-template-columns:1.1fr 1fr;
+    gap:88px;margin-top:24px;align-items:start;
+  }
+
+  .block-h{
+    font-family:var(--mono);font-size:13px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--red);font-weight:500;
+    padding-bottom:20px;margin-bottom:36px;
+    border-bottom:1px solid rgba(237,235,233,.32);
+  }
+
+  /* Pillars (numbered cards) */
+  .pillars{display:flex;flex-direction:column;gap:32px}
+  .pillar{
+    display:grid;grid-template-columns:64px 1fr;
+    gap:24px;align-items:baseline;
+  }
+  .pillar .p-num{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:48px;color:var(--red);line-height:.9;
+    letter-spacing:-.02em;
+  }
+  .pillar .p-name{
+    font-family:var(--serif);font-weight:400;
+    font-size:32px;line-height:1.1;color:#fff;
+  }
+  .pillar .p-desc{
+    grid-column:2;font-size:18px;line-height:1.55;
+    color:rgba(237,235,233,.85);margin-top:6px;
+    max-width:42ch;
+  }
+
+  /* Initiatives (chip / tag cards) */
+  .inits-block{}
+  .inits-cat{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--earth);
+    margin-bottom:24px;
+  }
+  .inits{display:flex;flex-direction:column;gap:0}
+  .init-item{
+    padding:24px 0;
+    border-bottom:1px solid rgba(237,235,233,.16);
+    display:grid;grid-template-columns:48px 1fr;
+    gap:18px;align-items:baseline;
+  }
+  .init-item:last-child{border-bottom:none}
+  .init-item .n{
+    font-family:var(--mono);font-size:13px;letter-spacing:.16em;
+    color:var(--red);font-weight:500;
+  }
+  .init-item .t{
+    font-family:var(--serif);font-size:26px;line-height:1.25;
+    color:#fff;font-weight:400;
+  }
+  .init-item .t small{
+    display:block;margin-top:8px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--earth);font-weight:500;
+  }
+
+  /* End mark */
+  .end{
+    background:var(--green-darker);
+    padding:120px 88px;
+    text-align:center;
+  }
+  .end .end-mark{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:48px;color:var(--red);
+  }
+  .end .end-line{
+    font-family:var(--mono);font-size:13px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--earth);margin-top:24px;
+  }
+
+  /* Responsive */
+  @media (max-width:1100px){
+    section{padding:96px 48px 96px}
+    .topbar{padding:18px 32px}
+    .sidenav{display:none}
+    .blocks{grid-template-columns:1fr;gap:64px}
+    .intro-grid{grid-template-columns:repeat(2,1fr)}
+    .hero .scroll-cue{left:48px}
+  }
+  @media (max-width:680px){
+    section{padding:72px 28px}
+    .intro-grid{grid-template-columns:1fr}
+    .camp-marker{flex-direction:column;gap:12px}
+  }
+  @media print{
+    .topbar,.sidenav{display:none}
+    section{break-after:page}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">TRI VANANDA &nbsp;/&nbsp; PHUKET</div>
+  <div class="meta-tag">Marketing Campaigns &nbsp;·&nbsp; 2026</div>
+</div>
+
+<nav class="sidenav">
+  <a href="#hero" data-target="hero"><span class="dot"></span><span class="label">Intro</span></a>
+  <a href="#c0" data-target="c0"><span class="dot"></span><span class="label">C0</span></a>
+  <a href="#c1" data-target="c1"><span class="dot"></span><span class="label">C1</span></a>
+  <a href="#c2" data-target="c2"><span class="dot"></span><span class="label">C2</span></a>
+  <a href="#c3" data-target="c3"><span class="dot"></span><span class="label">C3</span></a>
+  <a href="#c4" data-target="c4"><span class="dot"></span><span class="label">C4</span></a>
+  <a href="#c5" data-target="c5"><span class="dot"></span><span class="label">C5</span></a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="hero">
+  <div class="container hero-content">
+    <div class="lockup">
+      <span class="bar"></span>
+      <span>Marketing Campaigns &nbsp;·&nbsp; 2026</span>
+    </div>
+    <h1 class="display">Six campaigns. <em>One home.</em></h1>
+    <div class="subline">Six audience-led campaigns. Each with its own concept, key narrative, content pillars and initiatives.</div>
+  </div>
+  <div class="scroll-cue">
+    <span class="arrow"></span>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ============ INTRODUCTION INDEX ============ -->
+<section id="intro" class="intro-section">
+  <div class="container">
+    <div class="eyebrow">Introduction &nbsp;·&nbsp; The Six Campaigns</div>
+    <h2 class="title">At a <em>glance.</em></h2>
+
+    <div class="intro-grid">
+      <a href="#c0" class="intro-card" style="text-decoration:none">
+        <div class="ic-code">C.0</div>
+        <div class="ic-name">Integrated Living</div>
+        <div class="ic-aud">All Audiences</div>
+      </a>
+      <a href="#c1" class="intro-card" style="text-decoration:none">
+        <div class="ic-code">C.1</div>
+        <div class="ic-name">Legacy Living</div>
+        <div class="ic-aud">Business Tycoon with Family</div>
+      </a>
+      <a href="#c2" class="intro-card" style="text-decoration:none">
+        <div class="ic-code">C.2</div>
+        <div class="ic-name">The Life Already Here</div>
+        <div class="ic-aud">Impulse Buyer with Thailand Partner</div>
+      </a>
+      <a href="#c3" class="intro-card" style="text-decoration:none">
+        <div class="ic-code">C.3</div>
+        <div class="ic-name">From Stay to Belonging</div>
+        <div class="ic-aud">Trisara Guests Lookalike</div>
+      </a>
+      <a href="#c4" class="intro-card" style="text-decoration:none">
+        <div class="ic-code">C.4</div>
+        <div class="ic-name">Living Longevity</div>
+        <div class="ic-aud">Clinique La Prairie Guests Lookalike</div>
+      </a>
+      <a href="#c5" class="intro-card" style="text-decoration:none">
+        <div class="ic-code">C.5</div>
+        <div class="ic-name">A Living Proof</div>
+        <div class="ic-aud">Global Wellness Summit Audience</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C0 — INTEGRATED LIVING ============ -->
+<section id="c0" class="camp-section deep">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.0</div>
+      <div>
+        <div class="cm-aud">All Audiences</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title"><em>Integrated</em> Living</h2>
+    <div class="camp-narrative">"A place where wellness, community, and sustainability come together as one integrated way of living."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span>
+            <span class="p-name">Wellness as a Way of Life</span>
+            <span class="p-desc">Embedded in everyday routines.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span>
+            <span class="p-name">A Living Community</span>
+            <span class="p-desc">Connection and shared experiences.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span>
+            <span class="p-name">Regenerative Environment</span>
+            <span class="p-desc">Nature and sustainability shaping daily life.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span>
+            <span class="p-name">Designed as One System</span>
+            <span class="p-desc">Health, people, and environment working together.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits-cat">Core Infrastructure &amp; Collateral</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">Website<small>Content · Copywriting · Image Selection · Design · Launch</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">New Asset Library<small>Image Selection · Categorization · AI Refinement · Launch</small></span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Social Media<small>Always-on</small></span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">EDM<small>Always-on</small></span></div>
+          <div class="init-item"><span class="n">05</span><span class="t">Q1 2026 Quarterly Newsletter<small>Full production</small></span></div>
+          <div class="init-item"><span class="n">06</span><span class="t">Tri Vananda Adventure Book</span></div>
+          <div class="init-item"><span class="n">07</span><span class="t">Big Logo Signage</span></div>
+          <div class="init-item"><span class="n">08</span><span class="t">Handover Box with Key Holders</span></div>
+          <div class="init-item"><span class="n">09</span><span class="t">Notebook / Pen / Fabric Tote Bag</span></div>
+          <div class="init-item"><span class="n">10</span><span class="t">PR: Media Stay</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C1 — LEGACY LIVING ============ -->
+<section id="c1" class="camp-section green">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.1</div>
+      <div>
+        <div class="cm-aud">Business Tycoon with Family</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title"><em>Legacy</em> Living</h2>
+    <div class="camp-narrative">"A place where life is designed to unfold over time — where family, health, and environment quietly shape what comes next."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span>
+            <span class="p-name">Health Over Time</span>
+            <span class="p-desc">Wellbeing as part of daily life, not a program.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span>
+            <span class="p-name">Living Together, Naturally</span>
+            <span class="p-desc">Spaces that bring generations closer without effort.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span>
+            <span class="p-name">A Different Upbringing</span>
+            <span class="p-desc">Nature, rhythm, and environment shaping how children grow.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span>
+            <span class="p-name">Continuity, Not Change</span>
+            <span class="p-desc">A home that evolves with the family.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C1 Campaign<small>Meta + Business Verification</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Long-Stay Villa Rentals</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C2 — THE LIFE ALREADY HERE ============ -->
+<section id="c2" class="camp-section deep">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.2</div>
+      <div>
+        <div class="cm-aud">Impulse Buyer with Thailand Partner</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title">The Life <em>Already Here</em></h2>
+    <div class="camp-narrative">"You arrive, and something shifts — the pace, the feeling, the way time moves. From there, the decision becomes simple."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span>
+            <span class="p-name">Effortless Access</span>
+            <span class="p-desc">Proximity, ease of arrival, frictionless entry into the lifestyle.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span>
+            <span class="p-name">Ready-to-Live Environment</span>
+            <span class="p-desc">Fully prepared homes, no setup, no waiting.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span>
+            <span class="p-name">Everyday Enjoyment</span>
+            <span class="p-desc">Food, nature, movement, social life — already in place.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span>
+            <span class="p-name">Decision Without Complexity</span>
+            <span class="p-desc">Experience-first, ownership follows naturally.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C2 Campaign<small>New Video Ad</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Local Roots</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Art / Nature Campaign</span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">Harmony 10 Campaign</span></div>
+          <div class="init-item"><span class="n">05</span><span class="t">PRU Farm Festival</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C3 — FROM STAY TO BELONGING ============ -->
+<section id="c3" class="camp-section green">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.3</div>
+      <div>
+        <div class="cm-aud">Trisara Guests Lookalike</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title">From Stay <em>to Belonging</em></h2>
+    <div class="camp-narrative">"What you've experienced before becomes something you can return to — this time, as part of your life."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span>
+            <span class="p-name">Familiar Feeling</span>
+            <span class="p-desc">The same sense of care, space, and calm.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span>
+            <span class="p-name">A Deeper Stay</span>
+            <span class="p-desc">From temporary escape to something more permanent.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span>
+            <span class="p-name">Trusted Environment</span>
+            <span class="p-desc">Standards you already know, extended into living.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span>
+            <span class="p-name">A Natural Step Forward</span>
+            <span class="p-desc">Ownership as continuation, not decision.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C3 Campaign<small>Landing Page</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Agent Event at Trisara Villa 12</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Local Roots Pop-Up</span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">Long-Stay Villa Rentals</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C4 — LIVING LONGEVITY ============ -->
+<section id="c4" class="camp-section deep">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.4</div>
+      <div>
+        <div class="cm-aud">Clinique La Prairie Guests Lookalike</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title"><em>Living</em> Longevity</h2>
+    <div class="camp-narrative">"A place where wellbeing is not something you visit for — but something you live with, every day."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span>
+            <span class="p-name">Preventive Living</span>
+            <span class="p-desc">Health addressed before it becomes a problem.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span>
+            <span class="p-name">Integrated Approach</span>
+            <span class="p-desc">Environment, routine, and expertise working together.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span>
+            <span class="p-name">Measured Wellbeing</span>
+            <span class="p-desc">Understanding your health over time.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span>
+            <span class="p-name">Daily Longevity</span>
+            <span class="p-desc">Small, consistent shifts that compound.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C4 Campaign<small>Landing Page</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Health Resort Launch Leverage</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Long-Stay Villa Rentals</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C5 — A LIVING PROOF ============ -->
+<section id="c5" class="camp-section green">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.5</div>
+      <div>
+        <div class="cm-aud">Global Wellness Summit Audience</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title">A <em>Living</em> Proof</h2>
+    <div class="camp-narrative">"Not a concept, but a working model — where wellness, community, and environment are designed as one living system, to be experienced, studied, and scaled."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span>
+            <span class="p-name">System-Level Thinking</span>
+            <span class="p-desc">Wellness integrated into environment, behavior, and time.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span>
+            <span class="p-name">Applied Longevity</span>
+            <span class="p-desc">Translating clinical insight into everyday living.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span>
+            <span class="p-name">Regenerative Development</span>
+            <span class="p-desc">Sustainability as an active, measurable system.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span>
+            <span class="p-name">Community as Infrastructure</span>
+            <span class="p-desc">Connection intentionally designed into daily life.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C5 Campaign<small>Landing Page</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">BEING 2026</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Montara New Wellness Brand</span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">Tri Vananda Activations<small>GWS Week</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ END ============ -->
+<div class="end">
+  <div class="end-mark">·</div>
+  <div class="end-line">Tri Vananda &nbsp;·&nbsp; Marketing Campaigns 2026</div>
+</div>
+
+<script>
+  // Sidenav active state on scroll
+  (function(){
+    const links = Array.from(document.querySelectorAll('.sidenav a'));
+    const sectionIds = links.map(a => a.dataset.target);
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function update(){
+      const probe = window.innerHeight * 0.35;
+      let activeIdx = 0;
+      sections.forEach((sec, i) => {
+        if (sec.getBoundingClientRect().top - probe <= 0) activeIdx = i;
+      });
+      links.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }, {passive:true});
+    update();
+  })();
+</script>
+
+</body>
+</html>

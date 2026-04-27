@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Friends of Tri Vananda — Manga Chapter One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700;800&family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f4ecd8;
+    --paper-light: #fbf5e6;
+    --red: #CF554E;
+    --red-dark: #8a2d28;
+    --green: #233f2f;
+    --cream: #e8dcc0;
+    --sun: #f2b55a;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #d9c8a2;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0 2px, transparent 2px 8px);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  body {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 24px 12px 120px 12px;
+  }
+  .masthead {
+    max-width: 820px; width: 100%; text-align: center; margin-bottom: 14px;
+  }
+  .masthead .eyebrow {
+    font-family: 'Bangers', sans-serif;
+    font-size: 14px; letter-spacing: 0.2em;
+    color: var(--red);
+  }
+  .masthead .title {
+    font-family: 'Bangers', sans-serif;
+    font-size: clamp(24px, 4vw, 36px);
+    color: var(--ink); letter-spacing: 0.04em;
+    text-shadow: 3px 3px 0 var(--red);
+    margin: 2px 0;
+  }
+  .masthead .subtitle {
+    font-family: 'Caveat', cursive;
+    font-size: 16px; color: var(--green);
+  }
+
+  .progress {
+    display: flex; gap: 5px; margin: 8px 0 14px 0;
+  }
+  .progress .dot {
+    width: 8px; height: 8px; background: #fff;
+    border: 2px solid var(--ink);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+  }
+  .progress .dot.visited { background: var(--ink); }
+  .progress .dot.current { background: var(--red); transform: rotate(45deg) scale(1.4); }
+
+  .book {
+    width: min(820px, 100%);
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 18px;
+    position: relative;
+    min-height: 600px;
+  }
+
+  .page {
+    display: none;
+    animation: flip 0.4s ease;
+  }
+  .page.active { display: block; }
+  @keyframes flip {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-head {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 14px;
+    font-family: 'Bangers', sans-serif;
+    font-size: 13px; letter-spacing: 0.2em;
+  }
+  .page-head .tag { background: var(--ink); color: var(--paper); padding: 3px 10px; }
+  .page-head .num { color: var(--red); }
+
+  /* Panel grid layouts */
+  .panels {
+    display: grid;
+    gap: 10px;
+  }
+  .layout-a { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
+  .layout-b { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto auto; }
+  .layout-c { grid-template-columns: 2fr 1fr; grid-template-rows: auto auto auto; }
+  .layout-d { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+
+  .panel {
+    background: #fff;
+    border: 3px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+  }
+  .panel.wide { grid-column: 1 / -1; }
+  .panel.tall { grid-row: span 2; }
+
+  .panel svg { display: block; width: 100%; height: 100%; }
+
+  /* Narration box */
+  .narration {
+    position: absolute;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    padding: 5px 10px;
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 500;
+    max-width: 70%;
+    line-height: 1.3;
+    z-index: 5;
+  }
+  .narration.tl { top: 8px; left: 8px; }
+  .narration.tr { top: 8px; right: 8px; }
+  .narration.bl { bottom: 8px; left: 8px; }
+  .narration.br { bottom: 8px; right: 8px; }
+
+  /* Speech bubble */
+  .bubble {
+    position: absolute;
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    padding: 5px 11px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 22px;
+    z-index: 6;
+    line-height: 1.25;
+    max-width: 60%;
+  }
+  .bubble::after {
+    content: "";
+    position: absolute;
+    border: 8px solid transparent;
+  }
+  .bubble.down::after {
+    bottom: -14px; left: 20px;
+    border-top-color: var(--ink);
+  }
+  .bubble.down::before {
+    content: "";
+    position: absolute;
+    bottom: -10px; left: 22px;
+    border: 7px solid transparent;
+    border-top-color: #fff;
+    z-index: 1;
+  }
+  .bubble.up::after {
+    top: -14px; right: 20px;
+    border-bottom-color: var(--ink);
+  }
+  .bubble.up::before {
+    content: "";
+    position: absolute;
+    top: -10px; right: 22px;
+    border: 7px solid transparent;
+    border-bottom-color: #fff;
+    z-index: 1;
+  }
+  .bubble em { font-style: italic; color: var(--red); }
+
+  /* Sound effect */
+  .sfx {
+    position: absolute;
+    font-family: 'Bangers', sans-serif;
+    font-size: 38px;
+    letter-spacing: 0.05em;
+    color: var(--red);
+    -webkit-text-stroke: 2px var(--ink);
+    text-stroke: 2px var(--ink);
+    text-shadow: 3px 3px 0 var(--ink);
+    z-index: 7;
+    line-height: 0.9;
+    transform: rotate(-6deg);
+    pointer-events: none;
+  }
+  .sfx.big { font-size: 52px; }
+  .sfx.small { font-size: 26px; }
+  .sfx.green { color: var(--sun); }
+  .sfx.white { color: #fff; }
+
+  /* Choice */
+  .choice {
+    background: var(--paper-light);
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 24px;
+    text-align: center;
+  }
+  .choice-q {
+    font-family: 'Bangers', sans-serif;
+    font-size: clamp(18px, 3vw, 26px);
+    color: var(--green);
+    margin: 0 0 18px 0;
+    letter-spacing: 0.05em;
+  }
+  .choice-q small {
+    display: block;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--red);
+    letter-spacing: 0;
+    margin-top: 4px;
+  }
+  .choice-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 580px) { .choice-grid { grid-template-columns: 1fr 1fr; } }
+  .choice-btn {
+    background: #fff;
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.15s, box-shadow 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .choice-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--red);
+  }
+  .choice-btn .label {
+    font-family: 'Bangers', sans-serif;
+    font-size: 13px;
+    color: var(--red);
+    letter-spacing: 0.2em;
+  }
+  .choice-btn .what {
+    font-family: 'Bangers', sans-serif;
+    font-size: 18px;
+    color: var(--ink);
+    margin: 4px 0 6px 0;
+    letter-spacing: 0.04em;
+  }
+  .choice-btn .hint {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: var(--green);
+    line-height: 1.2;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex; justify-content: center; gap: 10px;
+    margin-top: 16px;
+  }
+  .btn {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 10px 22px;
+    font-family: 'Bangers', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--red);
+    transition: transform 0.15s;
+  }
+  .btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--red); }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .footer {
+    max-width: 820px;
+    text-align: center;
+    font-family: 'Bangers', sans-serif;
+    font-size: 11px; letter-spacing: 0.3em;
+    color: var(--green); opacity: 0.7;
+    margin-top: 16px;
+  }
+
+  /* Finale */
+  .finale-box {
+    text-align: center; padding: 28px 20px;
+  }
+  .finale-title {
+    font-family: 'Bangers', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--ink);
+    text-shadow: 4px 4px 0 var(--red);
+    letter-spacing: 0.05em;
+    margin: 0 0 10px 0;
+  }
+  .path-map {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 6px; margin: 20px 0;
+  }
+  .path-map .node {
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    padding: 6px 12px;
+    font-family: 'Bangers', sans-serif;
+    font-size: 13px; letter-spacing: 0.1em;
+  }
+  .path-map .node.on {
+    background: var(--red); color: #fff;
+  }
+  .path-map .arrow {
+    font-family: 'Bangers', sans-serif;
+    align-self: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="eyebrow">TRI VANANDA · PHUKET</div>
+  <div class="title">THE THREE FRIENDS</div>
+  <div class="subtitle">Chapter One — A New Home Under the Mango Trees</div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<div class="book" id="book">
+  <div class="page active" data-scene="cover">
+    <div class="page-head"><span class="tag">CHAPTER ONE</span><span class="num">COVER</span></div>
+    <div class="panels" style="grid-template-columns: 1fr; gap: 10px;">
+      <div class="panel" style="min-height: 380px;">
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="380" fill="#fff"/>
+          <!-- Sun burst lines -->
+          <g stroke="#0a0a0a" stroke-width="2" fill="none">
+            <line x1="400" y1="190" x2="400" y2="20"/>
+            <line x1="400" y1="190" x2="560" y2="40"/>
+            <line x1="400" y1="190" x2="680" y2="120"/>
+            <line x1="400" y1="190" x2="740" y2="230"/>
+            <line x1="400" y1="190" x2="240" y2="40"/>
+            <line x1="400" y1="190" x2="120" y2="120"/>
+            <line x1="400" y1="190" x2="60" y2="230"/>
+          </g>
+          <!-- Sun disc -->
+          <circle cx="400" cy="190" r="120" fill="#CF554E"/>
+          <circle cx="400" cy="190" r="100" fill="#f2b55a"/>
+          <!-- Tree silhouette big -->
+          <g fill="#0a0a0a">
+            <path d="M 390 380 L 390 200 L 410 200 L 410 380 Z"/>
+            <circle cx="400" cy="180" r="70"/>
+            <circle cx="350" cy="200" r="48"/>
+            <circle cx="450" cy="200" r="48"/>
+            <circle cx="370" cy="140" r="40"/>
+            <circle cx="430" cy="140" r="40"/>
+          </g>
+          <!-- Mangoes -->
+          <g fill="#CF554E" stroke="#0a0a0a" stroke-width="2">
+            <ellipse cx="370" cy="170" rx="7" ry="10"/>
+            <ellipse cx="425" cy="180" rx="7" ry="10"/>
+            <ellipse cx="395" cy="140" rx="6" ry="9"/>
+          </g>
+          <!-- Three silhouettes -->
+          <g fill="#0a0a0a">
+            <g transform="translate(380,340)">
+              <circle cx="0" cy="-12" r="8"/>
+              <rect x="-6" y="-4" width="12" height="20"/>
+            </g>
+            <g transform="translate(400,335)">
+              <circle cx="0" cy="-14" r="9"/>
+              <rect x="-7" y="-5" width="14" height="24"/>
+            </g>
+            <g transform="translate(422,340)">
+              <circle cx="0" cy="-13" r="8"/>
+              <rect x="-6" y="-5" width="12" height="22"/>
+            </g>
+          </g>
+          <!-- Hornbill -->
+          <g transform="translate(620,110)" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2">
+            <ellipse cx="0" cy="0" rx="28" ry="10"/>
+            <path d="M -38 -6 Q -30 -16 -10 -8 Z"/>
+            <path d="M 20 -6 Q 38 -16 40 -6 Z"/>
+            <path d="M -16 -10 Q -6 -22 16 -14 Z" fill="#f2b55a"/>
+            <circle cx="-22" cy="-2" r="2" fill="#fff"/>
+          </g>
+          <!-- Frog -->
+          <g transform="translate(140,340)">
+            <ellipse cx="0" cy="0" rx="22" ry="14" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="-8" cy="-8" r="6" fill="#fff" stroke="#0a0a0a" stroke-width="2.5"/>
+            <circle cx="8" cy="-8" r="6" fill="#fff" stroke="#0a0a0a" stroke-width="2.5"/>
+            <circle cx="-8" cy="-8" r="3" fill="#0a0a0a"/>
+            <circle cx="8" cy="-8" r="3" fill="#0a0a0a"/>
+            <path d="M -5 4 Q 0 7 5 4" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 30px; left: 30px; transform: rotate(-10deg);">ADVENTURE!</div>
+        <div class="narration br" style="max-width: 90%; text-align:center; font-family: 'Bangers', sans-serif; font-size: 15px; letter-spacing: 0.15em;">
+          A NEW HOME · A NEW FOREST · A NEW FRIEND
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('arrival')">START →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="arrival">
+    <div class="page-head"><span class="tag">THE ARRIVAL</span><span class="num">PAGE 01</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1: wide - car on road -->
+      <div class="panel wide" style="min-height: 150px;">
+        <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="150" fill="#fff"/>
+          <!-- Speed lines -->
+          <g stroke="#0a0a0a" stroke-width="1.5" opacity="0.4">
+            <line x1="0" y1="30" x2="200" y2="30"/>
+            <line x1="0" y1="60" x2="180" y2="60"/>
+            <line x1="0" y1="90" x2="220" y2="90"/>
+            <line x1="0" y1="120" x2="160" y2="120"/>
+          </g>
+          <!-- Road -->
+          <path d="M 0 130 L 800 100 L 800 150 L 0 150 Z" fill="#0a0a0a"/>
+          <g stroke="#fff" stroke-width="3" stroke-dasharray="20 12">
+            <line x1="0" y1="140" x2="800" y2="112"/>
+          </g>
+          <!-- Mountains background -->
+          <path d="M 300 80 L 380 30 L 460 70 L 540 40 L 620 85 L 700 50 L 800 80 L 800 110 L 300 110 Z" fill="#0a0a0a"/>
+          <!-- Car -->
+          <g transform="translate(550,100)">
+            <rect x="-40" y="-20" width="80" height="20" fill="#CF554E" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -32 -20 L -22 -36 L 22 -36 L 32 -20 Z" fill="#8a2d28" stroke="#0a0a0a" stroke-width="3"/>
+            <rect x="-18" y="-34" width="16" height="14" fill="#fff" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="2" y="-34" width="16" height="14" fill="#fff" stroke="#0a0a0a" stroke-width="2"/>
+            <circle cx="-24" cy="0" r="8" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+            <circle cx="24" cy="0" r="8" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+        </svg>
+        <div class="narration tl">The long road home.</div>
+      </div>
+
+      <!-- Panel 2: Nara at window -->
+      <div class="panel" style="min-height: 170px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#fff"/>
+          <!-- Window frame (car) -->
+          <rect x="20" y="20" width="360" height="160" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+          <!-- Trees passing by -->
+          <g fill="#0a0a0a" opacity="0.6">
+            <circle cx="80" cy="60" r="30"/>
+            <circle cx="160" cy="55" r="28"/>
+            <circle cx="340" cy="62" r="26"/>
+          </g>
+          <!-- Nara face close -->
+          <g transform="translate(200,130)">
+            <circle cx="0" cy="0" r="60" fill="#f2b55a" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -58 -30 Q -40 -60 0 -60 Q 40 -60 58 -30 L 58 -10 L -58 -10 Z" fill="#0a0a0a"/>
+            <circle cx="-40" cy="-30" r="14" fill="#0a0a0a"/>
+            <circle cx="40" cy="-30" r="14" fill="#0a0a0a"/>
+            <!-- wide curious eyes -->
+            <circle cx="-16" cy="0" r="10" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="16" cy="0" r="10" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="-16" cy="2" r="5" fill="#0a0a0a"/>
+            <circle cx="16" cy="2" r="5" fill="#0a0a0a"/>
+            <circle cx="-14" cy="0" r="2" fill="#fff"/>
+            <circle cx="18" cy="0" r="2" fill="#fff"/>
+            <!-- O mouth (wonder) -->
+            <ellipse cx="0" cy="26" rx="6" ry="8" fill="#0a0a0a"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 12px; left: 14px;">Are we there?</div>
+      </div>
+
+      <!-- Panel 3: Mango tree reveal -->
+      <div class="panel" style="min-height: 170px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#fff"/>
+          <!-- Radial lines for drama -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.8">
+            <line x1="200" y1="120" x2="20" y2="20"/>
+            <line x1="200" y1="120" x2="200" y2="10"/>
+            <line x1="200" y1="120" x2="380" y2="20"/>
+            <line x1="200" y1="120" x2="10" y2="120"/>
+            <line x1="200" y1="120" x2="390" y2="120"/>
+            <line x1="200" y1="120" x2="60" y2="200"/>
+            <line x1="200" y1="120" x2="340" y2="200"/>
+          </g>
+          <!-- Glow -->
+          <circle cx="200" cy="120" r="80" fill="#f2b55a" opacity="0.6"/>
+          <!-- Huge tree -->
+          <g transform="translate(200,150)">
+            <rect x="-14" y="0" width="28" height="50" fill="#0a0a0a"/>
+            <circle cx="0" cy="-30" r="70" fill="#0a0a0a"/>
+            <circle cx="-46" cy="-10" r="40" fill="#0a0a0a"/>
+            <circle cx="46" cy="-10" r="40" fill="#0a0a0a"/>
+            <circle cx="-26" cy="-60" r="36" fill="#0a0a0a"/>
+            <circle cx="26" cy="-60" r="36" fill="#0a0a0a"/>
+            <!-- Mangoes -->
+            <g fill="#CF554E" stroke="#fff" stroke-width="2">
+              <ellipse cx="-30" cy="-40" rx="7" ry="10"/>
+              <ellipse cx="10" cy="-30" rx="7" ry="10"/>
+              <ellipse cx="-48" cy="-8" rx="7" ry="10"/>
+              <ellipse cx="42" cy="-8" rx="7" ry="10"/>
+              <ellipse cx="20" cy="-70" rx="6" ry="9"/>
+              <ellipse cx="-34" cy="-82" rx="6" ry="9"/>
+            </g>
+          </g>
+        </svg>
+        <div class="sfx" style="top: 10px; right: 14px; transform: rotate(10deg);">WHOA!</div>
+      </div>
+
+      <!-- Panel 4: wide - mango dropping -->
+      <div class="panel wide" style="min-height: 140px;">
+        <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="140" fill="#fff"/>
+          <!-- Action lines -->
+          <g stroke="#0a0a0a" stroke-width="3" opacity="0.6">
+            <line x1="400" y1="10" x2="400" y2="60"/>
+            <line x1="380" y1="15" x2="385" y2="45"/>
+            <line x1="420" y1="15" x2="415" y2="45"/>
+          </g>
+          <!-- Mango mid-fall -->
+          <g transform="translate(400,70)">
+            <ellipse cx="0" cy="0" rx="14" ry="20" fill="#CF554E" stroke="#0a0a0a" stroke-width="3"/>
+            <ellipse cx="-4" cy="-4" rx="5" ry="7" fill="#f2b55a"/>
+          </g>
+          <!-- Car roof silhouette -->
+          <path d="M 250 140 L 300 110 L 500 110 L 550 140 Z" fill="#CF554E" stroke="#0a0a0a" stroke-width="3"/>
+          <path d="M 300 110 L 500 110" stroke="#0a0a0a" stroke-width="2"/>
+          <!-- Impact stars -->
+          <g transform="translate(400,108)" fill="#0a0a0a">
+            <path d="M -30 0 L -20 -6 L -10 0 L -4 -10 L 0 -2 L 4 -10 L 10 0 L 20 -6 L 30 0 L 20 6 L 10 0 L 4 10 L 0 2 L -4 10 L -10 0 L -20 6 Z"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 20px; left: 48%; transform: translateX(-50%) rotate(-5deg);">THUMP!</div>
+      </div>
+
+      <!-- Panel 5: Ploy wakes up -->
+      <div class="panel" style="min-height: 140px;">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="160" fill="#fff"/>
+          <!-- Shock lines -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.5">
+            <line x1="60" y1="30" x2="100" y2="60"/>
+            <line x1="340" y1="30" x2="300" y2="60"/>
+            <line x1="40" y1="80" x2="80" y2="80"/>
+            <line x1="360" y1="80" x2="320" y2="80"/>
+          </g>
+          <!-- Ploy face -->
+          <g transform="translate(200,100)">
+            <circle cx="0" cy="0" r="55" fill="#f2b55a" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -52 -28 Q -34 -55 0 -55 Q 34 -55 52 -28 L 52 -14 L -52 -14 Z" fill="#0a0a0a"/>
+            <!-- single pigtail -->
+            <circle cx="-34" cy="-32" r="10" fill="#0a0a0a"/>
+            <!-- surprised eyes -->
+            <circle cx="-14" cy="0" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="14" cy="0" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="-14" cy="2" r="4" fill="#0a0a0a"/>
+            <circle cx="14" cy="2" r="4" fill="#0a0a0a"/>
+            <!-- open mouth -->
+            <ellipse cx="0" cy="24" rx="10" ry="6" fill="#0a0a0a"/>
+          </g>
+          <!-- sparkle -->
+          <g fill="#CF554E" transform="translate(330,40)">
+            <path d="M 0 -12 L 3 -3 L 12 0 L 3 3 L 0 12 L -3 3 L -12 0 L -3 -3 Z"/>
+          </g>
+        </svg>
+        <div class="bubble up" style="bottom: 14px; left: 14px;">Did someone throw a rock?!</div>
+      </div>
+
+      <!-- Panel 6: Nara stepping out -->
+      <div class="panel" style="min-height: 140px;">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="160" fill="#fff"/>
+          <!-- Ground -->
+          <path d="M 0 130 L 400 130 L 400 160 L 0 160 Z" fill="#0a0a0a"/>
+          <!-- Grass -->
+          <g stroke="#0a0a0a" stroke-width="2" fill="none">
+            <path d="M 40 130 L 42 120 M 48 130 L 46 122"/>
+            <path d="M 340 130 L 342 120 M 348 130 L 346 122"/>
+          </g>
+          <!-- Nara full body stepping out -->
+          <g transform="translate(200,80)">
+            <!-- legs -->
+            <rect x="-10" y="20" width="8" height="30" fill="#CF554E" stroke="#0a0a0a" stroke-width="2.5"/>
+            <rect x="2" y="20" width="8" height="30" fill="#CF554E" stroke="#0a0a0a" stroke-width="2.5"/>
+            <!-- body -->
+            <path d="M -18 -8 Q -20 10 -14 22 L 14 22 Q 20 10 18 -8 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="3"/>
+            <!-- arms raised -->
+            <path d="M -18 -2 Q -30 -18 -24 -34" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M 18 -2 Q 30 -18 24 -34" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+            <!-- head tilted up -->
+            <circle cx="0" cy="-22" r="15" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -14 -28 Q -10 -40 0 -40 Q 10 -40 14 -28 L 14 -22 L -14 -22 Z" fill="#0a0a0a"/>
+            <circle cx="-10" cy="-36" r="5" fill="#0a0a0a"/>
+            <circle cx="10" cy="-36" r="5" fill="#0a0a0a"/>
+            <!-- closed peaceful eyes -->
+            <path d="M -6 -22 Q -4 -24 -2 -22" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+            <path d="M 2 -22 Q 4 -24 6 -22" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+            <path d="M -3 -15 Q 0 -13 3 -15" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          </g>
+          <!-- Floating leaves -->
+          <g fill="#0a0a0a">
+            <ellipse cx="80" cy="40" rx="6" ry="3" transform="rotate(-30 80 40)"/>
+            <ellipse cx="320" cy="30" rx="6" ry="3" transform="rotate(30 320 30)"/>
+            <ellipse cx="70" cy="90" rx="5" ry="2.5" transform="rotate(-40 70 90)"/>
+          </g>
+        </svg>
+        <div class="sfx small green" style="top: 10px; left: 10px; transform: rotate(-8deg); color: var(--green); -webkit-text-stroke: 1.5px var(--ink);">HAAAA...</div>
+        <div class="narration br" style="font-size: 11px;">The air smelled GREEN.</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('choice1')">NEXT →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="choice1">
+    <div class="page-head"><span class="tag">CHOICE ONE</span><span class="num">WHICH WAY?</span></div>
+    <div class="choice">
+      <div class="choice-q">WHERE DOES NARA GO?<small>Her mother is calling... but the garden is calling too.</small></div>
+      <div class="choice-grid">
+        <button class="choice-btn" onclick="goTo('pathA','A')">
+          <div class="label">◆ PATH A</div>
+          <div class="what">THE GARDEN</div>
+          <div class="hint">Something small &amp; green is waiting in the grass...</div>
+        </button>
+        <button class="choice-btn" onclick="goTo('pathB','B')">
+          <div class="label">◆ PATH B</div>
+          <div class="what">THE WINDOW</div>
+          <div class="hint">Your new room looks straight into the tree...</div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="page" data-scene="pathA">
+    <div class="page-head"><span class="tag">PATH A · THE GARDEN</span><span class="num">PAGE 02</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1 wide -->
+      <div class="panel wide" style="min-height: 160px;">
+        <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="160" fill="#fff"/>
+          <!-- grass horizon -->
+          <path d="M 0 120 Q 400 110 800 120 L 800 160 L 0 160 Z" fill="#0a0a0a"/>
+          <!-- sparse grass -->
+          <g stroke="#0a0a0a" stroke-width="2" fill="none">
+            <path d="M 100 120 L 102 108 M 108 120 L 106 110"/>
+            <path d="M 700 120 L 702 108 M 708 120 L 706 110"/>
+          </g>
+          <!-- Ploy crouched (small, on left) -->
+          <g transform="translate(240,125)">
+            <ellipse cx="0" cy="0" rx="22" ry="4" fill="#0a0a0a"/>
+            <!-- crouched body -->
+            <path d="M -14 -4 Q -18 -22 -8 -28 L 8 -28 Q 18 -22 14 -4 Z" fill="#CF554E" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="0" cy="-36" r="12" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -11 -40 Q -8 -48 0 -48 Q 8 -48 11 -40 L 11 -36 L -11 -36 Z" fill="#0a0a0a"/>
+            <circle cx="-7" cy="-44" r="4" fill="#0a0a0a"/>
+            <!-- pointing finger -->
+            <path d="M 14 -20 L 30 -18" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <!-- Nara approaching -->
+          <g transform="translate(440,125)">
+            <rect x="-5" y="-18" width="10" height="18" fill="#CF554E" stroke="#0a0a0a" stroke-width="2.5"/>
+            <path d="M -12 -36 Q -14 -20 -10 -18 L 10 -18 Q 14 -20 12 -36 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="0" cy="-44" r="12" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -11 -48 Q -8 -56 0 -56 Q 8 -56 11 -48 L 11 -44 L -11 -44 Z" fill="#0a0a0a"/>
+            <circle cx="-8" cy="-54" r="4" fill="#0a0a0a"/>
+            <circle cx="8" cy="-54" r="4" fill="#0a0a0a"/>
+          </g>
+          <!-- Question mark on Nara -->
+          <text x="460" y="70" font-family="Bangers, sans-serif" font-size="32" fill="#CF554E" stroke="#0a0a0a" stroke-width="1.5">?</text>
+        </svg>
+        <div class="bubble down" style="top: 14px; left: 60px;"><em>Nara!</em> Come and see!</div>
+      </div>
+
+      <!-- Panel 2: The frog (big close-up) -->
+      <div class="panel" style="min-height: 180px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#fff"/>
+          <!-- Radial burst -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.6">
+            <line x1="200" y1="100" x2="20" y2="20"/>
+            <line x1="200" y1="100" x2="200" y2="10"/>
+            <line x1="200" y1="100" x2="380" y2="20"/>
+            <line x1="200" y1="100" x2="20" y2="180"/>
+            <line x1="200" y1="100" x2="380" y2="180"/>
+            <line x1="200" y1="100" x2="10" y2="100"/>
+            <line x1="200" y1="100" x2="390" y2="100"/>
+          </g>
+          <!-- Leaf -->
+          <g transform="translate(200,140)">
+            <path d="M -140 0 Q -160 -40 -40 -50 Q 60 -55 140 -30 Q 160 -10 100 6 Q -10 20 -140 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -120 -6 Q 20 -30 130 -20" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          </g>
+          <!-- Tua-Tua BIG -->
+          <g transform="translate(200,100)">
+            <ellipse cx="0" cy="8" rx="60" ry="38" fill="#fff" stroke="#0a0a0a" stroke-width="5"/>
+            <ellipse cx="0" cy="0" rx="50" ry="28" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <ellipse cx="-45" cy="6" rx="14" ry="18" fill="#fff" stroke="#0a0a0a" stroke-width="4"/>
+            <ellipse cx="45" cy="6" rx="14" ry="18" fill="#fff" stroke="#0a0a0a" stroke-width="4"/>
+            <!-- Big eyes -->
+            <circle cx="-22" cy="-26" r="20" fill="#fff" stroke="#0a0a0a" stroke-width="5"/>
+            <circle cx="22" cy="-26" r="20" fill="#fff" stroke="#0a0a0a" stroke-width="5"/>
+            <circle cx="-22" cy="-24" r="12" fill="#0a0a0a"/>
+            <circle cx="22" cy="-24" r="12" fill="#0a0a0a"/>
+            <circle cx="-18" cy="-28" r="5" fill="#fff"/>
+            <circle cx="26" cy="-28" r="5" fill="#fff"/>
+            <!-- smile -->
+            <path d="M -12 8 Q 0 18 12 8" stroke="#0a0a0a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          </g>
+          <!-- Sparkles -->
+          <g fill="#CF554E">
+            <path d="M 60 40 L 64 32 L 68 40 L 76 44 L 68 48 L 64 56 L 60 48 L 52 44 Z"/>
+            <path d="M 330 30 L 333 24 L 336 30 L 342 33 L 336 36 L 333 42 L 330 36 L 324 33 Z"/>
+          </g>
+        </svg>
+        <div class="sfx" style="top: 12px; left: 12px; transform: rotate(-10deg);">TUA-TUA!</div>
+      </div>
+
+      <!-- Panel 3: Ploy serious talking -->
+      <div class="panel" style="min-height: 180px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#fff"/>
+          <!-- Soft background -->
+          <g fill="#f4ecd8">
+            <circle cx="100" cy="60" r="30"/>
+            <circle cx="300" cy="50" r="25"/>
+          </g>
+          <!-- Ploy serious pose -->
+          <g transform="translate(200,150)">
+            <path d="M -30 10 Q -36 -30 -10 -40 L 10 -40 Q 36 -30 30 10 Z" fill="#CF554E" stroke="#0a0a0a" stroke-width="4"/>
+            <circle cx="0" cy="-55" r="32" fill="#f2b55a" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -30 -65 Q -24 -86 0 -86 Q 24 -86 30 -65 L 30 -55 L -30 -55 Z" fill="#0a0a0a"/>
+            <circle cx="-22" cy="-82" r="10" fill="#0a0a0a"/>
+            <!-- Very serious face -->
+            <path d="M -14 -55 L -6 -55" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 6 -55 L 14 -55" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M -8 -40 L 8 -40" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round"/>
+          </g>
+          <!-- Thought sparkles -->
+          <g fill="#CF554E">
+            <path d="M 340 100 L 343 94 L 346 100 L 352 103 L 346 106 L 343 112 L 340 106 L 334 103 Z"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 10px; left: 14px; font-style: italic;">I think... he is trying to tell me something.</div>
+      </div>
+
+      <!-- Panel 4 wide: squeak squeak -->
+      <div class="panel wide" style="min-height: 120px;">
+        <svg viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="120" fill="#fff"/>
+          <!-- Path going left -->
+          <path d="M 0 100 Q 400 110 800 90 L 800 120 L 0 120 Z" fill="#0a0a0a" opacity="0.8"/>
+          <!-- Speed/sound radiating lines -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.5">
+            <line x1="100" y1="20" x2="300" y2="20"/>
+            <line x1="80" y1="40" x2="320" y2="40"/>
+            <line x1="120" y1="60" x2="280" y2="60"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 8px; left: 40px; transform: rotate(-4deg);">SQUEAK</div>
+        <div class="sfx big" style="top: 55px; left: 280px; transform: rotate(2deg); color: var(--green);">SQUEAK</div>
+        <div class="sfx" style="top: 30px; right: 30px; transform: rotate(-6deg);">SQUEAK!</div>
+        <div class="narration br" style="background: var(--ink); color: var(--paper); border-color: var(--red);">Something was coming...</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('middle')">WHO IS IT?? →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="pathB">
+    <div class="page-head"><span class="tag">PATH B · THE WINDOW</span><span class="num">PAGE 02</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1: climbing stairs -->
+      <div class="panel" style="min-height: 180px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#fff"/>
+          <!-- Stairs -->
+          <g fill="#0a0a0a">
+            <path d="M 0 200 L 0 180 L 60 180 L 60 160 L 120 160 L 120 140 L 180 140 L 180 120 L 240 120 L 240 100 L 300 100 L 300 80 L 400 80 L 400 200 Z"/>
+          </g>
+          <!-- Steps line -->
+          <g stroke="#fff" stroke-width="2" opacity="0.7">
+            <line x1="0" y1="180" x2="60" y2="180"/>
+            <line x1="60" y1="160" x2="120" y2="160"/>
+            <line x1="120" y1="140" x2="180" y2="140"/>
+          </g>
+          <!-- Nara with suitcase climbing -->
+          <g transform="translate(200,120)">
+            <rect x="-5" y="10" width="10" height="16" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+            <path d="M -12 -10 Q -14 8 -10 10 L 10 10 Q 14 8 12 -10 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="0" cy="-20" r="12" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -11 -24 Q -8 -32 0 -32 Q 8 -32 11 -24 L 11 -20 L -11 -20 Z" fill="#0a0a0a"/>
+            <circle cx="-8" cy="-30" r="4" fill="#0a0a0a"/>
+            <circle cx="8" cy="-30" r="4" fill="#0a0a0a"/>
+            <circle cx="-3" cy="-20" r="1.5" fill="#0a0a0a"/>
+            <circle cx="3" cy="-20" r="1.5" fill="#0a0a0a"/>
+            <!-- suitcase -->
+            <path d="M 12 -4 Q 26 -4 26 10" fill="none" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+            <rect x="20" y="8" width="20" height="14" fill="#CF554E" stroke="#0a0a0a" stroke-width="2.5"/>
+          </g>
+        </svg>
+        <div class="narration tl">Up the honey-coloured stairs.</div>
+      </div>
+
+      <!-- Panel 2: opening window -->
+      <div class="panel" style="min-height: 180px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#0a0a0a"/>
+          <!-- Window frame -->
+          <rect x="40" y="20" width="320" height="160" fill="#f4ecd8" stroke="#fff" stroke-width="4"/>
+          <line x1="200" y1="20" x2="200" y2="180" stroke="#0a0a0a" stroke-width="4"/>
+          <line x1="40" y1="100" x2="360" y2="100" stroke="#0a0a0a" stroke-width="4"/>
+          <!-- Tree visible outside -->
+          <g transform="translate(300,140)">
+            <rect x="-6" y="0" width="12" height="50" fill="#0a0a0a"/>
+            <circle cx="0" cy="-30" r="45" fill="#0a0a0a"/>
+            <circle cx="-26" cy="-10" r="30" fill="#0a0a0a"/>
+            <circle cx="26" cy="-10" r="30" fill="#0a0a0a"/>
+            <ellipse cx="-14" cy="-30" rx="5" ry="7" fill="#CF554E"/>
+            <ellipse cx="20" cy="-14" rx="5" ry="7" fill="#CF554E"/>
+          </g>
+          <!-- Bird -->
+          <g transform="translate(120,70)">
+            <ellipse cx="0" cy="0" rx="10" ry="6" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+            <path d="M -6 -4 Q 0 -10 6 -4" fill="#CF554E" stroke="#0a0a0a" stroke-width="1.5"/>
+            <circle cx="2" cy="-1" r="1.5" fill="#fff"/>
+          </g>
+          <!-- Nara silhouette looking out -->
+          <g transform="translate(150,130)" fill="#0a0a0a">
+            <ellipse cx="0" cy="50" rx="30" ry="8"/>
+            <rect x="-18" y="0" width="36" height="50"/>
+            <circle cx="0" cy="-10" r="16"/>
+            <rect x="-12" y="-16" width="24" height="8"/>
+            <circle cx="-7" cy="-20" r="5"/>
+            <circle cx="7" cy="-20" r="5"/>
+          </g>
+        </svg>
+        <div class="sfx small" style="top: 10px; right: 10px; transform: rotate(8deg);">CREAK...</div>
+      </div>
+
+      <!-- Panel 3 wide: butterfly and bird -->
+      <div class="panel wide" style="min-height: 120px;">
+        <svg viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="120" fill="#fff"/>
+          <!-- Swirl wind -->
+          <g stroke="#0a0a0a" stroke-width="2" fill="none">
+            <path d="M 40 60 Q 100 30 160 60 Q 220 90 280 60"/>
+            <path d="M 520 60 Q 580 30 640 60 Q 700 90 760 60"/>
+          </g>
+          <!-- Butterfly -->
+          <g transform="translate(200,60)">
+            <ellipse cx="-8" cy="0" rx="14" ry="10" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <ellipse cx="8" cy="0" rx="14" ry="10" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <ellipse cx="0" cy="0" rx="2" ry="8" fill="#0a0a0a"/>
+            <circle cx="-8" cy="-2" r="3" fill="#CF554E"/>
+            <circle cx="8" cy="-2" r="3" fill="#CF554E"/>
+          </g>
+          <!-- Hornbill SILHOUETTE (mysterious) -->
+          <g transform="translate(600,50)" fill="#0a0a0a">
+            <ellipse cx="0" cy="0" rx="40" ry="14"/>
+            <path d="M -54 -8 Q -40 -22 -14 -10 Z"/>
+            <path d="M 28 -8 Q 50 -22 54 -8 Z"/>
+            <path d="M -22 -14 Q -8 -30 22 -18 Z"/>
+            <circle cx="-32" cy="-4" r="3" fill="#CF554E"/>
+          </g>
+          <!-- ?? marks -->
+          <text x="520" y="35" font-family="Bangers, sans-serif" font-size="36" fill="#CF554E" stroke="#0a0a0a" stroke-width="2">???</text>
+        </svg>
+        <div class="narration tl">A gold butterfly. A strange, curved-beaked shadow.</div>
+      </div>
+
+      <!-- Panel 4: looking down at Ploy -->
+      <div class="panel" style="min-height: 140px;">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="160" fill="#fff"/>
+          <!-- Aerial view - garden below -->
+          <path d="M 0 80 Q 200 70 400 80 L 400 160 L 0 160 Z" fill="#0a0a0a" opacity="0.85"/>
+          <g stroke="#fff" stroke-width="1.5" fill="none" opacity="0.7">
+            <path d="M 60 120 L 62 112 M 68 120 L 66 114"/>
+            <path d="M 340 130 L 342 122 M 348 130 L 346 124"/>
+          </g>
+          <!-- Ploy crouched small from above -->
+          <g transform="translate(200,130)">
+            <circle cx="0" cy="0" r="18" fill="#CF554E" stroke="#fff" stroke-width="2"/>
+            <circle cx="0" cy="-6" r="10" fill="#f2b55a" stroke="#fff" stroke-width="2"/>
+            <!-- Leaf -->
+            <ellipse cx="0" cy="14" rx="18" ry="6" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 10px; left: 12px; font-style:italic;">...he is trying to tell me something.</div>
+      </div>
+
+      <!-- Panel 5: squeak sound coming -->
+      <div class="panel" style="min-height: 140px;">
+        <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="160" fill="#fff"/>
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.5">
+            <line x1="50" y1="40" x2="180" y2="40"/>
+            <line x1="50" y1="70" x2="160" y2="70"/>
+            <line x1="50" y1="100" x2="170" y2="100"/>
+          </g>
+          <!-- ear -->
+          <g transform="translate(250,80)" fill="none" stroke="#0a0a0a" stroke-width="3">
+            <ellipse cx="0" cy="0" rx="30" ry="40"/>
+            <path d="M -8 -10 Q 0 20 12 10"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 20px; left: 10px; transform: rotate(-6deg);">SQUEAK!</div>
+        <div class="sfx" style="top: 80px; left: 30px; transform: rotate(4deg); color: var(--green);">SQUEAK!</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('middle')">WHO IS IT?? →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="middle">
+    <div class="page-head"><span class="tag">ENTER · ARUN</span><span class="num">PAGE 03</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1 wide: Arun arrives on bike -->
+      <div class="panel wide" style="min-height: 180px;">
+        <svg viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="180" fill="#fff"/>
+          <!-- Speed lines -->
+          <g stroke="#0a0a0a" stroke-width="2.5" opacity="0.7">
+            <line x1="580" y1="40" x2="760" y2="40"/>
+            <line x1="600" y1="70" x2="780" y2="70"/>
+            <line x1="580" y1="100" x2="760" y2="100"/>
+            <line x1="600" y1="130" x2="780" y2="130"/>
+          </g>
+          <!-- Ground -->
+          <path d="M 0 150 L 800 150 L 800 180 L 0 180 Z" fill="#0a0a0a"/>
+          <!-- Bike + Arun -->
+          <g transform="translate(380,130)">
+            <!-- wheels -->
+            <circle cx="-50" cy="20" r="28" fill="#fff" stroke="#0a0a0a" stroke-width="4"/>
+            <circle cx="50" cy="20" r="28" fill="#fff" stroke="#0a0a0a" stroke-width="4"/>
+            <g stroke="#0a0a0a" stroke-width="2">
+              <line x1="-50" y1="-8" x2="-50" y2="48"/>
+              <line x1="-78" y1="20" x2="-22" y2="20"/>
+              <line x1="50" y1="-8" x2="50" y2="48"/>
+              <line x1="22" y1="20" x2="78" y2="20"/>
+            </g>
+            <!-- frame -->
+            <g stroke="#CF554E" stroke-width="5" fill="none" stroke-linecap="round">
+              <line x1="-50" y1="20" x2="-4" y2="-10"/>
+              <line x1="-4" y1="-10" x2="50" y2="20"/>
+              <line x1="-16" y1="0" x2="32" y2="0"/>
+              <line x1="-4" y1="-10" x2="-4" y2="-22"/>
+              <line x1="50" y1="20" x2="50" y2="-16"/>
+            </g>
+            <!-- basket mangoes -->
+            <g transform="translate(52,-20)">
+              <path d="M -16 0 L -20 22 L 20 22 L 16 0 Z" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+              <g stroke="#0a0a0a" stroke-width="1.5" fill="none">
+                <line x1="-18" y1="8" x2="18" y2="8"/>
+                <line x1="-10" y1="0" x2="-12" y2="22"/>
+                <line x1="0" y1="0" x2="0" y2="22"/>
+                <line x1="10" y1="0" x2="12" y2="22"/>
+              </g>
+              <ellipse cx="-6" cy="-3" rx="6" ry="8" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+              <ellipse cx="6" cy="-5" rx="6" ry="8" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+              <ellipse cx="0" cy="2" rx="6" ry="8" fill="#f2b55a" stroke="#0a0a0a" stroke-width="2"/>
+            </g>
+            <!-- Arun body -->
+            <g transform="translate(0,-30)">
+              <path d="M -16 10 Q -18 20 -12 24 L 12 24 Q 18 20 16 10 Z" fill="#0a0a0a"/>
+              <path d="M -14 -16 Q -16 10 -10 14 L 10 14 Q 16 10 14 -16 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="3"/>
+              <!-- arm on handlebar -->
+              <path d="M -12 -8 Q -20 -20 -18 -30" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+              <path d="M 12 -8 Q 22 -8 32 -14" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+              <!-- head -->
+              <circle cx="0" cy="-28" r="14" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+              <path d="M -13 -34 Q -10 -44 0 -42 Q 10 -44 13 -34 Q 15 -28 12 -26 Q 7 -36 0 -36 Q -7 -36 -12 -26 Q -15 -28 -13 -34 Z" fill="#0a0a0a"/>
+              <circle cx="-4" cy="-28" r="2" fill="#0a0a0a"/>
+              <circle cx="4" cy="-28" r="2" fill="#0a0a0a"/>
+              <!-- BIG GRIN -->
+              <path d="M -7 -20 Q 0 -14 7 -20" stroke="#0a0a0a" stroke-width="3" fill="#fff" stroke-linejoin="round"/>
+              <line x1="-4" y1="-18" x2="-4" y2="-14" stroke="#0a0a0a" stroke-width="1.5"/>
+              <line x1="4" y1="-18" x2="4" y2="-14" stroke="#0a0a0a" stroke-width="1.5"/>
+            </g>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 10px; left: 30px; transform: rotate(-5deg);">SQUEEEAK!!</div>
+      </div>
+
+      <!-- Panel 2: Close up hand offering mango -->
+      <div class="panel" style="min-height: 160px;">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="180" fill="#fff"/>
+          <!-- radial sparkle lines -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.5">
+            <line x1="200" y1="90" x2="50" y2="20"/>
+            <line x1="200" y1="90" x2="350" y2="20"/>
+            <line x1="200" y1="90" x2="30" y2="90"/>
+            <line x1="200" y1="90" x2="370" y2="90"/>
+            <line x1="200" y1="90" x2="60" y2="160"/>
+            <line x1="200" y1="90" x2="340" y2="160"/>
+          </g>
+          <!-- Hand holding mango -->
+          <g transform="translate(200,90)">
+            <!-- Hand -->
+            <path d="M -40 40 Q -50 20 -40 0 L -20 -20 Q 0 -28 20 -20 Q 40 0 40 30 Q 40 50 0 50 Q -30 50 -40 40 Z" fill="#f2b55a" stroke="#0a0a0a" stroke-width="4"/>
+            <!-- Mango -->
+            <ellipse cx="0" cy="-10" rx="26" ry="36" fill="#CF554E" stroke="#0a0a0a" stroke-width="4"/>
+            <ellipse cx="-6" cy="-20" rx="8" ry="12" fill="#f2b55a"/>
+            <path d="M 0 -44 Q -2 -50 2 -50" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          </g>
+          <!-- Sparkles -->
+          <g fill="#CF554E">
+            <path d="M 70 40 L 74 28 L 78 40 L 90 44 L 78 48 L 74 60 L 70 48 L 58 44 Z"/>
+            <path d="M 320 50 L 323 42 L 326 50 L 334 53 L 326 56 L 323 64 L 320 56 L 312 53 Z"/>
+          </g>
+        </svg>
+        <div class="sfx" style="top: 8px; right: 10px; transform: rotate(6deg); color: var(--sun);">✦ FOR YOU ✦</div>
+      </div>
+
+      <!-- Panel 3: Nara surprised -->
+      <div class="panel" style="min-height: 160px;">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="180" fill="#fff"/>
+          <!-- background sparkles -->
+          <g fill="#f4ecd8">
+            <circle cx="60" cy="40" r="20"/>
+            <circle cx="340" cy="50" r="18"/>
+            <circle cx="80" cy="140" r="14"/>
+          </g>
+          <!-- Nara close-up shocked-happy -->
+          <g transform="translate(200,110)">
+            <circle cx="0" cy="0" r="68" fill="#f2b55a" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -66 -30 Q -44 -68 0 -68 Q 44 -68 66 -30 L 66 -10 L -66 -10 Z" fill="#0a0a0a"/>
+            <circle cx="-48" cy="-32" r="16" fill="#0a0a0a"/>
+            <circle cx="48" cy="-32" r="16" fill="#0a0a0a"/>
+            <!-- Eyes big sparkling -->
+            <circle cx="-20" cy="-2" r="16" fill="#fff" stroke="#0a0a0a" stroke-width="4"/>
+            <circle cx="20" cy="-2" r="16" fill="#fff" stroke="#0a0a0a" stroke-width="4"/>
+            <circle cx="-20" cy="0" r="9" fill="#0a0a0a"/>
+            <circle cx="20" cy="0" r="9" fill="#0a0a0a"/>
+            <circle cx="-17" cy="-4" r="4" fill="#fff"/>
+            <circle cx="23" cy="-4" r="4" fill="#fff"/>
+            <!-- small mouth -->
+            <ellipse cx="0" cy="26" rx="4" ry="5" fill="#0a0a0a"/>
+            <!-- Blush -->
+            <ellipse cx="-30" cy="18" rx="8" ry="4" fill="#CF554E" opacity="0.5"/>
+            <ellipse cx="30" cy="18" rx="8" ry="4" fill="#CF554E" opacity="0.5"/>
+          </g>
+        </svg>
+        <div class="bubble up" style="bottom: 8px; right: 10px;">...th-thank you!</div>
+      </div>
+
+      <!-- Panel 4 wide: invitation -->
+      <div class="panel wide" style="min-height: 140px;">
+        <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="140" fill="#fff"/>
+          <!-- Path fading to forest -->
+          <path d="M 0 100 Q 400 80 800 100 L 800 140 L 0 140 Z" fill="#0a0a0a"/>
+          <!-- Trees receding -->
+          <g fill="#0a0a0a">
+            <circle cx="720" cy="60" r="22"/>
+            <circle cx="760" cy="55" r="18"/>
+            <circle cx="700" cy="50" r="14"/>
+          </g>
+          <!-- Bike receding small -->
+          <g transform="translate(640,100)" opacity="0.9">
+            <circle cx="-12" cy="5" r="7" fill="none" stroke="#0a0a0a" stroke-width="2"/>
+            <circle cx="12" cy="5" r="7" fill="none" stroke="#0a0a0a" stroke-width="2"/>
+            <line x1="-12" y1="5" x2="0" y2="-6" stroke="#CF554E" stroke-width="2"/>
+            <line x1="12" y1="5" x2="0" y2="-6" stroke="#CF554E" stroke-width="2"/>
+            <circle cx="0" cy="-12" r="5" fill="#f2b55a" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+          <!-- Motion lines -->
+          <g stroke="#0a0a0a" stroke-width="1.5" opacity="0.6">
+            <line x1="570" y1="95" x2="610" y2="95"/>
+            <line x1="580" y1="105" x2="615" y2="105"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 12px; left: 20px; max-width: 80%;">Tomorrow — early. Meet me at the <em>big tamarind</em>.</div>
+        <div class="sfx small" style="bottom: 8px; right: 60px; transform: rotate(-5deg); color: var(--green);">squeak... squeak...</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('choice2')">WHAT NOW?? →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="choice2">
+    <div class="page-head"><span class="tag">CHOICE TWO</span><span class="num">WHICH WAY?</span></div>
+    <div class="choice">
+      <div class="choice-q">WHAT WILL NARA DO?<small>The bike is fading into the forest...</small></div>
+      <div class="choice-grid">
+        <button class="choice-btn" onclick="goTo('pathC','C')">
+          <div class="label">◆ PATH C</div>
+          <div class="what">FOLLOW HIM!</div>
+          <div class="hint">Chase the boy. Find the tamarind NOW.</div>
+        </button>
+        <button class="choice-btn" onclick="goTo('pathD','D')">
+          <div class="label">◆ PATH D</div>
+          <div class="what">STAY WITH THE TREE</div>
+          <div class="hint">Sit. Listen. Let the mango tree speak.</div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="page" data-scene="pathC">
+    <div class="page-head"><span class="tag">PATH C · THE TAMARIND</span><span class="num">PAGE 04</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1 wide: running through forest -->
+      <div class="panel wide" style="min-height: 160px;">
+        <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="160" fill="#fff"/>
+          <!-- Speed lines fast -->
+          <g stroke="#0a0a0a" stroke-width="3" opacity="0.6">
+            <line x1="0" y1="30" x2="300" y2="30"/>
+            <line x1="0" y1="60" x2="260" y2="60"/>
+            <line x1="0" y1="90" x2="320" y2="90"/>
+            <line x1="0" y1="120" x2="280" y2="120"/>
+          </g>
+          <!-- Trees flashing past -->
+          <g fill="#0a0a0a" opacity="0.7">
+            <path d="M 430 160 L 430 70 L 450 70 L 450 160 Z"/>
+            <circle cx="440" cy="60" r="30"/>
+            <path d="M 580 160 L 580 80 L 600 80 L 600 160 Z"/>
+            <circle cx="590" cy="70" r="26"/>
+          </g>
+          <!-- Nara running -->
+          <g transform="translate(300,120)">
+            <!-- leg back -->
+            <path d="M -4 0 Q -18 14 -22 30" fill="none" stroke="#0a0a0a" stroke-width="7" stroke-linecap="round"/>
+            <!-- leg front -->
+            <path d="M 4 0 Q 16 4 20 20" fill="none" stroke="#0a0a0a" stroke-width="7" stroke-linecap="round"/>
+            <path d="M -12 -24 Q -14 -2 -10 0 L 10 0 Q 14 -2 12 -24 Z" fill="#CF554E" stroke="#0a0a0a" stroke-width="3"/>
+            <!-- arms pumping -->
+            <path d="M -12 -18 Q -24 -14 -28 0" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M 12 -18 Q 22 -22 26 -14" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="0" cy="-34" r="13" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -12 -38 Q -8 -48 0 -48 Q 8 -48 12 -38 L 12 -34 L -12 -34 Z" fill="#0a0a0a"/>
+            <circle cx="-8" cy="-46" r="4" fill="#0a0a0a"/>
+            <circle cx="8" cy="-46" r="4" fill="#0a0a0a"/>
+            <!-- determined face -->
+            <path d="M -6 -34 L -2 -32" stroke="#0a0a0a" stroke-width="2.5"/>
+            <path d="M 2 -32 L 6 -34" stroke="#0a0a0a" stroke-width="2.5"/>
+            <path d="M -4 -24 L 4 -24" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+          <!-- Flying mango from pocket -->
+          <g transform="translate(260,100)">
+            <ellipse cx="0" cy="0" rx="6" ry="8" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 20px; right: 40px; transform: rotate(-5deg);">DASH!!</div>
+        <div class="sfx small" style="bottom: 10px; left: 20px; color: var(--green);">pat pat pat pat</div>
+      </div>
+
+      <!-- Panel 2: Tamarind tree BIG reveal -->
+      <div class="panel wide" style="min-height: 220px;">
+        <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="220" fill="#fff"/>
+          <!-- Awe radial lines -->
+          <g stroke="#0a0a0a" stroke-width="2.5" opacity="0.6">
+            <line x1="400" y1="110" x2="100" y2="20"/>
+            <line x1="400" y1="110" x2="700" y2="20"/>
+            <line x1="400" y1="110" x2="60" y2="110"/>
+            <line x1="400" y1="110" x2="740" y2="110"/>
+            <line x1="400" y1="110" x2="150" y2="200"/>
+            <line x1="400" y1="110" x2="650" y2="200"/>
+          </g>
+          <!-- HUGE tamarind -->
+          <g transform="translate(400,180)">
+            <path d="M -24 40 Q -16 -20 -10 -40 L 10 -40 Q 16 -20 24 40 Z" fill="#0a0a0a"/>
+            <!-- layered canopy -->
+            <circle cx="0" cy="-80" r="130" fill="#0a0a0a"/>
+            <circle cx="-100" cy="-40" r="70" fill="#0a0a0a"/>
+            <circle cx="100" cy="-40" r="70" fill="#0a0a0a"/>
+            <circle cx="-60" cy="-130" r="60" fill="#0a0a0a"/>
+            <circle cx="60" cy="-130" r="60" fill="#0a0a0a"/>
+            <circle cx="0" cy="-160" r="50" fill="#0a0a0a"/>
+            <!-- Highlights (white) -->
+            <circle cx="-20" cy="-100" r="24" fill="#fff" opacity="0.2"/>
+            <circle cx="30" cy="-60" r="16" fill="#fff" opacity="0.2"/>
+          </g>
+          <!-- Arun small at base -->
+          <g transform="translate(440,210)">
+            <ellipse cx="0" cy="0" rx="8" ry="3" fill="#0a0a0a"/>
+            <rect x="-4" y="-12" width="8" height="12" fill="#0a0a0a"/>
+            <rect x="-5" y="-22" width="10" height="10" fill="#f2b55a" stroke="#0a0a0a" stroke-width="1.5"/>
+            <circle cx="0" cy="-28" r="5" fill="#f2b55a" stroke="#0a0a0a" stroke-width="1.5"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 14px; left: 50%; transform: translateX(-50%) rotate(-2deg); font-size: 46px;">WHOOOOA...</div>
+        <div class="narration br">Older than both our grandmothers.</div>
+      </div>
+
+      <!-- Panel 3: Leaf falling -->
+      <div class="panel" style="min-height: 160px;">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="180" fill="#fff"/>
+          <!-- Path of falling leaf (spiral) -->
+          <g stroke="#0a0a0a" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="3 3">
+            <path d="M 200 20 Q 260 60 180 100 Q 100 140 200 170"/>
+          </g>
+          <!-- Leaf -->
+          <g transform="translate(200,100) rotate(-30)">
+            <path d="M -25 0 Q -30 -14 0 -18 Q 28 -20 32 -6 Q 28 6 0 6 Q -22 6 -25 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -20 -4 Q 0 -12 28 -8" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          </g>
+          <!-- Nara looking up small -->
+          <g transform="translate(200,160)" fill="#0a0a0a">
+            <circle cx="0" cy="-14" r="10"/>
+            <rect x="-6" y="-5" width="12" height="12"/>
+          </g>
+          <!-- motion arrows -->
+          <g fill="#CF554E">
+            <path d="M 280 40 L 276 50 L 272 40 Z"/>
+            <path d="M 120 80 L 116 90 L 112 80 Z"/>
+          </g>
+        </svg>
+        <div class="sfx small" style="top: 16px; left: 14px; transform: rotate(-8deg); color: var(--green);">flutter...</div>
+      </div>
+
+      <!-- Panel 4: Leaf with writing - mysterious -->
+      <div class="panel" style="min-height: 160px;">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="180" fill="#fff"/>
+          <!-- Spotlight -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.4">
+            <line x1="200" y1="90" x2="30" y2="30"/>
+            <line x1="200" y1="90" x2="370" y2="30"/>
+            <line x1="200" y1="90" x2="30" y2="150"/>
+            <line x1="200" y1="90" x2="370" y2="150"/>
+          </g>
+          <!-- Big leaf with writing -->
+          <g transform="translate(200,100)">
+            <path d="M -130 0 Q -150 -50 -40 -58 Q 70 -64 130 -34 Q 150 -6 90 10 Q -10 26 -130 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -110 -6 Q 10 -42 120 -24" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+            <text x="0" y="-22" font-family="Caveat, cursive" font-size="14" fill="#0a0a0a" text-anchor="middle" font-weight="700">When the moon meets the water,</text>
+            <text x="0" y="-6" font-family="Caveat, cursive" font-size="14" fill="#0a0a0a" text-anchor="middle" font-weight="700">the forest will speak.</text>
+          </g>
+          <!-- Question mark / exclamation -->
+          <text x="340" y="40" font-family="Bangers, sans-serif" font-size="40" fill="#CF554E" stroke="#0a0a0a" stroke-width="2">?!</text>
+        </svg>
+        <div class="narration tl" style="background: var(--red); color: #fff;">A RIDDLE??</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('ending')">THAT NIGHT... →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="pathD">
+    <div class="page-head"><span class="tag">PATH D · THE QUIET</span><span class="num">PAGE 04</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1 wide: Nara sitting under mango tree -->
+      <div class="panel wide" style="min-height: 220px;">
+        <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="220" fill="#fff"/>
+          <!-- Ground -->
+          <path d="M 0 190 L 800 190 L 800 220 L 0 220 Z" fill="#0a0a0a"/>
+          <!-- Huge mango tree -->
+          <g transform="translate(400,190)">
+            <rect x="-20" y="-80" width="40" height="80" fill="#0a0a0a"/>
+            <circle cx="0" cy="-100" r="100" fill="#0a0a0a"/>
+            <circle cx="-80" cy="-70" r="60" fill="#0a0a0a"/>
+            <circle cx="80" cy="-70" r="60" fill="#0a0a0a"/>
+            <circle cx="-50" cy="-150" r="50" fill="#0a0a0a"/>
+            <circle cx="50" cy="-150" r="50" fill="#0a0a0a"/>
+            <!-- Mangoes -->
+            <g fill="#CF554E" stroke="#fff" stroke-width="2">
+              <ellipse cx="-40" cy="-110" rx="7" ry="10"/>
+              <ellipse cx="20" cy="-90" rx="7" ry="10"/>
+              <ellipse cx="-70" cy="-60" rx="7" ry="10"/>
+              <ellipse cx="60" cy="-60" rx="7" ry="10"/>
+              <ellipse cx="30" cy="-160" rx="6" ry="9"/>
+              <ellipse cx="-40" cy="-170" rx="6" ry="9"/>
+            </g>
+          </g>
+          <!-- Nara sitting cross-legged -->
+          <g transform="translate(400,170)">
+            <ellipse cx="0" cy="14" rx="24" ry="5" fill="#0a0a0a" opacity="0.5"/>
+            <!-- crossed legs -->
+            <ellipse cx="-14" cy="10" rx="10" ry="6" fill="#CF554E" stroke="#0a0a0a" stroke-width="2.5"/>
+            <ellipse cx="14" cy="10" rx="10" ry="6" fill="#CF554E" stroke="#0a0a0a" stroke-width="2.5"/>
+            <!-- body -->
+            <path d="M -14 -26 Q -18 -4 -14 6 L 14 6 Q 18 -4 14 -26 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="3"/>
+            <!-- head tilted back, peaceful -->
+            <circle cx="0" cy="-36" r="14" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <path d="M -13 -40 Q -10 -50 0 -50 Q 10 -50 13 -40 L 13 -36 L -13 -36 Z" fill="#0a0a0a"/>
+            <circle cx="-10" cy="-48" r="5" fill="#0a0a0a"/>
+            <circle cx="10" cy="-48" r="5" fill="#0a0a0a"/>
+            <!-- closed eyes (peaceful) -->
+            <path d="M -8 -36 Q -5 -40 -2 -36" stroke="#0a0a0a" stroke-width="2.5" fill="none"/>
+            <path d="M 2 -36 Q 5 -40 8 -36" stroke="#0a0a0a" stroke-width="2.5" fill="none"/>
+            <!-- small smile -->
+            <path d="M -4 -28 Q 0 -25 4 -28" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+            <!-- Mango in lap -->
+            <ellipse cx="0" cy="4" rx="7" ry="9" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+          <!-- Breathing visual: curves around tree -->
+          <g stroke="#CF554E" stroke-width="2" fill="none" opacity="0.7">
+            <path d="M 240 80 Q 280 60 320 80"/>
+            <path d="M 480 80 Q 520 60 560 80"/>
+            <path d="M 200 130 Q 260 110 320 130"/>
+          </g>
+        </svg>
+        <div class="sfx" style="top: 16px; left: 40px; transform: rotate(-8deg); color: var(--green); font-size: 30px;">breathe...</div>
+        <div class="sfx" style="top: 80px; right: 40px; transform: rotate(6deg); color: var(--green); font-size: 30px;">...breathe</div>
+      </div>
+
+      <!-- Panel 2: Leaf drifting down -->
+      <div class="panel" style="min-height: 170px;">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="180" fill="#fff"/>
+          <!-- Dotted trail -->
+          <g stroke="#0a0a0a" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="3 4">
+            <path d="M 200 20 Q 240 60 200 100 Q 160 140 200 170"/>
+          </g>
+          <!-- Leaf mid-air -->
+          <g transform="translate(200,100) rotate(25)">
+            <path d="M -26 0 Q -30 -14 0 -18 Q 28 -20 32 -6 Q 28 6 0 6 Q -22 6 -26 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <path d="M -22 -4 Q 0 -12 28 -8" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          </g>
+          <!-- Hands cupped -->
+          <g transform="translate(200,165)">
+            <path d="M -40 0 Q -30 -14 0 -14 Q 30 -14 40 0" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+          </g>
+        </svg>
+        <div class="sfx small" style="top: 14px; right: 14px; color: var(--green); transform: rotate(10deg);">whisper...</div>
+      </div>
+
+      <!-- Panel 3: Leaf revealing writing -->
+      <div class="panel" style="min-height: 170px;">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="180" fill="#fff"/>
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.5">
+            <line x1="200" y1="90" x2="40" y2="30"/>
+            <line x1="200" y1="90" x2="360" y2="30"/>
+            <line x1="200" y1="90" x2="40" y2="150"/>
+            <line x1="200" y1="90" x2="360" y2="150"/>
+          </g>
+          <g transform="translate(200,100)">
+            <path d="M -130 0 Q -150 -50 -40 -58 Q 70 -64 130 -34 Q 150 -6 90 10 Q -10 26 -130 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <text x="0" y="-22" font-family="Caveat, cursive" font-size="14" fill="#0a0a0a" text-anchor="middle" font-weight="700">When the moon meets the water,</text>
+            <text x="0" y="-6" font-family="Caveat, cursive" font-size="14" fill="#0a0a0a" text-anchor="middle" font-weight="700">the forest will speak.</text>
+          </g>
+          <text x="340" y="40" font-family="Bangers, sans-serif" font-size="40" fill="#CF554E" stroke="#0a0a0a" stroke-width="2">?!</text>
+        </svg>
+        <div class="narration tl" style="background: var(--red); color: #fff;">A RIDDLE??</div>
+      </div>
+
+      <!-- Panel 4 wide: mother calling -->
+      <div class="panel wide" style="min-height: 100px;">
+        <svg viewBox="0 0 800 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="100" fill="#fff"/>
+          <!-- House silhouette -->
+          <g fill="#0a0a0a" transform="translate(650,100)">
+            <rect x="-60" y="-40" width="120" height="40"/>
+            <path d="M -66 -40 L 0 -70 L 66 -40 Z"/>
+            <rect x="-10" y="-30" width="20" height="30" fill="#f2b55a"/>
+            <!-- glow window -->
+            <rect x="30" y="-32" width="16" height="14" fill="#f2b55a"/>
+          </g>
+          <!-- Sound waves from house -->
+          <g stroke="#0a0a0a" stroke-width="2" fill="none" opacity="0.6">
+            <path d="M 540 40 Q 500 50 540 60"/>
+            <path d="M 520 30 Q 470 50 520 70"/>
+            <path d="M 500 20 Q 440 50 500 80"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 14px; left: 30px; max-width: 60%;">Nara? It's getting dark — come inside!</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('ending')">THAT NIGHT... →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="ending">
+    <div class="page-head"><span class="tag">THE ENDING</span><span class="num">PAGE 05</span></div>
+    <div class="panels layout-a">
+      <!-- Panel 1 wide: night sky -->
+      <div class="panel wide" style="min-height: 140px;">
+        <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="140" fill="#0a0a0a"/>
+          <!-- Stars -->
+          <g fill="#fff">
+            <circle cx="60" cy="30" r="2"/>
+            <circle cx="140" cy="50" r="1.5"/>
+            <circle cx="240" cy="30" r="2"/>
+            <circle cx="340" cy="60" r="1.5"/>
+            <circle cx="460" cy="25" r="2"/>
+            <circle cx="540" cy="50" r="1.5"/>
+            <circle cx="640" cy="30" r="2"/>
+            <circle cx="720" cy="60" r="1.5"/>
+            <circle cx="100" cy="80" r="1"/>
+            <circle cx="420" cy="80" r="1"/>
+            <circle cx="700" cy="90" r="1"/>
+          </g>
+          <!-- Twinkle sparkles -->
+          <g fill="#CF554E">
+            <path d="M 200 80 L 202 72 L 204 80 L 212 82 L 204 84 L 202 92 L 200 84 L 192 82 Z"/>
+            <path d="M 600 70 L 602 62 L 604 70 L 612 72 L 604 74 L 602 82 L 600 74 L 592 72 Z"/>
+          </g>
+          <!-- Moon -->
+          <circle cx="680" cy="70" r="36" fill="#f2b55a" stroke="#fff" stroke-width="3"/>
+          <circle cx="672" cy="64" r="4" fill="#0a0a0a" opacity="0.3"/>
+          <circle cx="688" cy="76" r="3" fill="#0a0a0a" opacity="0.3"/>
+          <!-- Small hornbill silhouette flying across -->
+          <g transform="translate(400,60)" fill="#fff">
+            <ellipse cx="0" cy="0" rx="16" ry="5"/>
+            <path d="M -22 -4 Q -14 -10 -4 -4 Z"/>
+            <path d="M 10 -4 Q 22 -10 24 -4 Z"/>
+            <path d="M -10 -6 Q -2 -14 12 -8 Z" fill="#CF554E"/>
+          </g>
+        </svg>
+        <div class="sfx small" style="top: 12px; left: 20px; color: #fff; -webkit-text-stroke: 1.5px var(--ink);">hoooo...</div>
+        <div class="narration bl" style="background: var(--ink); color: var(--paper); border-color: var(--red);">That night.</div>
+      </div>
+
+      <!-- Panel 2: Two sisters on bed -->
+      <div class="panel" style="min-height: 180px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#0a0a0a"/>
+          <!-- Window -->
+          <rect x="20" y="10" width="70" height="90" fill="#2c3f5a" stroke="#fff" stroke-width="3"/>
+          <line x1="55" y1="10" x2="55" y2="100" stroke="#fff" stroke-width="2"/>
+          <line x1="20" y1="55" x2="90" y2="55" stroke="#fff" stroke-width="2"/>
+          <circle cx="70" cy="35" r="8" fill="#f2b55a"/>
+          <!-- Bed -->
+          <rect x="80" y="140" width="280" height="50" fill="#f4ecd8" stroke="#fff" stroke-width="3"/>
+          <rect x="80" y="130" width="280" height="16" fill="#CF554E" stroke="#fff" stroke-width="2"/>
+          <!-- Two sisters sitting on bed edge -->
+          <g transform="translate(180,130)">
+            <rect x="-10" y="-30" width="20" height="30" fill="#CF554E" stroke="#fff" stroke-width="2"/>
+            <circle cx="0" cy="-40" r="12" fill="#f2b55a" stroke="#fff" stroke-width="2"/>
+            <path d="M -10 -44 Q -7 -52 0 -52 Q 7 -52 10 -44 L 10 -40 L -10 -40 Z" fill="#fff"/>
+            <circle cx="-6" cy="-48" r="4" fill="#fff"/>
+            <circle cx="6" cy="-48" r="4" fill="#fff"/>
+          </g>
+          <g transform="translate(260,128)">
+            <rect x="-10" y="-32" width="20" height="32" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="2"/>
+            <circle cx="0" cy="-42" r="13" fill="#f2b55a" stroke="#0a0a0a" stroke-width="2"/>
+            <path d="M -12 -46 Q -8 -54 0 -54 Q 8 -54 12 -46 L 12 -42 L -12 -42 Z" fill="#0a0a0a"/>
+            <circle cx="-9" cy="-52" r="4" fill="#0a0a0a"/>
+            <circle cx="9" cy="-52" r="4" fill="#0a0a0a"/>
+          </g>
+        </svg>
+        <div class="narration tl" style="background: var(--ink); color: var(--paper);">The sisters whisper.</div>
+      </div>
+
+      <!-- Panel 3: Ploy showing leaf -->
+      <div class="panel" style="min-height: 180px;">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="200" fill="#fff"/>
+          <!-- Spotlight -->
+          <g stroke="#0a0a0a" stroke-width="2" opacity="0.5">
+            <line x1="200" y1="100" x2="40" y2="40"/>
+            <line x1="200" y1="100" x2="360" y2="40"/>
+            <line x1="200" y1="100" x2="40" y2="160"/>
+            <line x1="200" y1="100" x2="360" y2="160"/>
+          </g>
+          <!-- Hand holding leaf -->
+          <g transform="translate(200,100)">
+            <path d="M -25 40 Q -30 20 -20 0 Q 0 -6 20 0 Q 30 20 25 40 Q 0 46 -25 40 Z" fill="#f2b55a" stroke="#0a0a0a" stroke-width="3"/>
+            <!-- Leaf -->
+            <g transform="translate(0,-20)">
+              <path d="M -70 0 Q -80 -26 -20 -30 Q 30 -32 70 -18 Q 80 -2 40 4 Q -10 12 -70 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="3"/>
+              <text x="0" y="-12" font-family="Caveat, cursive" font-size="14" fill="#0a0a0a" text-anchor="middle" font-weight="700">Tomorrow.</text>
+              <text x="0" y="0" font-family="Caveat, cursive" font-size="12" fill="#0a0a0a" text-anchor="middle" font-weight="700">The nine lakes.</text>
+            </g>
+          </g>
+          <g fill="#CF554E">
+            <path d="M 60 40 L 63 32 L 66 40 L 74 43 L 66 46 L 63 54 L 60 46 L 52 43 Z"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 8px; left: 14px; font-style: italic;">Tua-Tua dropped this...</div>
+      </div>
+
+      <!-- Panel 4 wide: TWO LEAVES MATCH -->
+      <div class="panel wide" style="min-height: 180px;">
+        <svg viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="180" fill="#fff"/>
+          <!-- Burst lines -->
+          <g stroke="#0a0a0a" stroke-width="3" opacity="0.8">
+            <line x1="400" y1="90" x2="100" y2="10"/>
+            <line x1="400" y1="90" x2="700" y2="10"/>
+            <line x1="400" y1="90" x2="40" y2="90"/>
+            <line x1="400" y1="90" x2="760" y2="90"/>
+            <line x1="400" y1="90" x2="100" y2="170"/>
+            <line x1="400" y1="90" x2="700" y2="170"/>
+          </g>
+          <!-- Table -->
+          <rect x="100" y="130" width="600" height="16" fill="#0a0a0a"/>
+          <!-- Leaf 1 -->
+          <g transform="translate(280,100)">
+            <path d="M -70 0 Q -80 -26 -20 -30 Q 30 -32 70 -18 Q 80 -2 40 4 Q -10 12 -70 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <text x="0" y="-14" font-family="Caveat, cursive" font-size="13" fill="#0a0a0a" text-anchor="middle" font-weight="700">Tomorrow.</text>
+            <text x="0" y="-2" font-family="Caveat, cursive" font-size="11" fill="#0a0a0a" text-anchor="middle" font-weight="700">The nine lakes.</text>
+          </g>
+          <!-- Leaf 2 -->
+          <g transform="translate(520,100)">
+            <path d="M -70 0 Q -80 -26 -20 -30 Q 30 -32 70 -18 Q 80 -2 40 4 Q -10 12 -70 0 Z" fill="#f4ecd8" stroke="#0a0a0a" stroke-width="4"/>
+            <text x="0" y="-14" font-family="Caveat, cursive" font-size="13" fill="#0a0a0a" text-anchor="middle" font-weight="700">Tomorrow.</text>
+            <text x="0" y="-2" font-family="Caveat, cursive" font-size="11" fill="#0a0a0a" text-anchor="middle" font-weight="700">The nine lakes.</text>
+          </g>
+          <!-- Equal sign between -->
+          <g transform="translate(400,90)">
+            <rect x="-18" y="-8" width="36" height="5" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="-18" y="4" width="36" height="5" fill="#CF554E" stroke="#0a0a0a" stroke-width="2"/>
+          </g>
+        </svg>
+        <div class="sfx big" style="top: 10px; left: 50%; transform: translateX(-50%) rotate(-4deg);">SAME LEAF!!</div>
+      </div>
+
+      <!-- Panel 5: Nara decisive -->
+      <div class="panel wide" style="min-height: 160px;">
+        <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="160" fill="#0a0a0a"/>
+          <g stroke="#fff" stroke-width="2" opacity="0.4">
+            <line x1="400" y1="80" x2="100" y2="10"/>
+            <line x1="400" y1="80" x2="700" y2="10"/>
+            <line x1="400" y1="80" x2="40" y2="80"/>
+            <line x1="400" y1="80" x2="760" y2="80"/>
+          </g>
+          <!-- Nara + Ploy close faces -->
+          <g transform="translate(280,90)">
+            <circle cx="0" cy="0" r="60" fill="#f2b55a" stroke="#fff" stroke-width="4"/>
+            <path d="M -58 -24 Q -40 -56 0 -56 Q 40 -56 58 -24 L 58 -6 L -58 -6 Z" fill="#fff"/>
+            <circle cx="-40" cy="-30" r="14" fill="#fff"/>
+            <circle cx="40" cy="-30" r="14" fill="#fff"/>
+            <!-- determined eyes -->
+            <circle cx="-18" cy="0" r="10" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="18" cy="0" r="10" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="-18" cy="0" r="5" fill="#0a0a0a"/>
+            <circle cx="18" cy="0" r="5" fill="#0a0a0a"/>
+            <!-- serious mouth -->
+            <path d="M -8 24 L 8 24" stroke="#0a0a0a" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(520,90)">
+            <circle cx="0" cy="0" r="54" fill="#f2b55a" stroke="#fff" stroke-width="4"/>
+            <path d="M -52 -22 Q -36 -50 0 -50 Q 36 -50 52 -22 L 52 -6 L -52 -6 Z" fill="#fff"/>
+            <circle cx="-36" cy="-28" r="12" fill="#fff"/>
+            <!-- wide excited eyes -->
+            <circle cx="-16" cy="0" r="10" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="16" cy="0" r="10" fill="#fff" stroke="#0a0a0a" stroke-width="3"/>
+            <circle cx="-16" cy="2" r="5" fill="#0a0a0a"/>
+            <circle cx="16" cy="2" r="5" fill="#0a0a0a"/>
+            <ellipse cx="0" cy="22" rx="6" ry="5" fill="#0a0a0a"/>
+          </g>
+        </svg>
+        <div class="bubble down" style="top: 10px; left: 30px;">...do we go?</div>
+        <div class="bubble up" style="bottom: 10px; right: 30px; background: var(--red); color: #fff;">WE GO.</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="goTo('finale')">END OF CHAPTER →</button>
+    </div>
+  </div>
+  <div class="page" data-scene="finale">
+    <div class="page-head"><span class="tag">YOUR JOURNEY</span><span class="num">END</span></div>
+    <div class="finale-box">
+      <div class="finale-title">TO BE CONTINUED!</div>
+      <p style="font-family: 'Caveat', cursive; font-size: 20px; color: var(--green); margin: 4px 0 20px 0;">
+        The path you took today:
+      </p>
+      <div class="path-map" id="path-map"></div>
+
+      <div style="margin: 24px auto; max-width: 500px; border: 3px dashed var(--ink); padding: 20px; background: #fff;">
+        <div style="font-family: 'Bangers', sans-serif; font-size: 22px; color: var(--red); letter-spacing: 0.1em;">4 WAYS TO READ!</div>
+        <div style="font-family: 'Caveat', cursive; font-size: 18px; color: var(--green); margin-top: 6px;">
+          You found one. Three more are waiting.<br/>Each one reveals something the others don't.
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn" onclick="resetStory()">READ AGAIN ↺</button>
+      </div>
+
+      <div style="margin-top: 30px; font-family: 'Bangers', sans-serif; font-size: 14px; letter-spacing: 0.2em; color: var(--green);">
+        NEXT CHAPTER · THE SECRET OF THE NINE LAKES
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">A MANGA ADVENTURE · FOR THE KIDS OF TRI VANANDA</div>
+
+<script>
+  const chosen = { c1: null, c2: null };
+  const beats = ['cover','arrival','choice1','middle','choice2','ending'];
+
+  function goTo(id, c) {
+    if (c === 'A' || c === 'B') chosen.c1 = c;
+    if (c === 'C' || c === 'D') chosen.c2 = c;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const t = document.querySelector('[data-scene="'+id+'"]');
+    if (t) t.classList.add('active');
+    document.getElementById('book').scrollIntoView({behavior:'smooth', block:'start'});
+    if (id === 'finale') renderFinale();
+    updateProgress(id);
+  }
+  function updateProgress(id) {
+    const prog = document.getElementById('progress');
+    prog.innerHTML = '';
+    let b = 0;
+    if (id==='cover') b=0;
+    else if (['arrival'].includes(id)) b=1;
+    else if (['choice1','pathA','pathB'].includes(id)) b=2;
+    else if (id==='middle') b=3;
+    else if (['choice2','pathC','pathD'].includes(id)) b=4;
+    else if (['ending','finale'].includes(id)) b=5;
+    beats.forEach((_,i) => {
+      const d = document.createElement('span');
+      d.className = 'dot';
+      if (i < b) d.classList.add('visited');
+      if (i === b) d.classList.add('current');
+      prog.appendChild(d);
+    });
+  }
+  function renderFinale() {
+    const c1 = chosen.c1==='A' ? 'THE GARDEN' : 'THE WINDOW';
+    const c2 = chosen.c2==='C' ? 'FOLLOW HIM' : 'STAY WITH THE TREE';
+    const map = document.getElementById('path-map');
+    if (map) map.innerHTML =
+      '<span class="node on">ARRIVAL</span><span class="arrow">→</span>' +
+      '<span class="node on">'+c1+'</span><span class="arrow">→</span>' +
+      '<span class="node on">ARUN</span><span class="arrow">→</span>' +
+      '<span class="node on">'+c2+'</span><span class="arrow">→</span>' +
+      '<span class="node on">THE LEAVES</span>';
+  }
+  function resetStory() { chosen.c1 = null; chosen.c2 = null; goTo('cover'); }
+  updateProgress('cover');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Friends of Tri Vananda — Chapter One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5e6c8;
+    --paper-dark: #e8d2a0;
+    --cream: #fff4d6;
+    --ink: #2a1e18;
+    --red: #c24a3a;
+    --red-dark: #8a2d20;
+    --green: #4a7a4a;
+    --green-dark: #2c4e2c;
+    --sky: #9ec8e8;
+    --sky-dark: #5a8cb8;
+    --sun: #f2c94c;
+    --skin: #f2b98a;
+    --hair: #1a1410;
+    --dust: #d4b893;
+    --box-bg: #fffef4;
+    --box-border: #2a1e18;
+    --shadow: rgba(42,30,24,0.25);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #8a6d3a;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at center, #a8825a 0%, #6b4a2a 100%);
+    font-family: 'Lora', Georgia, serif;
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 22px 14px 24px 14px;
+    min-height: 100vh;
+  }
+
+  /* ─── Console / CRT Frame ─────────────────────────────── */
+  .console {
+    width: min(820px, 100%);
+    background: #1a1410;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,0.6),
+      inset 0 0 0 2px #3a2a22,
+      inset 0 0 0 6px #1a1410,
+      inset 0 0 0 8px #5a3a28;
+    position: relative;
+  }
+  .console::before {
+    content: "";
+    position: absolute;
+    top: -8px; left: 50%; transform: translateX(-50%);
+    width: 180px; height: 8px;
+    background: #3a2a22;
+    border-radius: 4px 4px 0 0;
+  }
+  .console::after {
+    content: "TRI VANANDA · CH.1";
+    position: absolute;
+    top: -28px; left: 50%; transform: translateX(-50%);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--cream);
+    opacity: 0.9;
+    letter-spacing: 0.2em;
+  }
+
+  .screen {
+    background: var(--paper);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+    max-height: 80vh;
+    min-height: 480px;
+  }
+  /* Scanlines */
+  .screen::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(42,30,24,0.04) 0 1px,
+      transparent 1px 3px
+    );
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* ─── Top Status Bar ──────────────────────────────────── */
+  .topbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 32px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 20;
+    border-bottom: 2px solid var(--red);
+  }
+  .topbar .location { display: flex; align-items: center; gap: 8px; }
+  .topbar .location .dot {
+    width: 6px; height: 6px; background: var(--red);
+    animation: blink 1.2s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.3; } }
+  .topbar .stats { display: flex; gap: 6px; align-items: center; }
+  .topbar .pip {
+    width: 8px; height: 8px;
+    background: var(--paper-dark);
+    image-rendering: pixelated;
+  }
+  .topbar .pip.on { background: var(--sun); box-shadow: 0 0 6px rgba(242,201,76,0.6); }
+
+  /* ─── Viewport (Scene Area) ───────────────────────────── */
+  .viewport {
+    position: absolute;
+    top: 32px; left: 0; right: 0;
+    bottom: 180px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+  }
+  .scene.active { display: flex; animation: fadein 0.35s ease; }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+  .scene-art {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene-art svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+
+  /* ─── Dialogue Box (Mother-style) ─────────────────────── */
+  .dialog {
+    position: absolute;
+    bottom: 62px; left: 12px; right: 12px;
+    height: 110px;
+    background: var(--box-bg);
+    border: 3px solid var(--box-border);
+    border-radius: 4px;
+    box-shadow: 0 4px 0 var(--box-border), 0 0 0 2px var(--paper);
+    padding: 14px 16px 12px 16px;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dialog::before {
+    content: "";
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 1px solid var(--box-border);
+    pointer-events: none;
+  }
+  .dialog .speaker {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+  }
+  .dialog .speaker.narrator { color: var(--green-dark); }
+  .dialog .speaker.system { color: var(--red-dark); }
+  .dialog .text {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .dialog .text em {
+    color: var(--red-dark);
+    font-style: italic;
+  }
+  .dialog .text.prose {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .dialog .continue-tick {
+    position: absolute;
+    bottom: 10px; right: 14px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--red);
+    animation: bounce 0.8s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+
+  /* ─── Choice Menu ──────────────────────────────────────── */
+  .choices {
+    position: absolute;
+    bottom: 62px; left: 12px; right: 12px;
+    background: var(--box-bg);
+    border: 3px solid var(--box-border);
+    border-radius: 4px;
+    box-shadow: 0 4px 0 var(--box-border), 0 0 0 2px var(--paper);
+    padding: 12px 18px;
+    z-index: 15;
+  }
+  .choices .prompt {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .choices ul {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .choices li {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    padding: 4px 8px 4px 26px;
+    position: relative;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .choices li::before {
+    content: "►";
+    position: absolute;
+    left: 4px; top: 4px;
+    color: var(--red);
+    opacity: 0;
+    transition: opacity 0.1s, transform 0.1s;
+  }
+  .choices li:hover::before,
+  .choices li.focused::before {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+  .choices li:hover { background: var(--paper-dark); }
+  .choices li small {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    color: var(--green-dark);
+    opacity: 0.8;
+    font-style: italic;
+    margin-top: 1px;
+  }
+
+  /* ─── Bottom Nav Bar ──────────────────────────────────── */
+  .navbar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 52px;
+    background: var(--ink);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    z-index: 20;
+    border-top: 2px solid var(--red);
+  }
+  .nav-btn {
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--cream);
+    box-shadow: 2px 2px 0 var(--red-dark);
+    padding: 8px 14px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .nav-btn:hover:not(:disabled) {
+    background: var(--sun);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--red-dark);
+  }
+  .nav-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--red-dark); }
+  .nav-btn:disabled { opacity: 0.35; cursor: default; }
+  .nav-btn.primary { background: var(--red); color: var(--cream); border-color: var(--cream); }
+  .nav-btn.primary:hover:not(:disabled) { background: var(--sun); color: var(--ink); }
+
+  .nav-hint {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--paper-dark);
+    letter-spacing: 0.15em;
+    display: none;
+  }
+  @media (min-width: 680px) { .nav-hint { display: block; } }
+
+  /* ─── Title / Menu Cards ──────────────────────────────── */
+  .title-card {
+    background: linear-gradient(180deg, #3a5a8a 0%, #1a2a4a 100%);
+    color: var(--cream);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 24px;
+    position: relative;
+  }
+  .title-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 20%, var(--sun) 0px, transparent 2px),
+      radial-gradient(circle at 80% 30%, var(--cream) 0px, transparent 1.5px),
+      radial-gradient(circle at 60% 70%, var(--cream) 0px, transparent 1.5px),
+      radial-gradient(circle at 30% 80%, var(--sun) 0px, transparent 2px),
+      radial-gradient(circle at 90% 80%, var(--cream) 0px, transparent 1.5px),
+      radial-gradient(circle at 15% 60%, var(--cream) 0px, transparent 1px);
+    background-size: 100% 100%;
+    opacity: 0.9;
+  }
+  .title-main {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(16px, 3.2vw, 28px);
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    text-shadow: 4px 4px 0 var(--red-dark), 8px 8px 0 var(--ink);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .title-sub {
+    font-family: 'VT323', monospace;
+    font-size: clamp(16px, 2.4vw, 22px);
+    color: var(--sun);
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+  .title-press {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--cream);
+    letter-spacing: 0.2em;
+    animation: blink 1s steps(2) infinite;
+    position: relative;
+  }
+
+  /* Chapter banner */
+  .chapter-card {
+    background: var(--paper);
+    color: var(--ink);
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 30px;
+    position: relative;
+    text-align: center;
+  }
+  .chapter-banner {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    box-shadow: 4px 4px 0 var(--red);
+  }
+  .chapter-title-big {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(18px, 3.2vw, 28px);
+    line-height: 1.3;
+    color: var(--red-dark);
+    margin-bottom: 22px;
+    letter-spacing: 0.04em;
+  }
+  .chapter-sub {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: var(--green-dark);
+    max-width: 420px;
+    line-height: 1.3;
+  }
+
+  /* End card */
+  .end-card {
+    background: linear-gradient(180deg, #1a2a4a 0%, #3a1a2a 100%);
+    color: var(--cream);
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 26px;
+    text-align: center;
+  }
+  .end-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(14px, 2.8vw, 24px);
+    color: var(--sun);
+    text-shadow: 3px 3px 0 var(--red-dark);
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+  .save-frame {
+    background: var(--paper);
+    color: var(--ink);
+    border: 3px solid var(--cream);
+    box-shadow: 4px 4px 0 var(--red);
+    padding: 16px 22px;
+    margin: 14px 0;
+    max-width: 440px;
+  }
+  .save-frame .save-header {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--red-dark);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .save-frame .save-body {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .save-path {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--ink);
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+  }
+
+  /* ─── Chapter-select Menu Modal ───────────────────────── */
+  .menu-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,20,16,0.92);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .menu-overlay.open { display: flex; }
+  .menu-panel {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--red);
+    padding: 16px 18px;
+    max-width: 420px;
+    width: 100%;
+    max-height: 80%;
+    overflow-y: auto;
+  }
+  .menu-panel h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--red-dark);
+    margin: 0 0 10px 0;
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+  .menu-panel ul { list-style: none; margin: 0; padding: 0; }
+  .menu-panel li {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    padding: 6px 8px 6px 24px;
+    cursor: pointer;
+    position: relative;
+    color: var(--ink);
+    border-bottom: 1px dashed rgba(42,30,24,0.2);
+  }
+  .menu-panel li:hover { background: var(--paper-dark); }
+  .menu-panel li.current { color: var(--red-dark); }
+  .menu-panel li.current::after {
+    content: "YOU ARE HERE";
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: var(--red);
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+  }
+  .menu-panel li.visited::before {
+    content: "✓";
+    position: absolute;
+    left: 6px;
+    color: var(--green);
+  }
+  .menu-panel li.locked {
+    color: var(--paper-dark);
+    cursor: not-allowed;
+  }
+  .menu-close {
+    margin-top: 14px;
+    width: 100%;
+  }
+
+  /* ─── Pixel sprite helpers ────────────────────────────── */
+  .px { shape-rendering: crispEdges; }
+
+  @media (max-width: 640px) {
+    .dialog { height: 124px; padding: 12px 14px; }
+    .dialog .text { font-size: 18px; }
+    .viewport { bottom: 200px; }
+    .dialog, .choices { bottom: 58px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="console">
+  <div class="screen">
+
+    <!-- ═══════════════ TOP BAR ═══════════════ -->
+    <div class="topbar">
+      <div class="location"><span class="dot"></span><span id="location">TITLE SCREEN</span></div>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <!-- ═══════════════ VIEWPORT ═══════════════ -->
+    <div class="viewport" id="viewport">
+      <!-- Scenes injected -->
+      <div class="scene active" data-id="title">
+        <div class="title-card scene-art" style="height: 100%;">
+          <!-- pixel sun/moon motif -->
+          <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width:240px; height:auto; margin-bottom: 10px; position: relative;">
+            <!-- Mango tree pixel icon -->
+            <g class="px">
+              <rect x="188" y="80" width="8" height="32" fill="#5a3a22"/>
+              <rect x="180" y="76" width="24" height="4" fill="#5a3a22"/>
+              <rect x="172" y="48" width="40" height="4" fill="#4a7a4a"/>
+              <rect x="164" y="52" width="56" height="4" fill="#4a7a4a"/>
+              <rect x="160" y="56" width="64" height="4" fill="#4a7a4a"/>
+              <rect x="156" y="60" width="72" height="4" fill="#4a7a4a"/>
+              <rect x="156" y="64" width="72" height="4" fill="#4a7a4a"/>
+              <rect x="160" y="68" width="64" height="4" fill="#4a7a4a"/>
+              <rect x="164" y="72" width="56" height="4" fill="#4a7a4a"/>
+              <rect x="172" y="76" width="40" height="4" fill="#4a7a4a"/>
+              <rect x="168" y="44" width="32" height="4" fill="#4a7a4a"/>
+              <rect x="176" y="40" width="16" height="4" fill="#4a7a4a"/>
+              <!-- Mango fruits -->
+              <rect x="168" y="56" width="4" height="8" fill="#f2c94c"/>
+              <rect x="164" y="60" width="4" height="4" fill="#f2c94c"/>
+              <rect x="204" y="60" width="4" height="8" fill="#c24a3a"/>
+              <rect x="208" y="64" width="4" height="4" fill="#c24a3a"/>
+              <rect x="184" y="48" width="4" height="4" fill="#c24a3a"/>
+            </g>
+          </svg>
+          <div class="title-main">THE THREE<br/>FRIENDS</div>
+          <div class="title-sub">◆ A NEW HOME UNDER THE MANGO TREES ◆</div>
+          <div class="title-press">▸ PRESS NEXT TO BEGIN ◂</div>
+        </div>
+      </div>
+      <div class="scene" data-id="chapter1">
+        <div class="chapter-card scene-art" style="height: 100%;">
+          <div class="chapter-banner">◆ CHAPTER 01 ◆</div>
+          <div class="chapter-title-big">A NEW HOME<br/>UNDER THE<br/>MANGO TREES</div>
+          <div class="chapter-sub">
+            "You have been on the road a long time.<br/>
+            Your new life is one tree ahead."
+          </div>
+          <!-- little decorative sprite row -->
+          <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg" style="width: 240px; height: 40px; margin-top: 22px;">
+            <g class="px">
+              <!-- Ploy sprite -->
+              <rect x="20" y="12" width="8" height="8" fill="#f2b98a"/>
+              <rect x="16" y="8" width="16" height="4" fill="#1a1410"/>
+              <rect x="18" y="20" width="12" height="10" fill="#c24a3a"/>
+              <rect x="20" y="30" width="4" height="4" fill="#1a1410"/>
+              <rect x="26" y="30" width="4" height="4" fill="#1a1410"/>
+              <!-- Nara sprite -->
+              <rect x="140" y="10" width="10" height="10" fill="#f2b98a"/>
+              <rect x="136" y="6" width="18" height="4" fill="#1a1410"/>
+              <rect x="134" y="10" width="4" height="4" fill="#1a1410"/>
+              <rect x="152" y="10" width="4" height="4" fill="#1a1410"/>
+              <rect x="138" y="20" width="14" height="12" fill="#3a6cbc"/>
+              <rect x="138" y="32" width="6" height="4" fill="#f2c94c"/>
+              <rect x="146" y="32" width="6" height="4" fill="#f2c94c"/>
+              <!-- Arun sprite -->
+              <rect x="260" y="10" width="10" height="10" fill="#d4925a"/>
+              <rect x="256" y="6" width="18" height="6" fill="#1a1410"/>
+              <rect x="258" y="20" width="14" height="12" fill="#4a7a4a"/>
+              <rect x="258" y="32" width="6" height="4" fill="#8a5a2a"/>
+              <rect x="266" y="32" width="6" height="4" fill="#8a5a2a"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="scene" data-id="road">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Sky -->
+            <rect width="400" height="110" fill="#a8c5e0"/>
+            <!-- pixel clouds -->
+            <g class="px" fill="#fff4d6">
+              <rect x="40" y="30" width="24" height="6"/>
+              <rect x="44" y="24" width="16" height="6"/>
+              <rect x="48" y="36" width="12" height="4"/>
+              <rect x="260" y="44" width="30" height="6"/>
+              <rect x="266" y="38" width="22" height="6"/>
+              <rect x="340" y="20" width="22" height="6"/>
+            </g>
+            <!-- Distant mountains pixel -->
+            <g class="px" fill="#7a9a7a">
+              <rect x="0" y="90" width="400" height="20"/>
+              <rect x="20" y="78" width="40" height="12"/>
+              <rect x="30" y="70" width="20" height="8"/>
+              <rect x="120" y="82" width="60" height="8"/>
+              <rect x="140" y="74" width="24" height="8"/>
+              <rect x="240" y="80" width="40" height="10"/>
+              <rect x="250" y="72" width="20" height="8"/>
+              <rect x="320" y="76" width="50" height="14"/>
+              <rect x="336" y="68" width="24" height="8"/>
+            </g>
+            <!-- Land/fields pixel -->
+            <rect width="400" height="140" y="110" fill="#a8c26a"/>
+            <g class="px" fill="#8ab25a">
+              <rect x="0" y="110" width="400" height="6"/>
+              <rect x="0" y="120" width="400" height="2"/>
+              <rect x="0" y="140" width="400" height="2"/>
+            </g>
+            <!-- Trees dotting the fields -->
+            <g class="px">
+              <rect x="30" y="134" width="4" height="10" fill="#5a3a22"/>
+              <rect x="22" y="122" width="20" height="14" fill="#4a7a4a"/>
+              <rect x="26" y="118" width="12" height="4" fill="#4a7a4a"/>
+              <rect x="340" y="130" width="4" height="12" fill="#5a3a22"/>
+              <rect x="332" y="118" width="20" height="14" fill="#4a7a4a"/>
+              <rect x="336" y="114" width="12" height="4" fill="#4a7a4a"/>
+              <rect x="80" y="160" width="4" height="10" fill="#5a3a22"/>
+              <rect x="72" y="148" width="20" height="14" fill="#4a7a4a"/>
+              <rect x="300" y="166" width="4" height="10" fill="#5a3a22"/>
+              <rect x="292" y="154" width="20" height="14" fill="#4a7a4a"/>
+            </g>
+            <!-- Winding road -->
+            <g class="px" fill="#2a1e18">
+              <path d="M 0 230 L 100 210 L 180 200 L 240 190 L 320 180 L 400 170 L 400 250 L 0 250 Z"/>
+            </g>
+            <g class="px" fill="#5a4a3a">
+              <path d="M 0 226 L 100 206 L 180 196 L 240 186 L 320 176 L 400 166 L 400 170 L 320 180 L 240 190 L 180 200 L 100 210 L 0 230 Z"/>
+            </g>
+            <!-- Road dashes -->
+            <g class="px" fill="#f2c94c">
+              <rect x="40" y="220" width="10" height="2"/>
+              <rect x="110" y="208" width="10" height="2"/>
+              <rect x="180" y="198" width="10" height="2"/>
+              <rect x="260" y="188" width="10" height="2"/>
+              <rect x="340" y="178" width="10" height="2"/>
+            </g>
+            <!-- Car pixel (top-down) -->
+            <g class="px" transform="translate(190,190)">
+              <rect x="-10" y="-8" width="20" height="16" fill="#c24a3a"/>
+              <rect x="-10" y="-6" width="2" height="12" fill="#8a2d20"/>
+              <rect x="8" y="-6" width="2" height="12" fill="#8a2d20"/>
+              <rect x="-8" y="-4" width="16" height="4" fill="#fff4d6"/>
+              <rect x="-8" y="2" width="16" height="2" fill="#1a1410"/>
+              <rect x="-14" y="-6" width="2" height="2" fill="#f2c94c"/>
+              <rect x="12" y="-6" width="2" height="2" fill="#f2c94c"/>
+              <rect x="-12" y="8" width="4" height="4" fill="#1a1410"/>
+              <rect x="8" y="8" width="4" height="4" fill="#1a1410"/>
+            </g>
+            <!-- tiny birds -->
+            <g class="px" fill="#2a1e18">
+              <rect x="150" y="40" width="2" height="1"/>
+              <rect x="152" y="39" width="2" height="1"/>
+              <rect x="154" y="40" width="2" height="1"/>
+              <rect x="200" y="55" width="2" height="1"/>
+              <rect x="202" y="54" width="2" height="1"/>
+              <rect x="204" y="55" width="2" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker narrator">◆ NARRATOR</div>
+          <div class="text prose">
+            The road has been winding for a long time. Your sister Ploy is asleep beside you —
+            mouth a little open, one sandal fallen off. Outside, fields of green turn into
+            forest, and forest turns into something you can't quite name yet.
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="gate">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Warm late-afternoon sky -->
+            <defs>
+              <linearGradient id="sky-gate" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f5d89a"/>
+                <stop offset="1" stop-color="#f2b55a"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="140" fill="url(#sky-gate)"/>
+            <!-- Sun -->
+            <g class="px">
+              <rect x="290" y="30" width="28" height="4" fill="#fff4d6"/>
+              <rect x="286" y="34" width="36" height="4" fill="#fff4d6"/>
+              <rect x="282" y="38" width="44" height="4" fill="#fff4d6"/>
+              <rect x="282" y="42" width="44" height="4" fill="#fff4d6"/>
+              <rect x="286" y="46" width="36" height="4" fill="#fff4d6"/>
+              <rect x="290" y="50" width="28" height="4" fill="#fff4d6"/>
+            </g>
+            <!-- Land -->
+            <rect width="400" height="110" y="140" fill="#8ab260"/>
+            <g class="px" fill="#6a9245">
+              <rect x="0" y="140" width="400" height="4"/>
+              <rect x="0" y="154" width="400" height="2"/>
+            </g>
+            <!-- Stone wall / gate fragments -->
+            <g class="px" fill="#9a8566">
+              <rect x="30" y="134" width="40" height="30"/>
+              <rect x="330" y="134" width="40" height="30"/>
+            </g>
+            <g class="px" fill="#7a6548">
+              <rect x="30" y="134" width="40" height="4"/>
+              <rect x="330" y="134" width="40" height="4"/>
+              <rect x="40" y="150" width="4" height="14"/>
+              <rect x="54" y="142" width="4" height="22"/>
+              <rect x="340" y="150" width="4" height="14"/>
+              <rect x="354" y="146" width="4" height="18"/>
+            </g>
+            <!-- GIANT MANGO TREE (centre) -->
+            <g class="px">
+              <!-- trunk -->
+              <rect x="190" y="120" width="20" height="60" fill="#5a3a22"/>
+              <rect x="194" y="120" width="4" height="60" fill="#3a2414"/>
+              <rect x="202" y="140" width="4" height="40" fill="#3a2414"/>
+              <rect x="182" y="176" width="36" height="4" fill="#5a3a22"/>
+              <!-- canopy levels (blocky) -->
+              <rect x="140" y="60" width="120" height="10" fill="#2c4e2c"/>
+              <rect x="120" y="70" width="160" height="10" fill="#2c4e2c"/>
+              <rect x="100" y="80" width="200" height="10" fill="#2c4e2c"/>
+              <rect x="90" y="90" width="220" height="10" fill="#2c4e2c"/>
+              <rect x="100" y="100" width="200" height="10" fill="#2c4e2c"/>
+              <rect x="110" y="110" width="180" height="10" fill="#2c4e2c"/>
+              <rect x="130" y="120" width="140" height="6" fill="#2c4e2c"/>
+              <!-- highlights -->
+              <rect x="150" y="74" width="90" height="6" fill="#4a7a4a"/>
+              <rect x="130" y="84" width="130" height="6" fill="#4a7a4a"/>
+              <rect x="120" y="94" width="150" height="4" fill="#4a7a4a"/>
+              <rect x="140" y="104" width="120" height="4" fill="#4a7a4a"/>
+              <!-- Mangoes (yellow and red fruit) -->
+              <rect x="130" y="84" width="6" height="8" fill="#f2c94c"/>
+              <rect x="132" y="92" width="4" height="4" fill="#e0a83a"/>
+              <rect x="260" y="90" width="6" height="8" fill="#c24a3a"/>
+              <rect x="262" y="98" width="4" height="4" fill="#8a2d20"/>
+              <rect x="178" y="110" width="6" height="8" fill="#f2c94c"/>
+              <rect x="180" y="118" width="4" height="4" fill="#e0a83a"/>
+              <rect x="220" y="102" width="6" height="8" fill="#c24a3a"/>
+              <rect x="168" y="72" width="5" height="6" fill="#f2c94c"/>
+              <rect x="228" y="70" width="5" height="6" fill="#c24a3a"/>
+              <rect x="100" y="92" width="5" height="6" fill="#f2c94c"/>
+              <rect x="290" y="96" width="5" height="6" fill="#c24a3a"/>
+            </g>
+            <!-- Falling mango (mid-air) -->
+            <g class="px">
+              <rect x="240" y="150" width="6" height="8" fill="#c24a3a"/>
+              <rect x="242" y="158" width="4" height="3" fill="#8a2d20"/>
+              <!-- motion lines -->
+              <rect x="243" y="142" width="2" height="2" fill="#2a1e18"/>
+              <rect x="243" y="138" width="2" height="2" fill="#2a1e18"/>
+            </g>
+            <!-- Red car under tree (top-down perspective) -->
+            <g class="px" transform="translate(170,200)">
+              <rect x="-18" y="-12" width="36" height="22" fill="#c24a3a"/>
+              <rect x="-18" y="-12" width="36" height="3" fill="#8a2d20"/>
+              <rect x="-16" y="-8" width="32" height="6" fill="#fff4d6"/>
+              <rect x="-16" y="-2" width="32" height="2" fill="#1a1410"/>
+              <rect x="-20" y="-8" width="2" height="4" fill="#f2c94c"/>
+              <rect x="18" y="-8" width="2" height="4" fill="#f2c94c"/>
+              <rect x="-22" y="4" width="6" height="6" fill="#1a1410"/>
+              <rect x="16" y="4" width="6" height="6" fill="#1a1410"/>
+              <!-- impact pop lines -->
+              <rect x="-6" y="-24" width="2" height="3" fill="#f2c94c"/>
+              <rect x="4" y="-24" width="2" height="3" fill="#f2c94c"/>
+              <rect x="0" y="-28" width="2" height="3" fill="#f2c94c"/>
+            </g>
+            <!-- Tiny birds silhouettes -->
+            <g class="px" fill="#1a1410">
+              <rect x="60" y="30" width="2" height="1"/>
+              <rect x="62" y="29" width="2" height="1"/>
+              <rect x="64" y="30" width="2" height="1"/>
+              <rect x="330" y="40" width="2" height="1"/>
+              <rect x="332" y="39" width="2" height="1"/>
+              <rect x="334" y="40" width="2" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker">▸ FATHER</div>
+          <div class="text">
+            We're here. Look up.
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="arrival">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- soft afternoon sky -->
+            <rect width="400" height="100" fill="#e6d8a8"/>
+            <!-- Ground -->
+            <rect width="400" height="150" y="100" fill="#8ab260"/>
+            <g class="px" fill="#6a9245">
+              <rect x="0" y="100" width="400" height="4"/>
+              <rect x="0" y="118" width="400" height="2"/>
+              <rect x="0" y="160" width="400" height="3"/>
+            </g>
+            <!-- Path stones -->
+            <g class="px" fill="#c4a878">
+              <rect x="160" y="194" width="30" height="10"/>
+              <rect x="200" y="210" width="30" height="10"/>
+              <rect x="150" y="226" width="30" height="10"/>
+              <rect x="190" y="238" width="30" height="10"/>
+            </g>
+            <!-- Side-view: Big mango tree on right -->
+            <g class="px">
+              <rect x="320" y="90" width="18" height="110" fill="#5a3a22"/>
+              <rect x="260" y="20" width="100" height="80" fill="#2c4e2c"/>
+              <rect x="250" y="40" width="120" height="50" fill="#2c4e2c"/>
+              <rect x="270" y="26" width="70" height="50" fill="#4a7a4a"/>
+              <rect x="260" y="46" width="90" height="30" fill="#4a7a4a"/>
+              <!-- mangoes -->
+              <rect x="290" y="44" width="5" height="7" fill="#c24a3a"/>
+              <rect x="310" y="60" width="5" height="7" fill="#f2c94c"/>
+              <rect x="270" y="76" width="5" height="7" fill="#c24a3a"/>
+            </g>
+            <!-- House on left -->
+            <g class="px">
+              <rect x="20" y="120" width="80" height="60" fill="#d4a868"/>
+              <rect x="20" y="120" width="80" height="6" fill="#8a6d3a"/>
+              <rect x="14" y="118" width="92" height="6" fill="#8a2d20"/>
+              <rect x="10" y="110" width="100" height="8" fill="#a83a2a"/>
+              <rect x="50" y="150" width="20" height="30" fill="#3a2414"/>
+              <rect x="54" y="162" width="4" height="4" fill="#f2c94c"/>
+              <rect x="28" y="134" width="12" height="10" fill="#fff4d6"/>
+              <rect x="80" y="134" width="12" height="10" fill="#fff4d6"/>
+              <rect x="28" y="134" width="12" height="2" fill="#8a6d3a"/>
+              <rect x="80" y="134" width="12" height="2" fill="#8a6d3a"/>
+            </g>
+            <!-- Mother at door waving -->
+            <g class="px" transform="translate(62,142)">
+              <rect x="-4" y="-8" width="8" height="8" fill="#f2b98a"/>
+              <rect x="-6" y="-12" width="12" height="4" fill="#8a5a2a"/>
+              <rect x="-5" y="0" width="10" height="14" fill="#c24a3a"/>
+              <rect x="-6" y="-2" width="2" height="6" fill="#f2b98a"/>
+              <rect x="4" y="-6" width="4" height="2" fill="#f2b98a"/>
+            </g>
+            <!-- Nara (side view, back to us, looking up at tree) -->
+            <g class="px" transform="translate(180,180)">
+              <!-- legs -->
+              <rect x="-4" y="12" width="4" height="10" fill="#f2c94c"/>
+              <rect x="0" y="12" width="4" height="10" fill="#f2c94c"/>
+              <rect x="-5" y="22" width="5" height="3" fill="#1a1410"/>
+              <rect x="0" y="22" width="5" height="3" fill="#1a1410"/>
+              <!-- body -->
+              <rect x="-6" y="-6" width="12" height="18" fill="#3a6cbc"/>
+              <rect x="-6" y="-6" width="12" height="3" fill="#2a4c8c"/>
+              <!-- arms (slightly raised in awe) -->
+              <rect x="-10" y="-4" width="4" height="8" fill="#f2b98a"/>
+              <rect x="6" y="-4" width="4" height="8" fill="#f2b98a"/>
+              <!-- head -->
+              <rect x="-5" y="-18" width="10" height="12" fill="#f2b98a"/>
+              <rect x="-7" y="-22" width="14" height="4" fill="#1a1410"/>
+              <rect x="-8" y="-18" width="2" height="6" fill="#1a1410"/>
+              <rect x="6" y="-18" width="2" height="6" fill="#1a1410"/>
+            </g>
+            <!-- Tiny floating leaves -->
+            <g class="px" fill="#7a9a4a">
+              <rect x="140" y="60" width="4" height="2"/>
+              <rect x="142" y="62" width="2" height="1"/>
+              <rect x="210" y="80" width="4" height="2"/>
+              <rect x="100" y="90" width="3" height="2"/>
+            </g>
+            <!-- butterfly -->
+            <g class="px" transform="translate(150,100)">
+              <rect x="-4" y="0" width="3" height="3" fill="#f2c94c"/>
+              <rect x="1" y="0" width="3" height="3" fill="#f2c94c"/>
+              <rect x="-1" y="1" width="2" height="2" fill="#1a1410"/>
+            </g>
+            <!-- Sparkles around Nara -->
+            <g class="px" fill="#f2c94c">
+              <rect x="155" y="170" width="2" height="2"/>
+              <rect x="205" y="170" width="2" height="2"/>
+              <rect x="185" y="150" width="2" height="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker narrator">◆ NARRATOR</div>
+          <div class="text prose">
+            You step out of the car. And the first thing that happens is — you forget to breathe.
+            The air smells <em>green</em>. It smells wet. Somewhere, a bird sings a note like
+            a tiny bell. Somewhere else, far off, water moves. You stand there, and your shoulders
+            drop without you noticing.
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="choice1">
+        <div class="scene-art" style="background: var(--paper);">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="250" fill="#e6d8a8"/>
+            <!-- overhead garden + house split view -->
+            <!-- left side: house -->
+            <g class="px">
+              <rect x="20" y="40" width="150" height="170" fill="#d4a868"/>
+              <rect x="20" y="40" width="150" height="8" fill="#8a6d3a"/>
+              <rect x="14" y="36" width="162" height="6" fill="#8a2d20"/>
+              <rect x="0" y="30" width="180" height="8" fill="#a83a2a"/>
+              <rect x="60" y="110" width="20" height="40" fill="#3a2414"/>
+              <rect x="110" y="80" width="20" height="14" fill="#fff4d6"/>
+              <rect x="40" y="80" width="16" height="14" fill="#fff4d6"/>
+              <rect x="90" y="150" width="40" height="40" fill="#4a7a4a" opacity="0.5"/>
+            </g>
+            <!-- right side: garden -->
+            <rect x="200" y="0" width="200" height="250" fill="#8ab260"/>
+            <g class="px" fill="#6a9245">
+              <rect x="200" y="0" width="200" height="4"/>
+              <rect x="200" y="60" width="200" height="2"/>
+              <rect x="200" y="130" width="200" height="2"/>
+              <rect x="200" y="200" width="200" height="3"/>
+            </g>
+            <!-- bushes -->
+            <g class="px">
+              <rect x="240" y="100" width="30" height="20" fill="#2c4e2c"/>
+              <rect x="246" y="94" width="20" height="6" fill="#2c4e2c"/>
+              <rect x="244" y="100" width="22" height="12" fill="#4a7a4a"/>
+              <rect x="330" y="140" width="30" height="20" fill="#2c4e2c"/>
+              <rect x="334" y="140" width="22" height="12" fill="#4a7a4a"/>
+              <!-- Leaf with frog visible -->
+              <rect x="290" y="180" width="30" height="6" fill="#4a7a4a"/>
+              <rect x="292" y="178" width="26" height="2" fill="#4a7a4a"/>
+              <rect x="300" y="170" width="10" height="8" fill="#6a9a4a"/>
+              <rect x="302" y="168" width="6" height="2" fill="#6a9a4a"/>
+              <!-- tiny frog eyes -->
+              <rect x="302" y="170" width="2" height="2" fill="#1a1410"/>
+              <rect x="306" y="170" width="2" height="2" fill="#1a1410"/>
+            </g>
+            <!-- Nara at centre (fork) -->
+            <g class="px" transform="translate(200,170)">
+              <rect x="-4" y="12" width="4" height="8" fill="#f2c94c"/>
+              <rect x="0" y="12" width="4" height="8" fill="#f2c94c"/>
+              <rect x="-6" y="-4" width="12" height="16" fill="#3a6cbc"/>
+              <rect x="-4" y="-14" width="8" height="10" fill="#f2b98a"/>
+              <rect x="-6" y="-18" width="12" height="4" fill="#1a1410"/>
+              <rect x="-3" y="-12" width="2" height="2" fill="#1a1410"/>
+              <rect x="1" y="-12" width="2" height="2" fill="#1a1410"/>
+              <!-- Question mark bubble -->
+              <rect x="10" y="-26" width="10" height="10" fill="#fff4d6" stroke="#1a1410" stroke-width="1"/>
+              <rect x="14" y="-22" width="2" height="4" fill="#c24a3a"/>
+              <rect x="14" y="-16" width="2" height="2" fill="#c24a3a"/>
+            </g>
+            <!-- directional arrows -->
+            <g class="px" fill="#c24a3a">
+              <!-- left arrow to house -->
+              <rect x="120" y="160" width="10" height="3"/>
+              <rect x="115" y="163" width="15" height="3"/>
+              <rect x="120" y="166" width="10" height="3"/>
+              <!-- right arrow to garden -->
+              <rect x="264" y="160" width="10" height="3"/>
+              <rect x="264" y="163" width="15" height="3"/>
+              <rect x="264" y="166" width="10" height="3"/>
+            </g>
+          </svg>
+        </div>
+        <div class="choices">
+          <div class="prompt">◆ CHOOSE A PATH</div>
+          <ul>
+            <li onclick="goTo('window')">Go inside and find your new room
+              <small>The window upstairs opens right into the tree...</small></li>
+            <li onclick="goTo('garden')">Step into the back garden
+              <small>Something small and green is waiting in the grass...</small></li>
+          </ul>
+        </div>
+      </div>
+      <div class="scene" data-id="garden">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Top-down grass view -->
+            <rect width="400" height="250" fill="#8ab260"/>
+            <!-- Grass texture -->
+            <g class="px" fill="#6a9245">
+              <rect x="0" y="0" width="400" height="4"/>
+              <rect x="0" y="30" width="400" height="2"/>
+              <rect x="0" y="70" width="400" height="2"/>
+              <rect x="0" y="110" width="400" height="3"/>
+              <rect x="0" y="160" width="400" height="2"/>
+              <rect x="0" y="210" width="400" height="3"/>
+            </g>
+            <g class="px" fill="#4a7a4a">
+              <!-- little grass tufts -->
+              <rect x="30" y="20" width="2" height="4"/>
+              <rect x="28" y="22" width="2" height="2"/>
+              <rect x="32" y="22" width="2" height="2"/>
+              <rect x="360" y="40" width="2" height="4"/>
+              <rect x="358" y="42" width="2" height="2"/>
+              <rect x="362" y="42" width="2" height="2"/>
+              <rect x="80" y="100" width="2" height="4"/>
+              <rect x="340" y="180" width="2" height="4"/>
+              <rect x="60" y="220" width="2" height="4"/>
+              <rect x="380" y="220" width="2" height="4"/>
+            </g>
+            <!-- Small flowers -->
+            <g class="px">
+              <rect x="30" y="180" width="2" height="2" fill="#f2c94c"/>
+              <rect x="28" y="182" width="2" height="2" fill="#c24a3a"/>
+              <rect x="370" y="90" width="2" height="2" fill="#fff4d6"/>
+              <rect x="372" y="88" width="2" height="2" fill="#f2c94c"/>
+            </g>
+            <!-- Big leaf -->
+            <g class="px">
+              <rect x="170" y="130" width="60" height="16" fill="#6a9a4a"/>
+              <rect x="180" y="126" width="40" height="4" fill="#6a9a4a"/>
+              <rect x="190" y="122" width="20" height="4" fill="#6a9a4a"/>
+              <rect x="174" y="146" width="52" height="4" fill="#4a7a4a"/>
+              <rect x="180" y="130" width="40" height="2" fill="#4a7a4a"/>
+              <!-- Tua-Tua on leaf -->
+              <rect x="194" y="118" width="12" height="10" fill="#88c560"/>
+              <rect x="192" y="122" width="16" height="6" fill="#88c560"/>
+              <rect x="194" y="114" width="4" height="6" fill="#88c560"/>
+              <rect x="202" y="114" width="4" height="6" fill="#88c560"/>
+              <!-- big eyes -->
+              <rect x="194" y="114" width="4" height="4" fill="#fff4d6"/>
+              <rect x="202" y="114" width="4" height="4" fill="#fff4d6"/>
+              <rect x="195" y="115" width="2" height="2" fill="#1a1410"/>
+              <rect x="203" y="115" width="2" height="2" fill="#1a1410"/>
+              <!-- smile -->
+              <rect x="198" y="124" width="4" height="1" fill="#1a1410"/>
+            </g>
+            <!-- Ploy crouching left -->
+            <g class="px" transform="translate(110,170)">
+              <rect x="-4" y="12" width="4" height="6" fill="#f2b98a"/>
+              <rect x="0" y="12" width="4" height="6" fill="#f2b98a"/>
+              <rect x="-6" y="-2" width="12" height="14" fill="#c24a3a"/>
+              <rect x="-5" y="-12" width="10" height="10" fill="#f2b98a"/>
+              <rect x="-7" y="-16" width="14" height="4" fill="#1a1410"/>
+              <rect x="-9" y="-12" width="2" height="2" fill="#1a1410"/>
+              <!-- wide eyes -->
+              <rect x="-3" y="-10" width="2" height="2" fill="#fff4d6"/>
+              <rect x="1" y="-10" width="2" height="2" fill="#fff4d6"/>
+              <rect x="-2" y="-10" width="1" height="1" fill="#1a1410"/>
+              <rect x="2" y="-10" width="1" height="1" fill="#1a1410"/>
+              <!-- pointing arm -->
+              <rect x="6" y="-2" width="12" height="3" fill="#f2b98a"/>
+            </g>
+            <!-- Nara approaching right -->
+            <g class="px" transform="translate(270,170)">
+              <rect x="-4" y="12" width="4" height="8" fill="#f2c94c"/>
+              <rect x="0" y="12" width="4" height="8" fill="#f2c94c"/>
+              <rect x="-6" y="-4" width="12" height="16" fill="#3a6cbc"/>
+              <rect x="-4" y="-14" width="8" height="10" fill="#f2b98a"/>
+              <rect x="-6" y="-18" width="12" height="4" fill="#1a1410"/>
+              <rect x="-2" y="-12" width="1" height="1" fill="#1a1410"/>
+              <rect x="2" y="-12" width="1" height="1" fill="#1a1410"/>
+            </g>
+            <!-- Sparkles -->
+            <g class="px" fill="#f2c94c">
+              <rect x="160" y="100" width="2" height="2"/>
+              <rect x="240" y="110" width="2" height="2"/>
+              <rect x="200" y="70" width="2" height="2"/>
+            </g>
+            <!-- Mango tree trunk in corner (grounded in place) -->
+            <g class="px">
+              <rect x="0" y="0" width="60" height="60" fill="#4a7a4a"/>
+              <rect x="10" y="40" width="20" height="20" fill="#5a3a22"/>
+              <rect x="60" y="0" width="30" height="40" fill="#4a7a4a"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker">▸ PLOY</div>
+          <div class="text">
+            Nara! Come and see! I think... he is trying to tell me something.
+            <br/><span style="color:var(--green-dark); font-size:16px;">◆ You found TUA-TUA the frog.</span>
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="window">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Interior room: warm wood walls -->
+            <rect width="400" height="250" fill="#d4a868"/>
+            <!-- wood floor -->
+            <rect width="400" height="70" y="180" fill="#8a6d3a"/>
+            <g class="px" fill="#6a4a22">
+              <rect x="0" y="180" width="400" height="2"/>
+              <rect x="0" y="200" width="400" height="1"/>
+              <rect x="0" y="220" width="400" height="1"/>
+            </g>
+            <!-- wall trim -->
+            <rect x="0" y="176" width="400" height="4" fill="#8a6d3a"/>
+            <!-- Window frame (big) -->
+            <g class="px">
+              <rect x="80" y="20" width="240" height="150" fill="#8a6d3a"/>
+              <rect x="92" y="32" width="216" height="126" fill="#a8c5e0"/>
+              <rect x="196" y="32" width="8" height="126" fill="#8a6d3a"/>
+              <rect x="92" y="92" width="216" height="8" fill="#8a6d3a"/>
+            </g>
+            <!-- Tree visible OUT the window -->
+            <g class="px">
+              <rect x="230" y="100" width="12" height="58" fill="#5a3a22"/>
+              <rect x="180" y="48" width="90" height="14" fill="#2c4e2c"/>
+              <rect x="170" y="62" width="110" height="14" fill="#2c4e2c"/>
+              <rect x="180" y="76" width="90" height="18" fill="#2c4e2c"/>
+              <rect x="190" y="54" width="60" height="8" fill="#4a7a4a"/>
+              <rect x="190" y="76" width="60" height="8" fill="#4a7a4a"/>
+              <!-- mangoes -->
+              <rect x="210" y="60" width="5" height="6" fill="#c24a3a"/>
+              <rect x="240" y="78" width="5" height="6" fill="#f2c94c"/>
+            </g>
+            <!-- Distant tiny tree across garden -->
+            <g class="px">
+              <rect x="110" y="110" width="3" height="12" fill="#5a3a22"/>
+              <rect x="104" y="100" width="16" height="12" fill="#4a7a4a"/>
+            </g>
+            <!-- Bird on branch -->
+            <g class="px">
+              <rect x="256" y="70" width="6" height="4" fill="#c24a3a"/>
+              <rect x="254" y="68" width="4" height="2" fill="#c24a3a"/>
+            </g>
+            <!-- Butterfly outside -->
+            <g class="px">
+              <rect x="130" y="70" width="3" height="3" fill="#f2c94c"/>
+              <rect x="135" y="70" width="3" height="3" fill="#f2c94c"/>
+            </g>
+            <!-- hornbill silhouette in distance (mysterious) -->
+            <g class="px" fill="#1a1410" opacity="0.7">
+              <rect x="144" y="130" width="14" height="4"/>
+              <rect x="140" y="128" width="4" height="4"/>
+              <rect x="158" y="128" width="6" height="4"/>
+              <rect x="144" y="126" width="8" height="2"/>
+            </g>
+            <!-- ? marks near hornbill -->
+            <g class="px" fill="#c24a3a">
+              <rect x="170" y="122" width="2" height="2"/>
+              <rect x="170" y="126" width="2" height="4"/>
+              <rect x="170" y="132" width="2" height="2"/>
+            </g>
+            <!-- Window sill -->
+            <rect x="76" y="166" width="248" height="14" fill="#6a4a22" class="px"/>
+            <!-- Nara from behind (silhouette) looking out -->
+            <g class="px" transform="translate(200,174)">
+              <rect x="-20" y="0" width="40" height="6" fill="#1a1410"/>
+              <rect x="-12" y="-30" width="24" height="30" fill="#1a1410"/>
+              <rect x="-8" y="-42" width="16" height="12" fill="#1a1410"/>
+              <rect x="-10" y="-46" width="20" height="4" fill="#1a1410"/>
+            </g>
+            <!-- Red suitcase on floor -->
+            <g class="px">
+              <rect x="40" y="200" width="30" height="20" fill="#c24a3a"/>
+              <rect x="40" y="200" width="30" height="3" fill="#8a2d20"/>
+              <rect x="50" y="195" width="10" height="5" fill="#8a6d3a"/>
+              <rect x="54" y="209" width="4" height="4" fill="#f2c94c"/>
+            </g>
+            <!-- Sparkles -->
+            <g class="px" fill="#f2c94c">
+              <rect x="300" y="60" width="2" height="2"/>
+              <rect x="320" y="100" width="2" height="2"/>
+              <rect x="310" y="130" width="2" height="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker narrator">◆ NARRATOR</div>
+          <div class="text prose">
+            Your window looks straight into the tree. Close enough to touch. A butterfly the colour
+            of old gold drifts past. And then — down in the garden — something moves. Something
+            green, hopping. And behind it, something bigger. A shadow that isn't quite a bird.
+            It is there, and then it isn't.
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="boy">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Outdoor, sunlit path -->
+            <rect width="400" height="90" fill="#f5d89a"/>
+            <rect width="400" height="160" y="90" fill="#8ab260"/>
+            <g class="px" fill="#6a9245">
+              <rect x="0" y="90" width="400" height="4"/>
+              <rect x="0" y="120" width="400" height="2"/>
+              <rect x="0" y="180" width="400" height="2"/>
+            </g>
+            <!-- Path -->
+            <g class="px" fill="#c4a878">
+              <rect x="60" y="170" width="280" height="60"/>
+            </g>
+            <g class="px" fill="#a88d5a">
+              <rect x="60" y="170" width="280" height="3"/>
+              <rect x="60" y="200" width="280" height="2"/>
+            </g>
+            <!-- Trees side -->
+            <g class="px">
+              <rect x="10" y="160" width="4" height="40" fill="#5a3a22"/>
+              <rect x="0" y="120" width="24" height="50" fill="#4a7a4a"/>
+              <rect x="0" y="114" width="24" height="8" fill="#2c4e2c"/>
+              <rect x="376" y="150" width="4" height="40" fill="#5a3a22"/>
+              <rect x="366" y="110" width="24" height="50" fill="#4a7a4a"/>
+              <rect x="366" y="104" width="24" height="8" fill="#2c4e2c"/>
+            </g>
+            <!-- Little grass tufts -->
+            <g class="px" fill="#4a7a4a">
+              <rect x="50" y="150" width="2" height="4"/>
+              <rect x="340" y="144" width="2" height="4"/>
+              <rect x="70" y="226" width="2" height="4"/>
+              <rect x="330" y="220" width="2" height="4"/>
+            </g>
+            <!-- Arun on bike (at gate, facing us) -->
+            <g class="px" transform="translate(200,200)">
+              <!-- Wheels -->
+              <rect x="-28" y="-4" width="16" height="16" fill="#1a1410"/>
+              <rect x="-26" y="-2" width="12" height="12" fill="#fff4d6"/>
+              <rect x="-22" y="2" width="4" height="4" fill="#1a1410"/>
+              <rect x="12" y="-4" width="16" height="16" fill="#1a1410"/>
+              <rect x="14" y="-2" width="12" height="12" fill="#fff4d6"/>
+              <rect x="18" y="2" width="4" height="4" fill="#1a1410"/>
+              <!-- Frame -->
+              <rect x="-20" y="-8" width="40" height="3" fill="#c24a3a"/>
+              <rect x="-14" y="-12" width="3" height="8" fill="#c24a3a"/>
+              <rect x="11" y="-14" width="3" height="10" fill="#c24a3a"/>
+              <!-- Handlebar -->
+              <rect x="8" y="-16" width="10" height="2" fill="#8a6d3a"/>
+              <!-- Basket with mangoes -->
+              <rect x="14" y="-26" width="16" height="10" fill="#c4a878"/>
+              <rect x="14" y="-26" width="16" height="2" fill="#8a6d3a"/>
+              <rect x="18" y="-24" width="3" height="4" fill="#2a1e18"/>
+              <rect x="24" y="-24" width="3" height="4" fill="#2a1e18"/>
+              <!-- Mangoes in basket -->
+              <rect x="16" y="-30" width="4" height="4" fill="#f2c94c"/>
+              <rect x="22" y="-32" width="4" height="6" fill="#c24a3a"/>
+              <rect x="27" y="-30" width="3" height="4" fill="#f2c94c"/>
+              <!-- Arun body -->
+              <rect x="-6" y="-28" width="14" height="16" fill="#4a7a4a"/>
+              <rect x="-4" y="-38" width="10" height="10" fill="#d4925a"/>
+              <rect x="-6" y="-42" width="14" height="4" fill="#1a1410"/>
+              <rect x="-8" y="-38" width="2" height="6" fill="#1a1410"/>
+              <rect x="8" y="-38" width="2" height="6" fill="#1a1410"/>
+              <!-- face -->
+              <rect x="-3" y="-34" width="2" height="2" fill="#1a1410"/>
+              <rect x="1" y="-34" width="2" height="2" fill="#1a1410"/>
+              <!-- grin -->
+              <rect x="-3" y="-30" width="8" height="2" fill="#1a1410"/>
+              <!-- offered arm with mango -->
+              <rect x="-14" y="-22" width="8" height="3" fill="#d4925a"/>
+              <rect x="-20" y="-24" width="6" height="8" fill="#c24a3a"/>
+              <rect x="-18" y="-22" width="2" height="4" fill="#f2c94c"/>
+              <!-- shorts/legs -->
+              <rect x="-4" y="-12" width="4" height="6" fill="#8a5a2a"/>
+              <rect x="2" y="-12" width="4" height="6" fill="#8a5a2a"/>
+            </g>
+            <!-- Motion lines (right of bike) -->
+            <g class="px" fill="#1a1410" opacity="0.6">
+              <rect x="240" y="190" width="10" height="2"/>
+              <rect x="246" y="196" width="14" height="2"/>
+              <rect x="240" y="202" width="10" height="2"/>
+            </g>
+            <!-- SFX -->
+            <text x="80" y="60" font-family="'Press Start 2P', monospace" font-size="14" fill="#c24a3a" transform="rotate(-4 80 60)">SQUEAK!</text>
+            <!-- Sparkles -->
+            <g class="px" fill="#f2c94c">
+              <rect x="160" y="150" width="2" height="2"/>
+              <rect x="240" y="150" width="2" height="2"/>
+              <rect x="200" y="130" width="2" height="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker">▸ ARUN</div>
+          <div class="text">
+            You're new. I'm Arun. This is for you.
+            <em>...Do you like lakes? There are nine. I can show you — tomorrow, early. Meet me at the big tamarind.</em>
+            <br/><span style="color:var(--green-dark); font-size:16px;">◆ Got: ONE WARM MANGO.</span>
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="choice2">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="100" fill="#e6c898"/>
+            <rect width="400" height="150" y="100" fill="#8ab260"/>
+            <g class="px" fill="#6a9245">
+              <rect x="0" y="100" width="400" height="4"/>
+            </g>
+            <!-- Fork: forest path on right, mango tree left -->
+            <!-- Big mango on left -->
+            <g class="px">
+              <rect x="30" y="150" width="14" height="70" fill="#5a3a22"/>
+              <rect x="0" y="80" width="90" height="70" fill="#2c4e2c"/>
+              <rect x="0" y="80" width="90" height="30" fill="#4a7a4a"/>
+              <rect x="30" y="100" width="6" height="8" fill="#c24a3a"/>
+              <rect x="50" y="90" width="6" height="8" fill="#f2c94c"/>
+            </g>
+            <!-- Forest path to right (fading trees) -->
+            <g class="px" fill="#c4a878">
+              <rect x="200" y="170" width="200" height="60"/>
+            </g>
+            <g class="px">
+              <rect x="240" y="130" width="4" height="40" fill="#5a3a22"/>
+              <rect x="230" y="110" width="24" height="24" fill="#4a7a4a"/>
+              <rect x="300" y="120" width="4" height="50" fill="#5a3a22"/>
+              <rect x="290" y="100" width="24" height="24" fill="#4a7a4a"/>
+              <rect x="360" y="114" width="4" height="56" fill="#5a3a22"/>
+              <rect x="350" y="90" width="24" height="30" fill="#4a7a4a"/>
+            </g>
+            <!-- Receding Arun silhouette -->
+            <g class="px" fill="#1a1410" opacity="0.7">
+              <rect x="340" y="180" width="4" height="10"/>
+              <rect x="342" y="174" width="6" height="6"/>
+              <!-- bike wheel -->
+              <rect x="338" y="188" width="4" height="4"/>
+              <rect x="344" y="188" width="4" height="4"/>
+            </g>
+            <!-- Motion dust -->
+            <g class="px" fill="#c4a878">
+              <rect x="320" y="195" width="2" height="2"/>
+              <rect x="316" y="196" width="2" height="2"/>
+            </g>
+            <!-- Nara at fork centre -->
+            <g class="px" transform="translate(160,200)">
+              <rect x="-4" y="12" width="4" height="8" fill="#f2c94c"/>
+              <rect x="0" y="12" width="4" height="8" fill="#f2c94c"/>
+              <rect x="-6" y="-4" width="12" height="16" fill="#3a6cbc"/>
+              <rect x="-4" y="-14" width="8" height="10" fill="#f2b98a"/>
+              <rect x="-6" y="-18" width="12" height="4" fill="#1a1410"/>
+              <rect x="-2" y="-12" width="1" height="1" fill="#1a1410"/>
+              <rect x="2" y="-12" width="1" height="1" fill="#1a1410"/>
+              <!-- holding mango -->
+              <rect x="6" y="-2" width="4" height="6" fill="#c24a3a"/>
+            </g>
+            <!-- Fork arrows -->
+            <g class="px" fill="#c24a3a">
+              <rect x="100" y="200" width="12" height="3"/>
+              <rect x="96" y="203" width="16" height="3"/>
+              <rect x="100" y="206" width="12" height="3"/>
+              <rect x="216" y="200" width="12" height="3"/>
+              <rect x="216" y="203" width="16" height="3"/>
+              <rect x="216" y="206" width="12" height="3"/>
+            </g>
+            <!-- sun -->
+            <g class="px">
+              <rect x="180" y="30" width="40" height="4" fill="#fff4d6"/>
+              <rect x="176" y="34" width="48" height="4" fill="#fff4d6"/>
+              <rect x="172" y="38" width="56" height="8" fill="#fff4d6"/>
+              <rect x="176" y="46" width="48" height="4" fill="#fff4d6"/>
+              <rect x="180" y="50" width="40" height="4" fill="#fff4d6"/>
+            </g>
+          </svg>
+        </div>
+        <div class="choices">
+          <div class="prompt">◆ WHAT DO YOU DO?</div>
+          <ul>
+            <li onclick="goTo('tamarind')">Run after Arun — find the tamarind now
+              <small>His bike is fading into the forest. If you hurry...</small></li>
+            <li onclick="goTo('quiet')">Stay with the mango tree
+              <small>Something about this tree. You want to sit a while.</small></li>
+          </ul>
+        </div>
+      </div>
+      <div class="scene" data-id="tamarind">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Green forest light -->
+            <rect width="400" height="250" fill="#c8dca8"/>
+            <rect width="400" height="180" y="70" fill="#a8c884"/>
+            <g class="px" fill="#8ab260">
+              <rect x="0" y="70" width="400" height="4"/>
+              <rect x="0" y="110" width="400" height="2"/>
+              <rect x="0" y="160" width="400" height="2"/>
+              <rect x="0" y="220" width="400" height="3"/>
+            </g>
+            <!-- Light rays -->
+            <g class="px" fill="#f5e6c8" opacity="0.6">
+              <rect x="80" y="0" width="3" height="100"/>
+              <rect x="140" y="0" width="3" height="140"/>
+              <rect x="260" y="0" width="3" height="120"/>
+              <rect x="320" y="0" width="3" height="80"/>
+            </g>
+            <!-- MASSIVE tamarind -->
+            <g class="px">
+              <!-- trunk (thick) -->
+              <rect x="180" y="150" width="40" height="100" fill="#5a3a22"/>
+              <rect x="184" y="150" width="4" height="100" fill="#3a2414"/>
+              <rect x="200" y="160" width="4" height="90" fill="#3a2414"/>
+              <rect x="170" y="220" width="60" height="4" fill="#5a3a22"/>
+              <!-- Huge layered canopy -->
+              <rect x="60" y="20" width="280" height="10" fill="#2c4e2c"/>
+              <rect x="40" y="30" width="320" height="10" fill="#2c4e2c"/>
+              <rect x="20" y="40" width="360" height="10" fill="#2c4e2c"/>
+              <rect x="10" y="50" width="380" height="10" fill="#2c4e2c"/>
+              <rect x="20" y="60" width="360" height="10" fill="#2c4e2c"/>
+              <rect x="30" y="70" width="340" height="10" fill="#2c4e2c"/>
+              <rect x="50" y="80" width="300" height="10" fill="#2c4e2c"/>
+              <rect x="80" y="90" width="240" height="10" fill="#2c4e2c"/>
+              <rect x="110" y="100" width="180" height="10" fill="#2c4e2c"/>
+              <rect x="140" y="110" width="120" height="10" fill="#2c4e2c"/>
+              <!-- lighter highlights -->
+              <rect x="60" y="44" width="200" height="6" fill="#4a7a4a"/>
+              <rect x="40" y="60" width="240" height="6" fill="#4a7a4a"/>
+              <rect x="80" y="80" width="180" height="4" fill="#4a7a4a"/>
+              <rect x="130" y="100" width="120" height="4" fill="#4a7a4a"/>
+            </g>
+            <!-- Hornbill KAI perched on branch -->
+            <g class="px" transform="translate(250,74)">
+              <!-- branch -->
+              <rect x="-30" y="4" width="60" height="3" fill="#5a3a22"/>
+              <!-- body -->
+              <rect x="-8" y="-6" width="16" height="10" fill="#1a1410"/>
+              <rect x="-6" y="-4" width="12" height="6" fill="#fff4d6"/>
+              <!-- head -->
+              <rect x="-14" y="-10" width="8" height="6" fill="#1a1410"/>
+              <!-- casque + beak -->
+              <rect x="-20" y="-12" width="8" height="4" fill="#f2c94c"/>
+              <rect x="-24" y="-8" width="10" height="3" fill="#f2c94c"/>
+              <!-- eye -->
+              <rect x="-12" y="-8" width="2" height="2" fill="#fff4d6"/>
+              <!-- tail -->
+              <rect x="8" y="-4" width="10" height="4" fill="#1a1410"/>
+            </g>
+            <!-- Falling leaf path -->
+            <g class="px" fill="#f2c94c">
+              <rect x="210" y="130" width="2" height="2"/>
+              <rect x="208" y="140" width="2" height="2"/>
+              <rect x="212" y="150" width="2" height="2"/>
+            </g>
+            <!-- Leaf mid-air -->
+            <g class="px">
+              <rect x="205" y="155" width="10" height="3" fill="#e8c890"/>
+              <rect x="207" y="152" width="6" height="3" fill="#e8c890"/>
+            </g>
+            <!-- Arun + Nara looking up, small -->
+            <g class="px" transform="translate(160,218)">
+              <rect x="-4" y="0" width="4" height="8" fill="#f2c94c"/>
+              <rect x="0" y="0" width="4" height="8" fill="#f2c94c"/>
+              <rect x="-6" y="-14" width="12" height="14" fill="#3a6cbc"/>
+              <rect x="-4" y="-22" width="8" height="8" fill="#f2b98a"/>
+              <rect x="-6" y="-26" width="12" height="4" fill="#1a1410"/>
+            </g>
+            <g class="px" transform="translate(240,222)">
+              <rect x="-4" y="0" width="4" height="6" fill="#8a5a2a"/>
+              <rect x="0" y="0" width="4" height="6" fill="#8a5a2a"/>
+              <rect x="-6" y="-12" width="12" height="12" fill="#4a7a4a"/>
+              <rect x="-4" y="-20" width="8" height="8" fill="#d4925a"/>
+              <rect x="-6" y="-24" width="12" height="4" fill="#1a1410"/>
+            </g>
+            <!-- Sparkles on leaf trajectory -->
+            <g class="px" fill="#f2c94c">
+              <rect x="218" y="120" width="2" height="2"/>
+              <rect x="198" y="170" width="2" height="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker narrator">◆ NARRATOR</div>
+          <div class="text prose">
+            A leaf lets go from somewhere very high, and spirals down, and lands — softly — on top
+            of your head. Arun grins. <em>"That means the tree likes you."</em> You look at the leaf.
+            There are tiny marks on it. Almost like writing. Almost like — <em>a riddle</em>.
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="quiet">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Golden afternoon -->
+            <defs>
+              <linearGradient id="gold-q" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f5d89a"/>
+                <stop offset="1" stop-color="#e8b87a"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="110" fill="url(#gold-q)"/>
+            <rect width="400" height="140" y="110" fill="#8ab260"/>
+            <g class="px" fill="#6a9245">
+              <rect x="0" y="110" width="400" height="4"/>
+              <rect x="0" y="140" width="400" height="2"/>
+              <rect x="0" y="180" width="400" height="2"/>
+              <rect x="0" y="220" width="400" height="3"/>
+            </g>
+            <!-- Big mango tree centre (side view) -->
+            <g class="px">
+              <rect x="180" y="120" width="40" height="110" fill="#5a3a22"/>
+              <rect x="186" y="120" width="4" height="110" fill="#3a2414"/>
+              <rect x="202" y="130" width="4" height="100" fill="#3a2414"/>
+              <rect x="166" y="222" width="68" height="6" fill="#5a3a22"/>
+              <!-- canopy -->
+              <rect x="70" y="20" width="260" height="10" fill="#2c4e2c"/>
+              <rect x="50" y="30" width="300" height="10" fill="#2c4e2c"/>
+              <rect x="40" y="40" width="320" height="12" fill="#2c4e2c"/>
+              <rect x="30" y="52" width="340" height="12" fill="#2c4e2c"/>
+              <rect x="40" y="64" width="320" height="12" fill="#2c4e2c"/>
+              <rect x="60" y="76" width="280" height="12" fill="#2c4e2c"/>
+              <rect x="80" y="88" width="240" height="12" fill="#2c4e2c"/>
+              <rect x="110" y="100" width="180" height="14" fill="#2c4e2c"/>
+              <rect x="70" y="34" width="180" height="6" fill="#4a7a4a"/>
+              <rect x="50" y="50" width="220" height="4" fill="#4a7a4a"/>
+              <rect x="80" y="76" width="180" height="4" fill="#4a7a4a"/>
+              <!-- mangoes -->
+              <rect x="90" y="42" width="5" height="7" fill="#c24a3a"/>
+              <rect x="150" y="36" width="5" height="7" fill="#f2c94c"/>
+              <rect x="230" y="50" width="5" height="7" fill="#c24a3a"/>
+              <rect x="280" y="66" width="5" height="7" fill="#f2c94c"/>
+              <rect x="120" y="80" width="5" height="7" fill="#f2c94c"/>
+              <rect x="250" y="90" width="5" height="7" fill="#c24a3a"/>
+            </g>
+            <!-- Leaf drifting down -->
+            <g class="px">
+              <rect x="170" y="140" width="10" height="3" fill="#e8c890"/>
+              <rect x="172" y="137" width="6" height="3" fill="#e8c890"/>
+            </g>
+            <!-- Sparkles (breathing) -->
+            <g class="px" fill="#c24a3a">
+              <rect x="90" y="140" width="2" height="2"/>
+              <rect x="310" y="150" width="2" height="2"/>
+              <rect x="250" y="130" width="2" height="2"/>
+            </g>
+            <!-- Nara sitting against trunk -->
+            <g class="px" transform="translate(200,222)">
+              <!-- crossed legs -->
+              <rect x="-18" y="-10" width="14" height="8" fill="#f2c94c"/>
+              <rect x="4" y="-10" width="14" height="8" fill="#f2c94c"/>
+              <!-- body -->
+              <rect x="-8" y="-24" width="16" height="14" fill="#3a6cbc"/>
+              <!-- head tilted back -->
+              <rect x="-6" y="-38" width="12" height="14" fill="#f2b98a"/>
+              <rect x="-8" y="-42" width="16" height="4" fill="#1a1410"/>
+              <rect x="-10" y="-38" width="2" height="6" fill="#1a1410"/>
+              <rect x="8" y="-38" width="2" height="6" fill="#1a1410"/>
+              <!-- closed peaceful eyes -->
+              <rect x="-4" y="-32" width="2" height="1" fill="#1a1410"/>
+              <rect x="2" y="-32" width="2" height="1" fill="#1a1410"/>
+              <!-- small smile -->
+              <rect x="-2" y="-28" width="4" height="1" fill="#1a1410"/>
+              <!-- mango in lap -->
+              <rect x="-3" y="-8" width="6" height="8" fill="#c24a3a"/>
+            </g>
+            <!-- Small bird on ground -->
+            <g class="px">
+              <rect x="60" y="200" width="4" height="2" fill="#c24a3a"/>
+              <rect x="58" y="198" width="2" height="2" fill="#c24a3a"/>
+            </g>
+            <!-- floating petals -->
+            <g class="px" fill="#f2c94c">
+              <rect x="120" y="130" width="2" height="2"/>
+              <rect x="290" y="160" width="2" height="2"/>
+              <rect x="340" y="190" width="2" height="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker narrator">◆ NARRATOR</div>
+          <div class="text prose">
+            The bark is warm against your back. You close your eyes. And the tree — the whole
+            tree — <em>breathes</em>. A slow in. A slow out. Bigger than yours. Then, as if it had
+            been aiming, a leaf lets go from above. It lands in your lap. You look at it. There are
+            tiny marks on it. Almost like writing. Almost like — <em>a riddle</em>.
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="night">
+        <div class="scene-art">
+          <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Night room -->
+            <rect width="400" height="250" fill="#2a3a5a"/>
+            <!-- wall -->
+            <rect width="400" height="180" fill="#3a4a7a"/>
+            <rect width="400" height="70" y="180" fill="#3a2e1a"/>
+            <g class="px" fill="#2a1e18">
+              <rect x="0" y="180" width="400" height="3"/>
+              <rect x="0" y="220" width="400" height="1"/>
+            </g>
+            <!-- Window with stars -->
+            <g class="px">
+              <rect x="30" y="20" width="120" height="100" fill="#1a2a4a"/>
+              <rect x="26" y="16" width="128" height="6" fill="#5a3a22"/>
+              <rect x="26" y="116" width="128" height="6" fill="#5a3a22"/>
+              <rect x="26" y="20" width="4" height="100" fill="#5a3a22"/>
+              <rect x="150" y="20" width="4" height="100" fill="#5a3a22"/>
+              <rect x="85" y="20" width="4" height="100" fill="#5a3a22"/>
+              <rect x="30" y="66" width="120" height="4" fill="#5a3a22"/>
+              <!-- Stars -->
+              <rect x="42" y="34" width="2" height="2" fill="#fff4d6"/>
+              <rect x="62" y="46" width="2" height="2" fill="#fff4d6"/>
+              <rect x="74" y="30" width="2" height="2" fill="#fff4d6"/>
+              <rect x="110" y="40" width="2" height="2" fill="#fff4d6"/>
+              <rect x="130" y="52" width="2" height="2" fill="#fff4d6"/>
+              <rect x="52" y="82" width="2" height="2" fill="#fff4d6"/>
+              <rect x="98" y="90" width="2" height="2" fill="#fff4d6"/>
+              <rect x="118" y="102" width="2" height="2" fill="#fff4d6"/>
+              <!-- moon -->
+              <rect x="114" y="74" width="20" height="16" fill="#f2c94c"/>
+              <rect x="118" y="72" width="14" height="2" fill="#f2c94c"/>
+              <rect x="112" y="76" width="2" height="12" fill="#f2c94c"/>
+              <rect x="134" y="76" width="2" height="12" fill="#f2c94c"/>
+              <rect x="118" y="90" width="14" height="2" fill="#f2c94c"/>
+              <rect x="116" y="78" width="3" height="3" fill="#e0a83a"/>
+              <rect x="128" y="86" width="3" height="3" fill="#e0a83a"/>
+            </g>
+            <!-- Hornbill silhouette flying past moon -->
+            <g class="px" fill="#1a1410">
+              <rect x="100" y="96" width="10" height="3"/>
+              <rect x="96" y="94" width="4" height="3"/>
+              <rect x="110" y="94" width="6" height="3"/>
+              <rect x="116" y="97" width="2" height="1" fill="#f2c94c"/>
+            </g>
+            <!-- Bed -->
+            <g class="px">
+              <rect x="180" y="160" width="220" height="60" fill="#c4a878"/>
+              <rect x="180" y="160" width="220" height="6" fill="#8a6d3a"/>
+              <rect x="180" y="146" width="220" height="16" fill="#c24a3a"/>
+              <rect x="180" y="146" width="220" height="3" fill="#8a2d20"/>
+              <rect x="180" y="216" width="220" height="4" fill="#8a6d3a"/>
+              <rect x="176" y="216" width="8" height="30" fill="#8a6d3a"/>
+              <rect x="394" y="216" width="6" height="30" fill="#8a6d3a"/>
+            </g>
+            <!-- Two sisters sitting edge -->
+            <g class="px" transform="translate(240,148)">
+              <rect x="-4" y="0" width="8" height="14" fill="#c24a3a"/>
+              <rect x="-5" y="-14" width="10" height="14" fill="#f2b98a"/>
+              <rect x="-6" y="-18" width="12" height="4" fill="#1a1410"/>
+              <rect x="-8" y="-16" width="4" height="4" fill="#1a1410"/>
+              <rect x="-3" y="-10" width="1" height="1" fill="#1a1410"/>
+              <rect x="2" y="-10" width="1" height="1" fill="#1a1410"/>
+              <!-- leaf in hand -->
+              <rect x="6" y="-4" width="10" height="3" fill="#e8c890"/>
+              <rect x="8" y="-7" width="6" height="3" fill="#e8c890"/>
+            </g>
+            <g class="px" transform="translate(320,148)">
+              <rect x="-4" y="0" width="8" height="14" fill="#3a6cbc"/>
+              <rect x="-5" y="-16" width="10" height="16" fill="#f2b98a"/>
+              <rect x="-7" y="-20" width="14" height="4" fill="#1a1410"/>
+              <rect x="-9" y="-16" width="2" height="6" fill="#1a1410"/>
+              <rect x="7" y="-16" width="2" height="6" fill="#1a1410"/>
+              <rect x="-3" y="-12" width="1" height="1" fill="#1a1410"/>
+              <rect x="2" y="-12" width="1" height="1" fill="#1a1410"/>
+            </g>
+            <!-- Bedside table with TWO matching leaves -->
+            <g class="px">
+              <rect x="200" y="190" width="60" height="30" fill="#5a3a22"/>
+              <rect x="200" y="190" width="60" height="4" fill="#3a2414"/>
+              <!-- two leaves, identical -->
+              <rect x="206" y="183" width="20" height="5" fill="#e8c890"/>
+              <rect x="210" y="180" width="12" height="3" fill="#e8c890"/>
+              <rect x="234" y="183" width="20" height="5" fill="#e8c890"/>
+              <rect x="238" y="180" width="12" height="3" fill="#e8c890"/>
+              <!-- ! -->
+              <rect x="214" y="177" width="2" height="2" fill="#c24a3a"/>
+              <rect x="214" y="173" width="2" height="2" fill="#c24a3a"/>
+            </g>
+            <!-- Sparkles above leaves -->
+            <g class="px" fill="#f2c94c">
+              <rect x="224" y="172" width="2" height="2"/>
+              <rect x="234" y="168" width="2" height="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dialog">
+          <div class="speaker">▸ PLOY</div>
+          <div class="text">
+            Look. Tua-Tua dropped this... I think. <em>(She holds out a leaf.)</em>
+            Nara, your leaf... and my leaf... they're the <em>same leaf</em>.
+            <br/><span style="color:var(--red-dark); font-size:16px;">▸ NARA: "We go."</span>
+          </div>
+          <span class="continue-tick">▼</span>
+        </div>
+      </div>
+      <div class="scene" data-id="end">
+        <div class="end-card scene-art" style="height: 100%;">
+          <div class="end-title">◆ CHAPTER 01 ◆<br/>COMPLETE</div>
+          <div class="save-frame">
+            <div class="save-header">◆ SAVE POINT</div>
+            <div class="save-body">
+              You have made friends with a frog, a boy, and a very old tree.<br/>
+              You have a mango in your pocket and a leaf on your bedside table.<br/>
+              <em>Tomorrow — the nine lakes.</em>
+            </div>
+            <div class="save-path" id="savePath" style="margin-top:10px;"></div>
+          </div>
+
+          <div style="font-family:'Press Start 2P',monospace; font-size:10px; color:var(--cream); margin-top:6px; letter-spacing:0.15em;">
+            4 PATHS · YOU FOUND ONE · 3 REMAIN
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:18px;">
+            <button class="nav-btn" onclick="resetChapter()">↺ RESTART</button>
+            <button class="nav-btn primary" onclick="openMenu()">☰ JUMP SCENE</button>
+          </div>
+
+          <div style="font-family:'Press Start 2P',monospace; font-size:9px; color:var(--sun); margin-top:18px; letter-spacing:0.2em;">
+            ▸ NEXT: CHAPTER 02<br/>THE SECRET OF THE NINE LAKES
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function resetChapter() {
+          history = [];
+          visited = new Set();
+          visited.add('title');
+          current = 'title';
+          render();
+        }
+        // Update save path display when reaching end
+        const origRender = render;
+        render = function() {
+          origRender();
+          if (current === 'end') {
+            const pathEl = document.getElementById('savePath');
+            if (pathEl) {
+              const p1 = visited.has('garden') ? 'GARDEN' : 'WINDOW';
+              const p2 = visited.has('tamarind') ? 'TAMARIND' : 'QUIET';
+              pathEl.textContent = 'PATH TAKEN: ARRIVAL → ' + p1 + ' → ARUN → ' + p2 + ' → NIGHT';
+            }
+          }
+        };
+        render();
+      </script>
+    </div>
+
+    <!-- ═══════════════ NAV BAR ═══════════════ -->
+    <div class="navbar">
+      <button class="nav-btn" id="backBtn">&#9664; BACK</button>
+      <span class="nav-hint" id="navHint">← → ARROWS · M: MENU</span>
+      <button class="nav-btn" id="menuBtn">☰ CHAPTERS</button>
+      <button class="nav-btn primary" id="nextBtn">NEXT &#9654;</button>
+    </div>
+
+    <!-- ═══════════════ MENU MODAL ═══════════════ -->
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel">
+        <h3>◆ CHAPTER SELECT ◆</h3>
+        <ul id="menuList"></ul>
+        <button class="nav-btn menu-close" onclick="closeMenu()">CLOSE</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ═══════════════════════════════════════════════════════
+  // SCENE REGISTRY
+  // ═══════════════════════════════════════════════════════
+  const SCENES = {
+    title:     { label: "TITLE SCREEN",          location: "— PRESS START —",          next: "chapter1" },
+    chapter1:  { label: "Chapter 1 Banner",      location: "CHAPTER 1",                next: "road" },
+    road:      { label: "The Winding Road",      location: "ROUTE TO TRI VANANDA",     next: "gate" },
+    gate:      { label: "The Gate Tree",         location: "TRI VANANDA — MAIN GATE",  next: "arrival" },
+    arrival:   { label: "The First Breath",      location: "THE FRONT GARDEN",         next: "choice1" },
+    choice1:   { label: "◆ Choice: Garden or Window", location: "A FORK IN THE DAY",   next: null },
+    garden:    { label: "Path A — Meeting Tua-Tua",   location: "THE BACK GARDEN",     next: "boy" },
+    window:    { label: "Path B — The Window View",   location: "NARA'S NEW ROOM",     next: "boy" },
+    boy:       { label: "Arun on the Red Bike",       location: "TRI VANANDA — MAIN GATE", next: "choice2" },
+    choice2:   { label: "◆ Choice: Follow or Stay",   location: "A SECOND FORK",       next: null },
+    tamarind:  { label: "Path C — The Great Tamarind", location: "THE TAMARIND CLEARING", next: "night" },
+    quiet:     { label: "Path D — Under the Mango",    location: "THE FRONT GARDEN",     next: "night" },
+    night:     { label: "The Matching Leaves",         location: "NARA'S ROOM — NIGHT",  next: "end" },
+    end:       { label: "Chapter Complete",            location: "— SAVE POINT —",        next: null },
+  };
+
+  const ORDER = ["title","chapter1","road","gate","arrival","choice1","garden","window","boy","choice2","tamarind","quiet","night","end"];
+
+  // History stack — supports real back/forward through branching choices
+  let history = [];
+  let current = "title";
+  let visited = new Set();
+
+  // ═══════════════════════════════════════════════════════
+  // NAV
+  // ═══════════════════════════════════════════════════════
+  function goTo(id, skipHistory) {
+    if (!SCENES[id]) return;
+    if (!skipHistory && current) history.push(current);
+    current = id;
+    visited.add(id);
+    render();
+  }
+
+  function goBack() {
+    if (history.length === 0) return;
+    current = history.pop();
+    render();
+  }
+
+  function goNext() {
+    const next = SCENES[current].next;
+    if (next) goTo(next);
+  }
+
+  function openMenu() {
+    const overlay = document.getElementById('menuOverlay');
+    const list = document.getElementById('menuList');
+    list.innerHTML = '';
+    ORDER.forEach(id => {
+      const s = SCENES[id];
+      const li = document.createElement('li');
+      li.textContent = s.label;
+      if (id === current) li.classList.add('current');
+      if (visited.has(id)) li.classList.add('visited');
+      li.onclick = () => { closeMenu(); goTo(id); };
+      list.appendChild(li);
+    });
+    overlay.classList.add('open');
+  }
+  function closeMenu() {
+    document.getElementById('menuOverlay').classList.remove('open');
+  }
+
+  function render() {
+    // Switch scene
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`[data-id="${current}"]`);
+    if (target) target.classList.add('active');
+
+    // Update location label
+    document.getElementById('location').textContent = SCENES[current].location || "";
+
+    // Update stats (progress pips)
+    const pct = visited.size / ORDER.length;
+    const stats = document.getElementById('stats');
+    stats.innerHTML = '<span style="font-size:8px;margin-right:6px;">PROGRESS</span>';
+    const pipCount = 10;
+    for (let i = 0; i < pipCount; i++) {
+      const on = (i / pipCount) < pct;
+      stats.innerHTML += `<span class="pip${on ? ' on' : ''}"></span>`;
+    }
+
+    // Update buttons
+    document.getElementById('backBtn').disabled = history.length === 0;
+    const next = SCENES[current].next;
+    document.getElementById('nextBtn').disabled = !next;
+  }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goBack();
+    else if (e.key === 'ArrowRight') goNext();
+    else if (e.key === 'm' || e.key === 'M') {
+      const open = document.getElementById('menuOverlay').classList.contains('open');
+      if (open) closeMenu(); else openMenu();
+    }
+    else if (e.key === 'Escape') closeMenu();
+    else if (e.key === 'Enter') goNext();
+  });
+
+  document.getElementById('backBtn').onclick = goBack;
+  document.getElementById('nextBtn').onclick = goNext;
+  document.getElementById('menuBtn').onclick = openMenu;
+
+  // Init
+  visited.add('title');
+  render();
+</script>
+
+</body>
+</html>

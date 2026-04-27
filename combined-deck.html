@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tri Vananda — Marketing Campaigns &amp; Brand Orchestration</title>
+<link rel="icon" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#233f2f;
+    --green-deep:#1a2f23;
+    --green-darker:#142420;
+    --red:#CF554E;
+    --earth:#BAB9AF;
+    --cream:#EDEBE9;
+    --ink:#1a1a17;
+    --serif:'Cormorant Garamond', 'Lao MN', Georgia, serif;
+    --sans:'Inter', -apple-system, Helvetica, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--green-deep);color:var(--cream);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(237,235,233,.35);transition:border .2s,color .2s}
+  a:hover{color:#fff;border-bottom-color:#fff}
+
+  /* ===== Top frame ===== */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 56px;
+    background:linear-gradient(180deg, rgba(20,36,32,.92) 0%, rgba(20,36,32,.5) 70%, transparent 100%);
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;
+    backdrop-filter:blur(6px);
+  }
+  .topbar .brand{font-weight:500;letter-spacing:.28em}
+  .topbar .meta-tag{color:var(--earth);font-size:11.5px;letter-spacing:.2em}
+
+  /* ===== Side chapter nav ===== */
+  .sidenav{
+    position:fixed;right:32px;top:50%;transform:translateY(-50%);
+    z-index:40;display:flex;flex-direction:column;gap:22px;
+  }
+  .sidenav a{
+    display:flex;align-items:center;gap:14px;
+    text-decoration:none;color:var(--earth);
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;
+    opacity:.55;transition:opacity .25s;
+    border:none;
+  }
+  .sidenav a:hover{opacity:1;color:#fff}
+  .sidenav a .dot{
+    width:11px;height:11px;border-radius:50%;
+    border:1px solid var(--earth);
+    background:transparent;transition:all .25s;
+  }
+  .sidenav a.active{opacity:1;color:#fff}
+  .sidenav a.active .dot{background:var(--red);border-color:var(--red)}
+  .sidenav a .label{
+    opacity:0;transform:translateX(-6px);transition:all .25s;
+    white-space:nowrap;
+  }
+  .sidenav a:hover .label,
+  .sidenav a.active .label{opacity:1;transform:translateX(0)}
+
+  /* ===== Section frame ===== */
+  section{
+    width:100%;
+    padding:120px 80px 100px;
+    position:relative;
+    border-bottom:1px solid rgba(237,235,233,.08);
+  }
+  section.green{background:var(--green)}
+  section.deep{background:var(--green-deep)}
+  section.darker{background:var(--green-darker)}
+  section.cream{background:var(--cream);color:var(--ink)}
+
+  .container{max-width:1280px;margin:0 auto}
+
+  /* ===== Typography (mid-scale) ===== */
+  .eyebrow{
+    font-family:var(--mono);font-size:13px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--red);margin-bottom:28px;
+    font-weight:500;
+  }
+  h1.display{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(64px, 8vw, 136px);line-height:.95;
+    letter-spacing:-.018em;
+  }
+  h1.display em{font-style:italic;font-weight:400}
+  h2.title{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(52px, 6.2vw, 100px);line-height:.98;
+    letter-spacing:-.012em;
+  }
+  h2.title em{font-style:italic;font-weight:400}
+  h3.sub{
+    font-family:var(--serif);font-weight:400;
+    font-size:28px;line-height:1.3;
+    letter-spacing:-.005em;font-style:italic;
+  }
+  p.lede{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(24px, 2.4vw, 32px);line-height:1.45;
+    color:rgba(237,235,233,.95);max-width:38ch;
+  }
+  p.body{
+    font-size:18px;line-height:1.65;font-weight:400;
+    color:rgba(237,235,233,.92);max-width:64ch;
+  }
+  section.cream p.body,
+  .closing p.body{color:rgba(26,26,23,.88)}
+  .rule{width:64px;height:1px;background:currentColor;opacity:.5;margin:24px 0}
+  .rule.wide{width:120px}
+  .rule.red{background:var(--red);opacity:1;height:2px}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    background:var(--green-deep);
+    display:flex;align-items:center;justify-content:flex-start;
+    position:relative;overflow:hidden;
+    padding-top:120px;padding-bottom:80px;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(70% 60% at 12% 30%, rgba(207,85,78,.12) 0%, transparent 60%),
+      radial-gradient(60% 50% at 85% 75%, rgba(35,63,47,.6) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-content{position:relative;z-index:2}
+  .hero .lockup{
+    display:flex;align-items:center;gap:18px;
+    margin-bottom:32px;
+  }
+  .hero .lockup .bar{display:inline-block;width:56px;height:2px;background:var(--red)}
+  .hero .lockup span{
+    font-family:var(--mono);font-size:12px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--red);font-weight:500;
+  }
+  .hero h1{color:#fff;max-width:14ch}
+  .hero .subline{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(24px, 2.2vw, 32px);line-height:1.4;
+    margin-top:40px;max-width:42ch;
+    color:rgba(237,235,233,.9);
+  }
+  .hero .scroll-cue{
+    position:absolute;bottom:48px;left:80px;
+    display:flex;align-items:center;gap:14px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--earth);
+  }
+  .hero .scroll-cue .arrow{
+    display:inline-block;width:24px;height:24px;
+    border:1px solid var(--earth);border-radius:50%;
+    position:relative;
+  }
+  .hero .scroll-cue .arrow::before{
+    content:'↓';position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+  }
+  .hero .part-tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--red);
+    margin-bottom:42px;display:block;
+  }
+
+  /* ===== INTRO INDEX (Part 01) ===== */
+  .intro-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:1px;background:rgba(237,235,233,.18);
+    border:1px solid rgba(237,235,233,.18);
+    margin-top:64px;
+  }
+  .intro-card{
+    background:var(--green);padding:38px 32px 42px;
+    display:flex;flex-direction:column;gap:14px;
+    min-height:240px;
+    transition:background .25s;
+    border:none;
+  }
+  .intro-card:hover{background:#1f3a2a}
+  .intro-card .ic-code{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:54px;line-height:.85;color:var(--red);
+    letter-spacing:-.02em;margin-bottom:6px;
+  }
+  .intro-card .ic-name{
+    font-family:var(--serif);font-weight:400;
+    font-size:30px;line-height:1.05;color:#fff;
+  }
+  .intro-card .ic-aud{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--earth);
+    margin-top:auto;padding-top:22px;
+    border-top:1px solid rgba(237,235,233,.22);
+  }
+
+  /* ===== CAMPAIGN SECTION ===== */
+  .camp-section{padding-top:140px;padding-bottom:140px}
+  .camp-marker{
+    display:flex;align-items:baseline;gap:32px;
+    margin-bottom:40px;
+    padding-bottom:36px;border-bottom:1px solid rgba(237,235,233,.18);
+  }
+  .camp-marker .cm-code{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(80px, 10vw, 168px);line-height:.85;
+    color:var(--red);letter-spacing:-.04em;
+  }
+  .camp-marker .cm-aud{
+    font-family:var(--mono);font-size:13px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--earth);font-weight:500;
+    margin-bottom:14px;
+  }
+  .camp-section h2.title{color:#fff;margin-bottom:40px}
+
+  .camp-narrative{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(24px, 2.2vw, 34px);line-height:1.4;
+    color:rgba(237,235,233,.95);max-width:44ch;
+    padding-left:30px;border-left:3px solid var(--red);
+    margin-bottom:80px;
+  }
+
+  .blocks{
+    display:grid;grid-template-columns:1.1fr 1fr;
+    gap:80px;margin-top:24px;align-items:start;
+  }
+  .block-h{
+    font-family:var(--mono);font-size:12px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--red);font-weight:500;
+    padding-bottom:18px;margin-bottom:32px;
+    border-bottom:1px solid rgba(237,235,233,.32);
+  }
+
+  .pillars{display:flex;flex-direction:column;gap:28px}
+  .pillar{
+    display:grid;grid-template-columns:54px 1fr;
+    gap:20px;align-items:baseline;
+  }
+  .pillar .p-num{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:38px;color:var(--red);line-height:.9;
+    letter-spacing:-.02em;
+  }
+  .pillar .p-name{
+    font-family:var(--serif);font-weight:400;
+    font-size:28px;line-height:1.1;color:#fff;
+  }
+  .pillar .p-desc{
+    grid-column:2;font-size:16px;line-height:1.55;
+    color:rgba(237,235,233,.85);margin-top:5px;
+    max-width:42ch;
+  }
+
+  .inits-block{}
+  .inits-cat{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--earth);
+    margin-bottom:22px;
+  }
+  .inits{display:flex;flex-direction:column;gap:0}
+  .init-item{
+    padding:20px 0;
+    border-bottom:1px solid rgba(237,235,233,.16);
+    display:grid;grid-template-columns:42px 1fr;
+    gap:16px;align-items:baseline;
+  }
+  .init-item:last-child{border-bottom:none}
+  .init-item .n{
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+    color:var(--red);font-weight:500;
+  }
+  .init-item .t{
+    font-family:var(--serif);font-size:22px;line-height:1.25;
+    color:#fff;font-weight:400;
+  }
+  .init-item .t small{
+    display:block;margin-top:6px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--earth);font-weight:500;
+  }
+
+  /* ===== PART OPENER ===== */
+  .part-opener{
+    min-height:90vh;
+    background:var(--green-darker);
+    display:flex;align-items:center;
+    padding-top:140px;padding-bottom:140px;
+    position:relative;overflow:hidden;
+  }
+  .part-opener::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(60% 50% at 80% 30%, rgba(207,85,78,.10) 0%, transparent 60%),
+      radial-gradient(50% 50% at 15% 80%, rgba(35,63,47,.5) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .part-opener > *{position:relative;z-index:2}
+  .part-opener .part-num{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(120px, 14vw, 220px);line-height:.85;
+    color:var(--red);letter-spacing:-.04em;
+    margin-bottom:24px;
+  }
+  .part-opener h1.display{color:#fff;max-width:18ch}
+  .part-opener .part-sub{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(22px, 2vw, 30px);line-height:1.45;
+    margin-top:36px;max-width:46ch;
+    color:rgba(237,235,233,.9);
+  }
+
+  /* ===== STEP HEADER (Part 02) ===== */
+  .step-header{
+    display:grid;grid-template-columns:auto 1fr;
+    gap:36px;align-items:baseline;margin-bottom:48px;
+  }
+  .step-num{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(120px, 13vw, 200px);line-height:.8;
+    color:var(--red);letter-spacing:-.03em;
+  }
+  .step-title{
+    padding-top:14px;padding-left:8px;
+    border-left:1px solid currentColor;
+  }
+  .step-title .label{
+    font-family:var(--mono);font-size:13px;letter-spacing:.22em;
+    text-transform:uppercase;opacity:.85;
+    padding-left:20px;margin-bottom:14px;display:block;color:var(--earth);
+  }
+  .step-title h2{padding-left:20px;color:#fff}
+
+  .content{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:64px;margin-top:56px;
+  }
+  .content.single{grid-template-columns:1fr;max-width:72ch}
+  .col h4{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--red);
+    margin-bottom:14px;font-weight:500;
+  }
+  .col p + h4{margin-top:28px}
+
+  /* ===== Qualifier grid ===== */
+  .qgrid{
+    display:grid;grid-template-columns:repeat(5, 1fr);
+    gap:1px;background:rgba(237,235,233,.14);
+    border:1px solid rgba(237,235,233,.14);margin-top:48px;
+  }
+  .q{
+    background:var(--green);
+    padding:26px 22px 28px;
+    display:flex;flex-direction:column;gap:10px;
+    min-height:170px;
+  }
+  .q .code{
+    font-family:var(--serif);font-style:italic;font-size:46px;
+    line-height:.9;color:var(--red);letter-spacing:-.02em;
+  }
+  .q .qname{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--earth);
+  }
+  .q .qdesc{
+    font-family:var(--serif);font-size:19px;line-height:1.3;
+    margin-top:auto;font-weight:400;color:#fff;
+  }
+
+  /* ===== Persona grid ===== */
+  .persona-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:20px;margin-top:48px;
+  }
+  .persona{
+    background:rgba(237,235,233,.04);
+    border:1px solid rgba(237,235,233,.16);
+    padding:28px 24px;
+    display:flex;flex-direction:column;
+    min-height:240px;
+    transition:background .2s, border-color .2s, transform .2s;
+    text-decoration:none;
+  }
+  .persona:hover{
+    background:rgba(207,85,78,.08);
+    border-color:rgba(207,85,78,.5);
+    transform:translateY(-2px);
+  }
+  .persona .idx{
+    font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+    color:var(--red);
+  }
+  .persona .pname{
+    font-family:var(--serif);font-size:32px;line-height:1;
+    margin-top:auto;font-weight:400;color:#fff;
+  }
+  .persona .role{
+    font-family:var(--serif);font-style:italic;font-size:17px;
+    color:rgba(237,235,233,.9);margin-top:10px;
+  }
+  .persona .open{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--earth);margin-top:24px;
+  }
+
+  /* ===== Campaigns comparison (C1/C2 in Part 02) ===== */
+  .campaigns-cmp{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:1px;background:rgba(237,235,233,.15);
+    border:1px solid rgba(237,235,233,.15);margin-top:42px;
+  }
+  .camp{background:var(--green);padding:42px 36px 46px}
+  .camp.c2{background:#1f3a2a}
+  .camp .c-label{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--red);margin-bottom:14px;font-weight:500;
+  }
+  .camp h3{
+    font-family:var(--serif);font-size:38px;line-height:1.05;
+    font-weight:400;max-width:14ch;color:#fff;
+  }
+  .camp .audience{
+    font-family:var(--serif);font-style:italic;font-size:18px;
+    margin-top:14px;max-width:40ch;line-height:1.4;
+    color:rgba(237,235,233,.95);
+  }
+  .camp dl{margin-top:30px;display:grid;grid-template-columns:auto 1fr;gap:14px 22px}
+  .camp dt{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;opacity:.85;padding-top:4px;
+    white-space:nowrap;color:var(--earth);font-weight:500;
+  }
+  .camp dd{font-size:15px;line-height:1.6;color:rgba(237,235,233,.96)}
+  .camp .hero-line{
+    font-family:var(--serif);font-style:italic;font-size:21px;
+    line-height:1.3;margin-top:28px;padding-top:24px;
+    border-top:1px solid rgba(237,235,233,.28);color:#fff;
+  }
+  .camp .hero-line span{display:block;margin-top:10px;opacity:.88}
+  .camp .forecast{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;margin-top:24px;padding-top:20px;
+    border-top:1px dashed rgba(237,235,233,.28);color:var(--earth);
+  }
+
+  /* ===== Customer journey ===== */
+  .journey{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    gap:8px;margin-top:38px;
+  }
+  .tp{
+    background:rgba(237,235,233,.05);
+    border:1px solid rgba(237,235,233,.14);
+    padding:18px 14px;min-height:130px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .tp .n{
+    font-family:var(--serif);font-style:italic;font-size:24px;color:var(--red);
+  }
+  .tp .name{
+    font-family:var(--serif);font-size:17px;line-height:1.25;color:#fff;
+  }
+  .tp .tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;opacity:.85;margin-top:8px;color:var(--earth);
+  }
+  .tp.shared .tag{color:var(--red);opacity:.9}
+
+  /* ===== Process tables ===== */
+  .process-table{
+    width:100%;border-collapse:collapse;margin-top:36px;
+    font-size:15px;color:rgba(237,235,233,.95);
+  }
+  .process-table thead th{
+    text-align:left;font-family:var(--mono);
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    opacity:.9;font-weight:500;
+    padding:14px 16px 16px;
+    border-bottom:1px solid rgba(237,235,233,.3);color:var(--earth);
+  }
+  .process-table tbody td{
+    padding:20px 16px;
+    border-bottom:1px solid rgba(237,235,233,.15);
+    vertical-align:top;line-height:1.6;
+  }
+  .process-table tbody tr:hover td{background:rgba(237,235,233,.05)}
+  .process-table .num{
+    font-family:var(--serif);font-style:italic;
+    font-size:24px;color:var(--red);width:48px;
+  }
+  .process-table .by{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;opacity:1;
+    width:200px;white-space:nowrap;font-weight:500;
+  }
+  .process-table .by.claude{color:var(--red)}
+  .process-table .by.team{color:var(--earth)}
+  .process-table .step-desc strong{
+    font-weight:500;display:block;margin-bottom:6px;
+    font-family:var(--serif);font-size:18px;color:#fff;font-style:italic;
+  }
+
+  /* ===== Link button ===== */
+  .link-btn{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:14px 24px;
+    border:1px solid currentColor;
+    font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;
+    transition:background .2s,color .2s;
+    margin-top:22px;margin-right:14px;font-weight:500;
+  }
+  .link-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+  .link-btn .arrow{font-family:var(--serif);font-style:italic;font-size:16px;letter-spacing:0;margin-left:4px}
+
+  /* ===== Closing ===== */
+  .closing{
+    background:var(--cream);color:var(--ink);
+    min-height:90vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding-top:160px;padding-bottom:80px;
+  }
+  .closing .quote{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(36px, 4.6vw, 72px);line-height:1.12;
+    max-width:18ch;
+  }
+  .closing .quote span{color:var(--red)}
+  .closing .attribution{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;
+    text-transform:uppercase;opacity:.6;margin-top:36px;
+  }
+  .closing .closing-foot{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;opacity:.65;margin-top:60px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:1180px){
+    section{padding:96px 48px 96px}
+    .topbar{padding:18px 32px}
+    .sidenav{display:none}
+    .blocks,.content,.campaigns-cmp{grid-template-columns:1fr;gap:48px}
+    .intro-grid{grid-template-columns:repeat(2,1fr)}
+    .qgrid{grid-template-columns:repeat(2,1fr)}
+    .persona-grid{grid-template-columns:repeat(2,1fr)}
+    .journey{grid-template-columns:repeat(2,1fr)}
+    .hero .scroll-cue{left:48px}
+    .hero .part-tag{right:32px;top:96px}
+  }
+  @media (max-width:680px){
+    section{padding:72px 28px}
+    .intro-grid,.qgrid,.persona-grid,.journey{grid-template-columns:1fr}
+    .camp-marker{flex-direction:column;gap:12px}
+    .step-header{grid-template-columns:1fr;gap:18px}
+    .step-title{padding-left:0;border-left:none}
+    .step-title h2,.step-title .label{padding-left:0}
+  }
+  @media print{
+    .topbar,.sidenav{display:none}
+    section{break-after:page}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">TRI VANANDA &nbsp;/&nbsp; PHUKET</div>
+  <div class="meta-tag">Marketing Campaigns &amp; Brand Orchestration &nbsp;·&nbsp; 2026</div>
+</div>
+
+<nav class="sidenav">
+  <a href="#hero" data-target="hero"><span class="dot"></span><span class="label">Open</span></a>
+  <a href="#intro" data-target="intro"><span class="dot"></span><span class="label">Pt 01 · Index</span></a>
+  <a href="#c0" data-target="c0"><span class="dot"></span><span class="label">C0</span></a>
+  <a href="#c1" data-target="c1"><span class="dot"></span><span class="label">C1</span></a>
+  <a href="#c2" data-target="c2"><span class="dot"></span><span class="label">C2</span></a>
+  <a href="#c3" data-target="c3"><span class="dot"></span><span class="label">C3</span></a>
+  <a href="#c4" data-target="c4"><span class="dot"></span><span class="label">C4</span></a>
+  <a href="#c5" data-target="c5"><span class="dot"></span><span class="label">C5</span></a>
+  <a href="#part2" data-target="part2"><span class="dot"></span><span class="label">Pt 02 · Open</span></a>
+  <a href="#step1" data-target="step1"><span class="dot"></span><span class="label">Step 01</span></a>
+  <a href="#step2" data-target="step2"><span class="dot"></span><span class="label">Step 02</span></a>
+  <a href="#step3" data-target="step3"><span class="dot"></span><span class="label">Step 03</span></a>
+  <a href="#step4" data-target="step4"><span class="dot"></span><span class="label">Step 04</span></a>
+  <a href="#step5" data-target="step5"><span class="dot"></span><span class="label">Step 05</span></a>
+  <a href="#journey" data-target="journey"><span class="dot"></span><span class="label">Journey</span></a>
+  <a href="#step6" data-target="step6"><span class="dot"></span><span class="label">Step 06</span></a>
+  <a href="#step7" data-target="step7"><span class="dot"></span><span class="label">Step 07</span></a>
+  <a href="#close" data-target="close"><span class="dot"></span><span class="label">Close</span></a>
+</nav>
+
+<!-- ===================================================================== -->
+<!-- ============ PART 01 — THE CAMPAIGN SYSTEM ========================== -->
+<!-- ===================================================================== -->
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="hero">
+  <div class="container hero-content">
+    <div class="part-tag">Part 01 &nbsp;·&nbsp; The Campaign System</div>
+    <div class="lockup">
+      <span class="bar"></span>
+      <span>Marketing Campaigns &nbsp;·&nbsp; 2026</span>
+    </div>
+    <h1 class="display">Six campaigns. <em>One home.</em></h1>
+    <div class="subline">Six audience-led campaigns. Each with its own concept, key narrative, content pillars and initiatives.</div>
+  </div>
+  <div class="scroll-cue">
+    <span class="arrow"></span>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ============ INTRODUCTION INDEX ============ -->
+<section id="intro" class="green">
+  <div class="container">
+    <div class="eyebrow">Introduction &nbsp;·&nbsp; The Six Campaigns</div>
+    <h2 class="title">At a <em>glance.</em></h2>
+
+    <div class="intro-grid">
+      <a href="#c0" class="intro-card">
+        <div class="ic-code">C.0</div>
+        <div class="ic-name">Integrated Living</div>
+        <div class="ic-aud">All Audiences</div>
+      </a>
+      <a href="#c1" class="intro-card">
+        <div class="ic-code">C.1</div>
+        <div class="ic-name">Legacy Living</div>
+        <div class="ic-aud">Business Tycoon with Family</div>
+      </a>
+      <a href="#c2" class="intro-card">
+        <div class="ic-code">C.2</div>
+        <div class="ic-name">The Life Already Here</div>
+        <div class="ic-aud">Impulse Buyer with Thailand Partner</div>
+      </a>
+      <a href="#c3" class="intro-card">
+        <div class="ic-code">C.3</div>
+        <div class="ic-name">From Stay to Belonging</div>
+        <div class="ic-aud">Trisara Guests Lookalike</div>
+      </a>
+      <a href="#c4" class="intro-card">
+        <div class="ic-code">C.4</div>
+        <div class="ic-name">Living Longevity</div>
+        <div class="ic-aud">Clinique La Prairie Guests Lookalike</div>
+      </a>
+      <a href="#c5" class="intro-card">
+        <div class="ic-code">C.5</div>
+        <div class="ic-name">A Living Proof</div>
+        <div class="ic-aud">Global Wellness Summit Audience</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C0 ============ -->
+<section id="c0" class="camp-section deep">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.0</div>
+      <div>
+        <div class="cm-aud">All Audiences</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title"><em>Integrated</em> Living</h2>
+    <div class="camp-narrative">"A place where wellness, community, and sustainability come together as one integrated way of living."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="p-num">01</span><span class="p-name">Wellness as a Way of Life</span>
+            <span class="p-desc">Embedded in everyday routines.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">02</span><span class="p-name">A Living Community</span>
+            <span class="p-desc">Connection and shared experiences.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">03</span><span class="p-name">Regenerative Environment</span>
+            <span class="p-desc">Nature and sustainability shaping daily life.</span>
+          </div>
+          <div class="pillar">
+            <span class="p-num">04</span><span class="p-name">Designed as One System</span>
+            <span class="p-desc">Health, people, and environment working together.</span>
+          </div>
+        </div>
+      </div>
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits-cat">Core Infrastructure &amp; Collateral</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">Website<small>Content · Copywriting · Image Selection · Design · Launch</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">New Asset Library<small>Image Selection · Categorization · AI Refinement · Launch</small></span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Social Media<small>Always-on</small></span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">EDM<small>Always-on</small></span></div>
+          <div class="init-item"><span class="n">05</span><span class="t">Q1 2026 Quarterly Newsletter<small>Full production</small></span></div>
+          <div class="init-item"><span class="n">06</span><span class="t">Tri Vananda Adventure Book</span></div>
+          <div class="init-item"><span class="n">07</span><span class="t">Big Logo Signage</span></div>
+          <div class="init-item"><span class="n">08</span><span class="t">Handover Box with Key Holders</span></div>
+          <div class="init-item"><span class="n">09</span><span class="t">Notebook / Pen / Fabric Tote Bag</span></div>
+          <div class="init-item"><span class="n">10</span><span class="t">PR: Media Stay</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C1 ============ -->
+<section id="c1" class="camp-section green">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.1</div>
+      <div>
+        <div class="cm-aud">Business Tycoon with Family</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title"><em>Legacy</em> Living</h2>
+    <div class="camp-narrative">"A place where life is designed to unfold over time — where family, health, and environment quietly shape what comes next."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar"><span class="p-num">01</span><span class="p-name">Health Over Time</span><span class="p-desc">Wellbeing as part of daily life, not a program.</span></div>
+          <div class="pillar"><span class="p-num">02</span><span class="p-name">Living Together, Naturally</span><span class="p-desc">Spaces that bring generations closer without effort.</span></div>
+          <div class="pillar"><span class="p-num">03</span><span class="p-name">A Different Upbringing</span><span class="p-desc">Nature, rhythm, and environment shaping how children grow.</span></div>
+          <div class="pillar"><span class="p-num">04</span><span class="p-name">Continuity, Not Change</span><span class="p-desc">A home that evolves with the family.</span></div>
+        </div>
+      </div>
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C1 Campaign<small>Meta + Business Verification</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Long-Stay Villa Rentals</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C2 ============ -->
+<section id="c2" class="camp-section deep">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.2</div>
+      <div>
+        <div class="cm-aud">Impulse Buyer with Thailand Partner</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title">The Life <em>Already Here</em></h2>
+    <div class="camp-narrative">"You arrive, and something shifts — the pace, the feeling, the way time moves. From there, the decision becomes simple."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar"><span class="p-num">01</span><span class="p-name">Effortless Access</span><span class="p-desc">Proximity, ease of arrival, frictionless entry into the lifestyle.</span></div>
+          <div class="pillar"><span class="p-num">02</span><span class="p-name">Ready-to-Live Environment</span><span class="p-desc">Fully prepared homes, no setup, no waiting.</span></div>
+          <div class="pillar"><span class="p-num">03</span><span class="p-name">Everyday Enjoyment</span><span class="p-desc">Food, nature, movement, social life — already in place.</span></div>
+          <div class="pillar"><span class="p-num">04</span><span class="p-name">Decision Without Complexity</span><span class="p-desc">Experience-first, ownership follows naturally.</span></div>
+        </div>
+      </div>
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C2 Campaign<small>New Video Ad</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Local Roots</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Art / Nature Campaign</span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">Harmony 10 Campaign</span></div>
+          <div class="init-item"><span class="n">05</span><span class="t">PRU Farm Festival</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C3 ============ -->
+<section id="c3" class="camp-section green">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.3</div>
+      <div>
+        <div class="cm-aud">Trisara Guests Lookalike</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title">From Stay <em>to Belonging</em></h2>
+    <div class="camp-narrative">"What you've experienced before becomes something you can return to — this time, as part of your life."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar"><span class="p-num">01</span><span class="p-name">Familiar Feeling</span><span class="p-desc">The same sense of care, space, and calm.</span></div>
+          <div class="pillar"><span class="p-num">02</span><span class="p-name">A Deeper Stay</span><span class="p-desc">From temporary escape to something more permanent.</span></div>
+          <div class="pillar"><span class="p-num">03</span><span class="p-name">Trusted Environment</span><span class="p-desc">Standards you already know, extended into living.</span></div>
+          <div class="pillar"><span class="p-num">04</span><span class="p-name">A Natural Step Forward</span><span class="p-desc">Ownership as continuation, not decision.</span></div>
+        </div>
+      </div>
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C3 Campaign<small>Landing Page</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Agent Event at Trisara Villa 12</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Local Roots Pop-Up</span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">Long-Stay Villa Rentals</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C4 ============ -->
+<section id="c4" class="camp-section deep">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.4</div>
+      <div>
+        <div class="cm-aud">Clinique La Prairie Guests Lookalike</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title"><em>Living</em> Longevity</h2>
+    <div class="camp-narrative">"A place where wellbeing is not something you visit for — but something you live with, every day."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar"><span class="p-num">01</span><span class="p-name">Preventive Living</span><span class="p-desc">Health addressed before it becomes a problem.</span></div>
+          <div class="pillar"><span class="p-num">02</span><span class="p-name">Integrated Approach</span><span class="p-desc">Environment, routine, and expertise working together.</span></div>
+          <div class="pillar"><span class="p-num">03</span><span class="p-name">Measured Wellbeing</span><span class="p-desc">Understanding your health over time.</span></div>
+          <div class="pillar"><span class="p-num">04</span><span class="p-name">Daily Longevity</span><span class="p-desc">Small, consistent shifts that compound.</span></div>
+        </div>
+      </div>
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C4 Campaign<small>Landing Page</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">Health Resort Launch Leverage</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Long-Stay Villa Rentals</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C5 ============ -->
+<section id="c5" class="camp-section green">
+  <div class="container">
+    <div class="camp-marker">
+      <div class="cm-code">C.5</div>
+      <div>
+        <div class="cm-aud">Global Wellness Summit Audience</div>
+        <div class="eyebrow" style="margin-bottom:0">Concept</div>
+      </div>
+    </div>
+    <h2 class="title">A <em>Living</em> Proof</h2>
+    <div class="camp-narrative">"Not a concept, but a working model — where wellness, community, and environment are designed as one living system, to be experienced, studied, and scaled."</div>
+
+    <div class="blocks">
+      <div>
+        <div class="block-h">Sub Content Pillars</div>
+        <div class="pillars">
+          <div class="pillar"><span class="p-num">01</span><span class="p-name">System-Level Thinking</span><span class="p-desc">Wellness integrated into environment, behavior, and time.</span></div>
+          <div class="pillar"><span class="p-num">02</span><span class="p-name">Applied Longevity</span><span class="p-desc">Translating clinical insight into everyday living.</span></div>
+          <div class="pillar"><span class="p-num">03</span><span class="p-name">Regenerative Development</span><span class="p-desc">Sustainability as an active, measurable system.</span></div>
+          <div class="pillar"><span class="p-num">04</span><span class="p-name">Community as Infrastructure</span><span class="p-desc">Connection intentionally designed into daily life.</span></div>
+        </div>
+      </div>
+      <div class="inits-block">
+        <div class="block-h">Initiatives</div>
+        <div class="inits">
+          <div class="init-item"><span class="n">01</span><span class="t">C5 Campaign<small>Landing Page</small></span></div>
+          <div class="init-item"><span class="n">02</span><span class="t">BEING 2026</span></div>
+          <div class="init-item"><span class="n">03</span><span class="t">Montara New Wellness Brand</span></div>
+          <div class="init-item"><span class="n">04</span><span class="t">Tri Vananda Activations<small>GWS Week</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- ============ PART 02 — THE BRAND ORCHESTRATION FRAMEWORK ============ -->
+<!-- ===================================================================== -->
+
+<!-- ============ PART 02 OPENER ============ -->
+<section id="part2" class="part-opener">
+  <div class="container">
+    <div class="part-num">02</div>
+    <div class="eyebrow" style="color:var(--red)">Part 02 &nbsp;·&nbsp; The Brand Orchestration Framework</div>
+    <h1 class="display">How we built <em>the campaign.</em></h1>
+    <div class="part-sub">Seven steps. From the lifestyle qualifier to the live Meta ad — shown for C1 and C2.</div>
+  </div>
+</section>
+
+<!-- ============ STEP 01 ============ -->
+<section id="step1" class="green">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">01</div>
+      <div class="step-title">
+        <span class="label">Step One &nbsp;·&nbsp; Workshop &amp; Research</span>
+        <h2 class="title">Who are we <em>actually</em> building this for?</h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="col">
+        <p class="body">We set up the lifestyle qualifier scoring system and conducted research on GTM micro-segment personas based on real-world individuals. Ten lenses — not one. Together they build a single, honest read of the person we're speaking to.</p>
+        <h4>Result</h4>
+        <p class="body">The prompt for the next step.</p>
+      </div>
+      <div class="col">
+        <h4>The ten lifestyle qualifiers</h4>
+        <p class="body" style="font-family:var(--serif);font-size:22px;font-style:italic;line-height:1.45">Ten quotients, one portrait. Each letter is a different way of answering the question: <em>does this person already live the way Tri Vananda is built to hold them?</em></p>
+      </div>
+    </div>
+
+    <div class="qgrid">
+      <div class="q"><div class="qname">Quotient 01</div><div class="code">AQ</div><div class="qdesc">How accomplished?</div></div>
+      <div class="q"><div class="qname">Quotient 02</div><div class="code">BQ</div><div class="qdesc">Business acumen</div></div>
+      <div class="q"><div class="qname">Quotient 03</div><div class="code">CQ</div><div class="qdesc">How in control of the decision?</div></div>
+      <div class="q"><div class="qname">Quotient 04</div><div class="code">EQ</div><div class="qdesc">Can be emotionally connected?</div></div>
+      <div class="q"><div class="qname">Quotient 05</div><div class="code">FQ</div><div class="qdesc">How ideal financially?</div></div>
+      <div class="q"><div class="qname">Quotient 06</div><div class="code">HQ</div><div class="qdesc">How much care about health?</div></div>
+      <div class="q"><div class="qname">Quotient 07</div><div class="code">IQ</div><div class="qdesc">How smart?</div></div>
+      <div class="q"><div class="qname">Quotient 08</div><div class="code">LQ</div><div class="qdesc">Want diversity of residence / investment location</div></div>
+      <div class="q"><div class="qname">Quotient 09</div><div class="code">NQ</div><div class="qdesc">How accessible are they and their network</div></div>
+      <div class="q"><div class="qname">Quotient 10</div><div class="code">SQ</div><div class="qdesc">How social or community focused</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 02 ============ -->
+<section id="step2" class="deep">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">02</div>
+      <div class="step-title">
+        <span class="label">Step Two &nbsp;·&nbsp; GTM Behavioral Intelligence</span>
+        <h2 class="title">From qualifiers to <em>living</em> intelligence.</h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="col">
+        <h4>Tool</h4>
+        <p class="body">Perplexity — used as an elite UHNW go-to-market research partner. The qualifier framework from Step 01 becomes the prompt. The prompt becomes a behavioural intelligence brief grounded in real people.</p>
+        <h4>Method</h4>
+        <p class="body">Qualifier inputs → real-world individuals → behavioural evidence → the prompt that feeds the persona dashboard.</p>
+      </div>
+      <div class="col">
+        <h4>Result</h4>
+        <p class="body">A persona profile for the next step — rich enough to model a buyer, specific enough to recognise in a room.</p>
+        <a class="link-btn" href="https://www.perplexity.ai/search/you-are-an-elite-uhnw-go-to-ma-V26Fdl8LTxWVJNPEywBa6g" target="_blank" rel="noopener">
+          Open Perplexity research <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 03 ============ -->
+<section id="step3" class="green">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">03</div>
+      <div class="step-title">
+        <span class="label">Step Three &nbsp;·&nbsp; Persona Dashboard</span>
+        <h2 class="title">Four real lives, <em>read in full.</em></h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="col">
+        <h4>Tool</h4>
+        <p class="body">Gemini Canvas.</p>
+        <h4>Prompt</h4>
+        <p class="body">"Please use the attached HTML file as a master template and update it with the information from the PDF file."</p>
+      </div>
+      <div class="col">
+        <h4>Attached files</h4>
+        <p class="body">1. <code style="font-family:var(--mono);font-size:14px;color:var(--earth)">persona-dashboard.html</code><br>2. <code style="font-family:var(--mono);font-size:14px;color:var(--earth)">Persona Profile — XXX.pdf</code> (result from Step 02)</p>
+        <h4>Result</h4>
+        <p class="body">A living, browsable dashboard per persona — each a real person whose life already looks like the brief.</p>
+      </div>
+    </div>
+
+    <div class="persona-grid">
+      <a class="persona" href="https://gemini.google.com/share/b1f0e2850dce" target="_blank" rel="noopener">
+        <span class="idx">01</span>
+        <div class="pname">Ron Sim</div>
+        <div class="role">Builder of Asian wellness empires</div>
+        <span class="open">Open dashboard →</span>
+      </a>
+      <a class="persona" href="https://gemini.google.com/share/477a73266b52" target="_blank" rel="noopener">
+        <span class="idx">02</span>
+        <div class="pname">Kim Fournais</div>
+        <div class="role">Nordic founder, global citizen</div>
+        <span class="open">Open dashboard →</span>
+      </a>
+      <a class="persona" href="https://gemini.google.com/share/a9fd7cf74876" target="_blank" rel="noopener">
+        <span class="idx">03</span>
+        <div class="pname">Naval Ravikant</div>
+        <div class="role">Philosopher of the sovereign self</div>
+        <span class="open">Open dashboard →</span>
+      </a>
+      <a class="persona" href="https://gemini.google.com/share/b7efc316aae3" target="_blank" rel="noopener">
+        <span class="idx">04</span>
+        <div class="pname">Chris Do</div>
+        <div class="role">Creative founder, curator's eye</div>
+        <span class="open">Open dashboard →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 04 ============ -->
+<section id="step4" class="deep">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">04</div>
+      <div class="step-title">
+        <span class="label">Step Four &nbsp;·&nbsp; Summarise Micro-Segments for the Campaigns</span>
+        <h2 class="title">From many possible people to <em>two we will speak to.</em></h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="col">
+        <h4>What we did</h4>
+        <p class="body">Reviewed all GTM options and identified the most promising segments. Enriched them with real-world data and shaped them into clear GTM directions for campaign development. Then planned the marketing campaign based on the selected GTM — key channels and a supporting list of required collateral.</p>
+      </div>
+      <div class="col">
+        <h4>Result</h4>
+        <p class="body">Refined audience targeting for both campaigns — two buyers, two psychologies, one property. Ready to become two parallel campaigns with opposite creative temperatures.</p>
+        <h3 class="sub" style="margin-top:24px;color:#fff">C1 — the legacy buyer.<br>C2 — the recognition buyer.</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 05 ============ -->
+<section id="step5" class="green">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">05</div>
+      <div class="step-title">
+        <span class="label">Step Five &nbsp;·&nbsp; Digital Campaign Planning &amp; Key Messages</span>
+        <h2 class="title">Same funnel. <em>Opposite temperatures.</em></h2>
+      </div>
+    </div>
+
+    <p class="body" style="margin-top:24px;max-width:78ch">Two parallel Meta Ads campaigns. Same funnel — Ad → LP → WhatsApp → Visit. Same budget split — THB 50K each / 30 days. Opposite buyer psychologies. Opposite creative temperatures.</p>
+
+    <div class="campaigns-cmp">
+      <div class="camp c1">
+        <div class="c-label">C1 &nbsp;·&nbsp; Business Tycoon with Family</div>
+        <h3>Connoisseur / Achiever — legacy and longevity</h3>
+        <div class="audience">Age 35+ &nbsp;·&nbsp; HK, Singapore, Bangkok, Shanghai, Sydney, Melbourne</div>
+        <dl>
+          <dt>Stage</dt><dd>Permission — "Is this the right operating base for the next chapter of my family?"</dd>
+          <dt>Insight</dt><dd>The wealthy aren't moving for tax. They're moving for environments that match the standard they hold internally.</dd>
+          <dt>Idea</dt><dd>Where Asia's wealth is moving — and why now.</dd>
+          <dt>Feeling</dt><dd>The quiet relief of recognition — this is the place I have been looking for.</dd>
+          <dt>Objective</dt><dd>Traffic → LP Views (switch to Lead at 400+ events)</dd>
+          <dt>Targeting</dt><dd>Wellness · Luxury Real Estate · Intl. Travellers · Family &amp; Wealth · 1% LAL</dd>
+          <dt>Tone</dt><dd>Editorial, family-led, high-context, never selling.</dd>
+        </dl>
+        <div class="hero-line">
+          "Not everything you own should feel the same"
+          <span>"Where your time starts behaving differently"</span>
+        </div>
+        <div class="forecast">Forecast: 20,000–33,000 LP visits · 50–80 WA chats · 1–2 qualified visits</div>
+      </div>
+
+      <div class="camp c2">
+        <div class="c-label">C2 &nbsp;·&nbsp; Impulse Buyer + Thailand Partners</div>
+        <h3>Achiever / Experientialist with a Curator's eye</h3>
+        <div class="audience">Age 35–55 &nbsp;·&nbsp; Phuket, Phang Nga &nbsp;·&nbsp; Bangkok (Sukhumvit, Sathorn, Thonglor)</div>
+        <dl>
+          <dt>Stage</dt><dd>Desire ↔ Recognition — the moment a property stops being a property and becomes the version of life they've been quietly designing in their head.</dd>
+          <dt>Insight</dt><dd>They're not shopping for square metres. They're shopping for the version of themselves that already lives there — and they'll know it inside the first thirty seconds.</dd>
+          <dt>Idea</dt><dd>The taste you've been building was always pointing here.</dd>
+          <dt>Feeling</dt><dd>The slow exhale of recognition — this is what I meant.</dd>
+          <dt>Objective</dt><dd>Traffic → LP Views (switch to Lead at 250+ events)</dd>
+          <dt>Targeting</dt><dd>Design &amp; Architecture · Luxury Hotels · Wellness · Fine Dining · Modern Art · Couples &amp; Creative Founders · 2–3% LAL from CRM</dd>
+          <dt>Daypart</dt><dd>Thu 14:00 – Mon 23:00 — the long-weekend daydreaming window.</dd>
+          <dt>Tone</dt><dd>Sensory, lifestyle-led, atmospheric — the ad is a feeling, not an offer. Never explains. Never sells.</dd>
+        </dl>
+        <div class="hero-line">
+          "Built for those designing life for the long term"
+          <span>"Your Life, Held Differently"</span>
+        </div>
+        <div class="forecast">Forecast: 27,000–50,000 LP visits · 110–220 WA chats · 1–3 qualified visits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CUSTOMER JOURNEY ============ -->
+<section id="journey" class="deep">
+  <div class="container">
+    <div class="eyebrow">Customer Journey &nbsp;·&nbsp; Seven Touchpoints</div>
+    <h2 class="title">Two personalised openings. <em>One shared arrival.</em></h2>
+    <p class="body" style="margin-top:22px;max-width:72ch">The first three touchpoints flex to the buyer. The middle three are the same for everyone — because the property is. The final touchpoint becomes personal again: a memory folio, not a brochure.</p>
+
+    <div class="journey">
+      <div class="tp"><div class="n">01</div><div><div class="name">Meta Ad</div><div class="tag">Personalised</div></div></div>
+      <div class="tp"><div class="n">02</div><div><div class="name">Landing Page</div><div class="tag">Personalised</div></div></div>
+      <div class="tp"><div class="n">03</div><div><div class="name">WhatsApp Register</div><div class="tag">Personalised</div></div></div>
+      <div class="tp shared"><div class="n">04</div><div><div class="name">Visit Briefing Card</div><div class="tag">Shared</div></div></div>
+      <div class="tp shared"><div class="n">05</div><div><div class="name">First Principles Visit</div><div class="tag">Shared</div></div></div>
+      <div class="tp shared"><div class="n">06</div><div><div class="name">Villa Sales Kit</div><div class="tag">Shared</div></div></div>
+      <div class="tp"><div class="n">07</div><div><div class="name">Thank You — Memory Folio</div><div class="tag">Personalised</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 06 ============ -->
+<section id="step6" class="green">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">06</div>
+      <div class="step-title">
+        <span class="label">Step Six &nbsp;·&nbsp; Landing Page Production (C1)</span>
+        <h2 class="title">Claude produced. The team <em>curated.</em></h2>
+      </div>
+    </div>
+
+    <p class="body" style="margin-top:24px;max-width:84ch">The brand is what was chosen to keep. Every step marked <em style="color:var(--red);font-style:normal">Claude</em> is production. Every step marked <em style="color:var(--earth);font-style:normal">Tri Vananda Team</em> is judgment — the choice of which brand documents to feed in, which skills to activate, which images to pick, which lines to cut, which version to ship. The landing page exists because both halves of the framework were honoured: the volume of capability, and the discipline of editing.</p>
+
+    <a class="link-btn" href="https://trivananda.com/mkt/C1/" target="_blank" rel="noopener">View the C1 Landing Page <span class="arrow">→</span></a>
+    <a class="link-btn" href="https://trivananda.com/mkt/C2/" target="_blank" rel="noopener">View the C2 Landing Page <span class="arrow">→</span></a>
+
+    <table class="process-table">
+      <thead><tr><th>#</th><th>Step</th><th>By</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td class="step-desc"><strong>Setup Claude with brand documents</strong>Uploaded the Tri Vananda brand guideline, master positioning, copy archive, image library, awards, and C1 hero collateral.</td><td class="by team">Tri Vananda Team</td></tr>
+        <tr><td class="num">02</td><td class="step-desc"><strong>Upgrade Claude with Luminary skills</strong>Installed the Luminary 40-skill creative agency system — verbal identity, HNWI psychology, campaign strategy, hospitality branding, frontend design.</td><td class="by team">Tri Vananda Team</td></tr>
+        <tr><td class="num">03</td><td class="step-desc"><strong>Creative direction</strong>Proposed the editorial structure, narrative arc, hero concept, and permission psychology aligned to the C1 buyer.</td><td class="by claude">Claude</td></tr>
+        <tr><td class="num">04</td><td class="step-desc"><strong>HTML draft</strong>Built the full single-file landing page — editorial layout, typography system, motion, and component library.</td><td class="by claude">Claude</td></tr>
+        <tr><td class="num">05</td><td class="step-desc"><strong>Image selection</strong>Chose the photography from the brand library — hero, forest, family, community, residences, F&amp;B.</td><td class="by team">Tri Vananda Team</td></tr>
+        <tr><td class="num">06</td><td class="step-desc"><strong>Copy refinement</strong>Rewrote captions, headers, and surrounding paragraphs so the words served the chosen images — not the other way around.</td><td class="by team">Tri Vananda Team</td></tr>
+        <tr><td class="num">07</td><td class="step-desc"><strong>Content review against persona</strong>Read every line against the C1 persona. Cut anything that performed wellness or sold features. Kept only what a tycoon would recognise.</td><td class="by claude">Claude</td></tr>
+        <tr><td class="num">08</td><td class="step-desc"><strong>Curation &amp; final cuts</strong>Read it again. Removed half a dozen things that were almost good but not quite. Approved the version that felt like Tri Vananda, not like a website about Tri Vananda.</td><td class="by team">Tri Vananda Team</td></tr>
+        <tr><td class="num">09</td><td class="step-desc"><strong>Upload to website</strong>Pushed the final files live to trivananda.com/mkt/C1/.</td><td class="by team">Tri Vananda Team</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ STEP 07 ============ -->
+<section id="step7" class="deep">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-num">07</div>
+      <div class="step-title">
+        <span class="label">Step Seven &nbsp;·&nbsp; Meta Ad Production and Launch (C1)</span>
+        <h2 class="title">Made by hand. <em>Shipped to Meta.</em></h2>
+      </div>
+    </div>
+
+    <p class="body" style="margin-top:24px;max-width:84ch">Manual production in Canva by the Tri Vananda Team. Ad creatives were built directly from the brand library — photography selected, typography applied, layouts composed by hand, then uploaded to Meta Ads Manager.</p>
+
+    <a class="link-btn" href="https://www.facebook.com/ads/library/?active_status=active&amp;ad_type=all&amp;country=TH&amp;is_targeted_country=false&amp;media_type=all&amp;search_type=page&amp;sort_data[mode]=total_impressions&amp;sort_data[direction]=desc&amp;view_all_page_id=119283546521718" target="_blank" rel="noopener">
+      View Live Meta Ads Library <span class="arrow">→</span>
+    </a>
+
+    <table class="process-table">
+      <thead><tr><th>#</th><th>Step</th><th>By</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td class="step-desc"><strong>Ad creative production in Canva</strong>Single-image and carousel variants built from the brand visual system and photography library.</td><td class="by team">Tri Vananda Team</td></tr>
+        <tr><td class="num">02</td><td class="step-desc"><strong>Upload to Meta Ads Manager</strong>Campaign structure, ad sets, audiences, placements, and launch.</td><td class="by team">Tri Vananda Team</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section id="close" class="closing">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--red)">End &nbsp;·&nbsp; Thank You</div>
+    <div style="display:flex;flex-direction:column;gap:36px;max-width:48ch;margin-top:40px">
+      <div class="quote">The brand is <span>what was chosen to keep.</span></div>
+      <div class="rule wide red"></div>
+      <p class="body">Six campaigns. One home. Claude produced. Tri Vananda curated. Two halves of the same discipline — the volume of capability, and the courage of the edit.</p>
+      <div class="attribution">Tri Vananda &nbsp;·&nbsp; Thep Krasatti, Phuket &nbsp;·&nbsp; info@trivananda.com</div>
+    </div>
+  </div>
+  <div class="container closing-foot">
+    <div>Build &nbsp;·&nbsp; Belong &nbsp;·&nbsp; Bloom</div>
+    <div>trivananda.com</div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    const links = Array.from(document.querySelectorAll('.sidenav a'));
+    const sectionIds = links.map(a => a.dataset.target);
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function update(){
+      const probe = window.innerHeight * 0.35;
+      let activeIdx = 0;
+      sections.forEach((sec, i) => {
+        if (sec.getBoundingClientRect().top - probe <= 0) activeIdx = i;
+      });
+      links.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }, {passive:true});
+    update();
+  })();
+</script>
+
+</body>
+</html>

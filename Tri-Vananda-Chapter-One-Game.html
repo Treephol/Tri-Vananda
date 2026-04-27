@@ -1,0 +1,3247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Three Friends of Tri Vananda — Playable Chapter 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5e6c8;
+    --cream: #fff4d6;
+    --ink: #2a1e18;
+    --red: #c24a3a;
+    --red-dark: #8a2d20;
+    --green: #4a7a4a;
+    --green-dark: #2c4e2c;
+    --sun: #f2c94c;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #6b4a2a;
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0 1px, transparent 1px 3px);
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: 'VT323', monospace;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  body {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 16px 10px;
+  }
+  .console {
+    background: #1a1410;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), inset 0 0 0 2px #3a2a22, inset 0 0 0 6px #1a1410, inset 0 0 0 8px #5a3a28;
+    position: relative;
+  }
+  .console::after {
+    content: "TRI VANANDA · CH.1 · PLAYABLE";
+    position: absolute;
+    top: -26px; left: 50%; transform: translateX(-50%);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--cream);
+    letter-spacing: 0.2em;
+  }
+  .screen {
+    position: relative;
+    width: 640px; height: 480px;
+    max-width: 95vw;
+    background: #1a1410;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+  @media (max-width: 660px) {
+    .screen { width: 100vw; height: calc(100vw * 0.75); max-height: 75vh; }
+  }
+  canvas#game {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .topbar {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 28px; z-index: 10;
+    background: var(--ink);
+    color: var(--cream);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    border-bottom: 2px solid var(--red);
+  }
+  .topbar .loc { display: flex; align-items: center; gap: 6px; }
+  .topbar .loc .dot { width: 5px; height: 5px; background: var(--red); animation: blink 1.2s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0.3; } }
+  .topbar .inv { display: flex; gap: 6px; align-items: center; }
+  .topbar .inv .slot { width: 16px; height: 16px; border: 1px solid var(--cream); background: #0a0a0a; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .topbar .inv .slot.has { background: var(--sun); color: var(--ink); }
+
+  .dialog {
+    position: absolute; bottom: 52px; left: 10px; right: 10px;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    box-shadow: 0 3px 0 var(--ink), inset 0 0 0 2px var(--cream), inset 0 0 0 3px var(--ink);
+    padding: 12px 16px 10px 16px;
+    z-index: 20;
+    min-height: 74px;
+    font-family: 'VT323', monospace;
+    display: none;
+  }
+  .dialog.active { display: block; }
+  .dialog .speaker {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+  .dialog .speaker.narrator { color: var(--green-dark); }
+  .dialog .speaker.system { color: var(--red-dark); }
+  .dialog .text {
+    font-size: 19px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .dialog .text em { color: var(--red-dark); font-style: italic; }
+  .dialog .tick {
+    position: absolute;
+    bottom: 6px; right: 12px;
+    color: var(--red);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    animation: bounce 0.7s infinite;
+  }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
+  .choices {
+    position: absolute; bottom: 52px; left: 10px; right: 10px;
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    box-shadow: 0 3px 0 var(--ink);
+    padding: 10px 14px;
+    z-index: 20;
+    display: none;
+  }
+  .choices.active { display: block; }
+  .choices .prompt {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+  .choices ul { list-style: none; margin: 0; padding: 0; }
+  .choices li {
+    font-size: 18px;
+    padding: 3px 8px 3px 22px;
+    position: relative;
+    cursor: pointer;
+  }
+  .choices li::before {
+    content: "►";
+    position: absolute; left: 4px; top: 3px;
+    color: var(--red);
+    opacity: 0;
+  }
+  .choices li.sel::before, .choices li:hover::before { opacity: 1; }
+  .choices li:hover, .choices li.sel { background: rgba(194,74,58,0.15); }
+  .choices li small { display:block; font-family:'VT323',monospace; font-size:14px; color: var(--green-dark); font-style: italic; }
+
+  .objective {
+    position: absolute;
+    top: 34px; right: 8px;
+    background: rgba(245,230,200,0.96);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    padding: 5px 8px 6px 8px;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--ink);
+    z-index: 12;
+    width: 148px;
+    line-height: 1.15;
+  }
+  .objective .obj-head {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    margin-bottom: 3px;
+  }
+  .objective .obj-head .bullet { color: var(--sun); }
+  .objective .obj-text {
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+  .objective .q-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .objective .q-item .mark {
+    width: 10px; color: var(--red);
+  }
+  .objective .q-item.done { color: var(--green-dark); opacity: 0.7; }
+  .objective .q-item.done .mark { color: var(--green); }
+  .objective .q-counter {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--red-dark);
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+  .objective.complete .q-counter { color: var(--green); }
+
+  .path-arrow {
+    position: absolute;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--sun);
+    text-shadow: 1px 1px 0 var(--ink);
+    pointer-events: none;
+    z-index: 9;
+    animation: bounce 1s infinite;
+  }
+
+  .prompt-hint {
+    position: absolute;
+    bottom: 58px; right: 14px;
+    background: var(--ink);
+    color: var(--sun);
+    padding: 4px 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    z-index: 15;
+    border: 2px solid var(--cream);
+    display: none;
+    animation: bounce 0.8s infinite;
+  }
+  .prompt-hint.show { display: block; }
+
+  .navbar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 44px;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 10px;
+    z-index: 10;
+    border-top: 2px solid var(--red);
+  }
+  .hint {
+    color: var(--cream);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .hint .key { background: var(--paper); color: var(--ink); padding: 2px 4px; margin: 0 2px; border: 1px solid var(--cream); }
+  .navbar button {
+    background: var(--paper); color: var(--ink);
+    border: 2px solid var(--cream);
+    box-shadow: 2px 2px 0 var(--red-dark);
+    padding: 6px 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+  .navbar button:hover { background: var(--sun); }
+
+  .menu-overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,20,16,0.92);
+    z-index: 100;
+    display: none;
+    align-items: center; justify-content: center;
+  }
+  .menu-overlay.open { display: flex; }
+  .menu-panel {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--red);
+    padding: 16px;
+    width: 85%; max-width: 380px;
+    max-height: 85%; overflow-y: auto;
+  }
+  .menu-panel h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--red-dark);
+    margin: 0 0 8px 0;
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+  .menu-panel ul { list-style: none; margin: 0; padding: 0; }
+  .menu-panel li {
+    font-family: 'VT323', monospace;
+    font-size: 17px;
+    padding: 5px 8px 5px 22px;
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .menu-panel li:hover { background: rgba(0,0,0,0.06); }
+  .menu-panel li.cur { color: var(--red-dark); }
+  .menu-panel li.cur::before { content: "►"; position: absolute; left: 6px; color: var(--red); }
+  .menu-panel li.lock { color: #aaa; cursor: not-allowed; }
+  .menu-panel .close {
+    margin-top: 12px; width: 100%;
+    background: var(--ink); color: var(--cream);
+    border: 2px solid var(--cream);
+    padding: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    cursor: pointer;
+  }
+
+  .vpad {
+    position: absolute; bottom: 52px; left: 14px;
+    z-index: 15;
+    display: none;
+  }
+  @media (pointer: coarse) { .vpad { display: block; } }
+  .vpad .row { display: flex; justify-content: center; }
+  .vpad button {
+    width: 40px; height: 40px;
+    background: rgba(245,230,200,0.9);
+    border: 2px solid var(--ink);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    margin: 2px;
+    cursor: pointer;
+  }
+  .vaction {
+    position: absolute; bottom: 52px; right: 14px;
+    z-index: 15;
+    display: none;
+  }
+  @media (pointer: coarse) { .vaction { display: flex; flex-direction: column; gap: 6px; } }
+  .vaction button {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: var(--red); color: var(--cream);
+    border: 2px solid var(--ink);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="console">
+  <div class="screen">
+    <canvas id="game" width="320" height="240"></canvas>
+
+    <div class="topbar">
+      <div class="loc"><span class="dot"></span><span id="locLabel">TRI VANANDA</span></div>
+      <div class="inv" id="invBar"></div>
+    </div>
+
+    <!-- Objective HUD -->
+    <div class="objective" id="objective">
+      <div class="obj-head"><span class="bullet">◆</span> QUEST</div>
+      <div class="obj-text" id="objText">Look around. Say hello.</div>
+      <div id="objItems"></div>
+      <div class="q-counter" id="objCounter"></div>
+    </div>
+
+    <div class="prompt-hint" id="promptHint">▸ SPACE: INTERACT</div>
+
+    <div class="dialog" id="dialog">
+      <div class="speaker" id="dlgSpeaker">NARRATOR</div>
+      <div class="text" id="dlgText">...</div>
+      <span class="tick">▼</span>
+    </div>
+
+    <div class="choices" id="choices">
+      <div class="prompt">◆ CHOOSE</div>
+      <ul id="choiceList"></ul>
+    </div>
+
+    <!-- Virtual controls for touch -->
+    <div class="vpad">
+      <div class="row"><button data-key="ArrowUp">▲</button></div>
+      <div class="row"><button data-key="ArrowLeft">◄</button><button data-key="ArrowDown">▼</button><button data-key="ArrowRight">►</button></div>
+    </div>
+    <div class="vaction">
+      <button data-key="a">A</button>
+      <button data-key="m">M</button>
+    </div>
+
+    <div class="navbar">
+      <span class="hint"><span class="key">←↑→↓</span>MOVE <span class="key">A</span>TALK <span class="key">M</span>MENU</span>
+      <button id="menuBtn">☰ MENU</button>
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel">
+        <h3>◆ MENU ◆</h3>
+        <ul id="menuList">
+          <li onclick="teleportTo('gate'); closeMenu();">▸ The Front Gate</li>
+          <li onclick="teleportTo('house'); closeMenu();" id="mh">▸ Inside the House</li>
+          <li onclick="teleportTo('bedroom'); closeMenu();" id="mb">▸ Nara's Bedroom</li>
+          <li onclick="teleportTo('garden'); closeMenu();" id="mg">▸ The Back Garden</li>
+          <li onclick="teleportTo('farm'); closeMenu();" id="mfarm">▸ The Farm (Tong's)</li>
+          <li onclick="teleportTo('forest'); closeMenu();" id="mf">▸ The Forest Path</li>
+          <li onclick="teleportTo('tamarind'); closeMenu();" id="mt">▸ The Great Tamarind</li>
+          <li onclick="triggerEnding(); closeMenu();" id="mn">▸ Skip to Night Ending</li>
+          <li onclick="resetGame(); closeMenu();" style="color: var(--red);">↺ Restart Chapter</li>
+        </ul>
+        <button class="close" onclick="closeMenu()">CLOSE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Game scripts loaded below -->
+<script id="gameCore">
+// ═══════════════════════════════════════════════════════════════
+// GAME CORE — engine, palette, tile system, player, rendering
+// ═══════════════════════════════════════════════════════════════
+const TILE = 16;
+const COLS = 20, ROWS = 15; // 320x240 @ 16px tiles
+
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = false;
+
+// ───── Palette ─────
+const P = {
+  // basics
+  k: '#1a1410',     // deep black
+  K: '#2a1e18',     // ink
+  s: '#f2b98a',     // skin light
+  S: '#d4925a',     // skin tan (Arun)
+  w: '#fff4d6',     // off-white
+  W: '#f5e6c8',     // cream
+  // hair / dark
+  h: '#1a1410',
+  // blue (Nara shirt)
+  b: '#3a6cbc', B: '#2a4c8c',
+  // yellow (Nara shorts, sun)
+  y: '#f2c94c', Y: '#e0a83a',
+  // pink/coral (Ploy)
+  p: '#f29b8e', P_: '#c24a3a',
+  // green (Arun shirt, grass)
+  g: '#4a7a4a', G: '#2c4e2c',
+  // grass variants
+  a: '#8ab260', A: '#6a9245',
+  // brown (bike frame, wood, trunk)
+  c: '#c4a878', C: '#8a6d3a',
+  d: '#5a3a22', D: '#3a2414',
+  // red
+  r: '#c24a3a', R: '#8a2d20',
+  // stone
+  t: '#c0a470', T: '#9a8566',
+  // sky
+  x: '#a8c5e0', X: '#7aa0c0',
+  // night
+  n: '#2a3a5a', N: '#1a2a4a',
+  // misc
+  e: '#1a1410',     // eye
+  o: '#f2a23a',     // orange (hornbill beak)
+  L: '#88c560',     // frog light
+  l: '#6ea84a',     // frog dark
+  z: '#e8c890',     // leaf beige
+  Z: '#a88a56',     // leaf dark
+  '-': null, ' ': null, '.': null, // transparent
+};
+
+// ───── Game state ─────
+const G = {
+  player: { x: 5*TILE, y: 7*TILE, dir: 'down', frame: 0, walking: false, speed: 1.4 },
+  currentRoom: 'gate',
+  mode: 'play', // 'play' | 'dialog' | 'choice' | 'transition' | 'pause'
+  dialogQueue: [],
+  currentDialog: null,
+  currentChoice: null,
+  flags: new Set(),
+  inventory: [],
+  tick: 0,
+  walkTimer: 0,
+  history: [],
+  camera: { x: 0, y: 0 },
+  transitioning: false,
+  fade: 0, fadeTarget: 0,
+  entryCooldown: 0,      // frames before exits can trigger after room change
+  bgCache: {},           // offscreen canvas cache of each room's background
+  lastTime: 0,
+};
+
+// ───── Sprite rendering helpers ─────
+function drawSprite(rows, x, y, scale) {
+  scale = scale || 1;
+  for (let r = 0; r < rows.length; r++) {
+    const line = rows[r];
+    for (let c = 0; c < line.length; c++) {
+      const ch = line[c];
+      const col = P[ch];
+      if (!col) continue;
+      ctx.fillStyle = col;
+      ctx.fillRect(x + c*scale, y + r*scale, scale, scale);
+    }
+  }
+}
+
+function fillTile(color, tx, ty) {
+  ctx.fillStyle = color;
+  ctx.fillRect(tx*TILE, ty*TILE, TILE, TILE);
+}
+
+// ───── Input ─────
+const keys = {};
+const keyPressed = {};
+window.addEventListener('keydown', e => {
+  const k = e.key.toLowerCase();
+  if (!keys[k]) keyPressed[k] = true;
+  keys[k] = true;
+  // Prevent arrow scroll
+  if (['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k)) e.preventDefault();
+});
+window.addEventListener('keyup', e => {
+  const k = e.key.toLowerCase();
+  keys[k] = false;
+});
+
+// Virtual buttons (touch)
+document.querySelectorAll('.vpad button, .vaction button').forEach(btn => {
+  const k = btn.dataset.key.toLowerCase();
+  const start = e => { e.preventDefault(); if (!keys[k]) keyPressed[k] = true; keys[k] = true; };
+  const end   = e => { e.preventDefault(); keys[k] = false; };
+  btn.addEventListener('touchstart', start);
+  btn.addEventListener('touchend',   end);
+  btn.addEventListener('mousedown',  start);
+  btn.addEventListener('mouseup',    end);
+  btn.addEventListener('mouseleave', end);
+});
+
+// ───── Collision ─────
+function isSolidAt(px, py) {
+  const room = ROOMS[G.currentRoom];
+  if (!room) return true;
+  if (px < 0 || py < 0 || px >= COLS*TILE || py >= ROWS*TILE) return true;
+  const tx = Math.floor(px / TILE);
+  const ty = Math.floor(py / TILE);
+  if (room.solid && room.solid[ty] && room.solid[ty][tx] === '#') return true;
+  // Check objects
+  if (room.objects) {
+    for (const o of room.objects) {
+      if (!o.solid) continue;
+      const ox = o.x * TILE, oy = o.y * TILE;
+      const ow = (o.w || 1) * TILE, oh = (o.h || 1) * TILE;
+      if (px >= ox && px < ox + ow && py >= oy && py < oy + oh) return true;
+    }
+  }
+  // NPCs are solid
+  if (room.npcs) {
+    for (const n of room.npcs) {
+      if (n.hidden) continue;
+      const nx = n.x * TILE, ny = n.y * TILE;
+      if (px >= nx + 2 && px < nx + 14 && py >= ny + 2 && py < ny + 14) return true;
+    }
+  }
+  return false;
+}
+
+function canMoveTo(x, y) {
+  // Player hitbox: feet area (a bit shorter than full 16)
+  const left = x + 3, right = x + 13;
+  const top = y + 10, bot = y + 15;
+  if (isSolidAt(left, top) || isSolidAt(right, top) || isSolidAt(left, bot) || isSolidAt(right, bot)) return false;
+  return true;
+}
+
+// ───── Interact detection ─────
+function getInteractable() {
+  const room = ROOMS[G.currentRoom];
+  if (!room) return null;
+  // Look in facing direction 1 tile ahead (feet area)
+  let fx = G.player.x + 8, fy = G.player.y + 12;
+  if (G.player.dir === 'up') fy -= 14;
+  else if (G.player.dir === 'down') fy += 10;
+  else if (G.player.dir === 'left') fx -= 12;
+  else if (G.player.dir === 'right') fx += 12;
+
+  const tx = Math.floor(fx / TILE), ty = Math.floor(fy / TILE);
+
+  // NPCs
+  if (room.npcs) {
+    for (const n of room.npcs) {
+      if (n.hidden) continue;
+      if (tx >= n.x - 0 && tx < n.x + (n.w || 1) && ty >= n.y && ty < n.y + (n.h || 1)) return n;
+      // Also check adjacent tiles for more forgiving interact
+      if (Math.abs(tx - n.x) <= 1 && Math.abs(ty - n.y) <= 1) {
+        if (G.player.dir === 'up' && ty === n.y && tx === n.x) return n;
+        if (G.player.dir === 'down' && ty === n.y && tx === n.x) return n;
+        if (G.player.dir === 'left' && tx === n.x && ty === n.y) return n;
+        if (G.player.dir === 'right' && tx === n.x && ty === n.y) return n;
+      }
+    }
+  }
+  // Objects
+  if (room.objects) {
+    for (const o of room.objects) {
+      if (!o.interact) continue;
+      if (tx >= o.x && tx < o.x + (o.w || 1) && ty >= o.y && ty < o.y + (o.h || 1)) return o;
+    }
+  }
+  // Exits (require standing on them though, not just facing)
+  return null;
+}
+
+function nearInteractable() {
+  // For showing the hint prompt
+  return !!getInteractable();
+}
+
+function triggerInteract() {
+  const it = getInteractable();
+  if (!it) return false;
+  if (it.action) { it.action(); return true; }
+  if (it.dialog) {
+    const d = typeof it.dialog === 'function' ? it.dialog() : it.dialog;
+    startDialog(d);
+    return true;
+  }
+  return false;
+}
+
+// ───── Exit detection ─────
+function checkExits() {
+  if (G.entryCooldown > 0) return;  // block exit checks right after entering a room
+  const room = ROOMS[G.currentRoom];
+  if (!room || !room.exits) return;
+  const tx = Math.floor((G.player.x + 8) / TILE);
+  const ty = Math.floor((G.player.y + 13) / TILE);
+  for (const ex of room.exits) {
+    if (tx === ex.x && ty === ex.y) {
+      if (ex.locked && ex.locked()) {
+        if (ex.lockedMsg && !ex._shown) { ex._shown = true; startDialog(ex.lockedMsg); setTimeout(()=>ex._shown=false, 1500); }
+        // nudge back
+        if (G.player.dir === 'right') G.player.x -= 3;
+        else if (G.player.dir === 'left') G.player.x += 3;
+        else if (G.player.dir === 'down') G.player.y -= 3;
+        else if (G.player.dir === 'up') G.player.y += 3;
+        return;
+      }
+      goToRoom(ex.to, ex.toX, ex.toY, ex.toDir || G.player.dir);
+      return;
+    }
+  }
+}
+
+// ───── Room transitions ─────
+function goToRoom(id, tx, ty, dir) {
+  if (G.mode === 'dialog' || G.mode === 'choice') return;
+  G.history.push({ room: G.currentRoom, x: G.player.x, y: G.player.y, dir: G.player.dir });
+  G.transitioning = true;
+  G.fadeTarget = 1;
+  // Clear any pressed keys on transition so we don't run into the opposite exit
+  for (const k in keys) keys[k] = false;
+  for (const k in keyPressed) keyPressed[k] = false;
+  setTimeout(() => {
+    G.currentRoom = id;
+    // Nudge spawn a small step INTO the room (away from the edge exit)
+    // so the player doesn't immediately re-trigger an exit back.
+    let px = (tx !== undefined ? tx : 5) * TILE;
+    let py = (ty !== undefined ? ty : 7) * TILE;
+    const step = 6;
+    if (dir === 'down')  py += step;
+    if (dir === 'up')    py -= step;
+    if (dir === 'right') px += step;
+    if (dir === 'left')  px -= step;
+    G.player.x = px;
+    G.player.y = py;
+    if (dir) G.player.dir = dir;
+    document.getElementById('locLabel').textContent = (ROOMS[id] && ROOMS[id].name) || id.toUpperCase();
+    G.fadeTarget = 0;
+    G.entryCooldown = 30; // ~0.5s at 60fps — block exit triggers
+    // Invalidate bg cache for this room if we want re-render (keep it to reuse)
+    setTimeout(() => { G.transitioning = false; onRoomEnter(id); }, 180);
+  }, 180);
+}
+
+function teleportTo(id) {
+  const room = ROOMS[id]; if (!room) return;
+  const spawn = room.defaultSpawn || { x: 5, y: 7, dir: 'down' };
+  goToRoom(id, spawn.x, spawn.y, spawn.dir);
+}
+
+// ───── Dialog system ─────
+function startDialog(lines) {
+  if (!Array.isArray(lines)) lines = [lines];
+  G.dialogQueue = [...lines];
+  G.mode = 'dialog';
+  document.getElementById('promptHint').classList.remove('show');
+  advanceDialog();
+}
+function advanceDialog() {
+  if (G.dialogQueue.length === 0) {
+    document.getElementById('dialog').classList.remove('active');
+    G.mode = 'play';
+    G.currentDialog = null;
+    // Fire post-dialog callback if set
+    if (G.onDialogEnd) { const cb = G.onDialogEnd; G.onDialogEnd = null; cb(); }
+    return;
+  }
+  const line = G.dialogQueue.shift();
+  G.currentDialog = line;
+  const dlg = document.getElementById('dialog');
+  dlg.classList.add('active');
+  const speaker = typeof line === 'string' ? 'NARRATOR' : (line.speaker || 'NARRATOR');
+  const text = typeof line === 'string' ? line : line.text;
+  const sp = document.getElementById('dlgSpeaker');
+  sp.textContent = '◆ ' + speaker;
+  sp.className = 'speaker' + (speaker === 'NARRATOR' ? ' narrator' : (speaker === 'SYSTEM' ? ' system' : ''));
+  document.getElementById('dlgText').innerHTML = text;
+}
+
+// ───── Choice system ─────
+function startChoice(prompt, options, onSelect) {
+  G.mode = 'choice';
+  const box = document.getElementById('choices');
+  const list = document.getElementById('choiceList');
+  box.querySelector('.prompt').textContent = '◆ ' + prompt;
+  list.innerHTML = '';
+  options.forEach((opt, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = opt.label + (opt.hint ? `<small>${opt.hint}</small>` : '');
+    if (i === 0) li.classList.add('sel');
+    li.onclick = () => {
+      box.classList.remove('active');
+      G.mode = 'play';
+      onSelect(opt.value);
+    };
+    list.appendChild(li);
+  });
+  box.classList.add('active');
+  G.currentChoice = { options, onSelect, index: 0 };
+}
+
+function choiceMoveSel(delta) {
+  if (!G.currentChoice) return;
+  const items = document.querySelectorAll('#choiceList li');
+  G.currentChoice.index = (G.currentChoice.index + delta + items.length) % items.length;
+  items.forEach((li, i) => li.classList.toggle('sel', i === G.currentChoice.index));
+}
+function choiceConfirm() {
+  if (!G.currentChoice) return;
+  const opt = G.currentChoice.options[G.currentChoice.index];
+  document.getElementById('choices').classList.remove('active');
+  G.mode = 'play';
+  const onSel = G.currentChoice.onSelect;
+  G.currentChoice = null;
+  onSel(opt.value);
+}
+
+// ───── Inventory ─────
+function addItem(key, label, icon) {
+  if (G.inventory.find(i => i.key === key)) return;
+  G.inventory.push({ key, label, icon: icon || '?' });
+  renderInv();
+}
+function renderInv() {
+  const bar = document.getElementById('invBar');
+  bar.innerHTML = '<span style="font-size:7px;margin-right:4px;">ITEMS</span>';
+  for (let i = 0; i < 4; i++) {
+    const it = G.inventory[i];
+    const span = document.createElement('span');
+    span.className = 'slot' + (it ? ' has' : '');
+    span.textContent = it ? it.icon : '';
+    span.title = it ? it.label : '';
+    bar.appendChild(span);
+  }
+}
+
+// ───── Menu ─────
+function openMenu() { if (G.mode === 'dialog' || G.mode === 'choice') return; document.getElementById('menuOverlay').classList.add('open'); updateMenu(); }
+function closeMenu() { document.getElementById('menuOverlay').classList.remove('open'); }
+function updateMenu() {
+  // Lock scenes not yet unlocked based on flags
+  const items = {
+    mh: G.flags.has('seen_gate'),
+    mb: G.flags.has('entered_house') || G.flags.has('seen_bedroom'),
+    mg: G.flags.has('seen_gate'),
+    mf: G.flags.has('arun_done'),
+    mt: G.flags.has('arun_done'),
+    mn: G.flags.has('choice2_made'),
+  };
+  for (const id in items) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('lock', !items[id]);
+  }
+}
+document.getElementById('menuBtn').onclick = openMenu;
+
+// ───── Reset ─────
+function resetGame() {
+  G.flags = new Set();
+  G.inventory = [];
+  G.history = [];
+  G.player.x = 5*TILE; G.player.y = 7*TILE; G.player.dir = 'down';
+  G.currentRoom = 'gate';
+  // Reset quest ingredients
+  if (typeof QUEST !== 'undefined') {
+    for (const k in QUEST.ingredients) QUEST.ingredients[k].collected = false;
+  }
+  // Remove Arun NPC from gate if re-spawned
+  if (ROOMS.gate && ROOMS.gate.npcs) {
+    ROOMS.gate.npcs = ROOMS.gate.npcs.filter(n => n.name !== 'ARUN');
+  }
+  // Invalidate bg cache
+  G.bgCache = {};
+  document.getElementById('locLabel').textContent = ROOMS.gate.name;
+  renderInv();
+  if (typeof updateObjective === 'function') updateObjective();
+  onRoomEnter('gate');
+}
+</script>
+<script id="gameSprites">
+// ═══════════════════════════════════════════════════════════════
+// SPRITES — pixel-art defined as string arrays
+// ═══════════════════════════════════════════════════════════════
+const SPR = {};
+
+// ───── Nara — 16×16 per frame, 4 directions × 2 frames ─────
+// Blue shirt, yellow shorts, black hair two buns, tan skin
+SPR.naraDown1 = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hsssssh------',
+  '---hsesesh------',
+  '---hssossh------',
+  '----ssss--------',
+  '-----ss---------',
+  '----bbbbb-------',
+  '---bbbbbb-------',
+  '---bbbbbb-------',
+  '---bbbbbb-------',
+  '----yyyy--------',
+  '---yy--yy-------',
+  '---yy--yy-------',
+  '---kk--kk-------',
+  '----------------',
+];
+SPR.naraDown2 = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hsssssh------',
+  '---hsesesh------',
+  '---hssossh------',
+  '----ssss--------',
+  '-----ss---------',
+  '----bbbbb-------',
+  '---bbbbbb-------',
+  '---bbbbbb-------',
+  '---bbbbbb-------',
+  '----yyyy--------',
+  '---yy--yy-------',
+  '----yy-yy-------',
+  '----kk--kk------',
+  '----------------',
+];
+SPR.naraUp1 = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hhhhhhh------',
+  '---hhhhhhh------',
+  '---hhhhhhh------',
+  '----hhhh--------',
+  '-----ss---------',
+  '----bbbbb-------',
+  '---bBbbbBb------',
+  '---bbbbbb-------',
+  '---bbbbbb-------',
+  '----yyyy--------',
+  '---yy--yy-------',
+  '---yy--yy-------',
+  '---kk--kk-------',
+  '----------------',
+];
+SPR.naraUp2 = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hhhhhhh------',
+  '---hhhhhhh------',
+  '---hhhhhhh------',
+  '----hhhh--------',
+  '-----ss---------',
+  '----bbbbb-------',
+  '---bBbbbBb------',
+  '---bbbbbb-------',
+  '---bbbbbb-------',
+  '----yyyy--------',
+  '---yy--yy-------',
+  '----yy-yy-------',
+  '----kk--kk------',
+  '----------------',
+];
+SPR.naraLeft1 = [
+  '----hhhh--------',
+  '---hhhhhh-------',
+  '--hhsssss-------',
+  '--hsesssh-------',
+  '--hsoossh-------',
+  '---ssss---------',
+  '----ss----------',
+  '---bbbb---------',
+  '--bbbbbb--------',
+  '--bbbbbb--------',
+  '--bbbbbb--------',
+  '---yyyy---------',
+  '--yy-yy---------',
+  '--yy-yy---------',
+  '--kk-kk---------',
+  '----------------',
+];
+SPR.naraLeft2 = [
+  '----hhhh--------',
+  '---hhhhhh-------',
+  '--hhsssss-------',
+  '--hsesssh-------',
+  '--hsoossh-------',
+  '---ssss---------',
+  '----ss----------',
+  '---bbbb---------',
+  '--bbbbbb--------',
+  '--bbbbbb--------',
+  '--bbbbbb--------',
+  '---yyyy---------',
+  '--yy-yy---------',
+  '---yy-yy--------',
+  '----kk-kk-------',
+  '----------------',
+];
+SPR.naraRight1 = [
+  '--------hhhh----',
+  '-------hhhhhh---',
+  '-------ssssshh--',
+  '-------hsssseh--',
+  '-------hssooosh-',
+  '---------ssss---',
+  '----------ss----',
+  '---------bbbb---',
+  '--------bbbbbb--',
+  '--------bbbbbb--',
+  '--------bbbbbb--',
+  '---------yyyy---',
+  '---------yy-yy--',
+  '---------yy-yy--',
+  '---------kk-kk--',
+  '----------------',
+];
+SPR.naraRight2 = [
+  '--------hhhh----',
+  '-------hhhhhh---',
+  '-------ssssshh--',
+  '-------hsssseh--',
+  '-------hssooosh-',
+  '---------ssss---',
+  '----------ss----',
+  '---------bbbb---',
+  '--------bbbbbb--',
+  '--------bbbbbb--',
+  '--------bbbbbb--',
+  '---------yyyy---',
+  '---------yy-yy--',
+  '--------yy-yy---',
+  '-------kk-kk----',
+  '----------------',
+];
+
+// ───── Ploy (smaller, pink top, one small tail) ─────
+SPR.ploy = [
+  '-----hhh--------',
+  '----hhhhh-------',
+  '---hhhhhhh------',
+  '---hsssssh------',
+  '---hseseh-------',
+  '----ssss--------',
+  '-----ss---------',
+  '----pppp--------',
+  '---ppppppp------',
+  '---ppppppp------',
+  '---ppppppp------',
+  '----ssss--------',
+  '----ss-ss-------',
+  '----ss-ss-------',
+  '----kk-kk-------',
+  '----------------',
+];
+SPR.ploySitting = [
+  '----------------',
+  '-----hhh--------',
+  '----hhhhh-------',
+  '---hsssssh------',
+  '---hseseh-------',
+  '----ssos--------',
+  '---ssssss-------',
+  '--pppppppp------',
+  '--ppppsppp------',
+  '---pppsspp------',
+  '----ssss--------',
+  '---ss--ss-------',
+  '--ss----ss------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// ───── Arun (green shirt, brown shorts, messy hair, tanner skin) ─────
+SPR.arunDown = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hhhhhhhh-----',
+  '---hSSSSSh------',
+  '---hSeSeSh------',
+  '----SSSSS-------',
+  '-----SS---------',
+  '----ggggg-------',
+  '---gggggggg-----',
+  '---gggggggg-----',
+  '---gggggggg-----',
+  '----cccc--------',
+  '---cc--cc-------',
+  '---cc--cc-------',
+  '---SS--SS-------',
+  '----------------',
+];
+SPR.arunLeft = [
+  '----hhhh--------',
+  '---hhhhhh-------',
+  '--hhhhhhh-------',
+  '--hSSSSSh-------',
+  '--hSeSSSh-------',
+  '---SSSSS--------',
+  '----SS----------',
+  '---gggg---------',
+  '--gggggg--------',
+  '--gggggg--------',
+  '--gggggg--------',
+  '---cccc---------',
+  '--cc-cc---------',
+  '--cc-cc---------',
+  '--SS-SS---------',
+  '----------------',
+];
+
+// ───── Mother (Thai-style loose shirt, red, long hair) ─────
+SPR.mother = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hhhhhhhh-----',
+  '---hsssssh------',
+  '----sesesh------',
+  '----ssoss-------',
+  '---hssssh-------',
+  '---rrrrrr-------',
+  '--rrrrrrrr------',
+  '--rrrrrrrr------',
+  '--rrrrrrrr------',
+  '--rrrrrrrr------',
+  '--rrrrrrrr------',
+  '----cc-cc-------',
+  '----SS-SS-------',
+  '----------------',
+];
+
+// ───── Father (navy shirt, shorter hair) ─────
+SPR.father = [
+  '-----hhhh-------',
+  '----hhhhhh------',
+  '---hhhhhhh------',
+  '---hsssssh------',
+  '----sesesh------',
+  '----ssossh------',
+  '----ssss--------',
+  '---NNNNNN-------',
+  '--NNNNNNNN------',
+  '--NNNNNNNN------',
+  '--NNNNNNNN------',
+  '---CCCCCC-------',
+  '---CC--CC-------',
+  '---CC--CC-------',
+  '---kk--kk-------',
+  '----------------',
+];
+
+// ───── Grandpa Tong (white hair, cream clothes, beard) ─────
+SPR.grandpa = [
+  '-----wwww-------',
+  '----wwwwww------',
+  '---wwwwwww------',
+  '---Wsssssh------',
+  '---Wseseh-------',
+  '----sssW--------',
+  '----sws---------',
+  '---ccccccc------',
+  '--ccccccccc-----',
+  '--ccccccccc-----',
+  '--ccccccccc-----',
+  '--ccCCccCCc-----',
+  '---ccccccc------',
+  '----cc-cc-------',
+  '----dd-dd-------',
+  '----------------',
+];
+
+// ───── Tua-Tua the frog (tiny) ─────
+SPR.frog = [
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----LL--LL------',
+  '----Le--Le------',
+  '---LLLLLLL------',
+  '--LLLLLLLLLL----',
+  '--lLLLLLLLLl----',
+  '---llllllll-----',
+  '----l----l------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// ───── Hornbill Kai (on branch) ─────
+SPR.hornbill = [
+  '----------------',
+  '-------ooo------',
+  '------okkk------',
+  '-----okkkkkk----',
+  '-----okkkwwk----',
+  '------kkwwwk----',
+  '-------kwwwkk---',
+  '-------kkkkkk---',
+  '--------kkkkkk--',
+  '----------kkk---',
+  '---------kkk----',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// ───── Big objects ─────
+// Mango tree (32×32)
+SPR.mangoTree = [
+  '------GGGGGGGGGGGG--------------',
+  '----GGGGGGGGGGGGGGGG------------',
+  '---GGGGGGGGGGGGGGGGGG-----------',
+  '--GGGgGggGGGGgGggGGGGG----------',
+  '--GGggggggGGgggggggGGG----------',
+  '--GGgggrgggGggYgggGGGG----------',
+  '--GgggggggggggggggggG-----------',
+  '-GGgggggYggggggggrggGG----------',
+  '-GGggggggggggggggggGG-----------',
+  '-GGGgggggggggrgggggGG-----------',
+  '--GGgggYggggggggggGG------------',
+  '--GGGgggggggggggGGG-------------',
+  '---GGGGgggggggGGGG--------------',
+  '----GGGGGGGGGGGGG---------------',
+  '------GGGGGGGG------------------',
+  '----------dd--------------------',
+  '----------dd--------------------',
+  '---------dddd-------------------',
+  '---------dddd-------------------',
+  '---------dDdd-------------------',
+  '---------dDdd-------------------',
+  '--------ddDDdd------------------',
+  '--------ddDDdd------------------',
+  '--------ddDDdd------------------',
+  '--------ddddddd-----------------',
+  '-------dddDDdddd----------------',
+  '------ddddddddddd---------------',
+  '-----dddddDDdddddd--------------',
+  '----dddddddddddddd--------------',
+  '----dddddddddddddd--------------',
+  '----------------------------',
+  '----------------------------',
+];
+
+// Small tree (16x24)
+SPR.smallTree = [
+  '----GGGGGG------',
+  '---GGGGGGGG-----',
+  '--GGGGggGGGG----',
+  '-GGGgggggGGGG---',
+  '-GGggggggggGG---',
+  '-GGggggggggGG---',
+  '-GGggggggggGG---',
+  '--GGggggggGG----',
+  '---GGGggGGG-----',
+  '-----GGGG-------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '-----dddd-------',
+  '----ddddd-------',
+];
+
+// Tamarind (64×64 enormous)
+SPR.tamarindSmall = [  // 32x32 used as tile
+  '-------GGGGGGGGGGGGGG-----------',
+  '-----GGGGGGGGGGGGGGGGGG---------',
+  '----GGGGGGGGGGGGGGGGGGGG--------',
+  '---GGGGGGGGGGGGGGGGGGGGGG-------',
+  '--GGGGGgggggggggggggGGGGG-------',
+  '--GGGggggggggggggggggGGGG-------',
+  '-GGgggggggggggggggggggGGG-------',
+  '-GggggggggggggggggggggggG-------',
+  '-GggggggggggggggggggggggG-------',
+  '-GGgggggggggggggggggggGGG-------',
+  '-GGGgggggggggggggggggGGGG-------',
+  '--GGGgggggggggggggggGGGGG-------',
+  '--GGGGggggggggggggGGGGGG--------',
+  '----GGGGGgggggggGGGGGGG---------',
+  '-----GGGGGGGGGGGGGGGG-----------',
+  '-------GGGGGGGGGGGGGG-----------',
+  '-----------dddd-----------------',
+  '-----------dddd-----------------',
+  '----------dddddd----------------',
+  '----------dDDDdd----------------',
+  '----------ddDDdd----------------',
+  '----------ddDDdd----------------',
+  '---------ddDDDDdd---------------',
+  '---------ddDDDDdd---------------',
+  '---------ddDDDDdd---------------',
+  '--------ddddDDdddd--------------',
+  '--------dddddddddd--------------',
+  '--------dddddddddd--------------',
+  '-------dddddddddddd-------------',
+  '-----dddddddddddddddd-----------',
+  '---ddddddddddddddddddd----------',
+  '---ddddddddddddddddddd----------',
+];
+
+// Car (red, top-down)
+SPR.car = [
+  '----------------',
+  '-RRRRRRRRRRRRRR-',
+  '-RwwwwwwwwwwwwR-',
+  '-RwwwwwwwwwwwwR-',
+  '-RwwwwwwwwwwwwR-',
+  '-RRRRRRRRRRRRRR-',
+  '-RRRRRRRRRRRRRR-',
+  '-RwwwwwwwwwwwwR-',
+  '-RwwwwwwwwwwwwR-',
+  '-RwwwwwwwwwwwwR-',
+  '-RRRRRRRRRRRRRR-',
+  '-kkRRRRRRRRRRkk-',
+  '-kkRRRRRRRRRRkk-',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Wooden bike
+SPR.bike = [
+  '----------------',
+  '----------------',
+  '----r--r--------',
+  '---rr-rr--------',
+  '--rrcccrr-------',
+  '--rrcccrr-------',
+  '---rrrrr--------',
+  '----rrr---------',
+  '----kkk---------',
+  '---kk-kk--------',
+  '--kk---kk-------',
+  '--kk---kk-------',
+  '---kk-kk--------',
+  '----kkk---------',
+  '----------------',
+  '----------------',
+];
+
+// House (exterior, 32x32)
+SPR.houseFront = [
+  '-------RRRRRR-------------------',
+  '------RRRRRRRR------------------',
+  '-----RRRRRRRRRR-----------------',
+  '----RRRRRRRRRRRR----------------',
+  '---RRRRRRRRRRRRRR---------------',
+  '--CCCCCCCCCCCCCCCC--------------',
+  '--ccccccccccccccccc-------------',
+  '--cwwccwwccccwwccwc-------------',
+  '--cwwccwwccccwwccwc-------------',
+  '--ccccccccccccccccc-------------',
+  '--cccccccdddcccccccc------------',
+  '--cccccccdddcccccccc------------',
+  '--cccccccdYdcccccccc------------',
+  '--cccccccdddcccccccc------------',
+  '--cccccccdddcccccccc------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+  '----------------------------',
+];
+
+// Leaf with frog on it (16x16)
+SPR.leafFrog = [
+  '----------------',
+  '----------------',
+  '----ggggg-------',
+  '--gggggggggg----',
+  '-gggLLwwLLggg---',
+  '-gggLekkekggg---',
+  '--ggLLLLLLLgg---',
+  '--gglllllllg----',
+  '---ggggggggg----',
+  '----gggggg------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Leaf with writing (16x16)
+SPR.leafRiddle = [
+  '----------------',
+  '----------------',
+  '----zzzzz-------',
+  '--zzzzzzzzzz----',
+  '-zzzZkkZkkZzzz--',
+  '-zzzkkkzzkkzzz--',
+  '--zzkzzzzzkzz---',
+  '--zzzzzzzzzz----',
+  '---zzzzzzzz-----',
+  '----zzzzzz------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Mango (pickup)
+SPR.mango = [
+  '----------------',
+  '-----YY---------',
+  '----YYY---------',
+  '----rrrr--------',
+  '---rrYrr--------',
+  '---rrrrr--------',
+  '---rrrrr--------',
+  '----rrr---------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Bed (32x16, side view)
+SPR.bed = [
+  'RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR',
+  'RwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwR',
+  'RwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwR',
+  'RwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwR',
+  'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+  'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC',
+  'dcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdc',
+  'cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd',
+  'd------------------------------d',
+  'd------------------------------d',
+  '--------------------------------',
+  '--------------------------------',
+  '--------------------------------',
+  '--------------------------------',
+  '--------------------------------',
+  '--------------------------------',
+];
+
+// Lime tree (small tree with green fruits)
+SPR.limeTree = [
+  '----GGGGGG------',
+  '---GGGGGGGG-----',
+  '--GGGggGGGGG----',
+  '-GGggggggGGGG---',
+  '-GGggLggggGGG---',
+  '-GGgggggLggGG---',
+  '-GGgLggggggGG---',
+  '--GGggLggGGG----',
+  '---GGGggGGG-----',
+  '-----GGGG-------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '-----dddd-------',
+  '----ddddd-------',
+];
+
+// Basil plant
+SPR.basil = [
+  '----------------',
+  '----------------',
+  '----gggg--------',
+  '---gGggGg-------',
+  '--ggGggGgg------',
+  '---ggggGg-------',
+  '----gggg--------',
+  '-----gg---------',
+  '-----gg---------',
+  '----dddd--------',
+  '----dCCd--------',
+  '----dddd--------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Pandan plant (long striped leaves)
+SPR.pandan = [
+  '---g-----g------',
+  '---gg---gg------',
+  '---gg---gg------',
+  '--ggg---gg------',
+  '--ggg---ggg-----',
+  '--Ggg-g-ggg-----',
+  '--GggggG-gg-----',
+  '---gggGG-gg-----',
+  '----gGGG--gg----',
+  '----gGG---gg----',
+  '-----gG----g----',
+  '-----G----------',
+  '---dddCCddd-----',
+  '----dCCCdd------',
+  '----------------',
+  '----------------',
+];
+
+// Chicken (cute, white with red comb)
+SPR.chicken = [
+  '----------------',
+  '-----rrr--------',
+  '----rrrrr-------',
+  '---rwwwwrr------',
+  '--rrwwwwwo-e-r--',
+  '--rwwwwwwwwwr---',
+  '-rwwwwwwwwwwr---',
+  '-rwwwwwwwwwwr---',
+  '-rrwwwwwwwwrr---',
+  '--rrwwwwwwrr----',
+  '----oo--oo------',
+  '----oo--oo------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Water well (stone)
+SPR.well = [
+  '----------------',
+  '-----ddddddd----',
+  '----dttttttd----',
+  '---dtttTtttTd---',
+  '---dttTTttTtd---',
+  '---dTTTttTTTd---',
+  '---dttTTttTtd---',
+  '---dtTtttTttd---',
+  '---dttttttttd---',
+  '---dTTTTTTTTd---',
+  '---dttttttttd---',
+  '---dttNNNNNtd---',
+  '---dttNNNNNtd---',
+  '---dtttttttd----',
+  '----dddddddd----',
+  '----------------',
+];
+
+// Vegetable patch (tile, cabbage-ish)
+SPR.veggie = [
+  '----------------',
+  '---gggggggggg---',
+  '--gGGgggGggGg---',
+  '-ggGgggGgGgGg---',
+  '-gggGgGggGggg---',
+  '-ggGggggGggGg---',
+  '-gGgggGgggggg---',
+  '--ggGgggggGG----',
+  '---gggggggg-----',
+  '----ggggg-------',
+  '--CCCCCCCCC-----',
+  '--CCCCCCCCC-----',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Sign post (wooden direction sign)
+SPR.sign = [
+  '----------------',
+  '----------------',
+  '---dddddddd-----',
+  '---dcccccd------',
+  '---dcccccd------',
+  '---dccccccd-----',
+  '---dddddddd-----',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '------dd--------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Basket (for ingredients)
+SPR.basket = [
+  '----------------',
+  '----------------',
+  '---dccccccd-----',
+  '--dccCCCCccd----',
+  '--dcCcCcCcCd----',
+  '--dCcCcCcCcd----',
+  '--dcCcCcCcCd----',
+  '--ddddccdddd----',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+
+// Suitcase (red)
+SPR.suitcase = [
+  '----RRRRRRRR----',
+  '---RRRRRRRRRR---',
+  '---RRRRRRRRRR---',
+  '---RRwwwwwwRR---',
+  '---RRRYYYYRRR---',
+  '---RRRRRRRRRR---',
+  '---RRRRRRRRRR---',
+  '---kkRRRRkkRR---',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+  '----------------',
+];
+</script>
+<script id="gameRooms">
+// ═══════════════════════════════════════════════════════════════
+// ROOMS — each room has name, tile map, objects, NPCs, exits
+// Tile chars: . grass  , path  " stone  ~ water  = floor  # solid
+//             / door    ^ stairs
+// ═══════════════════════════════════════════════════════════════
+const ROOMS = {};
+
+// ───── ROOM: THE FARM (Grandpa Tong's patch) ─────
+ROOMS.farm = {
+  name: "GRANDPA TONG'S FARM",
+  defaultSpawn: { x: 9, y: 1, dir: 'down' },
+  tiles: Array(15).fill('....................'),
+  bg: function(ctx) {
+    // Sky strip
+    ctx.fillStyle = '#f3d897';
+    ctx.fillRect(0, 0, COLS*TILE, 2*TILE);
+    // Grass
+    ctx.fillStyle = P.a;
+    ctx.fillRect(0, 2*TILE, COLS*TILE, (ROWS-2)*TILE);
+    ctx.fillStyle = P.A;
+    for (let y = 2; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if ((x*3 + y*5) % 11 === 0) ctx.fillRect(x*TILE + 4, y*TILE + 6, 2, 1);
+      }
+    }
+    // Fence at top
+    ctx.fillStyle = P.C;
+    ctx.fillRect(0, 2*TILE - 2, COLS*TILE, 4);
+    ctx.fillStyle = P.d;
+    for (let x = 0; x < COLS; x += 2) {
+      ctx.fillRect(x*TILE + 4, 2*TILE - 6, 3, 10);
+    }
+    // Central path (vertical, from north entry)
+    ctx.fillStyle = P.c;
+    ctx.fillRect(9*TILE, 2*TILE, 2*TILE, 13*TILE);
+    ctx.fillStyle = P.C;
+    for (let y = 2; y < 15; y++) {
+      if (y % 2 === 0) ctx.fillRect(9*TILE + 2, y*TILE + 6, 3, 2);
+    }
+    // Dirt patches for vegetable rows (left and right of path)
+    ctx.fillStyle = P.C;
+    for (let row = 0; row < 3; row++) {
+      // left side
+      ctx.fillRect(1*TILE, (4 + row*3)*TILE, 6*TILE, 2*TILE);
+      // right side
+      ctx.fillRect(13*TILE, (4 + row*3)*TILE, 6*TILE, 2*TILE);
+    }
+    // Lighter dirt highlights
+    ctx.fillStyle = P.c;
+    for (let row = 0; row < 3; row++) {
+      ctx.fillRect(1*TILE, (4 + row*3)*TILE, 6*TILE, 2);
+      ctx.fillRect(13*TILE, (4 + row*3)*TILE, 6*TILE, 2);
+    }
+    // Sky: distant palms
+    ctx.fillStyle = P.G;
+    ctx.fillRect(3*TILE, TILE - 4, 10, 4);
+    ctx.fillRect(15*TILE, TILE - 6, 10, 6);
+    // little cloud
+    ctx.fillStyle = P.w;
+    ctx.fillRect(5*TILE, 4, 18, 4);
+    ctx.fillRect(5*TILE + 4, 0, 10, 4);
+    ctx.fillRect(14*TILE, 6, 16, 4);
+  },
+  objects: [
+    // ── Tree / fence border (visible edge blockers) ──
+    { x: 0, y: 4, sprite: 'smallTree', solid: true },
+    { x: 0, y: 8, sprite: 'smallTree', solid: true },
+    { x: 0, y: 12, sprite: 'smallTree', solid: true },
+    { x: 19, y: 4, sprite: 'smallTree', solid: true },
+    { x: 19, y: 8, sprite: 'smallTree', solid: true },
+    { x: 19, y: 12, sprite: 'smallTree', solid: true },
+    // Bottom edge (full)
+    { x: 1, y: 14, sprite: 'smallTree', solid: true },
+    { x: 4, y: 14, sprite: 'smallTree', solid: true },
+    { x: 8, y: 14, sprite: 'smallTree', solid: true },
+    { x: 11, y: 14, sprite: 'smallTree', solid: true },
+    { x: 15, y: 14, sprite: 'smallTree', solid: true },
+    { x: 18, y: 14, sprite: 'smallTree', solid: true },
+    // ── Directional sign near entrance ──
+    { x: 8, y: 2, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ NORTH → The Back Garden' }]},
+    // ─── Left vegetable row (decor, not interactive unless noted) ───
+    { x: 1, y: 4, sprite: 'veggie' },
+    { x: 3, y: 4, sprite: 'veggie' },
+    { x: 5, y: 4, sprite: 'veggie' },
+    { x: 1, y: 7, sprite: 'veggie' },
+    { x: 3, y: 7, sprite: 'veggie' },
+    { x: 5, y: 7, sprite: 'veggie' },
+    // ─── Basil bush (examine but the collectible basil is in garden) ───
+    { x: 2, y: 10, w: 1, h: 1, sprite: 'basil', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'A basil bush. Grandpa Tong says the best-smelling basil is in the back garden, where the sun hits it longest.' }]},
+    // ─── Pandan plant (COLLECTIBLE) ───
+    { x: 4, y: 10, w: 1, h: 1, sprite: 'pandan', solid: false, interact: true,
+      action: function() {
+        if (QUEST.ingredients.pandan.collected) {
+          startDialog([{ speaker: 'NARRATOR', text: 'You have enough pandan leaves for tonight.' }]);
+        } else {
+          startDialog([
+            { speaker: 'NARRATOR', text: 'A pandan plant. The leaves are long and striped, and smell faintly of rice pudding.' },
+            { speaker: 'NARRATOR', text: '◆ You fold three leaves and add them to your basket.' },
+            { speaker: 'SYSTEM', text: '✚ Got: PANDAN LEAVES.' },
+          ]);
+          collectIngredient('pandan');
+        }
+      }},
+    // ─── Chicken coop fence + chicken (decor) ───
+    { x: 6, y: 10, w: 1, h: 1, solid: true, draw: function(ctx) {
+        ctx.fillStyle = P.C; ctx.fillRect(6*TILE + 2, 10*TILE + 4, TILE - 4, 2);
+        ctx.fillStyle = P.d; ctx.fillRect(6*TILE + 4, 10*TILE, 2, 8);
+        ctx.fillRect(6*TILE + 10, 10*TILE, 2, 8);
+      }},
+    // ─── Right side — lime tree (COLLECTIBLE) ───
+    { x: 14, y: 4, w: 1, h: 1, sprite: 'limeTree', solid: true, interact: true,
+      action: function() {
+        if (QUEST.ingredients.lime.collected) {
+          startDialog([{ speaker: 'NARRATOR', text: 'The lime tree is generous. But one is enough for tonight.' }]);
+        } else {
+          startDialog([
+            { speaker: 'NARRATOR', text: 'A small lime tree, heavy with green fruit. You pick one. It is cold to the touch and smells, somehow, both bitter and alive.' },
+            { speaker: 'SYSTEM', text: '◯ Got: GREEN LIME.' },
+          ]);
+          collectIngredient('lime');
+        }
+      }},
+    // More veggies (right side)
+    { x: 14, y: 7, sprite: 'veggie' },
+    { x: 16, y: 7, sprite: 'veggie' },
+    { x: 18, y: 7, sprite: 'veggie' },
+    { x: 14, y: 10, sprite: 'veggie' },
+    { x: 16, y: 10, sprite: 'veggie' },
+    { x: 18, y: 10, sprite: 'veggie' },
+    // ─── Well ───
+    { x: 17, y: 12, w: 1, h: 1, sprite: 'well', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'The old well. The rope is still wet. You can smell the cold water from here.' }]},
+    // ─── Sign at entry: directional ───
+    { x: 9, y: 3, w: 1, h: 1, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ TONG\'S FARM ◆<br/><em>pick only what you will eat</em><br/><br/>◆ Lime trees (east)<br/>◆ Pandan and herbs (south)' }]},
+    // ─── Basket near farm entrance (visual marker) ───
+    { x: 11, y: 3, w: 1, h: 1, sprite: 'basket', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'An old bamboo basket. Someone has used it for many seasons.' }]},
+  ],
+  npcs: [
+    // Grandpa Tong — the farm keeper
+    { x: 10, y: 8, sprite: 'grandpa', dir: 'down', name: 'GRANDPA TONG',
+      dialog: function() {
+        if (!G.flags.has('met_tong')) {
+          G.flags.add('met_tong');
+          return [
+            { speaker: 'NARRATOR', text: 'An old man looks up from the soil. His hands are dark with earth. His smile is gentle.' },
+            { speaker: 'GRANDPA TONG', text: 'Sawasdee, little one. You must be the new family.' },
+            { speaker: 'GRANDPA TONG', text: 'Your mother told me you would come. Pick what you need — there is always enough.' },
+            { speaker: 'GRANDPA TONG', text: 'A <em>lime</em> from the tree. <em>Pandan leaves</em> from the bed. And the <em>basil</em>, the best basil, grows in your own back garden.' },
+            { speaker: 'GRANDPA TONG', text: 'The mango — that one the tree gives by itself. Listen when it falls.' },
+            { speaker: 'NARRATOR', text: '◆ Tip: Approach each plant and press A / SPACE to gather.' }
+          ];
+        }
+        if (QUEST.complete && !G.flags.has('quest_done')) {
+          return [{ speaker: 'GRANDPA TONG', text: 'You have everything? Good. Your mother is waiting at the gate. Go on.' }];
+        }
+        const hints = [];
+        for (const k in QUEST.ingredients) {
+          const q = QUEST.ingredients[k];
+          if (!q.collected) hints.push(`◆ The ${q.name.toLowerCase()} is ${q.hint}.`);
+        }
+        if (hints.length) return [{ speaker: 'GRANDPA TONG', text: hints.join('<br/>') }];
+        return [{ speaker: 'GRANDPA TONG', text: 'All gathered? Head back to your mother. The kitchen is waiting.' }];
+      }},
+    // A chicken (harmless, decorative NPC)
+    { x: 7, y: 10, sprite: 'chicken', dir: 'down', name: 'CHICKEN',
+      dialog: function() {
+        return [{ speaker: 'NARRATOR', text: 'A chicken. She blinks at you. She has no opinions.' }];
+      }},
+  ],
+  exits: [
+    // North — back to garden
+    { x: 9, y: 0, to: 'garden', toX: 9, toY: 13, toDir: 'up' },
+    { x: 10, y: 0, to: 'garden', toX: 10, toY: 13, toDir: 'up' },
+  ],
+  onEnter: function() {
+    G.flags.add('seen_farm');
+    updateObjective();
+  }
+};
+
+// ───── ROOM: FOREST PATH (after Arun — leads to tamarind or quiet choice) ─────
+ROOMS.forest = {
+  name: "THE FOREST PATH",
+  defaultSpawn: { x: 0, y: 7, dir: 'right' },
+  tiles: Array(15).fill('....................'),
+  bg: function(ctx) {
+    // Forest floor
+    ctx.fillStyle = P.A;
+    ctx.fillRect(0, 0, COLS*TILE, ROWS*TILE);
+    ctx.fillStyle = P.a;
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if ((x * 5 + y) % 13 === 0) ctx.fillRect(x*TILE + 6, y*TILE + 4, 2, 2);
+      }
+    }
+    // Canopy shadows
+    ctx.fillStyle = P.G;
+    for (let y = 0; y < 4; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if (((x*3 + y*7) % 5) === 0) ctx.fillRect(x*TILE, y*TILE, TILE, TILE);
+      }
+    }
+    // Path - winding through
+    ctx.fillStyle = P.c;
+    const pathPts = [
+      [0, 7], [1, 7], [2, 7], [3, 7], [4, 8], [5, 8], [6, 7], [7, 7],
+      [8, 6], [9, 6], [10, 7], [11, 7], [12, 7], [13, 7], [14, 8], [15, 8],
+      [16, 7], [17, 7], [18, 7], [19, 7],
+    ];
+    for (const [px, py] of pathPts) {
+      ctx.fillRect(px*TILE, py*TILE + 4, TILE, TILE - 4);
+      ctx.fillRect(px*TILE, (py+1)*TILE - 2, TILE, TILE);
+    }
+    // Light rays coming through
+    ctx.fillStyle = 'rgba(255,244,214,0.25)';
+    ctx.fillRect(3*TILE, 0, 2, ROWS*TILE);
+    ctx.fillRect(9*TILE, 0, 2, ROWS*TILE);
+    ctx.fillRect(15*TILE, 0, 2, ROWS*TILE);
+  },
+  objects: [
+    // ── Thick tree line at edges (visible blockers) ──
+    // Top edge
+    { x: 0, y: 0, sprite: 'smallTree', solid: true },
+    { x: 2, y: 0, sprite: 'smallTree', solid: true },
+    { x: 4, y: 0, sprite: 'smallTree', solid: true },
+    { x: 6, y: 0, sprite: 'smallTree', solid: true },
+    { x: 8, y: 0, sprite: 'smallTree', solid: true },
+    { x: 10, y: 0, sprite: 'smallTree', solid: true },
+    { x: 12, y: 0, sprite: 'smallTree', solid: true },
+    { x: 14, y: 0, sprite: 'smallTree', solid: true },
+    { x: 16, y: 0, sprite: 'smallTree', solid: true },
+    { x: 18, y: 0, sprite: 'smallTree', solid: true },
+    // Bottom edge (except cols 9-10 for south exit)
+    { x: 0, y: 14, sprite: 'smallTree', solid: true },
+    { x: 3, y: 14, sprite: 'smallTree', solid: true },
+    { x: 6, y: 14, sprite: 'smallTree', solid: true },
+    { x: 12, y: 14, sprite: 'smallTree', solid: true },
+    { x: 15, y: 14, sprite: 'smallTree', solid: true },
+    { x: 18, y: 14, sprite: 'smallTree', solid: true },
+    // ── Directional signs at the fork ──
+    { x: 8, y: 8, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ EAST → The Great Tamarind<br/>◆ SOUTH → Under the Mango (quiet path)<br/>◆ WEST → The Front Gate' }]},
+    // Original path trees (inside the clearing)
+    { x: 1, y: 4, sprite: 'smallTree', solid: true },
+    { x: 3, y: 3, sprite: 'smallTree', solid: true },
+    { x: 6, y: 4, sprite: 'smallTree', solid: true },
+    { x: 2, y: 10, sprite: 'smallTree', solid: true },
+    { x: 5, y: 11, sprite: 'smallTree', solid: true },
+    { x: 8, y: 10, sprite: 'smallTree', solid: true },
+    { x: 11, y: 3, sprite: 'smallTree', solid: true },
+    { x: 13, y: 4, sprite: 'smallTree', solid: true },
+    { x: 12, y: 11, sprite: 'smallTree', solid: true },
+    { x: 15, y: 10, sprite: 'smallTree', solid: true },
+    { x: 17, y: 3, sprite: 'smallTree', solid: true },
+    // A small shrine / sign at the halfway mark
+    { x: 9, y: 9, w: 1, h: 1, solid: true, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.d; ctx.fillRect(9*TILE + 6, 9*TILE, 4, TILE);
+        ctx.fillStyle = P.c; ctx.fillRect(9*TILE + 2, 9*TILE - 2, TILE - 4, 6);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'A tiny wooden marker. Someone has painted a frog on it, in childlike strokes. You wonder who.' }]},
+    // Wild mushroom
+    { x: 7, y: 9, w: 1, h: 1, solid: false, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.r; ctx.fillRect(7*TILE + 4, 9*TILE + 4, 8, 4);
+        ctx.fillStyle = P.w; ctx.fillRect(7*TILE + 6, 9*TILE + 5, 2, 2);
+        ctx.fillStyle = P.w; ctx.fillRect(7*TILE + 10, 9*TILE + 5, 2, 2);
+        ctx.fillStyle = P.W; ctx.fillRect(7*TILE + 6, 9*TILE + 8, 4, 4);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'A red-capped mushroom, with white dots. Best not to eat things you have not been introduced to.' }]},
+  ],
+  npcs: [],
+  exits: [
+    // West — back to gate
+    { x: 0, y: 7, to: 'gate', toX: 18, toY: 12, toDir: 'left' },
+    { x: 0, y: 8, to: 'gate', toX: 18, toY: 12, toDir: 'left' },
+    // East — to tamarind or choice?
+    { x: 19, y: 7, to: 'tamarind', toX: 0, toY: 10, toDir: 'right' },
+    { x: 19, y: 8, to: 'tamarind', toX: 0, toY: 10, toDir: 'right' },
+    // Corner — the "quiet path" — south leads back to front of house
+    { x: 9, y: 14, to: 'quiet', toX: 9, toY: 1, toDir: 'down' },
+    { x: 10, y: 14, to: 'quiet', toX: 9, toY: 1, toDir: 'down' },
+  ],
+  onEnter: function() {
+    G.flags.add('entered_forest');
+    if (!G.flags.has('forest_tip')) {
+      G.flags.add('forest_tip');
+      setTimeout(() => startDialog([
+        { speaker: 'NARRATOR', text: 'The path is cool and green. Ferns brush your shoulders.' },
+        { speaker: 'NARRATOR', text: '◆ EAST leads deeper — toward the big tamarind.' },
+        { speaker: 'NARRATOR', text: '◆ SOUTH leads back around — toward a quiet spot under the mango tree.' }
+      ]), 280);
+    }
+  }
+};
+
+// ───── ROOM: TAMARIND (the great tree) ─────
+ROOMS.tamarind = {
+  name: "THE GREAT TAMARIND",
+  defaultSpawn: { x: 0, y: 10, dir: 'right' },
+  tiles: Array(15).fill('....................'),
+  bg: function(ctx) {
+    // Dappled forest light
+    ctx.fillStyle = '#b8d498';
+    ctx.fillRect(0, 0, COLS*TILE, ROWS*TILE);
+    ctx.fillStyle = P.A;
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if ((x + y*3) % 7 === 0) ctx.fillRect(x*TILE + 2, y*TILE + 2, 3, 3);
+      }
+    }
+    // Clearing (circle of lighter grass)
+    ctx.fillStyle = P.a;
+    ctx.fillRect(3*TILE, 3*TILE, 14*TILE, 9*TILE);
+    // Soft path from west entry
+    ctx.fillStyle = P.c;
+    ctx.fillRect(0, 10*TILE + 4, 4*TILE, TILE);
+    // Light rays
+    ctx.fillStyle = 'rgba(255,244,214,0.22)';
+    ctx.fillRect(6*TILE, 0, 3, ROWS*TILE);
+    ctx.fillRect(13*TILE, 0, 3, ROWS*TILE);
+    ctx.fillRect(10*TILE, 0, 3, ROWS*TILE);
+  },
+  objects: [
+    // ── Tree border around clearing (visible edge blockers) ──
+    { x: 2, y: 0, sprite: 'smallTree', solid: true },
+    { x: 5, y: 0, sprite: 'smallTree', solid: true },
+    { x: 9, y: 0, sprite: 'smallTree', solid: true },
+    { x: 13, y: 0, sprite: 'smallTree', solid: true },
+    { x: 16, y: 0, sprite: 'smallTree', solid: true },
+    { x: 19, y: 0, sprite: 'smallTree', solid: true },
+    { x: 19, y: 3, sprite: 'smallTree', solid: true },
+    { x: 19, y: 6, sprite: 'smallTree', solid: true },
+    { x: 19, y: 9, sprite: 'smallTree', solid: true },
+    { x: 19, y: 12, sprite: 'smallTree', solid: true },
+    { x: 2, y: 12, sprite: 'smallTree', solid: true },
+    { x: 5, y: 12, sprite: 'smallTree', solid: true },
+    { x: 13, y: 13, sprite: 'smallTree', solid: true },
+    { x: 16, y: 13, sprite: 'smallTree', solid: true },
+    // West side — keep path clear at (0, 10), (0, 11)
+    { x: 0, y: 1, sprite: 'smallTree', solid: true },
+    { x: 0, y: 4, sprite: 'smallTree', solid: true },
+    { x: 0, y: 7, sprite: 'smallTree', solid: true },
+    { x: 0, y: 13, sprite: 'smallTree', solid: true },
+    // Bottom
+    { x: 2, y: 14, sprite: 'smallTree', solid: true },
+    { x: 5, y: 14, sprite: 'smallTree', solid: true },
+    { x: 9, y: 14, sprite: 'smallTree', solid: true },
+    { x: 13, y: 14, sprite: 'smallTree', solid: true },
+    { x: 16, y: 14, sprite: 'smallTree', solid: true },
+    // ── Directional sign near entry ──
+    { x: 2, y: 11, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ WEST → The Forest Path (back to gate)' }]},
+    // GIANT TAMARIND - central
+    { x: 7, y: 2, w: 6, h: 8, sprite: 'tamarindSmall', solid: true, interact: true,
+      action: function() {
+        if (!G.flags.has('leaf_tamarind')) {
+          G.flags.add('leaf_tamarind');
+          G.flags.add('choice2_made');
+          addItem('leaf', 'A Leaf with a Riddle', '✿');
+          startDialog([
+            { speaker: 'NARRATOR', text: 'You stand under the tamarind. It is older than both your grandmothers. You don\'t shout near old things.' },
+            { speaker: 'NARRATOR', text: 'There is no wind in the clearing — and yet the leaves are moving. Just a little. As if the tree itself were <em>breathing</em>.' },
+            { speaker: 'NARRATOR', text: 'And then — high up among the leaves — something lets go.' },
+            { speaker: 'NARRATOR', text: 'A single leaf. It spirals down. Down, and down, and down. And it lands, quite lightly, on top of your head.' },
+            { speaker: 'ARUN', text: 'That means the tree likes you.' },
+            { speaker: 'SYSTEM', text: '◆ Got: A LEAF. There are tiny marks on it. Almost like writing.' },
+            { speaker: 'NARRATOR', text: 'High in the branches, something black and white and yellow watches you — and is gone.' },
+            { speaker: 'NARRATOR', text: '◆ When you are ready, go back and head home. It will be dark soon.' }
+          ]);
+        } else {
+          startDialog([{ speaker: 'NARRATOR', text: 'The tamarind stands. You stand. The air is green. Nothing more needs to happen here today.' }]);
+        }
+      }},
+    // Small stones in clearing
+    { x: 5, y: 11, w: 1, h: 1, solid: false, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.T; ctx.fillRect(5*TILE + 4, 11*TILE + 6, 8, 6);
+        ctx.fillStyle = P.t; ctx.fillRect(5*TILE + 4, 11*TILE + 6, 8, 2);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'A small pile of stones. Someone has balanced them with care. You leave them exactly as they are.' }]},
+    // Flower
+    { x: 15, y: 11, w: 1, h: 1, solid: false, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.g; ctx.fillRect(15*TILE + 6, 11*TILE + 4, 2, 10);
+        ctx.fillStyle = P.y; ctx.fillRect(15*TILE + 4, 11*TILE + 2, 6, 4);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'A yellow flower you don\'t know the name of. Arun might know. You will ask him tomorrow.' }]},
+  ],
+  npcs: [
+    // Arun stands near tamarind
+    { x: 5, y: 10, sprite: 'arunDown', dir: 'down', name: 'ARUN',
+      dialog: function() {
+        if (!G.flags.has('leaf_tamarind')) {
+          return [
+            { speaker: 'ARUN', text: "You came. I said tomorrow but — here we are. Look up." },
+            { speaker: 'ARUN', text: "Go on. Touch the tree. Quietly." }
+          ];
+        }
+        return [
+          { speaker: 'ARUN', text: "Tomorrow. The nine lakes. I'll wait for you here, early." },
+          { speaker: 'ARUN', text: "Now go home. Your mum will be worried." }
+        ];
+      }},
+    // HORNBILL perched on branch (upper right)
+    { x: 14, y: 3, sprite: 'hornbill', dir: 'down', name: 'KAI',
+      dialog: function() {
+        return [{ speaker: 'NARRATOR', text: 'A hornbill with a yellow casque and black wings watches you from a branch. You don\'t know yet, but his name is <em>Kai</em>.' }];
+      }},
+  ],
+  exits: [
+    // West — back to forest path
+    { x: 0, y: 10, to: 'forest', toX: 18, toY: 7, toDir: 'left' },
+    { x: 0, y: 11, to: 'forest', toX: 18, toY: 7, toDir: 'left' },
+  ],
+  onEnter: function() {
+    G.flags.add('entered_tamarind');
+    if (G.flags.has('leaf_tamarind') && !G.flags.has('told_night')) {
+      G.flags.add('told_night');
+      setTimeout(() => startDialog([
+        { speaker: 'NARRATOR', text: 'The sky is turning the colour of apricots. Time to go home.' }
+      ]), 500);
+    }
+  }
+};
+
+// ───── ROOM: UNDER THE MANGO (quiet path) ─────
+ROOMS.quiet = {
+  name: "UNDER THE MANGO TREE",
+  defaultSpawn: { x: 9, y: 1, dir: 'down' },
+  tiles: Array(15).fill('....................'),
+  bg: function(ctx) {
+    // Warm afternoon glow
+    ctx.fillStyle = '#f3d897';
+    ctx.fillRect(0, 0, COLS*TILE, 4*TILE);
+    ctx.fillStyle = P.a;
+    ctx.fillRect(0, 4*TILE, COLS*TILE, (ROWS-4)*TILE);
+    ctx.fillStyle = P.A;
+    for (let y = 4; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if ((x * 2 + y * 5) % 11 === 0) ctx.fillRect(x*TILE + 6, y*TILE + 8, 2, 1);
+      }
+    }
+    // Path from north
+    ctx.fillStyle = P.c;
+    ctx.fillRect(9*TILE, 0, 2*TILE, 4*TILE);
+    // Golden light rays
+    ctx.fillStyle = 'rgba(255,204,120,0.25)';
+    ctx.fillRect(5*TILE, 0, 3, ROWS*TILE);
+    ctx.fillRect(13*TILE, 0, 3, ROWS*TILE);
+    // Big mango tree trunk + canopy shadow
+    ctx.fillStyle = P.G;
+    // Wide canopy shadow on ground
+    ctx.fillRect(3*TILE, 8*TILE, 14*TILE, 4*TILE);
+    ctx.fillStyle = '#4a6a3a';
+    ctx.fillRect(5*TILE, 9*TILE, 10*TILE, 2*TILE);
+    // petals on the ground
+    const petals = [[4, 11], [15, 10], [7, 13], [12, 13], [8, 10]];
+    for (const [fx, fy] of petals) {
+      ctx.fillStyle = P.y; ctx.fillRect(fx*TILE + 2, fy*TILE + 3, 2, 2);
+      ctx.fillStyle = P.r; ctx.fillRect(fx*TILE + 8, fy*TILE + 6, 2, 2);
+    }
+  },
+  objects: [
+    // ── Tree border around clearing (visible edge blockers) ──
+    { x: 0, y: 3, sprite: 'smallTree', solid: true },
+    { x: 0, y: 6, sprite: 'smallTree', solid: true },
+    { x: 0, y: 10, sprite: 'smallTree', solid: true },
+    { x: 0, y: 13, sprite: 'smallTree', solid: true },
+    { x: 19, y: 3, sprite: 'smallTree', solid: true },
+    { x: 19, y: 6, sprite: 'smallTree', solid: true },
+    { x: 19, y: 10, sprite: 'smallTree', solid: true },
+    { x: 19, y: 13, sprite: 'smallTree', solid: true },
+    // Top edge — keep exit at (9, 0), (10, 0) clear
+    { x: 1, y: 0, sprite: 'smallTree', solid: true },
+    { x: 3, y: 0, sprite: 'smallTree', solid: true },
+    { x: 6, y: 0, sprite: 'smallTree', solid: true },
+    { x: 13, y: 0, sprite: 'smallTree', solid: true },
+    { x: 16, y: 0, sprite: 'smallTree', solid: true },
+    { x: 18, y: 0, sprite: 'smallTree', solid: true },
+    // Bottom edge (full)
+    { x: 1, y: 14, sprite: 'smallTree', solid: true },
+    { x: 4, y: 14, sprite: 'smallTree', solid: true },
+    { x: 8, y: 14, sprite: 'smallTree', solid: true },
+    { x: 11, y: 14, sprite: 'smallTree', solid: true },
+    { x: 15, y: 14, sprite: 'smallTree', solid: true },
+    { x: 18, y: 14, sprite: 'smallTree', solid: true },
+    // ── Directional sign ──
+    { x: 11, y: 2, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ NORTH → The Forest Path (back to gate)' }]},
+    // BIG MANGO (same sprite, centred, huge interact)
+    { x: 7, y: 2, w: 6, h: 7, sprite: 'mangoTree', solid: true, interact: true,
+      action: function() {
+        if (!G.flags.has('leaf_quiet')) {
+          G.flags.add('leaf_quiet');
+          G.flags.add('choice2_made');
+          addItem('leaf', 'A Leaf with a Riddle', '✿');
+          startDialog([
+            { speaker: 'NARRATOR', text: 'You sit down against the trunk. The bark is warm against your back. The ground is cool under your knees.' },
+            { speaker: 'NARRATOR', text: 'You put the mango in your lap. You close your eyes.' },
+            { speaker: 'NARRATOR', text: 'The tree <em>breathes</em>. A slow in. A slow out. Bigger than your breathing. The breathing of something alive for a very long time.' },
+            { speaker: 'NARRATOR', text: 'Somewhere far off, a bird sings three notes. Somewhere nearer, Ploy talks in her serious voice to something that might be a frog.' },
+            { speaker: 'NARRATOR', text: 'You open your eyes. A leaf is drifting down. It lands in your lap — as if it had been aiming.' },
+            { speaker: 'SYSTEM', text: '◆ Got: A LEAF. There are tiny marks on it. Almost like writing.' },
+            { speaker: 'NARRATOR', text: 'Above you, something with wings moves. Something <em>big</em>. You don\'t look up.' },
+            { speaker: 'NARRATOR', text: '◆ Time to go inside. It will be dark soon.' }
+          ]);
+        } else {
+          startDialog([{ speaker: 'NARRATOR', text: 'The tree breathes. You breathe. The light goes from gold to apricot.' }]);
+        }
+      }},
+    // bench
+    { x: 3, y: 12, w: 2, h: 1, solid: true, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.C; ctx.fillRect(3*TILE, 12*TILE + 6, 2*TILE, 6);
+        ctx.fillStyle = P.d; ctx.fillRect(3*TILE, 12*TILE + 12, 3, 4);
+        ctx.fillRect(4*TILE + 12, 12*TILE + 12, 3, 4);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'An old wooden bench. Worn smooth by years of sitting.' }]},
+  ],
+  npcs: [],
+  exits: [
+    // North — back to forest path
+    { x: 9, y: 0, to: 'forest', toX: 9, toY: 13, toDir: 'up' },
+    { x: 10, y: 0, to: 'forest', toX: 9, toY: 13, toDir: 'up' },
+  ],
+  onEnter: function() {
+    G.flags.add('entered_quiet');
+    if (G.flags.has('leaf_quiet') && !G.flags.has('told_night')) {
+      G.flags.add('told_night');
+      setTimeout(() => startDialog([
+        { speaker: 'NARRATOR', text: 'The sky is turning the colour of apricots. Time to go home.' }
+      ]), 500);
+    }
+  }
+};
+
+// ───── ROOM: NIGHT BEDROOM (ending) ─────
+ROOMS.night = {
+  name: "NARA'S ROOM — NIGHT",
+  defaultSpawn: { x: 9, y: 10, dir: 'right' },
+  tiles: Array(15).fill('....................'),
+  solid: [
+    '####################',
+    '####################',
+    '####################',
+    '####################',
+    '####################',
+    '####################',
+    '####################',
+    '####################',
+    '####################',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '####################',
+  ],
+  bg: function(ctx) {
+    // Dim walls
+    ctx.fillStyle = '#3a2e3a';
+    ctx.fillRect(0, 0, COLS*TILE, 9*TILE);
+    ctx.fillStyle = '#5a4a58';
+    for (let x = 0; x < COLS; x++) { if (x % 3 === 0) ctx.fillRect(x*TILE, 0, 1, 9*TILE); }
+    // Floor
+    ctx.fillStyle = P.d;
+    ctx.fillRect(0, 9*TILE, COLS*TILE, 6*TILE);
+    ctx.fillStyle = P.C;
+    for (let y = 9; y < ROWS; y++) { if (y % 2 === 0) ctx.fillRect(0, y*TILE, COLS*TILE, 1); }
+    // Baseboard
+    ctx.fillStyle = P.D;
+    ctx.fillRect(0, 9*TILE - 2, COLS*TILE, 4);
+    // WINDOW with starry night
+    ctx.fillStyle = P.N;
+    ctx.fillRect(5*TILE, 2*TILE, 8*TILE, 6*TILE);
+    // stars
+    ctx.fillStyle = P.w;
+    const stars = [[6,3],[8,2],[10,3],[11,4],[7,4],[9,5],[12,6],[6,6],[11,2],[10,7],[7,7]];
+    for (const [sx, sy] of stars) {
+      ctx.fillRect(5*TILE + sx * 4 + 4, 2*TILE + sy * 4 + 4, 2, 2);
+    }
+    // moon
+    ctx.fillStyle = P.y;
+    ctx.fillRect(10*TILE, 4*TILE, 14, 10);
+    ctx.fillStyle = P.Y;
+    ctx.fillRect(10*TILE + 2, 4*TILE + 6, 2, 2);
+    ctx.fillRect(10*TILE + 8, 4*TILE + 2, 2, 2);
+    // Window frame
+    ctx.fillStyle = P.d;
+    ctx.fillRect(5*TILE, 2*TILE, 8*TILE, 3);
+    ctx.fillRect(5*TILE, 8*TILE - 3, 8*TILE, 3);
+    ctx.fillRect(5*TILE, 2*TILE, 3, 6*TILE);
+    ctx.fillRect(13*TILE - 3, 2*TILE, 3, 6*TILE);
+    ctx.fillRect(9*TILE - 1, 2*TILE, 2, 6*TILE);
+    ctx.fillRect(5*TILE, 5*TILE - 1, 8*TILE, 2);
+    // Lamp glow
+    ctx.fillStyle = 'rgba(242,201,76,0.2)';
+    ctx.fillRect(13*TILE, 9*TILE, 4*TILE, 5*TILE);
+  },
+  objects: [
+    // Bed
+    { x: 1, y: 10, w: 3, h: 2, sprite: 'bed', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'Your bed. The blanket has been turned down for the night.' }]},
+    // Bedside table with TWO leaves
+    { x: 4, y: 10, w: 1, h: 1, solid: true, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.d; ctx.fillRect(4*TILE, 10*TILE + 4, TILE, TILE - 4);
+        ctx.fillStyle = P.z; ctx.fillRect(4*TILE + 2, 10*TILE - 2, 5, 2);
+        ctx.fillStyle = P.z; ctx.fillRect(4*TILE + 9, 10*TILE - 2, 5, 2);
+      },
+      action: function() {
+        if (!G.flags.has('ending_seen')) {
+          G.flags.add('ending_seen');
+          startDialog([
+            { speaker: 'NARRATOR', text: 'On the bedside table: two leaves. Ploy\'s. And yours.' },
+            { speaker: 'NARRATOR', text: 'They are the <em>same leaf</em>. The same shape. The same handwriting. "Tomorrow. The nine lakes."' },
+            { speaker: 'PLOY', text: 'Who wrote it?' },
+            { speaker: 'NARA', text: "I don't know." },
+            { speaker: 'PLOY', text: 'Do we go?' },
+            { speaker: 'NARA', text: 'We go.' },
+            { speaker: 'NARRATOR', text: 'Outside, an owl calls softly. Somewhere further — a pair of wings moves from one tree to another, quiet as a page turning.' },
+            { speaker: 'NARRATOR', text: 'You turn off the light.' },
+            { speaker: 'SYSTEM', text: '◆ ◆ ◆ CHAPTER ONE COMPLETE ◆ ◆ ◆' },
+            { speaker: 'SYSTEM', text: '◆ Next: CHAPTER TWO — The Secret of the Nine Lakes.' },
+            { speaker: 'SYSTEM', text: '(Press M to open the menu. You can restart, or jump back into the chapter.)' }
+          ]);
+        } else {
+          startDialog([{ speaker: 'NARRATOR', text: 'The two leaves still rest side by side. Still the same. Tomorrow is tomorrow.' }]);
+        }
+      }},
+    // Ploy's bed (she sleeps in same room first night)
+    { x: 16, y: 10, w: 3, h: 2, sprite: 'bed', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: "Ploy's bed. She's half asleep, clutching an invisible frog." }]},
+  ],
+  npcs: [
+    // Ploy sitting at edge of bed
+    { x: 4, y: 12, sprite: 'ploy', dir: 'up', name: 'PLOY',
+      dialog: function() {
+        return [{ speaker: 'PLOY', text: 'Look — I found it on my pillow.' }];
+      }},
+  ],
+  exits: [],
+  onEnter: function() {
+    G.flags.add('seen_night');
+  }
+};
+
+// ───── ROOM: HOUSE INTERIOR (ground floor) ─────
+ROOMS.house = {
+  name: "INSIDE THE HOUSE",
+  defaultSpawn: { x: 9, y: 13, dir: 'up' },
+  tiles: Array(15).fill('....................'),
+  // Solid walls matching the drawn walls (# = blocked)
+  solid: [
+    '####################', // 0 top wall
+    '####################', // 1 top wall
+    '#..................#', // 2-13 floor with side walls
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#..................#',
+    '#########..#########', // 14 bottom wall with door at cols 9-10
+  ],
+  bg: function(ctx) {
+    // Wooden floor
+    ctx.fillStyle = P.c;
+    ctx.fillRect(0, 0, COLS*TILE, ROWS*TILE);
+    ctx.fillStyle = P.C;
+    for (let y = 0; y < ROWS; y++) {
+      if (y % 2 === 0) ctx.fillRect(0, y*TILE, COLS*TILE, 1);
+    }
+    ctx.fillStyle = P.d;
+    for (let x = 0; x < COLS; x++) {
+      if (x % 4 === 0) ctx.fillRect(x*TILE, 0, 1, ROWS*TILE);
+    }
+    // Walls
+    ctx.fillStyle = P.d;
+    ctx.fillRect(0, 0, COLS*TILE, 2*TILE);
+    ctx.fillStyle = P.D;
+    ctx.fillRect(0, 2*TILE - 4, COLS*TILE, 4);
+    // Side walls
+    ctx.fillRect(0, 0, 1*TILE, ROWS*TILE);
+    ctx.fillRect((COLS-1)*TILE, 0, TILE, ROWS*TILE);
+    // Stairs up (right side)
+    ctx.fillStyle = P.C;
+    ctx.fillRect(15*TILE, 3*TILE, 3*TILE, 5*TILE);
+    ctx.fillStyle = P.d;
+    for (let i = 0; i < 5; i++) {
+      ctx.fillRect(15*TILE, (3+i)*TILE, 3*TILE, 2);
+    }
+    // Bottom wall (south wall) with door opening at cols 9-10
+    ctx.fillStyle = P.d;
+    ctx.fillRect(0, 14*TILE, 9*TILE, TILE);
+    ctx.fillRect(11*TILE, 14*TILE, 9*TILE, TILE);
+    ctx.fillStyle = P.D;
+    ctx.fillRect(0, 14*TILE, 9*TILE, 3);
+    ctx.fillRect(11*TILE, 14*TILE, 9*TILE, 3);
+    // Front door frame (in the opening)
+    ctx.fillStyle = P.D;
+    ctx.fillRect(9*TILE - 2, 14*TILE, 4, TILE);
+    ctx.fillRect(11*TILE - 2, 14*TILE, 4, TILE);
+    // A window in back wall
+    ctx.fillStyle = P.x;
+    ctx.fillRect(3*TILE, 5, 2*TILE, 1*TILE + 4);
+    ctx.fillStyle = P.d;
+    ctx.fillRect(3*TILE, 5, 2*TILE, 2);
+    ctx.fillRect(3*TILE, 1*TILE + 5, 2*TILE, 2);
+    ctx.fillRect(3*TILE + TILE - 1, 5, 2, 1*TILE + 4);
+    // A framed painting
+    ctx.fillStyle = P.d;
+    ctx.fillRect(10*TILE, 8, 2*TILE, TILE);
+    ctx.fillStyle = P.y;
+    ctx.fillRect(10*TILE + 2, 10, 2*TILE - 4, TILE - 4);
+  },
+  objects: [
+    // Table with vase
+    { x: 6, y: 6, w: 2, h: 1, solid: true, interact: true, draw: function(ctx) {
+        ctx.fillStyle = P.C; ctx.fillRect(6*TILE, 6*TILE + 4, 2*TILE, TILE - 4);
+        ctx.fillStyle = P.r; ctx.fillRect(6*TILE + 8, 6*TILE, 8, 8);
+        ctx.fillStyle = P.g; ctx.fillRect(6*TILE + 10, 6*TILE - 4, 2, 6);
+        ctx.fillRect(6*TILE + 14, 6*TILE - 4, 2, 6);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'A small wooden table. A terracotta pot holds a single sprig of something green. Your mother must have picked it this morning.' }]},
+    // Chair
+    { x: 12, y: 6, w: 1, h: 1, solid: true, draw: function(ctx) {
+        ctx.fillStyle = P.C; ctx.fillRect(12*TILE + 2, 6*TILE + 4, TILE - 4, TILE - 4);
+        ctx.fillStyle = P.d; ctx.fillRect(12*TILE + 2, 6*TILE - 2, TILE - 4, 6);
+      }},
+    // Stairs object (interactable)
+    { x: 16, y: 4, w: 1, h: 1, solid: false, interact: true,
+      action: () => goToRoom('bedroom', 9, 12, 'up') },
+    // Sign pointing to stairs
+    { x: 14, y: 4, w: 1, h: 1, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ UP → Nara\'s Room<br/>◆ DOWN → Front door (to gate)' }]},
+    // Sign at front door
+    { x: 7, y: 13, w: 1, h: 1, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ SOUTH → The Gate<br/>◆ EAST STAIRS → Your bedroom' }]},
+    // Bookshelf
+    { x: 18, y: 3, w: 1, h: 3, solid: true, draw: function(ctx) {
+        ctx.fillStyle = P.d; ctx.fillRect(18*TILE, 3*TILE, TILE, 3*TILE);
+        ctx.fillStyle = P.r; ctx.fillRect(18*TILE + 2, 3*TILE + 2, 3, 10);
+        ctx.fillStyle = P.g; ctx.fillRect(18*TILE + 6, 3*TILE + 2, 3, 10);
+        ctx.fillStyle = P.y; ctx.fillRect(18*TILE + 10, 3*TILE + 2, 3, 10);
+        ctx.fillStyle = P.b; ctx.fillRect(18*TILE + 2, 4*TILE + 2, 3, 10);
+        ctx.fillStyle = P.r; ctx.fillRect(18*TILE + 6, 4*TILE + 2, 3, 10);
+        ctx.fillStyle = P.C; ctx.fillRect(18*TILE + 10, 4*TILE + 2, 3, 10);
+      },
+      interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'Books, in Thai and English. Most are new; a few are very old. A slim green one is about trees.' }]},
+  ],
+  npcs: [
+    // Mother is here too during the day (simulating both gate and house)
+  ],
+  exits: [
+    // South — back to gate
+    { x: 9, y: 14, to: 'gate', toX: 5, toY: 8, toDir: 'down' },
+    { x: 10, y: 14, to: 'gate', toX: 5, toY: 8, toDir: 'down' },
+    // Stairs up (via stepping on)
+    { x: 16, y: 4, to: 'bedroom', toX: 9, toY: 12, toDir: 'up' },
+  ],
+  onEnter: function() {
+    G.flags.add('entered_house');
+    if (!G.flags.has('told_stairs')) {
+      G.flags.add('told_stairs');
+      setTimeout(() => startDialog([
+        { speaker: 'NARRATOR', text: 'The house smells like lemongrass and old wood. Somewhere, a ceiling fan turns slowly.' },
+        { speaker: 'NARRATOR', text: '◆ The stairs to your new bedroom are in the back-right corner.' }
+      ]), 280);
+    }
+    checkReadyForArun();
+  }
+};
+
+// ───── ROOM: NARA'S BEDROOM ─────
+ROOMS.bedroom = {
+  name: "NARA'S NEW BEDROOM",
+  defaultSpawn: { x: 9, y: 12, dir: 'up' },
+  tiles: Array(15).fill('....................'),
+  solid: [
+    '####################', // 0 wall
+    '####################', // 1
+    '####################', // 2 top of window area
+    '####################', // 3
+    '####################', // 4
+    '####################', // 5
+    '####################', // 6
+    '####################', // 7
+    '####################', // 8 (window sill)
+    '#..................#', // 9 floor
+    '#..................#', // 10
+    '#..................#', // 11
+    '#..................#', // 12
+    '#..................#', // 13
+    '#########..#########', // 14 bottom wall with door
+  ],
+  bg: function(ctx) {
+    // Wall
+    ctx.fillStyle = P.c;
+    ctx.fillRect(0, 0, COLS*TILE, 9*TILE);
+    ctx.fillStyle = P.C;
+    for (let x = 0; x < COLS; x++) { if (x % 3 === 0) ctx.fillRect(x*TILE, 0, 1, 9*TILE); }
+    // Floor (warm wood)
+    ctx.fillStyle = P.c;
+    ctx.fillRect(0, 9*TILE, COLS*TILE, 6*TILE);
+    ctx.fillStyle = P.C;
+    for (let y = 9; y < ROWS; y++) { if (y % 2 === 0) ctx.fillRect(0, y*TILE, COLS*TILE, 1); }
+    ctx.fillStyle = P.d;
+    for (let x = 0; x < COLS; x++) { if (x % 4 === 0) ctx.fillRect(x*TILE, 9*TILE, 1, 6*TILE); }
+    // Baseboard
+    ctx.fillStyle = P.d;
+    ctx.fillRect(0, 9*TILE - 2, COLS*TILE, 4);
+    // Walls side
+    ctx.fillRect(0, 0, TILE, ROWS*TILE);
+    ctx.fillRect((COLS-1)*TILE, 0, TILE, ROWS*TILE);
+    // BIG WINDOW (showing mango tree outside)
+    ctx.fillStyle = P.x;
+    ctx.fillRect(5*TILE, 2*TILE, 8*TILE, 6*TILE);
+    ctx.fillStyle = P.d;
+    ctx.fillRect(5*TILE, 2*TILE, 8*TILE, 3); // top
+    ctx.fillRect(5*TILE, 8*TILE - 3, 8*TILE, 3); // bottom
+    ctx.fillRect(5*TILE, 2*TILE, 3, 6*TILE); // left
+    ctx.fillRect(13*TILE - 3, 2*TILE, 3, 6*TILE); // right
+    ctx.fillRect(9*TILE - 1, 2*TILE, 2, 6*TILE); // vertical mullion
+    ctx.fillRect(5*TILE, 5*TILE - 1, 8*TILE, 2); // horizontal mullion
+    // Mango tree visible through window
+    ctx.fillStyle = P.G;
+    ctx.fillRect(7*TILE, 3*TILE, 4*TILE, 3*TILE);
+    ctx.fillStyle = P.g;
+    ctx.fillRect(7*TILE + 4, 3*TILE + 4, 4*TILE - 8, 3*TILE - 8);
+    ctx.fillStyle = P.d;
+    ctx.fillRect(8*TILE + 6, 6*TILE, 6, 2*TILE);
+    // Mangoes
+    ctx.fillStyle = P.r; ctx.fillRect(8*TILE + 2, 4*TILE + 2, 4, 6);
+    ctx.fillStyle = P.y; ctx.fillRect(10*TILE - 4, 5*TILE - 2, 4, 6);
+    // Sky around tree
+    ctx.fillStyle = P.x;
+    // already is sky from earlier fillRect so ok
+    // Little butterfly
+    if (Math.floor(G.tick / 30) % 2 === 0) {
+      ctx.fillStyle = P.y;
+      ctx.fillRect(11*TILE, 3*TILE + 8, 2, 2);
+      ctx.fillRect(11*TILE + 4, 3*TILE + 8, 2, 2);
+    }
+    // Sill
+    ctx.fillStyle = P.D;
+    ctx.fillRect(5*TILE - 4, 8*TILE, 8*TILE + 8, 6);
+    // Bottom wall (south) with door opening at cols 9-10
+    ctx.fillStyle = P.C;
+    ctx.fillRect(0, 14*TILE, 9*TILE, TILE);
+    ctx.fillRect(11*TILE, 14*TILE, 9*TILE, TILE);
+    ctx.fillStyle = P.d;
+    ctx.fillRect(0, 14*TILE, 9*TILE, 3);
+    ctx.fillRect(11*TILE, 14*TILE, 9*TILE, 3);
+    ctx.fillStyle = P.D;
+    ctx.fillRect(9*TILE - 2, 14*TILE, 4, TILE);
+    ctx.fillRect(11*TILE - 2, 14*TILE, 4, TILE);
+  },
+  objects: [
+    // Bed
+    { x: 1, y: 10, w: 3, h: 2, sprite: 'bed', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'Your bed. Made with a cotton blanket the colour of firelight.' }]},
+    // Suitcase
+    { x: 16, y: 11, w: 1, h: 1, sprite: 'suitcase', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'Your small red suitcase. Someone has brought it up already. You can unpack later.' }]},
+    // Window itself — standing just under the sill, face up to look out
+    { x: 8, y: 9, w: 3, h: 1, solid: false, interact: true,
+      draw: function(ctx) {
+        // Faint shimmer on the floor under the window to cue interactivity
+        ctx.fillStyle = 'rgba(242,201,76,' + (0.12 + 0.08*Math.sin(G.tick*0.1)) + ')';
+        ctx.fillRect(8*TILE, 9*TILE, 3*TILE, TILE);
+      },
+      action: function() {
+        if (!G.flags.has('saw_window')) {
+          G.flags.add('saw_window');
+          startDialog([
+            { speaker: 'NARRATOR', text: 'You press your hands to the windowsill and lean out.' },
+            { speaker: 'NARRATOR', text: 'The air that comes in is thick with the smell of ripe fruit and damp earth. A butterfly the colour of old gold drifts past.' },
+            { speaker: 'NARRATOR', text: 'And then — down in the garden — something <em>moves</em>.' },
+            { speaker: 'NARRATOR', text: 'Something small. Something green. Hopping. And beside it — something <em>bigger</em>. A shadow that isn\'t quite a bird, and isn\'t quite anything else.' },
+            { speaker: 'NARRATOR', text: '<em>"I think he is trying to tell me something,"</em> says a voice from below. It is Ploy — talking to the grass.' },
+            { speaker: 'SYSTEM', text: '◆ You have seen the back garden from above. Maybe you should go find your sister.' }
+          ]);
+          G.onDialogEnd = checkReadyForArun;
+        } else {
+          startDialog([{ speaker: 'NARRATOR', text: 'The mango tree, right outside. Close enough to touch. Far enough to dream about.' }]);
+        }
+      }},
+    // Sign near the stairs down
+    { x: 7, y: 13, w: 1, h: 1, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ SOUTH → Downstairs / Front door<br/>◆ Window (north) → A view into the tree' }]},
+    // Little desk
+    { x: 13, y: 11, w: 2, h: 1, solid: true, draw: function(ctx) {
+        ctx.fillStyle = P.C; ctx.fillRect(13*TILE, 11*TILE + 4, 2*TILE, TILE - 4);
+        ctx.fillStyle = P.d; ctx.fillRect(13*TILE, 12*TILE - 4, 2*TILE, 4);
+        // book
+        ctx.fillStyle = P.g; ctx.fillRect(13*TILE + 6, 11*TILE + 6, 10, 4);
+      },
+      interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'Your desk. A small green notebook waits, empty. You will write in it. Not yet.' }]},
+  ],
+  npcs: [],
+  exits: [
+    // Down — back to house ground floor
+    { x: 9, y: 13, to: 'house', toX: 16, toY: 5, toDir: 'down' },
+    { x: 10, y: 13, to: 'house', toX: 16, toY: 5, toDir: 'down' },
+  ],
+  onEnter: function() {
+    G.flags.add('seen_bedroom');
+    checkReadyForArun();
+  }
+};
+
+// ───── ROOM: BACK GARDEN (meeting Ploy + Tua-Tua) ─────
+ROOMS.garden = {
+  name: "THE BACK GARDEN",
+  defaultSpawn: { x: 9, y: 1, dir: 'down' },
+  tiles: Array(15).fill('....................'),
+  bg: function(ctx) {
+    // Grass
+    ctx.fillStyle = P.a;
+    ctx.fillRect(0, 0, COLS*TILE, ROWS*TILE);
+    ctx.fillStyle = P.A;
+    for (let y = 0; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if ((x * 3 + y * 7) % 11 === 0) ctx.fillRect(x*TILE + 4, y*TILE + 6, 2, 1);
+        if ((x + y * 3) % 9 === 0) ctx.fillRect(x*TILE + 10, y*TILE + 12, 2, 1);
+      }
+    }
+    // Fence at top (edge of yard)
+    ctx.fillStyle = P.C;
+    ctx.fillRect(0, 0, COLS*TILE, 4);
+    // Far back: distant tree line
+    ctx.fillStyle = P.G;
+    for (let x = 0; x < COLS; x++) {
+      const h = 8 + (x * 3 % 6);
+      ctx.fillRect(x*TILE, 4, TILE, h);
+    }
+    // Flower patches
+    const flowerSpots = [[3, 9], [15, 8], [2, 12], [17, 11], [5, 13]];
+    for (const [fx, fy] of flowerSpots) {
+      ctx.fillStyle = P.y; ctx.fillRect(fx*TILE + 4, fy*TILE + 6, 2, 2);
+      ctx.fillStyle = P.r; ctx.fillRect(fx*TILE + 8, fy*TILE + 10, 2, 2);
+      ctx.fillStyle = P.w; ctx.fillRect(fx*TILE + 12, fy*TILE + 4, 2, 2);
+    }
+    // Garden stones/path
+    ctx.fillStyle = P.c;
+    for (let y = 2; y < 14; y++) {
+      ctx.fillRect(9*TILE + 4, y*TILE + 4, 8, 6);
+    }
+    // Big mango tree reaching in from top-right corner
+    ctx.fillStyle = P.G;
+    ctx.fillRect((COLS-4)*TILE, 0, 4*TILE, 3*TILE);
+    ctx.fillStyle = P.g;
+    ctx.fillRect((COLS-4)*TILE + 4, 4, 4*TILE - 8, 3*TILE - 8);
+  },
+  objects: [
+    // ── Tree border (visible edge blockers) ──
+    // Left edge
+    { x: 0, y: 3, sprite: 'smallTree', solid: true },
+    { x: 0, y: 6, sprite: 'smallTree', solid: true },
+    { x: 0, y: 9, sprite: 'smallTree', solid: true },
+    { x: 0, y: 12, sprite: 'smallTree', solid: true },
+    // Right edge
+    { x: 19, y: 3, sprite: 'smallTree', solid: true },
+    { x: 19, y: 6, sprite: 'smallTree', solid: true },
+    { x: 19, y: 9, sprite: 'smallTree', solid: true },
+    { x: 19, y: 12, sprite: 'smallTree', solid: true },
+    // Top edge (except for columns 9-10 exit to gate)
+    { x: 1, y: 0, sprite: 'smallTree', solid: true },
+    { x: 3, y: 0, sprite: 'smallTree', solid: true },
+    { x: 5, y: 0, sprite: 'smallTree', solid: true },
+    { x: 7, y: 0, sprite: 'smallTree', solid: true },
+    { x: 12, y: 0, sprite: 'smallTree', solid: true },
+    { x: 14, y: 0, sprite: 'smallTree', solid: true },
+    { x: 16, y: 0, sprite: 'smallTree', solid: true },
+    { x: 18, y: 0, sprite: 'smallTree', solid: true },
+    // Bottom edge (except for columns 9-10 exit to farm)
+    { x: 1, y: 14, sprite: 'smallTree', solid: true },
+    { x: 3, y: 14, sprite: 'smallTree', solid: true },
+    { x: 5, y: 14, sprite: 'smallTree', solid: true },
+    { x: 7, y: 14, sprite: 'smallTree', solid: true },
+    { x: 12, y: 14, sprite: 'smallTree', solid: true },
+    { x: 14, y: 14, sprite: 'smallTree', solid: true },
+    { x: 16, y: 14, sprite: 'smallTree', solid: true },
+    { x: 18, y: 14, sprite: 'smallTree', solid: true },
+    // ── Directional signs near exits ──
+    { x: 11, y: 2, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ NORTH → The Front Gate' }]},
+    { x: 11, y: 12, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ SOUTH → Tong\'s Farm' }]},
+    // Small tree 1
+    { x: 2, y: 4, w: 1, h: 2, sprite: 'smallTree', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'A young mango tree, not yet fruiting. One day it will be as big as the one at the gate.' }]},
+    // Small tree 2
+    { x: 17, y: 5, w: 1, h: 2, sprite: 'smallTree', solid: true },
+    // Bench
+    { x: 14, y: 10, w: 2, h: 1, solid: true, interact: true,
+      draw: function(ctx) {
+        ctx.fillStyle = P.C; ctx.fillRect(14*TILE, 10*TILE + 6, 2*TILE, 6);
+        ctx.fillStyle = P.d; ctx.fillRect(14*TILE, 10*TILE + 12, 3, 4);
+        ctx.fillRect(15*TILE + 12, 10*TILE + 12, 3, 4);
+      },
+      dialog: [{ speaker: 'NARRATOR', text: 'A wooden bench, sun-warmed. Later, your grandmother will sit here reading.' }]},
+    // Basil bush (COLLECTIBLE)
+    { x: 4, y: 10, w: 1, h: 1, sprite: 'basil', solid: false, interact: true,
+      action: function() {
+        if (QUEST.ingredients.basil.collected) {
+          startDialog([{ speaker: 'NARRATOR', text: 'The basil bush. You already have a good handful for tonight.' }]);
+        } else {
+          startDialog([
+            { speaker: 'NARRATOR', text: 'A basil bush, warm from the afternoon sun. You tear — <em>not cut</em> — a few leaves. The smell is sharp and green and familiar all at once.' },
+            { speaker: 'SYSTEM', text: '❋ Got: THAI BASIL.' },
+          ]);
+          collectIngredient('basil');
+        }
+      }},
+    // Sign pointing south to farm
+    { x: 9, y: 12, w: 1, h: 1, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ SOUTH → Tong\'s Farm<br/><em>limes, pandan, and a very opinionated chicken</em>' }]},
+    // THE LEAF WITH TUA-TUA
+    { x: 8, y: 7, w: 2, h: 1, sprite: 'leafFrog', solid: false, interact: true,
+      action: function() {
+        if (!G.flags.has('met_frog')) {
+          G.flags.add('met_frog');
+          addItem('frog', 'Friendship with Tua-Tua', '♦');
+          startDialog([
+            { speaker: 'NARRATOR', text: 'A wide green leaf sits in the grass. On the leaf sits a frog. The smallest frog in the world. Perfectly green, like a bead of dew that has learned how to sit very still.' },
+            { speaker: 'PLOY', text: 'I think... he is trying to tell me something.' },
+            { speaker: 'PLOY', text: 'His name is Tua-Tua. He lives here. And we are welcome.' },
+            { speaker: 'SYSTEM', text: '◆ Friend made: TUA-TUA the tree frog.' },
+            { speaker: 'NARRATOR', text: 'Tua-Tua blinks once, with great dignity — and hops off into the ferns without a sound.' },
+            { speaker: 'NARRATOR', text: '◆ Back at the gate, someone might be waiting for you now.' }
+          ]);
+          G.onDialogEnd = checkReadyForArun;
+        } else {
+          startDialog([{ speaker: 'NARRATOR', text: 'The leaf is still there, but Tua-Tua has gone about his froggy business.' }]);
+        }
+      }},
+  ],
+  npcs: [
+    // Ploy crouched in garden
+    { x: 8, y: 8, sprite: 'ploySitting', dir: 'down', name: 'PLOY',
+      dialog: function() {
+        if (!G.flags.has('met_frog')) {
+          return [
+            { speaker: 'PLOY', text: "Shh! Nara! LOOK at the leaf!" },
+            { speaker: 'NARRATOR', text: 'Ploy points without looking away. <em>(Examine the leaf.)</em>' }
+          ];
+        }
+        return [
+          { speaker: 'PLOY', text: "Tua-Tua said he lives here. Didn't he look like he said that?" },
+          { speaker: 'PLOY', text: "I'm going to go tell Mum. Meet you later." }
+        ];
+      }},
+  ],
+  exits: [
+    // North — back to gate
+    { x: 9, y: 0, to: 'gate', toX: 9, toY: 13, toDir: 'up' },
+    { x: 10, y: 0, to: 'gate', toX: 10, toY: 13, toDir: 'up' },
+    // South — to the FARM
+    { x: 9, y: 14, to: 'farm', toX: 9, toY: 1, toDir: 'down' },
+    { x: 10, y: 14, to: 'farm', toX: 10, toY: 1, toDir: 'down' },
+  ],
+  onEnter: function() {
+    G.flags.add('seen_garden');
+    checkReadyForArun();
+    updateObjective();
+  }
+};
+
+ROOMS.gate = {
+  name: "TRI VANANDA — MAIN GATE",
+  defaultSpawn: { x: 5, y: 7, dir: 'down' },
+  // 20 wide × 15 tall
+  tiles: [
+    '....................',
+    '....................',
+    '.#..............#...',
+    '.##............##...',
+    '.##.....TTTT..##....',
+    '.......TTTTTT..##...',
+    '......TTTTTTT.......',
+    '..HH..TTTTTTT.......',
+    '..HH..TTTTTTT.......',
+    '.......TTTTTT.......',
+    '........TTTT........',
+    '.........TT.........',
+    '..,,,,,,,,,,,,,,,,..',
+    '..,,,,,,,,,,,,,,,,..',
+    '....................',
+  ],
+  // Override specific solid areas (beyond tile defaults)
+  solid: null,
+  bg: function(ctx) {
+    // Warm afternoon sky feel with grass
+    // Top band: soft cream/sky, rest: grass
+    ctx.fillStyle = '#f3d897';
+    ctx.fillRect(0, 0, COLS*TILE, 2*TILE);
+    ctx.fillStyle = P.a;
+    ctx.fillRect(0, 2*TILE, COLS*TILE, (ROWS-2)*TILE);
+    // grass texture
+    ctx.fillStyle = P.A;
+    for (let y = 2; y < ROWS; y++) {
+      for (let x = 0; x < COLS; x++) {
+        if ((x + y) % 5 === 0) ctx.fillRect(x*TILE + 2, y*TILE + 4, 2, 1);
+        if ((x * 3 + y) % 7 === 0) ctx.fillRect(x*TILE + 10, y*TILE + 10, 2, 1);
+      }
+    }
+    // Path (dirt)
+    ctx.fillStyle = P.c;
+    ctx.fillRect(2*TILE, 12*TILE, 16*TILE, 2*TILE);
+    ctx.fillStyle = P.C;
+    for (let x = 2; x < 18; x++) {
+      if (x % 3 === 0) ctx.fillRect(x*TILE + 4, 12*TILE + 4, 3, 2);
+      if (x % 4 === 0) ctx.fillRect(x*TILE + 8, 13*TILE + 6, 3, 2);
+    }
+    // Stone gate pillars left
+    ctx.fillStyle = P.T;
+    ctx.fillRect(1*TILE, 2*TILE, TILE, 2*TILE);
+    ctx.fillRect(1*TILE+2, 4*TILE, TILE-4, 1*TILE);
+    // Stone gate pillars right
+    ctx.fillRect(18*TILE, 2*TILE, TILE, 2*TILE);
+    ctx.fillRect(18*TILE+2, 4*TILE, TILE-4, 1*TILE);
+    // House outline on left (small, indicating entry)
+    ctx.fillStyle = P.r;
+    ctx.fillRect(2*TILE, 7*TILE - 4, 2*TILE, 6);
+    ctx.fillStyle = P.c;
+    ctx.fillRect(2*TILE, 7*TILE, 2*TILE, 2*TILE);
+    ctx.fillStyle = P.d;
+    ctx.fillRect(2*TILE + 10, 8*TILE, 6, TILE); // doorway
+    // Mango tree trunk (just mark the shadow; sprite is object)
+  },
+  objects: [
+    // ── Tree / hedge border (visible blockers at edges) ──
+    // Top row (except leave middle open where pillars sit)
+    { x: 0, y: 0, sprite: 'smallTree', solid: true },
+    { x: 2, y: 0, sprite: 'smallTree', solid: true },
+    { x: 4, y: 0, sprite: 'smallTree', solid: true },
+    { x: 14, y: 0, sprite: 'smallTree', solid: true },
+    { x: 16, y: 0, sprite: 'smallTree', solid: true },
+    { x: 19, y: 0, sprite: 'smallTree', solid: true },
+    // Left edge
+    { x: 0, y: 3, sprite: 'smallTree', solid: true },
+    { x: 0, y: 6, sprite: 'smallTree', solid: true },
+    { x: 0, y: 9, sprite: 'smallTree', solid: true },
+    { x: 0, y: 13, sprite: 'smallTree', solid: true },
+    // Right edge — leave cols 19 rows 12-13 open (forest exit)
+    { x: 19, y: 3, sprite: 'smallTree', solid: true },
+    { x: 19, y: 6, sprite: 'smallTree', solid: true },
+    { x: 19, y: 9, sprite: 'smallTree', solid: true },
+    // Bottom — leave cols 9-10 open (garden exit)
+    { x: 1, y: 14, sprite: 'smallTree', solid: true },
+    { x: 4, y: 14, sprite: 'smallTree', solid: true },
+    { x: 7, y: 14, sprite: 'smallTree', solid: true },
+    { x: 12, y: 14, sprite: 'smallTree', solid: true },
+    { x: 15, y: 14, sprite: 'smallTree', solid: true },
+    { x: 18, y: 14, sprite: 'smallTree', solid: true },
+    // Mango tree object
+    { x: 8, y: 4, w: 4, h: 8, sprite: 'mangoTree', solid: true, interact: true,
+      dialog: [
+        { speaker: 'NARRATOR', text: 'A mango tree, older than you expect. The fruit glows like little orange lamps. One of them, you notice, is already on the ground — <em>waiting for someone.</em>' }
+      ]},
+    // Car
+    { x: 4, y: 10, w: 1, h: 2, sprite: 'car', solid: true, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: 'The car you arrived in. Your suitcase is already gone from the boot.' }]},
+    // Sign
+    { x: 9, y: 2, w: 1, h: 1, solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ TRI VANANDA ◆<br/><em>the forest where our story begins</em>' }]},
+    // FALLEN MANGO on the ground near the car (COLLECTIBLE #1)
+    { x: 7, y: 11, w: 1, h: 1, sprite: 'mango', solid: false, interact: true,
+      action: function() {
+        if (QUEST.ingredients.mango.collected) {
+          startDialog([{ speaker: 'NARRATOR', text: 'The grass where the mango rested. The tree has more to give.' }]);
+        } else {
+          startDialog([
+            { speaker: 'NARRATOR', text: 'A single, sun-warm mango — the one the tree dropped onto the car when you arrived. You pick it up. It smells the way you imagine happiness would smell, if happiness were a fruit.' },
+            { speaker: 'SYSTEM', text: '♥ Got: SWEET MANGO.' },
+          ]);
+          collectIngredient('mango');
+        }
+      }},
+    // Directional sign at south — to garden & farm
+    { x: 11, y: 12, w: 1, h: 1, sprite: 'sign', solid: false, interact: true,
+      dialog: [{ speaker: 'NARRATOR', text: '◆ SOUTH → Back Garden<br/>◆ further SOUTH → Tong\'s Farm<br/>◆ WEST ← the House<br/>◆ EAST → Forest <em>(if Arun invites you)</em>' }]},
+  ],
+  npcs: [
+    // Father near car
+    { x: 4, y: 9, sprite: 'father', dir: 'down', name: 'FATHER',
+      dialog: function() {
+        if (!G.flags.has('met_father')) {
+          G.flags.add('met_father');
+          return [
+            { speaker: 'FATHER', text: 'We made it, Nara. This is home now.' },
+            { speaker: 'FATHER', text: 'Your mother is at the door. Go say hello — she has something to ask of you.' },
+            { speaker: 'NARRATOR', text: '◆ Walk to Mum (west, at the house door). Press A / SPACE to talk.' }
+          ];
+        }
+        if (G.flags.has('quest_started') && !QUEST.complete) {
+          return [{ speaker: 'FATHER', text: 'Gathering for dinner? Grandpa Tong knows every leaf on this land. Find him at the farm.' }];
+        }
+        return [{ speaker: 'FATHER', text: 'Take your time. The land is not going anywhere.' }];
+      }},
+    // Mother at door — gives the quest & accepts ingredients
+    { x: 2, y: 7, w: 2, h: 1, sprite: 'mother', dir: 'down', name: 'MOTHER',
+      dialog: function() {
+        // FIRST meeting — give the quest
+        if (!G.flags.has('met_mother')) {
+          G.flags.add('met_mother');
+          G.flags.add('quest_started');
+          updateObjective();
+          return [
+            { speaker: 'MOTHER', text: 'Welcome home, my big girl. Tonight I want to make dinner to welcome you.' },
+            { speaker: 'MOTHER', text: 'Before you settle in — can you gather a few things for me?' },
+            { speaker: 'SYSTEM', text: '◆ QUEST START: Dinner for Mum' },
+            { speaker: 'MOTHER', text: '◆ A sweet <em>mango</em> — the tree by the gate dropped one already.' },
+            { speaker: 'MOTHER', text: '◆ A sprig of <em>Thai basil</em> — from the back garden, where the sun is warmest.' },
+            { speaker: 'MOTHER', text: '◆ A green <em>lime</em> — from Grandpa Tong\'s farm.' },
+            { speaker: 'MOTHER', text: '◆ Some <em>pandan leaves</em> — also at the farm. The ones with stripes.' },
+            { speaker: 'MOTHER', text: 'Grandpa Tong will show you around. Come back to me when you have all four.' },
+            { speaker: 'NARRATOR', text: '◆ Watch the top-right panel to track your ingredients.' }
+          ];
+        }
+        // DELIVERING ingredients
+        if (QUEST.complete && !G.flags.has('quest_done')) {
+          G.flags.add('quest_done');
+          G.flags.add('ready_for_arun'); // Arun can arrive after dinner
+          updateObjective();
+          // After the dialog closes, trigger Arun's arrival immediately
+          G.onDialogEnd = () => triggerArunArrival();
+          return [
+            { speaker: 'NARRATOR', text: 'You hand Mum the basket — mango, basil, lime, pandan.' },
+            { speaker: 'MOTHER', text: 'You gathered all of this? My clever girl. Sit with me while I cook.' },
+            { speaker: 'NARRATOR', text: 'Mum cracks the mango open. The kitchen smells of warm rice, pandan, and something frying — the basil and the lime, bright against the oil.' },
+            { speaker: 'NARRATOR', text: 'You eat. Ploy eats twice. Your father laughs. Tua-Tua sits on the windowsill and says nothing, which is exactly right.' },
+            { speaker: 'SYSTEM', text: '◆ DINNER COMPLETE — a new friend is on the way...' },
+            { speaker: 'NARRATOR', text: '♪ <em>squeak... squeak... squeak...</em> Someone is at the gate.' }
+          ];
+        }
+        // IN-PROGRESS nudging
+        if (G.flags.has('quest_started') && !QUEST.complete) {
+          const missing = [];
+          for (const k in QUEST.ingredients) {
+            if (!QUEST.ingredients[k].collected) missing.push(QUEST.ingredients[k].name.toLowerCase());
+          }
+          return [{ speaker: 'MOTHER', text: `Still missing: ${missing.join(', ')}. Take your time.` }];
+        }
+        if (!G.flags.has('arun_done')) {
+          return [{ speaker: 'MOTHER', text: 'Go — explore a little longer before bed.' }];
+        }
+        return [{ speaker: 'MOTHER', text: 'You look happy. Who was that boy on the bicycle?' }];
+      }},
+  ],
+  exits: [
+    // West into house
+    { x: 2, y: 7, to: 'house', toX: 9, toY: 13, toDir: 'up' },
+    // South — go to back garden via path
+    { x: 9, y: 14, to: 'garden', toX: 9, toY: 1, toDir: 'down' },
+    { x: 10, y: 14, to: 'garden', toX: 10, toY: 1, toDir: 'down' },
+    // East — forest path (only if Arun done)
+    { x: 19, y: 12, to: 'forest', toX: 0, toY: 7, toDir: 'right',
+      locked: () => !G.flags.has('arun_done'),
+      lockedMsg: [{ speaker: 'NARRATOR', text: 'The forest path is long and quiet. You should finish settling in first.' }] },
+    { x: 19, y: 13, to: 'forest', toX: 0, toY: 7, toDir: 'right',
+      locked: () => !G.flags.has('arun_done'),
+      lockedMsg: [{ speaker: 'NARRATOR', text: 'The forest path is long and quiet. You should finish settling in first.' }] },
+  ],
+  onEnter: function() {
+    G.flags.add('seen_gate');
+    // Fallback: if Arun should be here but isn't (e.g. from save state), spawn him
+    if (G.flags.has('ready_for_arun') && !G.flags.has('arun_arrived')) {
+      triggerArunArrival();
+    }
+  }
+};
+</script>
+<script id="gameStory">
+// ═══════════════════════════════════════════════════════════════
+// QUEST SYSTEM — "Dinner for Mum" (collect 4 nature things)
+// ═══════════════════════════════════════════════════════════════
+const QUEST = {
+  ingredients: {
+    mango:  { name: 'Sweet Mango',  icon: '♥', collected: false, hint: 'near the big tree' },
+    basil:  { name: 'Thai Basil',   icon: '❋', collected: false, hint: 'in the back garden' },
+    lime:   { name: 'Green Lime',   icon: '◯', collected: false, hint: 'at the farm' },
+    pandan: { name: 'Pandan Leaves',icon: '✚', collected: false, hint: 'at the farm' },
+  },
+  get count() { return Object.values(this.ingredients).filter(i => i.collected).length; },
+  get total() { return Object.keys(this.ingredients).length; },
+  get complete() { return this.count === this.total; },
+};
+
+function collectIngredient(key) {
+  const q = QUEST.ingredients[key];
+  if (!q || q.collected) return false;
+  q.collected = true;
+  addItem(key, q.name, q.icon);
+  updateObjective();
+  return true;
+}
+
+function updateObjective() {
+  const obj = document.getElementById('objective');
+  const objText = document.getElementById('objText');
+  const objItems = document.getElementById('objItems');
+  const objCounter = document.getElementById('objCounter');
+
+  // Pick objective based on flags
+  if (G.flags.has('ending_seen')) {
+    objText.textContent = '◆ Chapter complete.';
+    objItems.innerHTML = '';
+    objCounter.textContent = '';
+  } else if (G.flags.has('day_over') || G.flags.has('leaf_tamarind') || G.flags.has('leaf_quiet')) {
+    objText.textContent = 'Head home. It will be dark soon.';
+    objItems.innerHTML = '';
+    objCounter.textContent = '';
+  } else if (G.flags.has('arun_done')) {
+    objText.textContent = 'Meet Arun at the big tamarind (east).';
+    objItems.innerHTML = '';
+    objCounter.textContent = '';
+  } else if (G.flags.has('quest_done')) {
+    objText.textContent = 'Wait at the gate while Mum cooks.';
+    objItems.innerHTML = '';
+    objCounter.textContent = '◆ DINNER READY';
+  } else if (G.flags.has('quest_started')) {
+    objText.innerHTML = 'Gather <em>4 things</em> for Mum\'s dinner.';
+    objItems.innerHTML = '';
+    for (const k in QUEST.ingredients) {
+      const q = QUEST.ingredients[k];
+      const d = document.createElement('div');
+      d.className = 'q-item' + (q.collected ? ' done' : '');
+      d.innerHTML = `<span class="mark">${q.collected ? '✓' : '•'}</span> ${q.icon} ${q.name}`;
+      objItems.appendChild(d);
+    }
+    objCounter.textContent = `◆ ${QUEST.count} / ${QUEST.total} GATHERED`;
+    obj.classList.toggle('complete', QUEST.complete);
+    // When all 4 done, prompt to return
+    if (QUEST.complete && !G.flags.has('quest_ready_deliver')) {
+      G.flags.add('quest_ready_deliver');
+      objText.innerHTML = 'All gathered! <em>Bring them to Mum at the gate.</em>';
+    }
+  } else {
+    objText.textContent = 'Look around. Say hello.';
+    objItems.innerHTML = '';
+    objCounter.textContent = '';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STORY FLAGS & TRIGGERS
+// ═══════════════════════════════════════════════════════════════
+
+// Trigger Arun's arrival after dinner quest is complete
+// (ready_for_arun flag is set in Mother's quest-complete dialog)
+function checkReadyForArun() {
+  // kept for compatibility; now a no-op — ready_for_arun is set by quest flow
+}
+
+// Directly spawn Arun at the gate right after quest delivery
+function triggerArunArrival() {
+  if (G.flags.has('arun_arrived')) return;
+  G.flags.add('arun_arrived');
+  const gate = ROOMS.gate;
+  const alreadyThere = gate.npcs.find(n => n.name === 'ARUN');
+  if (!alreadyThere) {
+    gate.npcs.push({
+      x: 12, y: 12, sprite: 'arunDown', dir: 'left', name: 'ARUN',
+      dialog: function() {
+        if (!G.flags.has('arun_done')) {
+          G.flags.add('arun_done');
+          updateObjective();
+          return [
+            { speaker: 'NARRATOR', text: 'A boy on a faded red bicycle rolls up to the gate.' },
+            { speaker: 'ARUN', text: "You're new. I'm Arun. Your mum said you helped cook." },
+            { speaker: 'ARUN', text: "Do you like lakes? There are nine. I can show you — tomorrow. Early. Meet me at the <em>big tamarind</em>." },
+            { speaker: 'NARRATOR', text: '...and he rides off. <em>Squeak — squeak — squeak.</em>' },
+            { speaker: 'NARRATOR', text: '◆ A new path has opened: the forest, east of the gate.' }
+          ];
+        }
+        return [{ speaker: 'ARUN', text: 'Tomorrow. The tamarind. I said I\'d wait.' }];
+      }
+    });
+  }
+  updateObjective();
+}
+
+// After leaf picked up (either path), hint that night is coming
+// — handled inside rooms with 'told_night' flag
+
+// Trigger ending automatically when player returns to house after choice2_made
+const origCheckExits = checkExits;
+checkExits = function() {
+  // Intercept: if player returns to gate after collecting leaf, trigger night
+  origCheckExits();
+};
+
+function onRoomEnter(id) {
+  const room = ROOMS[id];
+  if (room && room.onEnter) room.onEnter.call(room);
+  if (typeof updateObjective === 'function') updateObjective();
+
+  // Auto ending trigger: if choice2 made AND entering house/gate, offer to sleep
+  if (G.flags.has('choice2_made') && !G.flags.has('offered_sleep') && (id === 'gate' || id === 'house')) {
+    G.flags.add('offered_sleep');
+    setTimeout(() => {
+      startDialog([
+        { speaker: 'NARRATOR', text: 'Dinner is eaten. The stars are out — so many of them, the sky looks sprinkled with salt.' },
+        { speaker: 'NARRATOR', text: 'Your bedroom is waiting upstairs. Ploy has something to show you.' }
+      ]);
+      G.onDialogEnd = () => triggerEnding();
+    }, 500);
+  }
+}
+
+function triggerEnding() {
+  teleportTo('night');
+  // Auto-start ending dialog after a beat
+  setTimeout(() => {
+    const table = ROOMS.night.objects.find(o => o.action);
+    if (table && !G.flags.has('ending_seen')) {
+      table.action();
+    }
+  }, 800);
+}
+
+// ───── Update the menu to allow jumping based on flags ─────
+const origUpdateMenu = updateMenu;
+updateMenu = function() {
+  const conds = {
+    mh: G.flags.has('seen_gate'),
+    mb: G.flags.has('entered_house') || G.flags.has('seen_bedroom'),
+    mg: G.flags.has('seen_gate'),
+    mf: G.flags.has('arun_done'),
+    mt: G.flags.has('arun_done'),
+    mn: G.flags.has('choice2_made'),
+  };
+  for (const id in conds) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('lock', !conds[id]);
+  }
+};
+</script>
+<script id="gameLoop">
+// ═══════════════════════════════════════════════════════════════
+// RENDER + MAIN LOOP
+// ═══════════════════════════════════════════════════════════════
+
+function renderNara() {
+  const p = G.player;
+  const frame = p.walking ? (Math.floor(G.walkTimer / 10) % 2) : 0;
+  const map = {
+    down: ['naraDown1', 'naraDown2'],
+    up:   ['naraUp1', 'naraUp2'],
+    left: ['naraLeft1', 'naraLeft2'],
+    right:['naraRight1', 'naraRight2'],
+  };
+  const spriteName = map[p.dir][frame];
+  const sprite = SPR[spriteName];
+  if (sprite) drawSprite(sprite, Math.round(p.x), Math.round(p.y), 1);
+}
+
+function getBgCanvas(id, room) {
+  if (G.bgCache[id]) return G.bgCache[id];
+  const off = document.createElement('canvas');
+  off.width = COLS * TILE;
+  off.height = ROWS * TILE;
+  const octx = off.getContext('2d');
+  octx.imageSmoothingEnabled = false;
+  // Draw into offscreen (room.bg expects the main ctx pattern; swap temporarily)
+  const origCtx = window.ctx;
+  // We'll call room.bg with offscreen by shadowing ctx reference
+  const prevCtx = ctx;
+  // simplest: just call directly passing the offscreen ctx
+  if (room.bg) {
+    // Some bg functions reference the global `ctx`. We fake it by executing bg with octx bound.
+    room.bg(octx);
+  }
+  G.bgCache[id] = off;
+  return off;
+}
+
+function renderRoom() {
+  const room = ROOMS[G.currentRoom];
+  if (!room) return;
+  // Background (cached to offscreen canvas for performance)
+  const bg = getBgCanvas(G.currentRoom, room);
+  ctx.drawImage(bg, 0, 0);
+
+  // Sort objects + NPCs by y for depth
+  const entities = [];
+  if (room.objects) {
+    for (const o of room.objects) {
+      entities.push({ kind: 'obj', obj: o, y: (o.y + (o.h || 1)) * TILE });
+    }
+  }
+  if (room.npcs) {
+    for (const n of room.npcs) {
+      if (n.hidden) continue;
+      entities.push({ kind: 'npc', obj: n, y: (n.y + 1) * TILE });
+    }
+  }
+  // Add player
+  entities.push({ kind: 'player', y: G.player.y + TILE });
+  entities.sort((a, b) => a.y - b.y);
+
+  for (const e of entities) {
+    if (e.kind === 'obj') {
+      const o = e.obj;
+      if (o.sprite && SPR[o.sprite]) {
+        drawSprite(SPR[o.sprite], o.x * TILE, o.y * TILE, 1);
+      } else if (o.draw) {
+        o.draw(ctx);
+      }
+    } else if (e.kind === 'npc') {
+      const n = e.obj;
+      const sprite = SPR[n.sprite];
+      if (sprite) drawSprite(sprite, n.x * TILE, n.y * TILE, 1);
+    } else {
+      renderNara();
+    }
+  }
+
+  // ─── Path arrows at active exits ───
+  if (!G.transitioning && G.mode === 'play') {
+    const rm = ROOMS[G.currentRoom];
+    if (rm && rm.exits) {
+      const bob = Math.sin(G.tick * 0.15) * 2;
+      for (const ex of rm.exits) {
+        if (ex.locked && ex.locked()) continue;
+        // Determine arrow direction from exit position
+        const onEdge = ex.x === 0 ? 'left' :
+                       ex.x === COLS - 1 ? 'right' :
+                       ex.y === 0 ? 'up' :
+                       ex.y === ROWS - 1 ? 'down' : null;
+        if (!onEdge) continue;
+        const ax = ex.x * TILE, ay = ex.y * TILE;
+        // Blinking/glowing tile
+        ctx.fillStyle = `rgba(242,201,76,${0.2 + 0.2 * Math.sin(G.tick * 0.2)})`;
+        ctx.fillRect(ax, ay, TILE, TILE);
+        // Arrow shape
+        ctx.fillStyle = P.y;
+        ctx.strokeStyle = P.K;
+        ctx.lineWidth = 1;
+        let arrow;
+        if (onEdge === 'left')   arrow = { dx: -3, dy: 0, points: [[0,4],[4,0],[4,2],[8,2],[8,6],[4,6],[4,8]] };
+        if (onEdge === 'right')  arrow = { dx: 3,  dy: 0, points: [[8,4],[4,0],[4,2],[0,2],[0,6],[4,6],[4,8]] };
+        if (onEdge === 'up')     arrow = { dx: 0, dy: -3, points: [[4,0],[0,4],[2,4],[2,8],[6,8],[6,4],[8,4]] };
+        if (onEdge === 'down')   arrow = { dx: 0, dy: 3,  points: [[4,8],[0,4],[2,4],[2,0],[6,0],[6,4],[8,4]] };
+        if (arrow) {
+          ctx.save();
+          ctx.translate(ax + 4 + (arrow.dx ? bob * Math.sign(arrow.dx) : 0),
+                        ay + 4 + (arrow.dy ? bob * Math.sign(arrow.dy) : 0));
+          ctx.beginPath();
+          arrow.points.forEach((p, i) => {
+            if (i === 0) ctx.moveTo(p[0], p[1]);
+            else ctx.lineTo(p[0], p[1]);
+          });
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    }
+  }
+
+  // Fade for transitions
+  if (G.fade > 0) {
+    ctx.fillStyle = `rgba(0,0,0,${G.fade})`;
+    ctx.fillRect(0, 0, COLS*TILE, ROWS*TILE);
+  }
+
+  // Interact hint
+  if (!G.transitioning && G.mode === 'play' && nearInteractable()) {
+    document.getElementById('promptHint').classList.add('show');
+  } else {
+    document.getElementById('promptHint').classList.remove('show');
+  }
+}
+
+function update() {
+  G.tick++;
+
+  // Tick down the entry cooldown
+  if (G.entryCooldown > 0) G.entryCooldown--;
+
+  // Fade
+  if (G.fade < G.fadeTarget) G.fade = Math.min(1, G.fade + 0.1);
+  else if (G.fade > G.fadeTarget) G.fade = Math.max(0, G.fade - 0.1);
+
+  // Dialogue advance (Space or Enter)
+  if (G.mode === 'dialog') {
+    if (keyPressed[' '] || keyPressed['enter'] || keyPressed['a']) advanceDialog();
+  }
+  else if (G.mode === 'choice') {
+    if (keyPressed['arrowup'] || keyPressed['w']) choiceMoveSel(-1);
+    if (keyPressed['arrowdown'] || keyPressed['s']) choiceMoveSel(1);
+    if (keyPressed[' '] || keyPressed['enter'] || keyPressed['a']) choiceConfirm();
+  }
+  else if (G.mode === 'play' && !G.transitioning) {
+    // Movement (arrow keys only — 'a' is reserved for interact)
+    let dx = 0, dy = 0;
+    if (keys['arrowleft']) { dx = -1; G.player.dir = 'left'; }
+    else if (keys['arrowright']) { dx = 1; G.player.dir = 'right'; }
+    else if (keys['arrowup']) { dy = -1; G.player.dir = 'up'; }
+    else if (keys['arrowdown']) { dy = 1; G.player.dir = 'down'; }
+
+    const moving = (dx || dy);
+    if (moving) {
+      G.player.walking = true;
+      G.walkTimer++;
+      const nx = G.player.x + dx * G.player.speed;
+      const ny = G.player.y + dy * G.player.speed;
+      if (canMoveTo(nx, G.player.y)) G.player.x = nx;
+      if (canMoveTo(G.player.x, ny)) G.player.y = ny;
+      // Round to int for pixel-perfect
+      checkExits();
+    } else {
+      G.player.walking = false;
+      G.walkTimer = 0;
+    }
+
+    // Interact (SPACE / ENTER / A key)
+    if (keyPressed[' '] || keyPressed['enter'] || keyPressed['a']) {
+      triggerInteract();
+    }
+
+    // Menu
+    if (keyPressed['m']) {
+      const isOpen = document.getElementById('menuOverlay').classList.contains('open');
+      if (isOpen) closeMenu(); else openMenu();
+    }
+    if (keyPressed['escape']) closeMenu();
+  }
+
+  // clear pressed keys
+  for (const k in keyPressed) keyPressed[k] = false;
+}
+
+function loop() {
+  update();
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  renderRoom();
+  requestAnimationFrame(loop);
+}
+
+// Boot
+document.getElementById('locLabel').textContent = ROOMS.gate.name;
+renderInv();
+loop();
+
+// Initial welcome dialog after small delay
+setTimeout(() => {
+  startDialog([
+    { speaker: 'NARRATOR', text: 'You just stepped out of the car. The air smells <em>green</em>.' },
+    { speaker: 'NARRATOR', text: '◆ ARROW KEYS to walk. <em>SPACE</em> or <em>A</em> to look / talk. <em>M</em> for menu.' },
+    { speaker: 'NARRATOR', text: '◆ Your first task is in the top-right corner. Walk west to Mum at the door.' }
+  ]);
+  G.flags.add('seen_gate');
+  updateObjective();
+}, 300);
+</script>
+
+</body>
+</html>
