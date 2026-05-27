@@ -778,8 +778,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
-  <!-- CHANNEL BARS + MONTHLY TREND -->
-  <div class="perf-split">
+  <!-- CHANNEL BARS · FULL WIDTH -->
+  <div class="perf-split" style="grid-template-columns:1fr;margin-top:48px">
     <div>
       <div class="bar-h">Channel Mix · Walks · YTD (n = 63)</div>
       <div class="bar-row">
@@ -808,45 +808,82 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="bar-val">3<small>4.8%</small></div>
       </div>
     </div>
+  </div>
 
+  <!-- TWO TREND CHARTS · SIDE BY SIDE · EQUAL SIZE -->
+  <div class="perf-split" style="grid-template-columns:1fr 1fr;margin-top:48px">
     <div>
-      <div class="bar-h">Monthly Trend · Walks &amp; Contactable Digital Leads</div>
+      <div class="bar-h">Monthly Trend · Walks</div>
       <div class="trend">
         <div class="trend-col">
           <div class="trend-bar-wrap">
             <div class="trend-bar" style="height:79%"><span class="v">15</span></div>
-            <div class="trend-bar leads" style="height:26%"><span class="v">5</span></div>
           </div>
           <div class="trend-month">Jan</div>
         </div>
         <div class="trend-col">
           <div class="trend-bar-wrap">
             <div class="trend-bar" style="height:74%"><span class="v">14</span></div>
-            <div class="trend-bar leads" style="height:21%"><span class="v">4</span></div>
           </div>
           <div class="trend-month">Feb</div>
         </div>
         <div class="trend-col">
           <div class="trend-bar-wrap">
             <div class="trend-bar" style="height:100%"><span class="v">19</span></div>
-            <div class="trend-bar leads" style="height:26%"><span class="v">5</span></div>
           </div>
           <div class="trend-month">Mar</div>
         </div>
         <div class="trend-col launched">
           <div class="trend-bar-wrap">
             <div class="trend-bar" style="height:79%"><span class="v">15</span></div>
+          </div>
+          <div class="trend-month" style="color:var(--gold-lt)">Apr · MTD<br><span style="font-size:.55rem;letter-spacing:.24em;color:var(--gold)">C.1 + C.2 Live</span></div>
+        </div>
+      </div>
+      <div class="trend-legend">
+        <span><i></i>Walks · Scheduled Site Visits</span>
+      </div>
+      <p class="body" style="margin-top:14px;max-width:520px;font-size:.72rem;color:rgba(255,255,255,.4);font-style:italic">Bottom-of-funnel · scheduled visits to the property across all five channels.</p>
+    </div>
+
+    <div>
+      <div class="bar-h">Monthly Trend · Contactable Digital Leads</div>
+      <div class="trend">
+        <div class="trend-col">
+          <div class="trend-bar-wrap">
+            <div class="trend-bar leads" style="height:26%"><span class="v">5</span></div>
+          </div>
+          <div class="trend-month">Jan</div>
+        </div>
+        <div class="trend-col">
+          <div class="trend-bar-wrap">
+            <div class="trend-bar leads" style="height:21%"><span class="v">4</span></div>
+          </div>
+          <div class="trend-month">Feb</div>
+        </div>
+        <div class="trend-col">
+          <div class="trend-bar-wrap">
+            <div class="trend-bar leads" style="height:26%"><span class="v">5</span></div>
+          </div>
+          <div class="trend-month">Mar</div>
+        </div>
+        <div class="trend-col launched">
+          <div class="trend-bar-wrap">
             <div class="trend-bar leads" style="height:95%"><span class="v">18</span></div>
           </div>
           <div class="trend-month" style="color:var(--gold-lt)">Apr · MTD<br><span style="font-size:.55rem;letter-spacing:.24em;color:var(--gold)">C.1 + C.2 Live</span></div>
         </div>
       </div>
       <div class="trend-legend">
-        <span><i></i>Walks</span>
-        <span><i class="leads"></i>Contactable Digital Leads</span>
-        <span style="color:var(--gold)"><i style="background:var(--gold);box-shadow:0 0 0 3px rgba(184,148,88,.18)"></i>16 Apr · C.1 + C.2 Launch</span>
+        <span><i class="leads"></i>Contactable Digital Leads · Inbound Enquiries</span>
       </div>
+      <p class="body" style="margin-top:14px;max-width:520px;font-size:.72rem;color:rgba(255,255,255,.4);font-style:italic">Top-of-funnel · inbound digital enquiries with verified contact details.</p>
     </div>
+  </div>
+
+  <!-- LAUNCH MARKER · SHARED REFERENCE -->
+  <div class="trend-legend" style="justify-content:center;margin-top:24px">
+    <span style="color:var(--gold)"><i style="background:var(--gold);box-shadow:0 0 0 3px rgba(184,148,88,.18)"></i>16 Apr · C.1 + C.2 Launch · 10 Days of Activity Reflected</span>
   </div>
 
   <!-- INSIGHTS -->

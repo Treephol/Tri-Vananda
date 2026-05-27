@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Montara R2 2027 · Where We Rise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0f13;
+  --gold:#c9a467;
+  --gold-lt:#e0c089;
+  --white:#ffffff;
+  --soft:rgba(255,255,255,.82);
+  --softer:rgba(255,255,255,.62);
+  --rule:rgba(255,255,255,.20);
+  --rule-strong:rgba(255,255,255,.34);
+  --card-bg:rgba(255,255,255,.05);
+  --card-line:rgba(255,255,255,.14);
+  --accent-line:rgba(224,192,137,.55);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--ink);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+.page{scroll-snap-align:start;scroll-snap-stop:always}
+
+.page{
+  width:100vw;
+  height:100vh;
+  min-width:1280px;
+  min-height:780px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.page::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url('images/narrative-02.jpg');
+  background-size:cover;
+  background-position:center;
+  z-index:0;
+}
+.page::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(11,15,19,.62) 0%, rgba(11,15,19,.42) 45%, rgba(11,15,19,.68) 100%);
+  z-index:1;
+}
+
+.page.navy{
+  --ink:#1B3358;
+  --gold:#ffffff;
+  --gold-lt:#ffffff;
+  --rule:rgba(255,255,255,.32);
+  --rule-strong:rgba(255,255,255,.5);
+  --card-bg:rgba(255,255,255,.08);
+  --card-line:rgba(255,255,255,.24);
+  --accent-line:rgba(255,255,255,.65);
+  background:#1B3358;
+}
+.page.navy::before,
+.page.navy::after{display:none !important}
+
+.frame{
+  position:relative;
+  z-index:2;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+
+/* ════════════════════ SHARED — Section labels ════════════════════ */
+.sec-label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+}
+.sec-label::before,
+.sec-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--rule);
+  max-width:340px;
+}
+.sec-label-text{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.88rem;
+  letter-spacing:.48em;
+  text-transform:uppercase;
+  color:var(--gold-lt);
+  line-height:1;
+}
+
+/* ════════════════════ PAGES 1 & 4 — WHERE WE RISE ════════════════════ */
+.page-rise .frame{
+  padding:36px 64px 28px;
+  display:grid;
+  grid-template-rows:auto auto auto auto auto auto;
+  gap:18px;
+  min-height:0;
+}
+
+.rise-hero{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+.rise-eye{
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:.92rem;
+  letter-spacing:.5em;
+  text-transform:uppercase;
+  color:var(--gold-lt);
+  line-height:1;
+}
+.rise-eye::before,
+.rise-eye::after{
+  content:'';
+  width:100px;
+  height:1px;
+  background:var(--rule);
+}
+.rise-title{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(4.4rem,6.5vw,6.5rem);
+  line-height:1;
+  letter-spacing:.005em;
+  color:var(--white);
+  margin:2px 0 4px;
+}
+.rise-title .gd{color:var(--gold-lt)}
+.rise-strap{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:clamp(1.18rem,1.36vw,1.36rem);
+  line-height:1.5;
+  color:var(--soft);
+  max-width:940px;
+}
+.rise-strap em{color:var(--gold-lt);font-style:italic;font-weight:500}
+
+.rise-trajectory{
+  position:relative;
+  height:118px;
+  margin:0 24px;
+}
+.rise-trajectory svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+}
+.traj-year{
+  position:absolute;
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:.88rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+.traj-year.y24{left:3.5%;bottom:0}
+.traj-year.y25{left:28%;top:54%}
+.traj-year.y26{left:56%;top:30%}
+.traj-dest{
+  position:absolute;
+  right:1%;
+  top:-6px;
+  text-align:right;
+}
+.traj-dest-year{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:2.1rem;
+  color:var(--gold-lt);
+  line-height:1;
+}
+.traj-dest-amt{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.94rem;
+  color:var(--white);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-top:6px;
+}
+.traj-dest-tag{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:.84rem;
+  color:var(--gold-lt);
+  letter-spacing:.06em;
+  margin-top:2px;
+}
+
+.rise-section{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* Key Results — 3 columns, minimal (gold rule on top only) */
+.rise-cards-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  margin:0 60px;
+}
+.kpi-card{
+  border-top:1.5px solid var(--accent-line);
+  padding:16px 2px 4px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:0;
+}
+.kpi-name{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:1.34rem;
+  color:var(--white);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  line-height:1;
+}
+.kpi-desc{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:1rem;
+  line-height:1.5;
+  color:var(--soft);
+}
+
+/* Growth Themes — 4 columns, minimal (gold rule on top only) */
+.sec-sub{
+  text-align:center;
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.02rem;
+  color:var(--soft);
+}
+.rise-cards-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:32px;
+  margin:0 24px;
+}
+.theme-card{
+  border-top:1.5px solid var(--accent-line);
+  padding:14px 2px 4px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-height:0;
+}
+.theme-name{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:1.16rem;
+  color:var(--white);
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  line-height:1.1;
+}
+.theme-desc{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:.94rem;
+  line-height:1.5;
+  color:var(--soft);
+}
+.sec-tagline{
+  text-align:center;
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.04rem;
+  color:var(--white);
+  padding:0 60px;
+}
+.sec-tagline em{color:var(--gold-lt);font-style:normal;font-weight:500}
+
+/* Cultural Beliefs — 6 cells, divided by gold rules */
+.beliefs-row{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:0;
+  margin:0 24px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:14px 0;
+}
+.belief-cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:6px 8px;
+  position:relative;
+}
+.belief-cell + .belief-cell::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:12%;
+  bottom:12%;
+  width:1px;
+  background:var(--rule);
+}
+.belief-cell-name{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:1.06rem;
+  color:var(--white);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  line-height:1.15;
+}
+
+.rise-foot{
+  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+}
+.rise-foot::before,
+.rise-foot::after{
+  content:'';
+  width:120px;
+  height:1px;
+  background:var(--rule);
+}
+.rise-foot-text{
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.12rem;
+  color:var(--white);
+  letter-spacing:.02em;
+}
+.rise-foot-text em{color:var(--gold-lt);font-style:italic;font-weight:500}
+
+/* ════════════════════ PAGES 2 & 5 — 8 BUSINESSES ════════════════════ */
+.page-biz .frame{
+  display:grid;
+  grid-template-rows:auto 1fr;
+  gap:24px;
+  padding:44px 72px 44px;
+  min-height:0;
+}
+
+.biz-head{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  padding-bottom:22px;
+  border-bottom:1px solid var(--rule);
+}
+.biz-head-strap{
+  font-family:'Jost',sans-serif;
+  font-weight:600;
+  font-size:clamp(1.6rem,2vw,2rem);
+  line-height:1.25;
+  letter-spacing:.015em;
+  color:var(--white);
+  max-width:1200px;
+}
+.biz-head-strap em{color:var(--gold-lt);font-style:italic;font-weight:700}
+.biz-head-themes-lede{
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(.96rem,1.08vw,1.08rem);
+  letter-spacing:.02em;
+  color:var(--soft);
+  margin-top:2px;
+}
+.biz-head-themes-list{
+  display:inline-flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px 14px;
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:.92rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.biz-head-themes-list .sep{color:var(--gold-lt);font-weight:300;opacity:.7}
+
+.biz-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:1fr 1fr;
+  gap:22px 22px;
+  min-height:0;
+}
+.biz-card{
+  display:grid;
+  grid-template-rows:1fr auto;
+  min-height:0;
+  overflow:hidden;
+}
+.biz-card-photo{
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  min-height:0;
+  overflow:hidden;
+}
+.biz-card-photo::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(11,15,19,0) 35%, rgba(11,15,19,.7) 100%);
+  z-index:1;
+}
+.biz-card-num{
+  position:absolute;
+  left:14px;
+  bottom:10px;
+  z-index:2;
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:2.2rem;
+  color:var(--white);
+  line-height:1;
+  text-shadow:0 1px 8px rgba(0,0,0,.55);
+}
+.biz-card-text{
+  padding:14px 4px 0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:0;
+}
+.biz-card-name{
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:clamp(1.08rem,1.24vw,1.24rem);
+  color:var(--white);
+  line-height:1.15;
+  letter-spacing:-.005em;
+}
+.biz-card-name .gd{color:var(--gold-lt);font-style:italic;font-weight:300}
+.biz-card-desc{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:clamp(.82rem,.92vw,.92rem);
+  line-height:1.5;
+  color:var(--soft);
+}
+
+/* ════════════════════ BACKGROUND OVERRIDE (used by Page 7 — PATAMA) ════════════════════ */
+.page-bg-1::before{background-image:url('images/narrative-01.jpg') !important}
+
+/* Big brand-reveal title (for Page 7 — PATAMA) */
+.teaser-title.brand-reveal{
+  font-size:clamp(5.4rem,8.4vw,8.4rem);
+  font-weight:200;
+  letter-spacing:.14em;
+  line-height:1;
+}
+
+/* ════════════════════ PAGES 3 & 6 — TEASER (Next Chapter + Logos) ════════════════════ */
+.page-teaser .frame{
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:64px 80px;
+  gap:32px;
+}
+.teaser-content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:32px;
+  padding:0 40px;
+}
+.teaser-eye{
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:.86rem;
+  letter-spacing:.5em;
+  text-transform:uppercase;
+  color:var(--gold-lt);
+  line-height:1;
+}
+.teaser-eye::before,
+.teaser-eye::after{
+  content:'';
+  width:80px;
+  height:1px;
+  background:var(--rule);
+}
+.teaser-title{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:clamp(3rem,4.4vw,4.4rem);
+  line-height:1.08;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--white);
+  max-width:1300px;
+}
+.teaser-title .gd{color:var(--gold-lt);font-style:italic;font-weight:300}
+.teaser-rule{width:96px;height:1px;background:var(--gold-lt);margin:4px auto}
+.teaser-quote{
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(1.4rem,1.7vw,1.7rem);
+  line-height:1.5;
+  color:var(--soft);
+  max-width:1100px;
+  position:relative;
+  padding:0 28px;
+}
+.teaser-quote::before,
+.teaser-quote::after{
+  font-family:'Jost',sans-serif;
+  font-style:normal;
+  font-weight:300;
+  color:var(--gold-lt);
+  font-size:1.6em;
+  line-height:1;
+}
+.teaser-quote::before{content:'\201C';position:absolute;left:-4px;top:-8px}
+.teaser-quote::after{content:'\201D';position:absolute;right:-4px;bottom:-32px}
+.teaser-logos{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:24px;
+  border-top:1px solid var(--rule);
+}
+.teaser-logos-img{
+  display:block;
+  max-width:100%;
+  max-height:96px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+/* ════════════════════ PAGE 4 — ANIMATED PATAMA BRAND HIERARCHY (Ecosystem Animation) ════════════════════ */
+.page-anim-hier{
+  background:#0E335B;          /* navy that matches the source PDF */
+  min-height:780px;
+}
+.page-anim-hier::before,
+.page-anim-hier::after{display:none !important}
+.page-anim-hier .frame{
+  position:relative;
+  padding:0;
+  overflow:hidden;
+}
+
+/* ─── Stage ─── */
+.anim-stage{position:absolute;inset:0;z-index:2;pointer-events:none}
+
+/* ─── Top + bottom horizontal rules ─── */
+.anim-rule-top,
+.anim-rule-bottom{
+  position:absolute;
+  left:8%; right:8%;
+  height:1px;
+  background:rgba(255,255,255,.32);
+  z-index:2;
+}
+.anim-rule-top   {top:6vh}
+.anim-rule-bottom{bottom:13vh}
+
+/* ─── Brand logos (start hidden, .show flips opacity; once shown, they persist) ─── */
+.anim-logo{
+  position:absolute;
+  transform:translate(-50%, -50%);
+  opacity:0;
+  transition:opacity .9s cubic-bezier(.3,.6,.4,1);
+  z-index:3;
+  will-change:opacity;
+}
+.anim-logo.show{opacity:1}
+.anim-logo img{display:block;height:100%;width:auto;max-width:none}
+
+/* Positions + heights — every logo sits cleanly between the top rule (6vh) and bottom rule (87vh),
+   with no vertical overlap between rows. */
+.anim-logo[data-id="patama"]      {left:50%; top:13vh; height:5vh}     /* row 1  10.5–15.5 */
+.anim-logo[data-id="trisara"]     {left:30%; top:27vh; height:5vh}     /* row 2  24.5–29.5 */
+.anim-logo[data-id="trivananda"]  {left:66%; top:27vh; height:14vh}    /* row 2  20–34   */
+.anim-logo[data-id="clp"]         {left:50%; top:44vh; height:10vh}    /* row 3  39–49   */
+.anim-logo[data-id="pru"]         {left:42%; top:60vh; height:9vh}     /* row 4  55.5–64.5 */
+.anim-logo[data-id="jampa"]       {left:57%; top:60vh; height:9vh}     /* row 4  55.5–64.5 */
+.anim-logo[data-id="lacrique"]    {left:25%; top:79vh; height:4vh}     /* row 5  77–81   */
+.anim-logo[data-id="thailibrary"] {left:39%; top:79vh; height:5vh}     /* row 5  76.5–81.5 */
+.anim-logo[data-id="cielo"]       {left:52%; top:79vh; height:4vh}     /* row 5  77–81   */
+.anim-logo[data-id="n78"]         {left:62%; top:79vh; height:7vh}     /* row 5  75.5–82.5 */
+.anim-logo[data-id="praya"]       {left:74%; top:78vh; height:8vh}     /* row 5  74–82   */
+
+/* ─── Anchored Montara at bottom (always visible) ─── */
+.anim-montara-anchor{
+  position:absolute;
+  left:50%; bottom:2.5vh;
+  transform:translateX(-50%);
+  height:8vh;
+  z-index:3;
+}
+.anim-montara-anchor img{display:block;height:100%;width:auto}
+
+/* ─── Big Montara flash element (scales ~1000% while fading smoothly) ─── */
+.anim-montara-flash{
+  position:absolute;
+  left:50%; bottom:2.5vh;
+  height:8vh;
+  transform:translate(-50%, 0) scale(1);
+  transform-origin:50% 100%;
+  opacity:0;
+  z-index:4;
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+.anim-montara-flash img{display:block;height:100%;width:auto;filter:brightness(1.05)}
+.anim-montara-flash.flash{animation:montaraFlash 1.7s cubic-bezier(.25,.55,.35,1) forwards}
+@keyframes montaraFlash{
+  0%   { opacity:1; transform:translate(-50%, 0)     scale(1); }
+  100% { opacity:0; transform:translate(-50%, -42vh) scale(10); }
+}
+
+/* ─── Sizing fallback for the original .page-hier (kept harmless) ─── */
+.page-hier .frame{display:grid;grid-template-rows:auto 1fr;padding:64px 80px;gap:36px;}
+.hier-page-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:18px;
+}
+.hier-page-title{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:clamp(2rem,3vw,3rem);
+  line-height:1.15;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--white);
+  max-width:1100px;
+  margin:0;
+}
+.hier-page-title .gd{color:var(--gold-lt);font-style:italic;font-weight:300;text-transform:none;letter-spacing:.005em}
+
+.hier-diagram{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  padding-top:8px;
+}
+.hier-row{display:flex;justify-content:center;align-items:stretch;gap:18px;width:100%;flex-wrap:wrap}
+.hier-line{width:1px;height:28px;background:linear-gradient(180deg,rgba(201,164,103,.55) 0%,rgba(201,164,103,.18) 100%)}
+
+/* Tier 1 — PATAMA apex */
+.hier-apex{
+  background:rgba(201,164,103,.10);
+  border:1.5px solid rgba(201,164,103,.55);
+  padding:28px 40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:8px;
+  max-width:720px;
+}
+.hier-apex-tag{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold-lt);line-height:1.5;
+}
+.hier-apex-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:200;font-style:italic;
+  font-size:clamp(3.4rem,5vw,4.6rem);
+  line-height:1;
+  color:var(--gold-lt);
+  letter-spacing:.02em;
+}
+.hier-apex-sub{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.84rem;line-height:1.65;
+  color:var(--soft);max-width:540px;margin-top:6px;
+}
+
+/* Tier 2 — Main platforms (Trisara + Tri Vananda), CLP nested under Tri Vananda */
+.hier-platforms{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;max-width:980px}
+.hier-platform{
+  background:var(--ink);
+  border:1px solid rgba(201,164,103,.4);
+  padding:22px 26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:6px;
+}
+.hier-platform-tag{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);line-height:1.5;
+}
+.hier-platform-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:200;font-style:italic;
+  font-size:2.1rem;line-height:1.1;
+  color:var(--white);letter-spacing:.04em;
+}
+.hier-platform-sub{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.76rem;line-height:1.6;
+  color:var(--softer);max-width:300px;
+}
+.hier-nest-line{width:1px;height:18px;background:rgba(201,164,103,.45);margin:14px auto 0}
+.hier-nested{
+  margin-top:0;
+  width:calc(100% - 32px);
+  background:rgba(201,164,103,.05);
+  border:1px dashed rgba(201,164,103,.4);
+  padding:14px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:4px;
+}
+.hier-nested-tag{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-lt);line-height:1.5;
+}
+.hier-nested-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:200;font-style:italic;
+  font-size:1.35rem;line-height:1.1;
+  color:var(--white);letter-spacing:.02em;
+}
+.hier-nested-sub{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.7rem;line-height:1.55;
+  color:var(--softer);
+}
+
+/* Tier 3 — Experience brands */
+.hier-section-label{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold-lt);line-height:1.5;
+  text-align:center;margin-bottom:14px;
+}
+.hier-experience{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:980px}
+.hier-exp{
+  background:var(--ink);
+  border:1px solid rgba(201,164,103,.3);
+  padding:18px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:4px;
+}
+.hier-exp-tag{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);
+}
+.hier-exp-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:200;font-style:italic;
+  font-size:1.5rem;line-height:1.1;
+  color:var(--white);letter-spacing:.02em;
+}
+
+/* Tier 4 — F&B chips */
+.hier-fb{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;width:100%}
+.hier-chip{
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(201,164,103,.28);
+  padding:10px 22px;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-style:italic;
+  font-size:1rem;
+  color:rgba(255,255,255,.88);
+  letter-spacing:.025em;
+}
+
+/* Tier 5 — Montara parent */
+.hier-parent{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.18);
+  padding:16px 36px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:4px;
+  max-width:520px;
+}
+.hier-parent-tag{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--softer);
+}
+.hier-parent-name{
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:1.1rem;letter-spacing:.22em;
+  color:var(--soft);
+}
+
+@media (max-width:880px){
+  .hier-platforms{grid-template-columns:1fr}
+  .hier-experience{grid-template-columns:1fr}
+}
+
+/* ════════════════════ PAGES 3 & 6 — COMBINED (Vision / Beliefs / Logos) — legacy, unused ════════════════════ */
+.page-combined .frame{
+  display:grid;
+  grid-template-rows:50% 30% 20%;
+}
+
+/* Vision (50%) — centered, larger body */
+.pc-vision{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:20px;
+  padding:32px 80px 24px;
+  border-bottom:1px solid var(--rule);
+}
+.pc-vision-title{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:clamp(3rem,4.4vw,4.4rem);
+  line-height:1.02;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.pc-vision-title .gd{color:var(--gold-lt);font-style:italic;font-weight:300}
+.pc-vision-rule{width:96px;height:1px;background:var(--gold-lt);margin:6px auto 4px}
+.pc-vision-body{
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(1.42rem,1.65vw,1.65rem);
+  line-height:1.5;
+  color:var(--soft);
+  max-width:1180px;
+}
+.pc-vision-body p + p{margin-top:12px}
+.pc-vision-body em{color:var(--white);font-style:italic;font-weight:400}
+
+/* Beliefs (30%) — 3 × 2, clean text only */
+.pc-beliefs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:1fr 1fr;
+  gap:18px 56px;
+  padding:28px 80px;
+  min-height:0;
+  border-bottom:1px solid var(--rule);
+}
+.pc-belief{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:0;
+}
+.pc-belief-name{
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:clamp(1.06rem,1.2vw,1.2rem);
+  color:var(--white);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  line-height:1;
+}
+.pc-belief-desc{
+  font-family:'Jost',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(.88rem,.98vw,.98rem);
+  line-height:1.5;
+  color:var(--soft);
+}
+
+/* Logos (20%) */
+.pc-logos{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px 80px;
+  min-height:0;
+}
+.pc-logos-img{
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+/* ───── PRINT — A3 landscape ───── */
+@media print{
+  @page{size:A3 landscape;margin:0}
+  body{background:var(--ink)}
+  .page{
+    width:420mm;
+    height:297mm;
+    min-width:0;
+    min-height:0;
+    page-break-after:always;
+  }
+  .page:last-child{page-break-after:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 1 — WHERE WE RISE (NAVY)
+═══════════════════════════════════════════════════════════════════ -->
+<div class="page page-rise navy">
+  <div class="frame">
+
+    <div class="rise-hero">
+      <div class="rise-eye">Montara R2 2027</div>
+      <h1 class="rise-title">Where We <span class="gd">Rise</span></h1>
+      <div class="rise-strap">A shared ambition to reach <em>THB 3 Billion</em> &mdash; with care, culture, and purpose.</div>
+    </div>
+
+    <div class="rise-trajectory">
+      <svg viewBox="0 0 1200 118" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="trajGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#e0c089" stop-opacity=".4"/>
+            <stop offset="60%" stop-color="#e0c089" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#e0c089"/>
+          </linearGradient>
+          <marker id="arr" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+            <path d="M1 1 L11 6 L1 11 Z" fill="#e0c089"/>
+          </marker>
+        </defs>
+        <path d="M 50 104 C 260 102, 400 88, 540 64 S 870 18, 1130 9"
+              stroke="url(#trajGrad)" stroke-width="2" fill="none"
+              marker-end="url(#arr)" stroke-linecap="round"/>
+        <circle cx="50" cy="104" r="5" fill="#0b0f13" stroke="#e0c089" stroke-width="1.5"/>
+        <circle cx="370" cy="85" r="5" fill="#0b0f13" stroke="#e0c089" stroke-width="1.5"/>
+        <circle cx="720" cy="40" r="5" fill="#0b0f13" stroke="#e0c089" stroke-width="1.5"/>
+        <circle cx="1130" cy="9" r="6" fill="#e0c089" stroke="#e0c089" stroke-width="1.5"/>
+      </svg>
+      <div class="traj-year y24">2024</div>
+      <div class="traj-year y25">2025</div>
+      <div class="traj-year y26">2026</div>
+      <div class="traj-dest">
+        <div class="traj-dest-year">2027</div>
+        <div class="traj-dest-amt">THB 3 Billion</div>
+        <div class="traj-dest-tag">Destination</div>
+      </div>
+    </div>
+
+    <div class="rise-section">
+      <div class="sec-label"><span class="sec-label-text">Key Results</span></div>
+      <div class="rise-cards-3">
+        <div class="kpi-card">
+          <div class="kpi-name">Growth</div>
+          <div class="kpi-desc">THB 3 Billion by 2027.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-name">Care</div>
+          <div class="kpi-desc">Internal &amp; external customer care above target.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-name">Performance</div>
+          <div class="kpi-desc">Profit margin above target.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rise-section">
+      <div class="sec-label"><span class="sec-label-text">Growth Themes</span></div>
+      <div class="sec-sub">Powered by sustained organic growth and four distinctive growth themes.</div>
+      <div class="rise-cards-4">
+        <div class="theme-card">
+          <div class="theme-name">Wellness &amp; Longevity</div>
+          <div class="theme-desc">Helping guests live and feel better.</div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-name">Living &amp; Ownership</div>
+          <div class="theme-desc">Creating places families return to.</div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-name">Hospitality &amp; Heritage</div>
+          <div class="theme-desc">Caring for rare places with Thai heart.</div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-name">Craft &amp; Regeneration</div>
+          <div class="theme-desc">Growing food, craft, and community.</div>
+        </div>
+      </div>
+      <div class="sec-tagline">Thai family stewardship is our distinctive edge &mdash; giving Montara the long-term <em>care, conviction, and standards</em> to rise.</div>
+    </div>
+
+    <div class="rise-section">
+      <div class="sec-label"><span class="sec-label-text">Cultural Beliefs</span></div>
+      <div class="beliefs-row">
+        <div class="belief-cell"><div class="belief-cell-name">Proud Family</div></div>
+        <div class="belief-cell"><div class="belief-cell-name">Be Wellness</div></div>
+        <div class="belief-cell"><div class="belief-cell-name">I Can with Care</div></div>
+        <div class="belief-cell"><div class="belief-cell-name">Own Business</div></div>
+        <div class="belief-cell"><div class="belief-cell-name">Feel the Guest</div></div>
+        <div class="belief-cell"><div class="belief-cell-name">Creative Innovation</div></div>
+      </div>
+    </div>
+
+    <div class="rise-foot">
+      <span class="rise-foot-text">Together, we rise through <em>purpose, care, and high performance</em>.</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 2 — 8 BUSINESSES (NAVY)
+═══════════════════════════════════════════════════════════════════ -->
+<div class="page page-biz navy">
+  <div class="frame">
+
+    <div class="biz-head">
+      <div class="biz-head-strap">A shared ambition to reach <em>THB 3 Billion</em> &mdash; with care, culture, and purpose.</div>
+      <div class="biz-head-themes-lede">Our businesses are powered by sustained organic growth and four distinctive growth themes.</div>
+      <div class="biz-head-themes-list">
+        <span>Wellness &amp; Longevity</span>
+        <span class="sep">/</span>
+        <span>Living &amp; Ownership</span>
+        <span class="sep">/</span>
+        <span>Hospitality &amp; Heritage</span>
+        <span class="sep">/</span>
+        <span>Craft &amp; Regeneration</span>
+      </div>
+    </div>
+
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-01.jpg')">
+          <span class="biz-card-num">01</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">CLP <span class="gd">Health Resort</span></div>
+          <div class="biz-card-desc">Century-built Swiss longevity expertise in a destination wellness setting.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-02.jpg')">
+          <span class="biz-card-num">02</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">CLP <span class="gd">Branded Residence</span></div>
+          <div class="biz-card-desc">Rare wellness residences backed by global credibility and long-term care expertise.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-03.jpg')">
+          <span class="biz-card-num">03</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">TRISARA <span class="gd">New Hotel Villas</span></div>
+          <div class="biz-card-desc">Award-winning ultra-luxury villas crafted for restorative stays and deeply personal Thai service.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-04.jpg')">
+          <span class="biz-card-num">04</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">PRU <span class="gd">3.0</span></div>
+          <div class="biz-card-desc">Michelin-proven fine dining that gives guests a deeper taste of Phuket, craft, and sustainability.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-05.jpg')">
+          <span class="biz-card-num">05</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">New Wellness at <span class="gd">TRISARA &amp; Tri Vananda</span></div>
+          <div class="biz-card-desc">Family-led wellness journeys shaped by decades of care, nature, and purpose.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-06.jpg')">
+          <span class="biz-card-num">06</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">Tri Vananda <span class="gd">New Residential Villas for Sale and for Rent</span></div>
+          <div class="biz-card-desc">Rare low-density wellness living designed for meaningful family time, long stays, and lasting value.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-07.jpg')">
+          <span class="biz-card-num">07</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">JAMPA <span class="gd">2.0</span></div>
+          <div class="biz-card-desc">Farm-led dining rooted in 20 years of land stewardship and community.</div>
+        </div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-card-photo" style="background-image:url('images/business-08.jpg')">
+          <span class="biz-card-num">08</span>
+        </div>
+        <div class="biz-card-text">
+          <div class="biz-card-name">Praya Palazzo <span class="gd">2.0</span></div>
+          <div class="biz-card-desc">Rare heritage riverside hospitality shaped by a century of Thai history.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 3 — TEASER (NAVY)
+═══════════════════════════════════════════════════════════════════ -->
+<div class="page page-teaser navy">
+  <div class="frame">
+
+    <div class="teaser-content">
+      <div class="teaser-eye">What Comes Next</div>
+      <h1 class="teaser-title">A more connected way of <span class="gd">bringing us together</span></h1>
+    </div>
+
+    <div class="teaser-logos">
+      <img class="teaser-logos-img" src="images/montara-logos-strip.png" alt="Montara brand portfolio: Trisara, Tri Vananda, Praya Palazzo, PRU, JAMPA, Clinique La Prairie" />
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 4 — PATAMA BRAND HIERARCHY (Animated Ecosystem)
+═══════════════════════════════════════════════════════════════════ -->
+<div class="page page-anim-hier" id="page-anim-hier">
+  <div class="frame">
+
+    <div class="anim-stage">
+
+      <!-- Top + bottom rule lines (page chrome) -->
+      <div class="anim-rule-top"></div>
+      <div class="anim-rule-bottom"></div>
+
+      <!-- Brand logos, hidden until phase animates them in -->
+      <div class="anim-logo" data-id="patama"><img src="images/hier/logo_patama.png" alt="PATAMA"></div>
+      <div class="anim-logo" data-id="trisara"><img src="images/hier/logo_trisara.png" alt="TRISARA"></div>
+      <div class="anim-logo" data-id="trivananda"><img src="images/hier/logo_trivananda.png" alt="TRI VANANDA"></div>
+      <div class="anim-logo" data-id="clp"><img src="images/hier/logo_clp.png" alt="CLINIQUE LA PRAIRIE — PHUKET"></div>
+      <div class="anim-logo" data-id="pru"><img src="images/hier/logo_pru.png" alt="PRU"></div>
+      <div class="anim-logo" data-id="jampa"><img src="images/hier/logo_jampa.png" alt="JAMPA"></div>
+      <div class="anim-logo" data-id="lacrique"><img src="images/hier/logo_lacrique.png" alt="LA CRIQUE"></div>
+      <div class="anim-logo" data-id="thailibrary"><img src="images/hier/logo_thailibrary.png" alt="THAI LIBRARY"></div>
+      <div class="anim-logo" data-id="cielo"><img src="images/hier/logo_cielo.png" alt="cielo &amp; spice"></div>
+      <div class="anim-logo" data-id="n78"><img src="images/hier/logo_n78.png" alt="7.8&deg;N"></div>
+      <div class="anim-logo" data-id="praya"><img src="images/hier/logo_praya.png" alt="PRAYA PALAZZO"></div>
+
+      <!-- Big Montara flash element (scales ~1000% + fades each phase) -->
+      <div class="anim-montara-flash" id="animMontaraFlash"><img src="images/hier/logo_montara.png" alt=""></div>
+
+      <!-- Anchored MONTARA at bottom center -->
+      <div class="anim-montara-anchor"><img src="images/hier/logo_montara.png" alt="MONTARA"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* PAGE 4 — Animated Brand Hierarchy timeline (accumulating logos) */
+(function(){
+  const root = document.getElementById('page-anim-hier');
+  if(!root) return;
+
+  const flashEl  = document.getElementById('animMontaraFlash');
+  const allLogos = Array.from(root.querySelectorAll('.anim-logo'));
+  const byId     = id => root.querySelector('.anim-logo[data-id="'+id+'"]');
+
+  /* Phase order — PATAMA → TRISARA → Tri Vananda → CLP Phuket → PRU + JAMPA → Others */
+  const phases = [
+    { ids: ['patama'] },
+    { ids: ['trisara'] },
+    { ids: ['trivananda'] },
+    { ids: ['clp'] },
+    { ids: ['pru','jampa'] },
+    { ids: ['lacrique','thailibrary','cielo','n78','praya'] }
+  ];
+
+  /* Per-phase timings (ms) */
+  const FLASH_MS       = 1700;   /* matches the keyframe duration */
+  const FADE_IN_DELAY  = 950;    /* new logo starts fading in while Montara is still expanding */
+  const FADE_IN_MS     = 900;    /* matches .anim-logo opacity transition */
+  const HOLD_AFTER_IN  = 500;    /* short breath before next phase begins */
+  const FINAL_HOLD_MS  = 3200;   /* hold full tableau */
+  const FADE_OUT_MS    = 1000;   /* fade all logos out together before looping */
+
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  function triggerFlash(){
+    flashEl.classList.remove('flash');
+    void flashEl.offsetWidth;  /* force reflow so the keyframe re-fires */
+    flashEl.classList.add('flash');
+  }
+
+  async function runPhase(phase){
+    triggerFlash();
+    await sleep(FADE_IN_DELAY);
+    phase.ids.forEach(id => { const el = byId(id); if(el) el.classList.add('show'); });
+    await sleep(FADE_IN_MS + HOLD_AFTER_IN);
+  }
+
+  async function runTimeline(){
+    while(true){
+      /* Hidden start — all logos invisible */
+      allLogos.forEach(el => el.classList.remove('show'));
+      await sleep(700);
+
+      /* Each phase adds new logos; previous logos remain */
+      for(const p of phases){ await runPhase(p); }
+
+      /* Hold the full tableau */
+      await sleep(FINAL_HOLD_MS);
+
+      /* Fade everything out together, then restart */
+      allLogos.forEach(el => el.classList.remove('show'));
+      await sleep(FADE_OUT_MS + 400);
+    }
+  }
+
+  function start(){ runTimeline(); }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+</script>
+
+<script>
+(function(){
+  const pages = Array.from(document.querySelectorAll('.page'));
+  let current = 0;
+  function goTo(i){
+    if(i < 0 || i >= pages.length) return;
+    current = i;
+    pages[i].scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' '){
+      e.preventDefault();
+      goTo(Math.min(current + 1, pages.length - 1));
+    } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp'){
+      e.preventDefault();
+      goTo(Math.max(current - 1, 0));
+    } else if(e.key === 'Home'){ e.preventDefault(); goTo(0); }
+      else if(e.key === 'End'){ e.preventDefault(); goTo(pages.length - 1); }
+  });
+})();
+</script>
+
+</body>
+</html>

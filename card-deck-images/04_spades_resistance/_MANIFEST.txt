@@ -1,0 +1,57 @@
+SPADES — RESISTANCE
+============================================================
+
+All images selected to contain NO HUMAN FACES and NO OVERLAY TEXT.
+Some images repeat across cards because the safe-image pool is limited.
+
+   A  Inertia
+      File: 01_A_inertia.jpg
+      Why : Dense grass — quiet, settled, hard to begin moving through.
+
+   2  Fear Of Judgment
+      File: 02_2_fear-of-judgment.jpg
+      Why : A duck on still water under a watched sky — the gaze that freezes.
+
+   3  Perfectionism
+      File: 03_3_perfectionism.jpg
+      Why : A flower endlessly refined by nature — perfection's slow trap.
+
+   4  Comparison
+      File: 04_4_comparison.jpg
+      Why : One ginger bloom set apart from the green around it — the unequal mirror.
+
+   5  Avoidance
+      File: 05_5_avoidance.jpg
+      Why : A temple bypassed in silhouette — the door not entered.
+
+   6  Cynicism
+      File: 06_6_cynicism.jpg
+      Why : A pond at dusk under a heavy sky — the world dimmed by doubt.
+
+   7  Comfort Addiction
+      File: 07_7_comfort-addiction.jpg
+      Why : A hammock that asks nothing of you — the soft cage of ease.
+
+   8  Scarcity Thinking
+      File: 08_8_scarcity-thinking.jpg
+      Why : A single ripe tomato on the vine — the mind that still sees only one.
+
+   9  Learned Helplessness
+      File: 09_9_learned-helplessness.jpg
+      Why : A clownfish that won't leave its anemone — safe, and stuck.
+
+  10  Conformity
+      File: 10_10_conformity.jpg
+      Why : Lily pads laid out in a uniform field — every shape the same.
+
+   J  Busyness
+      File: 11_J_busyness.jpg
+      Why : A bird mid-motion in foliage — movement that may not be progress.
+
+   Q  Fixed Identity
+      File: 12_Q_fixed-identity.jpg
+      Why : A bloom frozen at its peak — beauty that refuses to change.
+
+   K  Resistance To Resistance
+      File: 13_K_resistance-to-resistance.png
+      Why : A structure built directly into the hillside — meeting force with form.

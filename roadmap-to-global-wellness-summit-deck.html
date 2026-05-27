@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri Vananda — Roadmap to Global Wellness Summit</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Jost:wght@100;200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--deep:#141c22;--forest:#1e2820;
+  --cream:#f4efe5;--warm:#ede6d8;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --stone:#9e9282;--sage:#6e8264;--white:#faf8f4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden}
+
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.022;pointer-events:none;z-index:9999}
+
+#bar{position:fixed;top:0;left:0;height:1px;background:var(--gold);z-index:1000;transition:width .2s;width:0}
+#ctr{position:fixed;bottom:30px;right:44px;font-family:'Jost',sans-serif;font-weight:100;font-size:.55rem;letter-spacing:.35em;color:rgba(255,255,255,.18);z-index:100}
+
+.S{width:100%;min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:80px 100px}
+.S.deep{background:var(--deep)}
+.S.forest{background:var(--forest)}
+.S.ink{background:var(--ink)}
+
+.pg{position:absolute;bottom:32px;right:100px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.3em;color:rgba(255,255,255,.14);z-index:3}
+
+.eye{font-family:'Jost',sans-serif;font-weight:200;font-size:.74rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:40px;line-height:1.5}
+.section-link{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:background-color .35s ease;position:relative}
+.section-link:hover{background:rgba(184,148,88,.03)}
+.section-link::after{content:'→ Continue';position:absolute;bottom:32px;left:100px;font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(184,148,88,.4);opacity:0;transition:opacity .35s ease;pointer-events:none}
+.section-link:hover::after{opacity:1}
+
+.D1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(3.5rem,7vw,7rem);line-height:1;color:var(--white)}
+.D2{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.05;color:var(--white)}
+.D3{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.8rem,3vw,3rem);line-height:1.1;color:var(--white)}
+.it{font-style:italic}.gd{color:var(--gold-lt)}
+
+.body{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);max-width:680px}
+.body.lg{font-size:1.05rem;line-height:1.85;max-width:760px}
+.body.dim{color:rgba(255,255,255,.5);font-size:.82rem}
+
+.rule{width:40px;height:1px;background:var(--gold);margin:32px 0}
+
+.pq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.6rem,2.8vw,2.6rem);line-height:1.4;color:var(--white);border-left:2px solid var(--gold);padding:6px 0 6px 44px;max-width:980px}
+
+.S.bg{position:relative;padding:80px 100px}
+.S.bg::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 30% 20%,rgba(110,130,100,.12),transparent 60%),
+  radial-gradient(ellipse at 80% 80%,rgba(184,148,88,.12),transparent 55%),
+  linear-gradient(135deg,#141c22 0%,#0b0f13 60%,#1e2820 100%);z-index:0}
+.S.bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,15,19,.55) 0%,rgba(11,15,19,.15) 40%,rgba(11,15,19,.75) 100%);z-index:1}
+.S.bg > *{position:relative;z-index:2}
+
+.S.split{display:grid;grid-template-columns:1fr 1fr;padding:0;min-height:100vh;align-items:stretch}
+.sp-content{padding:80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.sp-image{position:relative;overflow:hidden;background:
+  radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.15),transparent 65%),
+  radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.12),transparent 60%),
+  linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%)}
+.sp-image .cap{position:absolute;bottom:36px;left:40px;right:40px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.92rem;color:rgba(244,239,229,.65);letter-spacing:.04em;line-height:1.55}
+
+#s1{grid-template-columns:1.1fr 1fr;display:grid;padding:0;min-height:100vh}
+
+/* ───── TIMELINE — 5 slot bands (May–Jun · Jul–Aug · Sep–Oct · Nov Summit · Dec–Jan 2027) ───── */
+.tlx-wrap{margin-top:48px;position:relative;padding-bottom:8px;padding-top:36px}
+.tlx{display:grid;grid-template-columns:1fr 0.5fr 0.5fr 1fr 1fr 1fr;gap:1px;background:rgba(184,148,88,.14);border:1px solid rgba(184,148,88,.18);position:relative}
+.tlx-bar{background:var(--ink);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;min-height:54px;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:var(--white);line-height:1.25;position:relative;border:none}
+.tlx-bar.fill{background:linear-gradient(90deg,rgba(184,148,88,.22) 0%,rgba(184,148,88,.32) 100%);color:var(--white)}
+.tlx-bar.fill.summit{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.fill.overlay{background:linear-gradient(135deg,rgba(110,130,100,.22) 25%,rgba(110,130,100,.36) 50%,rgba(110,130,100,.22) 75%);border-top:1px dashed rgba(110,130,100,.45);border-bottom:1px dashed rgba(110,130,100,.45);z-index:3;position:relative}
+.tlx-bar small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-top:5px;line-height:1.45}
+.tlx-bar.summit small{color:rgba(255,255,255,.85)}
+
+.tlx-axis{display:grid;grid-template-columns:1fr 0.5fr 0.5fr 1fr 1fr 1fr;gap:1px;border-top:1px solid rgba(184,148,88,.32)}
+.tlx-month{padding:14px 12px 10px;background:var(--ink);font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;line-height:1.5}
+.tlx-month.summit{color:var(--gold-lt);background:rgba(184,148,88,.06)}
+.tlx-month strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.78rem;color:var(--gold);margin-top:4px;letter-spacing:.02em;text-transform:none;line-height:1}
+.tlx-month.summit strong{color:var(--gold-lt)}
+
+.tlx-summit-col{position:absolute;top:0;bottom:0;left:calc(3 / 5 * 100%);width:calc(1 / 5 * 100%);background:linear-gradient(180deg,rgba(184,148,88,.06) 0%,rgba(184,148,88,.02) 80%);border-left:1px dashed rgba(184,148,88,.4);border-right:1px dashed rgba(184,148,88,.4);pointer-events:none;z-index:0}
+.tlx-summit-tag{position:absolute;top:0px;left:calc((3 / 5 * 100%) + (0.5 / 5 * 100%));transform:translateX(-50%);font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.4em;color:var(--gold-lt);background:var(--ink);padding:5px 14px;border:1px solid rgba(184,148,88,.4);border-radius:2px;white-space:nowrap;z-index:2}
+
+/* Initiative chapter */
+.init-chapter{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:24px}
+.init-chapter.solo{grid-template-columns:1fr;gap:0;max-width:780px}
+.init-chapter.solo .init-mini-tl{margin-top:32px}
+.init-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.init-when small{display:block;font-size:.55rem;letter-spacing:.28em;color:rgba(184,148,88,.6);margin-top:6px}
+.init-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;color:var(--white);margin-top:24px}
+.init-name .it{color:var(--gold-lt)}
+.init-overline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:rgba(255,255,255,.55);margin-top:16px;line-height:1.4}
+
+/* Init mini-marker — 5 cells */
+.init-mini-tl{margin-top:6px;padding:18px 22px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.init-mini-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(184,148,88,.18)}
+.init-mini-bar{display:grid;grid-template-columns:1fr 0.5fr 0.5fr 1fr 1fr 1fr;gap:1px;background:rgba(184,148,88,.14)}
+.init-mini-cell{background:rgba(11,15,19,.5);height:14px}
+.init-mini-cell.on{background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)}
+.init-mini-cell.summit{background:rgba(184,148,88,.55)}
+.init-mini-axis{display:grid;grid-template-columns:1fr 0.5fr 0.5fr 1fr 1fr 1fr;gap:1px;margin-top:8px}
+.init-mini-month{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;line-height:1.4}
+.init-mini-month.s{color:var(--gold)}
+.init-mini-month.y{color:rgba(184,148,88,.7)}
+
+/* Summary list */
+.sum-list{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.sum-row{background:var(--ink);padding:22px 28px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:baseline}
+.sum-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.7}
+.sum-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.3}
+.sum-name .it{color:var(--gold-lt);font-style:italic}
+
+/* Intro three-card layout — image cards with caption */
+.three-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.three-card{background:var(--ink);display:flex;flex-direction:column;min-height:520px}
+.three-card-img{aspect-ratio:1.3/1;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.18),transparent 65%),radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.15),transparent 60%),linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%)}
+.three-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.three-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,.05) 0%,rgba(11,15,19,.45) 100%);z-index:1;pointer-events:none}
+.three-card-img.logo{background:var(--white);display:flex;align-items:center;justify-content:center;padding:48px}
+.three-card-img.logo img{position:static;inset:auto;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+.three-card-img.logo::after{display:none}
+.three-card-content{padding:32px 28px 36px;display:flex;flex-direction:column;gap:14px;flex:1}
+.three-card-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.three-card-text{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.45rem;color:var(--white);line-height:1.3}
+
+/* Next-steps cards */
+.next{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.next-cell{background:var(--ink);padding:30px 22px;display:flex;flex-direction:column;gap:14px;min-height:200px}
+.next-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.85}
+.next-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.3}
+.next-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.6;margin-top:auto}
+
+/* ───── BRAND DIAGNOSTIC — Strong / Weak / Opportunity ───── */
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.diag-cell{background:var(--ink);padding:38px 36px 42px;display:flex;flex-direction:column;gap:18px;min-height:auto}
+.diag-cell.opp{grid-column:1 / span 2;background:rgba(184,148,88,.06);border-top:1px solid rgba(184,148,88,.32);min-height:auto;padding:36px 36px 40px}
+.diag-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.diag-cell.weak .diag-h{color:rgba(255,255,255,.45);border-bottom-color:rgba(255,255,255,.1)}
+.diag-cell.opp .diag-h{color:var(--gold-lt);border-bottom-color:rgba(184,148,88,.32)}
+.diag-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.3;margin-bottom:6px}
+.diag-cell.opp .diag-name{font-size:2rem;font-style:italic;color:var(--gold-lt);max-width:880px}
+.diag-list{display:flex;flex-direction:column;gap:0;margin-top:0}
+.diag-list-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.65;color:rgba(255,255,255,.62);padding:18px 0 18px 44px;position:relative;border-bottom:1px solid rgba(255,255,255,.05)}
+.diag-list-item:last-child{border-bottom:none}
+.diag-list-item::before{content:counter(diag-num, decimal-leading-zero);counter-increment:diag-num;position:absolute;left:0;top:18px;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;letter-spacing:.04em;line-height:1.5;width:30px}
+.diag-cell.weak .diag-list-item::before{color:rgba(184,148,88,.5)}
+.diag-list{counter-reset:diag-num}
+.diag-list-item strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);font-style:italic;margin-bottom:6px;letter-spacing:.005em}
+.diag-cell.weak .diag-list-item strong{color:rgba(255,255,255,.85)}
+
+/* ───── INITIATIVE BULLET-POINT SUMMARY PATTERN ───── */
+.init-points{display:flex;flex-direction:column;gap:0;margin-top:0}
+.init-point{padding:22px 0;border-bottom:1px solid rgba(184,148,88,.14);display:flex;flex-direction:column;gap:10px}
+.init-point:first-child{padding-top:10px}
+.init-point:last-child{border-bottom:none;padding-bottom:6px}
+.init-point-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.45rem;line-height:1.2;letter-spacing:.005em}
+.init-point-b{font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;line-height:1.85;color:rgba(255,255,255,.78)}
+.init-note{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.5);margin-top:32px;font-style:italic}
+
+/* ───── IMPLEMENTATION EXAMPLE — Screenshot grid + takeaways ───── */
+.impl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 18px;margin-top:48px}
+.impl-cell{display:flex;flex-direction:column;gap:12px}
+.impl-frame{aspect-ratio:16/9;background:rgba(184,148,88,.04);border:1px dashed rgba(184,148,88,.3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:border-color .25s ease,background .25s ease}
+.impl-frame::before{content:'[ SCREENSHOT ]';font-family:'Jost',sans-serif;font-weight:300;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(184,148,88,.35);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.impl-frame img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.impl-frame:has(img)::before{display:none}
+.impl-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.45;padding:0 4px}
+.impl-caption-num{font-family:'Jost',sans-serif;font-style:normal;font-weight:300;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:6px}
+.impl-caption.placeholder{color:rgba(184,148,88,.42)}
+
+.impl-takeaways{margin-top:56px;padding-top:36px;border-top:1px solid rgba(184,148,88,.2);display:flex;flex-direction:column;gap:0}
+.impl-takeaways-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:18px}
+.impl-takeaway{padding:18px 0;border-bottom:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;gap:8px}
+.impl-takeaway:last-child{border-bottom:none;padding-bottom:6px}
+.impl-takeaway-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.3rem;line-height:1.2}
+.impl-takeaway-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.96rem;line-height:1.85;color:rgba(255,255,255,.7)}
+.impl-takeaway.placeholder .impl-takeaway-h{color:rgba(184,148,88,.45)}
+.impl-takeaway.placeholder .impl-takeaway-b{color:rgba(255,255,255,.4);font-style:italic}
+
+/* ───── GWS SPONSORSHIP OPTIONS — 3-cell tier grid ───── */
+.spo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.spo-cell{background:var(--ink);padding:32px 30px 36px;display:flex;flex-direction:column;gap:14px;min-height:300px}
+.spo-cell.featured{background:rgba(184,148,88,.08);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.spo-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.spo-cell.featured .spo-tag{color:var(--gold-lt)}
+.spo-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.spo-name .it{color:var(--gold-lt);font-style:italic}
+.spo-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.3rem;color:var(--gold-lt);line-height:1.3;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.spo-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);margin-top:auto}
+
+.spo-benefits{margin-top:48px;padding:30px 32px 32px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.spo-benefits-h{font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;padding-bottom:18px;border-bottom:1px solid rgba(184,148,88,.18);margin-bottom:20px}
+.spo-benefits-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px}
+.spo-benefit-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.6;color:rgba(255,255,255,.72);padding-left:22px;position:relative}
+.spo-benefit-item::before{content:'';position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--gold-lt)}
+
+/* ───── PRESS CAMPAIGNS RFP BRIEF — 6-cell grid ───── */
+.rfp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.rfp-cell{background:var(--ink);padding:30px 28px 32px;display:flex;flex-direction:column;gap:12px;min-height:260px}
+.rfp-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.1rem;line-height:1;letter-spacing:.04em}
+.rfp-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.2;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.rfp-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.85;color:rgba(255,255,255,.6);margin-top:auto}
+
+/* ───── CURATED MEDIA TARGETS — Two-column grouped lists ───── */
+.media-section-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:48px;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);border-top:none;margin-top:0}
+.media-col{background:var(--ink);padding:30px 32px 34px;display:flex;flex-direction:column;gap:20px}
+.media-col-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.18;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.media-col-h .it{color:var(--gold-lt);font-style:italic}
+.media-group{display:flex;flex-direction:column;gap:6px}
+.media-group-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:var(--gold-lt);line-height:1.4}
+.media-list{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.85;color:rgba(255,255,255,.65)}
+
+/* ───── PR AGENCY SHORTLIST — Two-column, 3 firms each ───── */
+.agy-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.agy-col{display:flex;flex-direction:column;gap:1px;background:rgba(184,148,88,.18)}
+.agy-col-h{background:rgba(184,148,88,.06);padding:30px 30px 26px;border-bottom:1px solid rgba(184,148,88,.32)}
+.agy-col-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px;line-height:1.5}
+.agy-col-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--white);line-height:1.18}
+.agy-col-name .it{color:var(--gold-lt);font-style:italic}
+.agy-col-sub{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.75;color:rgba(255,255,255,.55);margin-top:14px}
+.agy-cell{background:var(--ink);padding:24px 30px 26px;display:flex;flex-direction:column;gap:8px}
+.agy-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.agy-name .it{color:var(--gold-lt);font-style:italic}
+.agy-base{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.agy-rationale{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.8;color:rgba(255,255,255,.55);margin-top:6px}
+.agy-cell.agy-placeholder{background:rgba(255,255,255,.015);border:1px dashed rgba(184,148,88,.22)}
+.agy-cell.agy-placeholder .agy-name{color:rgba(255,255,255,.4)}
+.agy-cell.agy-placeholder .agy-name .it{color:rgba(184,148,88,.5)}
+.agy-cell.agy-placeholder .agy-base{color:rgba(184,148,88,.4)}
+.agy-cell.agy-placeholder .agy-rationale{color:rgba(255,255,255,.35);font-style:italic}
+.agy-link{display:inline-block;font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:var(--gold);text-decoration:none;margin-left:10px;opacity:.55;transition:opacity .25s ease,color .25s ease;letter-spacing:.05em;vertical-align:middle}
+.agy-link:hover{opacity:1;color:var(--gold-lt)}
+.agy-link.tbd{opacity:.3;cursor:help}
+.agy-link.tbd:hover{opacity:.5}
+
+/* ───── VANANDA SYSTEM — 4-part framework ───── */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.vs-cell{background:var(--ink);padding:34px 30px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.vs-cell.featured{grid-column:1 / span 3;background:rgba(184,148,88,.06);border-bottom:1px solid rgba(184,148,88,.32);min-height:220px}
+.vs-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.vs-cell.featured .vs-tag{color:var(--gold-lt)}
+.vs-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18}
+.vs-name .it{color:var(--gold-lt);font-style:italic}
+.vs-cell.featured .vs-name{font-size:1.95rem}
+.vs-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.55;margin-top:6px}
+.vs-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.6);margin-top:auto}
+.vs-stack{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.vs-stack-item{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.3}
+.vs-stack-item small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-top:2px;line-height:1.5;font-style:italic}
+
+/* Outcomes block on Vananda System slide */
+.vs-out{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.vs-out-cell{background:var(--ink);padding:24px 22px;display:flex;flex-direction:column;gap:8px;min-height:130px}
+.vs-out-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.vs-out-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.3}
+
+/* ───── ECOSYSTEM INFOGRAPHIC — Grouped Hierarchy ───── */
+.eco-group{display:grid;grid-template-columns:1.25fr 1.25fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.eco-pane{background:var(--ink);padding:36px 30px;display:flex;flex-direction:column;gap:14px;min-height:520px}
+.eco-pane.featured{background:rgba(184,148,88,.05);border-top:1px solid rgba(184,148,88,.32);border-bottom:1px solid rgba(184,148,88,.32)}
+.eco-h-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1;letter-spacing:.005em}
+.eco-h-name .it{color:var(--gold-lt);font-style:italic}
+.eco-h-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:8px}
+.eco-pane.featured .eco-h-tag{color:var(--gold-lt)}
+.eco-h-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.5;margin-top:14px}
+.eco-list{display:flex;flex-direction:column;gap:0;margin-top:18px}
+.eco-cat{padding:18px 0;border-top:1px solid rgba(184,148,88,.18);display:flex;flex-direction:column;gap:6px}
+.eco-cat:first-child{border-top:1px solid rgba(184,148,88,.32);padding-top:20px}
+.eco-cat-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.5;order:1}
+.eco-cat-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--white);line-height:1.2;order:2}
+.eco-cat-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.5);order:3}
+.eco-sub{display:flex;flex-direction:column;gap:7px;padding:10px 0 0 14px;margin-top:8px;border-left:1px solid rgba(184,148,88,.25);order:4}
+.eco-sub-item{display:flex;flex-direction:column;gap:2px;padding:4px 0}
+.eco-sub-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:rgba(255,255,255,.85);line-height:1.2}
+.eco-sub-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.66rem;letter-spacing:.04em;color:var(--gold-lt);line-height:1.4;font-style:italic}
+
+/* Pillars for Montara architect slide */
+.pil{padding:36px 28px;border:1px solid rgba(255,255,255,.06);text-align:left;min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.pil+.pil{border-left:none}
+.pil-num{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.15rem;color:var(--gold);margin-bottom:24px}
+.pil-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.65rem;color:var(--white);margin-bottom:14px;line-height:1.15}
+.pil-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.65)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+
+/* Architecture two-up split — Tri Vananda for HNWI / Montara for partners */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.arch-cell{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.arch-cell.hi{background:rgba(184,148,88,.04)}
+.arch-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.arch-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1.05}
+.arch-name .it{color:var(--gold-lt);font-style:italic}
+.arch-aud{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.55);line-height:1.4}
+.arch-body{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin-top:auto}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fi-a{animation:fadeUp .9s ease both}
+.fi-a.d1{animation-delay:.15s}.fi-a.d2{animation-delay:.3s}.fi-a.d3{animation-delay:.45s}.fi-a.d4{animation-delay:.6s}
+
+@media (max-width:1100px){
+  .S{padding:60px 40px}
+  .S.split,.S.bg{padding:60px 40px}
+  .S.split{grid-template-columns:1fr}
+  #s1{grid-template-columns:1fr}
+  .init-chapter{grid-template-columns:1fr;gap:40px}
+  .next{grid-template-columns:1fr}
+  .sum-row{grid-template-columns:1fr;gap:8px}
+  .tlx,.tlx-axis{grid-template-columns:repeat(3,1fr)}
+  .tlx-summit-col,.tlx-summit-tag{display:none}
+  .eco-group{grid-template-columns:1fr}
+  .eco-pane{min-height:auto}
+  .g4,.arch,.three-cards,.vs-grid,.vs-out,.diag-grid,.rfp-grid,.agy-grid,.media-grid,.spo-grid,.spo-benefits-list,.impl-grid{grid-template-columns:1fr}
+  .three-card{min-height:auto}
+  .vs-cell.featured,.diag-cell.opp{grid-column:1}
+  .pil+.pil{border-left:1px solid rgba(255,255,255,.06)}
+}
+@media print{
+  #bar,#ctr{display:none}
+  .S{break-after:page;min-height:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+<div id="ctr">01</div>
+
+<!-- ═══════════════════ 01 COVER ═══════════════════ -->
+<section class="S ink split" id="s1">
+  <div class="sp-content">
+    <div>
+      <div class="eye fi-a" style="margin-bottom:52px">Tri Vananda · Phuket · Board Briefing · 2026</div>
+      <div class="D1 fi-a d1" style="font-size:clamp(3rem,6vw,6rem)">Roadmap to the<br><span class="it gd">Global Wellness Summit.</span></div>
+      <div class="D2 it gd fi-a d2" style="font-size:clamp(1rem,1.8vw,1.55rem);margin-top:28px;font-weight:200">From this quarter, through November (Summit), into the first communications of 2027.</div>
+      <div class="rule fi-a d3" style="margin-top:44px"></div>
+      <p class="body fi-a d4" style="max-width:460px">
+        The path that takes Tri Vananda from a development name to the top-of-mind luxury wellness lifestyle brand for multigenerational living in Thailand.
+      </p>
+      <div style="margin-top:40px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.18);line-height:2.2" class="fi-a d4">
+        Montara Hospitality Group · Tri Vananda<br>Confidential · Board of Directors
+      </div>
+    </div>
+  </div>
+  <div class="sp-image" style="background:linear-gradient(180deg,#1e2820 0%,#2a3a2f 35%,#5a6b5f 65%,#b89458 100%)">
+    <img src="hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+    <div class="cap">Tri Vananda — Phuket. A luxury wellness lifestyle brand for multigenerational living.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 02 INTRODUCTION ═══════════════════ -->
+<section class="S ink">
+  <div class="eye">Introduction</div>
+  <div class="D2" style="max-width:920px;margin-bottom:36px">A convergence we will not see <span class="it gd">again for years.</span></div>
+  <p class="body lg" style="max-width:820px">In November 2026, three forces converge once — the audience, the product, and the moment.</p>
+
+  <div class="three-cards">
+    <div class="three-card">
+      <div class="three-card-img logo"><img src="images/gws-logo.jpg" alt="Global Wellness Summit"></div>
+      <div class="three-card-content">
+        <div class="three-card-tag">The Audience</div>
+        <div class="three-card-text">The Global Wellness Summit comes to Phuket.</div>
+      </div>
+    </div>
+    <div class="three-card">
+      <div class="three-card-img"><img src="clp.jpg" alt=""></div>
+      <div class="three-card-content">
+        <div class="three-card-tag">The Product</div>
+        <div class="three-card-text">The Health Resort by Clinique La Prairie opens at Tri Vananda in the same window.</div>
+      </div>
+    </div>
+    <div class="three-card">
+      <div class="three-card-img"><img src="images/masterplan.png" alt="Tri Vananda masterplan"></div>
+      <div class="three-card-content">
+        <div class="three-card-tag">The Moment</div>
+        <div class="three-card-text">The masterplan moves into its next chapter.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">02</div>
+</section>
+
+<!-- ═══════════════════ 03 GOALS ═══════════════════ -->
+<section class="S bg">
+  <div class="eye">The Goal</div>
+  <div class="pq" style="max-width:1140px;font-size:clamp(2rem,3.6vw,3.4rem);border-left:none;padding-left:0">
+    Top-of-mind <span class="it gd">luxury wellness lifestyle brand</span> for multigenerational living in Thailand.
+  </div>
+  <div class="rule" style="margin-top:36px"></div>
+  <p class="body lg">One sentence. One position. The strategic anchor against which every initiative on the timeline is justified, sequenced, and measured. Beneath it sits the commercial purpose — to place residences with the families who belong here, by recruiting the most relevant industry voices in the world to introduce the right clients to us across the next twenty-four months.</p>
+  <p class="body" style="margin-top:24px;max-width:760px">Every step that follows in this roadmap traces back to this single line — and to the commercial reality that justifies the work.</p>
+  <div class="pg">03</div>
+</section>
+
+<!-- ═══════════════════ 04 TIMELINE ═══════════════════ -->
+<section class="S ink">
+  <div class="eye">Timeline</div>
+  <div class="D2" style="max-width:920px;margin-bottom:14px">The <span class="it gd">Timeline.</span></div>
+  <p class="body" style="max-width:820px;font-size:.88rem">Each bar is an initiative. The bar's length is the period in which the work is concentrated. The Press Conference at the Project sets the stage on 1 November. The Summit follows on 10–13 November.</p>
+
+  <div class="tlx-wrap">
+    <div class="tlx-summit-tag">SUMMIT · 10–13 NOV 2026</div>
+
+    <div class="tlx">
+      <div class="tlx-summit-col"></div>
+
+      <!-- Row 1 · Brand Refresh (May–Jul, cols 1-2) + Marketing Collateral Preparation (Aug-Oct, cols 3-4) + Continuing Communications (Nov-Jan, cols 5-6) -->
+      <div class="tlx-bar fill" style="grid-row:1;grid-column:1 / span 2">Brand Refresh<small>Positioning · verbal &amp; visual</small></div>
+      <div class="tlx-bar fill" style="grid-row:1;grid-column:3 / span 2">Marketing Collateral Preparation<small>Renderings · photos · videos · masterplan model</small></div>
+      <div class="tlx-bar fill" style="grid-row:1;grid-column:5 / span 2">Continuing Communications<small>Luxury Wellness Lifestyle Brand</small></div>
+
+      <!-- Row 2 · PR Agency Engagement (May–Sep, cols 1-4) + Press Conference (1 Nov, col 5) -->
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 4">PR Agency Engagement<small>Closed shortlist · 3 to 6-month campaign</small></div>
+      <div class="tlx-bar fill summit" style="grid-row:2;grid-column:5 / span 1">Press Conference<small>Key activation · 1 Nov</small></div>
+      <div class="tlx-bar" style="grid-row:2;grid-column:6 / span 1"></div>
+
+      <!-- Row 3 · Pru Farm Festival (1 Nov, col 5) -->
+      <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 4"></div>
+      <div class="tlx-bar fill summit" style="grid-row:3;grid-column:5 / span 1">Pru Farm Festival<small>Supporting activation · 1 Nov</small></div>
+      <div class="tlx-bar" style="grid-row:3;grid-column:6 / span 1"></div>
+
+      <!-- Row 4 · Press Campaigns (Nov–Jan, cols 5-6) -->
+      <div class="tlx-bar" style="grid-row:4;grid-column:1 / span 4"></div>
+      <div class="tlx-bar fill" style="grid-row:4;grid-column:5 / span 2">Press Campaigns<small>Sustained Nov – Jan · Press Con on 1 Nov</small></div>
+
+      <!-- Row 5 · GWS Collaboration (May–Jul, cols 1-2) + Pre-Summit Setup (Aug–Oct, cols 3-4) + Join GWS as Exhibitor (10–13 Nov, col 5) -->
+      <div class="tlx-bar fill" style="grid-row:5;grid-column:1 / span 2">GWS Collaboration<small>Connect with them to find the best format of collaboration</small></div>
+      <div class="tlx-bar fill" style="grid-row:5;grid-column:3 / span 2">Pre-Summit Setup<small>Format · event organizer · experience design</small></div>
+      <div class="tlx-bar fill summit" style="grid-row:5;grid-column:5 / span 1">Join GWS as Exhibitor<small>Conference presence · 10–13 Nov</small></div>
+      <div class="tlx-bar" style="grid-row:5;grid-column:6 / span 1"></div>
+
+      <!-- Row 6 · Hosted Experience (10–13 Nov, col 5) -->
+      <div class="tlx-bar" style="grid-row:6;grid-column:1 / span 4"></div>
+      <div class="tlx-bar fill summit" style="grid-row:6;grid-column:5 / span 1">Hosted Experience<small>For potential referrers · 10–13 Nov</small></div>
+      <div class="tlx-bar" style="grid-row:6;grid-column:6 / span 1"></div>
+
+      <!-- Row 7 · Founding Industry Network (Nov – Jan 2027, cols 5-6) -->
+      <div class="tlx-bar" style="grid-row:7;grid-column:1 / span 4"></div>
+      <div class="tlx-bar fill" style="grid-row:7;grid-column:5 / span 2">Founding Industry Network<small>4% commission · onboarding</small></div>
+    </div>
+
+    <div class="tlx-axis">
+      <div class="tlx-month" style="grid-column:1">May – Jun<strong>2026</strong></div>
+      <div class="tlx-month" style="grid-column:2 / span 2">Jul – Aug</div>
+      <div class="tlx-month" style="grid-column:4">Sep – Oct</div>
+      <div class="tlx-month summit" style="grid-column:5">Nov</div>
+      <div class="tlx-month" style="grid-column:6">Dec – Jan<strong>2027</strong></div>
+    </div>
+  </div>
+
+  <div class="pg">04</div>
+</section>
+
+<!-- ═══════════════════ 05 INITIATIVE — BRAND REFRESH ═══════════════════ -->
+<section class="S forest">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when">Initiative<small>May – Jul 2026</small></div>
+      <div class="init-name">Brand <span class="it">Refresh.</span></div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell on"></div>
+          <div class="init-mini-cell on"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell summit"></div>
+          <div class="init-mini-cell"></div>
+</div>
+    </div>
+  </div>
+  <div class="pg">05</div>
+</section>
+
+<!-- ═══════════════════ 06 BRAND REFRESH · THE STRATEGIC READ ═══════════════════ -->
+<section class="S deep">
+  <div class="eye">Brand Refresh · The Strategic Read</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">From luxury wellness real estate — <span class="it gd">to a globally respected luxury wellness lifestyle brand.</span></div>
+  <p class="body lg" style="max-width:840px">An external read of Tri Vananda's brand position reveals strong differentiation alongside clear gaps. The refresh work is built around closing those gaps without losing what already sets the brand apart.</p>
+
+  <div class="diag-grid">
+    <div class="diag-cell strong">
+      <div class="diag-h">What's Strong</div>
+      <div class="diag-name">Already separates Tri Vananda from <span class="it gd">90% of the market.</span></div>
+      <div class="diag-list">
+        <div class="diag-list-item"><strong>Clear differentiation</strong>Longevity, community, regenerative living — not ocean view or rental yield.</div>
+        <div class="diag-list-item"><strong>Clinique La Prairie partnership</strong>Global medical authority. Luxury wellness credibility, instantly.</div>
+        <div class="diag-list-item"><strong>Ecosystem storytelling</strong>Trisara, Jampa, the working farm — a way of life, not amenities.</div>
+        <div class="diag-list-item"><strong>Authentic sustainability</strong>Low-density. Michelin Green Star at Jampa. Credible, not performative.</div>
+      </div>
+    </div>
+
+    <div class="diag-cell weak">
+      <div class="diag-h">What's Weak</div>
+      <div class="diag-name">Where the brand still feels project-led, <span class="it" style="color:rgba(255,255,255,.55)">not lifestyle-led.</span></div>
+      <div class="diag-list">
+        <div class="diag-list-item"><strong>Still too real-estate-led</strong>Sales wording and villa-inquiry flow at the centre of the experience.</div>
+        <div class="diag-list-item"><strong>Visual identity not iconic</strong>Close to luxury-resort conventions. Idea stronger than execution.</div>
+        <div class="diag-list-item"><strong>Storytelling too broad</strong>Many strong directions. No single emotionally dominant narrative.</div>
+        <div class="diag-list-item"><strong>Founder philosophy underused</strong>Long-term thinking is a differentiator. Rarely surfaced.</div>
+      </div>
+    </div>
+
+    <div class="diag-cell opp">
+      <div class="diag-h">The Core Opportunity</div>
+      <div class="diag-name">Move from a project people buy into — to a future way of living people want to belong to.</div>
+      <p class="body" style="margin-top:14px;max-width:880px;font-size:.85rem;color:rgba(255,255,255,.62);line-height:1.85">Stronger editorial voice · cultural positioning · membership thinking · branded experiences · wellness philosophy · intellectual leadership · emotional storytelling.<br>Less brochure. More worldview.</p>
+    </div>
+  </div>
+
+  <div class="pg">06</div>
+</section>
+
+<!-- ═══════════════════ 07 THE TRI VANANDA SYSTEM ═══════════════════ -->
+<section class="S deep">
+  <a href="#ecosystem" class="section-link">
+  <div class="eye">Brand Architecture · The Tri Vananda System</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">Tri Vananda is a system <span class="it gd">of living well.</span></div>
+  <p class="body lg" style="max-width:860px">The luxury wellness lifestyle brand of the Montara group — built as a framework for how owners and guests live, age, and spend time with their families across generations. Four parts: the <em style="font-style:italic;color:var(--gold-lt)">System</em> that connects everything, and the three layers that feed it — <em style="font-style:italic;color:var(--gold-lt)">Place</em>, <em style="font-style:italic;color:var(--gold-lt)">Living</em>, <em style="font-style:italic;color:var(--gold-lt)">Wellbeing</em>.</p>
+
+  <div class="vs-grid">
+    <div class="vs-cell featured">
+      <div class="vs-tag">System · The Connective Tissue</div>
+      <div class="vs-name">The Tri Vananda <span class="it">System.</span></div>
+      <div class="vs-sub">The thread that runs through everything.</div>
+      <div class="vs-desc">It connects stays, living, and wellness journeys across time — turning Place, Living, and Wellbeing from a portfolio of offerings into a single way of living for owners, guests, and families across generations.</div>
+    </div>
+
+    <div class="vs-cell">
+      <div class="vs-tag">Place</div>
+      <div class="vs-name">Tri Vananda <span class="it">Land.</span></div>
+      <div class="vs-sub">The environment layer.</div>
+      <div class="vs-stack">
+        <div class="vs-stack-item">85% Nature<small>Lake &amp; forest · good for health</small></div>
+        <div class="vs-stack-item">Regenerative Farming<small>Soil-led · biodiverse cultivation</small></div>
+      </div>
+    </div>
+    <div class="vs-cell">
+      <div class="vs-tag">Living</div>
+      <div class="vs-name">Tri Vananda <span class="it">Living.</span></div>
+      <div class="vs-sub">The residential layer.</div>
+      <div class="vs-stack">
+        <div class="vs-stack-item">Tri Vananda Residences<small>Independent villas</small></div>
+        <div class="vs-stack-item">Clinique La Prairie Residences<small>Wellness-focused branded residences</small></div>
+      </div>
+    </div>
+    <div class="vs-cell">
+      <div class="vs-tag">Wellbeing</div>
+      <div class="vs-name">Tri Vananda <span class="it">Wellbeing.</span></div>
+      <div class="vs-sub">The wellness layer.</div>
+      <div class="vs-stack">
+        <div class="vs-stack-item">Tri Vananda Wellness<small>Club, retreats &amp; open experiences</small></div>
+        <div class="vs-stack-item"><span style="border-bottom:1px solid rgba(184,148,88,.4)">Health Resort by Clinique La Prairie</span><small>Medical longevity innovations</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule" style="margin-top:48px"></div>
+  <p class="body lg" style="max-width:860px">We are not selling villas or stays. We are offering a <span class="it gd">system that supports how owners and guests live, age, and spend time with their families.</span></p>
+
+  <div class="vs-out">
+    <div class="vs-out-cell">
+      <div class="vs-out-tag">Strengthens</div>
+      <div class="vs-out-name">Emotional connection</div>
+    </div>
+    <div class="vs-out-cell">
+      <div class="vs-out-tag">Strengthens</div>
+      <div class="vs-out-name">Repeat usage</div>
+    </div>
+    <div class="vs-out-cell">
+      <div class="vs-out-tag">Strengthens</div>
+      <div class="vs-out-name">Pricing power</div>
+    </div>
+    <div class="vs-out-cell">
+      <div class="vs-out-tag">Strengthens</div>
+      <div class="vs-out-name">Long-term asset value</div>
+    </div>
+  </div>
+
+  <p class="body dim" style="margin-top:36px;max-width:860px">The Tri Vananda System works inside Tri Vananda's own offering. But Tri Vananda does not stand alone — it sits inside the broader Montara group ecosystem, connected to the world-class brands the group has already built.</p>
+
+  <div class="pg">07</div>
+  </a>
+</section>
+
+<!-- ═══════════════════ 08 THE ECOSYSTEM INFOGRAPHIC ═══════════════════ -->
+<section class="S ink" id="ecosystem">
+  <div class="eye">The Ecosystem · Tri Vananda at the Centre</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">Tri Vananda is the luxury wellness lifestyle brand — <span class="it gd">connected to the meaningful brands already in the group.</span></div>
+  <p class="body lg" style="max-width:840px">Around it sit the world-class brands the Montara group has built over twenty years — Trisara, PRU, Clinique La Prairie, and the dining outlets that anchor each property. Each is too strong to fold inside Tri Vananda. Each keeps its own identity, its own audience, its own craft. Tri Vananda is the address where they all meet — connection, not absorption. One ecosystem, distinct brands, no blurring.</p>
+
+  <div class="eco-group">
+
+    <!-- TRI VANANDA -->
+    <div class="eco-pane featured">
+      <div>
+        <div class="eco-h-name">Tri <span class="it">Vananda</span></div>
+        <div class="eco-h-tag">The Luxury Wellness Lifestyle Brand</div>
+        <div class="eco-h-desc">A luxury wellness lifestyle brand in Phuket designed around wellness, longevity, and belonging — for HNWI families choosing to live well together across generations.</div>
+      </div>
+      <div class="eco-list">
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Place</span>
+          <span class="eco-cat-name">Tri Vananda Land</span>
+          <span class="eco-cat-desc">The environment layer.</span>
+          <div class="eco-sub">
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">85% Nature</span>
+              <span class="eco-sub-desc">Lake &amp; forest · good for health</span>
+            </div>
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">Regenerative Farming</span>
+              <span class="eco-sub-desc">Soil-led · biodiverse cultivation</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Living</span>
+          <span class="eco-cat-name">Tri Vananda Living</span>
+          <span class="eco-cat-desc">The residential layer.</span>
+          <div class="eco-sub">
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">Tri Vananda Residences</span>
+              <span class="eco-sub-desc">Independent villas</span>
+            </div>
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">Clinique La Prairie Residences</span>
+              <span class="eco-sub-desc">Wellness-focused branded residences</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Wellbeing</span>
+          <span class="eco-cat-name">Tri Vananda Wellbeing</span>
+          <span class="eco-cat-desc">The wellness layer.</span>
+          <div class="eco-sub">
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">Tri Vananda Wellness</span>
+              <span class="eco-sub-desc">Club, retreats, and open experiences</span>
+            </div>
+            <div class="eco-sub-item">
+              <span class="eco-sub-name"><a href="https://www.cliniquelaprairie.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(184,148,88,.4)">Health Resort by Clinique La Prairie</a></span>
+              <span class="eco-sub-desc">Medical longevity innovations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRISARA -->
+    <div class="eco-pane">
+      <div>
+        <div class="eco-h-name">Tri<span class="it">sara</span></div>
+        <div class="eco-h-tag">The Luxury Resort Flagship</div>
+        <div class="eco-h-desc">Phuket's beachfront sanctuary and the flagship property of the Montara portfolio — over twenty years of luxury hospitality at one of Thailand's most celebrated addresses.</div>
+      </div>
+      <div class="eco-list">
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Resort &amp; Service</span>
+          <span class="eco-cat-name">Luxury Hospitality</span>
+          <span class="eco-cat-desc">Anticipatory service, architectural privacy, the warmth of Thai hospitality at the highest level — the standard against which everything in the portfolio is measured.</span>
+        </div>
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Spa &amp; Wellness</span>
+          <span class="eco-cat-name">Trisara Wellness</span>
+          <span class="eco-cat-desc">The existing spa and wellness offering at Trisara — to be elevated through the Vananda wellness brand under development.</span>
+        </div>
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Dining</span>
+          <span class="eco-cat-name">F&amp;B Outlets</span>
+          <div class="eco-sub">
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">La Crique</span>
+              <span class="eco-sub-desc">Beachfront dining</span>
+            </div>
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">Thai Library</span>
+              <span class="eco-sub-desc">Modern Thai cuisine</span>
+            </div>
+            <div class="eco-sub-item">
+              <span class="eco-sub-name">Cielo &amp; Spices</span>
+              <span class="eco-sub-desc">Italian &amp; spice-led</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRU -->
+    <div class="eco-pane">
+      <div>
+        <div class="eco-h-name">PRU</div>
+        <div class="eco-h-tag">Michelin-Starred Dining</div>
+        <div class="eco-h-desc">A standalone restaurant brand with its own identity and following — independent of any single property, recognised among Asia's most celebrated tables.</div>
+      </div>
+      <div class="eco-list">
+        <div class="eco-cat">
+          <span class="eco-cat-tag">Cuisine · Michelin ★</span>
+          <span class="eco-cat-name">Plant Reaching Up</span>
+          <span class="eco-cat-desc">Terroir-driven cuisine sourced almost entirely from the working farm — the dining brand whose reputation precedes the property it sits on.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="body dim" style="margin-top:48px;max-width:840px">Each brand stays itself. The wellness functions in development sit under Tri Vananda. The dining outlets sit under Trisara. PRU stands alone. The medical authority comes through Clinique La Prairie. Residents and guests engage with all of them.</p>
+  <div class="pg">08</div>
+</section>
+
+<!-- ═══════════════════ 09 MONTARA · THE DEVELOPER &amp; SERVICE PROVIDER ═══════════════════ -->
+<section class="S forest">
+  <div class="eye">Brand Architecture · The Parent</div>
+  <div class="D2" style="max-width:920px;margin-bottom:18px">Montara — <span class="it gd">the developer behind every brand.</span></div>
+  <p class="body lg">Montara Hospitality Group is the developer and service provider behind every brand in the ecosystem. The expertise that built Trisara into a benchmark luxury resort, that earned PRU its Michelin star, and that is shaping Tri Vananda into a luxury wellness lifestyle brand — that is Montara at work, across more than twenty years of operating history.</p>
+  <p class="body lg" style="margin-top:24px">This is the foundation on which Montara now offers its capabilities to others. For organisations developing their own luxury wellness ecosystems, Montara is positioned to act as service provider or partner — at any layer, from concept and development through to long-term operation. The world-class brands behind us are the proof of what Montara can build alongside you.</p>
+
+  <div class="g4" style="margin-top:48px;grid-template-columns:repeat(3,1fr)">
+    <div class="pil">
+      <div>
+        <div class="pil-num">01</div>
+        <div class="pil-name">Luxury Wellness Lifestyle</div>
+      </div>
+      <div class="pil-desc"><strong style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;color:var(--gold-lt);font-size:1.05rem;display:block;margin-bottom:8px">Tri Vananda</strong>The luxury wellness lifestyle brand in Phuket — anchored by the Health Resort by Clinique La Prairie and the wellness functions in development. World-class through partnership with Switzerland's most established medical-wellness authority.</div>
+    </div>
+    <div class="pil">
+      <div>
+        <div class="pil-num">02</div>
+        <div class="pil-name">Luxury Hospitality</div>
+      </div>
+      <div class="pil-desc"><strong style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;color:var(--gold-lt);font-size:1.05rem;display:block;margin-bottom:8px">Trisara</strong>Phuket's beachfront sanctuary — Montara's flagship, twenty-plus years at one of Thailand's most celebrated addresses. World-class through reputation, recognition, and the depth of Thai hospitality at the highest level.</div>
+    </div>
+    <div class="pil">
+      <div>
+        <div class="pil-num">03</div>
+        <div class="pil-name">Fine Dining</div>
+      </div>
+      <div class="pil-desc"><strong style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;color:var(--gold-lt);font-size:1.05rem;display:block;margin-bottom:8px">PRU · Michelin ★</strong>A standalone dining brand whose reputation precedes the property it sits on. Supported by the broader dining portfolio across both properties — Jampa, La Crique, Thai Library, Cielo &amp; Spices. World-class through Michelin recognition.</div>
+    </div>
+  </div>
+
+  <p class="body dim" style="margin-top:48px;max-width:840px">When developers and organisations look for a partner with proven world-class delivery across wellness, hospitality, and dining, the conversation begins with Montara — the developer behind the brands they already admire.</p>
+  <div class="pg">09</div>
+</section>
+
+<!-- ═══════════════════ 9B INITIATIVE — MARKETING COLLATERAL PREPARATION ═══════════════════ -->
+<section class="S deep">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when">Initiative<small>Aug – Oct 2026</small></div>
+      <div class="init-name">Marketing Collateral <span class="it">Preparation.</span></div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell on"></div>
+          <div class="init-mini-cell on"></div>
+          <div class="init-mini-cell summit"></div>
+          <div class="init-mini-cell"></div>
+</div>
+    </div>
+  </div>
+  <div class="pg">10</div>
+</section>
+
+<!-- ═══════════════════ 16 KEY ACTIVATION — PRESS CONFERENCE ═══════════════════ -->
+<section class="S bg">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when" style="color:var(--gold-lt)">Key Activation<small style="color:var(--gold)">1 November 2026 · At the Project</small></div>
+      <div class="init-name">Press Conference <span class="it">at the Project.</span></div>
+      <div class="init-mini-tl" style="border-color:rgba(184,148,88,.4);background:rgba(184,148,88,.06)">
+        <div class="init-mini-h" style="color:var(--gold-lt)">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell summit" style="background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)"></div>
+          <div class="init-mini-cell"></div>
+</div>
+        <div class="init-mini-axis">
+          <div class="init-mini-month" style="grid-column:1">May–Jun</div>
+          <div class="init-mini-month" style="grid-column:2 / span 2">Jul–Aug</div>
+          <div class="init-mini-month" style="grid-column:4">Sep–Oct</div>
+          <div class="init-mini-month s" style="grid-column:5">Summit</div>
+          <div class="init-mini-month y" style="grid-column:6">Dec–Jan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">11</div>
+</section>
+
+<!-- ═══════════════════ 17 SUPPORTING ACTIVATION — PRU FARM FESTIVAL ═══════════════════ -->
+<section class="S forest">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when" style="color:var(--gold-lt)">Supporting Activation<small style="color:var(--gold)">1 November 2026 · At the Project</small></div>
+      <div class="init-name">Pru Farm <span class="it">Festival.</span></div>
+      <div class="init-mini-tl" style="border-color:rgba(184,148,88,.4);background:rgba(184,148,88,.06)">
+        <div class="init-mini-h" style="color:var(--gold-lt)">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell summit" style="background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)"></div>
+          <div class="init-mini-cell"></div>
+</div>
+        <div class="init-mini-axis">
+          <div class="init-mini-month" style="grid-column:1">May–Jun</div>
+          <div class="init-mini-month" style="grid-column:2 / span 2">Jul–Aug</div>
+          <div class="init-mini-month" style="grid-column:4">Sep–Oct</div>
+          <div class="init-mini-month s" style="grid-column:5">Summit</div>
+          <div class="init-mini-month y" style="grid-column:6">Dec–Jan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">12</div>
+</section>
+
+<!-- ═══════════════════ 13 KEY ACTIVATION — JOIN GWS AS EXHIBITOR ═══════════════════ -->
+<section class="S bg">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when" style="color:var(--gold-lt)">Key Activation<small style="color:var(--gold)">10–13 November 2026 · Summit</small></div>
+      <div class="init-name">Join GWS <span class="it">as Exhibitor.</span></div>
+      <div class="init-mini-tl" style="border-color:rgba(184,148,88,.4);background:rgba(184,148,88,.06)">
+        <div class="init-mini-h" style="color:var(--gold-lt)">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell summit" style="background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)"></div>
+          <div class="init-mini-cell"></div>
+</div>
+        <div class="init-mini-axis">
+          <div class="init-mini-month" style="grid-column:1">May–Jun</div>
+          <div class="init-mini-month" style="grid-column:2 / span 2">Jul–Aug</div>
+          <div class="init-mini-month" style="grid-column:4">Sep–Oct</div>
+          <div class="init-mini-month s" style="grid-column:5">Summit</div>
+          <div class="init-mini-month y" style="grid-column:6">Dec–Jan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">13</div>
+</section>
+
+<!-- ═══════════════════ 13B JOIN GWS AS EXHIBITOR · SPONSORSHIP OPTIONS ═══════════════════ -->
+<section class="S deep">
+  <div class="eye">Join GWS as Exhibitor · Sponsorship Options</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">Three sponsorships — <span class="it gd">taken together.</span></div>
+  <p class="body lg" style="max-width:900px">To land properly at the Global Wellness Summit, Tri Vananda commits to all three sponsorships. Two place the brand around the conference; the third places it inside the agenda. Each plays a different role; together they create the presence, the proximity, and the platform. None stands in for another.</p>
+
+  <div class="spo-grid">
+    <div class="spo-cell">
+      <div class="spo-name">Gold Registration <span class="it">Desk.</span></div>
+      <div class="spo-price">USD 37,500</div>
+      <div class="spo-desc">Exclusive sponsor of the Registration Desk across all four days of the Summit. Includes one complimentary Summit registration.</div>
+    </div>
+
+    <div class="spo-cell">
+      <div class="spo-name">Post-Summit <span class="it">Excursion.</span></div>
+      <div class="spo-price">USD 22,500</div>
+      <div class="spo-desc">A curated trip to Tri Vananda, promoted on the GWS website, in the delegate email, and in the Agenda and Mobile App. Includes one complimentary Summit registration.</div>
+    </div>
+
+    <div class="spo-cell">
+      <div class="spo-name">Tri Vananda <span class="it">Special Presentation.</span></div>
+      <div class="spo-price">Price to negotiate</div>
+      <div class="spo-desc">A bespoke sponsorship placing Tri Vananda inside the Summit programme as a featured Special Presentation. Format and visibility negotiated directly with the GWS team.</div>
+    </div>
+  </div>
+
+  <div class="spo-benefits">
+    <div class="spo-benefits-h">All sponsorships include — from the day of sign-on</div>
+    <div class="spo-benefits-list">
+      <div class="spo-benefit-item">Logo and company profile on the GWS website</div>
+      <div class="spo-benefit-item">Logo on the sponsor footer</div>
+      <div class="spo-benefit-item">Logo on the formal invitation</div>
+      <div class="spo-benefit-item">Logo on the step &amp; repeat at Summit</div>
+      <div class="spo-benefit-item">Recognition in the Agenda and Mobile App</div>
+      <div class="spo-benefit-item">Opportunity to provide a gift in the delegate bag</div>
+      <div class="spo-benefit-item">Invitation to the VIP Sponsor reception at the Summit</div>
+    </div>
+  </div>
+
+  <p class="body dim" style="margin-top:36px;max-width:900px">Total commitment is the sum of all three fees plus the negotiated price of the Special Presentation. Final scopes — particularly the Special Presentation format — confirmed through the GWS Collaboration discussion from June onward.</p>
+
+  <div class="pg">14</div>
+</section>
+
+
+<!-- ═══════════════════ 13C JOIN GWS AS EXHIBITOR · IMPLEMENTATION EXAMPLE ═══════════════════ -->
+<section class="S ink">
+  <div class="eye">Join GWS as Exhibitor · Implementation Example</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">A reference — <span class="it gd">how others have done this well.</span></div>
+  <p class="body lg" style="max-width:900px">At the <strong style="color:rgba(255,255,255,.85);font-weight:400">2025 Global Wellness Summit in Dubai</strong>, Alex Zagrebelny — Founder and CEO of R.Evolution Group — took the main stage to present <em style="color:var(--gold-lt)">Eywa</em>, a regenerative-architecture residential development positioned around &ldquo;holistic living ecosystems.&rdquo; A working reference for Tri Vananda&rsquo;s customized sponsorship at GWS Phuket 2026 — a wellness-real-estate brand using the Summit&rsquo;s main agenda, not the surrounding programme, to plant a category.</p>
+
+  <div class="impl-grid">
+    <div class="impl-cell">
+      <div class="impl-frame"><img src="images/frame-01.png" alt="Founder on stage"></div>
+      <div class="impl-caption"><span class="impl-caption-num">Frame 01 · Founder on stage</span>Alex Zagrebelny, Founder &amp; CEO of R.Evolution Group, presenting Eywa at the GWS Dubai main stage — November 2025. Founder-led delivery: the most credible voice for a category-creation brand.</div>
+    </div>
+    <div class="impl-cell">
+      <div class="impl-frame"><img src="images/frame-02.png" alt="The cinematic moment"></div>
+      <div class="impl-caption"><span class="impl-caption-num">Frame 02 · The cinematic moment</span>The brand film fills the Summit screen; the room watches in silhouette, phones held up. The visual experience becomes the story — captured by every delegate.</div>
+    </div>
+    <div class="impl-cell">
+      <div class="impl-frame"><img src="images/frame-03.png" alt="The world inside the work"></div>
+      <div class="impl-caption"><span class="impl-caption-num">Frame 03 · The world inside the work</span>An interior render of Eywa — live-edge timber, organic forms, &ldquo;Generation&rdquo; framing. The brand environment shown as a place, not a product.</div>
+    </div>
+    <div class="impl-cell">
+      <div class="impl-frame"><img src="images/frame-04.png" alt="The masterplan in render"></div>
+      <div class="impl-caption"><span class="impl-caption-num">Frame 04 · The masterplan in render</span>Eywa&rsquo;s Dubai-marina silhouette presented as an architectural object — not as inventory, not as floorplans. The development as cultural artefact.</div>
+    </div>
+    <div class="impl-cell">
+      <div class="impl-frame"><img src="images/frame-05.png" alt="The category, anchored"></div>
+      <div class="impl-caption"><span class="impl-caption-num">Frame 05 · The category, anchored</span>&ldquo;Regenerative Architecture &amp; Holistic Living Ecosystems&rdquo; — the category language, placed against literal regenerative imagery. The position made tangible.</div>
+    </div>
+    <div class="impl-cell">
+      <div class="impl-frame"><img src="images/frame-06.png" alt="Restraint as statement"></div>
+      <div class="impl-caption"><span class="impl-caption-num">Frame 06 · Restraint as statement</span>A single word — <em>Regenerative</em> — held against a dark cinematic landscape. Less brochure, more worldview, in one frame.</div>
+    </div>
+  </div>
+
+  <div class="impl-takeaways">
+    <div class="impl-takeaways-h">What this teaches us</div>
+    <div class="impl-takeaway">
+      <div class="impl-takeaway-h">The format works.</div>
+      <div class="impl-takeaway-b">A founder-led, cinematic Special Presentation is the most credible vehicle for a category-creation brand at GWS. Not a booth, not a panel — a featured slot on the main stage, with the founder speaking and the brand film carrying the room.</div>
+    </div>
+    <div class="impl-takeaway">
+      <div class="impl-takeaway-h">Anchor the position, not the product.</div>
+      <div class="impl-takeaway-b">R.Evolution did not sell Eywa villas from the stage. They planted &ldquo;regenerative architecture &amp; holistic living ecosystems&rdquo; as a category — and let the development sit inside that frame. Tri Vananda&rsquo;s brief mirrors this: place &ldquo;Multigenerational Wellness Living&rdquo; in the room first; let the property catch up.</div>
+    </div>
+    <div class="impl-takeaway">
+      <div class="impl-takeaway-h">Stage time lands differently.</div>
+      <div class="impl-takeaway-b">A founder on the main stage with a brand film is a different kind of moment from sponsoring a desk or an excursion. The Special Presentation slot (previous page) is what unlocks it — placing Tri Vananda inside the agenda rather than around it. R.Evolution&rsquo;s 2025 presentation is the working proof of what that difference looks like.</div>
+    </div>
+  </div>
+
+  <p class="body dim" style="margin-top:36px;max-width:900px">Source · <a href="https://www.youtube.com/watch?v=4YK5v59syjs" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(184,148,88,.4);text-decoration:none">R.Evolution Group · Eywa presentation, Global Wellness Summit Dubai 2025</a>.</p>
+
+  <div class="pg">15</div>
+</section>
+
+<!-- ═══════════════════ 14 KEY ACTIVATION — HOSTED EXPERIENCE ═══════════════════ -->
+<section class="S forest">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when" style="color:var(--gold-lt)">Key Activation<small style="color:var(--gold)">10–13 November 2026 · Summit</small></div>
+      <div class="init-name">Hosted <span class="it">Experience.</span></div>
+      <div class="init-mini-tl" style="border-color:rgba(184,148,88,.4);background:rgba(184,148,88,.06)">
+        <div class="init-mini-h" style="color:var(--gold-lt)">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell summit" style="background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)"></div>
+          <div class="init-mini-cell"></div>
+</div>
+        <div class="init-mini-axis">
+          <div class="init-mini-month" style="grid-column:1">May–Jun</div>
+          <div class="init-mini-month" style="grid-column:2 / span 2">Jul–Aug</div>
+          <div class="init-mini-month" style="grid-column:4">Sep–Oct</div>
+          <div class="init-mini-month s" style="grid-column:5">Summit</div>
+          <div class="init-mini-month y" style="grid-column:6">Dec–Jan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">16</div>
+</section>
+
+<!-- ═══════════════════ 14X INITIATIVE — PRESS CAMPAIGNS ═══════════════════ -->
+<section class="S ink">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when">Initiative<small>Nov 2026 – Jan 2027</small></div>
+      <div class="init-name">Press <span class="it">Campaigns.</span></div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell on summit" style="background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)"></div>
+          <div class="init-mini-cell on"></div>
+</div>
+        <div class="init-mini-axis">
+          <div class="init-mini-month" style="grid-column:1">May–Jun</div>
+          <div class="init-mini-month" style="grid-column:2 / span 2">Jul–Aug</div>
+          <div class="init-mini-month" style="grid-column:4">Sep–Oct</div>
+          <div class="init-mini-month s" style="grid-column:5">Summit</div>
+          <div class="init-mini-month y" style="grid-column:6">Dec–Jan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">17</div>
+</section>
+
+<!-- ═══════════════════ 14 PRESS CAMPAIGNS · THE BRIEF ═══════════════════ -->
+<section class="S deep">
+  <div class="eye">Press Campaigns · The Brief</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">A summary brief — <span class="it gd">handed to the shortlisted agencies.</span></div>
+  <p class="body lg" style="max-width:880px">The press programme is a three-month sustained push, designed by the retained PR agency. This page is the brief — the foundation we put in front of the shortlisted agencies as they propose strategy, cadence, and editorial architecture across November, December, and January.</p>
+
+  <div class="rfp-grid">
+    <div class="rfp-cell">
+      <div class="rfp-num">01</div>
+      <div class="rfp-h">The Opportunity</div>
+      <div class="rfp-b">Three forces converge in November 2026 — the audience (the Global Wellness Summit comes to Phuket), the product (the Health Resort by Clinique La Prairie opens), and the moment (the masterplan reveals its next chapter).</div>
+    </div>
+    <div class="rfp-cell">
+      <div class="rfp-num">02</div>
+      <div class="rfp-h">The Objective</div>
+      <div class="rfp-b">Establish Multigenerational Wellness Living as the category Tri Vananda owns. Reposition the brand from luxury wellness real estate to a globally respected luxury wellness lifestyle brand.</div>
+    </div>
+    <div class="rfp-cell">
+      <div class="rfp-num">03</div>
+      <div class="rfp-h">The Audience</div>
+      <div class="rfp-b">International HNW families across the United States, Europe, the Middle East, and Asia-Pacific — concentrated in New York, Los Angeles, London, Paris, Geneva, Dubai, Hong Kong, Singapore, Tokyo, and Sydney. The editors, KOLs, and culture-makers who shape their reference set. In Thailand, the talk-of-the-town conversation that shapes recognition at home.</div>
+    </div>
+    <div class="rfp-cell">
+      <div class="rfp-num">04</div>
+      <div class="rfp-h">The Outcomes</div>
+      <div class="rfp-b">Earned Tier-1 long-form coverage that places &quot;Multigenerational Wellness Living&quot; in the world&#39;s press as the category Tri Vananda owns. Sustained editorial presence across the three months, anchored by the 1 November Press Conference. International HNW recognition that carries into the Founding Industry Network and the sales programme through 2027.</div>
+    </div>
+    <div class="rfp-cell">
+      <div class="rfp-num">05</div>
+      <div class="rfp-h">The Agency&#39;s Response</div>
+      <div class="rfp-b">Campaign architecture across November–January. Editorial angles, KOL and influencer strategy, target placements, measurement framework, team structure, indicative retainer, and budget — submitted as a written response to this brief.</div>
+    </div>
+    <div class="rfp-cell">
+      <div class="rfp-num">06</div>
+      <div class="rfp-h">The Anchor Moments</div>
+      <div class="rfp-b">1 November · Press Conference at the Project. 10–13 November · Summit week. December · year-end coverage. January · forward-looks for 2027. Subsequent reveals from the masterplan are sequenced separately.</div>
+    </div>
+  </div>
+
+  <div class="media-section-h">Curated Media Targets · Indicative</div>
+  <div class="media-grid">
+    <div class="media-col">
+      <div class="media-col-h">International &amp; Regional · <span class="it">Tier-1 anchors and Asia-Pacific.</span></div>
+      <div class="media-group">
+        <div class="media-group-h">Travel &amp; hospitality</div>
+        <div class="media-list">Condé Nast Traveler (US · UK) · Travel + Leisure · The Robb Report · Departures · Centurion Magazine · AFAR · Mr &amp; Mrs Smith · Suitcase · Boat International · Cereal</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">Fashion, style &amp; culture</div>
+        <div class="media-list">Vogue (US · Paris · UK · Italia · Hommes) · Harper&#39;s Bazaar · W Magazine · L&#39;Officiel · AnOther · The Gentlewoman · Vanity Fair · The New Yorker · Air Mail</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">Design, architecture &amp; interiors</div>
+        <div class="media-list">Wallpaper* · Architectural Digest (US · AD Pro) · The World of Interiors · Monocle · Apartamento · Cabana · Domus</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">HNW weekend reading &amp; residence buyers</div>
+        <div class="media-list">Financial Times <em style="font-style:italic">HTSI</em> · The New York Times <em style="font-style:italic">T</em> Magazine · WSJ Magazine · Mansion Global · Country &amp; Town House · Tatler UK · Town &amp; Country</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">Wellness specialists</div>
+        <div class="media-list">Goop · Well + Good · mindbodygreen · Vogue Wellness · Harper&#39;s Bazaar Wellness · Globetrender</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">Asia-Pacific regional editions</div>
+        <div class="media-list">Vogue (China · Hong Kong · Japan · Korea · Singapore · Australia) · Harper&#39;s Bazaar (China · Korea) · Tatler (Hong Kong · Singapore · Indonesia · Malaysia · Mainland) · Prestige (Singapore · Malaysia · Indonesia) · The Peak (Hong Kong · Singapore) · Robb Report (Hong Kong · Singapore) · Numero Tokyo · Vogue Living Australia</div>
+      </div>
+    </div>
+
+    <div class="media-col">
+      <div class="media-col-h">Thailand · <span class="it">national press.</span></div>
+      <div class="media-group">
+        <div class="media-group-h">Society &amp; lifestyle magazines</div>
+        <div class="media-list">Tatler Thailand · Prestige Thailand · Hello! Thailand · Vogue Thailand · Harper&#39;s Bazaar Thailand · ELLE Thailand · Esquire Thailand · GQ Thailand</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">News &amp; cultural press</div>
+        <div class="media-list">Bangkok Post (Spectrum · B Magazine) · The Standard · Forbes Thailand · BK Magazine · Time Out Bangkok</div>
+      </div>
+      <div class="media-group">
+        <div class="media-group-h">Thai mass news</div>
+        <div class="media-list">Thairath · Daily News · Matichon · Khao Sod · The Nation</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body dim" style="margin-top:36px;max-width:880px">The shortlisted agencies respond with their proposed strategy. The retained agency&#39;s plan replaces this brief with the working campaign.</p>
+
+  <div class="pg">18</div>
+</section>
+
+<!-- ═══════════════════ 15 PRESS CAMPAIGNS · THE SHORTLIST ═══════════════════ -->
+<section class="S bg">
+  <div class="eye">Press Campaigns · The Shortlist</div>
+  <div class="D2" style="max-width:980px;margin-bottom:18px">The PR Agency <span class="it gd">Shortlist.</span></div>
+  <p class="body lg" style="max-width:900px">The brief is given to two parallel shortlists, working in coordination. Three international/regional firms with the brand-building craft and HNW media network to construct the category for the international audience. Three Thailand-based firms with the local relationships and editorial reach to make Tri Vananda talk-of-the-town in Thailand. One of each is retained by end of September — in motion through October, ready for the 1 November Press Conference.</p>
+
+  <div class="agy-grid">
+    <div class="agy-col">
+      <div class="agy-col-h">
+        <div class="agy-col-tag">International / Regional · 3</div>
+        <div class="agy-col-name">Brand &amp; awareness <span class="it">to the international HNW audience.</span></div>
+        <div class="agy-col-sub">Building the category. Placing Tri Vananda in Tier-1 long-form, in the publications and conversations that gatekeep the international HNW lifestyle.</div>
+      </div>
+
+      <div class="agy-cell">
+        <div class="agy-name">BPCM. <a class="agy-link" href="https://bpcm.com" target="_blank" rel="noopener">↗ Website</a></div>
+        <div class="agy-base">New York · global · wellness × luxury</div>
+        <div class="agy-rationale">Where wellness, beauty, and luxury hospitality converge. Strong HNW lifestyle network. Proven track record building wellness-led brands at the prestige tier. The international anchor.</div>
+      </div>
+
+      <div class="agy-cell">
+        <div class="agy-name">Delivering <span class="it">Asia.</span> <a class="agy-link" href="https://deliveringasia.com" target="_blank" rel="noopener">↗ Website</a></div>
+        <div class="agy-base">Hong Kong · regional Asia-Pacific network</div>
+        <div class="agy-rationale">Independent boutique PR firm specialising in luxury, lifestyle, hospitality, wellness, and travel. Deep Asia-Pacific media relationships and luxury-brand DNA. Bridges international brands into the region and Asian narratives outward. Where cultural fluency on the ground meets editorial reach across the region.</div>
+      </div>
+
+      <div class="agy-cell">
+        <div class="agy-name">Vero <span class="it">(Vero Advocacy).</span> <a class="agy-link" href="https://vero-asean.com" target="_blank" rel="noopener">↗ Website</a></div>
+        <div class="agy-base">Bangkok HQ · APAC&#39;s largest independent network</div>
+        <div class="agy-rationale">The largest independent PR network in Asia-Pacific — Thai-founded, Bangkok-headquartered, with full offices across Vietnam, Indonesia, the Philippines, and Singapore. The regional scale partner — when international reach across the ASEAN audience matters alongside the boutique craft of the other shortlist firms.</div>
+      </div>
+    </div>
+
+    <div class="agy-col">
+      <div class="agy-col-h">
+        <div class="agy-col-tag">Thailand / Local · 3</div>
+        <div class="agy-col-name">Talk of the town <span class="it">in Thailand.</span></div>
+        <div class="agy-col-sub">Owning the home conversation. Reaching Thai luxury and lifestyle media — Tatler, Prestige, Hello!, BK, Bangkok Post — and shaping recognition where the brand lives.</div>
+      </div>
+
+      <div class="agy-cell">
+        <div class="agy-name">Wow <span class="it">PR.</span> <a class="agy-link" href="https://wowpr.com/" target="_blank" rel="noopener">↗ Website</a></div>
+        <div class="agy-base">Bangkok · cultural &amp; lifestyle boutique</div>
+        <div class="agy-rationale">Bangkok boutique PR firm with a portfolio of Thai cultural and lifestyle projects. Selected for the cultural sensibility behind recent work — where the agency&#39;s craft sits at the intersection of Thai culture, lifestyle, and brand.</div>
+      </div>
+
+      <div class="agy-cell">
+        <div class="agy-name">Vivaldi <span class="it">PR.</span> <a class="agy-link" href="https://vivaldipr.com/" target="_blank" rel="noopener">↗ Website</a></div>
+        <div class="agy-base">Bangkok · cultural &amp; lifestyle boutique</div>
+        <div class="agy-rationale">Bangkok boutique PR firm with cultural project portfolio across Thai lifestyle, luxury, and design. Style-led Thai PR craft — chosen for the cultural credibility of recent work, not the agency&#39;s scale.</div>
+      </div>
+
+      <div class="agy-cell">
+        <div class="agy-name">Social <span class="it">Nation.</span> <a class="agy-link" href="https://www.socialnation.agency/" target="_blank" rel="noopener">↗ Website</a></div>
+        <div class="agy-base">Bangkok · social-led communications</div>
+        <div class="agy-rationale">Thai social and digital communications agency. Activates Thai cultural and lifestyle content across modern social channels — Instagram, TikTok, YouTube, the Thai social conversation. The firm that picks up where traditional PR meets social-native storytelling.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body dim" style="margin-top:36px;max-width:900px">Outreach opens in June. Closed shortlist confirmed by July. Pitches in August. One international and one Thailand partner retained by end of September. [Internal · this shortlist is indicative — final selection by Tri Vananda leadership and procurement.]</p>
+
+  <div class="pg">19</div>
+</section>
+
+<!-- ═══════════════════ 15 INITIATIVE — FOUNDING INDUSTRY NETWORK ═══════════════════ -->
+<section class="S forest">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when">Initiative<small>Nov 2026 → Q1 2027</small></div>
+      <div class="init-name">Founding Industry <span class="it">Network.</span></div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell on summit" style="background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)"></div>
+          <div class="init-mini-cell on"></div>
+</div>
+    </div>
+  </div>
+  <div class="pg">20</div>
+</section>
+
+<!-- ═══════════════════ 16 INITIATIVE — CONTINUING COMMUNICATIONS ═══════════════════ -->
+<section class="S deep">
+  <div class="init-chapter solo">
+    <div>
+      <div class="init-when">Initiative<small>Nov 2026 – Q1 2027</small></div>
+      <div class="init-name">Continuing <span class="it">Communications.</span></div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits on the timeline</div>
+        <div class="init-mini-bar">
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell"></div>
+          <div class="init-mini-cell summit"></div>
+          <div class="init-mini-cell on"></div>
+</div>
+    </div>
+  </div>
+  <div class="pg">21</div>
+</section>
+
+<!-- ═══════════════════ 20 SUMMARY ═══════════════════ -->
+<section class="S ink">
+  <div class="eye">Summary</div>
+  <div class="D2" style="max-width:920px;margin-bottom:18px">Twelve initiatives. <span class="it gd">One position to hold.</span></div>
+  <p class="body lg">The roadmap is a single piece of work. Each initiative depends on the one before it; each opens the one after. The Summit week recruits the room. The Press Conference on 1 November reveals the brand. The Press Campaigns carry it through to year-end.</p>
+
+  <div class="sum-list">
+    <div class="sum-row">
+      <div class="sum-when">May – Jul 2026</div>
+      <div class="sum-name">GWS Collaboration — <span class="it">exhibitor presence inside the conference.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">May – Jul 2026</div>
+      <div class="sum-name">Brand Refresh — <span class="it">close the gap between the product and the brand.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">Jun – Sep 2026</div>
+      <div class="sum-name">PR Agency Engagement — <span class="it">the partner who builds the category.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">Aug – Oct 2026</div>
+      <div class="sum-name">Pre-Summit Setup — <span class="it">the quiet months when October is decided.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">Aug – Oct 2026</div>
+      <div class="sum-name">Marketing Collateral Preparation — <span class="it">renderings, photos, films, and the masterplan model.</span></div>
+    </div>
+    <div class="sum-row" style="background:rgba(184,148,88,.06);border-top:1px solid rgba(184,148,88,.32)">
+      <div class="sum-when" style="color:var(--gold-lt)">1 November 2026 · Activation</div>
+      <div class="sum-name">Press Conference at the Project — <span class="it">the press moment of the year, on our terms.</span></div>
+    </div>
+    <div class="sum-row" style="background:rgba(184,148,88,.06)">
+      <div class="sum-when" style="color:var(--gold-lt)">1 November 2026 · Activation</div>
+      <div class="sum-name">Pru Farm Festival — <span class="it">the day around the press moment.</span></div>
+    </div>
+    <div class="sum-row" style="background:rgba(184,148,88,.06)">
+      <div class="sum-when" style="color:var(--gold-lt)">10–13 November 2026 · Activation</div>
+      <div class="sum-name">Join GWS as Exhibitor — <span class="it">a measured presence inside the conference.</span></div>
+    </div>
+    <div class="sum-row" style="background:rgba(184,148,88,.06);border-bottom:1px solid rgba(184,148,88,.32)">
+      <div class="sum-when" style="color:var(--gold-lt)">10–13 November 2026 · Activation</div>
+      <div class="sum-name">Hosted Experience — <span class="it">curated cohorts of potential referrers at the Project.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">Nov 2026 – Jan 2027</div>
+      <div class="sum-name">Press Campaigns — <span class="it">three-month sustained press push.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">Nov 2026 → Q1 2027</div>
+      <div class="sum-name">Founding Industry Network — <span class="it">the room becomes a 24-month sales engine.</span></div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-when">Nov 2026 – Q1 2027</div>
+      <div class="sum-name">Continuing Communications — <span class="it">Membership Club and Wellness Retreat enter the public picture.</span></div>
+    </div>
+  </div>
+  <div class="pg">22</div>
+</section>
+
+<!-- ═══════════════════ 21 END CARD ═══════════════════ -->
+<section class="S ink split">
+  <div class="sp-content">
+    <div>
+      <div class="eye" style="margin-bottom:52px">Tri Vananda · Phuket · Board Briefing · 2026</div>
+      <div class="D1" style="font-size:clamp(3rem,6vw,6rem)">Roadmap to the<br><span class="it gd">Global Wellness Summit.</span></div>
+      <div class="D2 it gd" style="font-size:clamp(1rem,1.8vw,1.55rem);margin-top:28px;font-weight:200">Twelve initiatives. Four key activations. One position to claim.</div>
+      <div class="rule" style="margin-top:44px"></div>
+      <p class="body" style="max-width:460px">
+        The Press Conference on 1 November sets the stage. Summit week (10–13 November) recruits the room. The work that holds the position runs through Q1 2027.
+      </p>
+      <div style="margin-top:40px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.18);line-height:2.2">
+        Montara Hospitality Group · Tri Vananda<br>Confidential · Board of Directors
+      </div>
+    </div>
+  </div>
+  <div class="sp-image" style="background:linear-gradient(180deg,#1e2820 0%,#2a3a2f 35%,#5a6b5f 65%,#b89458 100%)">
+    <img src="hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+    <div class="cap">Tri Vananda — Phuket. A luxury wellness lifestyle brand for multigenerational living.</div>
+  </div>
+</section>
+
+<script>
+  const bar = document.getElementById('bar');
+  const ctr = document.getElementById('ctr');
+  const sections = document.querySelectorAll('.S');
+  function update(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+    bar.style.width = (scrolled * 100) + '%';
+    let current = 1;
+    sections.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      if (r.top < window.innerHeight / 2) current = i + 1;
+    });
+    ctr.textContent = String(current).padStart(2, '0');
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+</script>
+
+</body>
+</html>
