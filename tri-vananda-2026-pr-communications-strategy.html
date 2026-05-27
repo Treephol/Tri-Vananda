@@ -1427,8 +1427,8 @@ body{overflow-x:hidden}
 .tygp-frame::-webkit-scrollbar{height:8px}
 .tygp-frame::-webkit-scrollbar-track{background:rgba(11,15,19,.6)}
 .tygp-frame::-webkit-scrollbar-thumb{background:rgba(184,148,88,.45);border-radius:2px}
-.tygp-inner{min-width:3200px;display:flex;flex-direction:column}
-.tygp-chart{height:420px;position:relative;padding:30px 30px 20px;border-bottom:1px solid rgba(184,148,88,.18)}
+.tygp-inner{min-width:3600px;display:flex;flex-direction:column}
+.tygp-chart{height:360px;position:relative;padding:24px 30px 16px;border-bottom:1px solid rgba(184,148,88,.18)}
 .tygp-svg{width:100%;height:100%;display:block;overflow:visible}
 .tygp-yearlbl{position:absolute;top:10px;font-family:'Jost',sans-serif;font-weight:200;font-size:.85rem;letter-spacing:.36em;text-transform:uppercase;color:rgba(212,176,122,.85);z-index:3}
 .tygp-yearlbl.left{left:30px}
@@ -1444,8 +1444,8 @@ body{overflow-x:hidden}
 .tygp-leg-dot.sale{width:14px;height:14px;background:var(--gold);transform:rotate(45deg)}
 .tygp-leg-dot.partial{width:22px;height:16px;background:#b89458;opacity:.55}
 
-.tygp-strip{display:grid;grid-template-columns:repeat(17,1fr);background:rgba(11,15,19,.2)}
-.tygp-cell{padding:26px 22px 30px;border-right:1px solid rgba(184,148,88,.1);min-height:340px;display:flex;flex-direction:column;gap:11px;position:relative}
+.tygp-strip{display:grid;grid-template-columns:repeat(18,1fr);background:rgba(11,15,19,.2)}
+.tygp-cell{padding:20px 18px 24px;border-right:1px solid rgba(184,148,88,.1);min-height:410px;display:flex;flex-direction:column;gap:9px;position:relative}
 .tygp-cell:last-child{border-right:none}
 .tygp-cell.future{background:rgba(11,15,19,.08);opacity:.5}
 .tygp-cell.now{background:rgba(184,148,88,.05)}
@@ -1466,6 +1466,17 @@ body{overflow-x:hidden}
 .tygp-cell-notes{font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;line-height:1.6;color:rgba(255,255,255,.78);margin-top:8px}
 .tygp-cell-notes em{color:rgba(212,176,122,.8);font-style:italic;font-weight:300}
 .tygp-cell-notes .conf{color:rgba(184,148,88,.55);font-style:italic;font-weight:300}
+
+.tygp-cell.upcoming{background:rgba(184,148,88,.04)}
+.tygp-fig-walks.future-dash{color:rgba(255,255,255,.4);font-weight:200}
+.tygp-cell-tag.future-tag{border-color:rgba(184,148,88,.45);color:rgba(212,176,122,.78);background:rgba(184,148,88,.07)}
+
+/* Monthly activity list */
+.tygp-acts{list-style:none;padding:0;margin:10px 0 0;font-family:'Jost',sans-serif;font-size:.82rem;line-height:1.45;color:rgba(255,255,255,.8);font-weight:300;display:flex;flex-direction:column;gap:5px}
+.tygp-acts li{padding-left:12px;position:relative}
+.tygp-acts li::before{content:'';position:absolute;left:0;top:.65em;width:5px;height:1px;background:rgba(184,148,88,.55)}
+.tygp-acts li.always{color:rgba(212,176,122,.78);font-style:italic;margin-top:8px;padding-top:9px;border-top:1px solid rgba(184,148,88,.22);font-weight:400}
+.tygp-acts li.always::before{content:'+';width:auto;height:auto;background:none;color:var(--gold-lt);font-style:normal;font-weight:400;top:.55em;left:0;font-size:.9em}
 
 .tygp-hint{margin-top:14px;display:flex;align-items:center;gap:10px;font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(212,176,122,.65)}
 .tygp-hint-arrow{width:30px;height:1px;background:linear-gradient(90deg,rgba(212,176,122,.55) 0%,transparent 100%);position:relative}
@@ -2005,17 +2016,17 @@ body{overflow-x:hidden}
       <div class="tygp-inner">
 
         <div class="tygp-chart">
-          <span class="tygp-yearlbl" style="left:35.3%;transform:translateX(-50%)">2025</span>
-          <span class="tygp-yearlbl" style="left:85.3%;transform:translateX(-50%)">2026</span>
-          <span class="tygp-divider" style="left:70.59%"></span>
+          <span class="tygp-yearlbl" style="left:33.33%;transform:translateX(-50%)">2025</span>
+          <span class="tygp-yearlbl" style="left:83.33%;transform:translateX(-50%)">2026</span>
+          <span class="tygp-divider" style="left:66.67%"></span>
 
-          <svg class="tygp-svg" viewBox="0 0 1700 220" preserveAspectRatio="none">
+          <svg class="tygp-svg" viewBox="0 0 1800 220" preserveAspectRatio="none">
             <!-- Baseline -->
-            <line x1="0" y1="200" x2="1700" y2="200" stroke="rgba(184,148,88,.3)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="0" y1="200" x2="1800" y2="200" stroke="rgba(184,148,88,.3)" stroke-width="1" vector-effect="non-scaling-stroke"/>
             <!-- 2025 target line (50 walks/mo · y=36.4) -->
             <line x1="0" y1="36.4" x2="1200" y2="36.4" stroke="rgba(110,150,90,.75)" stroke-width="1.6" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
             <!-- 2026 target line (30 walks/mo · y=101.8) -->
-            <line x1="1200" y1="101.8" x2="1700" y2="101.8" stroke="rgba(110,150,90,.75)" stroke-width="1.6" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
+            <line x1="1200" y1="101.8" x2="1800" y2="101.8" stroke="rgba(110,150,90,.75)" stroke-width="1.6" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
             <!-- Year divider -->
             <line x1="1200" y1="0" x2="1200" y2="200" stroke="rgba(184,148,88,.4)" stroke-width="1" stroke-dasharray="2 4" vector-effect="non-scaling-stroke"/>
 
@@ -2054,12 +2065,12 @@ body{overflow-x:hidden}
             <g><rect x="1420" y="173.82" width="60" height="26.18" fill="#b89458"/><rect x="1420" y="154.18" width="60" height="19.64" fill="#6e8264"/><rect x="1420" y="141.09" width="60" height="13.09" fill="#d4b07a"/></g>
             <!-- Apr 2026  (A=9, D=4, R=2) -->
             <g><rect x="1520" y="170.55" width="60" height="29.45" fill="#b89458"/><rect x="1520" y="157.45" width="60" height="13.09" fill="#6e8264"/><rect x="1520" y="150.91" width="60" height="6.55" fill="#d4b07a"/></g>
-            <!-- May 2026 MTD (A=4, D=4, R=1) · opacity .55 -->
-            <g opacity="0.55"><rect x="1620" y="186.91" width="60" height="13.09" fill="#b89458"/><rect x="1620" y="173.82" width="60" height="13.09" fill="#6e8264"/><rect x="1620" y="170.55" width="60" height="3.27" fill="#d4b07a"/></g>
+            <!-- May 2026 forecast (~15: A=8, D=7, R=0) · opacity .55 = projection -->
+            <g opacity="0.55"><rect x="1620" y="173.82" width="60" height="26.18" fill="#b89458"/><rect x="1620" y="150.91" width="60" height="22.91" fill="#6e8264"/></g>
           </svg>
 
           <span style="position:absolute;top:9%;left:1.2%;font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(170,200,150,.95);background:rgba(11,15,19,.8);padding:4px 10px">Target &middot; 50 walks/mo</span>
-          <span style="position:absolute;top:32%;left:71.5%;font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(170,200,150,.95);background:rgba(11,15,19,.8);padding:4px 10px">Target &middot; 30/mo</span>
+          <span style="position:absolute;top:32%;left:67.5%;font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(170,200,150,.95);background:rgba(11,15,19,.8);padding:4px 10px">Target &middot; 30/mo</span>
         </div>
 
         <div class="tygp-leg" style="padding:18px 28px 18px;border-bottom:1px solid rgba(184,148,88,.18)">
@@ -2067,7 +2078,7 @@ body{overflow-x:hidden}
           <span class="tygp-leg-item"><span class="tygp-leg-dot bar-direct"></span>Direct</span>
           <span class="tygp-leg-item"><span class="tygp-leg-dot bar-ref"></span>Referral</span>
           <span class="tygp-leg-item"><span class="tygp-leg-dot target"></span>Monthly target</span>
-          <span class="tygp-leg-item"><span class="tygp-leg-dot partial"></span>Partial month (May 2026 MTD)</span>
+          <span class="tygp-leg-item"><span class="tygp-leg-dot partial"></span>Forecast (May 2026)</span>
         </div>
 
         <div class="tygp-strip">
@@ -2076,119 +2087,126 @@ body{overflow-x:hidden}
             <div class="tygp-cell-head"><span class="tygp-cell-month">Jan</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">12</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag quiet">Quiet</span>
-            <p class="tygp-cell-notes">Post-launch carry-over. Mix: 5 agent &middot; 5 direct &middot; 2 referral. <span class="conf">Activations to confirm.</span></p>
+            <ul class="tygp-acts"><li>EDM: Local Roots &middot; 11</li><li>Local Roots &middot; 25</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Feb 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Feb</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">15</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag event">1 event</span>
-            <p class="tygp-cell-notes">Direct inquiry strongest (6). <span class="conf">Event detail to confirm.</span></p>
+            <ul class="tygp-acts"><li>Local Roots &middot; 8</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Mar 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Mar</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">20</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag strong">Peak &middot; 2025</span>
-            <p class="tygp-cell-notes">Strongest month of 2025. Agent surged to 13. <span class="conf">Catalyst to confirm.</span></p>
+            <ul class="tygp-acts"><li>Brand Script finalised</li><li>New Online Ad Campaign launch</li><li>PR: &ldquo;Ultimate Sanctuary&rdquo;</li><li>EDM: Mindfulness Day &middot; 25</li><li>EDM: Local Roots &middot; 31</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Apr 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Apr</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">20</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag strong">Strong</span>
-            <p class="tygp-cell-notes">Carried March momentum. Direct climbed to 8. Songkran-season visitor activity.</p>
+            <ul class="tygp-acts"><li>Local Roots &middot; 5</li><li>Mindfulness Day &middot; 5</li><li>Vana 4 Show Villa photoshoot</li><li>EDM: Monthly Update &middot; 25</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- May 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">May</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">9</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag event">2 events</span>
-            <p class="tygp-cell-notes">Walks fell sharply post-Songkran despite events. <span class="conf">Events to confirm.</span></p>
+            <ul class="tygp-acts"><li>Longevity Quiz &middot; 13</li><li>Agent Event (Intermark) &middot; 16</li><li>Being 2025 &middot; 20</li><li>EDM: Local Roots &middot; 21</li><li>EDM: Parenting in Digital Age &middot; 26</li><li>Local Roots &middot; 31</li><li>Parenting in Digital Age &middot; 31</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Jun 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Jun</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">12</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag soft">Soft</span>
-            <p class="tygp-cell-notes">Low season opens. Agent dropped to 7. <span class="conf">Activities to confirm.</span></p>
+            <ul class="tygp-acts"><li>Quarterly Newsletter &middot; 6</li><li>EDM: Quarterly Newsletter &middot; 6</li><li>Agent Event &middot; 19</li><li>Vana 4 Show Villa launch &middot; 24</li><li>EDM: Monthly Update &middot; 24</li><li>Editorial: All About Living</li><li>New Nanda models arrived</li><li>Website update</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Jul 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Jul</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">3</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag quiet">Trough</span>
-            <p class="tygp-cell-notes"><em>Year&rsquo;s lowest.</em> Direct = 0. Monsoon trough. No structural response.</p>
+            <ul class="tygp-acts"><li>Wellness for Every Generation video &middot; 1</li><li>Live with Connection launch &middot; 21</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Aug 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Aug</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">11</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag reset">Referral peak</span>
-            <p class="tygp-cell-notes"><em>5 referral walks</em> &mdash; met target on referral alone. Agent recovering modestly.</p>
+            <ul class="tygp-acts"><li>Harmony Campaign promo content</li><li>Pre-Event PR: Harmony</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Sep 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Sep</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">5</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag quiet">Quiet</span>
-            <p class="tygp-cell-notes">Second trough. Zero referrals. Soft recovery awaited.</p>
+            <ul class="tygp-acts"><li>CLP Construction Update &middot; 5</li><li>Quarterly Newsletter &middot; 12</li><li>Tri Vananda at Dragonfly &middot; 27&ndash;28</li><li>PR: Harmony Campaign</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Oct 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Oct</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">10</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag soft">Recovering</span>
-            <p class="tygp-cell-notes">Modest recovery as season turns. Channel mix flattened.</p>
+            <ul class="tygp-acts"><li>Post-Event PR: Harmony</li><li>Trust Frequency Quiz launch &middot; 24</li><li>Local Roots &middot; 25</li><li>Let&rsquo;s Beat Breast Cancer &middot; 25</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Nov 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Nov</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">20</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag event">3 events</span>
-            <p class="tygp-cell-notes"><em>Strongest event-driven month.</em> 4 referrals. Demonstrates the activity&ndash;walks correlation. <span class="conf">Events to confirm.</span></p>
+            <ul class="tygp-acts"><li>EDM: Ferrari Event &middot; 1</li><li>Ferrari Event &middot; 5</li><li>BIS Soccer 7 &middot; 21&ndash;22</li><li>Local Roots &middot; 29</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Dec 2025 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Dec</span><span class="tygp-cell-year">&rsquo;25</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">9</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag reset">Year-end</span>
-            <p class="tygp-cell-notes">Holiday-season closure. 3 referrals, 1 online lead.</p>
+            <ul class="tygp-acts"><li>Living Well Together (Kaleb&rsquo;s Stay) content</li><li>Local Roots Lifestyle Hub launch &middot; 11</li><li>Local Roots &middot; 20</li><li>Flow Together Wellness &middot; 20</li><li>Local Influencer content series &middot; 20</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Jan 2026 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Jan</span><span class="tygp-cell-year">&rsquo;26</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">15</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag strong">Best opener</span>
-            <p class="tygp-cell-notes">Year opens with a sale. Best opening month on record. <span class="conf">Activations to confirm.</span></p>
+            <ul class="tygp-acts"><li>Fly-In Stays Period</li><li>Thailand International Boat Show &middot; 17&ndash;21</li><li>EDM: Monthly Update &middot; 16</li><li>EDM: Local Roots &middot; 26</li><li>Quarterly Newsletter launch &middot; 26</li><li>Local Roots &middot; 31</li><li>The Making Deck Introduction &middot; 31</li><li>New Online Ad Campaign launch</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Feb 2026 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Feb</span><span class="tygp-cell-year">&rsquo;26</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">14</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag strong">Sustained</span>
-            <p class="tygp-cell-notes">Carry-over from January. Referrals doubled to 2.</p>
+            <ul class="tygp-acts"><li>Dot Property Connect &middot; 20</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Mar 2026 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Mar</span><span class="tygp-cell-year">&rsquo;26</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">18</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag strong">2026 peak</span>
-            <p class="tygp-cell-notes">1 event &middot; 1 online lead &middot; 4 referrals &mdash; <em>most diversified mix of the year.</em></p>
+            <ul class="tygp-acts"><li>Local Roots &middot; 7</li><li>The Grounded Flow Introduction &middot; 7</li><li>Desperate Hotelwives at Jampa</li><li>Local Roots Pop-Up at Trisara &middot; 29</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Apr 2026 -->
           <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Apr</span><span class="tygp-cell-year">&rsquo;26</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">15</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag soft">Flattening</span>
-            <p class="tygp-cell-notes">Stable but flattening. Agent returned to 9. Direct softened.</p>
+            <ul class="tygp-acts"><li>Local Roots &middot; 4</li><li>Agent Event &middot; 10</li><li>C1 Online Ad Campaign launch</li><li>C2 Online Ad Campaign launch</li><li class="always">Digital Campaign</li></ul>
           </div>
-          <!-- May 2026 (NOW) -->
+          <!-- May 2026 (Forecast) -->
           <div class="tygp-cell now">
-            <div class="tygp-cell-head"><span class="tygp-cell-month">May</span><span class="tygp-cell-year">&rsquo;26 &middot; MTD</span></div>
-            <div class="tygp-cell-fig"><span class="tygp-fig-walks">9</span><span class="tygp-fig-walks-lbl">walks</span></div>
-            <span class="tygp-cell-tag now">Now</span>
-            <p class="tygp-cell-notes"><em>Sharper deceleration than May 2025.</em> Always-On digital campaign launching this month.</p>
+            <div class="tygp-cell-head"><span class="tygp-cell-month">May</span><span class="tygp-cell-year">&rsquo;26 &middot; fcst</span></div>
+            <div class="tygp-cell-fig"><span class="tygp-fig-walks">~15</span><span class="tygp-fig-walks-lbl">walks &middot; fcst</span></div>
+            <span class="tygp-cell-tag now">Forecast</span>
+            <ul class="tygp-acts"><li>Agent Event at Trisara Villa 12 &middot; 8</li><li>Local Roots Pop-Up at Trisara &middot; 10</li><li>Clinique La Prairie Teaser &middot; 15</li><li>Nestopa Event &middot; 27</li><li class="always">Digital Campaign</li></ul>
+          </div>
+          <!-- Jun 2026 (Upcoming) -->
+          <div class="tygp-cell upcoming">
+            <div class="tygp-cell-head"><span class="tygp-cell-month">Jun</span><span class="tygp-cell-year">&rsquo;26</span></div>
+            <div class="tygp-cell-fig"><span class="tygp-fig-walks future-dash">&mdash;</span><span class="tygp-fig-walks-lbl">planned</span></div>
+            <span class="tygp-cell-tag future-tag">Upcoming</span>
+            <ul class="tygp-acts"><li>C9 Event &middot; 11</li><li>Boulevard Magazine shoot &middot; 12</li><li>More partnership activities TBC</li><li class="always">Digital Campaign</li></ul>
           </div>
         </div>
 
@@ -2200,10 +2218,9 @@ body{overflow-x:hidden}
   <div class="pg">03</div>
 </section>
 
-<!-- ═══════════════════ 04 CUSTOMER JOURNEY LOOP · STAGES 1–6 ═══════════════════ -->
+<!-- ═══════════════════ 04 CUSTOMER JOURNEY LOOP · STAGES 1–7 ═══════════════════ -->
 <section class="S ink brief">
   <div class="jrny-table">
-
     <div class="jrny-row head">
       <div class="jrny-cell">No.</div>
       <div class="jrny-cell">Stage</div>
@@ -2211,72 +2228,79 @@ body{overflow-x:hidden}
       <div class="jrny-cell">Channels &amp; Activities</div>
       <div class="jrny-cell">Owners</div>
     </div>
-
     <div class="jrny-row loopA">
       <div class="jrny-cell jrny-num">01</div>
       <div class="jrny-cell"><span class="jrny-stage">Brand Awareness</span></div>
       <div class="jrny-cell"><span class="jrny-voice">&ldquo;I discovered the project.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">PR, media coverage, Meta &amp; Google ads, luxury magazines, billboards, YouTube, social, KOLs, partnerships, wellness summits.</div>
+      <div class="jrny-cell jrny-channels">Online ad campaigns, PR &amp; editorial features, industry events, influencer content.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Marketing &amp; Commercial</span>
-        <span class="jrny-owner-sup">Brand Office</span>
+        <span class="jrny-owner-main">Marketing</span>
+        <span class="jrny-owner-sup">Brand</span>
         <span class="jrny-owner-sup">Creative</span>
       </div></div>
     </div>
-
     <div class="jrny-row">
       <div class="jrny-cell jrny-num">02</div>
       <div class="jrny-cell"><span class="jrny-stage">Brand Positioning</span></div>
       <div class="jrny-cell"><span class="jrny-voice">&ldquo;This feels different.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Brand films, editorial storytelling, website, social content, founder narratives, wellness philosophy, architecture stories.</div>
+      <div class="jrny-cell jrny-channels">Brand narrative, website, brand films, sales decks.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Brand Office</span>
-        <span class="jrny-owner-sup">Creative Production</span>
+        <span class="jrny-owner-main">Brand</span>
+        <span class="jrny-owner-sup">Creative</span>
       </div></div>
     </div>
-
     <div class="jrny-row loopA">
       <div class="jrny-cell jrny-num">03</div>
       <div class="jrny-cell"><span class="jrny-stage">Lead Generation</span></div>
       <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m interested.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Landing pages, lead forms, WhatsApp inquiry, CRM capture, referral forms, agent referrals, event registrations.</div>
+      <div class="jrny-cell jrny-channels">Online ad forms, event registration sign-ups, wellness quizzes, inquiry forms.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Marketing &amp; Commercial</span>
+        <span class="jrny-owner-main">Marketing</span>
         <span class="jrny-owner-sup">Sales</span>
       </div></div>
     </div>
-
     <div class="jrny-row">
       <div class="jrny-cell jrny-num">04</div>
       <div class="jrny-cell"><span class="jrny-stage">Lead Qualification</span></div>
       <div class="jrny-cell"><span class="jrny-voice">&ldquo;Am I the right fit?&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Qualification calls, profiling, nationality / investment / lifestyle segmentation, budget screening.</div>
+      <div class="jrny-cell jrny-channels">Qualification calls, lifestyle / investment / budget profiling, CRM segmentation.</div>
       <div class="jrny-cell"><div class="jrny-owners">
         <span class="jrny-owner-main">Sales</span>
         <span class="jrny-owner-sup">CRM</span>
         <span class="jrny-owner-sup">Marketing</span>
       </div></div>
     </div>
-
     <div class="jrny-row loopA">
       <div class="jrny-cell jrny-num">05</div>
-      <div class="jrny-cell"><span class="jrny-stage">Nurture Journey</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I want to know more.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">EDMs, newsletters, personalised decks, Founder&rsquo;s Memo, Coherence Map, WhatsApp follow-up, retargeting ads.</div>
+      <div class="jrny-cell"><span class="jrny-stage">Nurture</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;Keep me close &mdash; I want to know more.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">EDM cadence, quarterly newsletters, sales decks, personalised follow-up.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Marketing &amp; CRM</span>
+        <span class="jrny-owner-main">Marketing</span>
+        <span class="jrny-owner-sup">CRM</span>
         <span class="jrny-owner-sup">Sales</span>
       </div></div>
     </div>
-
     <div class="jrny-row">
       <div class="jrny-cell jrny-num">06</div>
       <div class="jrny-cell"><span class="jrny-stage">Agent Ecosystem</span></div>
       <div class="jrny-cell"><span class="jrny-voice">&ldquo;A trusted advisor recommended this.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Agent dinners, broker events, commission briefings, property previews, agent toolkits.</div>
+      <div class="jrny-cell jrny-channels">Agent events &amp; dinners, property briefings, commission programme, agent referrals.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Partnership Marketing / Sales</span>
-        <span class="jrny-owner-sup">Brand Experience</span>
+        <span class="jrny-owner-main">Sales</span>
+        <span class="jrny-owner-sup">Marketing</span>
+        <span class="jrny-owner-sup">Brand</span>
+      </div></div>
+    </div>
+    <div class="jrny-row loopA">
+      <div class="jrny-cell jrny-num">07</div>
+      <div class="jrny-cell"><span class="jrny-stage">Experiential Activation</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I want to experience the lifestyle.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Local Roots monthly series, signature wellness events, brand collaboration events, community activations.</div>
+      <div class="jrny-cell"><div class="jrny-owners">
+        <span class="jrny-owner-main">Marketing</span>
+        <span class="jrny-owner-sup">Brand</span>
+        <span class="jrny-owner-sup">Sales</span>
       </div></div>
     </div>
 
@@ -2285,10 +2309,9 @@ body{overflow-x:hidden}
   <div class="pg">04</div>
 </section>
 
-<!-- ═══════════════════ 05 CUSTOMER JOURNEY LOOP · STAGES 7–12 ═══════════════════ -->
+<!-- ═══════════════════ 05 CUSTOMER JOURNEY LOOP · STAGES 8–14 ═══════════════════ -->
 <section class="S ink brief">
   <div class="jrny-table">
-
     <div class="jrny-row head">
       <div class="jrny-cell">No.</div>
       <div class="jrny-cell">Stage</div>
@@ -2296,79 +2319,83 @@ body{overflow-x:hidden}
       <div class="jrny-cell">Channels &amp; Activities</div>
       <div class="jrny-cell">Owners</div>
     </div>
-
     <div class="jrny-row loopA">
-      <div class="jrny-cell jrny-num">07</div>
-      <div class="jrny-cell"><span class="jrny-stage">Experiential Activation</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I want to experience the lifestyle.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Local Roots, wellness events, private dinners, fly-ins, Trisara experiences, BEING events.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Brand Experience &amp; Activation</span>
-        <span class="jrny-owner-sup">Operations</span>
-        <span class="jrny-owner-sup">Sales</span>
-        <span class="jrny-owner-sup">Marketing</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row">
       <div class="jrny-cell jrny-num">08</div>
-      <div class="jrny-cell"><span class="jrny-stage">Fly-In Conversion</span></div>
+      <div class="jrny-cell"><span class="jrny-stage">Site Visit &amp; Fly-In</span></div>
       <div class="jrny-cell"><span class="jrny-voice">&ldquo;I can imagine living here.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Airport pickup, villa stay, wellness activities, farm tours, Jampa lunch, sunset experiences.</div>
+      <div class="jrny-cell jrny-channels">Private project tours, show villa walkthroughs, Fly-In Stays programme, on-site immersion.</div>
       <div class="jrny-cell"><div class="jrny-owners">
         <span class="jrny-owner-main">Sales</span>
         <span class="jrny-owner-sup">Operations</span>
         <span class="jrny-owner-sup">Marketing</span>
-        <span class="jrny-owner-sup">Trisara</span>
       </div></div>
     </div>
-
-    <div class="jrny-row loopA">
+    <div class="jrny-row">
       <div class="jrny-cell jrny-num">09</div>
-      <div class="jrny-cell"><span class="jrny-stage">Site Visit &middot; The Walk</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m seriously considering.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Private project tours, investment presentations, villa walkthroughs, CLP explanation, customisation discussions.</div>
+      <div class="jrny-cell"><span class="jrny-stage">Conviction</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I emotionally belong here.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Personalised hosting, founder interaction, family activities, private dinners.</div>
+      <div class="jrny-cell"><div class="jrny-owners">
+        <span class="jrny-owner-main">Sales</span>
+        <span class="jrny-owner-sup">Brand</span>
+        <span class="jrny-owner-sup">Operations</span>
+      </div></div>
+    </div>
+    <div class="jrny-row loopA">
+      <div class="jrny-cell jrny-num">10</div>
+      <div class="jrny-cell"><span class="jrny-stage">Contract &amp; Reservation</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m ready to commit.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Pricing discussions, financing support, SPA / booking process, contract signing.</div>
+      <div class="jrny-cell"><div class="jrny-owners">
+        <span class="jrny-owner-main">Sales</span>
+        <span class="jrny-owner-sup">Finance</span>
+        <span class="jrny-owner-sup">Legal</span>
+      </div></div>
+    </div>
+    <div class="jrny-row">
+      <div class="jrny-cell jrny-num">11</div>
+      <div class="jrny-cell"><span class="jrny-stage">Customisation</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m shaping my home.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Customisation sessions, interior design selections, material &amp; finishing choices, layout adjustments.</div>
+      <div class="jrny-cell"><div class="jrny-owners">
+        <span class="jrny-owner-main">Sales</span>
+        <span class="jrny-owner-sup">Design</span>
+        <span class="jrny-owner-sup">Project</span>
+      </div></div>
+    </div>
+    <div class="jrny-row loopA">
+      <div class="jrny-cell jrny-num">12</div>
+      <div class="jrny-cell"><span class="jrny-stage">Pre-Ownership</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;My home is becoming real.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Personalised owner contact, owner-focused communications, construction milestone updates, monthly update EDMs, quarterly newsletters.</div>
       <div class="jrny-cell"><div class="jrny-owners">
         <span class="jrny-owner-main">Sales</span>
         <span class="jrny-owner-sup">Marketing</span>
-        <span class="jrny-owner-sup">Design</span>
         <span class="jrny-owner-sup">Operations</span>
+        <span class="jrny-owner-sup">CRM</span>
       </div></div>
     </div>
-
     <div class="jrny-row">
-      <div class="jrny-cell jrny-num">10</div>
-      <div class="jrny-cell"><span class="jrny-stage">Emotional Conversion</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I emotionally belong here.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Personalised hosting, founder interaction, curated rituals, hospitality touchpoints, family experiences.</div>
+      <div class="jrny-cell jrny-num">13</div>
+      <div class="jrny-cell"><span class="jrny-stage">Handover</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;This is my new life.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Welcome rituals, handover ceremony, orientation, concierge introduction.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Sales</span>
-        <span class="jrny-owner-sup">Brand Experience</span>
-        <span class="jrny-owner-sup">Operations</span>
+        <span class="jrny-owner-main">Operations</span>
+        <span class="jrny-owner-sup">Brand</span>
+        <span class="jrny-owner-sup">Marketing</span>
+        <span class="jrny-owner-sup">Sales</span>
       </div></div>
     </div>
-
     <div class="jrny-row loopA">
-      <div class="jrny-cell jrny-num">11</div>
-      <div class="jrny-cell"><span class="jrny-stage">Commercial Conversion</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m ready to buy.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Pricing discussions, financing support, legal explanation, SPA / booking process.</div>
+      <div class="jrny-cell jrny-num">14</div>
+      <div class="jrny-cell"><span class="jrny-stage">Ecosystem Expansion</span></div>
+      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I trust the wider ecosystem.&rdquo;</span></div>
+      <div class="jrny-cell jrny-channels">Partner brand collaborations, sister property integrations, lifestyle publication features.</div>
       <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Sales</span>
-        <span class="jrny-owner-sup">Finance</span>
-        <span class="jrny-owner-sup">Legal</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row">
-      <div class="jrny-cell jrny-num">12</div>
-      <div class="jrny-cell"><span class="jrny-stage">Reservation &amp; Documentation</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I committed.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Reservation signing, payment coordination, contract support.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Sales Admin</span>
-        <span class="jrny-owner-sup">Legal</span>
-        <span class="jrny-owner-sup">Finance</span>
+        <span class="jrny-owner-main">Marketing</span>
+        <span class="jrny-owner-sup">Sales</span>
+        <span class="jrny-owner-sup">Operations</span>
       </div></div>
     </div>
 
@@ -2377,93 +2404,7 @@ body{overflow-x:hidden}
   <div class="pg">05</div>
 </section>
 
-<!-- ═══════════════════ 06 CUSTOMER JOURNEY LOOP · STAGES 13–18 ═══════════════════ -->
-<section class="S ink brief">
-  <div class="jrny-table">
-
-    <div class="jrny-row head">
-      <div class="jrny-cell">No.</div>
-      <div class="jrny-cell">Stage</div>
-      <div class="jrny-cell">Customer Voice</div>
-      <div class="jrny-cell">Channels &amp; Activities</div>
-      <div class="jrny-cell">Owners</div>
-    </div>
-
-    <div class="jrny-row loopA">
-      <div class="jrny-cell jrny-num">13</div>
-      <div class="jrny-cell"><span class="jrny-stage">Post-Sale Relationship</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m now part of the ecosystem.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Construction updates, owner events, newsletters, WhatsApp updates, milestone gifts.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">CRM / Customer Relations</span>
-        <span class="jrny-owner-sup">Marketing</span>
-        <span class="jrny-owner-sup">Operations</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row">
-      <div class="jrny-cell jrny-num">14</div>
-      <div class="jrny-cell"><span class="jrny-stage">Customization</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I&rsquo;m shaping my home.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Villa customisation sessions, interior design selections, material &amp; finishing choices, layout adjustments, construction progress reviews.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Sales</span>
-        <span class="jrny-owner-sup">Design Development</span>
-        <span class="jrny-owner-sup">Project Development</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row loopA">
-      <div class="jrny-cell jrny-num">15</div>
-      <div class="jrny-cell"><span class="jrny-stage">Handover Experience</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;This is my new life.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Welcome rituals, handover ceremony, owner gift box, orientation, concierge introduction.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Operations</span>
-        <span class="jrny-owner-sup">Brand Experience</span>
-        <span class="jrny-owner-sup">Marketing</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row">
-      <div class="jrny-cell jrny-num">16</div>
-      <div class="jrny-cell"><span class="jrny-stage">Community Integration</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I belong here.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Wellness club, Local Roots, farm experiences, member gatherings, social circles.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Community / Operations</span>
-        <span class="jrny-owner-sup">Marketing</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row loopA">
-      <div class="jrny-cell jrny-num">17</div>
-      <div class="jrny-cell"><span class="jrny-stage">Advocacy &amp; Referral</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I want others to join.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Referral programme, testimonials, owner storytelling, ambassador experiences.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">CRM / Marketing</span>
-        <span class="jrny-owner-sup">Sales</span>
-      </div></div>
-    </div>
-
-    <div class="jrny-row">
-      <div class="jrny-cell jrny-num">18</div>
-      <div class="jrny-cell"><span class="jrny-stage">Ecosystem Expansion</span></div>
-      <div class="jrny-cell"><span class="jrny-voice">&ldquo;I trust the wider ecosystem.&rdquo;</span></div>
-      <div class="jrny-cell jrny-channels">Trisara stays, wellness memberships, PATTAMA, CLP, cultural / lifestyle collaborations.</div>
-      <div class="jrny-cell"><div class="jrny-owners">
-        <span class="jrny-owner-main">Ecosystem Marketing</span>
-        <span class="jrny-owner-sup">All Departments</span>
-      </div></div>
-    </div>
-
-  </div>
-
-  <div class="pg">06</div>
-</section>
-
-<!-- ═══════════════════ 07 TIMELINE ═══════════════════ -->
+<!-- ═══════════════════ 06 TIMELINE ═══════════════════ -->
 <section class="S ink">
   <div class="eye">Timeline</div>
   <div class="D2" style="max-width:920px;margin-bottom:14px">The <span class="it gd">Timeline.</span></div>
@@ -2507,7 +2448,7 @@ body{overflow-x:hidden}
       <div class="tlx-month" style="grid-column:4">Nov – Dec</div>
     </div>
   </div>
-  <div class="pg">07</div>
+  <div class="pg">06</div>
 </section>
 <script>
 (function(){
