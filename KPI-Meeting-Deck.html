@@ -1,0 +1,669 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tri Vananda — KPI Meeting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f4efe5; --paper:#faf7f1; --ink:#0b0f13; --ink2:#3c4039;
+  --gold:#b89458; --gold-lt:#d4b07a; --sage:#6e8264; --stone:#9e9282;
+  --line:rgba(11,15,19,.13); --line2:rgba(11,15,19,.07);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',-apple-system,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+
+/* ── chrome ── */
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.36em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone);
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;white-space:nowrap}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2)}
+.mh-folio b{color:var(--gold);font-weight:500}
+
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.nav-mid{display:flex;align-items:center;gap:18px}
+.dots{display:flex;gap:6px;flex-wrap:wrap;max-width:60vw;justify-content:center}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(11,15,19,.2);cursor:pointer;transition:.3s}
+.dot.on{background:var(--gold);transform:scale(1.35)}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone)}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1;overflow:auto}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:84px clamp(34px,5vw,78px) 92px;position:relative}
+.media{position:relative;background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03) brightness(1.02)}
+.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.media .cap{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12)}
+
+/* reveal */
+.panel>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2){transition-delay:.16s}
+.slide.active .panel>*:nth-child(3){transition-delay:.24s}
+.slide.active .panel>*:nth-child(4){transition-delay:.32s}
+.slide.active .panel>*:nth-child(5){transition-delay:.40s}
+.slide.active .panel>*:nth-child(6){transition-delay:.48s}
+.slide.active .panel>*:nth-child(7){transition-delay:.56s}
+.slide.active .panel>*:nth-child(8){transition-delay:.64s}
+
+/* type */
+.kick{font-size:.64rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold)}
+.num{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,7vw,5.4rem);color:rgba(158,146,130,.32);line-height:.8;margin-bottom:6px}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.0;letter-spacing:.005em;
+  font-size:clamp(2.3rem,5vw,4rem)}
+.sub{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.2rem,2.1vw,1.7rem);margin-top:10px}
+.hr{width:54px;height:1px;background:var(--gold);margin:26px 0}
+p.body{font-family:var(--sans);font-weight:300;font-size:clamp(.86rem,1vw,.98rem);line-height:1.92;
+  color:var(--ink2);max-width:46ch}
+.pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.34;margin-top:22px;max-width:24ch}
+
+/* services list */
+.svc-label{font-size:.72rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin:30px 0 12px}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;max-width:50ch}
+.svc li{list-style:none;display:flex;align-items:flex-start;gap:9px;padding:6.5px 0;border-bottom:1px solid var(--line2);
+  font-size:.86rem;font-weight:400;color:var(--ink);letter-spacing:.01em;line-height:1.3}
+.svc li::before{content:"";width:5px;height:5px;background:var(--gold);flex:0 0 5px;transform:rotate(45deg);margin-top:4px}
+
+/* cover */
+.cover .panel{justify-content:space-between;padding-top:96px;padding-bottom:96px}
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);line-height:1.7;max-width:34ch}
+.wordmark{font-family:var(--serif);font-weight:600;letter-spacing:.16em;color:var(--ink);
+  font-size:clamp(3.4rem,8vw,6.4rem);line-height:.9}
+.cover .tag{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.3rem,2.3vw,1.9rem);margin-top:18px;max-width:20ch;line-height:1.2}
+.loc{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink2)}
+
+/* three expressions */
+.expr{height:100%;display:flex;flex-direction:column;justify-content:center;padding:84px clamp(34px,4.5vw,72px) 92px}
+.expr .head{margin-bottom:38px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,40px)}
+.col .ph{height:clamp(150px,26vh,260px);background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03);margin-bottom:18px;background-color:#e7e1d0}
+.col .xp{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.7rem;line-height:1.12;margin-bottom:6px}
+.col h3{font-family:var(--serif);font-weight:500;font-size:1.12rem;color:var(--ink);line-height:1.15;letter-spacing:.02em}
+.col p{font-family:var(--sans);font-weight:300;font-size:.8rem;line-height:1.7;color:var(--ink2);margin-top:10px}
+.col .tagp{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);margin-top:12px}
+
+/* master plan */
+.mplan{display:grid;grid-template-columns:1.02fr 1fr;height:100%}
+.mp-text{background:var(--cream);color:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:84px clamp(34px,5vw,72px) 92px}
+.mp-text .kick{color:var(--gold)} .mp-text .kick::before{background:var(--gold)}
+.mp-visual{position:relative;background:#e7e1d0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mp-visual img{width:100%;height:100%;object-fit:cover}
+.mp-visual .rc{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+
+.credit{font-size:.56rem;letter-spacing:.13em;color:var(--stone);margin-top:18px;max-width:48ch;line-height:1.65}
+
+/* renderings gallery */
+.renders{background:var(--cream);color:var(--ink);height:100%;display:flex;flex-direction:column;justify-content:center;padding:62px clamp(34px,4.5vw,72px) 74px}
+.renders .rhead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:22px}
+.renders .rhead .kick{color:var(--gold)} .renders .rhead .kick::before{background:var(--gold)}
+.renders .rhead h2{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:clamp(1.7rem,3vw,2.5rem);line-height:1}
+.renders .rh-r{font-size:.57rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);text-align:right;line-height:1.7}
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:1fr 1fr;gap:10px;flex:1;min-height:0}
+.rtile{position:relative;overflow:hidden;background:#e7e1d0}
+.rtile img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.98) contrast(1.04)}
+
+/* facilities intro (contents) */
+.lifeintro{height:100%;display:flex;flex-direction:column;justify-content:center;padding:72px clamp(34px,5vw,78px) 84px}
+.li-head{max-width:760px;margin-bottom:clamp(20px,3.4vh,38px)}
+.li-grid{display:grid;grid-auto-flow:column;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);gap:0 clamp(30px,4vw,68px)}
+.li-item{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:start;padding:13px 0;border-top:1px solid var(--line)}
+.li-no{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--gold);line-height:1}
+.li-nm{font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--ink);line-height:1.05}
+.li-tag{font-family:var(--sans);font-weight:300;font-size:.72rem;color:var(--ink2);margin-top:4px;line-height:1.4}
+
+/* intro full-bleed */
+.intro{position:relative;height:100%}
+.intro .bg{position:absolute;inset:0;background-size:cover;background-position:center 42%;filter:saturate(.98) contrast(1.03);background-color:#1c241c}
+.intro .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,11,9,.62) 0%,rgba(8,11,9,.28) 42%,rgba(8,11,9,0) 70%)}
+.intro .card{position:absolute;left:clamp(34px,5vw,78px);bottom:clamp(86px,12vh,120px);max-width:560px;color:var(--cream)}
+.intro .kick{color:var(--gold-lt)}.intro .kick::before{background:var(--gold-lt)}
+.intro h1{color:var(--cream)}.intro .sub{color:rgba(244,239,229,.85)}
+.intro p.body{color:rgba(244,239,229,.82)}
+.intro .panel>*{opacity:1;transform:none}
+
+/* membership */
+.mem{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.mem .feat{background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:84px clamp(34px,5vw,78px) 92px}
+.mem .kick{color:var(--gold-lt)}.mem .kick::before{background:var(--gold-lt)}
+.mem h1{color:var(--cream)}.mem .sub{color:rgba(244,239,229,.8)}
+.mem p.body{color:rgba(244,239,229,.74);max-width:46ch}
+.mem .hr{background:var(--gold)}
+.mem .cta{display:inline-flex;align-items:center;gap:13px;align-self:flex-start;margin-top:28px;
+  font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);text-decoration:none;cursor:pointer}
+.mem .cta .ico{width:31px;height:31px;border-radius:50%;border:1px solid rgba(212,176,122,.5);flex:0 0 31px;display:inline-flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--gold-lt);transition:.3s ease}
+.mem .cta:hover{color:var(--cream)}.mem .cta:hover .ico{background:var(--gold-lt);color:var(--ink);border-color:var(--gold-lt)}
+.mem .media{filter:saturate(.97) contrast(1.03) brightness(.96)}
+.mem .feat>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .mem .feat>*{opacity:1;transform:none}
+.slide.active .mem .feat>*:nth-child(2){transition-delay:.1s}
+.slide.active .mem .feat>*:nth-child(4){transition-delay:.2s}
+.slide.active .mem .feat>*:nth-child(6){transition-delay:.3s}
+
+/* section divider (dark full bleed) */
+.divider{position:relative;height:100%}
+.divider .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.95) contrast(1.04) brightness(.7);background-color:#11160f}
+.divider .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,9,.55),rgba(8,11,9,.35))}
+.divider .inner{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(34px,6vw,96px);color:var(--cream);max-width:900px}
+.divider .pt{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:22px;display:flex;align-items:center;gap:16px}
+.divider .pt::before{content:"";width:40px;height:1px;background:var(--gold-lt)}
+.divider h1{color:var(--cream);font-size:clamp(2.6rem,6vw,5rem)}
+.divider .sub{color:rgba(244,239,229,.82);margin-top:14px}
+
+/* ───── TIMELINE (from Tri-Vananda_2026_PR.html) ───── */
+.tlsec-dark{background:var(--ink);color:var(--cream);height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px clamp(34px,5vw,78px) 78px;overflow:auto}
+.tlsec-dark .kick{color:var(--gold-lt)} .tlsec-dark .kick::before{background:var(--gold-lt)}
+.tlsec-dark h1{color:var(--cream)}
+.tlsec-dark .rule{width:54px;height:1px;background:var(--gold);margin:18px 0 4px}
+.tl-block{margin-top:18px}
+.tl-sectionlabel{font-family:var(--sans);font-weight:300;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.95);margin:0 0 8px}
+.tlx{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.14);border:1px solid rgba(184,148,88,.18);position:relative;margin-bottom:14px}
+.tlx-bar{background:var(--ink);padding:11px 16px;display:flex;flex-direction:column;justify-content:center;min-height:46px;font-family:var(--serif);font-weight:500;font-size:.98rem;color:var(--cream);line-height:1.2}
+.tlx-bar.fill{background:linear-gradient(90deg,rgba(184,148,88,.22) 0%,rgba(184,148,88,.32) 100%)}
+.tlx-bar.fill.summit{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);z-index:5}
+.tlx-bar.fill.launch{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);z-index:5}
+.tlx-bar.fill.overlay{background:linear-gradient(135deg,rgba(110,130,100,.22) 25%,rgba(110,130,100,.36) 50%,rgba(110,130,100,.22) 75%);border-top:1px dashed rgba(110,130,100,.45);border-bottom:1px dashed rgba(110,130,100,.45)}
+.tlx-bar small{display:block;font-family:var(--sans);font-weight:300;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-top:4px;line-height:1.4}
+.tlx-bar.summit small,.tlx-bar.launch small{color:rgba(255,255,255,.85)}
+.tlx-axis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-top:1px solid rgba(184,148,88,.32)}
+.tlx-month{padding:12px 12px 9px;background:var(--ink);font-family:var(--sans);font-weight:300;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;line-height:1.5}
+.tlx-month strong{display:block;font-family:var(--serif);font-style:italic;font-weight:500;font-size:.78rem;color:var(--gold);margin-top:4px;letter-spacing:.02em;text-transform:none;line-height:1}
+
+/* PR — prose / lists */
+.listsec{height:100%;display:flex;flex-direction:column;justify-content:center;padding:78px clamp(34px,5vw,78px) 88px;overflow:auto}
+p.body+p.body{margin-top:14px}
+.rfp{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);padding:18px 20px;margin-top:24px;max-width:66ch}
+.rfp .rl{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:8px}
+.rfp p{font-family:var(--sans);font-weight:300;font-size:.9rem;line-height:1.75;color:var(--ink2)}
+
+/* three to meet / feeling cards */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:32px}
+.tcard{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);padding:30px 28px 32px}
+.tcard .role{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:14px;line-height:1.5}
+.tcard h3{font-family:var(--serif);font-weight:600;font-size:1.55rem;color:var(--ink);margin-bottom:11px;line-height:1.05}
+.tcard p{font-size:.92rem;line-height:1.8;color:var(--ink2);font-weight:300}
+.tcard .rate{display:inline-block;margin-top:16px;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--gold)}
+.tcard .rate.exc{color:var(--sage)}
+.tcard .cs{font-size:.92rem;color:var(--ink);margin-top:13px;border-top:1px solid var(--line);padding-top:13px;font-family:var(--serif);font-style:italic;font-weight:500;line-height:1.3}
+.tcard .cs span{display:block;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);margin-bottom:5px;font-family:var(--sans);font-weight:400;font-style:normal}
+
+/* agency detail */
+.metaline{font-size:.8rem;letter-spacing:.04em;color:var(--stone);margin-top:8px;line-height:1.6;max-width:46ch}
+.rankbadge{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.rankbadge .rk{font-family:var(--serif);font-weight:500;font-size:3rem;color:rgba(158,146,130,.4);line-height:.8}
+.pill{display:inline-block;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;background:var(--gold);color:var(--cream);padding:.34rem .7rem;border-radius:20px;font-weight:500}
+.fitbox{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--sage);padding:15px 18px;margin-top:14px;font-size:.88rem;line-height:1.72;color:var(--ink2);max-width:50ch;font-weight:300}
+.fitbox.watch{border-left-color:var(--gold)}
+.fitbox b{color:var(--ink);font-weight:500}
+.clients{font-size:.88rem;color:var(--ink2);line-height:1.72;margin-top:14px;max-width:50ch;font-weight:300}
+.clients b{color:var(--gold);font-weight:500}
+
+/* closing */
+.close{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:84px 24px 92px}
+.close .wordmark{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:34px;letter-spacing:.2em}
+.close h1{font-size:clamp(2rem,4vw,3rem)}
+.close p.body{max-width:54ch;margin:20px auto 0;text-align:center}
+.close .hr{margin:30px auto}
+.close .contact{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink2);margin-top:4px}
+
+@media(max-width:860px){
+  .split,.split.rev,.mem,.mplan{grid-template-columns:1fr}
+  .split .media,.split.rev .media,.mem .media,.mp-visual{display:none}
+  .panel,.mem .feat,.mp-text{padding:74px 26px 80px}
+  .cols,.three{grid-template-columns:1fr}.col .ph{height:140px}
+  .svc{grid-template-columns:1fr}.mh-sec{display:none}
+  .li-grid{grid-auto-flow:row;grid-template-columns:1fr;grid-template-rows:none}
+  .rgrid{grid-template-columns:1fr 1fr;grid-template-rows:none}.rtile{min-height:150px}
+}
+</style>
+
+<div class="deck" id="deck">
+
+  <!-- 1 KPI COVER -->
+  <section class="slide active cover" data-sec="Cover">
+    <div class="panel" style="height:100%;align-items:center;text-align:center">
+      <div class="eyebrow">Tri Vananda · Phuket · Thailand<br>Internal Strategy Review</div>
+      <div>
+        <div class="wordmark" style="font-size:clamp(2.8rem,6.4vw,5rem)">KPI<br>Meeting</div>
+        <div class="tag" style="max-width:none;margin-left:auto;margin-right:auto">PATAMA, the timeline, and the U.S. PR shortlist.</div>
+      </div>
+      <div class="loc">June 2026</div>
+    </div>
+  </section>
+
+  <!-- ════════ PART I · PATAMA TEASER ════════ -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="divider">
+      <div class="bg" style="background-image:url('images/narrative-01.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="pt">Part One</div>
+        <h1>PATAMA Teaser</h1>
+        <div class="sub">Threading all the good things in life together.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATAMA COVER -->
+  <section class="slide cover" data-sec="Part I · PATAMA">
+    <div class="split rev">
+      <div class="panel">
+        <div class="eyebrow">The wellbeing brand of<br>Montara Hospitality Group</div>
+        <div>
+          <div class="wordmark">PATAMA</div>
+          <div class="tag">Threading all the good things in life together.</div>
+        </div>
+        <div class="loc">Phuket · Thailand</div>
+      </div>
+      <div class="media" style="background-image:url('images/narrative-02.jpg')"><span class="cap">PATAMA · Tri Vananda</span></div>
+    </div>
+  </section>
+
+  <!-- BRAND -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="split">
+      <div class="panel">
+        <div class="kick">The Brand</div>
+        <h1>Threading all the good<br>things in life together.</h1>
+        <div class="hr"></div>
+        <p class="body">PATAMA is the wellbeing brand of Montara Hospitality Group. Across our places in Phuket, looking after yourself and your family takes more than one form. PATAMA brings them together — so the whole becomes one simple way of living well.</p>
+        <div class="pull">One continuous arc — from the shoreline, to the everyday, to the clinic.</div>
+      </div>
+      <div class="media"><video autoplay muted loop playsinline poster="images/patama-teaser-poster.jpg"><source src="images/patama-teaser-web.mp4" type="video/mp4"><source src="images/patama-teaser.MP4" type="video/mp4"></video><span class="cap">PATAMA · the film</span></div>
+    </div>
+  </section>
+
+  <!-- THREE EXPRESSIONS -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="expr">
+      <div class="head">
+        <div class="kick">Three expressions, one brand</div>
+        <h1 style="font-size:clamp(1.8rem,3.2vw,2.6rem)">Wellbeing takes three forms across our places. PATAMA threads them into one.</h1>
+      </div>
+      <div class="cols">
+        <div class="col">
+          <div class="ph" style="background-image:url('images/Trisara.jpg')"></div>
+          <div class="xp">Life celebrated</div><h3>Trisara</h3>
+          <p>Wellbeing by the sea, where twenty years of hospitality are renewed.</p>
+        </div>
+        <div class="col">
+          <div class="ph" style="background-image:url('images/Tri%20Vananda.jpg')"></div>
+          <div class="xp">A long life lived</div><h3>Tri Vananda</h3>
+          <p>Wellbeing as a daily practice, at the heart of the estate.</p>
+        </div>
+        <div class="col">
+          <div class="ph" style="background-image:url('images/Clinique%20La%20Prairie.jpg')"></div>
+          <div class="xp">Longevity prescribed</div><h3>Clinique La Prairie</h3>
+          <p>Switzerland's pinnacle of longevity, in Southeast Asia for the first time.</p>
+          <div class="tagp">Partner brand</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRI VANANDA INTRO -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="intro">
+      <div class="bg" style="background-image:url('images/depth.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="card" style="max-width:680px">
+        <div class="kick">A long life lived</div>
+        <h1 style="font-size:clamp(2.6rem,5.4vw,4.5rem);line-height:1.0">PATAMA Wellness<br>at Tri Vananda</h1>
+        <div class="sub">Wellbeing as a daily practice.</div>
+        <p class="body" style="margin-top:18px">At the heart of the estate, wellbeing isn't something you book — it's simply how the day is shaped. Forest at dawn, farm at midday, water at dusk. One place, for every generation to live well, together.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASTER PLAN -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="mplan">
+      <div class="mp-text">
+        <div class="kick">PATAMA Wellness at Tri Vananda · Master Plan</div>
+        <h1>A wellness club,<br>within the forest.</h1>
+        <div class="sub">The PATAMA facilities, gathered along the estate's central spine.</div>
+        <p class="body" style="margin-top:18px">The first look at PATAMA Wellness at Tri Vananda, designed by HABITA Architects within the Montara Wellness framework. The wellness facilities organise along the estate's central spine — anchored by the lake, set within regenerated forest, and held in dialogue with the existing homes. Each building is low, biophilic, and turned toward the trees. Together they form PATAMA Wellness at Tri Vananda — a private membership club within nature.</p>
+      </div>
+      <div class="mp-visual"><img src="images/masterplan.png" alt="Site plan"><span class="rc">PATAMA Wellness · site plan, 2025</span></div>
+    </div>
+  </section>
+
+  <!-- RENDERINGS -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="renders">
+      <div class="rhead">
+        <div>
+          <div class="kick">Master Plan · Renderings</div>
+          <h2>Indicative renderings</h2>
+        </div>
+        <div class="rh-r">HABITA Architects · 2025</div>
+      </div>
+      <div class="rgrid">
+        <div class="rtile"><img src="image-bank/renderings/cropped/r25-25.jpg" alt=""></div>
+        <div class="rtile"><img src="image-bank/renderings/cropped/r33-33.jpg" alt=""></div>
+        <div class="rtile"><img src="image-bank/renderings/cropped/r31-31.jpg" alt=""></div>
+        <div class="rtile"><img src="image-bank/renderings/cropped/r30-30.jpg" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES & SERVICES · INTRODUCTION -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="lifeintro">
+      <div class="li-head">
+        <div class="kick">Facilities &amp; Services</div>
+        <h1 style="font-size:clamp(2.4rem,5vw,4rem)">A Life Lived Well.</h1>
+        <p class="body" style="margin-top:14px;max-width:64ch">At Tri Vananda, wellbeing is lived in eight parts — from preventive health and Thai healing to nourishment, movement, nature, family and the everyday. Together they form one continuous practice.</p>
+      </div>
+      <div class="li-grid">
+        <div class="li-item"><span class="li-no">01</span><div><div class="li-nm">Life Intelligence</div><div class="li-tag">Understanding yourself to live better.</div></div></div>
+        <div class="li-item"><span class="li-no">02</span><div><div class="li-nm">Thai Wisdom</div><div class="li-tag">Honouring timeless knowledge from nature and culture.</div></div></div>
+        <div class="li-item"><span class="li-no">03</span><div><div class="li-nm">Conscious Mind</div><div class="li-tag">Creating balance within.</div></div></div>
+        <div class="li-item"><span class="li-no">04</span><div><div class="li-nm">Living Cuisine</div><div class="li-tag">Where nature becomes nourishment.</div></div></div>
+        <div class="li-item"><span class="li-no">05</span><div><div class="li-nm">Graceful Movement</div><div class="li-tag">Moving well through every stage of life.</div></div></div>
+        <div class="li-item"><span class="li-no">06</span><div><div class="li-nm">Natural Connection</div><div class="li-tag">Living in harmony with the world around us.</div></div></div>
+        <div class="li-item"><span class="li-no">07</span><div><div class="li-nm">Family Legacy</div><div class="li-tag">Wellbeing shared across generations.</div></div></div>
+        <div class="li-item"><span class="li-no">08</span><div><div class="li-nm">Living Well at Home</div><div class="li-tag">Extending wellbeing into everyday life.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES injected by JS here -->
+
+  <!-- MEMBERSHIP -->
+  <section class="slide" id="memSlide" data-sec="Part I · PATAMA">
+    <div class="mem">
+      <div class="feat">
+        <div class="kick">Membership</div>
+        <h1>The Annual<br>Membership.</h1>
+        <div class="sub">Wellbeing, woven into every day.</div>
+        <div class="hr"></div>
+        <p class="body">Year-round access to everything PATAMA brings to the day — unlimited facilities, a quarterly health review, member rates on treatments and dining, and a place in the community through events and seasonal rituals. One membership, for the whole household, renewed each year.</p>
+        <div><a class="cta" href="#">Inquiry for the membership packages <span class="ico">&#8594;</span></a></div>
+      </div>
+      <div class="media" style="background-image:url('image-bank/patama-teaser/702676507_1448330953977070_6534773121328944671_n.jpg')"><span class="cap">Tri Vananda · the lake</span></div>
+    </div>
+  </section>
+
+  <!-- PATAMA CLOSE -->
+  <section class="slide" data-sec="Part I · PATAMA">
+    <div class="close">
+      <div class="wordmark">PATAMA</div>
+      <h1>Begin with us.</h1>
+      <p class="body">Spend a day. Walk the forest, eat from the farm, meet your physician — and feel what it's like when living well is simply where you live.</p>
+      <div class="hr"></div>
+    </div>
+  </section>
+
+  <!-- ════════ PART II · TIMELINE ════════ -->
+  <section class="slide" data-sec="Part II · Timeline">
+    <div class="divider">
+      <div class="bg" style="background-image:url('images/Vana.jpg')"></div>
+      <div class="scrim"></div>
+      <div class="inner">
+        <div class="pt">Part Two</div>
+        <h1>The Timeline</h1>
+        <div class="sub">The year ahead, in one view.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE (exact structure from Tri-Vananda_2026_PR.html) -->
+  <section class="slide" data-sec="Part II · Timeline">
+    <div class="tlsec-dark">
+      <div class="kick">Tri Vananda · 2026</div>
+      <h1 style="font-size:clamp(2rem,3.8vw,3rem)">The timeline.</h1>
+      <div class="rule"></div>
+      <div class="tl-block">
+        <div class="tl-sectionlabel">Business Development &amp; Branding</div>
+        <div class="tlx">
+          <div class="tlx-bar" style="grid-row:1;grid-column:1 / span 3"></div>
+          <div class="tlx-bar fill summit" style="grid-row:1;grid-column:4 / span 1">Clinique La Prairie Health Resort Opening<small>1 Nov</small></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 1">New Wellness Brand Development<small>Brand, naming &amp; identity</small></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 2">Marketing Collateral Preparation<small>Renderings · photos · videos · masterplan model</small></div>
+          <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 2"></div>
+          <div class="tlx-bar fill launch" style="grid-row:3;grid-column:3 / span 1">PATAMA Wellness at Trisara Launch<small>Launch &middot; Sep &ndash; Oct</small></div>
+          <div class="tlx-bar fill launch" style="grid-row:3;grid-column:4 / span 1">PATAMA Wellness at Tri Vananda Construction Begins<small>2026 &rarr; expected completion 2027</small></div>
+        </div>
+        <div class="tl-sectionlabel">PR &amp; Communications</div>
+        <div class="tlx">
+          <div class="tlx-bar fill overlay" style="grid-row:1;grid-column:1 / span 4">Always-On Digital &amp; Communications<small>Paid ads · social · organic · running throughout 2026</small></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 1">PR Agency Selection<small>Closed shortlist · 2 months</small></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 1">Planning PR Strategy<small>Narrative · channels · agency brief</small></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:3 / span 2">PR Campaign<small>Sustained Sep – Dec 2026</small></div>
+        </div>
+        <div class="tl-sectionlabel">Activations</div>
+        <div class="tlx">
+          <div class="tlx-bar" style="grid-row:1;grid-column:1 / span 3"></div>
+          <div class="tlx-bar fill summit" style="grid-row:1;grid-column:4 / span 1">Pru Farm Festival<small>Supporting activation · 1 Nov</small></div>
+          <div class="tlx-bar" style="grid-row:2;grid-column:1 / span 1"></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 1">GWS Collaboration<small>Connect &middot; format of collaboration</small></div>
+          <div class="tlx-bar fill" style="grid-row:2;grid-column:3 / span 1">Pre-Summit Setup<small>Format · event organizer · experience design</small></div>
+          <div class="tlx-bar fill summit" style="grid-row:2;grid-column:4 / span 1">Join GWS as Exhibitor<small>Conference presence · 10–13 Nov</small></div>
+          <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 3"></div>
+          <div class="tlx-bar fill summit" style="grid-row:3;grid-column:4 / span 1">Hosted Experience<small>For potential referrers · 10–13 Nov</small></div>
+        </div>
+        <div class="tlx-axis">
+          <div class="tlx-month" style="grid-column:1">May – Jun<strong>2026</strong></div>
+          <div class="tlx-month" style="grid-column:2">Jul – Aug</div>
+          <div class="tlx-month" style="grid-column:3">Sep – Oct</div>
+          <div class="tlx-month" style="grid-column:4">Nov – Dec</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PART III · PR SHORTLIST (5 pages) ════════ -->
+
+  <!-- PR 1 · THE BRIEF (content from page 2) -->
+  <section class="slide" data-sec="Part III · US PR">
+    <div class="listsec">
+      <div class="kick">Part Three · U.S. PR Research · The Brief</div>
+      <h1 style="font-size:clamp(2.1rem,4vw,3rem)">Reach top-tier media —<br>and turn audiences into sales.</h1>
+      <div class="hr"></div>
+      <p class="body" style="max-width:66ch">Tri Vananda needs a U.S.-anchored partner that can do two things at once — and few agencies truly can: reach high-net-worth American buyers through the trusted earned media they read, and convert a wellness community into residence sales.</p>
+      <p class="body" style="max-width:66ch">There are two kinds of agency — those built for travel and hospitality, who win coverage and bookings, and those built for real estate, who sell units. The right partner does both.</p>
+    </div>
+  </section>
+
+  <!-- PR 2 · RELEVANCE INTERNATIONAL -->
+  <section class="slide" data-sec="Part III · US PR">
+    <div class="split">
+      <div class="panel">
+        <div class="rankbadge"><span class="rk">01</span><span class="pill">The closer · residence sales</span></div>
+        <h1 style="font-size:clamp(1.9rem,3.4vw,2.6rem)">Relevance International</h1>
+        <div class="metaline">New York · LA · London · Dubai · woman-owned · real estate &amp; branded residences</div>
+        <div class="hr"></div>
+        <p class="body" style="max-width:48ch">Relevance is the one that lives and breathes real estate. They're a New York firm built specifically to sell branded residences to wealthy buyers around the world — and they have the receipts. When they launched Fendi Château Residences in Miami, more than 80% of the homes sold, with around US$70M in a single month after the Art Basel event. In Athens, The Ellinikon sold out before anyone broke ground.</p>
+        <div class="clients"><b>Clients:</b> Fendi Château Residences · Atlantis The Royal Residences · 111 Murray · The Setai · Porto Montenegro.</div>
+        <div class="fitbox"><b>Why they fit:</b> they reach exactly the U.S. titles our buyers read, and they can prove that coverage turns into sell-through.</div>
+        <div class="fitbox watch"><b>What to watch:</b> they lead with property, so we'd need to brief the wellness soul in hard — and check how deep they really go across Asia-Pacific media.</div>
+      </div>
+      <div class="media" style="background-image:url('images/fendichateauresidences.jpg')"><span class="cap">Fendi Château Residences</span></div>
+    </div>
+  </section>
+
+  <!-- PR 3 · J/PR -->
+  <section class="slide" data-sec="Part III · US PR">
+    <div class="split rev">
+      <div class="panel">
+        <div class="rankbadge"><span class="rk">02</span><span class="pill">The natural fit · wellness story</span></div>
+        <h1 style="font-size:clamp(1.9rem,3.4vw,2.6rem)">J/PR</h1>
+        <div class="metaline">9 U.S. offices + London · founded 2005 · luxury travel, hospitality &amp; development</div>
+        <div class="hr"></div>
+        <p class="body" style="max-width:48ch">J/PR is our storyteller. They're a big luxury-travel and hospitality name, but the reason they're on this list is Velvære in Park City. It's the closest thing out there to what we're building — a wellness residential community, told as a real-estate story to American buyers, with coverage in Robb Report and Forbes that turned into actual home reservations. They also pulled more than 55 million impressions for The Lakes by Yoo.</p>
+        <div class="clients"><b>Clients:</b> Dorchester Collection · Waldorf Astoria New York · Pendry · Relais &amp; Châteaux · Canouan Private Estates.</div>
+        <div class="fitbox"><b>Why they fit:</b> the best blend of wellness credibility and U.S. firepower — and the only firm here who's done a wellness-residential launch just like ours.</div>
+        <div class="fitbox watch"><b>What to watch:</b> they've historically chased bookings, so we'd set residence reservations and sales as the KPIs from day one.</div>
+      </div>
+      <div class="media" style="background-image:url('images/velvaere-deer-valley-wellness-exterior-summer.webp')"><span class="cap">Velvære · Park City</span></div>
+    </div>
+  </section>
+
+  <!-- PR 4 · VICTORIA KING -->
+  <section class="slide" data-sec="Part III · US PR">
+    <div class="split">
+      <div class="panel">
+        <div class="rankbadge"><span class="rk">03</span><span class="pill">The soul-keeper · wellness &amp; spa</span></div>
+        <h1 style="font-size:clamp(1.9rem,3.4vw,2.6rem)">Victoria King PR</h1>
+        <div class="metaline">Los Angeles · founded 1992 · boutique · luxury resorts, hotels, spas &amp; travel</div>
+        <div class="hr"></div>
+        <p class="body" style="max-width:48ch">Victoria King is the boutique with the deepest wellness instincts. She founded her L.A. firm back in 1992 and has spent more than three decades representing some of the most beautiful resorts, hotels and spas in the world — places like Ballyfin in Ireland and Manoir Hovey in Canada. Before all that she ran PR for the Bel-Air Hotel Company. This is high-touch, relationship-led work: she knows the travel and lifestyle editors personally.</p>
+        <div class="clients"><b>Clients:</b> Ballyfin (Ireland) · Manoir Hovey (Canada) · Mas d'en Bruno (Spain) · Winnetu Oceanside Resort · Angsana Resorts.</div>
+        <div class="fitbox"><b>Why they fit:</b> nobody on this list understands wellness and spa storytelling better, and that editor trust protects how our brand feels.</div>
+        <div class="fitbox watch"><b>What to watch:</b> she's hospitality-first, not a residence-sales shop, and a boutique — so we'd pair her with a real-estate partner if villa sell-through is the priority, and check her bandwidth.</div>
+      </div>
+      <div class="media" style="background-image:url('images/Santani%20Wellness.jpg')"><span class="cap">Luxury wellness resort</span></div>
+    </div>
+  </section>
+
+  <!-- PR 5 · SUMMARY (content from page 13 · three picked agencies) -->
+  <section class="slide" data-sec="Part III · US PR">
+    <div class="listsec">
+      <div class="kick">Recommended for first conversations</div>
+      <h1 style="font-size:clamp(2rem,3.8vw,2.9rem)">Three agencies, three directions.</h1>
+      <p class="body" style="max-width:70ch">Chosen so each brings a distinct playbook — and a relevant case study to put on the table — rather than three shades of the same approach.</p>
+      <div class="three">
+        <div class="tcard">
+          <div class="role">01 · Can they move units?</div>
+          <h3>Relevance International</h3>
+          <p>The residence-sales specialist — documented sell-throughs in the U.S. titles HNWI buyers actually read.</p>
+          <div class="rate">Strong</div>
+          <div class="cs"><span>Case study</span>Fendi Château Residences, Miami</div>
+        </div>
+        <div class="tcard">
+          <div class="role">02 · Wellness, sold as real estate</div>
+          <h3>J/PR</h3>
+          <p>The only agency here with a directly comparable wellness-residential launch — and the closest credibility to frame it for U.S. buyers.</p>
+          <div class="rate exc">Exceptional</div>
+          <div class="cs"><span>Case study</span>Velvære, Park City</div>
+        </div>
+        <div class="tcard">
+          <div class="role">03 · Deepest wellness, already in Phuket</div>
+          <h3>Victoria King PR</h3>
+          <p>A resort-spa specialist already representing Trisara and Kamalaya in-market — rare local wellness credibility.</p>
+          <div class="rate exc">Exceptional</div>
+          <div class="cs"><span>Case study</span>To be confirmed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="slide" data-sec="Close">
+    <div class="close">
+      <div class="wordmark">TRI VANANDA</div>
+      <h1>Build, Belong &amp; Bloom.</h1>
+      <div class="hr"></div>
+      <div class="contact">Internal Strategy · June 2026</div>
+    </div>
+  </section>
+
+</div>
+
+<div class="masthead">
+  <div class="mark">TRI VANANDA</div>
+  <div class="mh-sec" id="mhSec">Cover</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioTot">00</span></div>
+</div>
+
+<div class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">&#8249;</button>
+  <div class="nav-mid"><div class="dots" id="dots"></div></div>
+  <button class="arrow" id="next" aria-label="Next">&#8250;</button>
+</div>
+
+<script>
+(function(){
+  var CATS=[
+    ["01","Life Intelligence","Preventive health, longevity care, and personalised wellbeing guided by modern expertise.","Understanding yourself to live better.","images/01%20Life%20Intelligence.jpg","Preventive Health &amp; Primary Care",["Named family physician","Whole-family health record","Preventive screening plan","Chronic disease follow-up","Villa-based medical support","Specialist &amp; emergency pathway","Annual family health review","6M whole-health assessment","CT · MRI · FibroScan · DEXA","Coronary calcium &amp; carotid US","IV nutrition therapy","AI Digital Twin programme"]],
+    ["02","Thai Wisdom","Traditional Thai healing, herbs, and holistic practices thoughtfully adapted for today.","Honouring timeless knowledge from nature and culture.","images/02%20Thai%20Wisdom.jpg","TTM Spa &amp; Herbal Healing",["Dhatu 4 constitution mapping","Nuad Boran massage","Tok Sen","Luk Pra Kob herbal compress","Oriental herbal steam ritual","Personalised herbal formula","Forest herb foraging","Tea ritual lounge","Monthly herbal subscription"]],
+    ["03","Conscious Mind","Mental wellbeing, mindfulness, emotional clarity, and inner restoration.","Creating balance within.","images/03%20Conscious%20Mind.jpg","Brain &amp; Mind Studio",["Meditation &amp; Vipassana","Breathwork","Sound healing","Burnout recovery","Cognitive assessment &amp; MoCA","Neurofeedback","Children's brain health","Teen stress &amp; digital balance","Light &amp; sound immersion room"]],
+    ["04","Living Cuisine","Regenerative farming, thoughtful nutrition, and food experiences that connect land and life.","Where nature becomes nourishment.","images/04%20Living%20Cuisine.jpg","Food as Prescription",["CGM-guided meal learning","Personalised meal plan","Family metabolic cooking class","Anti-inflammatory menu design","Thai medicinal food masterclass","Grandmother recipe workshop","Farm dining &amp; daily café","Recovery nutrition bar","Farm-to-villa weekly basket"]],
+    ["05","Graceful Movement","Strength, mobility, recovery, and active living for lifelong vitality.","Moving well through every stage of life.","image-bank/patama-teaser/654298811_1403024798529201_12548429198645941_n.jpg","Sport &amp; Recovery Hub",["Gym &amp; strength training","Personal training 1:1","Group movement classes","Tennis &amp; pickleball","Lap pool &amp; aquatic endurance","Recovery suite","Infrared sauna + cold plunge","Hydro pool &amp; compression","Physiotherapy &amp; rehab","Zone 2 endurance club"]],
+    ["06","Natural Connection","Forest, biodiversity, outdoor experiences, and reconnection with natural rhythms.","Living in harmony with the world around us.","image-bank/patama-teaser/639692279_1382744810557200_3128848553274755937_n.jpg","Farm, Forest &amp; Nature",["Shinrin-yoku forest bathing","Reflexology trail","Meditation &amp; lakeside deck","Lake cycling","Forest mobility class","Herb garden workshop","Harvest experience","Nature camp for children","Seasonal eating rituals"]],
+    ["07","Family Legacy","Experiences and knowledge that nurture healthier families and future generations.","Wellbeing shared across generations.","images/07%20Family%20Legacy.jpg","Family &amp; Children",["Family Wellness Orientation","Family Wellness Map","90-day Family Living Plan","Children's camp &amp; learning","12 Senses development","Teen strength &amp; digital balance","Elder Wisdom &amp; Legacy","Multi-generation rituals","Paws &amp; Play family café"]],
+    ["08","Living Well at Home","Personalised guidance, products, and practices that continue beyond PATAMA.","Extending wellbeing into everyday life.","image-bank/20-03-26%20%28Agent%20Days%29-262.jpg","Branded Products &amp; Continuity",["Personalised herbal formulas","Wellness tea blends","Botanical skincare","Supplements — capsules, tinctures","Curated welcome box","Farm-to-villa basket subscription","Monthly herbal subscription","AI Digital Twin dashboard","Quarterly biomarker review"]]
+  ];
+  var deck=document.getElementById('deck');
+  var memSlide=document.getElementById('memSlide');
+  CATS.forEach(function(c,i){
+    var rev=(i%2===1);
+    var svc=c[6].map(function(s){return '<li>'+s+'</li>'}).join('');
+    var s=document.createElement('section');
+    s.className='slide'; s.setAttribute('data-sec','Part I · PATAMA');
+    s.innerHTML=
+      '<div class="split'+(rev?' rev':'')+'">'+
+        '<div class="panel">'+
+          '<div class="num">'+c[0]+'</div>'+
+          '<div class="kick">A Life Lived Well · In Eight Parts</div>'+
+          '<h1>'+c[1]+'</h1>'+
+          '<div class="hr"></div>'+
+          '<p class="body">'+c[2]+'</p>'+
+          '<div class="pull">'+c[3]+'</div>'+
+          '<div><div class="svc-label">Services &amp; Experiences</div><ul class="svc">'+svc+'</ul></div>'+
+        '</div>'+
+        '<div class="media" style="background-image:url(\''+c[4]+'\')"><span class="cap">'+c[5]+'</span></div>'+
+      '</div>';
+    deck.insertBefore(s,memSlide);
+  });
+
+  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i=0, n=slides.length;
+  var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var dotsWrap=document.getElementById('dots'), sec=document.getElementById('mhSec');
+  var fNow=document.getElementById('folioNow'), fTot=document.getElementById('folioTot');
+  fTot.textContent=('0'+n).slice(-2);
+  slides.forEach(function(_,k){var d=document.createElement('span');d.className='dot';d.onclick=function(){go(k)};dotsWrap.appendChild(d)});
+  var dots=Array.prototype.slice.call(dotsWrap.children);
+  function go(k){
+    k=Math.max(0,Math.min(n-1,k));
+    slides[i].classList.remove('active'); slides[k].classList.add('active');
+    dots[i].classList.remove('on'); dots[k].classList.add('on');
+    i=k;
+    sec.textContent=slides[i].getAttribute('data-sec');
+    fNow.textContent=('0'+(i+1)).slice(-2);
+    prev.disabled=(i===0); next.disabled=(i===n-1);
+    slides[i].scrollTop=0;
+  }
+  prev.onclick=function(){go(i-1)}; next.onclick=function(){go(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'){go(i+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(i-1)}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(n-1)}
+  });
+  var x0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?go(i+1):go(i-1)}x0=null},{passive:true});
+  go(0);
+})();
+</script>

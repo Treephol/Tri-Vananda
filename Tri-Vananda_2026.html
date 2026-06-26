@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri Vananda · 2026</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Jost:wght@100;200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--deep:#141c22;--forest:#1e2820;
+  --cream:#f4efe5;--warm:#ede6d8;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --stone:#9e9282;--sage:#6e8264;--white:#faf8f4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.022;pointer-events:none;z-index:9999}
+#bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%);z-index:1000;transition:width .35s ease;width:0}
+.S{width:100%;min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:80px 100px}
+.S.deep{background:var(--deep)}
+.S.forest{background:var(--forest)}
+.S.ink{background:var(--ink)}
+.pg{position:absolute;bottom:32px;right:100px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.3em;color:rgba(255,255,255,.14);z-index:3}
+.eye{font-family:'Jost',sans-serif;font-weight:200;font-size:.74rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:40px;line-height:1.5}
+.section-link{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:background-color .35s ease;position:relative}
+.section-link:hover{background:rgba(184,148,88,.03)}
+.section-link::after{content:'→ Continue';position:absolute;bottom:32px;left:100px;font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(184,148,88,.4);opacity:0;transition:opacity .35s ease;pointer-events:none}
+.section-link:hover::after{opacity:1}
+.D1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(3.5rem,7vw,7rem);line-height:1;color:var(--white)}
+.D2{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.05;color:var(--white)}
+.D3{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.8rem,3vw,3rem);line-height:1.1;color:var(--white)}
+.it{font-style:italic}.gd{color:var(--gold-lt)}
+.body{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);max-width:680px}
+.body.lg{font-size:1.15rem;line-height:1.8;max-width:760px}
+.body.dim{color:rgba(255,255,255,.5);font-size:.82rem}
+.rule{width:40px;height:1px;background:var(--gold);margin:32px 0}
+.pq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.6rem,2.8vw,2.6rem);line-height:1.4;color:var(--white);border-left:2px solid var(--gold);padding:6px 0 6px 44px;max-width:980px}
+.S.bg{position:relative;padding:80px 100px}
+.S.bg::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 30% 20%,rgba(110,130,100,.12),transparent 60%),
+  radial-gradient(ellipse at 80% 80%,rgba(184,148,88,.12),transparent 55%),
+  linear-gradient(135deg,#141c22 0%,#0b0f13 60%,#1e2820 100%);z-index:0}
+.S.bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,15,19,.55) 0%,rgba(11,15,19,.15) 40%,rgba(11,15,19,.75) 100%);z-index:1}
+.S.bg > *{position:relative;z-index:2}
+.S.split{display:grid;grid-template-columns:1fr 1fr;padding:0;min-height:100vh;align-items:stretch}
+.sp-content{padding:80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.sp-image{position:relative;overflow:hidden;background:
+  radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.15),transparent 65%),
+  radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.12),transparent 60%),
+  linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%)}
+.sp-image .cap{position:absolute;bottom:36px;left:40px;right:40px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.92rem;color:rgba(244,239,229,.65);letter-spacing:.04em;line-height:1.55}
+/* ───── Split-section video panel (PATAMA Teaser) ───── */
+.sp-video{position:relative;overflow:hidden;background:#000}
+.sp-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sp-video::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,15,19,0) 70%,rgba(11,15,19,.35) 100%);pointer-events:none;z-index:2}
+/* ───── PATAMA Teaser reveal panel ───── */
+.teaser-reveal{
+  padding:80px 70px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;position:relative;
+  background:
+    linear-gradient(180deg,rgba(11,15,19,.55) 0%,rgba(11,15,19,.38) 45%,rgba(11,15,19,.7) 100%),
+    url('images/narrative-02.jpg') center/cover no-repeat;
+}
+.teaser-reveal > *{position:relative;z-index:2}
+.teaser-reveal .teaser-eye{font-family:'Jost',sans-serif;font-weight:300;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-bottom:54px;display:flex;align-items:center;gap:14px}
+.teaser-reveal .teaser-eye::before,
+.teaser-reveal .teaser-eye::after{content:'';display:block;width:36px;height:1px;background:rgba(184,148,88,.5)}
+.teaser-reveal .teaser-mark{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:clamp(4.8rem,7.6vw,7.6rem);line-height:1;letter-spacing:.04em;color:var(--gold-lt);margin-bottom:24px}
+.teaser-reveal .teaser-rule{width:88px;height:1px;background:rgba(184,148,88,.55);margin:0 auto 30px}
+.teaser-reveal .teaser-line{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.55rem,2.2vw,2rem);line-height:1.3;color:var(--white);letter-spacing:.005em;max-width:560px;margin-bottom:26px}
+.teaser-reveal .teaser-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.02rem,1.35vw,1.25rem);line-height:1.5;color:rgba(244,239,229,.78);max-width:460px}
+#s1{grid-template-columns:1.1fr 1fr;display:grid;padding:0;min-height:100vh}
+/* ───── TIMELINE — 4 equal bands (May–Jun · Jul–Aug · Sep–Oct · Nov–Dec) ───── */
+.tlx-wrap{margin-top:48px;position:relative;padding-bottom:8px;padding-top:36px}
+.tlx{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:rgba(184,148,88,.14);border:1px solid rgba(184,148,88,.18);position:relative}
+.tlx-bar{background:var(--ink);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;min-height:54px;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:var(--white);line-height:1.25;position:relative;border:none}
+.tlx-bar.fill{background:linear-gradient(90deg,rgba(184,148,88,.22) 0%,rgba(184,148,88,.32) 100%);color:var(--white)}
+.tlx-bar.fill.summit{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.fill.overlay{background:linear-gradient(135deg,rgba(110,130,100,.22) 25%,rgba(110,130,100,.36) 50%,rgba(110,130,100,.22) 75%);border-top:1px dashed rgba(110,130,100,.45);border-bottom:1px dashed rgba(110,130,100,.45);z-index:3;position:relative}
+.tlx-bar.fill.launch{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.launch small{color:rgba(255,255,255,.85)}
+.tlx-bar small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-top:5px;line-height:1.45}
+.tlx-bar.summit small{color:rgba(255,255,255,.85)}
+.tlx-axis{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;border-top:1px solid rgba(184,148,88,.32)}
+.tlx-month{padding:14px 12px 10px;background:var(--ink);font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;line-height:1.5}
+.tlx-month.summit{color:var(--gold-lt);background:rgba(184,148,88,.06)}
+.tlx-month strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.78rem;color:var(--gold);margin-top:4px;letter-spacing:.02em;text-transform:none;line-height:1}
+.tlx-month.summit strong{color:var(--gold-lt)}
+.tlx-summit-col{display:none}
+.tlx-summit-tag{position:absolute;top:0px;left:81.25%;transform:translateX(-50%);font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.4em;color:var(--gold-lt);background:var(--ink);padding:5px 14px;border:1px solid rgba(184,148,88,.4);border-radius:2px;white-space:nowrap;z-index:2}
+/* Initiative chapter */
+.init-chapter{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:24px}
+.init-chapter.solo{grid-template-columns:1fr;gap:0;max-width:780px}
+.init-chapter.solo .init-mini-tl{margin-top:32px}
+.init-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.init-when small{display:block;font-size:.55rem;letter-spacing:.28em;color:rgba(184,148,88,.6);margin-top:6px}
+.init-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;color:var(--white);margin-top:24px}
+.init-name .it{color:var(--gold-lt)}
+.init-overline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:rgba(255,255,255,.55);margin-top:16px;line-height:1.4}
+/* Init mini-marker — 5 cells */
+.init-mini-tl{margin-top:6px;padding:18px 22px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.init-mini-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(184,148,88,.18)}
+.init-mini-bar{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:rgba(184,148,88,.14)}
+.init-mini-cell{background:rgba(11,15,19,.5);height:14px}
+.init-mini-cell.on{background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)}
+.init-mini-cell.summit{background:rgba(184,148,88,.55)}
+.init-mini-axis{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;margin-top:8px}
+.init-mini-month{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;line-height:1.4}
+.init-mini-month.s{color:var(--gold)}
+.init-mini-month.y{color:rgba(184,148,88,.7)}
+/* Summary list */
+.sum-list{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.sum-row{background:var(--ink);padding:22px 28px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:baseline}
+.sum-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.7}
+.sum-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.3}
+.sum-name .it{color:var(--gold-lt);font-style:italic}
+/* Intro three-card layout — image cards with caption */
+.three-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.three-card{background:var(--ink);display:flex;flex-direction:column;min-height:520px}
+.three-card-img{aspect-ratio:1.3/1;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.18),transparent 65%),radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.15),transparent 60%),linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%)}
+.three-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.three-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,.05) 0%,rgba(11,15,19,.45) 100%);z-index:1;pointer-events:none}
+.three-card-img.logo{background:var(--white);display:flex;align-items:center;justify-content:center;padding:48px}
+.three-card-img.logo img{position:static;inset:auto;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+.three-card-img.logo::after{display:none}
+.three-card-content{padding:32px 28px 36px;display:flex;flex-direction:column;gap:14px;flex:1}
+.three-card-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.three-card-text{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.45rem;color:var(--white);line-height:1.3}
+/* Next-steps cards */
+.next{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.next-cell{background:var(--ink);padding:30px 22px;display:flex;flex-direction:column;gap:14px;min-height:200px}
+.next-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.85}
+.next-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.3}
+.next-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.6;margin-top:auto}
+/* ───── BRAND DIAGNOSTIC — Strong / Weak / Opportunity ───── */
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.diag-cell{background:var(--ink);padding:38px 36px 42px;display:flex;flex-direction:column;gap:18px;min-height:auto}
+.diag-cell.opp{grid-column:1 / span 2;background:rgba(184,148,88,.06);border-top:1px solid rgba(184,148,88,.32);min-height:auto;padding:36px 36px 40px}
+.diag-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.diag-cell.weak .diag-h{color:rgba(255,255,255,.45);border-bottom-color:rgba(255,255,255,.1)}
+.diag-cell.opp .diag-h{color:var(--gold-lt);border-bottom-color:rgba(184,148,88,.32)}
+.diag-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.3;margin-bottom:6px}
+.diag-cell.opp .diag-name{font-size:2rem;font-style:italic;color:var(--gold-lt);max-width:880px}
+.diag-list{display:flex;flex-direction:column;gap:0;margin-top:0}
+.diag-list-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.65;color:rgba(255,255,255,.62);padding:18px 0 18px 44px;position:relative;border-bottom:1px solid rgba(255,255,255,.05)}
+.diag-list-item:last-child{border-bottom:none}
+.diag-list-item::before{content:counter(diag-num, decimal-leading-zero);counter-increment:diag-num;position:absolute;left:0;top:18px;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;letter-spacing:.04em;line-height:1.5;width:30px}
+.diag-cell.weak .diag-list-item::before{color:rgba(184,148,88,.5)}
+.diag-list{counter-reset:diag-num}
+.diag-list-item strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);font-style:italic;margin-bottom:6px;letter-spacing:.005em}
+.diag-cell.weak .diag-list-item strong{color:rgba(255,255,255,.85)}
+/* ───── BRAND ARCHITECTURE DIAGRAM ───── */
+.arch-diagram{display:flex;flex-direction:column;gap:0;align-items:center;margin-top:48px}
+.arch-tier{display:flex;justify-content:center;align-items:stretch;gap:1px;width:100%;position:relative}
+.arch-connector{width:1px;height:24px;background:rgba(184,148,88,.32);margin:0 auto}
+.arch-card{background:var(--ink);border:1px solid rgba(184,148,88,.3);padding:24px 26px;display:flex;flex-direction:column;gap:8px;text-align:center;flex:1;max-width:520px;min-height:120px}
+.arch-card.master{background:rgba(184,148,88,.12);border-color:rgba(184,148,88,.55);border-width:1.5px}
+.arch-card.parent{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.15);max-width:540px}
+.arch-card.partner{border-style:dashed;border-color:rgba(184,148,88,.4);background:rgba(184,148,88,.04)}
+.arch-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.arch-card.master .arch-tag{color:var(--gold-lt)}
+.arch-card.parent .arch-tag{color:rgba(255,255,255,.4)}
+.arch-name-d{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.2;letter-spacing:.005em}
+.arch-card.master .arch-name-d{font-size:1.45rem;color:var(--gold-lt);font-style:italic}
+.arch-card.parent .arch-name-d{color:rgba(255,255,255,.7);font-size:1.15rem}
+.arch-sub-d{font-family:'Jost',sans-serif;font-weight:300;font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.5;margin-top:2px}
+.arch-row{display:flex;justify-content:center;gap:20px;width:100%;flex-wrap:wrap}
+.arch-row .arch-card{flex:1 1 0;max-width:none}
+.arch-siblings{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;margin-top:0}
+.arch-siblings .arch-card{max-width:none;flex:none;margin:0}
+.arch-sub-tier{margin-top:18px;padding:24px 28px;background:rgba(184,148,88,.04);border:1px solid rgba(184,148,88,.18);width:100%;display:flex;flex-direction:column;gap:18px}
+.arch-sub-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;text-align:center}
+.arch-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%}
+.arch-sub-row .arch-card{max-width:none;flex:none;background:var(--ink);min-height:100px}
+/* ───── BRAND ARCHITECTURE DIAGRAM (legacy keys preserved) ───── */
+
+/* ───── BRAND HIERARCHY (PATAMA-led ecosystem) ───── */
+.hier{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:30px;width:100%}
+.hier-tier{display:flex;justify-content:center;align-items:stretch;gap:18px;width:100%;flex-wrap:wrap}
+.hier-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:8px}
+.hier-name{font-family:'Cormorant Garamond',serif;font-weight:200;line-height:1.05;color:var(--white);letter-spacing:.015em}
+.hier-name .it{font-style:italic;color:var(--gold-lt)}
+.hier-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.6);margin-top:8px}
+.hier-card{background:var(--ink);border:1px solid rgba(184,148,88,.3);padding:22px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;flex:1}
+.hier-connector{width:1px;height:34px;background:linear-gradient(180deg,rgba(184,148,88,.55) 0%,rgba(184,148,88,.2) 100%);margin:0 auto}
+.hier-apex{background:rgba(184,148,88,.10);border:1.5px solid rgba(184,148,88,.55);padding:30px 36px;max-width:680px}
+.hier-apex .hier-name{font-size:3.6rem;color:var(--gold-lt);font-style:italic;letter-spacing:.02em}
+.hier-apex .hier-tag{color:var(--gold-lt);font-size:.6rem}
+.hier-apex .hier-desc{color:rgba(255,255,255,.72);font-size:.85rem;max-width:520px}
+.hier-platforms{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;max-width:980px}
+.hier-platform{background:var(--ink);border:1px solid rgba(184,148,88,.4);padding:24px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+.hier-platform .hier-name{font-size:2.1rem;font-style:italic;letter-spacing:.04em}
+.hier-platform .hier-desc{font-size:.78rem;max-width:300px}
+.hier-platform-with-nest{padding-bottom:0}
+.hier-nest-connector{width:1px;height:22px;background:rgba(184,148,88,.45);margin:18px auto 0}
+.hier-nested{margin-top:0;width:calc(100% - 40px);background:rgba(184,148,88,.04);border:1px dashed rgba(184,148,88,.4);padding:16px 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hier-nested .hier-tag{font-size:.5rem;color:var(--gold-lt);letter-spacing:.28em}
+.hier-nested .hier-name{font-size:1.35rem;color:var(--white);font-style:italic}
+.hier-nested .hier-desc{font-size:.72rem;margin-top:6px}
+.hier-experience{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:980px}
+.hier-experience .hier-card{padding:18px 22px}
+.hier-experience .hier-name{font-size:1.5rem;font-style:italic;color:var(--white)}
+.hier-experience .hier-tag{font-size:.5rem;letter-spacing:.28em}
+.hier-fb-wrap{display:flex;flex-direction:column;align-items:center;width:100%;max-width:980px}
+.hier-fb-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:14px}
+.hier-fb{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;width:100%}
+.hier-chip{background:rgba(255,255,255,.02);border:1px solid rgba(184,148,88,.28);padding:12px 22px;font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.88);letter-spacing:.025em}
+.hier-parent{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.18);padding:18px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:520px}
+.hier-parent .hier-tag{color:rgba(255,255,255,.4)}
+.hier-parent .hier-name{font-size:1.15rem;color:rgba(255,255,255,.7);letter-spacing:.22em;font-style:normal}
+@media (max-width:880px){
+  .hier-platforms{grid-template-columns:1fr}
+  .hier-experience{grid-template-columns:1fr}
+  .hier-apex .hier-name{font-size:2.6rem}
+}
+
+/* ───── COLLECTIVE OFFERINGS GRID ───── */
+.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.plat-cell{background:var(--ink);padding:24px 22px;display:flex;flex-direction:column;gap:8px;min-height:160px}
+.plat-cell.featured{background:rgba(184,148,88,.08);border-top:1px solid rgba(184,148,88,.32);border-bottom:1px solid rgba(184,148,88,.32);grid-column:1 / span 4;min-height:auto;text-align:center;padding:28px}
+.plat-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.95rem;color:var(--gold-lt);line-height:1;letter-spacing:.04em}
+.plat-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.22;letter-spacing:.005em}
+.plat-cell.featured .plat-h{font-size:1.55rem;color:var(--gold-lt);font-style:italic}
+.plat-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.65;color:rgba(255,255,255,.55);margin-top:auto}
+.plat-cell.featured .plat-b{font-size:.92rem;color:rgba(255,255,255,.7);max-width:680px;margin:6px auto 0}
+/* ───── NAMING DIRECTIONS ───── */
+.name-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.name-cell{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:14px;min-height:380px}
+.name-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.name-word{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:3rem;color:var(--white);line-height:1.05;letter-spacing:.01em;margin-top:4px}
+.name-word .it{font-style:italic;color:var(--gold-lt)}
+.name-meaning{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.name-rationale{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.65)}
+.name-peers{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-top:auto;line-height:1.6}
+/* ───── NEW WELLNESS BRAND · 3 PILLARS (what the brand brings together) ───── */
+.bt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.bt-cell{background:var(--ink);padding:30px 28px;display:flex;flex-direction:column;gap:10px;min-height:200px}
+.bt-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.bt-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.22;letter-spacing:.005em}
+.bt-name .it{color:var(--gold-lt);font-style:italic}
+.bt-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.6);margin-top:auto}
+/* ───── MEMBERSHIP & ACCESS SECTION ───── */
+.membership-section{margin-top:56px;padding:38px 40px;border:1px solid rgba(184,148,88,.3);background:rgba(184,148,88,.04)}
+.membership-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;margin-bottom:14px}
+.membership-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.7rem;color:var(--white);line-height:1.25;letter-spacing:.005em;margin-bottom:14px;max-width:880px}
+.membership-h .it{font-style:italic;color:var(--gold-lt)}
+.membership-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.7);max-width:880px;margin-bottom:24px}
+.membership-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px;margin-top:20px;padding-top:24px;border-top:1px solid rgba(184,148,88,.2)}
+.membership-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.65)}
+.membership-item strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;color:var(--gold-lt);font-size:1.1rem;margin-bottom:4px}
+/* ───── KEY CONCEPT CALLOUT ───── */
+.concept-callout{margin-top:48px;padding:38px 40px;background:rgba(184,148,88,.06);border:1px solid rgba(184,148,88,.32);text-align:center}
+.concept-callout-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:18px}
+.concept-callout-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1.25;letter-spacing:.005em}
+.concept-callout-h .it{color:var(--gold-lt);font-style:italic}
+/* ───── OFFER CATEGORIES — horizontal rows with age-group checkboxes ───── */
+.offer-rows{display:flex;flex-direction:column;gap:0;border:1px solid rgba(184,148,88,.22)}
+/* ───── TRI VANANDA POSITION CALLOUT ───── */
+.position-callout{margin-top:56px;padding:40px 42px;background:rgba(184,148,88,.04);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.position-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;margin-bottom:18px}
+.position-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.85rem;color:var(--white);line-height:1.25;letter-spacing:.005em;margin-bottom:14px;max-width:880px}
+.position-h .it{font-style:italic;color:var(--gold-lt)}
+.position-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.95rem;line-height:1.85;color:rgba(255,255,255,.7);max-width:880px}
+/* ───── NEW WELLNESS BRAND · COMPONENTS GRID ───── */
+.nwb-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.nwb-item{background:var(--ink);padding:28px 32px;display:flex;flex-direction:column;gap:10px;min-height:160px}
+.nwb-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1rem;line-height:1;letter-spacing:.04em}
+.nwb-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.2;letter-spacing:.005em}
+.nwb-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.75;color:rgba(255,255,255,.5);font-style:italic;margin-top:auto}
+.nwb-sub{display:flex;flex-direction:column;gap:8px;margin-top:8px;padding-left:14px;border-left:1px solid rgba(184,148,88,.3)}
+.nwb-sub-item{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1rem;color:var(--gold-lt);line-height:1.4}
+/* ───── INITIATIVE BULLET-POINT SUMMARY PATTERN ───── */
+.init-points{display:flex;flex-direction:column;gap:0;margin-top:0}
+.init-point{padding:22px 0;border-bottom:1px solid rgba(184,148,88,.14);display:flex;flex-direction:column;gap:10px}
+.init-point:first-child{padding-top:10px}
+.init-point:last-child{border-bottom:none;padding-bottom:6px}
+.init-point-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.45rem;line-height:1.2;letter-spacing:.005em}
+.init-point-b{font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;line-height:1.85;color:rgba(255,255,255,.78)}
+.init-note{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.5);margin-top:32px;font-style:italic}
+/* ───── IMPLEMENTATION EXAMPLE — Screenshot grid + takeaways ───── */
+.impl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 18px;margin-top:48px}
+.impl-cell{display:flex;flex-direction:column;gap:12px}
+.impl-frame{aspect-ratio:16/9;background:rgba(184,148,88,.04);border:1px dashed rgba(184,148,88,.3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:border-color .25s ease,background .25s ease}
+.impl-frame::before{content:'[ SCREENSHOT ]';font-family:'Jost',sans-serif;font-weight:300;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(184,148,88,.35);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.impl-frame img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.impl-frame:has(img)::before{display:none}
+.impl-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.45;padding:0 4px}
+.impl-caption-num{font-family:'Jost',sans-serif;font-style:normal;font-weight:300;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:6px}
+.impl-caption.placeholder{color:rgba(184,148,88,.42)}
+.impl-takeaways{margin-top:56px;padding-top:36px;border-top:1px solid rgba(184,148,88,.2);display:flex;flex-direction:column;gap:0}
+.impl-takeaways-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:18px}
+.impl-takeaway{padding:18px 0;border-bottom:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;gap:8px}
+.impl-takeaway:last-child{border-bottom:none;padding-bottom:6px}
+.impl-takeaway-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.3rem;line-height:1.2}
+.impl-takeaway-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.96rem;line-height:1.85;color:rgba(255,255,255,.7)}
+.impl-takeaway.placeholder .impl-takeaway-h{color:rgba(184,148,88,.45)}
+.impl-takeaway.placeholder .impl-takeaway-b{color:rgba(255,255,255,.4);font-style:italic}
+/* ───── GWS SPONSORSHIP OPTIONS — 3-cell tier grid ───── */
+.spo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.spo-cell{background:var(--ink);padding:32px 30px 36px;display:flex;flex-direction:column;gap:14px;min-height:300px}
+.spo-cell.featured{background:rgba(184,148,88,.08);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.spo-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.spo-cell.featured .spo-tag{color:var(--gold-lt)}
+.spo-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.spo-name .it{color:var(--gold-lt);font-style:italic}
+.spo-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.3rem;color:var(--gold-lt);line-height:1.3;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.spo-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);margin-top:auto}
+.spo-benefits{margin-top:48px;padding:30px 32px 32px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.spo-benefits-h{font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;padding-bottom:18px;border-bottom:1px solid rgba(184,148,88,.18);margin-bottom:20px}
+.spo-benefits-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px}
+.spo-benefit-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.6;color:rgba(255,255,255,.72);padding-left:22px;position:relative}
+.spo-benefit-item::before{content:'';position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--gold-lt)}
+/* ───── PRESS CAMPAIGNS RFP BRIEF — 6-cell grid ───── */
+.rfp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.rfp-cell{background:var(--ink);padding:30px 28px 32px;display:flex;flex-direction:column;gap:12px;min-height:260px}
+.rfp-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.1rem;line-height:1;letter-spacing:.04em}
+.rfp-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.2;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.rfp-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.85;color:rgba(255,255,255,.6);margin-top:auto}
+/* ───── CURATED MEDIA TARGETS — Two-column grouped lists ───── */
+.media-section-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:48px;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);border-top:none;margin-top:0}
+.media-col{background:var(--ink);padding:30px 32px 34px;display:flex;flex-direction:column;gap:20px}
+.media-col-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.18;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.media-col-h .it{color:var(--gold-lt);font-style:italic}
+.media-group{display:flex;flex-direction:column;gap:6px}
+.media-group-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:var(--gold-lt);line-height:1.4}
+.media-list{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.85;color:rgba(255,255,255,.65)}
+/* ───── PR AGENCY SHORTLIST — Two-column, 3 firms each ───── */
+.agy-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.agy-col{display:flex;flex-direction:column;gap:1px;background:rgba(184,148,88,.18)}
+.agy-col-h{background:rgba(184,148,88,.06);padding:30px 30px 26px;border-bottom:1px solid rgba(184,148,88,.32)}
+.agy-col-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px;line-height:1.5}
+.agy-col-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--white);line-height:1.18}
+.agy-col-name .it{color:var(--gold-lt);font-style:italic}
+.agy-col-sub{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.75;color:rgba(255,255,255,.55);margin-top:14px}
+.agy-cell{background:var(--ink);padding:24px 30px 26px;display:flex;flex-direction:column;gap:8px}
+.agy-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.agy-name .it{color:var(--gold-lt);font-style:italic}
+.agy-base{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.agy-rationale{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.8;color:rgba(255,255,255,.55);margin-top:6px}
+.agy-cell.agy-placeholder{background:rgba(255,255,255,.015);border:1px dashed rgba(184,148,88,.22)}
+.agy-cell.agy-placeholder .agy-name{color:rgba(255,255,255,.4)}
+.agy-cell.agy-placeholder .agy-name .it{color:rgba(184,148,88,.5)}
+.agy-cell.agy-placeholder .agy-base{color:rgba(184,148,88,.4)}
+.agy-cell.agy-placeholder .agy-rationale{color:rgba(255,255,255,.35);font-style:italic}
+.agy-link{display:inline-block;font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:var(--gold);text-decoration:none;margin-left:10px;opacity:.55;transition:opacity .25s ease,color .25s ease;letter-spacing:.05em;vertical-align:middle}
+.agy-link:hover{opacity:1;color:var(--gold-lt)}
+.agy-link.tbd{opacity:.3;cursor:help}
+.agy-link.tbd:hover{opacity:.5}
+/* ───── VANANDA SYSTEM — 4-part framework ───── */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.vs-cell{background:var(--ink);padding:34px 30px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.vs-cell.featured{grid-column:1 / span 3;background:rgba(184,148,88,.06);border-bottom:1px solid rgba(184,148,88,.32);min-height:220px}
+.vs-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.vs-cell.featured .vs-tag{color:var(--gold-lt)}
+.vs-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18}
+.vs-name .it{color:var(--gold-lt);font-style:italic}
+.vs-cell.featured .vs-name{font-size:1.95rem}
+.vs-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.55;margin-top:6px}
+.vs-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.6);margin-top:auto}
+.vs-stack{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.vs-stack-item{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.3}
+.vs-stack-item small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-top:2px;line-height:1.5;font-style:italic}
+/* Outcomes block on Vananda System slide */
+.vs-out{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.vs-out-cell{background:var(--ink);padding:24px 22px;display:flex;flex-direction:column;gap:8px;min-height:130px}
+.vs-out-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.vs-out-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.3}
+/* ───── ECOSYSTEM INFOGRAPHIC — Grouped Hierarchy ───── */
+.eco-group{display:grid;grid-template-columns:1.25fr 1.25fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.eco-pane{background:var(--ink);padding:36px 30px;display:flex;flex-direction:column;gap:14px;min-height:520px}
+.eco-pane.featured{background:rgba(184,148,88,.05);border-top:1px solid rgba(184,148,88,.32);border-bottom:1px solid rgba(184,148,88,.32)}
+.eco-h-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1;letter-spacing:.005em}
+.eco-h-name .it{color:var(--gold-lt);font-style:italic}
+.eco-h-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:8px}
+.eco-pane.featured .eco-h-tag{color:var(--gold-lt)}
+.eco-h-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.5;margin-top:14px}
+.eco-list{display:flex;flex-direction:column;gap:0;margin-top:18px}
+.eco-cat{padding:18px 0;border-top:1px solid rgba(184,148,88,.18);display:flex;flex-direction:column;gap:6px}
+.eco-cat:first-child{border-top:1px solid rgba(184,148,88,.32);padding-top:20px}
+.eco-cat-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.5;order:1}
+.eco-cat-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--white);line-height:1.2;order:2}
+.eco-cat-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.5);order:3}
+.eco-sub{display:flex;flex-direction:column;gap:7px;padding:10px 0 0 14px;margin-top:8px;border-left:1px solid rgba(184,148,88,.25);order:4}
+.eco-sub-item{display:flex;flex-direction:column;gap:2px;padding:4px 0}
+.eco-sub-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:rgba(255,255,255,.85);line-height:1.2}
+.eco-sub-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.66rem;letter-spacing:.04em;color:var(--gold-lt);line-height:1.4;font-style:italic}
+/* Pillars for Montara architect slide */
+.pil{padding:36px 28px;border:1px solid rgba(255,255,255,.06);text-align:left;min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.pil+.pil{border-left:none}
+.pil-num{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.15rem;color:var(--gold);margin-bottom:24px}
+.pil-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.65rem;color:var(--white);margin-bottom:14px;line-height:1.15}
+.pil-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.65)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+/* Architecture two-up split — Tri Vananda for HNWI / Montara for partners */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.arch-cell{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.arch-cell.hi{background:rgba(184,148,88,.04)}
+.arch-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.arch-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1.05}
+.arch-name .it{color:var(--gold-lt);font-style:italic}
+.arch-aud{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.55);line-height:1.4}
+.arch-body{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin-top:auto}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fi-a{animation:fadeUp .9s ease both}
+.fi-a.d1{animation-delay:.15s}.fi-a.d2{animation-delay:.3s}.fi-a.d3{animation-delay:.45s}.fi-a.d4{animation-delay:.6s}
+@media (max-width:1100px){
+  .S{padding:60px 40px}
+  .S.split,.S.bg{padding:60px 40px}
+  .S.split{grid-template-columns:1fr}
+  #s1{grid-template-columns:1fr}
+  .init-chapter{grid-template-columns:1fr;gap:40px}
+  .next{grid-template-columns:1fr}
+  .sum-row{grid-template-columns:1fr;gap:8px}
+  .tlx,.tlx-axis{grid-template-columns:repeat(3,1fr)}
+  .tlx-summit-col,.tlx-summit-tag{display:none}
+  .eco-group{grid-template-columns:1fr}
+  .eco-pane{min-height:auto}
+  .g4,.arch,.three-cards,.vs-grid,.vs-out,.diag-grid,.rfp-grid,.agy-grid,.media-grid,.spo-grid,.spo-benefits-list,.impl-grid,.nwb-grid,.plat-grid,.name-grid,.bt-grid,.arch-siblings,.arch-sub-row,.membership-list{grid-template-columns:1fr}
+  .offerings-table{grid-template-columns:1fr;gap:0}
+  .ot-cell{border-bottom:1px solid rgba(184,148,88,.18)}
+  .script-row{grid-template-columns:1fr;gap:18px;padding:24px 22px}
+  .triratna-grid{grid-template-columns:1fr}
+  .arch-row{flex-direction:column}
+  .three-card{min-height:auto}
+  .vs-cell.featured,.diag-cell.opp{grid-column:1}
+  .pil+.pil{border-left:1px solid rgba(255,255,255,.06)}
+}
+@media print{
+  #bar,#ctr{display:none}
+  .S{break-after:page;min-height:auto}
+}
+
+/* ───── PATAMA BRAND NAME REVEAL ───── */
+.vyana-wrap{display:flex;align-items:center;justify-content:center;min-height:70vh;padding:40px 0;text-align:center}
+.vyana-inner{max-width:900px;margin:0 auto}
+.vyana-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:32px;opacity:.7}
+.vyana-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(5.5rem,13vw,11rem);color:var(--gold-lt);line-height:1;letter-spacing:.02em;margin-bottom:24px}
+.vyana-script{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:rgba(255,255,255,.5);line-height:1.3;margin-bottom:48px;letter-spacing:.04em}
+.vyana-positioning{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.1rem,1.5vw,1.4rem);color:rgba(184,148,88,.82);line-height:1.45;margin-bottom:30px;max-width:560px;margin-left:auto;margin-right:auto;letter-spacing:.005em}
+.vyana-tagline{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.6rem,2.8vw,2.4rem);color:rgba(255,255,255,.95);line-height:1.25;letter-spacing:.005em;max-width:820px;margin:0 auto 14px}
+.vyana-tagline .it{font-style:italic;color:var(--gold-lt)}
+.vyana-strapline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.05rem,1.6vw,1.4rem);color:var(--gold-lt);line-height:1.4;max-width:760px;margin:0 auto 36px;padding-bottom:32px;border-bottom:1px solid rgba(184,148,88,.25)}
+.vyana-etymology{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(184,148,88,.9);line-height:1.55;max-width:680px;margin:0 auto 24px;letter-spacing:.01em}
+.vyana-description{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.62);max-width:660px;margin:0 auto}
+
+/* ───── PATAMA BRAND SCRIPT — StoryBrand 7-part framework ───── */
+.script-intro{margin-top:36px;max-width:880px}
+.script-frame-credit{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:18px;opacity:.7}
+.script-grid{display:flex;flex-direction:column;gap:0;margin-top:40px;border:1px solid rgba(184,148,88,.22)}
+.script-row{display:grid;grid-template-columns:300px 1fr;gap:48px;padding:30px 36px;border-bottom:1px solid rgba(184,148,88,.14);background:var(--ink);align-items:start}
+.script-row:last-child{border-bottom:none}
+.script-row:nth-child(even){background:rgba(184,148,88,.025)}
+.script-head{display:flex;flex-direction:column;gap:8px}
+.script-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.05rem;line-height:1;letter-spacing:.08em}
+.script-label{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--white);line-height:1.2;letter-spacing:.005em}
+.script-label .it{font-style:italic;color:var(--gold-lt)}
+.script-sub{font-family:'Jost',sans-serif;font-weight:200;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:4px}
+.script-body{font-family:'Jost',sans-serif;font-weight:300;font-size:1.02rem;line-height:1.9;color:rgba(255,255,255,.78);max-width:760px}
+.script-body em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.08em}
+.script-body ul{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:8px}
+.script-body ul li{padding-left:22px;position:relative;font-size:.95rem;line-height:1.7}
+.script-body ul li::before{content:'';position:absolute;left:0;top:.82em;width:14px;height:1px;background:var(--gold-lt);opacity:.6}
+.script-body ul li strong{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;color:var(--gold-lt);font-size:1.04rem;display:block;margin-bottom:2px}
+
+/* ───── TRIRATNA — Three Jewels of Montara Wellness ───── */
+.tr-intro-script{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:rgba(184,148,88,.7);line-height:1.3;letter-spacing:.04em;margin:14px 0 8px;display:inline-block}
+.triratna-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.25);border:1px solid rgba(184,148,88,.25);margin-top:48px}
+.tr-cell{background:var(--ink);padding:36px 32px 38px;display:flex;flex-direction:column;gap:14px;min-height:420px}
+.tr-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.05rem;line-height:1;letter-spacing:.08em}
+.tr-jewel{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.95rem;color:var(--white);line-height:1.18;font-style:italic;letter-spacing:.005em}
+.tr-property{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.45rem;color:var(--gold-lt);line-height:1.2;letter-spacing:.005em}
+.tr-role{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.6;padding-bottom:18px;border-bottom:1px solid rgba(184,148,88,.22)}
+.tr-body{font-family:'Jost',sans-serif;font-weight:300;font-size:.94rem;line-height:1.9;color:rgba(255,255,255,.72);margin-top:4px}
+.tr-body em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-lt);font-weight:200;font-size:1.05em}
+.tr-body ul{list-style:none;padding:0;margin:6px 0 0;display:flex;flex-direction:column;gap:9px}
+.tr-body ul li{padding-left:22px;position:relative;font-size:.92rem;line-height:1.7}
+.tr-body ul li::before{content:'';position:absolute;left:0;top:.82em;width:14px;height:1px;background:var(--gold-lt);opacity:.6}
+.tr-body ul li em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-lt);font-weight:200}
+
+.triratna-synthesis{margin-top:56px;padding:38px 42px;background:rgba(184,148,88,.05);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.tr-syn-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;margin-bottom:16px}
+.tr-syn-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.85rem;color:var(--white);line-height:1.32;letter-spacing:.005em;margin-bottom:18px;max-width:940px}
+.tr-syn-h .gd{color:var(--gold-lt)}
+.tr-syn-body{font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;line-height:1.9;color:rgba(255,255,255,.72);max-width:940px}
+
+/* ───── OFFERINGS COLLECTION TABLE — by category, with hero per category ───── */
+.offerings-table{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.22);border:1px solid rgba(184,148,88,.22);margin-top:48px}
+.ot-cell{background:var(--ink);display:flex;flex-direction:column;position:relative}
+.ot-hero{aspect-ratio:16/10;background:linear-gradient(135deg,rgba(184,148,88,.18) 0%,rgba(184,148,88,.04) 100%);border-bottom:1px solid rgba(184,148,88,.22);overflow:hidden;position:relative}
+.ot-hero img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;filter:saturate(.85) brightness(.9)}
+.ot-hero::before{content:'';position:absolute;left:50%;top:50%;width:42px;height:32px;transform:translate(-50%,-58%);border:1.5px solid rgba(184,148,88,.5);border-radius:2px;pointer-events:none;z-index:0}
+.ot-hero::after{content:'';position:absolute;left:50%;top:50%;width:14px;height:14px;transform:translate(-50%,-50%);border:1.5px solid rgba(184,148,88,.5);border-radius:50%;pointer-events:none;z-index:0}
+.ot-hero-overlay{position:absolute;inset:auto 0 0 0;padding:18px 24px 16px;background:linear-gradient(to top,rgba(11,15,19,.95) 0%,rgba(11,15,19,.7) 60%,transparent 100%);z-index:2}
+.ot-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.1rem;line-height:1;letter-spacing:.08em;display:inline-block;margin-right:14px;vertical-align:baseline}
+.ot-cat-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.95rem;color:var(--white);line-height:1.18;letter-spacing:.005em;display:inline}
+.ot-cat-h .it{font-style:italic;color:var(--gold-lt)}
+.ot-body{padding:28px 32px 34px;display:flex;flex-direction:column;gap:16px;flex:1}
+.ot-cat-sub{font-family:'Jost',sans-serif;font-weight:200;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.6;padding-bottom:16px;border-bottom:1px solid rgba(184,148,88,.2)}
+.ot-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.ot-list li{padding-left:18px;position:relative}
+.ot-list li::before{content:'';position:absolute;left:0;top:.78em;width:10px;height:1px;background:var(--gold-lt);opacity:.55}
+.ot-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:rgba(255,255,255,.9);line-height:1.32;display:block}
+.ot-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);line-height:1.55;font-style:italic;opacity:.78;display:block;margin-top:3px}
+
+/* ───── TIMELINE — 4 equal bands (May–Jun · Jul–Aug · Sep–Oct · Nov–Dec) ───── */
+.tlx-wrap{margin-top:48px;position:relative;padding-bottom:8px;padding-top:36px}
+.tlx{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:rgba(184,148,88,.14);border:1px solid rgba(184,148,88,.18);position:relative}
+.tlx-bar{background:var(--ink);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;min-height:54px;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:var(--white);line-height:1.25;position:relative;border:none}
+.tlx-bar.fill{background:linear-gradient(90deg,rgba(184,148,88,.22) 0%,rgba(184,148,88,.32) 100%);color:var(--white)}
+.tlx-bar.fill.summit{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.fill.overlay{background:linear-gradient(135deg,rgba(110,130,100,.22) 25%,rgba(110,130,100,.36) 50%,rgba(110,130,100,.22) 75%);border-top:1px dashed rgba(110,130,100,.45);border-bottom:1px dashed rgba(110,130,100,.45);z-index:3;position:relative}
+.tlx-bar.fill.launch{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.launch small{color:rgba(255,255,255,.85)}
+.tlx-bar small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-top:5px;line-height:1.45}
+.tlx-bar.summit small{color:rgba(255,255,255,.85)}
+.tlx-axis{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;border-top:1px solid rgba(184,148,88,.32)}
+.tlx-month{padding:14px 12px 10px;background:var(--ink);font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;line-height:1.5}
+.tlx-month.summit{color:var(--gold-lt);background:rgba(184,148,88,.06)}
+.tlx-month strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.78rem;color:var(--gold);margin-top:4px;letter-spacing:.02em;text-transform:none;line-height:1}
+.tlx-month.summit strong{color:var(--gold-lt)}
+.tlx-summit-col{display:none}
+.tlx-summit-tag{position:absolute;top:0px;left:81.25%;transform:translateX(-50%);font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.4em;color:var(--gold-lt);background:var(--ink);padding:5px 14px;border:1px solid rgba(184,148,88,.4);border-radius:2px;white-space:nowrap;z-index:2}
+/* Initiative chapter */
+.init-chapter{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:24px}
+.init-chapter.solo{grid-template-columns:1fr;gap:0;max-width:780px}
+.init-chapter.solo .init-mini-tl{margin-top:32px}
+.init-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.init-when small{display:block;font-size:.55rem;letter-spacing:.28em;color:rgba(184,148,88,.6);margin-top:6px}
+.init-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;color:var(--white);margin-top:24px}
+.init-name .it{color:var(--gold-lt)}
+.init-overline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:rgba(255,255,255,.55);margin-top:16px;line-height:1.4}
+/* Init mini-marker — 5 cells */
+.init-mini-tl{margin-top:6px;padding:18px 22px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.init-mini-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(184,148,88,.18)}
+.init-mini-bar{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:rgba(184,148,88,.14)}
+.init-mini-cell{background:rgba(11,15,19,.5);height:14px}
+.init-mini-cell.on{background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)}
+.init-mini-cell.summit{background:rgba(184,148,88,.55)}
+.init-mini-axis{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;margin-top:8px}
+.init-mini-month{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;line-height:1.4}
+.init-mini-month.s{color:var(--gold)}
+.init-mini-month.y{color:rgba(184,148,88,.7)}
+/* Summary list */
+.sum-list{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.sum-row{background:var(--ink);padding:22px 28px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:baseline}
+.sum-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.7}
+.sum-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.3}
+.sum-name .it{color:var(--gold-lt);font-style:italic}
+/* Intro three-card layout — image cards with caption */
+.three-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.three-card{background:var(--ink);display:flex;flex-direction:column;min-height:520px}
+.three-card-img{aspect-ratio:1.3/1;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.18),transparent 65%),radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.15),transparent 60%),linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%)}
+.three-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.three-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,.05) 0%,rgba(11,15,19,.45) 100%);z-index:1;pointer-events:none}
+.three-card-img.logo{background:var(--white);display:flex;align-items:center;justify-content:center;padding:48px}
+.three-card-img.logo img{position:static;inset:auto;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+.three-card-img.logo::after{display:none}
+.three-card-content{padding:32px 28px 36px;display:flex;flex-direction:column;gap:14px;flex:1}
+.three-card-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.three-card-text{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.45rem;color:var(--white);line-height:1.3}
+/* Next-steps cards */
+.next{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.next-cell{background:var(--ink);padding:30px 22px;display:flex;flex-direction:column;gap:14px;min-height:200px}
+.next-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.85}
+.next-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.3}
+.next-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.6;margin-top:auto}
+/* ───── BRAND DIAGNOSTIC — Strong / Weak / Opportunity ───── */
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.diag-cell{background:var(--ink);padding:38px 36px 42px;display:flex;flex-direction:column;gap:18px;min-height:auto}
+.diag-cell.opp{grid-column:1 / span 2;background:rgba(184,148,88,.06);border-top:1px solid rgba(184,148,88,.32);min-height:auto;padding:36px 36px 40px}
+.diag-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.diag-cell.weak .diag-h{color:rgba(255,255,255,.45);border-bottom-color:rgba(255,255,255,.1)}
+.diag-cell.opp .diag-h{color:var(--gold-lt);border-bottom-color:rgba(184,148,88,.32)}
+.diag-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.3;margin-bottom:6px}
+.diag-cell.opp .diag-name{font-size:2rem;font-style:italic;color:var(--gold-lt);max-width:880px}
+.diag-list{display:flex;flex-direction:column;gap:0;margin-top:0}
+.diag-list-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.65;color:rgba(255,255,255,.62);padding:18px 0 18px 44px;position:relative;border-bottom:1px solid rgba(255,255,255,.05)}
+.diag-list-item:last-child{border-bottom:none}
+.diag-list-item::before{content:counter(diag-num, decimal-leading-zero);counter-increment:diag-num;position:absolute;left:0;top:18px;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;letter-spacing:.04em;line-height:1.5;width:30px}
+.diag-cell.weak .diag-list-item::before{color:rgba(184,148,88,.5)}
+.diag-list{counter-reset:diag-num}
+.diag-list-item strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);font-style:italic;margin-bottom:6px;letter-spacing:.005em}
+.diag-cell.weak .diag-list-item strong{color:rgba(255,255,255,.85)}
+/* ───── BRAND ARCHITECTURE DIAGRAM ───── */
+.arch-diagram{display:flex;flex-direction:column;gap:0;align-items:center;margin-top:48px}
+.arch-tier{display:flex;justify-content:center;align-items:stretch;gap:1px;width:100%;position:relative}
+.arch-connector{width:1px;height:24px;background:rgba(184,148,88,.32);margin:0 auto}
+.arch-card{background:var(--ink);border:1px solid rgba(184,148,88,.3);padding:24px 26px;display:flex;flex-direction:column;gap:8px;text-align:center;flex:1;max-width:520px;min-height:120px}
+.arch-card.master{background:rgba(184,148,88,.12);border-color:rgba(184,148,88,.55);border-width:1.5px}
+.arch-card.parent{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.15);max-width:540px}
+.arch-card.partner{border-style:dashed;border-color:rgba(184,148,88,.4);background:rgba(184,148,88,.04)}
+.arch-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.arch-card.master .arch-tag{color:var(--gold-lt)}
+.arch-card.parent .arch-tag{color:rgba(255,255,255,.4)}
+.arch-name-d{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.2;letter-spacing:.005em}
+.arch-card.master .arch-name-d{font-size:1.45rem;color:var(--gold-lt);font-style:italic}
+.arch-card.parent .arch-name-d{color:rgba(255,255,255,.7);font-size:1.15rem}
+.arch-sub-d{font-family:'Jost',sans-serif;font-weight:300;font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.5;margin-top:2px}
+.arch-row{display:flex;justify-content:center;gap:20px;width:100%;flex-wrap:wrap}
+.arch-row .arch-card{flex:1 1 0;max-width:none}
+.arch-siblings{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;margin-top:0}
+.arch-siblings .arch-card{max-width:none;flex:none;margin:0}
+.arch-sub-tier{margin-top:18px;padding:24px 28px;background:rgba(184,148,88,.04);border:1px solid rgba(184,148,88,.18);width:100%;display:flex;flex-direction:column;gap:18px}
+.arch-sub-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;text-align:center}
+.arch-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%}
+.arch-sub-row .arch-card{max-width:none;flex:none;background:var(--ink);min-height:100px}
+/* ───── BRAND ARCHITECTURE DIAGRAM (legacy keys preserved) ───── */
+
+/* ───── BRAND HIERARCHY (PATAMA-led ecosystem) ───── */
+.hier{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:30px;width:100%}
+.hier-tier{display:flex;justify-content:center;align-items:stretch;gap:18px;width:100%;flex-wrap:wrap}
+.hier-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:8px}
+.hier-name{font-family:'Cormorant Garamond',serif;font-weight:200;line-height:1.05;color:var(--white);letter-spacing:.015em}
+.hier-name .it{font-style:italic;color:var(--gold-lt)}
+.hier-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.6);margin-top:8px}
+.hier-card{background:var(--ink);border:1px solid rgba(184,148,88,.3);padding:22px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;flex:1}
+.hier-connector{width:1px;height:34px;background:linear-gradient(180deg,rgba(184,148,88,.55) 0%,rgba(184,148,88,.2) 100%);margin:0 auto}
+.hier-apex{background:rgba(184,148,88,.10);border:1.5px solid rgba(184,148,88,.55);padding:30px 36px;max-width:680px}
+.hier-apex .hier-name{font-size:3.6rem;color:var(--gold-lt);font-style:italic;letter-spacing:.02em}
+.hier-apex .hier-tag{color:var(--gold-lt);font-size:.6rem}
+.hier-apex .hier-desc{color:rgba(255,255,255,.72);font-size:.85rem;max-width:520px}
+.hier-platforms{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;max-width:980px}
+.hier-platform{background:var(--ink);border:1px solid rgba(184,148,88,.4);padding:24px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+.hier-platform .hier-name{font-size:2.1rem;font-style:italic;letter-spacing:.04em}
+.hier-platform .hier-desc{font-size:.78rem;max-width:300px}
+.hier-platform-with-nest{padding-bottom:0}
+.hier-nest-connector{width:1px;height:22px;background:rgba(184,148,88,.45);margin:18px auto 0}
+.hier-nested{margin-top:0;width:calc(100% - 40px);background:rgba(184,148,88,.04);border:1px dashed rgba(184,148,88,.4);padding:16px 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hier-nested .hier-tag{font-size:.5rem;color:var(--gold-lt);letter-spacing:.28em}
+.hier-nested .hier-name{font-size:1.35rem;color:var(--white);font-style:italic}
+.hier-nested .hier-desc{font-size:.72rem;margin-top:6px}
+.hier-experience{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:980px}
+.hier-experience .hier-card{padding:18px 22px}
+.hier-experience .hier-name{font-size:1.5rem;font-style:italic;color:var(--white)}
+.hier-experience .hier-tag{font-size:.5rem;letter-spacing:.28em}
+.hier-fb-wrap{display:flex;flex-direction:column;align-items:center;width:100%;max-width:980px}
+.hier-fb-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:14px}
+.hier-fb{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;width:100%}
+.hier-chip{background:rgba(255,255,255,.02);border:1px solid rgba(184,148,88,.28);padding:12px 22px;font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.88);letter-spacing:.025em}
+.hier-parent{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.18);padding:18px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:520px}
+.hier-parent .hier-tag{color:rgba(255,255,255,.4)}
+.hier-parent .hier-name{font-size:1.15rem;color:rgba(255,255,255,.7);letter-spacing:.22em;font-style:normal}
+@media (max-width:880px){
+  .hier-platforms{grid-template-columns:1fr}
+  .hier-experience{grid-template-columns:1fr}
+  .hier-apex .hier-name{font-size:2.6rem}
+}
+
+/* ───── COLLECTIVE OFFERINGS GRID ───── */
+.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.plat-cell{background:var(--ink);padding:24px 22px;display:flex;flex-direction:column;gap:8px;min-height:160px}
+.plat-cell.featured{background:rgba(184,148,88,.08);border-top:1px solid rgba(184,148,88,.32);border-bottom:1px solid rgba(184,148,88,.32);grid-column:1 / span 4;min-height:auto;text-align:center;padding:28px}
+.plat-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.95rem;color:var(--gold-lt);line-height:1;letter-spacing:.04em}
+.plat-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.22;letter-spacing:.005em}
+.plat-cell.featured .plat-h{font-size:1.55rem;color:var(--gold-lt);font-style:italic}
+.plat-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.65;color:rgba(255,255,255,.55);margin-top:auto}
+.plat-cell.featured .plat-b{font-size:.92rem;color:rgba(255,255,255,.7);max-width:680px;margin:6px auto 0}
+/* ───── NAMING DIRECTIONS ───── */
+.name-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.name-cell{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:14px;min-height:380px}
+.name-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.name-word{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:3rem;color:var(--white);line-height:1.05;letter-spacing:.01em;margin-top:4px}
+.name-word .it{font-style:italic;color:var(--gold-lt)}
+.name-meaning{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.name-rationale{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.65)}
+.name-peers{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-top:auto;line-height:1.6}
+/* ───── NEW WELLNESS BRAND · 3 PILLARS (what the brand brings together) ───── */
+.bt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.bt-cell{background:var(--ink);padding:30px 28px;display:flex;flex-direction:column;gap:10px;min-height:200px}
+.bt-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.bt-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.22;letter-spacing:.005em}
+.bt-name .it{color:var(--gold-lt);font-style:italic}
+.bt-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.6);margin-top:auto}
+/* ───── MEMBERSHIP & ACCESS SECTION ───── */
+.membership-section{margin-top:56px;padding:38px 40px;border:1px solid rgba(184,148,88,.3);background:rgba(184,148,88,.04)}
+.membership-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;margin-bottom:14px}
+.membership-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.7rem;color:var(--white);line-height:1.25;letter-spacing:.005em;margin-bottom:14px;max-width:880px}
+.membership-h .it{font-style:italic;color:var(--gold-lt)}
+.membership-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.7);max-width:880px;margin-bottom:24px}
+.membership-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px;margin-top:20px;padding-top:24px;border-top:1px solid rgba(184,148,88,.2)}
+.membership-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.65)}
+.membership-item strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;color:var(--gold-lt);font-size:1.1rem;margin-bottom:4px}
+/* ───── KEY CONCEPT CALLOUT ───── */
+.concept-callout{margin-top:48px;padding:38px 40px;background:rgba(184,148,88,.06);border:1px solid rgba(184,148,88,.32);text-align:center}
+.concept-callout-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:18px}
+.concept-callout-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1.25;letter-spacing:.005em}
+.concept-callout-h .it{color:var(--gold-lt);font-style:italic}
+/* ───── OFFER CATEGORIES — horizontal rows with age-group checkboxes ───── */
+.offer-rows{display:flex;flex-direction:column;gap:0;border:1px solid rgba(184,148,88,.22)}
+/* ───── TRI VANANDA POSITION CALLOUT ───── */
+.position-callout{margin-top:56px;padding:40px 42px;background:rgba(184,148,88,.04);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.position-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;margin-bottom:18px}
+.position-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.85rem;color:var(--white);line-height:1.25;letter-spacing:.005em;margin-bottom:14px;max-width:880px}
+.position-h .it{font-style:italic;color:var(--gold-lt)}
+.position-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.95rem;line-height:1.85;color:rgba(255,255,255,.7);max-width:880px}
+/* ───── NEW WELLNESS BRAND · COMPONENTS GRID ───── */
+.nwb-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.nwb-item{background:var(--ink);padding:28px 32px;display:flex;flex-direction:column;gap:10px;min-height:160px}
+.nwb-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1rem;line-height:1;letter-spacing:.04em}
+.nwb-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.2;letter-spacing:.005em}
+.nwb-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.75;color:rgba(255,255,255,.5);font-style:italic;margin-top:auto}
+.nwb-sub{display:flex;flex-direction:column;gap:8px;margin-top:8px;padding-left:14px;border-left:1px solid rgba(184,148,88,.3)}
+.nwb-sub-item{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1rem;color:var(--gold-lt);line-height:1.4}
+/* ───── INITIATIVE BULLET-POINT SUMMARY PATTERN ───── */
+.init-points{display:flex;flex-direction:column;gap:0;margin-top:0}
+.init-point{padding:22px 0;border-bottom:1px solid rgba(184,148,88,.14);display:flex;flex-direction:column;gap:10px}
+.init-point:first-child{padding-top:10px}
+.init-point:last-child{border-bottom:none;padding-bottom:6px}
+.init-point-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.45rem;line-height:1.2;letter-spacing:.005em}
+.init-point-b{font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;line-height:1.85;color:rgba(255,255,255,.78)}
+.init-note{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.5);margin-top:32px;font-style:italic}
+/* ───── IMPLEMENTATION EXAMPLE — Screenshot grid + takeaways ───── */
+.impl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 18px;margin-top:48px}
+.impl-cell{display:flex;flex-direction:column;gap:12px}
+.impl-frame{aspect-ratio:16/9;background:rgba(184,148,88,.04);border:1px dashed rgba(184,148,88,.3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:border-color .25s ease,background .25s ease}
+.impl-frame::before{content:'[ SCREENSHOT ]';font-family:'Jost',sans-serif;font-weight:300;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(184,148,88,.35);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.impl-frame img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.impl-frame:has(img)::before{display:none}
+.impl-caption{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.45;padding:0 4px}
+.impl-caption-num{font-family:'Jost',sans-serif;font-style:normal;font-weight:300;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:6px}
+.impl-caption.placeholder{color:rgba(184,148,88,.42)}
+.impl-takeaways{margin-top:56px;padding-top:36px;border-top:1px solid rgba(184,148,88,.2);display:flex;flex-direction:column;gap:0}
+.impl-takeaways-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:18px}
+.impl-takeaway{padding:18px 0;border-bottom:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;gap:8px}
+.impl-takeaway:last-child{border-bottom:none;padding-bottom:6px}
+.impl-takeaway-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.3rem;line-height:1.2}
+.impl-takeaway-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.96rem;line-height:1.85;color:rgba(255,255,255,.7)}
+.impl-takeaway.placeholder .impl-takeaway-h{color:rgba(184,148,88,.45)}
+.impl-takeaway.placeholder .impl-takeaway-b{color:rgba(255,255,255,.4);font-style:italic}
+/* ───── GWS SPONSORSHIP OPTIONS — 3-cell tier grid ───── */
+.spo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.spo-cell{background:var(--ink);padding:32px 30px 36px;display:flex;flex-direction:column;gap:14px;min-height:300px}
+.spo-cell.featured{background:rgba(184,148,88,.08);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.spo-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.spo-cell.featured .spo-tag{color:var(--gold-lt)}
+.spo-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.spo-name .it{color:var(--gold-lt);font-style:italic}
+.spo-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.3rem;color:var(--gold-lt);line-height:1.3;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.spo-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);margin-top:auto}
+.spo-benefits{margin-top:48px;padding:30px 32px 32px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.spo-benefits-h{font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;padding-bottom:18px;border-bottom:1px solid rgba(184,148,88,.18);margin-bottom:20px}
+.spo-benefits-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px}
+.spo-benefit-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.6;color:rgba(255,255,255,.72);padding-left:22px;position:relative}
+.spo-benefit-item::before{content:'';position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--gold-lt)}
+/* ───── PRESS CAMPAIGNS RFP BRIEF — 6-cell grid ───── */
+.rfp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.rfp-cell{background:var(--ink);padding:30px 28px 32px;display:flex;flex-direction:column;gap:12px;min-height:260px}
+.rfp-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.1rem;line-height:1;letter-spacing:.04em}
+.rfp-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.4rem;color:var(--white);line-height:1.2;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.rfp-b{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.85;color:rgba(255,255,255,.6);margin-top:auto}
+/* ───── CURATED MEDIA TARGETS — Two-column grouped lists ───── */
+.media-section-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:48px;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);border-top:none;margin-top:0}
+.media-col{background:var(--ink);padding:30px 32px 34px;display:flex;flex-direction:column;gap:20px}
+.media-col-h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.18;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.media-col-h .it{color:var(--gold-lt);font-style:italic}
+.media-group{display:flex;flex-direction:column;gap:6px}
+.media-group-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:var(--gold-lt);line-height:1.4}
+.media-list{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.85;color:rgba(255,255,255,.65)}
+/* ───── PR AGENCY SHORTLIST — Two-column, 3 firms each ───── */
+.agy-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.agy-col{display:flex;flex-direction:column;gap:1px;background:rgba(184,148,88,.18)}
+.agy-col-h{background:rgba(184,148,88,.06);padding:30px 30px 26px;border-bottom:1px solid rgba(184,148,88,.32)}
+.agy-col-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px;line-height:1.5}
+.agy-col-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--white);line-height:1.18}
+.agy-col-name .it{color:var(--gold-lt);font-style:italic}
+.agy-col-sub{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.75;color:rgba(255,255,255,.55);margin-top:14px}
+.agy-cell{background:var(--ink);padding:24px 30px 26px;display:flex;flex-direction:column;gap:8px}
+.agy-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.agy-name .it{color:var(--gold-lt);font-style:italic}
+.agy-base{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.agy-rationale{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.8;color:rgba(255,255,255,.55);margin-top:6px}
+.agy-cell.agy-placeholder{background:rgba(255,255,255,.015);border:1px dashed rgba(184,148,88,.22)}
+.agy-cell.agy-placeholder .agy-name{color:rgba(255,255,255,.4)}
+.agy-cell.agy-placeholder .agy-name .it{color:rgba(184,148,88,.5)}
+.agy-cell.agy-placeholder .agy-base{color:rgba(184,148,88,.4)}
+.agy-cell.agy-placeholder .agy-rationale{color:rgba(255,255,255,.35);font-style:italic}
+.agy-link{display:inline-block;font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:var(--gold);text-decoration:none;margin-left:10px;opacity:.55;transition:opacity .25s ease,color .25s ease;letter-spacing:.05em;vertical-align:middle}
+.agy-link:hover{opacity:1;color:var(--gold-lt)}
+.agy-link.tbd{opacity:.3;cursor:help}
+.agy-link.tbd:hover{opacity:.5}
+/* ───── VANANDA SYSTEM — 4-part framework ───── */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.vs-cell{background:var(--ink);padding:34px 30px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.vs-cell.featured{grid-column:1 / span 3;background:rgba(184,148,88,.06);border-bottom:1px solid rgba(184,148,88,.32);min-height:220px}
+.vs-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.vs-cell.featured .vs-tag{color:var(--gold-lt)}
+.vs-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18}
+.vs-name .it{color:var(--gold-lt);font-style:italic}
+.vs-cell.featured .vs-name{font-size:1.95rem}
+.vs-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.55;margin-top:6px}
+.vs-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.6);margin-top:auto}
+.vs-stack{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.vs-stack-item{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.3}
+.vs-stack-item small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-top:2px;line-height:1.5;font-style:italic}
+/* Outcomes block on Vananda System slide */
+.vs-out{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.vs-out-cell{background:var(--ink);padding:24px 22px;display:flex;flex-direction:column;gap:8px;min-height:130px}
+.vs-out-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.vs-out-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.3}
+/* ───── ECOSYSTEM INFOGRAPHIC — Grouped Hierarchy ───── */
+.eco-group{display:grid;grid-template-columns:1.25fr 1.25fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.eco-pane{background:var(--ink);padding:36px 30px;display:flex;flex-direction:column;gap:14px;min-height:520px}
+.eco-pane.featured{background:rgba(184,148,88,.05);border-top:1px solid rgba(184,148,88,.32);border-bottom:1px solid rgba(184,148,88,.32)}
+.eco-h-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1;letter-spacing:.005em}
+.eco-h-name .it{color:var(--gold-lt);font-style:italic}
+.eco-h-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:8px}
+.eco-pane.featured .eco-h-tag{color:var(--gold-lt)}
+.eco-h-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.5;margin-top:14px}
+.eco-list{display:flex;flex-direction:column;gap:0;margin-top:18px}
+.eco-cat{padding:18px 0;border-top:1px solid rgba(184,148,88,.18);display:flex;flex-direction:column;gap:6px}
+.eco-cat:first-child{border-top:1px solid rgba(184,148,88,.32);padding-top:20px}
+.eco-cat-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);line-height:1.5;order:1}
+.eco-cat-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--white);line-height:1.2;order:2}
+.eco-cat-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.5);order:3}
+.eco-sub{display:flex;flex-direction:column;gap:7px;padding:10px 0 0 14px;margin-top:8px;border-left:1px solid rgba(184,148,88,.25);order:4}
+.eco-sub-item{display:flex;flex-direction:column;gap:2px;padding:4px 0}
+.eco-sub-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:rgba(255,255,255,.85);line-height:1.2}
+.eco-sub-desc{font-family:'Jost',sans-serif;font-weight:200;font-size:.66rem;letter-spacing:.04em;color:var(--gold-lt);line-height:1.4;font-style:italic}
+/* Pillars for Montara architect slide */
+.pil{padding:36px 28px;border:1px solid rgba(255,255,255,.06);text-align:left;min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.pil+.pil{border-left:none}
+.pil-num{font-family:'Cormorant Garamond',serif;font-weight:200;font-style:italic;font-size:1.15rem;color:var(--gold);margin-bottom:24px}
+.pil-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.65rem;color:var(--white);margin-bottom:14px;line-height:1.15}
+.pil-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.65)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+/* Architecture two-up split — Tri Vananda for HNWI / Montara for partners */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.arch-cell{background:var(--ink);padding:36px 32px;display:flex;flex-direction:column;gap:14px;min-height:280px}
+.arch-cell.hi{background:rgba(184,148,88,.04)}
+.arch-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.arch-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1.05}
+.arch-name .it{color:var(--gold-lt);font-style:italic}
+.arch-aud{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.55);line-height:1.4}
+.arch-body{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.6);margin-top:auto}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fi-a{animation:fadeUp .9s ease both}
+.fi-a.d1{animation-delay:.15s}.fi-a.d2{animation-delay:.3s}.fi-a.d3{animation-delay:.45s}.fi-a.d4{animation-delay:.6s}
+@media (max-width:1100px){
+  .S{padding:60px 40px}
+  .S.split,.S.bg{padding:60px 40px}
+  .S.split{grid-template-columns:1fr}
+  #s1{grid-template-columns:1fr}
+  .init-chapter{grid-template-columns:1fr;gap:40px}
+  .next{grid-template-columns:1fr}
+  .sum-row{grid-template-columns:1fr;gap:8px}
+  .tlx,.tlx-axis{grid-template-columns:repeat(3,1fr)}
+  .tlx-summit-col,.tlx-summit-tag{display:none}
+  .eco-group{grid-template-columns:1fr}
+  .eco-pane{min-height:auto}
+  .g4,.arch,.three-cards,.vs-grid,.vs-out,.diag-grid,.rfp-grid,.agy-grid,.media-grid,.spo-grid,.spo-benefits-list,.impl-grid,.nwb-grid,.plat-grid,.name-grid,.bt-grid,.arch-siblings,.arch-sub-row,.membership-list{grid-template-columns:1fr}
+  .offerings-table{grid-template-columns:1fr;gap:0}
+  .ot-cell{border-bottom:1px solid rgba(184,148,88,.18)}
+  .script-row{grid-template-columns:1fr;gap:18px;padding:24px 22px}
+  .triratna-grid{grid-template-columns:1fr}
+  .arch-row{flex-direction:column}
+  .three-card{min-height:auto}
+  .vs-cell.featured,.diag-cell.opp{grid-column:1}
+  .pil+.pil{border-left:1px solid rgba(255,255,255,.06)}
+}
+@media print{
+  #bar,#ctr{display:none}
+  .S{break-after:page;min-height:auto}
+}
+
+/* ───── 30-BRAND STUDY · INTRO (no thumbnails) ───── */
+.bi-frame{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px}
+.bi-frame-cell{background:var(--ink);padding:42px 44px;display:flex;flex-direction:column;gap:18px;min-height:340px}
+.bi-frame-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.bi-frame-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.2rem;color:var(--white);line-height:1.1;margin-bottom:6px}
+.bi-frame-title .it{font-style:italic;color:var(--gold-lt)}
+.bi-dims{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.bi-dim{display:grid;grid-template-columns:170px 1fr;gap:24px;align-items:baseline;padding:14px 0;border-top:1px solid rgba(184,148,88,.14)}
+.bi-dim:first-child{border-top:0;padding-top:6px}
+.bi-dim-name{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.6}
+.bi-dim-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.02rem;color:rgba(255,255,255,.68);line-height:1.45}
+.bi-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:36px;margin-top:48px;padding-top:36px;border-top:1px solid rgba(184,148,88,.15)}
+.bi-legend-cell{}
+.bi-legend-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.3rem;color:var(--gold-lt);line-height:1;margin-bottom:8px}
+.bi-legend-name{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.7);line-height:1.6}
+
+/* ───── 30-BRAND STUDY · CATEGORY PAGE (visual + copy per brand) ───── */
+.cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:42px;padding-bottom:24px;border-bottom:1px solid rgba(184,148,88,.18)}
+.cat-head-left{}
+.cat-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:var(--gold-lt);line-height:1;letter-spacing:.04em}
+.cat-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;color:var(--white);margin-top:12px}
+.cat-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;color:rgba(255,255,255,.6);line-height:1.4;max-width:480px;text-align:right;padding-bottom:8px}
+.cat-three{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18)}
+.cat-card{background:var(--ink);display:flex;flex-direction:column;position:relative;min-height:680px}
+.cat-card.pinned{background:linear-gradient(180deg,var(--ink) 0%,rgba(184,148,88,.04) 100%)}
+.cat-pin{position:absolute;top:14px;right:14px;font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:5px 10px;border-radius:2px;z-index:3;line-height:1}
+.cat-img{aspect-ratio:1100/1556;position:relative;overflow:hidden;background:#000}
+.cat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cat-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,0) 0%,rgba(11,15,19,.12) 100%);z-index:1;pointer-events:none}
+.cat-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cat-card-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.75rem;color:var(--white);line-height:1.15}
+.cat-card.pinned .cat-card-name{color:var(--gold-lt)}
+.cat-card-loc{font-family:'Jost',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(184,148,88,.8);line-height:1.5}
+.cat-card-essence{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.12rem;color:rgba(255,255,255,.65);line-height:1.4;padding:10px 0 6px;border-bottom:1px solid rgba(184,148,88,.14)}
+.cat-block{display:flex;flex-direction:column;gap:5px;padding-top:6px}
+.cat-block-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.cat-block-text{font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.78)}
+.cat-takeaway{margin-top:32px;padding:22px 30px;border-left:2px solid var(--gold);background:rgba(184,148,88,.04);display:flex;align-items:baseline;gap:32px}
+.cat-takeaway-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.56rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);flex-shrink:0;white-space:nowrap;line-height:1.6}
+.cat-takeaway-text{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--white);line-height:1.4}
+.cat-takeaway-text .it{font-style:italic;color:var(--gold-lt)}
+
+/* ───── 30-BRAND STUDY · SUMMARY (Brand identity development for PATAMA) ───── */
+.bid-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:42px}
+.bid-col{background:var(--ink);padding:36px 38px;display:flex;flex-direction:column}
+.bid-col-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:10px}
+.bid-col-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.8rem;color:var(--white);line-height:1.15;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.bid-col-title .it{font-style:italic;color:var(--gold-lt)}
+.bid-row{display:grid;grid-template-columns:30px 130px 1fr;gap:14px;padding:16px 0;border-top:1px solid rgba(184,148,88,.1);align-items:baseline}
+.bid-row:first-of-type{border-top:0;padding-top:6px}
+.bid-row-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;color:var(--gold-lt);line-height:1}
+.bid-row-name{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--white);line-height:1.6}
+.bid-row-text{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.7)}
+
+/* ───── 30-BRAND STUDY · DIRECTION (PATAMA visual + verbal direction) ───── */
+.bdir-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:42px}
+.bdir-col{background:var(--ink);padding:32px 34px;display:flex;flex-direction:column}
+.bdir-col-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:8px}
+.bdir-col-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.7rem;color:var(--white);line-height:1.15;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.bdir-col-title .it{font-style:italic;color:var(--gold-lt)}
+.bdir-card{padding:18px 0;border-top:1px solid rgba(184,148,88,.1)}
+.bdir-card:first-of-type{border-top:0;padding-top:4px}
+.bdir-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;margin-bottom:5px}
+.bdir-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2;margin-bottom:8px}
+.bdir-name .it{font-style:italic;color:var(--gold-lt)}
+.bdir-text{font-family:'Jost',sans-serif;font-weight:300;font-size:.76rem;line-height:1.7;color:rgba(255,255,255,.72)}
+.bdir-refuse{font-family:'Jost',sans-serif;font-weight:200;font-size:.68rem;line-height:1.6;color:rgba(255,255,255,.45);margin-top:6px;font-style:italic}
+/* Brand identity sample — logo + tagline on Direction page */
+.bid-sample{margin:42px auto 0;padding:48px 60px;background:linear-gradient(180deg,rgba(184,148,88,.05) 0%,rgba(184,148,88,.02) 100%);border:1px solid rgba(184,148,88,.28);max-width:780px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0}
+.bid-sample-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:24px}
+.bid-sample-mark{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(4rem,8vw,6.5rem);color:var(--gold-lt);line-height:1;letter-spacing:.02em}
+.bid-sample-rule{width:60px;height:1px;background:var(--gold);margin:22px 0 20px}
+.bid-sample-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.15rem,1.8vw,1.5rem);color:rgba(255,255,255,.85);line-height:1.4;letter-spacing:.01em}
+.bid-sample-subtagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(.88rem,1.15vw,1.05rem);color:rgba(255,255,255,.55);line-height:1.5;margin-top:14px;letter-spacing:.01em}
+
+/* ───── COLLATERAL SET SAMPLE ───── */
+.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:42px}
+.coll-card{background:var(--ink);padding:30px 28px;display:flex;flex-direction:column;gap:14px;position:relative;min-height:780px}
+.coll-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:var(--gold-lt);line-height:1;letter-spacing:.04em}
+.coll-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.54rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:-4px}
+.coll-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.42rem;color:var(--white);line-height:1.2;margin-top:6px;margin-bottom:6px}
+.coll-name .it{font-style:italic;color:var(--gold-lt)}
+.coll-placeholder{aspect-ratio:4/5;background:radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.08),transparent 65%),radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.06),transparent 60%),linear-gradient(135deg,#0e131a 0%,#141c22 100%);border:1px solid rgba(184,148,88,.22);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:8px 0 14px}
+.coll-crop{position:absolute;width:14px;height:14px;border-color:rgba(184,148,88,.55);border-style:solid;border-width:0}
+.coll-crop.tl{top:10px;left:10px;border-top-width:1px;border-left-width:1px}
+.coll-crop.tr{top:10px;right:10px;border-top-width:1px;border-right-width:1px}
+.coll-crop.bl{bottom:10px;left:10px;border-bottom-width:1px;border-left-width:1px}
+.coll-crop.br{bottom:10px;right:10px;border-bottom-width:1px;border-right-width:1px}
+.coll-await{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(244,239,229,.4);text-align:center;padding:0 24px;line-height:1.4;margin-bottom:14px}
+.coll-format{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);line-height:1.5;position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap}
+.coll-block{display:flex;flex-direction:column;gap:5px;padding-top:6px;border-top:1px solid rgba(184,148,88,.12)}
+.coll-block:first-of-type{border-top:0}
+.coll-block-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.coll-block-text{font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;line-height:1.7;color:rgba(255,255,255,.72)}
+/* Collateral intro page */
+.coll-intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:42px}
+.coll-intro-cell{background:var(--ink);padding:32px 30px;display:flex;flex-direction:column;gap:12px;min-height:300px}
+.coll-intro-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.coll-intro-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.45rem;color:var(--white);line-height:1.2;margin-bottom:6px}
+.coll-intro-title .it{font-style:italic;color:var(--gold-lt)}
+.coll-intro-list{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.coll-intro-row{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.7);display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:baseline}
+.coll-intro-row .n{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:var(--gold-lt);line-height:1}
+
+/* ───── PATAMA COLLECTIVE · TIER CARDS ───── */
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.tier-card{background:var(--ink);padding:36px 32px 32px;display:flex;flex-direction:column;gap:14px;position:relative;min-height:520px}
+.tier-card.patrons{background:linear-gradient(180deg,var(--ink) 0%,rgba(184,148,88,.06) 100%)}
+.tier-num{font-family:'Jost',sans-serif;font-weight:200;font-size:.56rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.tier-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;color:rgba(184,148,88,.8);line-height:1.3;margin-top:-4px}
+.tier-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.2;margin-top:8px;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.tier-card.patrons .tier-name{color:var(--gold-lt)}
+.tier-name .it{font-style:italic;color:var(--gold-lt)}
+.tier-body{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.72);margin-top:6px}
+.tier-list{display:flex;flex-direction:column;gap:8px;padding:0;margin:14px 0 0;list-style:none}
+.tier-list li{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.55;color:rgba(255,255,255,.74);padding-left:16px;position:relative}
+.tier-list li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:1px;background:rgba(184,148,88,.6)}
+.tier-audience{margin-top:auto;padding-top:18px;border-top:1px solid rgba(184,148,88,.14);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.95rem;color:rgba(184,148,88,.85);line-height:1.45}
+
+/* PATAMA Collective · Sub-units (Where the Collective lives) */
+.units-tier{margin-top:32px;padding:24px 28px;background:rgba(184,148,88,.04);border:1px solid rgba(184,148,88,.18);width:100%;display:flex;flex-direction:column;gap:18px}
+.units-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);line-height:1.5;text-align:center}
+.units-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%}
+.unit-card{background:var(--ink);padding:22px 22px 22px;display:flex;flex-direction:column;gap:10px;min-height:170px;border:1px solid rgba(184,148,88,.14)}
+.unit-card.agent{background:linear-gradient(180deg,var(--ink) 0%,rgba(184,148,88,.04) 100%);border-color:rgba(184,148,88,.3)}
+.unit-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.unit-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2}
+.unit-card.agent .unit-name{color:var(--gold-lt)}
+.unit-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;line-height:1.6;color:rgba(255,255,255,.6);margin-top:2px}
+.unit-partners{display:flex;flex-direction:column;gap:5px;margin-top:8px;padding-top:10px;border-top:1px solid rgba(184,148,88,.14)}
+.unit-partner{font-family:'Jost',sans-serif;font-weight:300;font-size:.7rem;color:rgba(255,255,255,.72);line-height:1.5;padding-left:10px;position:relative}
+.unit-partner::before{content:'';position:absolute;left:0;top:8px;width:5px;height:1px;background:rgba(184,148,88,.55)}
+
+/* ───── PATAMA COLLECTIVE · JOURNEY MAP (infographic) ───── */
+.journey-wrap{margin-top:36px}
+.journey-track{display:grid;grid-template-columns:repeat(3,1fr);align-items:start;margin-bottom:8px;position:relative}
+.journey-stop{display:flex;align-items:center;justify-content:center;flex-direction:column;position:relative;z-index:2;padding:0 12px}
+.journey-stop::before{content:'';position:absolute;left:calc(50% + 18px);right:calc(-50% + 18px);top:18px;height:1px;background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(184,148,88,.55) 90%,transparent 100%);z-index:1}
+.journey-stop:last-child::before{display:none}
+.journey-stop::after{content:'';position:absolute;right:calc(-50% + 22px);top:14px;width:0;height:0;border-left:6px solid rgba(184,148,88,.65);border-top:4px solid transparent;border-bottom:4px solid transparent;z-index:1}
+.journey-stop:last-child::after{display:none}
+.journey-marker{width:36px;height:36px;border-radius:50%;background:var(--ink);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;color:var(--gold);position:relative;z-index:3}
+.journey-stop.apex .journey-marker{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-lt) 100%);color:var(--ink);border-color:var(--gold-lt);box-shadow:0 0 0 5px rgba(184,148,88,.16)}
+.journey-stop-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-top:14px}
+
+.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:20px}
+.journey-card{background:var(--ink);padding:30px 26px 26px;display:flex;flex-direction:column;gap:10px;min-height:340px}
+.journey-card.apex{background:linear-gradient(180deg,var(--ink) 0%,rgba(184,148,88,.06) 100%)}
+.journey-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--white);line-height:1.15}
+.journey-card.apex .journey-name{color:var(--gold-lt)}
+.journey-name .it{font-style:italic;color:var(--gold-lt)}
+.journey-strap{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;color:rgba(255,255,255,.6);line-height:1.4;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.16)}
+.journey-items{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.journey-item{font-family:'Jost',sans-serif;font-weight:300;font-size:.76rem;line-height:1.55;color:rgba(255,255,255,.76);padding-left:14px;position:relative}
+.journey-item::before{content:'';position:absolute;left:0;top:8px;width:7px;height:1px;background:rgba(184,148,88,.55)}
+.journey-aud{margin-top:auto;padding-top:14px;border-top:1px solid rgba(184,148,88,.12);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.85rem;color:rgba(184,148,88,.82);line-height:1.4}
+
+/* ───── BRAND IDENTITY SUMMARY · Multi-page (Synthesis) ───── */
+.bsum-frame{display:flex;flex-direction:column;align-items:center;margin-top:42px;padding:56px 60px;background:linear-gradient(180deg,rgba(184,148,88,.05) 0%,rgba(184,148,88,.02) 100%);border:1px solid rgba(184,148,88,.28);max-width:820px;margin-left:auto;margin-right:auto;gap:0}
+.bsum-frame-label{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:24px}
+.bsum-frame-mark{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(4rem,8vw,6.5rem);color:var(--gold-lt);line-height:1;letter-spacing:.02em}
+.bsum-frame-rule{width:60px;height:1px;background:var(--gold);margin:22px 0 20px}
+.bsum-frame-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.15rem,1.8vw,1.5rem);color:rgba(255,255,255,.85);line-height:1.4;letter-spacing:.01em;text-align:center}
+.bsum-frame-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(.88rem,1.15vw,1.05rem);color:rgba(255,255,255,.55);line-height:1.5;margin-top:14px;letter-spacing:.01em;text-align:center;max-width:540px}
+
+.bsum-roadmap{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px;max-width:820px;margin-left:auto;margin-right:auto}
+.bsum-roadmap-cell{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:10px}
+.bsum-roadmap-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.bsum-roadmap-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.5rem;color:var(--white);line-height:1.2}
+.bsum-roadmap-title .it{font-style:italic;color:var(--gold-lt)}
+.bsum-roadmap-text{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;color:rgba(255,255,255,.66);line-height:1.65;margin-top:4px}
+
+/* Dimension card (horizontal: image left, text right) */
+.dim-list{display:flex;flex-direction:column;background:rgba(184,148,88,.06);border:1px solid rgba(184,148,88,.18);margin-top:32px}
+.dim-card{display:grid;grid-template-columns:200px 1fr;gap:42px;padding:32px 36px;border-bottom:1px solid rgba(184,148,88,.14);align-items:center;background:var(--ink)}
+.dim-card:last-child{border-bottom:0}
+.dim-img{width:200px;height:160px;background:radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.18),transparent 65%),radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.15),transparent 60%),linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%);border:1px solid rgba(184,148,88,.18);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.dim-img-await{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.85rem;color:rgba(244,239,229,.4);line-height:1.4;text-align:center;padding:0 14px}
+.dim-text-wrap{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:baseline}
+.dim-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:2.1rem;color:var(--gold-lt);line-height:1}
+.dim-body{display:flex;flex-direction:column;gap:6px}
+.dim-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.7rem;color:var(--white);line-height:1.2}
+.dim-strap{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.18rem;color:var(--gold-lt);line-height:1.4;margin-top:4px}
+.dim-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.95rem;color:rgba(255,255,255,.76);line-height:1.7;margin-top:10px;max-width:720px}
+
+/* ───── 30-BRAND STUDY · SYNTHESIS · 10 PATTERNS ───── */
+.pat-overview{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:42px}
+.pat-overview-cell{background:var(--ink);padding:28px 22px;display:flex;flex-direction:column;gap:8px;min-height:160px}
+.pat-overview-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.65rem;color:var(--gold-lt);line-height:1}
+.pat-overview-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25;margin-top:6px}
+.pat-overview-strap{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.65);margin-top:auto}
+/* dim-card / dim-img are already defined; we add evidence styling */
+.dim-evidence{font-family:'Jost',sans-serif;font-weight:300;font-size:.82rem;line-height:1.7;color:rgba(184,148,88,.88);margin-top:14px;letter-spacing:.02em}
+.dim-evidence-label{display:inline-block;font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-right:10px;vertical-align:baseline}
+
+/* ───── BRAND SCRIPT · 7-part framework ───── */
+.script-list{display:flex;flex-direction:column;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px}
+.script-item{background:var(--ink);padding:38px 48px;display:grid;grid-template-columns:90px 320px 1fr;gap:48px;align-items:start}
+.script-item.apex{background:linear-gradient(180deg,var(--ink) 0%,rgba(184,148,88,.05) 100%)}
+.script-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:2.8rem;color:var(--gold-lt);line-height:1;padding-top:2px}
+.script-side{display:flex;flex-direction:column;gap:8px}
+.script-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.66rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.script-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.95rem;color:var(--white);line-height:1.15;margin-top:8px}
+.script-strap{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.25rem;color:var(--gold-lt);line-height:1.4;margin-top:8px}
+.script-text{font-family:'Jost',sans-serif;font-weight:300;font-size:1.02rem;line-height:1.75;color:rgba(255,255,255,.78);padding-top:8px}
+.script-text ul{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:12px}
+.script-text li{padding-left:22px;position:relative;font-family:'Jost',sans-serif;font-weight:300;font-size:.95rem;line-height:1.65;color:rgba(255,255,255,.78)}
+.script-text li::before{content:'';position:absolute;left:0;top:12px;width:12px;height:1px;background:rgba(184,148,88,.6)}
+.script-text li strong{color:var(--gold-lt);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;letter-spacing:.01em;margin-right:8px}
+
+/* ───── NAME DESCRIPTION OPTIONS · meaning chart + houses grid ───── */
+.meaning-chart{display:grid;grid-template-columns:1fr;gap:0;margin:36px auto 32px;max-width:580px;border:1px solid rgba(184,148,88,.25);background:rgba(184,148,88,.04)}
+.meaning-row{display:grid;grid-template-columns:200px 1fr;padding:18px 28px;border-bottom:1px solid rgba(184,148,88,.14);align-items:baseline;gap:24px}
+.meaning-row:last-child{border-bottom:0;background:rgba(184,148,88,.06)}
+.meaning-word{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:var(--gold-lt);line-height:1.3;letter-spacing:.01em}
+.meaning-word small{display:block;font-family:'Jost',sans-serif;font-style:normal;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-top:4px}
+.meaning-def{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.78);line-height:1.4}
+
+.houses-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin:36px auto 32px;max-width:900px}
+.house-cell{background:var(--ink);padding:22px 18px;display:flex;flex-direction:column;gap:6px;text-align:center}
+.house-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:var(--white);line-height:1.2}
+.house-meta{font-family:'Jost',sans-serif;font-weight:200;font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);line-height:1.55}
+.house-founder{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.4;margin-top:6px}
+
+/* ───── NARRATIVE · SAMPLE ARTWORK PAGES ───── */
+.S.artwork{padding:0;min-height:100vh;position:relative;display:block;background:#000;overflow:hidden}
+.artwork-slideshow{position:absolute;inset:0;z-index:1}
+.artwork-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:0;
+  animation:artworkCycle 18s infinite ease-in-out;
+  will-change:opacity;
+}
+.artwork-slide:nth-child(1){animation-delay:0s}
+.artwork-slide:nth-child(2){animation-delay:-12s}
+.artwork-slide:nth-child(3){animation-delay:-6s}
+@keyframes artworkCycle{
+  0%   {opacity:1}
+  28%  {opacity:1}
+  33%  {opacity:0}
+  95%  {opacity:0}
+  100% {opacity:1}
+}
+@media (prefers-reduced-motion: reduce){
+  .artwork-slide{animation:none}
+  .artwork-slide:nth-child(1){opacity:1}
+}
+/* Slideshow progress dots */
+.artwork-dots{
+  position:absolute;bottom:42px;right:80px;z-index:5;display:flex;gap:10px;
+}
+.artwork-dot{
+  width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.28);
+  animation:artworkDotCycle 18s infinite ease-in-out;will-change:background;
+}
+.artwork-dot:nth-child(1){animation-delay:0s}
+.artwork-dot:nth-child(2){animation-delay:-12s}
+.artwork-dot:nth-child(3){animation-delay:-6s}
+@keyframes artworkDotCycle{
+  0%, 33%   {background:var(--gold-lt)}
+  34%, 99%  {background:rgba(255,255,255,.28)}
+  100%      {background:var(--gold-lt)}
+}
+/* Static gradient overlay (sits above the slides, below the text) */
+.artwork-gradient{position:absolute;inset:0;z-index:2;pointer-events:none}
+.artwork-gradient::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,.78) 0%,rgba(11,15,19,.5) 18%,rgba(11,15,19,.18) 34%,transparent 48%)}
+.artwork-gradient::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,15,19,.05) 0%,rgba(11,15,19,.05) 50%,rgba(11,15,19,.55) 100%)}
+/* Legacy class kept for backward compatibility — now styled as a slide */
+.artwork-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:1}
+.artwork-overlay{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;text-align:right;padding:80px 100px 100px 80px}
+.artwork-mark{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(2rem,3.6vw,3.2rem);color:var(--gold-lt);line-height:1;letter-spacing:.025em;margin-bottom:4px;text-shadow:0 2px 18px rgba(11,15,19,.5)}
+.artwork-rule{width:42px;height:1px;background:var(--gold);margin:14px 0 14px;opacity:.85;align-self:flex-end}
+.artwork-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(.92rem,1.25vw,1.15rem);color:rgba(255,255,255,.92);line-height:1.4;letter-spacing:.005em;margin-bottom:8px;text-shadow:0 1px 12px rgba(11,15,19,.6)}
+.artwork-subtagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(.74rem,.95vw,.88rem);color:rgba(255,255,255,.7);line-height:1.5;max-width:380px;text-shadow:0 1px 10px rgba(11,15,19,.6)}
+.artwork-caption{position:absolute;bottom:32px;left:80px;text-align:left;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.45);z-index:4}
+.S.artwork .pg{color:rgba(255,255,255,.35);z-index:5}
+
+.artwork-description{position:absolute;top:80px;left:80px;right:auto;max-width:880px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(1.45rem,2.0vw,1.9rem);color:rgba(255,255,255,.92);line-height:1.4;letter-spacing:.005em;z-index:4;text-shadow:0 1px 14px rgba(11,15,19,.55)}
+
+/* ───── PRESENTATION DECK MODE ───── */
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;height:100vh;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar{display:none}
+body{overflow-x:hidden}
+.S{height:100vh !important;min-height:100vh !important;max-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;position:relative}
+.S.split,.S#s1{display:grid}
+.slide-fit{width:100%;transform-origin:center center;transition:transform .25s ease;display:flex;flex-direction:column;justify-content:center;flex:1 1 auto}
+.S.bg .slide-fit,.S.deep .slide-fit,.S.forest .slide-fit,.S.ink .slide-fit{position:relative;z-index:2}
+
+/* ── OFFERINGS — matches PATAMA Collective pages (edge-to-edge grid, same outer width as journey-grid on page 12) ── */
+.col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:36px;width:100%}
+.col-card{background:var(--ink);display:flex;flex-direction:column;min-height:auto;position:relative;overflow:hidden}
+.col-image{aspect-ratio:16/6;position:relative;overflow:hidden;background:#1e2820}
+.col-image img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.88) brightness(.9)}
+.col-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(11,15,19,.55) 100%);pointer-events:none}
+.col-num{position:absolute;top:12px;left:14px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:.85rem;letter-spacing:.08em;z-index:2;background:rgba(11,15,19,.55);padding:3px 10px;border:1px solid rgba(184,148,88,.32);backdrop-filter:blur(4px)}
+.col-body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:7px;flex:1}
+.col-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.col-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--white);line-height:1.15;letter-spacing:.005em;padding-bottom:8px;border-bottom:1px solid rgba(184,148,88,.18);margin-top:2px}
+.col-name .it{font-style:italic;color:var(--gold-lt)}
+.col-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px;margin-top:2px}
+.col-list li{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.28;padding-left:11px;position:relative}
+.col-list li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:1px;background:var(--gold-lt);opacity:.55}
+
+/* ── SUMMARY — phase grid (4-up, matches page 13's units-row rhythm) ── */
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.2);border:1px solid rgba(184,148,88,.2);margin-top:36px}
+.phase-card{background:var(--ink);padding:28px 26px 32px;display:flex;flex-direction:column;gap:10px;min-height:auto}
+.phase-card.highlight{background:rgba(184,148,88,.06);border-top:1px solid rgba(184,148,88,.32);border-bottom:1px solid rgba(184,148,88,.32)}
+.phase-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.phase-card.highlight .phase-when{color:var(--gold-lt)}
+.phase-label{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.7rem;color:var(--white);line-height:1.15;letter-spacing:.005em;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18);margin-top:2px}
+.phase-card.highlight .phase-label{font-style:italic;color:var(--gold-lt)}
+.phase-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.phase-list li{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:rgba(255,255,255,.82);line-height:1.32;padding-left:14px;position:relative}
+.phase-list li::before{content:'';position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--gold-lt);opacity:.55}
+.phase-tag{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:3px;font-style:normal}
+
+@media (max-width:1100px){.col-grid{grid-template-columns:1fr}.phase-grid{grid-template-columns:1fr 1fr}}
+.col-grid{max-width:1240px;margin-left:auto;margin-right:auto}
+.offering-d2{max-width:1240px;margin:0 auto 14px;font-size:clamp(1.8rem,2.9vw,2.7rem);line-height:1.1;font-family:'Cormorant Garamond',serif;font-weight:200;color:var(--white);letter-spacing:.005em;white-space:nowrap}
+.offering-d2 .it{font-style:italic;color:var(--gold-lt)}
+.offering-body{max-width:1240px;margin:0 auto;font-family:'Jost',sans-serif;font-weight:300;font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,.72)}
+.offering-cadence{max-width:1240px;margin:22px auto 0;font-family:'Jost',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(184,148,88,.75)}
+@media (max-width:1100px){.offering-d2{white-space:normal;font-size:clamp(1.6rem,4vw,2.3rem);max-width:100%}.offering-body,.offering-cadence,.col-grid{max-width:100%}}
+
+
+
+
+@media print{html{overflow:visible;height:auto;scroll-snap-type:none}.S{break-after:page;height:auto !important;max-height:none}.slide-fit{transform:none !important}}
+
+
+/* ───── STRUCTURE CHART (mixed-use hierarchy) ───── */
+.sc-block{margin-top:30px}
+.sc-cap{font-family:'Jost',sans-serif;font-weight:300;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt);text-align:center;margin-bottom:16px}
+.sc-cap.ref{color:rgba(255,255,255,.4)}
+.sc{display:flex;flex-direction:column;align-items:center}
+.sc-root{border:1px solid rgba(184,148,88,.55);background:rgba(184,148,88,.07);padding:13px 34px;text-align:center;min-width:320px}
+.sc-root .t{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--gold-lt);line-height:1.05}
+.sc-root small{display:block;font-family:'Jost',sans-serif;font-weight:300;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:5px}
+.sc-trunk{width:1px;height:24px;background:rgba(184,148,88,.45)}
+.sc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;width:100%;padding-top:24px}
+.sc-row::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;height:1px;background:rgba(184,148,88,.4)}
+.sc-node{position:relative;background:rgba(184,148,88,.05);border:1px solid rgba(184,148,88,.34);padding:15px 16px;display:flex;flex-direction:column;gap:6px;min-height:104px}
+.sc-node::before{content:"";position:absolute;top:-24px;left:50%;width:1px;height:24px;background:rgba(184,148,88,.4)}
+.sc-node .cat{font-family:'Jost',sans-serif;font-weight:300;font-size:.46rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.sc-node .nm{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.2rem;color:var(--white);line-height:1.12}
+.sc-node .ds{font-family:'Jost',sans-serif;font-weight:300;font-size:.66rem;color:rgba(255,255,255,.5);line-height:1.4;margin-top:auto}
+.sc.ref .sc-root{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.02)}
+.sc.ref .sc-root .t{color:rgba(255,255,255,.72)}
+.sc.ref .sc-trunk,.sc.ref .sc-row::before,.sc.ref .sc-node::before{background:rgba(255,255,255,.2)}
+.sc.ref .sc-node{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.12)}
+.sc.ref .sc-node .cat{color:rgba(255,255,255,.34)}
+.sc.ref .sc-node .nm{color:rgba(255,255,255,.7)}
+
+
+/* ───── FULL TIMELINE (vertical) ───── */
+.tl{margin-top:32px}
+.tl-row{display:grid;grid-template-columns:168px 1fr;gap:26px;padding:16px 0;border-top:1px solid rgba(184,148,88,.14);align-items:start}
+.tl-row:first-child{border-top:none}
+.tl-m{display:flex;flex-direction:column;gap:6px}
+.tl-mon{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--gold-lt);line-height:1}
+.tl-tag{font-family:'Jost',sans-serif;font-weight:300;font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.tl-acts{display:flex;flex-wrap:wrap;gap:9px 20px;align-items:baseline;font-family:'Jost',sans-serif;font-weight:300;font-size:.86rem;color:rgba(255,255,255,.74);line-height:1.5}
+.tl-acts span{position:relative;padding-left:15px}
+.tl-acts span::before{content:"";position:absolute;left:0;top:.55em;width:4px;height:4px;background:var(--gold)}
+.tl-row.peak .tl-mon{color:#e0c188}
+.tl-row.milestone{margin-top:16px;background:rgba(184,148,88,.07);border:1px solid rgba(184,148,88,.32);padding:22px 22px}
+.tl-row.milestone .tl-mon{font-size:1.85rem;color:#e7caa0}
+.tl-row.milestone .tl-acts{font-size:.92rem;color:rgba(255,255,255,.85)}
+.tl-row.milestone .tl-acts span::before{width:5px;height:5px}
+/* ───── READABLE RFP AREAS ───── */
+.rfp-area{display:grid;grid-template-columns:300px 1fr;gap:34px;padding:26px 0;border-top:1px solid rgba(184,148,88,.16);align-items:start}
+.rfp-area:first-child{border-top:none}
+.rfp-area-l{display:flex;flex-direction:column;gap:12px}
+.rfp-area .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:2.6rem;color:var(--gold);line-height:.75}
+.rfp-area .ttl{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.55rem;color:var(--white);line-height:1.15}
+.rfp-area-r ul.pts{list-style:none;display:flex;flex-direction:column;gap:14px}
+.rfp-area-r ul.pts>li{position:relative;padding-left:20px;font-family:'Jost',sans-serif;font-weight:300;font-size:.94rem;line-height:1.65;color:rgba(255,255,255,.76)}
+.rfp-area-r ul.pts>li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;background:var(--gold)}
+.rfp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.rfp-chips span{font-family:'Jost',sans-serif;font-weight:300;font-size:.74rem;letter-spacing:.02em;color:rgba(212,176,122,.92);border:1px solid rgba(184,148,88,.32);padding:5px 12px;white-space:nowrap}
+
+.sc-row.three{grid-template-columns:repeat(3,1fr)}
+.sc-row.three::before{left:16.66%;right:16.66%}
+
+/* ───── MASTER BRAND BLOCK (foundation slide) ───── */
+.bt-master{display:grid;grid-template-columns:330px 1fr;gap:32px;align-items:center;margin:6px 0 26px;padding:24px 32px;border:1px solid rgba(184,148,88,.42);background:linear-gradient(90deg,rgba(184,148,88,.11),rgba(184,148,88,.015))}
+.bt-master-tag{font-family:'Jost',sans-serif;font-weight:300;font-size:.56rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.bt-master-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:clamp(2.4rem,4.8vw,3.4rem);color:var(--gold-lt);line-height:.95}
+.bt-master-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.74);max-width:880px}
+
+/* ───── MULTI-LEVEL ORG TREE (structure) ───── */
+.sc2{display:flex;flex-direction:column;align-items:center}
+.sc2-branches{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;padding-top:26px;width:100%;align-items:start}
+.sc2-branches::before{content:"";position:absolute;top:0;left:16.66%;right:16.66%;height:1px;background:rgba(184,148,88,.4)}
+.sc2-branch{position:relative;display:flex;flex-direction:column}
+.sc2-branch::before{content:"";position:absolute;top:-26px;left:50%;width:1px;height:26px;background:rgba(184,148,88,.4)}
+.sc2-head{background:rgba(184,148,88,.08);border:1px solid rgba(184,148,88,.42);padding:15px 18px;text-align:center}
+.sc2-head .hn{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.42rem;color:var(--gold-lt);line-height:1.1}
+.sc2-head .hs{font-family:'Jost',sans-serif;font-weight:300;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:6px}
+.sc2-head .hd{font-family:'Jost',sans-serif;font-weight:300;font-size:.74rem;color:rgba(255,255,255,.62);line-height:1.55;margin-top:11px;text-align:left}
+.sc2-kids{position:relative;padding-left:22px;display:flex;flex-direction:column;gap:11px;margin-top:18px}
+.sc2-kids::before{content:"";position:absolute;left:10px;top:-18px;bottom:14px;width:1px;background:rgba(184,148,88,.35)}
+.sc2-kid{position:relative;background:rgba(255,255,255,.02);border:1px solid rgba(184,148,88,.24);padding:11px 14px}
+.sc2-kid::before{content:"";position:absolute;left:-12px;top:1.2em;width:12px;height:1px;background:rgba(184,148,88,.35)}
+.sc2-kid .kn{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.1}
+.sc2-kid .kd{font-family:'Jost',sans-serif;font-weight:300;font-size:.63rem;color:rgba(255,255,255,.5);margin-top:3px;line-height:1.4}
+
+
+/* ───── GANTT TIMELINE (tlx) ───── */
+.tlx-wrap{margin-top:40px;position:relative;padding-bottom:8px;padding-top:10px}
+.tlx{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.14);border:1px solid rgba(184,148,88,.18);position:relative}
+.tlx-bar{background:var(--ink);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;min-height:54px;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:var(--white);line-height:1.25;position:relative;border:none}
+.tlx-bar.fill{background:linear-gradient(90deg,rgba(184,148,88,.22) 0%,rgba(184,148,88,.32) 100%);color:var(--white)}
+.tlx-bar.fill.summit{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5}
+.tlx-bar.fill.overlay{background:linear-gradient(135deg,rgba(110,130,100,.22) 25%,rgba(110,130,100,.36) 50%,rgba(110,130,100,.22) 75%);border-top:1px dashed rgba(110,130,100,.45);border-bottom:1px dashed rgba(110,130,100,.45);z-index:3}
+.tlx-bar.fill.launch{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5}
+.tlx-bar.launch small{color:rgba(255,255,255,.85)}
+.tlx-bar small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-top:5px;line-height:1.45}
+.tlx-bar.summit small{color:rgba(255,255,255,.85)}
+.tlx-axis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-top:1px solid rgba(184,148,88,.32)}
+.tlx-month{padding:14px 12px 10px;background:var(--ink);font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;line-height:1.5}
+.tlx-month strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.78rem;color:var(--gold);margin-top:4px;letter-spacing:.02em;text-transform:none;line-height:1}
+/* ───── STRUCTURE — TWO-COLUMN + SATELLITES ───── */
+.struct-2col{display:grid;grid-template-columns:1.65fr 1fr;gap:40px;align-items:start;margin-top:14px}
+.struct-left{display:flex;flex-direction:column;gap:26px}
+.sat-col{display:flex;flex-direction:column;gap:30px;border-left:1px solid rgba(184,148,88,.18);padding-left:34px}
+.sat-cap{font-family:'Jost',sans-serif;font-weight:300;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt)}
+.sc-mini{display:flex;flex-direction:column;align-items:center}
+.sc-mini-box{border:1px solid rgba(184,148,88,.42);background:rgba(184,148,88,.08);padding:12px 22px;text-align:center;min-width:190px}
+.sc-mini-box .mn{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.32rem;color:var(--gold-lt);line-height:1.05}
+.sc-mini-box .ms{font-family:'Jost',sans-serif;font-weight:300;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:5px}
+.sc-mini-trunk{width:1px;height:18px;background:rgba(184,148,88,.42)}
+.sc-mini-child{border:1px solid rgba(184,148,88,.24);background:rgba(255,255,255,.02);padding:11px 18px;text-align:center;min-width:178px}
+.sc-mini-child .cn{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white)}
+.sc-mini-child .cd{font-family:'Jost',sans-serif;font-weight:300;font-size:.58rem;color:rgba(255,255,255,.46);margin-top:3px}
+.peer-circle-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+.peer-circle{width:150px;height:150px;border-radius:50%;border:1px solid rgba(184,148,88,.5);background:radial-gradient(circle at 50% 40%,rgba(184,148,88,.15),rgba(184,148,88,.02));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px}
+.peer-circle .cn{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.5rem;color:var(--gold-lt);line-height:1.02}
+.peer-circle .ct{font-family:'Jost',sans-serif;font-weight:300;font-size:.48rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:7px}
+.peer-cap{font-family:'Jost',sans-serif;font-weight:300;font-size:.74rem;color:rgba(255,255,255,.55);line-height:1.55;text-align:center;max-width:210px}
+
+
+/* PATAMA place highlight (same style across all three) */
+.sc-node.pat{background:linear-gradient(135deg,rgba(184,148,88,.30),rgba(212,176,122,.16));border:1px solid rgba(212,176,122,.62);box-shadow:0 0 0 1px rgba(212,176,122,.12)}
+.sc-node.pat .cat{color:var(--gold-lt)}
+.sc-node.pat .nm{color:#fff}
+.sc-node.pat .ds{color:rgba(255,255,255,.62)}
+.sc-row.one{grid-template-columns:200px;justify-content:center}
+.sc-row.one::before{display:none}
+
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<!-- ═══════════════════ 01 COVER ═══════════════════ -->
+<section class="S ink split" id="s1">
+  <div class="sp-content">
+    <div>
+      <div class="eye fi-a" style="margin-bottom:52px">Tri Vananda · Phuket, Thailand · 2026</div>
+      <div class="D1 fi-a d1" style="font-size:clamp(2.8rem,5.4vw,5.4rem);line-height:1.04">The Tri Vananda<br><span class="it gd">movement.</span></div>
+      <div class="D2 it gd fi-a d2" style="font-size:clamp(1.4rem,2.4vw,2.2rem);margin-top:24px;font-weight:200">A multigenerational well-living community &middot; Phuket</div>
+      <div class="rule fi-a d3" style="margin-top:44px"></div>
+
+    </div>
+  </div>
+  <div class="sp-image" style="background:linear-gradient(180deg,#1e2820 0%,#2a3a2f 35%,#5a6b5f 65%,#b89458 100%)">
+    <img src="hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+  </div>
+</section>
+<!-- ───── INTRO · SLIDE A · The Project ───── -->
+<section class="S ink split">
+  <div class="sp-content">
+    <div>
+      <div class="eye" style="margin-bottom:28px">Tri Vananda &middot; The Project</div>
+      <div class="D2" style="font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.08;margin-bottom:14px">A sanctuary for wellbeing &amp; nature <span class="it gd">at the heart of the island.</span></div>
+      <div class="rule"></div>
+      <p class="body lg" style="max-width:560px;margin-top:22px;color:rgba(255,255,255,.72)">A multigenerational well-living community in Central Phuket, anchored by its own <span style="color:rgba(212,176,122,.95)">Residential Villas</span>. The community is created in collaboration with two distinguished wellness partners: <span style="color:rgba(212,176,122,.95)">Clinique La Prairie</span> &mdash; Switzerland&rsquo;s pinnacle of longevity, making its Southeast Asian debut &mdash; and <span style="color:rgba(212,176,122,.95)">Trisara</span>, Phuket&rsquo;s most luxurious private pool villa beach resort.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:34px;max-width:620px">
+        <div style="background:var(--ink);padding:22px 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2rem;color:var(--gold-lt);line-height:1">600 <span style="font-size:1rem">rai</span></div><div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:8px">237 acres of forests &amp; lakes</div></div>
+        <div style="background:var(--ink);padding:22px 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2rem;color:var(--gold-lt);line-height:1">&lt;15<span style="font-size:1rem">%</span></div><div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:8px">of the land developed</div></div>
+        <div style="background:var(--ink);padding:22px 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2rem;color:var(--gold-lt);line-height:1">15 <span style="font-size:1rem">min</span></div><div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:8px">from Phuket Int&rsquo;l Airport</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sp-image" style="background:linear-gradient(180deg,#1e2820 0%,#2a3a2f 50%,#5a6b5f 100%)">
+    <video autoplay muted loop playsinline preload="metadata" poster="image-bank/DJI_0699.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+      <source src="images/TVND Short Video.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+<!-- ───── INTRO · SLIDE B · The Estate Today ───── -->
+<section class="S ink">
+  <div class="eye">Tri Vananda &middot; The Estate Today</div>
+  <div class="D2" style="max-width:1100px;margin-bottom:14px">What exists &mdash; and <span class="it gd">what&rsquo;s coming.</span></div>
+  <div class="rule"></div>
+  <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.9);margin:26px 0 12px">Operating today &middot; Phase One &middot; since Feb 2022</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18)">
+    <div style="background:var(--ink);display:flex;flex-direction:column"><div style="height:140px;overflow:hidden;position:relative"><img src="images/intro-villas.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div><div style="padding:18px 20px 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2">Residential Villas</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.62);margin-top:8px">VANA &amp; NANDA collections &middot; 2&ndash;4 bedrooms &middot; 325&ndash;780 sqm &middot; fully furnished &middot; freehold &amp; leasehold.</div></div></div>
+    <div style="background:var(--ink);display:flex;flex-direction:column"><div style="height:140px;overflow:hidden;position:relative"><img src="images/jampa-bar.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center 40%"></div><div style="padding:18px 20px 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2">The Farm &amp; Jampa</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.62);margin-top:8px">Permaculture organic farm supplying Jampa &mdash; live-fire, zero-waste cuisine by a Michelin-starred culinary team.</div></div></div>
+    <div style="background:var(--ink);display:flex;flex-direction:column"><div style="height:140px;overflow:hidden;position:relative"><img src="images/tweenie-club.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center 45%"></div><div style="padding:18px 20px 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2">Community House &amp; Wetlands</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.62);margin-top:8px">Solar-powered community house, Tweenie Club, and the Wetland Nature Reserve &mdash; natural water filtration for the estate and the island.</div></div></div>
+  </div>
+  <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.9);margin:28px 0 12px">Coming next</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18)">
+    <div style="background:var(--ink);display:flex;flex-direction:column"><div style="height:140px;overflow:hidden;position:relative"><img src="images/intro-clp.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;top:10px;left:12px;font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:#fff;background:rgba(30,40,32,.78);padding:5px 10px">Q4 2026</div></div><div style="padding:16px 18px 18px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.25">Health Resort by Clinique La Prairie</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.74rem;line-height:1.65;color:rgba(255,255,255,.62);margin-top:7px">Integrative &amp; functional medicine, longevity and cognitive wellbeing &mdash; opening Q4 2026.</div></div></div>
+    <div style="background:var(--ink);display:flex;flex-direction:column"><div style="height:140px;overflow:hidden;position:relative"><img src="image-bank/renderings/r31-31.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;top:10px;left:12px;font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:#fff;background:rgba(30,40,32,.78);padding:5px 10px">2027</div></div><div style="padding:16px 18px 18px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.25">PATAMA Wellness <span style="font-style:italic;color:rgba(212,176,122,.95)">(Medical Center &amp; Sport Club)</span></div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.74rem;line-height:1.65;color:rgba(255,255,255,.62);margin-top:7px">Recovery, spa and consultation spaces, with indoor courts, movement and training facilities at the heart of the estate.</div></div></div>
+    <div style="background:var(--ink);display:flex;flex-direction:column"><div style="height:140px;overflow:hidden;position:relative"><img src="image-bank/Chef-Im-633.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center 50%"><div style="position:absolute;top:10px;left:12px;font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:#fff;background:rgba(30,40,32,.78);padding:5px 10px">2027</div></div><div style="padding:16px 18px 18px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.1rem;color:var(--white);line-height:1.25">Tri Vananda Farm House <span style="font-style:italic;color:rgba(212,176,122,.95)">(Retail in the Farm Setting)</span></div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.74rem;line-height:1.65;color:rgba(255,255,255,.62);margin-top:7px">Farm-front dining, retail and community spaces &mdash; the estate&rsquo;s public realm, opening 2027.</div></div></div>
+  </div>
+</section>
+<!-- ───── RESIDENTIAL VILLAS & PRICING ───── -->
+<section class="S ink">
+  <div class="eye">Tri Vananda &middot; The Residences</div>
+  <div class="D2" style="max-width:1100px;margin-bottom:14px">Residential villas, <span class="it gd">built for multigenerational living.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:1100px;margin-top:16px;color:rgba(255,255,255,.78)">Purposefully built homes set among the estate&rsquo;s lakes and forest. Residents choose their location, then their layout &mdash; seven designs across two collections, from two to four bedrooms, fully furnished. <span style="color:rgba(212,176,122,.95)">Prices from 66 MB &ndash; 144 MB (USD 2.1 &ndash; 4.6 million).</span></p>
+  <!-- Two collections · full-width images with overlaid captions -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px;max-width:1100px">
+    <div style="position:relative;overflow:hidden;border:1px solid rgba(184,148,88,.18)"><img src="images/villa-vana.jpg" alt="VANA villa" style="width:100%;height:320px;object-fit:cover;display:block"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,0) 45%,rgba(11,15,19,.82) 100%)"></div><div style="position:absolute;left:24px;right:24px;bottom:22px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.8rem;color:#fff;letter-spacing:.05em">VANA</div><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(212,176,122,.98);margin-top:4px">Biophilic design &middot; 2&ndash;4 bed &middot; 333&ndash;780 sqm</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;line-height:1.6;color:rgba(255,255,255,.85);margin-top:7px;max-width:420px;text-shadow:0 1px 8px rgba(11,15,19,.7)">Lush forests and biophilic design to inspire a sustainable, comfort-centric way of living.</div></div></div>
+    <div style="position:relative;overflow:hidden;border:1px solid rgba(184,148,88,.18)"><img src="images/villa-nanda.jpg" alt="NANDA villa" style="width:100%;height:320px;object-fit:cover;object-position:center 62%;display:block"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,19,0) 45%,rgba(11,15,19,.82) 100%)"></div><div style="position:absolute;left:24px;right:24px;bottom:22px"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.8rem;color:#fff;letter-spacing:.05em">NANDA</div><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(212,176,122,.98);margin-top:4px">Modernist homage &middot; 2&ndash;4 bed &middot; 325&ndash;779 sqm</div><div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.8rem;line-height:1.6;color:rgba(255,255,255,.85);margin-top:7px;max-width:420px;text-shadow:0 1px 8px rgba(11,15,19,.7)">A modernist homage to nature &mdash; curved glass, ultra-tropical architecture and eco-conscious design.</div></div></div>
+  </div>
+</section>
+<section class="S ink">
+  <div class="eye">Tri Vananda &middot; The New Wellness Brand</div>
+  <div class="D2" style="max-width:1100px;margin-bottom:14px">New wellness brand <span class="it gd">under development.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:1000px;margin-top:18px;color:rgba(255,255,255,.78)">Across the Montara family of properties, wellness will take three distinct forms &mdash; prescribed at Clinique La Prairie, lived at Tri Vananda, and celebrated at Trisara. On their own, each would be told as a separate story. A new wellness brand will bring them together, so the whole reads not as parts, but as a single, coherent way of living.</p>
+  <!-- Three wellness expressions -->
+  <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:30px 0 12px">Three expressions of wellness across the estate</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);max-width:1100px">
+    <div style="background:var(--ink);padding:24px 26px;display:flex;flex-direction:column;gap:9px">
+      <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(212,176,122,.95)">Longevity prescribed</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2">Health Resort <span class="it gd">by Clinique La Prairie</span></div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.6)">Clinical longevity and preventive medicine &mdash; credentialed by Switzerland&rsquo;s most established medical-wellness brand.</div>
+    </div>
+    <div style="background:var(--ink);padding:24px 26px;display:flex;flex-direction:column;gap:9px">
+      <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(212,176,122,.95)">Long life lived</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2">New Development <span class="it gd">at Tri Vananda</span></div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.6)">Wellbeing as a daily practice &mdash; the new facilities and residential community at the heart of the estate.</div>
+    </div>
+    <div style="background:var(--ink);padding:24px 26px;display:flex;flex-direction:column;gap:9px">
+      <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(212,176,122,.95)">Life celebrated</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.25rem;color:var(--white);line-height:1.2">Renovated <span class="it gd">Trisara Wellness</span></div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.6)">Wellbeing at the beachfront &mdash; twenty years of luxury hospitality, renewed under the new brand.</div>
+    </div>
+  </div>
+  <p class="body" style="max-width:1000px;margin-top:22px;color:rgba(255,255,255,.7)">Stronger together than apart: longevity <span style="color:rgba(212,176,122,.95)">prescribed</span>, a long life <span style="color:rgba(212,176,122,.95)">lived</span>, and life <span style="color:rgba(212,176,122,.95)">celebrated</span> &mdash; one continuous arc, from the clinic to the everyday to the shoreline. A single wellness brand will carry that arc across every property, turning a collection of places into one ecosystem &mdash; a story each new venue can join, and one no single property could tell alone.</p>
+</section>
+<section class="S bg">
+  <div class="vyana-wrap">
+    <div class="vyana-inner">
+      <div class="vyana-label">Introducing The New Wellness Brand</div>
+      <div class="vyana-name">PATAMA</div>
+      <div class="vyana-tagline" style="white-space:nowrap;max-width:none;font-size:clamp(1.1rem,2vw,1.9rem)">Threading all the good things in life together.</div>
+    </div>
+  </div>
+</section>
+<section class="S ink">
+  <div class="eye">PATAMA &middot; The Concept</div>
+  <div class="D2" style="max-width:1100px;margin-bottom:14px">Three readings of one word, <span class="it gd">woven into a single practice.</span></div>
+  <div class="rule"></div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:48px">
+    <div style="background:var(--ink);padding:40px 34px;display:flex;flex-direction:column;gap:14px;min-height:420px">
+      <div style="display:flex;align-items:baseline;gap:18px">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;color:var(--gold);letter-spacing:.06em">I</div>
+        <div style="flex:1;height:1px;background:rgba(184,148,88,.25)"></div>
+        <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-lt);line-height:1">LIVE.</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.4rem;color:var(--white);line-height:1.05;letter-spacing:.005em;margin-top:10px">The <span class="it gd">Beginning</span></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.5;padding-bottom:16px;border-bottom:1px solid rgba(184,148,88,.2);margin-top:6px">Living Well Begins Together</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.85;color:rgba(255,255,255,.68)"><span style="color:rgba(212,176,122,.95)">To begin is to live well.</span> Wellbeing integrated into everyday life &mdash; the table, the body, the family. Not escape. The starting point.</div>
+      <div style="margin-top:auto;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(184,148,88,.7);padding-top:18px">Pali &middot; paṭhom &middot; first, foremost, the beginning</div>
+    </div>
+    <div style="background:var(--ink);padding:40px 34px;display:flex;flex-direction:column;gap:14px;min-height:420px">
+      <div style="display:flex;align-items:baseline;gap:18px">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;color:var(--gold);letter-spacing:.06em">II</div>
+        <div style="flex:1;height:1px;background:rgba(184,148,88,.25)"></div>
+        <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-lt);line-height:1">THRIVE.</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.4rem;color:var(--white);line-height:1.05;letter-spacing:.005em;margin-top:10px">The <span class="it gd">Lotus</span></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.5;padding-bottom:16px;border-bottom:1px solid rgba(184,148,88,.2);margin-top:6px">Living Well, Awakening Together</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.85;color:rgba(255,255,255,.68)"><span style="color:rgba(212,176,122,.95)">To rise is to thrive.</span> The daily awakening of the practice &mdash; the body and the land emerging together, like the flower that opens at first light.</div>
+      <div style="margin-top:auto;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(184,148,88,.7);padding-top:18px">Sanskrit &middot; padma &middot; lotus, the flower of awakening</div>
+    </div>
+    <div style="background:var(--ink);padding:40px 34px;display:flex;flex-direction:column;gap:14px;min-height:420px">
+      <div style="display:flex;align-items:baseline;gap:18px">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.1rem;color:var(--gold);letter-spacing:.06em">III</div>
+        <div style="flex:1;height:1px;background:rgba(184,148,88,.25)"></div>
+        <div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-lt);line-height:1">TRANSFORM.</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.4rem;color:var(--white);line-height:1.05;letter-spacing:.005em;margin-top:10px">The <span class="it gd">Family&rsquo;s Name</span></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.5;padding-bottom:16px;border-bottom:1px solid rgba(184,148,88,.2);margin-top:6px">Living Well, Generation After Generation</div>
+      <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;line-height:1.85;color:rgba(255,255,255,.68)"><span style="color:rgba(212,176,122,.95)">To carry is to transform.</span> A family name held across generations &mdash; a standard kept not in branding, but in practice. A way of living, still lived.</div>
+      <div style="margin-top:auto;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(184,148,88,.7);padding-top:18px">Thai &middot; patama &middot; a family name, a long-held practice</div>
+    </div>
+  </div>
+
+</section>
+<section class="S artwork">
+  <!-- Cycling background images. Add or swap files in images/ to update. -->
+  <div class="artwork-slideshow">
+    <div class="artwork-slide" style="background-image:url('images/narrative-01.jpg')"></div>
+    <div class="artwork-slide" style="background-image:url('images/narrative-02.jpg')"></div>
+    <div class="artwork-slide" style="background-image:url('images/narrative-03.jpg')"></div>
+  </div>
+  <!-- Static gradient (darkens edges so the overlay text stays readable on any slide) -->
+  <div class="artwork-gradient"></div>
+
+  <!-- Static text overlay — does not animate -->
+  <div class="artwork-description">PATAMA &mdash; the daily rhythm of living, the slow flowering of practice, the long inheritance of family.</div>
+  <div class="artwork-overlay">
+    <div class="artwork-mark">PATAMA</div>
+    <div class="artwork-rule"></div>
+    <div class="artwork-tagline">Threading all the good things in life together</div>
+  </div>
+
+  <!-- Slide indicator dots -->
+  <div class="artwork-dots" aria-hidden="true">
+    <span class="artwork-dot"></span>
+    <span class="artwork-dot"></span>
+    <span class="artwork-dot"></span>
+  </div>
+
+  <div class="artwork-caption">The Concept &middot; Sample Artwork</div>
+</section>
+<style>
+/* Balanced, full-width structure diagram */
+#s-structure .struct-stack{display:flex;flex-direction:column;align-items:center;gap:38px;margin-top:8px}
+#s-structure .struct-stack > .sc-block{width:100%;max-width:1000px}
+#s-structure .struct-sats{display:grid;grid-template-columns:1fr 1fr;gap:70px;width:100%;max-width:760px}
+#s-structure .struct-sats .sc-row.one{grid-template-columns:1fr;width:100%;padding-top:24px;justify-items:center}
+#s-structure .struct-sats .sc-row.one::before{display:none}
+#s-structure .struct-sats .sc-node{min-height:104px;width:236px;max-width:100%}
+</style>
+<section class="S ink" id="s-structure">
+  <div class="eye">PATAMA &middot; The Structure</div>
+  <div class="D2" style="max-width:1100px;margin-bottom:14px">Where PATAMA <span class="it gd">works.</span></div>
+  <div class="rule"></div>
+  <div class="struct-stack">
+    <div class="sc-block" style="margin-top:18px"><div class="sc-cap">Tri Vananda &middot; Phuket</div><div class="sc"><div class="sc-root"><div class="t">Tri Vananda</div><small>Phuket &middot; mixed-use well-living estate</small></div><div class="sc-trunk"></div><div class="sc-row"><div class="sc-node pat"><div class="cat">Wellness &middot; Hospitality</div><div class="nm">PATAMA Wellness at Tri Vananda</div><div class="ds">The estate&rsquo;s wellness anchor</div></div><div class="sc-node"><div class="cat">Medical-wellness</div><div class="nm">Clinique La Prairie</div><div class="ds">Health Resort &middot; longevity</div></div><div class="sc-node"><div class="cat">Branded residences</div><div class="nm">Tri Vananda Residences</div><div class="ds">Privately owned homes</div></div><div class="sc-node"><div class="cat">Public realm</div><div class="nm">Tri Vananda Farm House</div><div class="ds">Dining, retail &amp; community</div></div></div></div></div>
+    <div class="struct-sats">
+      <div class="sc-block" style="margin-top:0"><div class="sc-cap">Trisara &middot; Phuket</div><div class="sc"><div class="sc-root"><div class="t">Trisara</div><small>The beachfront resort</small></div><div class="sc-trunk"></div><div class="sc-row one"><div class="sc-node pat"><div class="cat">Wellness</div><div class="nm">PATAMA Wellness at Trisara</div><div class="ds">Wellness within the resort</div></div></div></div></div>
+      <div class="sc-block" style="margin-top:0"><div class="sc-cap">Standalone &middot; sales channel</div><div class="sc"><div class="sc-root"><div class="t">Standalone</div><small>Independent of the properties</small></div><div class="sc-trunk"></div><div class="sc-row one"><div class="sc-node pat"><div class="cat">Sales channel</div><div class="nm">Wellness Sales / Concierge</div><div class="ds">CLP Phuket program + TVND annex stay for accompanying family + Trisara post-stay</div></div></div></div></div>
+    </div>
+  </div>
+</section>
+<!-- ───── A FAMILIAR REFERENCE · CHAO PHRAYA COMPARISON ───── -->
+<section class="S ink">
+  <div class="eye">PATAMA &middot; A Familiar Reference</div>
+  <div class="D2" style="max-width:1100px;margin-bottom:14px">The multi-brand luxury estate, <span class="it gd">reimagined for wellness.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:1000px;margin-top:16px;color:rgba(255,255,255,.78)">To understand how Tri Vananda is structured, picture Bangkok&rsquo;s riverside estate &mdash; one address, several distinct brands, each playing a defined role.</p>
+  <div style="display:grid;grid-template-columns:auto 1fr 1fr auto;gap:0;align-items:stretch;margin-top:26px;border:1px solid rgba(184,148,88,.2)">
+    <!-- Header row -->
+    <div style="background:rgba(255,255,255,.03);border-bottom:1px solid rgba(184,148,88,.2);display:flex;align-items:center;padding:16px 24px"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.45)">Role</div></div>
+    <div style="background:rgba(255,255,255,.03);padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.2);border-left:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.55)">Reference</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);margin-top:2px">Chao Phraya Estate <span style="font-style:italic;font-size:.9rem;color:rgba(255,255,255,.5)">&middot; Bangkok</span></div></div>
+    <div style="background:rgba(184,148,88,.08);padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.2);border-left:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(212,176,122,.95)">Our estate</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.3rem;color:var(--white);margin-top:2px">Tri Vananda <span style="font-style:italic;font-size:.9rem;color:rgba(255,255,255,.5)">&middot; Phuket</span></div></div>
+    <div style="background:rgba(184,148,88,.08);border-bottom:1px solid rgba(184,148,88,.2);border-left:1px solid rgba(184,148,88,.12);display:flex;align-items:center;padding:16px 24px"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(212,176,122,.95)">Role</div></div>
+
+    <!-- Row 1 · Branded residences -->
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-bottom:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.65);white-space:nowrap">Branded residences</div></div>
+    <div style="padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.12);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:rgba(255,255,255,.85)">Four Seasons Private Residences</div></div>
+    <div style="padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.12);background:rgba(184,148,88,.05);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:var(--white)">Tri Vananda Residences</div></div>
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-bottom:1px solid rgba(184,148,88,.12);border-left:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.8);white-space:nowrap">Branded residences</div></div>
+
+    <!-- Row 2 · Hospitality / anchor -->
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-bottom:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.65);white-space:nowrap">Hospitality</div></div>
+    <div style="padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.12);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:rgba(255,255,255,.85)">Four Seasons Hotel Bangkok</div></div>
+    <div style="padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.12);background:rgba(184,148,88,.05);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:var(--white)">PATAMA Wellness</div></div>
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-bottom:1px solid rgba(184,148,88,.12);border-left:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.8);white-space:nowrap">Hospitality anchor</div></div>
+
+    <!-- Row 3 · Ultra-luxury hospitality / Medical-wellness flagship -->
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-bottom:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.65);white-space:nowrap">Ultra-luxury hospitality</div></div>
+    <div style="padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.12);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:rgba(255,255,255,.85)">Capella Bangkok</div></div>
+    <div style="padding:16px 24px;border-bottom:1px solid rgba(184,148,88,.12);background:rgba(184,148,88,.05);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:var(--white)">Clinique La Prairie Phuket</div></div>
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-bottom:1px solid rgba(184,148,88,.12);border-left:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.8);white-space:nowrap">Medical-wellness flagship</div></div>
+
+    <!-- Row 4 · Public realm -->
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.65);white-space:nowrap">Public realm</div></div>
+    <div style="padding:16px 24px;border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:rgba(255,255,255,.85)">Riverfront Promenade</div></div>
+    <div style="padding:16px 24px;background:rgba(184,148,88,.05);border-left:1px solid rgba(184,148,88,.12);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.12rem;color:var(--white)">Tri Vananda Farm House</div></div>
+    <div style="display:flex;flex-direction:column;justify-content:center;padding:0 24px;border-left:1px solid rgba(184,148,88,.12)"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(184,148,88,.8);white-space:nowrap">Public realm</div></div>
+  </div>
+  <p class="body dim" style="margin-top:20px">Illustrative reference for structure and positioning only &mdash; not an affiliation.</p>
+</section>
+<style>
+/* Compact the timeline so it fits the viewport at full scale (matches other pages' width) */
+#s-timeline .tlx-bar{min-height:42px;padding:8px 16px;font-size:.9rem}
+#s-timeline .tlx-bar small{font-size:.52rem;margin-top:3px;letter-spacing:.22em}
+#s-timeline .tlx-month{padding:9px 12px 7px;font-size:.58rem}
+#s-timeline .tlx-month strong{font-size:.72rem}
+#s-timeline .tlx{margin-bottom:10px !important}
+</style>
+<section class="S ink" id="s-timeline">
+  <div class="eye">Tri Vananda &middot; 2026</div>
+  <div class="D2" style="max-width:980px;margin-bottom:14px">The <span class="it gd">timeline.</span></div>
+  <div class="rule"></div>
+  <div class="tlx-wrap" style="margin-top:20px;padding-top:0">
+    <!-- ── Section 1 · Business Development & Branding ── -->
+    <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.95);margin:0 0 8px">Business Development &amp; Branding</div>
+    <div class="tlx" style="margin-bottom:14px">
+      <!-- Row 1 · Clinique La Prairie Health Resort Opening (1 Nov, col 4) -->
+      <div class="tlx-bar" style="grid-row:1;grid-column:1 / span 3"></div>
+      <div class="tlx-bar fill summit" style="grid-row:1;grid-column:4 / span 1">Clinique La Prairie Health Resort Opening<small>1 Nov</small></div>
+      <!-- Row 2 · NWB Dev (May-Jun) + Marketing Collateral (Jul-Oct) + Continuing Comms (Nov-Dec) -->
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 1">New Wellness Brand Development<small>Brand, naming &amp; identity</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 2">Marketing Collateral Preparation<small>Renderings · photos · videos · masterplan model</small></div>
+      <!-- Row 3 · PATAMA Wellness at Trisara Launch (Sep-Oct, col 3) + PATAMA Wellness at Tri Vananda Construction Begins (Nov-Dec, col 4) -->
+      <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 2"></div>
+      <div class="tlx-bar fill launch" style="grid-row:3;grid-column:3 / span 1">PATAMA Wellness at Trisara Launch<small>Launch &middot; Sep &ndash; Oct</small></div>
+      <div class="tlx-bar fill launch" style="grid-row:3;grid-column:4 / span 1">PATAMA Wellness at Tri Vananda Construction Begins<small>2026 &rarr; expected completion 2027</small></div>
+    </div>
+    <!-- ── Section 2 · PR & Communications ── -->
+    <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.95);margin:0 0 8px">PR &amp; Communications</div>
+    <div class="tlx" style="margin-bottom:14px">
+      <!-- Row 1 · Always-On (May–Dec, all four columns) -->
+      <div class="tlx-bar fill overlay" style="grid-row:1;grid-column:1 / span 4">Always-On Digital &amp; Communications<small>Paid ads · social · organic · running throughout 2026</small></div>
+      <!-- Row 2 · PR Agency Selection (May-Jun) + Planning PR Strategy (Jul-Aug) + PR Campaign (Sep-Dec) -->
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 1">PR Agency Selection<small>Closed shortlist · 2 months</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 1">Planning PR Strategy<small>Narrative · channels · agency brief</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:3 / span 2">PR Campaign<small>Sustained Sep – Dec 2026</small></div>
+    </div>
+    <!-- ── Section 3 · Activations ── -->
+    <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.95);margin:0 0 8px">Activations</div>
+    <div class="tlx">
+      <!-- Row 1 · Pru Farm Festival (1 Nov, col 4) -->
+      <div class="tlx-bar" style="grid-row:1;grid-column:1 / span 3"></div>
+      <div class="tlx-bar fill summit" style="grid-row:1;grid-column:4 / span 1">Pru Farm Festival<small>Supporting activation · 1 Nov</small></div>
+      <!-- Row 2 · GWS Collaboration (Jul-Aug) + Pre-Summit Setup (Sep-Oct) + GWS Exhibitor (Nov-Dec) -->
+      <div class="tlx-bar" style="grid-row:2;grid-column:1 / span 1"></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 1">GWS Collaboration<small>Connect &middot; format of collaboration</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:3 / span 1">Pre-Summit Setup<small>Format · event organizer · experience design</small></div>
+      <div class="tlx-bar fill summit" style="grid-row:2;grid-column:4 / span 1">Join GWS as Exhibitor<small>Conference presence · 10–13 Nov</small></div>
+      <!-- Row 3 · Hosted Experience (Nov, col 4) -->
+      <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 3"></div>
+      <div class="tlx-bar fill summit" style="grid-row:3;grid-column:4 / span 1">Hosted Experience<small>For potential referrers · 10–13 Nov</small></div>
+    </div>
+    <div class="tlx-axis">
+      <div class="tlx-month" style="grid-column:1">May – Jun<strong>2026</strong></div>
+      <div class="tlx-month" style="grid-column:2">Jul – Aug</div>
+      <div class="tlx-month" style="grid-column:3">Sep – Oct</div>
+      <div class="tlx-month" style="grid-column:4">Nov – Dec</div>
+    </div>
+  </div>
+</section>
+<section class="S ink">
+  <div class="eye">Tri Vananda &middot; The Mandate</div>
+  <div class="D2" style="margin-bottom:8px">Request for Proposal</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.35rem;color:var(--gold-lt);margin-bottom:12px">U.S. PR &amp; Strategic Communications Partner</div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:980px">We are seeking a U.S. PR &amp; Strategic Communications Partner to help shape our communications around the current and future milestones ahead.</p>
+  <p class="body lg" style="max-width:980px;margin-top:16px">Following our introductory discussion and a deeper understanding of Tri Vananda&rsquo;s vision, upcoming milestones, and business objectives, we would appreciate receiving your proposal outlining your recommended PR and communications approach.</p>
+  <div style="border-left:2px solid var(--gold);padding:14px 0 14px 22px;margin-top:20px;max-width:980px"><div style="font-family:'Jost',sans-serif;font-weight:400;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.95);margin-bottom:6px">Our primary objective</div><p class="body lg" style="max-width:none;margin:0">Above all, our focus is on <span style="color:rgba(212,176,122,.95)">selling our residential villas</span>. Every milestone &mdash; the new wellness brand, the Clinique La Prairie opening, and the activations ahead &mdash; serves this goal: building the awareness, credibility and desire that convert HNWI interest into private visits, reservations and residence sales.</p></div>
+  <p class="body" style="max-width:980px;margin-top:18px;color:rgba(212,176,122,.95)">The proposal should include, but is not limited to, the following key areas:</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:26px">
+    <div style="background:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-height:120px"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.9">01</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25">Relevant Experience &amp; Case Studies</div></div>
+    <div style="background:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-height:120px"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.9">02</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25">Recommended Team &amp; Account Structure</div></div>
+    <div style="background:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-height:120px"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.9">03</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25">U.S. &amp; Global Media Strategy</div></div>
+    <div style="background:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-height:120px"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.9">04</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25">Measurement Framework &amp; Business Impact</div></div>
+    <div style="background:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-height:120px"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.9">05</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25">HNWI Audience Engagement Strategy</div></div>
+    <div style="background:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:10px;min-height:120px"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.4rem;color:var(--gold-lt);line-height:.9">06</div><div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.18rem;color:var(--white);line-height:1.25">Initial Strategic Storytelling Approach</div></div>
+  </div>
+</section>
+<section class="S ink">
+  <div class="eye">Tri Vananda &middot; The Mandate</div>
+  <div class="D3" style="margin-bottom:6px">Key areas &middot; <span class="it gd">01 &ndash; 03</span></div>
+  <div class="rule"></div>
+  <div style="margin-top:10px"><div class="rfp-area"><div class="rfp-area-l"><div class="num">01</div><div class="ttl">Relevant Experience &amp; Case Studies</div></div><div class="rfp-area-r"><ul class="pts"><li>Examples of branded residence, luxury hospitality, wellness, or lifestyle campaigns where PR contributed to measurable business outcomes.</li><li>Please highlight how communications supported tangible results such as qualified enquiries, private visits, reservations, sales conversion, or brand growth.</li><li>Include the KPIs used to evaluate campaign success.</li></ul></div></div><div class="rfp-area"><div class="rfp-area-l"><div class="num">02</div><div class="ttl">Recommended Team &amp; Account Structure</div></div><div class="rfp-area-r"><ul class="pts"><li>Proposed account structure and ways of working with Tri Vananda.</li><li>Introduction of senior team members who would lead the strategy and day-to-day account management.</li><li>Relevant experience working with HNWI audiences, luxury real estate, hospitality, wellness, and lifestyle brands.</li></ul></div></div><div class="rfp-area"><div class="rfp-area-l"><div class="num">03</div><div class="ttl">U.S. &amp; Global Media Strategy</div></div><div class="rfp-area-r"><ul class="pts"><li>Overview of the agency&rsquo;s relationships and track record with leading U.S. and international media, including but not limited to:<div class="rfp-chips"><span>The New York Times</span><span>The Wall Street Journal</span><span>Financial Times</span><span>Robb Report</span><span>Architectural Digest</span></div></li><li>Plus other relevant luxury, design, wellness, business, and lifestyle publications.</li><li>Recommended approach on how high-impact U.S. media coverage can build global credibility and cascade into Southeast Asian and regional media markets to amplify awareness.</li></ul></div></div></div>
+</section>
+<section class="S ink">
+  <div class="eye">Tri Vananda &middot; The Mandate</div>
+  <div class="D3" style="margin-bottom:6px">Key areas &middot; <span class="it gd">04 &ndash; 06</span></div>
+  <div class="rule"></div>
+  <div style="margin-top:10px"><div class="rfp-area"><div class="rfp-area-l"><div class="num">04</div><div class="ttl">Measurement Framework &amp; Business Impact</div></div><div class="rfp-area-r"><ul class="pts"><li>Recommended measurement approach beyond traditional PR metrics such as impressions and reach.</li><li>Framework for evaluating PR contribution toward:<div class="rfp-chips"><span>Qualified leads &amp; enquiries</span><span>Private visits &amp; hosted experiences</span><span>Reservations &amp; sales opportunities</span><span>Strategic partnerships</span><span>Long-term brand equity &amp; positioning</span></div></li></ul></div></div><div class="rfp-area"><div class="rfp-area-l"><div class="num">05</div><div class="ttl">HNWI Audience Engagement Strategy</div></div><div class="rfp-area-r"><ul class="pts"><li>Recommended influencer, partnership, and experiential strategies to authentically reach ultra-high-net-worth and high-net-worth audiences.</li><li>Approach to building trust and consideration through discreet, relationship-led engagement rather than traditional mass awareness.</li></ul></div></div><div class="rfp-area"><div class="rfp-area-l"><div class="num">06</div><div class="ttl">Initial Strategic Storytelling Approach</div></div><div class="rfp-area-r"><ul class="pts"><li>A preliminary PR storytelling concept for communicating Tri Vananda&rsquo;s upcoming milestones and positioning the project internationally.</li><li>Recommendations on key narratives, media angles, and opportunities that could establish Tri Vananda as a next-generation wellness community and global reference for purposeful living.</li></ul></div></div></div>
+</section>
+<section class="S bg">
+  <div class="eye">Tri Vananda &middot; In Closing</div>
+  <div class="D2" style="max-width:1000px;margin-bottom:14px">We look forward to <span class="it gd">your perspective.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:940px">We look forward to understanding your perspective on how strategic communications can support Tri Vananda&rsquo;s next chapter and create meaningful impact across brand awareness, reputation, and business growth.</p>
+  <div style="margin-top:54px;padding-top:26px;border-top:1px solid rgba(184,148,88,.25);display:flex;flex-direction:column;gap:6px">
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.5rem;color:var(--gold-lt)">treephol.t@trivananda.com</div>
+    <div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.55)">trivananda.com &middot; Phuket, Thailand</div>
+  </div>
+</section>
+<script>
+(function(){
+  const sections = Array.from(document.querySelectorAll('.S'));
+  const bar = document.getElementById('bar');
+  let currentSlide = 0;
+  let isAnimating = false;
+
+  // Wrap non-absolute content in a .slide-fit container so we can scale
+  // any section whose content still exceeds the viewport (safety net).
+  sections.forEach(section => {
+    if (section.classList.contains('split') || section.classList.contains('artwork') || section.id === 's1') return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'slide-fit';
+    const toMove = [];
+    Array.from(section.children).forEach(child => {
+      const cs = getComputedStyle(child);
+      if (cs.position !== 'absolute' && cs.position !== 'fixed') toMove.push(child);
+    });
+    toMove.forEach(c => wrapper.appendChild(c));
+    if (section.firstChild) section.insertBefore(wrapper, section.firstChild);
+    else section.appendChild(wrapper);
+  });
+
+  // Scale any overflowing slide-fit to fit its section (per-section)
+  function fitSlides(){
+    document.querySelectorAll('.slide-fit').forEach(wrapper => {
+      wrapper.style.transform = 'none';
+      void wrapper.offsetHeight; // force reflow
+      const section = wrapper.parentElement;
+      const sH = section.clientHeight;
+      const sW = section.clientWidth;
+      const cH = wrapper.scrollHeight;
+      const cW = wrapper.scrollWidth;
+      let scale = 1;
+      if (cH > sH) scale = Math.min(scale, sH / cH);
+      if (cW > sW) scale = Math.min(scale, sW / cW);
+      if (scale < 1) wrapper.style.transform = 'scale(' + (scale * 0.99) + ')';
+    });
+  }
+
+  function updateUI(){
+    const total = sections.length;
+    if (bar) bar.style.width = (currentSlide / Math.max(1, total - 1) * 100) + '%';
+  }
+
+  function goToSlide(n){
+    const target = Math.max(0, Math.min(sections.length - 1, n));
+    if (target === currentSlide) return;
+    currentSlide = target;
+    isAnimating = true;
+    sections[currentSlide].scrollIntoView({behavior:'smooth', block:'start'});
+    updateUI();
+    setTimeout(() => { isAnimating = false; }, 450);
+  }
+
+  // Keep currentSlide in sync with mouse/trackpad scrolling
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (isAnimating) return;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const mid = window.scrollY + window.innerHeight / 2;
+      for (let i = 0; i < sections.length; i++) {
+        const top = sections[i].offsetTop;
+        const bottom = top + sections[i].offsetHeight;
+        if (mid >= top && mid < bottom) {
+          if (currentSlide !== i) { currentSlide = i; updateUI(); }
+          break;
+        }
+      }
+    }, 80);
+  }, {passive:true});
+
+  // Keyboard navigation — section by section
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    const k = e.key;
+    if (k === 'ArrowDown' || k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Spacebar'){
+      e.preventDefault(); goToSlide(currentSlide + 1);
+    } else if (k === 'ArrowUp' || k === 'ArrowLeft' || k === 'PageUp'){
+      e.preventDefault(); goToSlide(currentSlide - 1);
+    } else if (k === 'Home'){
+      e.preventDefault(); goToSlide(0);
+    } else if (k === 'End'){
+      e.preventDefault(); goToSlide(sections.length - 1);
+    } else if (k === 'f' || k === 'F'){
+      e.preventDefault();
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+      else document.exitFullscreen && document.exitFullscreen();
+    }
+  });
+
+  // Re-fit on resize
+  let resizeTimer;
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(fitSlides, 100); });
+
+  function init(){ fitSlides(); updateUI(); }
+  window.addEventListener('load', init);
+  if (document.readyState === 'complete') init();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSlides);
+  setTimeout(fitSlides, 300);
+  setTimeout(fitSlides, 1200);
+  setTimeout(fitSlides, 2500);
+
+  // Re-fit as images load (their dimensions affect content height)
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(fitSlides, 80); }, {once:true});
+  });
+})();
+</script>
+</body>
+</html>

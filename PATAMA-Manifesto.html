@@ -1,0 +1,114 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PATAMA — Manifesto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --oat:#ece7dc; --paper:#f3efe6; --ink:#23221d; --ink2:#4a463c;
+  --bark:#5d5240; --taupe:#8a7c66; --camel:#b7a489; --stone:#9a9385;
+  --line:rgba(35,34,29,.16); --line2:rgba(35,34,29,.08);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',-apple-system,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--oat);color:var(--ink2);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.run{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;
+  padding:18px clamp(22px,5vw,60px);pointer-events:none}
+.run span{font-family:var(--sans);font-weight:400;font-size:.54rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone)}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(24px,6vw,40px)}
+
+/* manifesto */
+.mani{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 90px}
+.kicker{font-size:.6rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--taupe);
+  display:flex;align-items:center;gap:14px;margin-bottom:48px}
+.kicker::before{content:"";width:34px;height:1px;background:var(--taupe)}
+.mani p{font-family:var(--serif);font-weight:400;color:var(--ink);
+  font-size:clamp(1.5rem,3.1vw,2.5rem);line-height:1.42;letter-spacing:.004em;max-width:21ch;margin-bottom:1.1em}
+.mani p.lead-line{font-style:italic;color:var(--bark)}
+.mani .em{color:var(--bark);font-style:italic}
+.mani .close{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.8rem);color:var(--ink);
+  letter-spacing:.01em;max-width:none;margin-top:24px;line-height:1.2}
+.mani .sig{font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone);margin-top:46px}
+
+/* infinity */
+.loopsec{border-top:1px solid var(--line);padding:clamp(70px,12vh,130px) 0 clamp(80px,14vh,150px);text-align:center}
+.loopsec .kicker{justify-content:center}.loopsec .kicker::after{content:"";width:34px;height:1px;background:var(--taupe)}
+.loopsec h2{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:clamp(2rem,4vw,3.1rem);line-height:1.05}
+.loopsec .cap{font-family:var(--serif);font-style:italic;color:var(--taupe);font-size:clamp(1.1rem,2vw,1.5rem);margin-top:12px}
+.infsvg{width:100%;max-width:780px;margin:40px auto 10px;display:block}
+.legend{display:flex;justify-content:center;gap:50px;margin-top:18px;flex-wrap:wrap}
+.legend div{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);line-height:1.7}
+.legend b{display:block;font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.15rem;letter-spacing:0;color:var(--bark);text-transform:none}
+
+footer{padding:40px 0 70px;text-align:center;border-top:1px solid var(--line2)}
+footer .wm{font-family:var(--serif);font-weight:600;letter-spacing:.22em;color:var(--ink);font-size:1.4rem}
+footer .sub{font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin-top:12px}
+</style>
+
+<div class="run"><span>PATAMA</span><span>Manifesto · for approval</span></div>
+
+<div class="wrap">
+
+  <!-- MANIFESTO -->
+  <div class="mani">
+    <div class="kicker">The Manifesto</div>
+    <p class="lead-line">A life well lived is not one thing.</p>
+    <p>It is many good things, woven together.</p>
+    <p>Health and stillness. Movement and rest. The wisdom of a place, the people we love, the table we gather around, the forest at the door.</p>
+    <p>No single thread makes a life. <span class="em">The weave does.</span></p>
+    <p>Some threads turn inward — how we know ourselves, how we think, move, and are nourished. Others reach outward — to nature, to heritage, to family, to the rhythm of ordinary days.</p>
+    <p>Where they cross is where we truly live: <span class="em">the self, in the world.</span></p>
+    <p>We have gathered these threads into eight. Turned on its side, eight becomes infinity — not a number, but a promise: that there is no end to the ways a life can be well.</p>
+    <p>This is the work of PATAMA — by the sea, in the forest, under expert care. One practice, many forms, every generation.</p>
+    <div class="close">Threading all the good things<br>in life together.</div>
+    <div class="sig">PATAMA · Montara Hospitality Group</div>
+  </div>
+
+  <!-- INFINITY LOOP -->
+  <div class="loopsec">
+    <div class="kicker">The Idea</div>
+    <h2>Within, and beyond.</h2>
+    <div class="cap">Eight threads, woven as one — from within, to beyond.</div>
+    <svg class="infsvg" viewBox="0 0 760 236" xmlns="http://www.w3.org/2000/svg" aria-label="Eight threads weaving continuously from within to beyond">
+      <defs>
+        <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#9a8b6f"/><stop offset=".5" stop-color="#bda988"/><stop offset="1" stop-color="#9a8b6f"/>
+        </linearGradient>
+      </defs>
+      <path d="M380,140 C300,50 120,50 120,140 C120,230 300,230 380,140 C460,50 640,50 640,140 C640,230 460,230 380,140 Z" fill="none" stroke="#d3c6ad" stroke-width="1" opacity=".55"/>
+      <path d="M380,140 C300,50 120,50 120,140 C120,230 300,230 380,140 C460,50 640,50 640,140 C640,230 460,230 380,140 Z" fill="none" stroke="url(#flow)" stroke-width="1.7" stroke-linecap="round" stroke-dasharray="2.5 13" opacity=".95">
+        <animate attributeName="stroke-dashoffset" from="0" to="-188" dur="7s" repeatCount="indefinite"/>
+      </path>
+      <g font-family="'Inter',sans-serif" font-size="7.6" font-weight="400" letter-spacing="1" fill="#4a463c" text-anchor="middle">
+        <circle cx="295" cy="86" r="3.2" fill="#4c4232"/><text x="295" y="70">01 · LIFE INTELLIGENCE</text>
+        <circle cx="156" cy="86" r="3.2" fill="#5a4e3a"/><text x="156" y="70">02 · CONSCIOUS MIND</text>
+        <circle cx="156" cy="194" r="3.2" fill="#695b43"/><text x="156" y="212">03 · GRACEFUL MOVEMENT</text>
+        <circle cx="295" cy="194" r="3.2" fill="#79694c"/><text x="295" y="212">04 · LIVING CUISINE</text>
+        <circle cx="465" cy="86" r="3.2" fill="#897755"/><text x="465" y="70">05 · NATURAL CONNECTION</text>
+        <circle cx="604" cy="86" r="3.2" fill="#99865e"/><text x="604" y="70">06 · CULTURAL ROOTS</text>
+        <circle cx="604" cy="194" r="3.2" fill="#a99468"/><text x="604" y="212">07 · FAMILY JOY</text>
+        <circle cx="465" cy="194" r="3.2" fill="#b7a472"/><text x="465" y="212">08 · LIVING WELL AT HOME</text>
+        <circle cx="380" cy="140" r="6.5" fill="none" stroke="#23221d" stroke-width="1"/>
+        <circle cx="380" cy="140" r="2.4" fill="#23221d"/>
+        <text x="380" y="114" fill="#8a7c66" font-style="italic" font-family="'Cormorant Garamond',serif" font-size="13" letter-spacing="0">the self, in the world</text>
+        <text x="352" y="144" text-anchor="end" fill="#8a7c66" font-style="italic" font-family="'Cormorant Garamond',serif" font-size="15">within</text>
+        <text x="408" y="144" text-anchor="start" fill="#8a7c66" font-style="italic" font-family="'Cormorant Garamond',serif" font-size="15">beyond</text>
+      </g>
+    </svg>
+    <div class="legend">
+      <div><b>Within</b>Life Intelligence · Conscious Mind<br>Graceful Movement · Living Cuisine</div>
+      <div><b>Beyond</b>Natural Connection · Cultural Roots<br>Family Joy · Living Well at Home</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wm">PATAMA</div>
+    <div class="sub">Manifesto &amp; Infinity · for approval · June 2026</div>
+  </footer>
+
+</div>

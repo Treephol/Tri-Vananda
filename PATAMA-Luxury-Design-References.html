@@ -1,0 +1,299 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PATAMA — 10 Luxury Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f4efe5; --paper:#faf7f1; --ink:#0f1310; --ink2:#3c4039;
+  --gold:#b89458; --stone:#9e9282; --line:rgba(15,19,16,.14); --line2:rgba(15,19,16,.07);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',-apple-system,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink2);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.top{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(22px,5vw,72px);border-bottom:1px solid var(--line);background:rgba(244,239,229,.92);backdrop-filter:blur(6px)}
+.top .l{font-family:var(--serif);font-weight:600;letter-spacing:.34em;color:var(--ink);font-size:.92rem}
+.top .r{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(22px,5vw,40px)}
+.intro{padding:clamp(48px,8vh,92px) 0 30px}
+.eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+.intro h1{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.02}
+.intro p{font-size:clamp(.95rem,1.1vw,1.08rem);max-width:64ch;margin-top:20px;color:var(--ink2)}
+.howto{margin-top:22px;font-size:.82rem;color:var(--stone);border-left:2px solid var(--gold);padding-left:16px;max-width:60ch}
+
+/* reference rows */
+.refs{display:flex;flex-direction:column;gap:clamp(40px,7vh,80px);padding:40px 0 30px}
+.ref{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,56px);align-items:center}
+.ref:nth-child(even){grid-template-columns:.95fr 1.05fr}
+.ref:nth-child(even) .info{order:2}.ref:nth-child(even) .spec{order:1}
+@media(max-width:840px){.ref,.ref:nth-child(even){grid-template-columns:1fr}.ref:nth-child(even) .info{order:1}.ref:nth-child(even) .spec{order:2}}
+
+.info .no{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.5rem;line-height:1}
+.info .brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(1.7rem,2.8vw,2.4rem);line-height:1.04;margin-top:4px}
+.info .lang{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-top:10px}
+.info .codes{font-size:.92rem;color:var(--ink2);margin-top:16px;line-height:1.7;max-width:46ch}
+.info .codes b{color:var(--ink);font-weight:500}
+.info .forp{font-size:.88rem;color:var(--ink2);margin-top:14px;line-height:1.65;max-width:46ch;border-top:1px solid var(--line);padding-top:14px}
+.info .forp b{color:var(--gold);font-weight:500;letter-spacing:.04em}
+
+/* specimen frame */
+.spec{aspect-ratio:4/3;border:1px solid var(--line);box-shadow:0 22px 50px rgba(15,19,16,.14);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8%}
+.spec .micro{position:absolute;top:14px;left:16px;font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;opacity:.6}
+.spec .micro.r{left:auto;right:16px}
+.hair{height:1px;width:64px;margin:14px auto}
+
+/* 01 Aman */
+.s-aman{background:#15120d;color:#cfc7b8}
+.s-aman .wm{font-family:'Inter',sans-serif;font-weight:300;letter-spacing:1.1em;font-size:clamp(1.1rem,2.6vw,1.9rem);padding-left:1.1em}
+.s-aman .sub{font-family:'Inter',sans-serif;font-weight:300;letter-spacing:.42em;font-size:.52rem;text-transform:uppercase;color:#938b7c}
+.s-aman .hair{background:#5f5848}
+/* 02 Loro Piana */
+.s-loro{background:#cdbca3;color:#463c2c}
+.s-loro .wm{font-family:'EB Garamond',serif;font-weight:400;letter-spacing:.04em;font-size:clamp(1.5rem,3vw,2.3rem)}
+.s-loro .sub{font-family:'Inter',sans-serif;font-weight:400;letter-spacing:.3em;font-size:.5rem;text-transform:uppercase;color:#6b5e48;margin-top:6px}
+.s-loro .mat{display:flex;gap:0;margin-top:20px;width:70%;border:1px solid rgba(70,60,44,.25)}
+.s-loro .mat i{flex:1;height:18px}
+/* 03 The Row */
+.s-row{background:#e7e2d8;color:#2b2b28}
+.s-row .wm{font-family:'Playfair Display',serif;font-weight:400;letter-spacing:.06em;font-size:clamp(1.4rem,3vw,2.2rem);color:#cdc6b8;-webkit-text-stroke:.5px #2b2b28}
+.s-row .sub{font-family:'Inter',sans-serif;font-weight:300;letter-spacing:.4em;font-size:.5rem;text-transform:uppercase;color:#8a857a;margin-top:14px}
+/* 04 Cucinelli */
+.s-cuc{background:#efe7d8;color:#5a4f3c}
+.s-cuc .q{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(1.05rem,2.2vw,1.5rem);line-height:1.4;color:#5a4f3c;max-width:24ch}
+.s-cuc .wm{font-family:'EB Garamond',serif;letter-spacing:.16em;font-size:.72rem;text-transform:uppercase;color:#8a7a5c;margin-top:16px}
+/* 05 Aesop */
+.s-aesop{background:#1d2117;color:#c7c1ad}
+.s-aesop .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:.5rem;letter-spacing:.2em;line-height:2;text-transform:uppercase;text-align:left;max-width:30ch}
+.s-aesop .lbl b{display:block;font-size:.78rem;letter-spacing:.16em;color:#d9b06a;margin-bottom:8px}
+.s-aesop .lbl .sm{color:#8f8a76;letter-spacing:.14em}
+/* 06 Hermes */
+.s-herm{background:#ec5a13;color:#fff}
+.s-herm .wm{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:.01em}
+.s-herm .sub{font-family:'EB Garamond',serif;font-style:italic;font-size:1rem;margin-top:8px;color:#ffe9d8}
+.s-herm .hair{background:rgba(255,255,255,.6)}
+/* 07 Cartier */
+.s-cart{background:#5e0d12;color:#e9c984}
+.s-cart .wm{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.22em;font-size:clamp(1.3rem,2.8vw,2.1rem);padding-left:.22em}
+.s-cart .sub{font-family:'Inter',sans-serif;font-weight:400;letter-spacing:.36em;font-size:.5rem;text-transform:uppercase;color:#b98f55;margin-top:12px}
+.s-cart .frame{position:absolute;inset:14px;border:1px solid rgba(233,201,132,.35);pointer-events:none}
+/* 08 Cereal */
+.s-cer{background:#e9e8e2;color:#42463f;align-items:stretch;text-align:left}
+.s-cer .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.s-cer .gl{border-right:1px solid rgba(66,70,63,.18);padding-right:14px;display:flex;flex-direction:column;justify-content:center}
+.s-cer .gr{padding-left:14px;display:flex;align-items:flex-end}
+.s-cer .k{font-family:'Inter',sans-serif;font-weight:500;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:#9a978c}
+.s-cer .h{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.2rem,2.6vw,1.8rem);line-height:1.15;margin-top:10px}
+.s-cer .pg{font-family:'Inter',sans-serif;font-size:.5rem;letter-spacing:.2em;color:#9a978c}
+/* 09 Bottega */
+.s-bv{background:#2f5d34;color:#eef0e6}
+.s-bv .wm{font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:-.01em}
+.s-bv .sub{font-family:'Inter',sans-serif;font-weight:300;letter-spacing:.32em;font-size:.5rem;text-transform:uppercase;color:#b9c7ad;margin-top:12px}
+/* 10 Six Senses */
+.s-six{background:#3a4a34;color:#e7e0cd}
+.s-six .wm{font-family:'Jost',sans-serif;font-weight:200;letter-spacing:.46em;font-size:clamp(1.1rem,2.5vw,1.8rem);padding-left:.46em}
+.s-six .sub{font-family:'Jost',sans-serif;font-weight:300;letter-spacing:.3em;font-size:.5rem;text-transform:uppercase;color:#a9b39a;margin-top:12px}
+.s-six .hair{background:#6f7a5e}
+
+footer{padding:50px 0 80px;text-align:center}
+footer .wm{font-family:var(--serif);font-weight:600;letter-spacing:.2em;color:var(--ink);font-size:1.5rem}
+footer .sub{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);margin-top:12px}
+</style>
+
+<div class="top">
+  <div class="l">PATAMA</div>
+  <div class="r">10 Luxury Design Directions · Internal</div>
+</div>
+
+<div class="wrap">
+  <div class="intro">
+    <div class="eyebrow">Choose a direction</div>
+    <h1>Ten ways to look<br>genuinely luxurious.</h1>
+    <p>Ten distinct design languages from houses that define high-end taste — across fashion, hospitality, beauty and publishing. Each panel is an original specimen built to <em>evoke</em> the brand's design world (not its logo), so you can feel the difference side by side. Every direction would suit a wellbeing ecosystem differently.</p>
+    <div class="howto">Tell me the number (or two) that feels right for PATAMA — we can also blend, e.g. "Aman structure with Cucinelli warmth" — and I'll develop it into the teaser and the book.</div>
+  </div>
+
+  <div class="refs">
+
+    <!-- 01 AMAN -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">01</div>
+        <div class="brand">Aman</div>
+        <div class="lang">Sanctuary Minimalism</div>
+        <div class="codes"><b>Codes:</b> near-black and stone, vast negative space, tiny wide-tracked sans, a single hairline, photography of light and emptiness. Luxury expressed by what is withheld.</div>
+        <div class="forp"><b>For PATAMA</b> — the calmest, most "retreat" option. Reads instantly as ultra-premium; risk is feeling cold for a multigenerational, joyful brand.</div>
+      </div>
+      <div class="spec s-aman">
+        <div class="micro">Sanctuary</div><div class="micro r">Silence</div>
+        <div class="wm">AMAN</div>
+        <div class="hair"></div>
+        <div class="sub">space · stillness · depth</div>
+      </div>
+    </div>
+
+    <!-- 02 LORO PIANA -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">02</div>
+        <div class="brand">Loro Piana</div>
+        <div class="lang">Quiet Material Luxury</div>
+        <div class="codes"><b>Codes:</b> natural colourways drawn from the landscape, soft serif, almost no logo, the material itself as hero. The substance is the marketing.</div>
+        <div class="forp"><b>For PATAMA</b> — lets nature, forest and craft carry the brand. Understated wealth; pairs beautifully with the net-zero, farm-to-villa story.</div>
+      </div>
+      <div class="spec s-loro">
+        <div class="micro">No logo needed</div>
+        <div class="wm">Loro Piana</div>
+        <div class="sub">the fibre is the statement</div>
+        <div class="mat"><i style="background:#c9b89c"></i><i style="background:#b7a489"></i><i style="background:#9c8a6f"></i><i style="background:#7d6e57"></i><i style="background:#5d5240"></i></div>
+      </div>
+    </div>
+
+    <!-- 03 THE ROW -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">03</div>
+        <div class="brand">The Row</div>
+        <div class="lang">Architectural Restraint</div>
+        <div class="codes"><b>Codes:</b> bone and charcoal, tone-on-tone, modern high-contrast serif used sparingly, garments and rooms like architecture. Silence as confidence.</div>
+        <div class="forp"><b>For PATAMA</b> — the most fashion-led, intellectual option. Elegant and contemporary; very urban, less "nature."</div>
+      </div>
+      <div class="spec s-row">
+        <div class="micro">Tone on tone</div>
+        <div class="wm">THE ROW</div>
+        <div class="sub">precision · privacy</div>
+      </div>
+    </div>
+
+    <!-- 04 CUCINELLI -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">04</div>
+        <div class="brand">Brunello Cucinelli</div>
+        <div class="lang">Humanist Italian Warmth</div>
+        <div class="codes"><b>Codes:</b> warm stone and cream, classical serif, words about dignity and beauty, a sense of soul and craftsmanship. Luxury with a conscience.</div>
+        <div class="forp"><b>For PATAMA</b> — arguably the closest in spirit: warm, human, multigenerational, values-led. Wellbeing as a humane philosophy, not a clinic.</div>
+      </div>
+      <div class="spec s-cuc">
+        <div class="micro">Humanistic luxury</div>
+        <div class="q">"To live and work with dignity, beauty and grace."</div>
+        <div class="wm">Brunello Cucinelli</div>
+      </div>
+    </div>
+
+    <!-- 05 AESOP -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">05</div>
+        <div class="brand">Aesop</div>
+        <div class="lang">Intellectual Apothecary</div>
+        <div class="codes"><b>Codes:</b> dark olive and amber, dense typographic labels, literary copy, no faces or miracle claims. A skincare brand that reads like a library.</div>
+        <div class="forp"><b>For PATAMA</b> — perfect for the wellness products and the "at home" thread. Cerebral and precise; would need warmth added for the family story.</div>
+      </div>
+      <div class="spec s-aesop">
+        <div class="micro">Considered</div><div class="micro r">Est. philosophy</div>
+        <div class="lbl"><b>PATAMA · Botanical</b>
+          A restorative preparation formulated with forest-grown botanicals.<br>
+          <span class="sm">Apply to the day, generously. Of Phuket. Net&nbsp;zero. 200&nbsp;ml.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 HERMES -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">06</div>
+        <div class="brand">Hermès</div>
+        <div class="lang">Playful Craft Heritage</div>
+        <div class="codes"><b>Codes:</b> a confident signature colour, witty serif headlines, illustration and craft, a sense of joy and play atop deep savoir-faire.</div>
+        <div class="forp"><b>For PATAMA</b> — the most joyful option, and the best fit for "Family Joy." Heritage that smiles; needs discipline so it stays elevated.</div>
+      </div>
+      <div class="spec s-herm">
+        <div class="micro">Joie de vivre</div>
+        <div class="wm">Maison</div>
+        <div class="sub">craft, with a wink</div>
+        <div class="hair"></div>
+      </div>
+    </div>
+
+    <!-- 07 CARTIER / ASSOULINE -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">07</div>
+        <div class="brand">Cartier × Assouline</div>
+        <div class="lang">Archival Grandeur</div>
+        <div class="codes"><b>Codes:</b> deep jewel tones, gold, high-contrast didone serif, framed museum plates, the icon paraded with reverence. The archive as the argument.</div>
+        <div class="forp"><b>For PATAMA</b> — the most overtly opulent; ideal for the coffee-table book and legacy storytelling. Risk: too "maison," not enough nature.</div>
+      </div>
+      <div class="spec s-cart">
+        <div class="frame"></div>
+        <div class="wm">CARTIER</div>
+        <div class="sub">the impossible collection</div>
+      </div>
+    </div>
+
+    <!-- 08 CEREAL / KINFOLK -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">08</div>
+        <div class="brand">Cereal / Kinfolk</div>
+        <div class="lang">Editorial Slow-Living</div>
+        <div class="codes"><b>Codes:</b> muted greys and greens, a strict grid, sans labels with serif headlines, enormous white space, page numbers. Travel-magazine calm.</div>
+        <div class="forp"><b>For PATAMA</b> — a natural home for the teaser and the book: editorial, modern, restful. Contemporary without shouting; very on-trend for wellness.</div>
+      </div>
+      <div class="spec s-cer">
+        <div class="micro">Issue 01</div>
+        <div class="grid">
+          <div class="gl"><div class="k">A Modern Way of Living</div><div class="h">Within<br>&amp; Beyond</div></div>
+          <div class="gr"><div class="pg">— 019</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 BOTTEGA -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">09</div>
+        <div class="brand">Bottega Veneta</div>
+        <div class="lang">Confident Modern</div>
+        <div class="codes"><b>Codes:</b> a single signature green, cream, bold clean sans, no visible logo — the technique is the signature. Quiet power, modern and sure.</div>
+        <div class="forp"><b>For PATAMA</b> — boldest and most contemporary. Strong, ownable colour; would feel fashion-forward rather than restful or natural.</div>
+      </div>
+      <div class="spec s-bv">
+        <div class="micro">When your initials are enough</div>
+        <div class="wm">bottega</div>
+        <div class="sub">the craft is the logo</div>
+      </div>
+    </div>
+
+    <!-- 10 SIX SENSES -->
+    <div class="ref">
+      <div class="info">
+        <div class="no">10</div>
+        <div class="brand">Six Senses</div>
+        <div class="lang">Eco-Chic Nature</div>
+        <div class="codes"><b>Codes:</b> forest greens and sand, organic textures, light airy sans, photography where nature leads and architecture steps back. Mindful, of its place.</div>
+        <div class="forp"><b>For PATAMA</b> — the most directly "wellness + nature" fit, and closest to peers. Safe and credible; risk is looking like the category, not above it.</div>
+      </div>
+      <div class="spec s-six">
+        <div class="micro">Reconnect</div><div class="micro r">Of this place</div>
+        <div class="wm">SIX SENSES</div>
+        <div class="hair"></div>
+        <div class="sub">nature leads</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="wm">PATAMA</div>
+    <div class="sub">10 Directions · reply with your pick · June 2026</div>
+  </footer>
+</div>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATAMA · Garden House — The Living Room of Meaningful Living</title>
+<meta name="description" content="PATAMA Garden House at Trisara, Phuket — one connected garden destination where family life, beauty, wellbeing and human connection meet. Living Well Begins Together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ──────────────────────────────────────────────
+   PATAMA · GARDEN HOUSE
+   Art direction: warm limewash + botanical + humanist
+   Palette: cream paper / clay / sage / lotus blush / teak / brass
+   Type: Cormorant Garamond (serif) · Jost (grotesque)
+   ────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --paper:#f3ede1;      /* limewash cream */
+  --paper-2:#ece3d3;    /* warm sand */
+  --ink:#2c2620;        /* warm near-black */
+  --ink-soft:#4a423a;
+  --clay:#b5704e;       /* terracotta */
+  --blush:#caa68f;      /* lotus blush */
+  --sage:#6f7d5f;       /* garden green */
+  --teak:#5d4a38;       /* weathered wood */
+  --brass:#a6824b;      /* aged brass */
+  --line:rgba(44,38,32,.16);
+  --line-soft:rgba(44,38,32,.09);
+  --txt:rgba(44,38,32,.74);
+  --txt-dim:rgba(44,38,32,.52);
+  --cream-txt:rgba(243,237,225,.86);
+  --cream-dim:rgba(243,237,225,.62);
+  --gutter:clamp(22px,6vw,96px);
+}
+
+html{scroll-behavior:smooth;background:var(--paper)}
+body{
+  font-family:'Jost',sans-serif;font-weight:300;
+  background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  line-height:1.6;overflow-x:hidden;
+}
+/* fine paper grain */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.04;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img{display:block;max-width:100%;height:auto}
+
+/* ── type ── */
+.serif{font-family:'Cormorant Garamond',serif;font-weight:300}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.06;letter-spacing:.003em}
+h1{font-size:clamp(2.7rem,6vw,5.6rem)}
+h2{font-size:clamp(2rem,4vw,3.4rem)}
+h3{font-size:clamp(1.4rem,2vw,1.9rem)}
+.it{font-style:italic}
+
+.eye{
+  font-family:'Jost',sans-serif;font-weight:400;font-size:.62rem;letter-spacing:.44em;
+  text-transform:uppercase;color:var(--clay);display:inline-block;
+}
+.eye.on-dark{color:var(--blush)}
+.lede{font-size:clamp(1.05rem,1.5vw,1.28rem);color:var(--txt);font-weight:300;max-width:54ch}
+.cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--txt-dim)}
+
+.rule{height:1px;background:var(--line);width:100%}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--brass);display:inline-block;vertical-align:middle}
+
+/* ── nav ── */
+header.top{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:22px var(--gutter);gap:20px;
+  transition:background .5s ease,padding .5s ease,backdrop-filter .5s ease,box-shadow .5s ease;
+}
+header.top.scrolled{background:rgba(243,237,225,.86);backdrop-filter:blur(14px);padding:14px var(--gutter);box-shadow:0 1px 0 var(--line-soft)}
+.nav-l{justify-self:start;font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:12px}
+.nav-l::before{content:'';width:20px;height:1px;background:var(--ink)}
+.wordmark{justify-self:center;text-align:center;color:var(--ink);text-decoration:none;line-height:1}
+.wordmark .mk{font-family:'Jost',sans-serif;font-weight:400;font-size:1.02rem;letter-spacing:.5em;padding-left:.5em}
+.wordmark .sub{display:block;font-size:.5rem;letter-spacing:.42em;color:var(--clay);margin-top:6px;text-transform:uppercase}
+.hero .wordmark, .hero .nav-l{color:var(--paper)}
+.hero .nav-l::before{background:var(--paper)}
+.hero .cta-mini{color:var(--paper)}
+header.scrolled .wordmark,header.scrolled .nav-l{color:var(--ink)}
+header.scrolled .nav-l::before{background:var(--ink)}
+header.scrolled .cta-mini{color:var(--ink)}
+.cta-mini{justify-self:end;font-size:.58rem;letter-spacing:.36em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding-bottom:4px}
+.cta-mini::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--brass);transform:scaleX(.5);transform-origin:left;transition:transform .45s ease}
+.cta-mini:hover::after{transform:scaleX(1)}
+
+/* ── hero ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:var(--paper);overflow:hidden}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero::before{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(28,22,18,.42) 0%,rgba(28,22,18,.06) 30%,rgba(28,22,18,.12) 60%,rgba(28,22,18,.72) 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 var(--gutter) clamp(48px,9vh,110px);width:100%}
+.hero h1{color:var(--paper);max-width:18ch;margin:.35em 0 .5em}
+.hero .lede{color:var(--cream-txt);max-width:46ch}
+.hero .eye{color:var(--blush)}
+.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cream-dim);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scrollcue span.l{width:1px;height:46px;background:linear-gradient(var(--blush),transparent);animation:drop 2.4s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ── sections ── */
+section{padding:clamp(64px,11vh,140px) 0}
+.wrap{padding-inline:var(--gutter)}
+.maxw{max-width:1320px;margin-inline:auto}
+
+/* manifesto */
+.belief{background:var(--paper)}
+.belief .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,78px);align-items:center;max-width:1320px;margin-inline:auto}
+.belief h2{margin:.3em 0 .6em;max-width:16ch}
+.belief .imgwrap{position:relative}
+.belief .imgwrap img{aspect-ratio:4/5;object-fit:cover;width:100%;filter:saturate(.96)}
+.belief .imgwrap .cap{position:absolute;bottom:-30px;left:0}
+.pull{font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;font-size:clamp(1.5rem,2.4vw,2.1rem);line-height:1.3;color:var(--ink);max-width:24ch}
+
+/* three gardens */
+.gardens{background:var(--paper-2)}
+.gardens .head{max-width:1320px;margin:0 auto clamp(40px,6vh,72px);text-align:center}
+.gardens .head h2{margin:.3em auto .4em;max-width:18ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,34px);max-width:1320px;margin-inline:auto}
+.card{background:var(--paper);position:relative;display:flex;flex-direction:column}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{aspect-ratio:3/4;object-fit:cover;width:100%;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .ph .no{position:absolute;top:16px;left:18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--paper);text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.card .body{padding:26px 26px 30px}
+.card h3{margin-bottom:.35em}
+.card .role{font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:var(--clay);display:block;margin-bottom:14px}
+.card p{font-size:.95rem;color:var(--txt)}
+
+/* interstitial quote over image */
+.inter{position:relative;min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--paper);overflow:hidden}
+.inter img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.inter::before{content:'';position:absolute;inset:0;background:rgba(40,28,20,.46)}
+.inter .q{position:relative;z-index:2;padding-inline:var(--gutter);max-width:24ch}
+.inter .q h2{color:var(--paper);font-style:italic}
+
+/* gateway */
+.gateway{background:var(--paper)}
+.gateway .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,80px);align-items:center;max-width:1320px;margin-inline:auto}
+.gateway .imgwrap img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.gateway h2{margin:.3em 0 .6em;max-width:15ch}
+.path-list{margin-top:34px;border-top:1px solid var(--line)}
+.path-list .row{display:flex;align-items:baseline;gap:18px;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.path-list .row .nm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--ink);min-width:9.5ch}
+.path-list .row .ds{font-size:.86rem;color:var(--txt-dim)}
+
+/* prototype / vision */
+.vision{background:var(--teak);color:var(--paper);text-align:center}
+.vision .maxw{max-width:900px}
+.vision .eye{color:var(--blush)}
+.vision h2{color:var(--paper);margin:.35em auto .55em}
+.vision p{color:var(--cream-txt);max-width:60ch;margin-inline:auto}
+.vision .stones{display:flex;justify-content:center;gap:10px;margin-bottom:30px}
+.vision .stones i{display:block;border-radius:40% 40% 45% 45%/55% 55% 40% 40%;background:var(--blush);opacity:.9}
+.vision .stones i:nth-child(1){width:26px;height:14px}
+.vision .stones i:nth-child(2){width:20px;height:18px;background:var(--brass)}
+.vision .stones i:nth-child(3){width:32px;height:12px}
+
+/* invitation / footer */
+.invite{background:var(--paper-2);text-align:center}
+.invite h2{margin:.3em auto .5em;max-width:16ch}
+.btn{display:inline-block;margin-top:30px;font-family:'Jost',sans-serif;font-weight:400;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--paper);background:var(--clay);text-decoration:none;padding:18px 42px;transition:background .4s ease}
+.btn:hover{background:var(--teak)}
+footer{background:var(--ink);color:var(--cream-dim);padding:54px var(--gutter)}
+footer .fgrid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;max-width:1320px;margin-inline:auto;align-items:flex-end}
+footer .fmk{font-family:'Jost',sans-serif;font-weight:400;letter-spacing:.5em;font-size:1rem;color:var(--paper);padding-left:.5em}
+footer .fmk small{display:block;font-size:.5rem;letter-spacing:.4em;color:var(--blush);margin-top:8px}
+footer .meta{font-size:.74rem;line-height:1.9;letter-spacing:.04em}
+footer .meta a{color:var(--blush);text-decoration:none}
+footer .fine{font-size:.6rem;letter-spacing:.16em;color:rgba(243,237,225,.32);text-transform:uppercase}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:900px){
+  .belief .grid,.gateway .grid{grid-template-columns:1fr}
+  .belief .imgwrap{order:-1}
+  .belief .imgwrap .cap{position:static;margin-top:12px;display:block}
+  .cards{grid-template-columns:1fr;max-width:480px}
+  .nav-l{display:none}
+  header.top{grid-template-columns:1fr auto;}
+  .wordmark{justify-self:start}
+}
+@media(max-width:560px){
+  h1{font-size:2.5rem}
+  .path-list .row{flex-direction:column;gap:2px}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="nav-l">The House</div>
+  <a class="wordmark" href="#"><span class="mk">PATAMA</span><span class="sub">Garden House</span></a>
+  <a class="cta-mini" href="#invite">Plan a Visit</a>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <img class="bg" src="patama-gh-assets/hero-dusk.jpg" alt="Dusk over the gardens and lake at Trisara, Phuket">
+  <div class="hero-inner">
+    <span class="eye rv">PATAMA · A Garden House at Trisara, Phuket</span>
+    <h1 class="rv">The Living Room of<br>Meaningful Living</h1>
+    <p class="lede rv">A place where children explore and create, parents return to themselves, and beauty, wellbeing and human connection are discovered in the rhythm of an unhurried day. <span class="it">Living well begins together.</span></p>
+  </div>
+  <div class="scrollcue"><span>Enter</span><span class="l"></span></div>
+</section>
+
+<!-- BELIEF / MANIFESTO -->
+<section class="belief wrap">
+  <div class="grid">
+    <div>
+      <span class="eye rv">The Belief</span>
+      <h2 class="rv">The most meaningful luxury is not ownership.</h2>
+      <p class="lede rv" style="margin-bottom:28px">It is the quality of the life we create with the people we love — across generations, in the company of nature, without hurry.</p>
+      <p class="pull rv">PATAMA Garden House is built around that single idea: a home you are welcomed into, not a destination you check in to.</p>
+    </div>
+    <div class="imgwrap rv">
+      <img src="patama-gh-assets/canopy.jpg" alt="Light through the tree canopy">
+      <span class="cap">Old trees, kept. Light, borrowed. Nothing rushed.</span>
+    </div>
+  </div>
+</section>
+
+<!-- THREE GARDENS -->
+<section class="gardens wrap">
+  <div class="head">
+    <span class="eye rv">One House, Three Gardens</span>
+    <h2 class="rv">Three salas, reimagined as one connected world.</h2>
+    <p class="lede rv" style="margin-inline:auto;text-align:center">Linked by garden corridors that open onto a living waterfall, tropical planting and the Andaman beyond — a single ecosystem of family, beauty and wellbeing.</p>
+  </div>
+  <div class="cards">
+    <article class="card rv">
+      <div class="ph"><img src="patama-gh-assets/little-garden.jpg" alt="Children creating by the lake"><span class="no it">I</span></div>
+      <div class="body">
+        <span class="role">Explore &amp; Create</span>
+        <h3>Little Garden</h3>
+        <p>A creative studio in the open air, not a kids' club. Hands in clay, paint by the water, small discoveries that children remember for a lifetime.</p>
+      </div>
+    </article>
+    <article class="card rv">
+      <div class="ph"><img src="patama-gh-assets/lotus-ritual.jpg" alt="Sound ritual beside the lake"><span class="no it">II</span></div>
+      <div class="body">
+        <span class="role">Beauty &amp; Wellbeing</span>
+        <h3>Lotus Gallery</h3>
+        <p>Beauty discovered the way one discovers art — slowly, through conversation and ritual. Objects and rituals presented at rest, never sold.</p>
+      </div>
+    </article>
+    <article class="card rv">
+      <div class="ph"><img src="patama-gh-assets/living-room-fire.jpg" alt="Open-fire cooking"><span class="no it">III</span></div>
+      <div class="body">
+        <span class="role">Gather &amp; Connect</span>
+        <h3>Living Room</h3>
+        <p>The generous table at the heart of the house — open fire, garden produce, long lunches and the slow conversations that hold a family together.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- INTERSTITIAL -->
+<section class="inter">
+  <img src="patama-gh-assets/garden-harvest.jpg" alt="Garden harvest in water">
+  <div class="q">
+    <span class="eye on-dark rv">Farm to Table, Garden to Hand</span>
+    <h2 class="rv">What grows here is what is served here.</h2>
+  </div>
+</section>
+
+<!-- GATEWAY -->
+<section class="gateway wrap">
+  <div class="grid">
+    <div class="imgwrap rv">
+      <img src="patama-gh-assets/trisara-aerial.jpg" alt="Aerial of Trisara and the coastline, Phuket">
+    </div>
+    <div>
+      <span class="eye rv">A Gateway, Not a Sales Floor</span>
+      <h2 class="rv">The natural way into the PATAMA world.</h2>
+      <p class="lede rv">Garden House is the first doorway into a wider ecosystem of meaningful living. Through genuine hospitality and unhurried conversation, guests discover what lies beyond the garden — never through a pitch, always through experience. We build trust first.</p>
+      <div class="path-list rv">
+        <div class="row"><span class="nm">Tri Vananda</span><span class="ds">A multigenerational well-living community in nature.</span></div>
+        <div class="row"><span class="nm">CLP Phuket</span><span class="ds">Longevity and preventive wellbeing, seaside.</span></div>
+        <div class="row"><span class="nm">JAMPA &amp; PRU</span><span class="ds">Garden-led dining, rooted in the land.</span></div>
+        <div class="row"><span class="nm">Membership</span><span class="ds">Belonging to the PATAMA House, wherever it grows.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision wrap">
+  <div class="maxw">
+    <div class="stones"><i></i><i></i><i></i></div>
+    <span class="eye rv">The First of Many</span>
+    <h2 class="rv">A living blueprint for the PATAMA House.</h2>
+    <p class="lede rv" style="color:var(--cream-txt)">More than a renovation, Garden House is the first prototype of a repeatable model — a demonstration of how hospitality, beauty, wellbeing, family life and meaningful living can live together in one place. Distinctive not because of what it sells, but because of how it makes people feel.</p>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section class="invite wrap" id="invite">
+  <div class="maxw">
+    <span class="eye rv">An Invitation</span>
+    <h2 class="rv">Spend an unhurried day with us.</h2>
+    <p class="lede rv" style="margin-inline:auto;text-align:center">Begin in the garden. Stay for lunch. Leave knowing a better way of living together is possible.</p>
+    <a class="btn rv" href="#">Begin Your Visit</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fgrid">
+    <div class="fmk">PATAMA<small>Garden House · Trisara, Phuket</small></div>
+    <div class="meta">
+      Trisara, Thalang District, Phuket 83110<br>
+      15 minutes from Phuket International Airport<br>
+      <a href="mailto:info@trivananda.com">info@trivananda.com</a>
+    </div>
+    <div class="fine">Living Well Begins Together</div>
+  </div>
+</footer>
+
+<script>
+// nav background on scroll
+const top=document.getElementById('top'),hero=document.getElementById('hero');
+const onScroll=()=>{
+  const past=window.scrollY > (hero.offsetHeight-120);
+  top.classList.toggle('scrolled',window.scrollY>40);
+  top.classList.toggle('hero',!past);
+};
+top.classList.add('hero');
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4*90)+'ms';io.observe(el);});
+</script>
+</body>
+</html>

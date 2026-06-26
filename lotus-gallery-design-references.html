@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lotus Gallery · Design References</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ──────────────────────────────────────────────
+   LOTUS GALLERY · DESIGN REFERENCE SHEET
+   Beauty & Wellbeing sala, PATAMA Garden House
+   Palette + type inherited from the Garden House page
+   ────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#f4efe7;     /* cream paper */
+  --paper-2:#ece4d8;
+  --ink:#2c2620;       /* warm near-black */
+  --ink-soft:#4a423a;
+  --clay:#b5704e;      /* terracotta */
+  --blush:#caa68f;     /* lotus blush */
+  --sage:#6f7d5f;      /* garden green */
+  --teak:#5d4a38;      /* weathered wood */
+  --brass:#a6824b;     /* aged brass */
+  --line:rgba(44,38,32,.14);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --grot:"Jost",system-ui,sans-serif;
+}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--grot);
+  font-weight:300;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+.eye{
+  font-family:var(--grot);font-weight:500;font-size:11px;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--clay);
+  display:block;margin-bottom:18px;
+}
+
+/* HEADER */
+.masthead{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+.masthead h1{
+  font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,68px);
+  line-height:1.04;letter-spacing:-.01em;margin-bottom:22px;
+}
+.masthead h1 .it{font-style:italic;color:var(--teak)}
+.masthead .lede{
+  font-family:var(--serif);font-size:clamp(19px,2.3vw,24px);
+  font-weight:400;color:var(--ink-soft);max-width:60ch;line-height:1.45;
+}
+.brief{
+  margin-top:34px;padding:24px 28px;background:var(--paper-2);
+  border-left:3px solid var(--brass);max-width:70ch;
+}
+.brief .role{font-family:var(--grot);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);display:block;margin-bottom:8px}
+.brief p{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink-soft)}
+
+/* LENS SECTIONS */
+.lens{padding:66px 0 12px;border-bottom:1px solid var(--line)}
+.lens:last-of-type{border-bottom:none}
+.lens-head{margin-bottom:14px}
+.lens-head h2{
+  font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.4vw,38px);
+  line-height:1.1;margin-bottom:10px;
+}
+.lens-head p{max-width:64ch;font-size:15.5px;color:var(--ink-soft)}
+
+/* REFERENCE CARD */
+.ref{
+  display:grid;grid-template-columns:1fr;gap:6px;
+  padding:34px 0;border-top:1px solid var(--line);
+}
+.ref:first-of-type{border-top:none}
+.ref .meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px;margin-bottom:8px}
+.ref .name{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.01em}
+.ref .place{font-family:var(--grot);font-weight:400;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay)}
+.ref .by{font-family:var(--grot);font-weight:300;font-size:13px;font-style:normal;color:var(--ink-soft);opacity:.8}
+.ref .what{font-size:15.5px;color:var(--ink-soft);max-width:74ch;margin-bottom:14px}
+.ref .borrow{
+  display:flex;gap:13px;align-items:flex-start;
+  background:rgba(166,130,75,.07);padding:15px 18px;border-radius:2px;max-width:74ch;
+}
+.ref .borrow .tag{
+  font-family:var(--grot);font-weight:500;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brass);white-space:nowrap;padding-top:3px;
+}
+.ref .borrow .txt{font-size:15px;color:var(--ink)}
+.ref a.src{font-family:var(--grot);font-size:12px;color:var(--sage);text-decoration:none;border-bottom:1px solid rgba(111,125,95,.4);margin-top:12px;display:inline-block;width:fit-content}
+.ref a.src:hover{color:var(--teak);border-color:var(--teak)}
+
+/* THREADS */
+.threads{padding:62px 0 30px}
+.threads h2{font-family:var(--serif);font-weight:500;font-size:30px;margin-bottom:8px}
+.threads .sub{color:var(--ink-soft);max-width:60ch;margin-bottom:30px;font-size:15.5px}
+.tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.tcell{background:var(--paper);padding:26px 24px}
+.tcell h3{font-family:var(--serif);font-weight:600;font-style:italic;font-size:21px;color:var(--teak);margin-bottom:8px}
+.tcell p{font-size:14.5px;color:var(--ink-soft)}
+
+footer{padding:54px 0 80px;border-top:1px solid var(--line);margin-top:40px}
+footer .note{font-size:13px;color:var(--ink-soft);opacity:.75;max-width:70ch}
+footer .stones{display:flex;gap:5px;margin-bottom:18px}
+footer .stones i{width:9px;height:9px;border-radius:50%;background:var(--teak);opacity:.5}
+footer .stones i:nth-child(2){opacity:.7}
+footer .stones i:nth-child(3){opacity:.4}
+
+@media(max-width:680px){
+  .wrap{padding:0 22px}
+  .tgrid{grid-template-columns:1fr}
+  .ref .borrow{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <span class="eye">PATAMA Garden House · Sala II · Beauty &amp; Wellbeing</span>
+    <h1>Lotus Gallery<br><span class="it">design references</span></h1>
+    <p class="lede">Eight real-world precedents for a space where beauty is discovered the way one discovers art — slowly, through conversation and ritual. A reference set to brief the designer.</p>
+    <div class="brief">
+      <span class="role">The intention</span>
+      <p>“Objects and rituals presented at rest, never sold.”</p>
+    </div>
+  </header>
+
+  <!-- LENS 1 -->
+  <section class="lens">
+    <div class="lens-head">
+      <span class="eye">Lens One</span>
+      <h2>The apothecary as a gallery</h2>
+      <p>Houses that present beauty as heritage and craft — where the cabinet, the bottle and the counter carry as much meaning as the product, and buying feels like an event rather than a transaction.</p>
+    </div>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Officine Universelle Buly 1803</span>
+        <span class="place">Paris</span>
+        <span class="by">Ramdane Touhami &amp; Victoire de Taillac</span>
+      </div>
+      <p class="what">A Belle-Époque apothecary lined with patinated cabinets in aged elm, walnut and oak, French marble countertops and enamelled terracotta tiles. Almost every bottle, jar and box references a work of art from history; gift wrapping is done in the Japanese art of <em>origata</em>. Part beauty dispensary, part old-world salon.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">The idea that every object carries a story and an art reference — display that rewards slow looking, not scanning. Craft at the point of wrapping and handover, treated as ceremony.</span></div>
+      <a class="src" href="https://beautymatter.com/articles/officine-universelle-buly-1803-the-apothecary-of-dreams" target="_blank">Reference →</a>
+    </article>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Officina Profumo-Farmaceutica di Santa Maria Novella</span>
+        <span class="place">Florence</span>
+        <span class="by">Founded 1221 · opened to the public 1612</span>
+      </div>
+      <p class="what">Likely the oldest pharmacy still operating. Housed in a former Dominican monastery, with frescoed vaulted ceilings, gilding, walnut cabinetry, marble floors and glass-stoppered decanters of coloured tinctures. Crystal chandeliers and sacred frescoes give buying a scent the gravity of entering a chapel.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">Reverence as atmosphere — soft light on natural materials, a near-sacred quiet, beauty framed as something old and earned. The lotus and the lake at PATAMA can supply the same hush the frescoes do here.</span></div>
+      <a class="src" href="https://en.wikipedia.org/wiki/Officina_Profumo-Farmaceutica_di_Santa_Maria_Novella" target="_blank">Reference →</a>
+    </article>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Aesop — the store as stage-set</span>
+        <span class="place">400+ locations</span>
+        <span class="by">A different local architect for each store</span>
+      </div>
+      <p class="what">Aesop calls its stores “charms on a charm bracelet” — each unique, designed by a local architect, grounded in restraint and modesty rather than opulence. Stores read as stage-sets, not shops; surfaces in stone, timber, tile and metal are chosen for how they feel under the hand, with light that always leaves room for shadow.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">Tactility over polish, and a single space tuned to its exact place — for Lotus Gallery, that means Phuket materials, the garden and the Andaman, not a transplantable template.</span></div>
+      <a class="src" href="https://www.wallpaper.com/gallery/lifestyle/a-visual-history-of-aesops-best-designer-stores" target="_blank">Reference →</a>
+    </article>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Le Labo</span>
+        <span class="place">New York · Kyoto · global</span>
+        <span class="by">“Slow perfumery”</span>
+      </div>
+      <p class="what">An apothecary-lab aesthetic of raw, lived-in surfaces and a hundred-drawer wooden console. Fragrances are blended and bottled on the spot, by hand, labelled with the date and the maker’s name. The ritual of making is the experience; a quiet café often invites guests to linger.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">Make the ritual visible and unhurried — a preparation bar where something is mixed, poured or steeped in front of the guest, turning beauty into a witnessed, made-to-order moment.</span></div>
+      <a class="src" href="https://worldarchidesign.com/news/le-labos-localinfused-retail-strategy-a-cultural-journey-through-architecture/377" target="_blank">Reference →</a>
+    </article>
+  </section>
+
+  <!-- LENS 2 -->
+  <section class="lens">
+    <div class="lens-head">
+      <span class="eye">Lens Two</span>
+      <h2>The ritual sanctuary</h2>
+      <p>Wellbeing spaces built around ceremony and self-exploration rather than treatment menus — where architecture recedes and the ritual leads.</p>
+    </div>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Aman Spa</span>
+        <span class="place">Kyoto</span>
+        <span class="by">Kerry Hill Architects</span>
+      </div>
+      <p class="what">Architecture made almost invisible: low dark-timber volumes that dissolve into forest light and shadow. Every journey opens with ritual — a foot bath of seasonal Kampo herbs and mineral salt, a breathing ritual with camphor oil, echoing the Japanese purification of <em>Misogi</em> before a journey begins.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">A defined threshold ritual that begins every visit — water, scent, breath — so the guest crosses out of the everyday before any beauty experience starts. Let the forest, not the building, be the feature.</span></div>
+      <a class="src" href="https://estliving.com/design-destination-aman-kyoto-kerry-hill-architects/" target="_blank">Reference →</a>
+    </article>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Sulwhasoo Flagship</span>
+        <span class="place">Seoul</span>
+        <span class="by">Neri&amp;Hu</span>
+      </div>
+      <p class="what">A five-storey “Oriental lantern” built from slender brass filaments. The designers describe it as “a spatial journey leading one to a self-exploration of all dimensions of beauty, inside and out.” Beauty is interwoven with heritage zones, cultural programming and a rooftop tea ritual rather than presented as a shelf of products.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">A choreographed path through the space, and a brass-and-warm-material language that frames objects like exhibits. Pair beauty with a tea or botanical ritual that gives guests a reason to stay and converse.</span></div>
+      <a class="src" href="https://www.wallpaper.com/lifestyle/neri-and-hu-design-lantern-inspired-flagship-store-for-sulwhasoo-in-gangnam-south-korea" target="_blank">Reference →</a>
+    </article>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">PAÑPURI Wellness</span>
+        <span class="place">Bangkok</span>
+        <span class="by">Thai botanical heritage</span>
+      </div>
+      <p class="what">A multisensorial sanctuary in pale earth tones and flickers of gold drawn out of wood and mortar — an interior that evokes “finding goodness from within.” Rooted in the Thai tradition of transforming natural purity into fragrant, healing oils.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">The closest regional reference — proof the gallery can be unmistakably Thai. Earth-and-gold palette, botanical-to-oil storytelling, and a spiritual warmth that reads as wellbeing, not retail.</span></div>
+      <a class="src" href="https://panpuri.com/wellness/" target="_blank">Reference →</a>
+    </article>
+  </section>
+
+  <!-- LENS 3 -->
+  <section class="lens">
+    <div class="lens-head">
+      <span class="eye">Lens Three</span>
+      <h2>Objects at rest — the museum approach</h2>
+      <p>How beauty is displayed when it is treated as exhibition: pieces set on plinths and in cabinets, lit to be contemplated, never pushed.</p>
+    </div>
+
+    <article class="ref">
+      <div class="meta">
+        <span class="name">Aesop Sensorium</span>
+        <span class="place">Sydney</span>
+        <span class="by">Snøhetta</span>
+      </div>
+      <p class="what">A dusty-pink monolithic form set within granite walls, hosting olfactory experiences. Candles flicker in three stone cavities; a “crescent of bottles lies in wait”; a Fragrance Armoire conceals stories and infuses a guest’s scarf with scent; a marble orientation table presents the perfumer’s interviews and artworks. Beauty staged as a quiet exhibition.</p>
+      <div class="borrow"><span class="tag">Borrow</span><span class="txt">The literal grammar of “presented at rest” — bottles resting in a crescent, stone cavities, an orientation table, a cabinet that reveals rather than sells. This is the most direct model for the gallery’s display logic.</span></div>
+      <a class="src" href="https://www.yellowtrace.com.au/snohetta-aesop-sensorium-sydney-retail-fragrance-store/" target="_blank">Reference →</a>
+    </article>
+  </section>
+
+  <!-- COMMON THREADS -->
+  <section class="threads">
+    <h2>What runs through all eight</h2>
+    <p class="sub">Patterns to carry into the Lotus Gallery brief — the through-lines that make each of these feel like a gallery rather than a shop.</p>
+    <div class="tgrid">
+      <div class="tcell"><h3>Ritual over transaction</h3><p>Every space opens with, or is built around, a ceremony — a foot bath, a tea, a bottling, an infusion. The act is the point; the product follows quietly.</p></div>
+      <div class="tcell"><h3>Material honesty</h3><p>Aged timber, marble, stone, brass, mortar and natural light — surfaces chosen for touch and patina, never for shine. Light always leaves room for shadow.</p></div>
+      <div class="tcell"><h3>Display as exhibition</h3><p>Objects rest on plinths, in cavities, behind cabinet doors and on orientation tables — framed for contemplation, spaced to reward slow looking.</p></div>
+      <div class="tcell"><h3>Rooted in place</h3><p>The strongest examples could exist nowhere else. Lotus Gallery should be unmistakably Phuket — the garden, the lake, the lotus, Thai botanical craft.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="stones"><i></i><i></i><i></i></div>
+    <p class="note">A curated reference set for the Lotus Gallery, Beauty &amp; Wellbeing sala at PATAMA Garden House. Precedents are real, existing spaces cited as inspiration only — to be interpreted through Tri Vananda / PATAMA’s own materials, palette and story, never copied. Sources linked on each card.</p>
+  </footer>
+
+</div>
+</body>
+</html>

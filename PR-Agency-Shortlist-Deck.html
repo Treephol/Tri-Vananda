@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR Agency Shortlist · Tri Vananda</title>
+<style>
+  :root{
+    --green:#233f2f; --green-2:#2f5440; --red:#cf554e; --earth:#bab9af;
+    --paper:#edebe9; --ink:#1e2722; --muted:#6f7b71; --line:#d7d9cf;
+    --gold:#b8895a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:#11160f;color:var(--ink);overflow:hidden;
+  }
+  .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .slide{
+    position:absolute;inset:0;display:none;
+    flex-direction:column;justify-content:center;
+    padding:6vh 9vw;background:var(--paper);
+    opacity:0;transform:translateX(40px);
+    transition:opacity .5s ease,transform .5s ease;
+  }
+  .slide.active{display:flex;opacity:1;transform:translateX(0);z-index:2}
+  .slide.dark{background:var(--green);color:var(--paper)}
+  .slide.dark h1,.slide.dark h2,.slide.dark .ey{color:var(--paper)}
+
+  .ey{font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1.4rem}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;line-height:1.06;letter-spacing:-.01em}
+  h2{font-family:Georgia,serif;font-weight:600;color:var(--green);line-height:1.1;letter-spacing:-.01em}
+  .lead{font-size:1.18rem;line-height:1.6;color:var(--ink);max-width:60ch}
+  .slide.dark .lead{color:#dfe4dc}
+  .muted{color:var(--muted)}
+  .rule{width:64px;height:3px;background:var(--red);border:0;margin:1.6rem 0}
+
+  /* Title slide */
+  #s0{justify-content:center;align-items:flex-start;background:
+      radial-gradient(120% 90% at 85% 15%, #2f5440 0%, var(--green) 55%, #1b3325 100%);color:var(--paper)}
+  #s0 .stones{font-size:2rem;letter-spacing:.2em;margin-bottom:2.2rem;opacity:.9}
+  #s0 .brand{font-size:.82rem;letter-spacing:.4em;text-transform:uppercase;color:var(--earth);font-weight:700;margin-bottom:1.5rem}
+  #s0 h1{font-size:clamp(2.6rem,6vw,5rem);color:#fff;max-width:16ch}
+  #s0 .sub{margin-top:1.6rem;font-size:1.2rem;color:#dfe4dc;max-width:46ch;line-height:1.55}
+  #s0 .meta{margin-top:3rem;font-size:.85rem;letter-spacing:.06em;color:var(--earth)}
+
+  h1.big{font-size:clamp(2rem,4.4vw,3.4rem);max-width:18ch;color:var(--green)}
+  .slide.dark h1.big{color:#fff}
+
+  ul.clean{list-style:none;margin-top:1.6rem;max-width:64ch}
+  ul.clean li{padding:.85rem 0 .85rem 2rem;border-bottom:1px solid var(--line);position:relative;font-size:1.05rem;line-height:1.5}
+  ul.clean li:before{content:"";position:absolute;left:0;top:1.35rem;width:10px;height:10px;background:var(--red);border-radius:2px}
+  ul.clean li b{color:var(--green)}
+  .slide.dark ul.clean li{border-color:#3c5a48}
+  .slide.dark ul.clean li b{color:#fff}
+
+  /* matrix table */
+  table{border-collapse:collapse;width:100%;margin-top:1.6rem;font-size:.95rem}
+  th,td{padding:.6rem .7rem;text-align:center;border-bottom:1px solid var(--line)}
+  th{background:var(--green);color:#fff;font-weight:600;letter-spacing:.02em}
+  td:first-child,th:first-child{text-align:left;font-weight:600;color:var(--green)}
+  tbody tr:nth-child(even){background:#e4e3dd}
+  td.avg{color:var(--red);font-weight:700}
+  tr.hot td:first-child{color:var(--red)}
+
+  /* agency cards */
+  .agencyhead{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+  .rank{font-family:Georgia,serif;font-size:3.4rem;color:var(--earth);line-height:1}
+  .pill{display:inline-block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+        background:var(--red);color:#fff;padding:.32rem .7rem;border-radius:20px;font-weight:700}
+  .pill.alt{background:var(--green)}
+  .grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:2.4rem;margin-top:1.4rem}
+  .stat{margin-bottom:1.1rem}
+  .stat .n{font-family:Georgia,serif;font-size:2rem;color:var(--green);line-height:1}
+  .stat .l{font-size:.9rem;color:var(--muted);margin-top:.25rem;line-height:1.35}
+  .label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.6rem}
+  .box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);padding:1rem 1.2rem;border-radius:6px;margin-top:.8rem;font-size:.98rem;line-height:1.5}
+  .box.fit{border-left-color:var(--green)}
+  .clients{font-size:.95rem;color:var(--ink);line-height:1.55;margin-top:.5rem}
+
+  .threecol{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2rem}
+  .card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--green);border-radius:8px;padding:1.4rem}
+  .card h3{font-family:Georgia,serif;font-size:1.25rem;color:var(--green);margin-bottom:.5rem}
+  .card .role{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.7rem}
+  .card p{font-size:.92rem;line-height:1.5;color:var(--ink)}
+  .card.spec{border-top-color:var(--gold)}
+
+  .twocol{columns:2;column-gap:3rem;margin-top:1.4rem;max-width:none}
+  .twocol li{break-inside:avoid}
+
+  /* nav chrome */
+  .chrome{position:fixed;left:0;right:0;bottom:0;height:54px;display:flex;align-items:center;
+          justify-content:space-between;padding:0 22px;z-index:30;pointer-events:none}
+  .dots{display:flex;gap:7px;pointer-events:auto}
+  .dot{width:9px;height:9px;border-radius:50%;background:#fff;opacity:.4;cursor:pointer;border:0;transition:.25s;padding:0}
+  .dot.on{opacity:1;background:var(--red);transform:scale(1.25)}
+  .counter{font-size:.8rem;color:#cdd2c8;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+  .arrows{display:flex;gap:8px;pointer-events:auto}
+  .arrows button{width:38px;height:38px;border-radius:50%;border:1px solid #ffffff55;background:#ffffff14;
+                 color:#fff;font-size:1.1rem;cursor:pointer;transition:.2s}
+  .arrows button:hover{background:#ffffff2e}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--red);width:0;z-index:40;transition:width .4s ease}
+  .hint{position:fixed;bottom:62px;left:50%;transform:translateX(-50%);font-size:.74rem;color:#aeb4a8;
+        letter-spacing:.08em;z-index:30;transition:opacity .6s ease}
+  @media(max-width:760px){
+    .grid2,.threecol{grid-template-columns:1fr}
+    .twocol{columns:1}
+    .slide{padding:7vh 7vw}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="stage" id="stage">
+
+  <!-- 0 TITLE -->
+  <section class="slide" id="s0">
+    <div class="stones">⌃ ◇ ▽</div>
+    <div class="brand">Tri Vananda · Build, Belong &amp; Bloom</div>
+    <h1>PR Agency Shortlist</h1>
+    <div class="sub">Choosing a U.S. communications partner to sell the villas and carry the PATAMA ecosystem story.</div>
+    <div class="meta">Internal strategy · 29 May 2026 · Use ← → to navigate</div>
+  </section>
+
+  <!-- 1 THE BRIEF -->
+  <section class="slide">
+    <div class="ey">The brief</div>
+    <h1 class="big">Two jobs, at once.</h1>
+    <hr class="rule">
+    <p class="lead">The right partner has to do two different things well — and most agencies only do one.</p>
+    <ul class="clean">
+      <li><b>Reach HNWI buyers in the U.S.</b> through the earned media they trust — NYT, WSJ, FT, Robb Report, broadcast.</li>
+      <li><b>Convert a wellness community into villa sales</b> — residence PR that moves units, not just hotel coverage.</li>
+      <li><b>Carry the larger story</b> — the PATAMA ecosystem and net-zero positioning, told without overstating.</li>
+    </ul>
+  </section>
+
+  <!-- 2 CRITERIA -->
+  <section class="slide">
+    <div class="ey">How we evaluated</div>
+    <h2 style="font-size:2.2rem">Four criteria, weighted to your priorities</h2>
+    <ul class="clean">
+      <li><b>U.S. media &amp; HNWI reach</b> <span class="muted">— primary</span></li>
+      <li><b>Luxury real estate &amp; branded residences</b> <span class="muted">— primary</span></li>
+      <li><b>Wellness &amp; hospitality fit</b> <span class="muted">— supporting</span></li>
+      <li><b>Ecosystem &amp; sustainability storytelling</b> <span class="muted">— supporting</span></li>
+    </ul>
+    <p class="muted" style="margin-top:1.4rem;font-size:.92rem">Scored 1–5 from each agency's own published case studies and client lists. Directional — meant to frame conversations, not replace a chemistry meeting.</p>
+  </section>
+
+  <!-- 3 MATRIX -->
+  <section class="slide">
+    <div class="ey">At a glance</div>
+    <h2 style="font-size:2rem">Scoring matrix</h2>
+    <table>
+      <thead><tr><th>Agency</th><th>US&nbsp;media&nbsp;/&nbsp;HNWI</th><th>RE&nbsp;/&nbsp;residences</th><th>Wellness</th><th>Ecosystem</th><th>Avg</th></tr></thead>
+      <tbody>
+        <tr class="hot"><td>Relevance International</td><td>5</td><td>5</td><td>3</td><td>5</td><td class="avg">4.5</td></tr>
+        <tr class="hot"><td>J/PR</td><td>5</td><td>4</td><td>5</td><td>4</td><td class="avg">4.5</td></tr>
+        <tr class="hot"><td>Quinn PR</td><td>5</td><td>5</td><td>4</td><td>4</td><td class="avg">4.5</td></tr>
+        <tr><td>BPCM</td><td>5</td><td>3</td><td>4</td><td>5</td><td class="avg">4.3</td></tr>
+        <tr><td>The Point PR</td><td>4</td><td>4</td><td>4</td><td>3</td><td class="avg">3.8</td></tr>
+        <tr><td>Lou Hammond Group</td><td>4</td><td>4</td><td>4</td><td>3</td><td class="avg">3.8</td></tr>
+        <tr><td>Murphy O'Brien</td><td>4</td><td>4</td><td>4</td><td>3</td><td class="avg">3.8</td></tr>
+        <tr><td>The Lifestyle Agency</td><td>2</td><td>3</td><td>5</td><td>4</td><td class="avg">3.5</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="margin-top:1rem;font-size:.9rem">The three leaders are complementary, not interchangeable — a specialist, a storyteller and a powerhouse.</p>
+  </section>
+
+  <!-- 4 SHORTLIST INTRO (dark) -->
+  <section class="slide dark">
+    <div class="ey">The recommendation</div>
+    <h1 class="big" style="font-size:clamp(2rem,4vw,3rem)">Three to meet first.</h1>
+    <div class="threecol">
+      <div class="card"><div class="role">The specialist</div><h3>Relevance International</h3><p>Real-estate-native. Built to sell branded residences to global HNWI buyers.</p></div>
+      <div class="card"><div class="role">The storyteller</div><h3>J/PR</h3><p>Luxury travel &amp; wellness powerhouse — already launched a wellness residential community.</p></div>
+      <div class="card"><div class="role">The powerhouse</div><h3>Quinn PR</h3><p>Blockbuster U.S. media reach + residence launches that report real dollar sales.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 RELEVANCE -->
+  <section class="slide">
+    <div class="agencyhead"><span class="rank">01</span><span class="pill">Lead · residence sales</span></div>
+    <h2 style="font-size:2.4rem;margin-top:.4rem">Relevance International</h2>
+    <p class="muted">New York HQ · LA · London · Dubai · woman-owned · real estate &amp; branded residences</p>
+    <div class="grid2">
+      <div>
+        <div class="label">Proof — Fendi Château Residences</div>
+        <div class="stat"><div class="n">80%+</div><div class="l">of residences sold; US$70M in sales in a single month after the Art&nbsp;Basel launch event</div></div>
+        <div class="stat"><div class="n">93M+</div><div class="l">unique online visitors reached at launch · 80+ placements</div></div>
+        <div class="stat"><div class="n">Sellout</div><div class="l">The Ellinikon (Athens): luxury units sold out before groundbreaking</div></div>
+      </div>
+      <div>
+        <div class="label">Clients</div>
+        <p class="clients">Fendi Château Residences · Atlantis The Royal Residences · 111 Murray (Witkoff/Fisher) · The Setai · Dezer Development · Porto Montenegro.</p>
+        <div class="box fit"><b>Fit:</b> Reaches HNWI buyers through the exact U.S. titles that matter, with a documented record of turning coverage into sell-through.</div>
+        <div class="box"><b>Watch-out:</b> Real-estate-led — brief in the wellness soul so it doesn't read as a pure property play. Check APAC media depth.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 J/PR -->
+  <section class="slide">
+    <div class="agencyhead"><span class="rank">02</span><span class="pill">Lead · wellness story</span></div>
+    <h2 style="font-size:2.4rem;margin-top:.4rem">J/PR</h2>
+    <p class="muted">9 U.S. offices + London · founded 2005 · luxury travel, hospitality &amp; development</p>
+    <div class="grid2">
+      <div>
+        <div class="label">Proof — Velvære, Park City</div>
+        <p class="clients" style="margin-bottom:1rem">The closest analogue to Tri Vananda: a <b>wellness residential community</b> framed as a real-estate story for U.S. buyers — earned coverage in Robb Report, Forbes &amp; Deseret News converted into direct home reservations.</p>
+        <div class="label">Proof — The Lakes by Yoo</div>
+        <div class="stat"><div class="n">55M+</div><div class="l">media impressions · 37 top-tier placements · £638k PR value · later won a sustainability award</div></div>
+      </div>
+      <div>
+        <div class="label">Clients</div>
+        <p class="clients">Dorchester Collection · Waldorf Astoria New York · Pendry · Relais &amp; Châteaux · Grand Hotel Tremezzo · Canouan Private Estates.</p>
+        <div class="box fit"><b>Fit:</b> Best blend of wellness credibility and U.S. firepower — and the only agency here with a directly comparable wellness-residential launch.</div>
+        <div class="box"><b>Watch-out:</b> Historically bookings-led; set residence reservations &amp; sales as KPIs, not just impressions.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 QUINN -->
+  <section class="slide">
+    <div class="agencyhead"><span class="rank">03</span><span class="pill">Lead · reach + sales</span></div>
+    <h2 style="font-size:2.4rem;margin-top:.4rem">Quinn PR</h2>
+    <p class="muted">New York · LA · Miami · London · part of Interluxe Group</p>
+    <div class="grid2">
+      <div>
+        <div class="label">Proof — residences that moved units</div>
+        <div class="stat"><div class="n">$200M</div><div class="l">in sales supported at Four Seasons Private Residences, Nashville</div></div>
+        <div class="stat"><div class="n">25% / 3mo</div><div class="l">of Rock House (Grace Bay) residences sold after a 150-guest NYC launch</div></div>
+        <div class="stat"><div class="n">Sold out</div><div class="l">both condo towers at Brickell City Centre · Springline 100% leased, "Deal of the Year"</div></div>
+      </div>
+      <div>
+        <div class="label">Reach</div>
+        <p class="clients">Atlantis The Royal × Beyoncé — <b>1,200 placements</b> (TODAY Show, Kelly + Ryan). AKA — <b>1B+ impressions</b>, web traffic doubled.</p>
+        <div class="box fit"><b>Fit:</b> The most balanced — top-tier consumer media plus residence launches that demonstrably convert to sales. Miami + London add buyer reach.</div>
+        <div class="box"><b>Watch-out:</b> Leans to high-wattage events; protect the wellness/community depth. Confirm the senior team on the account.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 SPECIALIST + OTHERS -->
+  <section class="slide">
+    <div class="ey">Beyond the top three</div>
+    <h2 style="font-size:2rem">Specialist &amp; alternates</h2>
+    <div class="threecol">
+      <div class="card spec"><div class="role">Specialist option</div><h3>BPCM</h3><p>The best ecosystem &amp; sustainability storyteller — first lifestyle agency with a dedicated Sustainability &amp; Impact practice. Engage if the PATAMA / net-zero narrative leads.</p></div>
+      <div class="card"><div class="role">Regional · EMEA</div><h3>The Lifestyle Agency</h3><p>Genuinely wellness-fluent, London-based. Hold for European wellness-media reach — weak on the U.S. priority.</p></div>
+      <div class="card"><div class="role">Boutique / all-rounders</div><h3>Point · Lou Hammond · Murphy O'Brien</h3><p>Strong resort-residence and U.S. real-estate credentials. Keep as alternates pending tailored, sales-focused case studies.</p></div>
+    </div>
+  </section>
+
+  <!-- 9 BENCHMARK -->
+  <section class="slide dark">
+    <div class="ey">Benchmark · Discover Collection</div>
+    <h1 class="big" style="font-size:clamp(1.9rem,3.6vw,2.8rem)">Sell belonging, and the villas follow.</h1>
+    <hr class="rule">
+    <ul class="clean">
+      <li><b>Lead with community, not square footage.</b> Buyers join a multigenerational well-living community; the real estate is the means.</li>
+      <li><b>Wellbeing &amp; sustainability as proof.</b> Net-zero botanical setting and longevity programming are the real differentiators.</li>
+      <li><b>Earned trust over hard sell.</b> Build desire through story, press and experience that reach HNWI buyers — then convert privately.</li>
+    </ul>
+  </section>
+
+  <!-- 10 NEXT STEPS -->
+  <section class="slide">
+    <div class="ey">Next steps</div>
+    <h2 style="font-size:2.1rem">From shortlist to partner</h2>
+    <ul class="clean twocol">
+      <li><b>1 ·</b> Issue a short brief to Relevance, J/PR and Quinn.</li>
+      <li><b>2 ·</b> Request two relevant case studies tied to actual sales.</li>
+      <li><b>3 ·</b> Ask who runs the account day-to-day, and their HNWI record.</li>
+      <li><b>4 ·</b> Probe U.S. + Asia-Pacific media relationships for Phuket reach.</li>
+      <li><b>5 ·</b> Test the PATAMA / net-zero story without overstating.</li>
+      <li><b>6 ·</b> Hold chemistry meetings before any paid scoping.</li>
+    </ul>
+    <div class="box fit" style="max-width:64ch"><b>Decision lens:</b> choose the partner who can sell belonging and wellbeing — and let the villa sales follow.</div>
+  </section>
+
+  <!-- 11 CLOSE -->
+  <section class="slide dark" style="align-items:flex-start">
+    <div class="stones" style="font-size:1.6rem;letter-spacing:.2em;margin-bottom:1.6rem">⌃ ◇ ▽</div>
+    <h1 class="big" style="color:#fff;font-size:clamp(2rem,4vw,3rem)">Thank you.</h1>
+    <p class="lead" style="margin-top:1rem">Recommended first conversations: <b style="color:#fff">Relevance International · J/PR · Quinn PR</b>.</p>
+    <div class="meta" style="margin-top:2rem;color:var(--earth);font-size:.85rem;letter-spacing:.06em">Tri Vananda · Internal strategy · Full detail in the research document</div>
+  </section>
+
+</div>
+
+<div class="hint" id="hint">← → arrow keys to navigate</div>
+<div class="chrome">
+  <div class="dots" id="dots"></div>
+  <div class="counter"><span id="cur">1</span> / <span id="tot">12</span></div>
+  <div class="arrows"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button></div>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  const bar=document.getElementById('bar');
+  const cur=document.getElementById('cur');
+  document.getElementById('tot').textContent=slides.length;
+  let i=0;
+  slides.forEach((_,n)=>{const b=document.createElement('button');b.className='dot';b.onclick=()=>go(n);dotsWrap.appendChild(b);});
+  const dots=[...dotsWrap.children];
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    cur.textContent=i+1;
+    bar.style.width=((i)/(slides.length-1)*100)+'%';
+    const hint=document.getElementById('hint');
+    if(i>0)hint.style.opacity='0';
+  }
+  function next(){go(i+1)} function prev(){go(i-1)}
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  window.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(slides.length-1);}
+  });
+  // touch swipe
+  let x0=null;
+  addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?next():prev();}x0=null;});
+  go(0);
+</script>
+</body>
+</html>
