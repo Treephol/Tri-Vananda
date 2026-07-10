@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri Vananda · 2026 · Task List</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Jost:wght@100;200;300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--deep:#141c22;--forest:#1e2820;
+  --cream:#f4efe5;--warm:#ede6d8;--white:#faf8f4;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --stone:#9e9282;--sage:#8fa584;--rust:#c97a54;
+  --line:rgba(184,148,88,.18);--line-soft:rgba(244,239,229,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--ink);color:var(--cream);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse at 25% 0%,rgba(110,130,100,.09),transparent 55%),
+  radial-gradient(ellipse at 90% 100%,rgba(184,148,88,.08),transparent 50%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.022;pointer-events:none;z-index:9999}
+.wrap{max-width:1180px;margin:0 auto;padding:0 44px 120px;position:relative;z-index:1}
+
+/* ── header ── */
+header{padding:76px 0 0;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.eye{font-weight:200;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:26px;line-height:1.6}
+h1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(3rem,6vw,5.2rem);line-height:1;color:var(--white)}
+h1 .it{font-style:italic;color:var(--gold-lt)}
+.tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.25rem;color:rgba(244,239,229,.5);margin-top:16px}
+.chip-internal{display:inline-block;font-weight:300;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);border:1px solid rgba(184,148,88,.45);padding:8px 18px;margin-top:30px;background:rgba(184,148,88,.06)}
+/* update control */
+.sync{display:flex;flex-direction:column;align-items:flex-end;gap:12px;padding-top:8px}
+.btn-update{font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);background:linear-gradient(90deg,var(--gold),var(--gold-lt));border:none;padding:15px 30px;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.btn-update:hover{opacity:.85}
+.btn-update:disabled{opacity:.4;cursor:wait}
+.sync-meta{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,229,.35);text-align:right;line-height:1.9}
+.sync-meta b{color:var(--gold-lt);font-weight:300}
+.sync-err{font-size:.62rem;letter-spacing:.1em;color:var(--rust);max-width:280px;text-align:right;line-height:1.6}
+
+/* ── overview ── */
+.overview{margin-top:54px;border:1px solid var(--line);background:rgba(20,28,34,.55);padding:30px 36px;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.ov-num{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:3.2rem;color:var(--gold-lt);line-height:1;min-width:120px}
+.ov-num small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,239,229,.45);margin-top:10px}
+.ov-bar{flex:1;min-width:240px}
+.ov-track{height:2px;background:var(--line-soft);position:relative}
+.ov-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transition:width .6s ease}
+.ov-meta{display:flex;gap:30px;margin-top:16px;flex-wrap:wrap}
+.ov-meta span{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,239,229,.45)}
+.ov-meta b{font-weight:400;color:var(--gold-lt);margin-right:7px}
+
+/* ── countdown strip ── */
+.count-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-top:none}
+.cd{background:var(--ink);padding:20px 24px}
+.cd .d{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2rem;color:var(--white);line-height:1}
+.cd .d small{font-family:'Jost',sans-serif;font-weight:200;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-left:7px}
+.cd .l{font-weight:200;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:10px;line-height:1.7}
+.cd.hot .d{color:var(--rust)}
+.cd.past .d{color:var(--stone)}
+
+/* ── sections ── */
+.sec{margin-top:76px}
+.sec-head{display:flex;align-items:baseline;gap:24px;padding-bottom:18px;border-bottom:1px solid var(--gold);flex-wrap:wrap}
+.sec-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.05rem;color:var(--gold)}
+.sec-title{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--white);line-height:1.1}
+.sec-prog{margin-left:auto;display:flex;align-items:center;gap:16px}
+.sec-count{font-weight:200;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone)}
+.sec-track{width:130px;height:2px;background:var(--line-soft);position:relative}
+.sec-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);transition:width .5s}
+
+/* ── task rows (read-only) ── */
+.task{display:grid;grid-template-columns:1fr 300px;gap:28px;padding:28px 0;border-bottom:1px solid var(--line-soft);align-items:start}
+.task.done .t-title{color:var(--stone);text-decoration:line-through;text-decoration-color:rgba(184,148,88,.45);text-decoration-thickness:1px}
+.t-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.5rem;line-height:1.25;color:var(--white)}
+.t-title a{color:var(--gold-lt);text-decoration:none;border-bottom:1px solid rgba(184,148,88,.4);font-size:.95rem;font-family:'Jost',sans-serif;font-weight:300;margin-left:12px;letter-spacing:.06em}
+.t-title a:hover{color:var(--gold)}
+.t-note{font-size:.85rem;line-height:1.75;color:rgba(244,239,229,.5);margin-top:8px;max-width:600px}
+.t-note.alert{color:var(--rust)}
+.badge-new{display:inline-block;font-family:'Jost',sans-serif;font-weight:300;font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sage);border:1px solid rgba(143,165,132,.4);padding:3px 10px;margin-left:12px;vertical-align:middle}
+/* subtasks */
+.subs{margin-top:16px;border-left:1px solid var(--line);padding-left:20px}
+.sub{display:flex;align-items:flex-start;gap:12px;padding:5px 0}
+.sub .m{font-size:.72rem;line-height:1.9;color:var(--gold);flex-shrink:0;width:12px}
+.sub.on .m{color:var(--sage)}
+.sub .st{font-weight:300;font-size:.88rem;line-height:1.7;color:rgba(244,239,229,.72)}
+.sub.on .st{color:var(--stone);text-decoration:line-through;text-decoration-thickness:1px}
+/* meta column */
+.t-meta{display:flex;flex-direction:column;gap:10px;align-items:flex-end;text-align:right}
+.mrow{display:flex;gap:8px;align-items:center}
+.pill{font-family:'Jost',sans-serif;font-weight:300;font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;padding:7px 14px;border:1px solid;white-space:nowrap}
+.st-ns{color:var(--stone);border-color:rgba(158,146,130,.35)}
+.st-ip{color:var(--gold-lt);border-color:rgba(184,148,88,.5);background:rgba(184,148,88,.08)}
+.st-bl{color:var(--rust);border-color:rgba(201,122,84,.5);background:rgba(201,122,84,.07)}
+.st-dn{color:var(--sage);border-color:rgba(143,165,132,.5);background:rgba(143,165,132,.07)}
+.pr-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.pr-h{background:var(--rust)}.pr-m{background:var(--gold)}.pr-l{background:var(--stone)}
+.meta-line{font-weight:200;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,229,.45);line-height:1.9}
+.meta-line b{color:var(--cream);font-weight:300}
+.meta-line .over{color:var(--rust)}
+.meta-line .soon{color:var(--gold-lt)}
+
+/* footer */
+footer{margin-top:100px;padding-top:28px;border-top:1px solid var(--line);display:flex;gap:24px;flex-wrap:wrap}
+footer .f{font-weight:200;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,239,229,.3);line-height:1.9}
+
+@media(max-width:880px){
+  .wrap{padding:0 22px 80px}
+  header{flex-direction:column}
+  .sync{align-items:flex-start}
+  .sync-meta,.sync-err{text-align:left}
+  .task{grid-template-columns:1fr}
+  .t-meta{align-items:flex-start;text-align:left;flex-direction:row;flex-wrap:wrap;align-items:center}
+}
+@media print{
+  body{background:#fff;color:#111}
+  .btn-update{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <div class="eye">Tri Vananda · Phuket, Thailand · Business Development, PR &amp; Activations</div>
+    <h1>Task <span class="it">list.</span></h1>
+    <div class="tagline" id="subline">Live dashboard — data from Tri-Vananda_2026_Task-Data.xlsx</div>
+    <div class="chip-internal">Internal only · not for client use</div>
+  </div>
+  <div class="sync">
+    <button class="btn-update" id="btnUpdate">Update from Excel</button>
+    <div class="sync-meta" id="syncMeta">No sync yet — showing initial list</div>
+    <div class="sync-err" id="syncErr"></div>
+    <input type="file" id="fileFallback" accept=".xlsx,.xlsm" style="display:none">
+  </div>
+</header>
+
+<div class="overview">
+  <div class="ov-num"><span id="ovPct">0%</span><small>Complete</small></div>
+  <div class="ov-bar">
+    <div class="ov-track"><div class="ov-fill" id="ovFill" style="width:0%"></div></div>
+    <div class="ov-meta">
+      <span><b id="cAll">0</b>Tasks</span>
+      <span><b id="cIp">0</b>In progress</span>
+      <span><b id="cBl">0</b>Blocked</span>
+      <span><b id="cDn">0</b>Done</span>
+    </div>
+  </div>
+</div>
+<div class="count-strip" id="countStrip"></div>
+
+<main id="board"></main>
+
+<footer>
+  <div class="f">Data source · Tri-Vananda_2026_Task-Data.xlsx (same folder)</div>
+  <div class="f">Edit owners, deadlines &amp; status in Excel → save → click Update from Excel</div>
+  <div class="f">Archive of previous deck · Tri-Vananda_2026_Progress-Update_ARCHIVE-Jul2026.html</div>
+</footer>
+
+</div>
+
+<script>
+/* ══════════ embedded initial data (mirrors the xlsx as shipped) ══════════ */
+const DATA_FILE="Tri-Vananda_2026_Task-Data.xlsx";
+function T(t,o){return Object.assign({t:t,note:"",st:"ns",pr:"High",ow:"",due:"",link:"",isNew:false,subs:[]},o||{})}
+function S(t,done){return{t:t,done:!!done}}
+const DEFAULT_DATA={sections:[
+{name:"Task Management",tasks:[
+ T("Update 20251201 Tri Vananda Marketing Plan.xlsx",{due:"2026-07-14",link:DATA_FILE}),
+ T("Create Master Strategic Campaign — Montara perspective",{note:"Science | Art | Soul framework across all brands and touchpoints"}),
+]},
+{name:"Events",tasks:[
+ T("Secure GWS Collaboration contract",{note:"Foundation for all GWS activity — prioritise"}),
+ T("BEING 2026",{note:"Wednesday 2 September 2026",due:"2026-09-02",subs:[
+   S("Booth showcasing Tri Vananda with the most updated information"),
+   S("PRU Farm Festival advertising at the booth"),
+   S("Booth production — design, build quotation, collateral print (lead time before 2 Sep)")]}),
+ T("PRU Farm Festival",{note:"Sunday 1 November 2026 — collaborate to support them",due:"2026-11-01",subs:[
+   S("Vendor co-ordination support"),S("Activities support"),S("Manpower support")]}),
+ T("GWS Tours — CLP / Farm",{note:"Monday 9 November 2026",due:"2026-11-09",subs:[
+   S("Introducing session at CLP — Masterplan + TV showcasing Residential Villa"),
+   S("CLP estate tour"),S("Buggy cruise through Tri Vananda landscape"),S("Farm tour"),
+   S("Move to Trisara — PATAMA wellness tour and lunch")]}),
+ T("Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14"}),
+ T("GWS Tours — CLP / Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14",subs:[
+   S("Introducing session at CLP — Masterplan + TV showcasing Residential Villa"),
+   S("CLP estate tour"),S("Buggy cruise through Tri Vananda landscape"),S("Local Roots"),
+   S("Move to Trisara — PATAMA wellness tour and lunch")]}),
+ T("Exclusive Dinner at the Farm — GWS",{note:"Date TBC",subs:[
+   S("Farm tour"),S("Cocktail reception"),S("Dinner"),S("Entertainment")]}),
+ T("Exclusive Dinner at the Farm — Potential Buyers, Partners & Media",{note:"Date TBC",subs:[
+   S("Property tour"),S("Cocktail reception"),S("Dinner"),S("Entertainment")]}),
+]},
+{name:"New Online Ad Campaign",tasks:[
+ T("New campaign — Wellness theme",{note:"Science | Art | Soul"}),
+ T("Audience targeting",{note:"Luxury-wellness expats in Thailand, Southeast Asia and Australia"}),
+ T("Campaign infrastructure",{note:"Landing page, lead capture, KPI targets, budget approval — before launch",isNew:true}),
+]},
+{name:"Marketing Collateral",tasks:[
+ T("PATAMA Residences CGIs"),
+ T("Tower Sign",{subs:[S("Signage design with logos"),S("Tri Vananda and CLP to confirm logo"),
+   S("Update quotation and timeline"),S("Select contractor"),S("Get approval from CEO")]}),
+ T("New Asset Library"),T("Nanda A6 photos"),T("Nanda G88 photos"),
+ T("Marketing Item Directory"),T("Event Co-ordination SOP"),
+ T("Giveaways order — Tote bags",{note:"Two versions: one premium, one giveaway",subs:[
+   S("Get quotations and create email with details"),S("Send to Khun Kitt for approval")]}),
+]},
+{name:"Content Marketing",tasks:[
+ T("Q3–Q4 2026 social media plans",{note:"Monthly plans through year-end, aligned to Sep–Dec launch arc"}),
+ T("Q3 2026 Quarterly Newsletter"),
+]},
+{name:"PR",tasks:[
+ T("Secure contract with J/PR"),
+ T("Q3–Q4 2026 PR strategy and plan"),
+ T("Strategic launch Sep–Oct, full amplification Nov–Dec"),
+ T("Press kit / media fact sheet refresh",{note:"Ready for J/PR the day the contract signs",isNew:true}),
+]},
+{name:"PATAMA",tasks:[
+ T("Source creative agency"),T("YPO Retreat Package"),T("GWS Retreat Package"),
+ T("Marketing collateral",{subs:[S("Website"),S("PATAMA Brochure — CLP Retreat"),
+   S("PATAMA Brochure — Trisara Retreat"),S("PATAMA Wellness at Trisara menu")]}),
+ T("Social media"),T("Digital ad campaign"),
+ T("Products for sale and giveaway",{note:"From local suppliers — e.g. wan sao long"}),
+]},
+],keyDates:[
+ {l:"Marketing Plan xlsx due",d:"2026-07-14"},
+ {l:"BEING 2026",d:"2026-09-02"},
+ {l:"PRU Farm Festival",d:"2026-11-01"},
+ {l:"GWS Tour — Farm",d:"2026-11-09"},
+ {l:"GWS Tour — Local Roots",d:"2026-11-14"},
+]};
+
+/* ══════════ xlsx parsing ══════════ */
+const ST_MAP={"not started":"ns","in progress":"ip","blocked":"bl","done":"dn"};
+const ST_LABEL={ns:"Not started",ip:"In progress",bl:"Blocked",dn:"Done"};
+function normSt(v){return ST_MAP[String(v||"").trim().toLowerCase()]||"ns"}
+function toISO(v){
+  if(!v)return"";
+  if(typeof v==="number"){ /* excel serial → UTC math, no timezone drift */
+    const d=new Date(Date.UTC(1899,11,30)+Math.round(v)*864e5);
+    return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+  }
+  if(v instanceof Date&&!isNaN(v)){ /* cellDates path — round to nearest UTC noon to absorb tz shifts */
+    const d=new Date(Math.round((v.getTime()-432e5)/864e5)*864e5+432e5);
+    return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+  }
+  const s=String(v).trim();
+  let m=s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/); /* dd/mm/yyyy */
+  if(m)return m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0");
+  m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if(m)return m[1]+"-"+m[2].padStart(2,"0")+"-"+m[3].padStart(2,"0");
+  const d=new Date(s);return isNaN(d)?"":d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function parseWorkbook(wb){
+  const sheet=wb.Sheets["Tasks"];
+  if(!sheet)throw new Error("No 'Tasks' sheet found in this file.");
+  const rows=XLSX.utils.sheet_to_json(sheet,{defval:""});
+  const sections=[],map={};let last=null;
+  rows.forEach(r=>{
+    const sec=String(r.Section||"").trim();if(!sec)return;
+    if(!map[sec]){map[sec]={name:sec,tasks:[]};sections.push(map[sec])}
+    const sub=String(r.Subtask||"").trim();
+    if(!sub){
+      last={t:String(r.Task||"").trim(),note:String(r.Notes||"").trim(),st:normSt(r.Status),
+        pr:String(r.Priority||"High").trim()||"High",ow:String(r.Owner||"").trim(),
+        due:toISO(r["Due Date"]),link:"",isNew:/^y/i.test(String(r.New||"")),subs:[]};
+      map[sec].tasks.push(last);
+    }else if(last){
+      last.subs.push({t:sub,done:normSt(r.Status)==="dn"});
+    }
+  });
+  if(!sections.length)throw new Error("No task rows found — check the Tasks sheet columns.");
+  let keyDates=[];
+  if(wb.Sheets["Key Dates"]){
+    keyDates=XLSX.utils.sheet_to_json(wb.Sheets["Key Dates"],{defval:""})
+      .map(r=>({l:String(r.Label||"").trim(),d:toISO(r.Date)})).filter(x=>x.l&&x.d);
+  }
+  return{sections,keyDates:keyDates.length?keyDates:DEFAULT_DATA.keyDates};
+}
+
+/* ══════════ rendering ══════════ */
+function daysTo(d){const now=new Date();now.setHours(0,0,0,0);return Math.round((new Date(d+"T00:00:00")-now)/864e5)}
+function fmtDate(iso){if(!iso)return"";return new Date(iso+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}
+function escOnce(s){return s}
+
+function render(data){
+  /* keep the data-file link on the marketing-plan task even after excel sync */
+  data.sections.forEach(sec=>sec.tasks.forEach(t=>{
+    if(!t.link&&/marketing plan\.xlsx/i.test(t.t))t.link=DATA_FILE;
+  }));
+  /* countdowns */
+  document.getElementById("countStrip").innerHTML=data.keyDates.map(c=>{
+    const n=daysTo(c.d);
+    const cls=n<0?" past":(n<=14?" hot":"");
+    const big=n<0?Math.abs(n)+'<small>days ago</small>':n+'<small>days</small>';
+    const dt=new Date(c.d+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+    return '<div class="cd'+cls+'"><div class="d">'+big+'</div><div class="l">'+c.l+' · '+dt+'</div></div>';
+  }).join("");
+  /* board */
+  let all=0,ip=0,bl=0,dn=0;
+  document.getElementById("board").innerHTML=data.sections.map((sec,i)=>{
+    const num=String(i+1).padStart(2,"0");
+    const done=sec.tasks.filter(t=>t.st==="dn").length;
+    const rows=sec.tasks.map(tk=>{
+      all++;if(tk.st==="ip")ip++;if(tk.st==="bl")bl++;if(tk.st==="dn")dn++;
+      const subs=tk.subs.length?'<div class="subs">'+tk.subs.map(s=>
+        '<div class="sub'+(s.done?" on":"")+'"><span class="m">'+(s.done?"✓":"—")+'</span><span class="st">'+s.t+'</span></div>').join("")+'</div>':"";
+      const prCls=/^h/i.test(tk.pr)?"pr-h":(/^m/i.test(tk.pr)?"pr-m":"pr-l");
+      let dueLine="";
+      if(tk.due){
+        const n=daysTo(tk.due);
+        let flag="";
+        if(tk.st!=="dn"){
+          if(n<0)flag=' · <span class="over">overdue '+Math.abs(n)+'d</span>';
+          else if(n<=14)flag=' · <span class="soon">in '+n+'d</span>';
+        }
+        dueLine='<div class="meta-line">Due <b>'+fmtDate(tk.due)+'</b>'+flag+'</div>';
+      }
+      const owLine=tk.ow?'<div class="meta-line">Owner <b>'+tk.ow+'</b></div>':'<div class="meta-line">Owner —</div>';
+      const link=tk.link?' <a href="'+tk.link+'" target="_blank" rel="noopener">open ↗</a>':"";
+      return '<div class="task'+(tk.st==="dn"?" done":"")+'">'+
+        '<div><div class="t-title">'+tk.t+link+(tk.isNew?'<span class="badge-new">New</span>':"")+'</div>'+
+        (tk.note?'<div class="t-note'+(tk.alert?" alert":"")+'">'+tk.note+'</div>':"")+subs+'</div>'+
+        '<div class="t-meta"><div class="mrow"><span class="pr-dot '+prCls+'" title="'+tk.pr+'"></span>'+
+        '<span class="pill st-'+tk.st+'">'+ST_LABEL[tk.st]+'</span></div>'+owLine+dueLine+'</div></div>';
+    }).join("");
+    return '<section class="sec"><div class="sec-head">'+
+      '<span class="sec-num">'+num+'</span><span class="sec-title">'+sec.name+'</span>'+
+      '<span class="sec-prog"><span class="sec-count">'+done+' / '+sec.tasks.length+'</span>'+
+      '<span class="sec-track"><span class="sec-fill" style="width:'+(sec.tasks.length?done/sec.tasks.length*100:0)+'%"></span></span></span>'+
+      '</div>'+rows+'</section>';
+  }).join("");
+  const pct=all?Math.round(dn/all*100):0;
+  document.getElementById("ovPct").textContent=pct+"%";
+  document.getElementById("ovFill").style.width=pct+"%";
+  document.getElementById("cAll").textContent=all;
+  document.getElementById("cIp").textContent=ip;
+  document.getElementById("cBl").textContent=bl;
+  document.getElementById("cDn").textContent=dn;
+}
+
+/* ══════════ update button — file handle persistence ══════════ */
+const CACHE_KEY="tv-dashboard-2026";
+const btn=document.getElementById("btnUpdate"),meta=document.getElementById("syncMeta"),err=document.getElementById("syncErr");
+
+function idb(){return new Promise((res,rej)=>{const r=indexedDB.open("tv-dash",1);
+  r.onupgradeneeded=()=>r.result.createObjectStore("kv");
+  r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function idbGet(k){const db=await idb();return new Promise((res,rej)=>{const t=db.transaction("kv").objectStore("kv").get(k);t.onsuccess=()=>res(t.result);t.onerror=()=>rej(t.error)})}
+async function idbSet(k,v){const db=await idb();return new Promise((res,rej)=>{const t=db.transaction("kv","readwrite").objectStore("kv").put(v,k);t.onsuccess=()=>res();t.onerror=()=>rej(t.error)})}
+
+async function readViaHandle(){
+  let handle=await idbGet("handle").catch(()=>null);
+  if(handle){
+    let perm=await handle.queryPermission({mode:"read"});
+    if(perm!=="granted")perm=await handle.requestPermission({mode:"read"});
+    if(perm!=="granted")handle=null;
+  }
+  if(!handle){
+    const[h]=await window.showOpenFilePicker({types:[{description:"Excel",accept:{"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":[".xlsx"]}}]});
+    handle=h;await idbSet("handle",handle).catch(()=>{});
+  }
+  return handle.getFile();
+}
+function readViaInput(){
+  return new Promise((res,rej)=>{
+    const inp=document.getElementById("fileFallback");
+    inp.onchange=()=>inp.files[0]?res(inp.files[0]):rej(new Error("No file chosen"));
+    inp.click();
+  });
+}
+async function doUpdate(){
+  err.textContent="";btn.disabled=true;btn.textContent="Updating…";
+  try{
+    const file=window.showOpenFilePicker?await readViaHandle():await readViaInput();
+    const buf=await file.arrayBuffer();
+    const wb=XLSX.read(buf); /* raw serials — toISO handles conversion */
+    const data=parseWorkbook(wb);
+    render(data);
+    const ts=new Date();
+    const stamp=ts.toLocaleDateString("en-GB",{day:"numeric",month:"short"})+" · "+ts.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+    localStorage.setItem(CACHE_KEY,JSON.stringify({data,ts:stamp,fname:file.name}));
+    meta.innerHTML="Synced <b>"+stamp+"</b><br>"+file.name;
+  }catch(e){
+    if(e&&e.name==="AbortError"){/* user cancelled */}
+    else err.textContent=e.message||"Could not read the file.";
+  }
+  btn.disabled=false;btn.textContent="Update from Excel";
+}
+btn.addEventListener("click",doUpdate);
+
+/* ══════════ boot ══════════ */
+(function(){
+  let cached=null;
+  try{cached=JSON.parse(localStorage.getItem(CACHE_KEY))}catch(e){}
+  if(cached&&cached.data&&cached.data.sections){
+    render(cached.data);
+    meta.innerHTML="Last synced <b>"+cached.ts+"</b><br>"+(cached.fname||"");
+  }else{
+    render(DEFAULT_DATA);
+  }
+})();
+</script>
+</body>
+</html>

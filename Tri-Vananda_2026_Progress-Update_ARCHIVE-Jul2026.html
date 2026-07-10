@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri Vananda · 2026 · Progress Update</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Jost:wght@100;200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--deep:#141c22;--forest:#1e2820;
+  --cream:#f4efe5;--warm:#ede6d8;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --stone:#9e9282;--sage:#6e8264;--white:#faf8f4;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.022;pointer-events:none;z-index:9999}
+#bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%);z-index:1000;transition:width .35s ease;width:0}
+.S{width:100%;min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:80px 100px}
+.S.ink{background:var(--ink)}
+.S.bg{position:relative;padding:80px 100px}
+.S.bg::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 30% 20%,rgba(110,130,100,.12),transparent 60%),
+  radial-gradient(ellipse at 80% 80%,rgba(184,148,88,.12),transparent 55%),
+  linear-gradient(135deg,#141c22 0%,#0b0f13 60%,#1e2820 100%);z-index:0}
+.S.bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,15,19,.55) 0%,rgba(11,15,19,.15) 40%,rgba(11,15,19,.75) 100%);z-index:1}
+.S.bg > *{position:relative;z-index:2}
+.pg{position:absolute;bottom:32px;right:100px;font-family:'Jost',sans-serif;font-weight:100;font-size:.52rem;letter-spacing:.3em;color:rgba(255,255,255,.14);z-index:3}
+.eye{font-family:'Jost',sans-serif;font-weight:200;font-size:.74rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:40px;line-height:1.5}
+.D1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(3.5rem,7vw,7rem);line-height:1;color:var(--white)}
+.D2{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.05;color:var(--white)}
+.D3{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.8rem,3vw,3rem);line-height:1.1;color:var(--white)}
+.it{font-style:italic}.gd{color:var(--gold-lt)}
+.body{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);max-width:680px}
+.body.lg{font-size:1.15rem;line-height:1.8;max-width:760px}
+.rule{width:40px;height:1px;background:var(--gold);margin:32px 0}
+.S.split{display:grid;grid-template-columns:1fr 1fr;padding:0;min-height:100vh;align-items:stretch}
+.sp-content{padding:80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.sp-image{position:relative;overflow:hidden;background:
+  radial-gradient(ellipse at 50% 30%,rgba(110,130,100,.15),transparent 65%),
+  radial-gradient(ellipse at 60% 80%,rgba(184,148,88,.12),transparent 60%),
+  linear-gradient(135deg,#1e2820 0%,#0b0f13 50%,#141c22 100%)}
+.slide-fit{width:100%;transform-origin:center center}
+/* ───── INTERNAL chip ───── */
+.chip-internal{display:inline-block;font-family:'Jost',sans-serif;font-weight:300;font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt);border:1px solid rgba(184,148,88,.45);padding:8px 18px;background:rgba(184,148,88,.06)}
+/* ───── TIMELINE (from Tri-Vananda_2026_PR) ───── */
+.tlx-wrap{margin-top:48px;position:relative;padding-bottom:8px;padding-top:36px}
+.tlx{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:rgba(184,148,88,.14);border:1px solid rgba(184,148,88,.18);position:relative}
+.tlx-bar{background:var(--ink);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;min-height:54px;font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1rem;color:var(--white);line-height:1.25;position:relative;border:none}
+.tlx-bar.fill{background:linear-gradient(90deg,rgba(184,148,88,.22) 0%,rgba(184,148,88,.32) 100%);color:var(--white)}
+.tlx-bar.fill.summit{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.fill.overlay{background:linear-gradient(135deg,rgba(110,130,100,.22) 25%,rgba(110,130,100,.36) 50%,rgba(110,130,100,.22) 75%);border-top:1px dashed rgba(110,130,100,.45);border-bottom:1px dashed rgba(110,130,100,.45);z-index:3;position:relative}
+.tlx-bar.fill.launch{background:linear-gradient(90deg,rgba(184,148,88,.55) 0%,rgba(212,176,122,.55) 100%);color:var(--white);z-index:5;position:relative}
+.tlx-bar.launch small{color:rgba(255,255,255,.85)}
+.tlx-bar small{display:block;font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,148,88,.85);margin-top:5px;line-height:1.45}
+.tlx-bar.summit small{color:rgba(255,255,255,.85)}
+.tlx-axis{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;border-top:1px solid rgba(184,148,88,.32)}
+.tlx-month{padding:14px 12px 10px;background:var(--ink);font-family:'Jost',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;line-height:1.5}
+.tlx-month strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.78rem;color:var(--gold);margin-top:4px;letter-spacing:.02em;text-transform:none;line-height:1}
+#s-timeline .tlx{grid-template-columns:repeat(4,1fr)}
+#s-timeline .tlx-axis{grid-template-columns:repeat(4,1fr)}
+#s-timeline .tlx-bar{min-height:42px;padding:8px 16px;font-size:.9rem}
+#s-timeline .tlx-bar small{font-size:.52rem;margin-top:3px;letter-spacing:.22em}
+#s-timeline .tlx-month{padding:9px 12px 7px;font-size:.58rem}
+#s-timeline .tlx-month strong{font-size:.72rem}
+.tlx-sec{font-family:'Jost',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,176,122,.95);margin:0 0 8px}
+/* ───── INITIATIVE CHAPTER ───── */
+.init-chapter{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;margin-top:24px}
+.init-when{font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.6}
+.init-when small{display:block;font-size:.55rem;letter-spacing:.28em;color:rgba(184,148,88,.6);margin-top:6px}
+.init-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;color:var(--white);margin-top:24px}
+.init-name .it{color:var(--gold-lt)}
+.init-overline{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1.15rem;color:rgba(255,255,255,.55);margin-top:16px;line-height:1.4}
+.init-status{display:inline-block;margin-top:22px;font-family:'Jost',sans-serif;font-weight:300;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt);border:1px solid rgba(184,148,88,.4);padding:7px 14px;background:rgba(184,148,88,.05)}
+/* Init mini-marker — 4 cells (May–Jun · Jul–Aug · Sep–Oct · Nov–Dec) */
+.init-mini-tl{margin-top:28px;padding:18px 22px;border:1px solid rgba(184,148,88,.18);background:rgba(184,148,88,.03)}
+.init-mini-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(184,148,88,.18)}
+.init-mini-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(184,148,88,.14)}
+.init-mini-cell{background:rgba(11,15,19,.5);height:14px}
+.init-mini-cell.on{background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 100%)}
+.init-mini-cell.soft{background:rgba(110,130,100,.4)}
+.init-mini-axis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:8px}
+.init-mini-month{font-family:'Jost',sans-serif;font-weight:200;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;line-height:1.4}
+.init-mini-month.s{color:var(--gold)}
+/* Init image */
+.init-img{margin-top:22px;border:1px solid rgba(184,148,88,.2);position:relative;overflow:hidden}
+.init-img img{width:100%;height:190px;object-fit:cover;display:block}
+.init-img.logo{background:var(--white);display:flex;align-items:center;justify-content:center;padding:26px}
+.init-img.logo img{height:150px;width:auto;object-fit:contain}
+.init-img .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 16px 10px;background:linear-gradient(180deg,rgba(11,15,19,0) 0%,rgba(11,15,19,.85) 100%);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:.85rem;color:rgba(244,239,229,.8);letter-spacing:.04em}
+/* Init points */
+.init-points{display:flex;flex-direction:column;gap:0;margin-top:0}
+.init-point{padding:22px 0;border-bottom:1px solid rgba(184,148,88,.14);display:flex;flex-direction:column;gap:10px}
+.init-point:first-child{padding-top:10px}
+.init-point:last-child{border-bottom:none;padding-bottom:6px}
+.init-point-h{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold-lt);font-size:1.45rem;line-height:1.2;letter-spacing:.005em}
+.init-point-b{font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;line-height:1.85;color:rgba(255,255,255,.78)}
+.init-points-h{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.3)}
+.init-note{font-family:'Jost',sans-serif;font-weight:300;font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.5);margin-top:32px;font-style:italic}
+/* ───── OPTION / TIER GRID ───── */
+.spo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:40px}
+.spo-grid.g4{grid-template-columns:repeat(2,1fr)}
+.spo-cell{background:var(--ink);padding:32px 30px 36px;display:flex;flex-direction:column;gap:14px;min-height:240px}
+.spo-cell.featured{background:rgba(184,148,88,.08);border-top:1px solid rgba(184,148,88,.4);border-bottom:1px solid rgba(184,148,88,.4)}
+.spo-tag{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.spo-cell.featured .spo-tag{color:var(--gold-lt)}
+.spo-name{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.18;letter-spacing:.005em}
+.spo-name .it{color:var(--gold-lt);font-style:italic}
+.spo-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.25rem;color:var(--gold-lt);line-height:1.3;padding-bottom:14px;border-bottom:1px solid rgba(184,148,88,.18)}
+.spo-desc{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.72);margin-top:auto}
+/* Recommendation strip */
+.rec-strip{margin-top:36px;padding:30px 36px;background:rgba(184,148,88,.06);border:1px solid rgba(184,148,88,.35)}
+.rec-strip .tag{font-family:'Jost',sans-serif;font-weight:300;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px}
+.rec-strip .h{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.6rem;color:var(--white);line-height:1.3;max-width:980px}
+.rec-strip .h .it{color:var(--gold-lt);font-style:italic}
+.rec-strip .b{font-family:'Jost',sans-serif;font-weight:300;font-size:.92rem;line-height:1.8;color:rgba(255,255,255,.7);margin-top:10px;max-width:980px}
+/* Guest count stat cells */
+.stat-pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,148,88,.18);border:1px solid rgba(184,148,88,.18);margin-top:32px;max-width:640px}
+.stat-cell{background:var(--ink);padding:26px 26px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:2.6rem;color:var(--gold-lt);line-height:1}
+.stat-lb{font-family:'Jost',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:10px;line-height:1.7}
+@media (max-width:980px){
+  .S{padding:60px 34px}
+  .S.split{grid-template-columns:1fr}
+  .init-chapter{grid-template-columns:1fr;gap:40px}
+  .spo-grid,.spo-grid.g4{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<!-- ───── 01 · COVER ───── -->
+<section class="S ink split" id="s1">
+  <div class="sp-content">
+    <div>
+      <div class="eye" style="margin-bottom:52px">Tri Vananda · Phuket, Thailand · July 2026</div>
+      <div class="D1" style="font-size:clamp(2.8rem,5.4vw,5.4rem);line-height:1.04">Progress<br><span class="it gd">update.</span></div>
+      <div class="D2 it gd" style="font-size:clamp(1.3rem,2.2vw,2rem);margin-top:24px;font-weight:200">Business Development · PR &amp; Communications · Activations</div>
+      <div class="rule" style="margin-top:44px"></div>
+      <div class="chip-internal">Internal only · not for client use</div>
+    </div>
+  </div>
+  <div class="sp-image"></div>
+  <div class="pg">01</div>
+</section>
+
+<!-- ───── 02 · THE TIMELINE ───── -->
+<section class="S ink" id="s-timeline">
+  <div class="eye">Tri Vananda · 2026</div>
+  <div class="D2" style="max-width:980px;margin-bottom:14px">The <span class="it gd">timeline.</span></div>
+  <div class="rule"></div>
+  <div class="tlx-wrap" style="margin-top:20px;padding-top:0">
+    <div class="tlx-sec">Business Development &amp; Branding</div>
+    <div class="tlx" style="margin-bottom:14px">
+      <div class="tlx-bar" style="grid-row:1;grid-column:1 / span 3"></div>
+      <div class="tlx-bar fill summit" style="grid-row:1;grid-column:4 / span 1">Clinique La Prairie Health Resort Opening<small>1 Nov</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 1">New Wellness Brand Development<small>Brand, naming &amp; identity</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 2">Marketing Collateral Preparation<small>Renderings · photos · videos · masterplan model</small></div>
+      <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 2"></div>
+      <div class="tlx-bar fill launch" style="grid-row:3;grid-column:3 / span 1">PATAMA Wellness at Trisara Launch<small>Launch · Sep – Oct</small></div>
+      <div class="tlx-bar fill launch" style="grid-row:3;grid-column:4 / span 1">PATAMA Wellness at Tri Vananda Construction Begins<small>2026 → expected completion 2027</small></div>
+    </div>
+    <div class="tlx-sec">PR &amp; Communications</div>
+    <div class="tlx" style="margin-bottom:14px">
+      <div class="tlx-bar fill overlay" style="grid-row:1;grid-column:1 / span 4">Always-On Digital &amp; Communications<small>Paid ads · social · organic · running throughout 2026</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:1 / span 1">PR Agency Selection<small>Closed shortlist · 2 months</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 1">Planning PR Strategy<small>Narrative · channels · agency brief</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:3 / span 2">PR Campaign<small>Sustained Sep – Dec 2026</small></div>
+    </div>
+    <div class="tlx-sec">Activations</div>
+    <div class="tlx">
+      <div class="tlx-bar" style="grid-row:1;grid-column:1 / span 3"></div>
+      <div class="tlx-bar fill summit" style="grid-row:1;grid-column:4 / span 1">Pru Farm Festival<small>Supporting activation · 1 Nov</small></div>
+      <div class="tlx-bar" style="grid-row:2;grid-column:1 / span 1"></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:2 / span 1">GWS Collaboration<small>Connect · format of collaboration</small></div>
+      <div class="tlx-bar fill" style="grid-row:2;grid-column:3 / span 1">Pre-Summit Setup<small>Format · event organizer · experience design</small></div>
+      <div class="tlx-bar fill summit" style="grid-row:2;grid-column:4 / span 1">Join GWS as Exhibitor<small>Conference presence · 10–13 Nov</small></div>
+      <div class="tlx-bar" style="grid-row:3;grid-column:1 / span 3"></div>
+      <div class="tlx-bar fill summit" style="grid-row:3;grid-column:4 / span 1">Hosted Experience<small>For potential referrers · 10–13 Nov</small></div>
+    </div>
+    <div class="tlx-axis">
+      <div class="tlx-month" style="grid-column:1">May – Jun<strong>2026</strong></div>
+      <div class="tlx-month" style="grid-column:2">Jul – Aug</div>
+      <div class="tlx-month" style="grid-column:3">Sep – Oct</div>
+      <div class="tlx-month" style="grid-column:4">Nov – Dec</div>
+    </div>
+  </div>
+  <div class="pg">02</div>
+</section>
+
+<!-- ═════ BUSINESS DEVELOPMENT & BRANDING ═════ -->
+
+<!-- ───── 03 · PATAMA PACKAGES ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Business Development &amp; Branding · <span class="gd">01 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">Jul – Nov 2026<small>The sellable wellness offer</small></div>
+      <div class="init-name">PATAMA <span class="it">packages.</span></div>
+      <div class="init-overline">Clinique La Prairie · Trisara · YPO</div>
+      <div class="init-status">Status · In motion</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell"></div><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month s">Sep–Oct</div><div class="init-mini-month s">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">Clinique La Prairie — received.</div>
+          <div class="init-point-b">The CLP packages information has been received.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">Trisara — under development.</div>
+          <div class="init-point-b">Trisara packages are under development, with the aim of promoting them for stays during the GWS period.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">YPO — already crafted.</div>
+          <div class="init-point-b">The YPO package has already been crafted for the YPO team.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">03</div>
+</section>
+
+<!-- ───── 04 · PATAMA BRAND DIRECTION ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Business Development &amp; Branding · <span class="gd">02 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">May – Aug 2026<small>Brand · naming · identity</small></div>
+      <div class="init-name">PATAMA <span class="it">brand direction.</span></div>
+      <div class="init-overline">The new wellness brand · evolving from framework to promise</div>
+      <div class="init-status">Status · Evolving</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div><div class="init-mini-cell"></div><div class="init-mini-cell"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month s">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month">Sep–Oct</div><div class="init-mini-month">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">From categories to promises — The Eight Treads.</div>
+          <div class="init-point-b">The branding direction is evolving: the pillars shift from categories of wellness activities to the brand promises — <span class="gd">The Eight Treads</span>.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">Finding the right creative partners.</div>
+          <div class="init-point-b">We are in the process of finding the right creative partners to create the logos and visual identity.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">04</div>
+</section>
+
+<!-- ───── 05 · GARDEN HOUSE GUEST JOURNEY ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Business Development &amp; Branding · <span class="gd">03 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">Jul – Oct 2026<small>Experience design · in progress</small></div>
+      <div class="init-name">Garden House <span class="it">guest journey.</span></div>
+      <div class="init-overline">The Garden House guest journey</div>
+      <div class="init-status">Status · In design</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell"></div><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div><div class="init-mini-cell"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month s">Sep–Oct</div><div class="init-mini-month">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">A journey that enables sales, subtly.</div>
+          <div class="init-point-b">The guest journey of the Garden House will allow us to subtly enable sales of other products.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">05</div>
+</section>
+
+<!-- ───── 06 · MARKETING COLLATERAL ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Business Development &amp; Branding · <span class="gd">04 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">Jul – Oct 2026<small>Renderings · photos · videos · masterplan model</small></div>
+      <div class="init-name">Marketing <span class="it">collateral.</span></div>
+      <div class="init-overline">Marketing collateral under development</div>
+      <div class="init-status">Status · In production</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell"></div><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div><div class="init-mini-cell"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month s">Sep–Oct</div><div class="init-mini-month">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">CGI renderings — Montara Residences.</div>
+          <div class="init-point-b">We have already asked for quotations from <span class="gd">DOF</span> — the studio recommended by the designer — for the Montara Residences CGI rendering images.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">Under development.</div>
+          <div class="init-point-b">The wider marketing collateral remains under development.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">06</div>
+</section>
+
+<!-- ═════ PR & COMMUNICATIONS ═════ -->
+
+<!-- ───── 07 · ALWAYS-ON DIGITAL ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">PR &amp; Communications · <span class="gd">01 of 03</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">May – Dec 2026<small>Paid · social · organic · always-on</small></div>
+      <div class="init-name">Always-on <span class="it">digital.</span></div>
+      <div class="init-overline">Running throughout 2026 · refined from live campaign data</div>
+      <div class="init-status">Status · Refined &amp; running</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell soft"></div><div class="init-mini-cell soft"></div><div class="init-mini-cell soft"></div><div class="init-mini-cell soft"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month s">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month s">Sep–Oct</div><div class="init-mini-month s">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">More refined after the learning period.</div>
+          <div class="init-point-b">The digital campaigns are more refined now. After the learning period of the active campaigns, several changes were made.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">What changed.</div>
+          <div class="init-point-b">Targeted audience adjusted · new creatives added · more verification process added for the Facebook leads.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">07</div>
+</section>
+
+<!-- ───── 08 · PR AGENCY — J/PR ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">PR &amp; Communications · <span class="gd">02 of 03</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">Jul 2026<small>Meeting · next week · Mon or Tue</small></div>
+      <div class="init-name">PR agency — <span class="it">J/PR.</span></div>
+      <div class="init-overline">Agency selection · meeting next week</div>
+      <div class="init-status">Status · Meeting next week</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div><div class="init-mini-cell"></div><div class="init-mini-cell"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month s">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month">Sep–Oct</div><div class="init-mini-month">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">Meeting next week — Monday or Tuesday.</div>
+          <div class="init-point-b">The meeting with J/PR will take place next week on Monday or Tuesday (one day), as they need to gather the working teams to present to us.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">The key points they will present.</div>
+          <div class="init-point-b">01 · Proposed strategy &amp; media selection&ensp;—&ensp;02 · Creative strategy &amp; positioning as branded residences&ensp;—&ensp;03 · Working team, scope of work, working process &amp; fee structure.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">08</div>
+</section>
+
+<!-- ───── 09 · ROBB REPORT ADVERTORIAL ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">PR &amp; Communications · <span class="gd">03 of 03</span></div>
+  <div class="D3" style="margin-bottom:6px">Robb Report · <span class="it gd">Tri Vananda advertorial.</span></div>
+  <div class="init-overline" style="margin-top:8px">Two routes offered — one placement, two very different frames.</div>
+  <div class="rule" style="margin:26px 0 0"></div>
+  <div class="spo-grid">
+    <div class="spo-cell">
+      <div class="spo-tag">Option 01</div>
+      <div class="spo-name">The <span class="it">Resource.</span></div>
+      <div class="spo-price">Advertorial · as we wish</div>
+      <div class="spo-desc">Advertorial content as we wish — this would appear in The Resource section.</div>
+    </div>
+    <div class="spo-cell featured">
+      <div class="spo-tag">Option 02 · Recommended</div>
+      <div class="spo-name">Design &amp; Travel <span class="it">special feature.</span></div>
+      <div class="spo-price">"Ultra-Luxury Safe Haven Properties in Thailand"</div>
+      <div class="spo-desc">Advertorial content gearing towards "Ultra-Luxury Safe Haven Properties in Thailand", as part of the key theme "Design &amp; Travel" — a special feature including a list of ultra-luxury properties in Thailand that could be a "safe haven" for foreigners looking for a residence in Thailand.</div>
+    </div>
+  </div>
+  <div class="rec-strip">
+    <div class="tag">Our recommendation</div>
+    <div class="h">Choose Option 2 — to make the article more <span class="it">organic.</span></div>
+    <div class="b">We can still send them featured information from our side.</div>
+  </div>
+  <div class="pg">09</div>
+</section>
+
+<!-- ═════ ACTIVATIONS ═════ -->
+
+<!-- ───── 10 · GWS — FOUR AREAS ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Activations · <span class="gd">01 of 04</span></div>
+  <div class="D3" style="margin-bottom:6px">GWS collaboration · <span class="it gd">four areas on the table.</span></div>
+  <div class="init-overline" style="margin-top:8px">Global Wellness Summit · Phuket · 10 – 13 November — what each element is worth against their rate card.</div>
+  <div class="rule" style="margin:26px 0 0"></div>
+  <div class="spo-grid g4">
+    <div class="spo-cell">
+      <div class="spo-tag">Area 01 · Included at any tier</div>
+      <div class="spo-name">Brand awareness <span class="it">across GWS channels.</span></div>
+      <div class="spo-price">Standard all-sponsor benefit</div>
+      <div class="spo-desc">Presence across official GWS channels — the baseline benefit every sponsor receives, at any tier.</div>
+    </div>
+    <div class="spo-cell featured">
+      <div class="spo-tag">Area 02 · Their likely valuation ~$40–50k</div>
+      <div class="spo-name">Hosted farm-to-table dinner <span class="it">at Tri Vananda.</span></div>
+      <div class="spo-price">Closest analog · Gold Happiness Hour — $37.5k</div>
+      <div class="spo-desc">A full evening dinner is bigger than the Happiness Hour analog, so GWS will value it above that line — expect roughly $40–50k.</div>
+    </div>
+    <div class="spo-cell">
+      <div class="spo-tag">Area 03 · Nearest analog $24k</div>
+      <div class="spo-name">Inclusion in official <span class="it">delegate tours.</span></div>
+      <div class="spo-price">No direct line item · Silver Property Showcase — $24k</div>
+      <div class="spo-desc">Not on the rate card as such; the Silver Property Showcase is the nearest reference point for pricing.</div>
+    </div>
+    <div class="spo-cell">
+      <div class="spo-tag">Area 04 · Should be complimentary</div>
+      <div class="spo-name">Speaking slots — <span class="it">Montara family + CLP CEO.</span></div>
+      <div class="spo-price">Not on the rate card · customized tiers only</div>
+      <div class="spo-desc">Only reachable via customized tiers — but if GWS invites the speakers themselves, it should be complimentary, not a paid benefit.</div>
+    </div>
+  </div>
+  <div class="pg">10</div>
+</section>
+
+<!-- ───── 11 · GWS — PRICE EXPECTATION ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Activations · <span class="gd">02 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">Jul – Nov 2026<small>Negotiation · custom package</small></div>
+      <div class="init-name">GWS <span class="it">price expectation.</span></div>
+      <div class="init-overline">Where the negotiation is likely to open — and where it isn't</div>
+      <div class="init-status">Status · Negotiation ahead</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell"></div><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div><div class="init-mini-cell on"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month">May–Jun</div><div class="init-mini-month s">Jul–Aug</div><div class="init-mini-month s">Sep–Oct</div><div class="init-mini-month s">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Reading the rate card</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">A custom package, not a listed tier.</div>
+          <div class="init-point-b">GWS will treat this as a customized package — anchored between <span class="gd">Marquee ($75k)</span> and <span class="gd">Strategic Partnership ($125k – 150k)</span>.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">The top tier is probably not in play.</div>
+          <div class="init-point-b">They likely already have a Strategic Partner for headline logo awareness — so they probably won't push us to the top tier.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">Most likely opening — $75k+.</div>
+          <div class="init-point-b">Expect an opening at $75k or above, plus possible additional fees for visibility across all four brands: <span class="gd">Montara · Trisara · Tri Vananda · CLP Phuket</span>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">11</div>
+</section>
+
+<!-- ───── 12 · HOSTED EXPERIENCE — OUR PROPOSAL ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Activations · <span class="gd">03 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">10 – 13 Nov 2026<small>Same period · our own guest list</small></div>
+      <div class="init-name">Our own <span class="it">hosted experience.</span></div>
+      <div class="init-overline">Project tour + lunch or dinner · alongside the Summit, apart from it</div>
+      <div class="init-status">Status · Our suggestion</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell"></div><div class="init-mini-cell"></div><div class="init-mini-cell"></div><div class="init-mini-cell on"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month">May–Jun</div><div class="init-mini-month">Jul–Aug</div><div class="init-mini-month">Sep–Oct</div><div class="init-mini-month s">Nov–Dec</div></div>
+      </div>
+      <div class="stat-pair">
+        <div class="stat-cell"><div class="stat-num">20</div><div class="stat-lb">Hosted partner guests<br>The Boulevard Magazine</div></div>
+        <div class="stat-cell"><div class="stat-num">20</div><div class="stat-lb">Montara guests<br>TV clients · Trisara · CLP · media</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">The proposal</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">Our suggestion — another hosted day.</div>
+          <div class="init-point-b">Host another Project Tour + lunch or dinner on one day, for our own group of guests apart from the GWS guests — but set up in the same period.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">Co-host potential — The Boulevard Magazine.</div>
+          <div class="init-point-b">Boulevard also works like a property agent in Phuket — so it makes real sense to get potential guests from their side.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">Expected number of guests.</div>
+          <div class="init-point-b">20 from the hosted partner (Boulevard) · 20 from Montara — Tri Vananda potential clients, Trisara guests, CLP guests, and media.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">12</div>
+</section>
+
+<!-- ───── 13 · PRU FARM FESTIVAL ───── -->
+<section class="S ink">
+  <div class="eye" style="margin-bottom:20px">Activations · <span class="gd">04 of 04</span></div>
+  <div class="init-chapter">
+    <div>
+      <div class="init-when">1 Nov 2026<small>Supporting activation · co-host</small></div>
+      <div class="init-name">PRU Farm <span class="it">Festival.</span></div>
+      <div class="init-overline">Working as co-host with the PRU team</div>
+      <div class="init-status">Status · Co-host</div>
+      <div class="init-mini-tl">
+        <div class="init-mini-h">Where it sits · 2026</div>
+        <div class="init-mini-bar"><div class="init-mini-cell"></div><div class="init-mini-cell"></div><div class="init-mini-cell"></div><div class="init-mini-cell on"></div></div>
+        <div class="init-mini-axis"><div class="init-mini-month">May–Jun</div><div class="init-mini-month">Jul–Aug</div><div class="init-mini-month">Sep–Oct</div><div class="init-mini-month s">Nov–Dec</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="init-points-h">Progress · July 2026</div>
+      <div class="init-points">
+        <div class="init-point">
+          <div class="init-point-h">Connected with Alberto.</div>
+          <div class="init-point-b">Our team has already connected with Alberto, and we will work as a co-host for the event.</div>
+        </div>
+        <div class="init-point">
+          <div class="init-point-h">The Local Roots standard.</div>
+          <div class="init-point-b">We will provide the same level of operation and experience as our Local Roots events — with the flexibility to elevate further if additional requirements arise.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">13</div>
+</section>
+
+<!-- ───── 14 · CLOSING ───── -->
+<section class="S bg">
+  <div class="eye">Tri Vananda · July 2026</div>
+  <div class="D2" style="max-width:1000px;margin-bottom:14px">The work <span class="it gd">continues.</span></div>
+  <div class="rule"></div>
+  <p class="body lg" style="max-width:940px">Every initiative above serves one objective — building the awareness, credibility and desire that convert interest into private visits, reservations and residence sales.</p>
+  <div style="margin-top:54px;padding-top:26px;border-top:1px solid rgba(184,148,88,.25);display:flex;flex-direction:column;gap:6px">
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.5rem;color:var(--gold-lt)">treephol.t@trivananda.com</div>
+    <div style="font-family:'Jost',sans-serif;font-weight:200;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.55)">trivananda.com · Phuket, Thailand · Internal only</div>
+  </div>
+  <div class="pg">14</div>
+</section>
+
+<script>
+(function(){
+  const sections = Array.from(document.querySelectorAll('.S'));
+  const bar = document.getElementById('bar');
+  let currentSlide = 0;
+  let isAnimating = false;
+
+  sections.forEach(section => {
+    if (section.classList.contains('split') || section.id === 's1') return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'slide-fit';
+    const toMove = [];
+    Array.from(section.children).forEach(child => {
+      const cs = getComputedStyle(child);
+      if (cs.position !== 'absolute' && cs.position !== 'fixed') toMove.push(child);
+    });
+    toMove.forEach(c => wrapper.appendChild(c));
+    if (section.firstChild) section.insertBefore(wrapper, section.firstChild);
+    else section.appendChild(wrapper);
+  });
+
+  function fitSlides(){
+    document.querySelectorAll('.slide-fit').forEach(wrapper => {
+      wrapper.style.transform = 'none';
+      void wrapper.offsetHeight;
+      const section = wrapper.parentElement;
+      const sH = section.clientHeight;
+      const sW = section.clientWidth;
+      const cH = wrapper.scrollHeight;
+      const cW = wrapper.scrollWidth;
+      let scale = 1;
+      if (cH > sH) scale = Math.min(scale, sH / cH);
+      if (cW > sW) scale = Math.min(scale, sW / cW);
+      if (scale < 1) wrapper.style.transform = 'scale(' + (scale * 0.99) + ')';
+    });
+  }
+
+  function updateUI(){
+    const total = sections.length;
+    if (bar) bar.style.width = (currentSlide / Math.max(1, total - 1) * 100) + '%';
+  }
+
+  function goToSlide(n){
+    const target = Math.max(0, Math.min(sections.length - 1, n));
+    if (target === currentSlide) return;
+    currentSlide = target;
+    isAnimating = true;
+    sections[currentSlide].scrollIntoView({behavior:'smooth', block:'start'});
+    updateUI();
+    setTimeout(() => { isAnimating = false; }, 450);
+  }
+
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (isAnimating) return;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const mid = window.scrollY + window.innerHeight / 2;
+      for (let i = 0; i < sections.length; i++) {
+        const top = sections[i].offsetTop;
+        const bottom = top + sections[i].offsetHeight;
+        if (mid >= top && mid < bottom) {
+          if (currentSlide !== i) { currentSlide = i; updateUI(); }
+          break;
+        }
+      }
+    }, 80);
+  }, {passive:true});
+
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    const k = e.key;
+    if (k === 'ArrowDown' || k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Spacebar'){
+      e.preventDefault(); goToSlide(currentSlide + 1);
+    } else if (k === 'ArrowUp' || k === 'ArrowLeft' || k === 'PageUp'){
+      e.preventDefault(); goToSlide(currentSlide - 1);
+    } else if (k === 'Home'){
+      e.preventDefault(); goToSlide(0);
+    } else if (k === 'End'){
+      e.preventDefault(); goToSlide(sections.length - 1);
+    } else if (k === 'f' || k === 'F'){
+      e.preventDefault();
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+      else document.exitFullscreen && document.exitFullscreen();
+    }
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(fitSlides, 100); });
+
+  function init(){ fitSlides(); updateUI(); }
+  window.addEventListener('load', init);
+  if (document.readyState === 'complete') init();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSlides);
+  setTimeout(fitSlides, 300);
+  setTimeout(fitSlides, 1200);
+  setTimeout(fitSlides, 2500);
+
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(fitSlides, 80); }, {once:true});
+  });
+})();
+</script>
+</body>
+</html>
