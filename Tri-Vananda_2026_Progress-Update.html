@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Jost:wght@100;200;300;400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -147,14 +146,11 @@ footer .f{font-weight:200;font-size:.58rem;letter-spacing:.24em;text-transform:u
   <div>
     <div class="eye">Tri Vananda · Phuket, Thailand · Marketing, PR, Activations, and Business Development</div>
     <h1>Tri Vananda <span class="it">movement.</span></h1>
-    <div class="tagline" id="subline">Live dashboard — data from Tri-Vananda_2026_Task-Data.xlsx</div>
+    <div class="tagline" id="subline">Data from Tri-Vananda_2026_Task-Data.xlsx · embedded 13 Jul 2026</div>
     <div class="chip-internal">Internal only · not for client use</div>
   </div>
   <div class="sync">
-    <button class="btn-update" id="btnUpdate">Update from Excel</button>
-    <div class="sync-meta" id="syncMeta">No sync yet — showing initial list</div>
-    <div class="sync-err" id="syncErr"></div>
-    <input type="file" id="fileFallback" accept=".xlsx,.xlsm" style="display:none">
+    <div class="sync-meta">Data embedded from Excel<br><b>13 Jul 2026</b></div>
   </div>
 </header>
 
@@ -217,182 +213,977 @@ footer .f{font-weight:200;font-size:.58rem;letter-spacing:.24em;text-transform:u
 
 <footer>
   <div class="f">Data source · Tri-Vananda_2026_Task-Data.xlsx (same folder)</div>
-  <div class="f">Edit owners, deadlines &amp; status in Excel → save → click Update from Excel</div>
+  <div class="f">Edit in Excel → ask Claude to re-embed → dashboard updates</div>
   <div class="f">Archive of previous deck · Tri-Vananda_2026_Progress-Update_ARCHIVE-Jul2026.html</div>
 </footer>
 
 </div>
 
 <script>
-/* ══════════ embedded initial data (mirrors the xlsx as shipped) ══════════ */
 const DATA_FILE="Tri-Vananda_2026_Task-Data.xlsx";
-function T(t,o){return Object.assign({t:t,note:"",st:"ns",pr:"High",ow:"",due:"",link:"",isNew:false,subs:[]},o||{})}
-function S(t,done){return{t:t,done:!!done}}
-const TOUR_PREP="Event preparation with budget, co-ordinate with working team — Intro session at CLP (masterplan + Residential Villa showcase) · CLP estate tour · Buggy cruise through Tri Vananda landscape · Farm tour · Move to Trisara: PATAMA wellness tour and lunch · Guest logistics: transport, timing, pax";
-const DEFAULT_DATA={sections:[
-{name:"Task Management",tasks:[
- T("Update 20251201 Tri Vananda Marketing Plan.xlsx",{due:"2026-07-14",link:DATA_FILE,subs:[
-   S("Update due date, and calendar for H2"),
-   S("Update budgets, and performance by channels")]}),
- T("Create Master Strategic Campaign — Montara perspective",{note:"Science | Art | Soul framework across all brands and touchpoints",subs:[
-   S("Define Science | Art | Soul framework"),
-   S("Map framework across all brands and touchpoints"),
-   S("Draft campaign narrative and creative territories"),
-   S("Present for approval")]}),
-]},
-{name:"Events",tasks:[
- T("Secure GWS Collaboration contract",{note:"Foundation for all GWS activity — prioritise",subs:[
-   S("Agree scope and format of collaboration"),
-   S("Negotiate commercial terms"),
-   S("Legal review"),
-   S("Sign contract")]}),
- T("BEING 2026",{note:"Wednesday 2 September 2026",due:"2026-09-02",subs:[
-   S("Get booth and sponsorship package"),
-   S("Booth production, design and collateral preparation"),
-   S("Collateral print"),
-   S("Giveaway"),
-   S("PRU Farm Festival advertising at the booth"),
-   S("CEO approval"),
-   S("Secure contract"),
-   S("Lead-capture method ready"),
-   S("Post-event follow-up")]}),
- T("PRU Farm Festival",{note:"Sunday 1 November 2026 — collaborate to support them",due:"2026-11-01",subs:[
-   S("Agree support scope with festival team"),
-   S("Align with the working team — Vendor co-ordination support · Activities support · Manpower support · TVND brand presence at festival"),
-   S("Event preparation with budget"),
-   S("CEO approval"),
-   S("Secure sponsorship with PRU"),
-   S("On-day operations plan")]}),
- T("GWS Tours — CLP / Farm",{note:"Monday 9 November 2026",due:"2026-11-09",subs:[
-   S(TOUR_PREP),
-   S("CEO approval"),
-   S("Full run-of-show rehearsal")]}),
- T("Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14",subs:[
-   S("Confirm event format and venue"),
-   S("Programme and vendors"),
-   S("TVND integration and guest flow"),
-   S("On-day operations plan")]}),
- T("GWS Tours — CLP / Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14",subs:[
-   S(TOUR_PREP),
-   S("CEO approval"),
-   S("Full run-of-show rehearsal")]}),
- T("Exclusive Dinner at the Farm — GWS",{note:"Date TBC",subs:[
-   S("Confirm date"),S("CEO approval"),S("Collaborate with partners for guest list"),
-   S("Invitations out"),S("Menu with Alberto and Chef Im"),S("Farm tour"),
-   S("Cocktail reception"),S("Dinner"),S("Entertainment"),S("On-day operations plan")]}),
- T("Exclusive Dinner — Buyers, Partners & Media",{note:"Date TBC",subs:[
-   S("Confirm date"),S("CEO approval"),S("Collaborate with partners for guest list"),
-   S("Invitations out"),S("Menu with Alberto and Chef Im"),S("Property tour (CLP + Tri Vananda)"),
-   S("Cocktail reception"),S("Dinner"),S("Entertainment"),S("On-day operations plan")]}),
-]},
-{name:"New Online Ad Campaign",tasks:[
- T("New campaign — Wellness theme",{note:"Science | Art | Soul",subs:[
-   S("Creative concept from Science | Art | Soul"),
-   S("Landing Page"),
-   S("Ad copy and visuals produced"),
-   S("Launch")]}),
-]},
-{name:"Marketing Collateral",tasks:[
- T("PATAMA Residences CGIs",{subs:[
-   S("Quotation and timeline"),S("CEO approval"),S("Brief renderer: views, mood, count"),
-   S("Draft review rounds"),S("Final delivery")]}),
- T("Tower Sign",{subs:[S("Signage design with logos"),S("Tri Vananda + CLP confirm logo"),
-   S("Update quotation and timeline"),S("Select contractor"),S("CEO approval"),
-   S("Fabrication and installation oversight")]}),
- T("New Asset Library",{subs:[S("Audit existing assets"),S("Define folder and naming structure"),
-   S("Migrate and tag"),S("Share access guide")]}),
- T("Nanda A6 photos",{subs:[S("Shot list and styling"),S("Shoot"),S("Select and retouch"),S("Add to asset library")]}),
- T("Nanda G88 photos",{subs:[S("Shot list and styling"),S("Shoot"),S("Select and retouch"),S("Add to asset library")]}),
- T("Marketing Item Directory",{subs:[S("Inventory all marketing items"),
-   S("Build directory: location, owner, stock"),S("Set review cadence")]}),
- T("Event Co-ordination SOP",{subs:[S("Map event workflow: brief → budget → vendors → on-day → wrap"),
-   S("Templates and checklists"),S("Circulate and train")]}),
- T("Giveaways order — Tote bags",{note:"Two versions: one premium, one giveaway",subs:[
-   S("Get quotations and create email with details"),S("Send to Khun Kitt for approval"),
-   S("Place order: premium + giveaway versions"),S("QC on delivery")]}),
-]},
-{name:"Content Marketing",tasks:[
- T("Q3–Q4 2026 social media plans",{note:"Monthly plans through year-end, aligned to Sep–Dec launch arc",subs:[
-   S("Monthly themes aligned to Sep–Dec launch arc"),S("Content calendar per month"),
-   S("Production and scheduling"),S("Monthly review")]}),
- T("Q3 2026 Quarterly Newsletter",{subs:[
-   S("Story selection"),S("Copy and design"),S("Approval"),S("Send and report")]}),
-]},
-{name:"PR",tasks:[
- T("Secure contract with J/PR",{subs:[
-   S("Finalize scope and fees"),S("Contract review"),S("Sign and kickoff")]}),
- T("Q3–Q4 2026 PR strategy and plan",{subs:[
-   S("Narrative and key messages"),S("Channel and media targets"),S("Agency brief"),S("Approve plan")]}),
- T("Press kit / media fact sheet refresh",{note:"Ready for J/PR the day the contract signs",subs:[
-   S("Audit current kit"),S("Update facts, bios, images"),S("Package ready for J/PR day one")]}),
-]},
-{name:"PATAMA",tasks:[
- T("Source creative agency",{subs:[S("Shortlist"),S("Brief and proposals"),S("Select and contract")]}),
- T("YPO Retreat Package",{subs:[S("Define programme and inclusions"),S("Pricing"),S("Sales one-pager")]}),
- T("GWS Retreat Package",{subs:[S("Define programme and inclusions (tailored to GWS delegates)"),S("Pricing"),S("Sales one-pager")]}),
- T("Marketing collateral",{subs:[S("Website"),S("PATAMA Brochure — CLP Retreat"),
-   S("PATAMA Brochure — Trisara Retreat"),S("PATAMA Wellness at Trisara menu")]}),
- T("Social media",{subs:[S("Channel setup / handle strategy"),S("Launch content set"),S("Ongoing calendar")]}),
- T("Digital ad campaign",{subs:[S("Audience and budget"),S("Creative"),S("Launch and optimize")]}),
- T("Products for sale and giveaway",{note:"From local suppliers — e.g. wan sao long",subs:[
-   S("Source local suppliers (wan sao long etc.)"),S("Select and price"),S("Order and packaging")]}),
-]},
-],keyDates:[
- {l:"Marketing Plan xlsx due",d:"2026-07-14"},
- {l:"BEING 2026",d:"2026-09-02"},
- {l:"PRU Farm Festival",d:"2026-11-01"},
- {l:"GWS Tour — Farm",d:"2026-11-09"},
- {l:"GWS Tour — Local Roots",d:"2026-11-14"},
-]};
-
-/* ══════════ xlsx parsing ══════════ */
-const ST_MAP={"not started":"ns","in progress":"ip","blocked":"bl","done":"dn"};
 const ST_LABEL={ns:"Not started",ip:"In progress",bl:"Blocked",dn:"Done"};
-function normSt(v){return ST_MAP[String(v||"").trim().toLowerCase()]||"ns"}
-function toISO(v){
-  if(!v)return"";
-  if(typeof v==="number"){ /* excel serial → UTC math, no timezone drift */
-    const d=new Date(Date.UTC(1899,11,30)+Math.round(v)*864e5);
-    return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
-  }
-  if(v instanceof Date&&!isNaN(v)){ /* cellDates path — round to nearest UTC noon to absorb tz shifts */
-    const d=new Date(Math.round((v.getTime()-432e5)/864e5)*864e5+432e5);
-    return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
-  }
-  const s=String(v).trim();
-  let m=s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/); /* dd/mm/yyyy */
-  if(m)return m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0");
-  m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
-  if(m)return m[1]+"-"+m[2].padStart(2,"0")+"-"+m[3].padStart(2,"0");
-  const d=new Date(s);return isNaN(d)?"":d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-}
-function parseWorkbook(wb){
-  const sheet=wb.Sheets["Tasks"];
-  if(!sheet)throw new Error("No 'Tasks' sheet found in this file.");
-  const rows=XLSX.utils.sheet_to_json(sheet,{defval:""});
-  const sections=[],map={};let last=null;
-  rows.forEach(r=>{
-    const sec=String(r.Section||"").trim();if(!sec)return;
-    if(!map[sec]){map[sec]={name:sec,tasks:[]};sections.push(map[sec])}
-    const sub=String(r.Subtask||"").trim();
-    if(!sub){
-      last={t:String(r.Task||"").trim(),note:String(r.Notes||"").trim(),st:normSt(r.Status),
-        pr:String(r.Priority||"High").trim()||"High",ow:String(r.Owner||"").trim(),
-        due:toISO(r["Due Date"]),link:"",isNew:/^y/i.test(String(r.New||"")),subs:[]};
-      map[sec].tasks.push(last);
-    }else if(last){
-      const sn=String(r.Notes||"").trim(); /* nested components live in the subtask's Notes cell */
-      last.subs.push({t:sn?sub+" — "+sn:sub,done:normSt(r.Status)==="dn"});
+/* ══════════ embedded data — generated from Tri-Vananda_2026_Task-Data.xlsx · 13 Jul 2026 ══════════ */
+const DATA={
+ "sections": [
+  {
+   "name": "Task Management",
+   "tasks": [
+    {
+     "t": "Update 20251201 Tri Vananda Marketing Plan.xlsx",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "2026-07-14",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Update due date, and calendar for H2",
+       "done": false
+      },
+      {
+       "t": "Update budgets, and performance by channels",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Create Master Strategic Campaign — Montara perspective",
+     "note": "Science | Art | Soul framework across all brands and touchpoints",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Define Science | Art | Soul framework",
+       "done": false
+      },
+      {
+       "t": "Map framework across all brands and touchpoints",
+       "done": false
+      },
+      {
+       "t": "Draft campaign narrative and creative territories",
+       "done": false
+      },
+      {
+       "t": "Present for approval",
+       "done": false
+      }
+     ]
     }
-  });
-  if(!sections.length)throw new Error("No task rows found — check the Tasks sheet columns.");
-  let keyDates=[];
-  if(wb.Sheets["Key Dates"]){
-    keyDates=XLSX.utils.sheet_to_json(wb.Sheets["Key Dates"],{defval:""})
-      .map(r=>({l:String(r.Label||"").trim(),d:toISO(r.Date)})).filter(x=>x.l&&x.d);
+   ]
+  },
+  {
+   "name": "Events",
+   "tasks": [
+    {
+     "t": "Secure GWS Collaboration contract",
+     "note": "Foundation for all GWS activity — prioritise",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Agree scope and format of collaboration",
+       "done": false
+      },
+      {
+       "t": "Negotiate commercial terms",
+       "done": false
+      },
+      {
+       "t": "Legal review",
+       "done": false
+      },
+      {
+       "t": "Sign contract",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "BEING 2026",
+     "note": "Wednesday 2 September 2026",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "2026-09-02",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Get booth and sponsorship package",
+       "done": false
+      },
+      {
+       "t": "Booth production, design and collateral preparation",
+       "done": false
+      },
+      {
+       "t": "Collateral print",
+       "done": false
+      },
+      {
+       "t": "Giveaway",
+       "done": false
+      },
+      {
+       "t": "PRU Farm Festival advertising at the booth",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Secure contract",
+       "done": false
+      },
+      {
+       "t": "Lead-capture method ready",
+       "done": false
+      },
+      {
+       "t": "Post-event follow-up",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "PRU Farm Festival",
+     "note": "Sunday 1 November 2026 — collaborate to support them",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "2026-11-01",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Agree support scope with festival team",
+       "done": false
+      },
+      {
+       "t": "Align with the working team — Vendor co-ordination support · Activities support · Manpower support · TVND brand presence at festival",
+       "done": false
+      },
+      {
+       "t": "Event preparation with budget",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Secure sponsorship with PRU",
+       "done": false
+      },
+      {
+       "t": "On-day operations plan",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "GWS Tours — CLP / Farm",
+     "note": "Monday 9 November 2026",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "2026-11-09",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Event preparation with budget, co-ordinate with working team — Intro session at CLP (masterplan + Residential Villa showcase) · CLP estate tour · Buggy cruise through Tri Vananda landscape · Farm tour · Move to Trisara: PATAMA wellness tour and lunch · Guest logistics: transport, timing, pax",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Full run-of-show rehearsal",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Local Roots",
+     "note": "Saturday 14 November 2026",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "2026-11-14",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Confirm event format and venue",
+       "done": false
+      },
+      {
+       "t": "Programme and vendors",
+       "done": false
+      },
+      {
+       "t": "TVND integration and guest flow",
+       "done": false
+      },
+      {
+       "t": "On-day operations plan",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "GWS Tours — CLP / Local Roots",
+     "note": "Saturday 14 November 2026",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "2026-11-14",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Event preparation with budget, co-ordinate with working team — Intro session at CLP (masterplan + Residential Villa showcase) · CLP estate tour · Buggy cruise through Tri Vananda landscape · Farm tour · Move to Trisara: PATAMA wellness tour and lunch · Guest logistics: transport, timing, pax",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Full run-of-show rehearsal",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Exclusive Dinner at the Farm — GWS",
+     "note": "Date TBC",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Confirm date",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Collaborate with partners for guest list",
+       "done": false
+      },
+      {
+       "t": "Invitations out",
+       "done": false
+      },
+      {
+       "t": "Menu with Alberto and Chef Im",
+       "done": false
+      },
+      {
+       "t": "Farm tour",
+       "done": false
+      },
+      {
+       "t": "Cocktail reception",
+       "done": false
+      },
+      {
+       "t": "Dinner",
+       "done": false
+      },
+      {
+       "t": "Entertainment",
+       "done": false
+      },
+      {
+       "t": "On-day operations plan",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Exclusive Dinner — Buyers, Partners & Media",
+     "note": "Date TBC",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Confirm date",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Collaborate with partners for guest list",
+       "done": false
+      },
+      {
+       "t": "Invitations out",
+       "done": false
+      },
+      {
+       "t": "Menu with Alberto and Chef Im",
+       "done": false
+      },
+      {
+       "t": "Property tour (CLP + Tri Vananda)",
+       "done": false
+      },
+      {
+       "t": "Cocktail reception",
+       "done": false
+      },
+      {
+       "t": "Dinner",
+       "done": false
+      },
+      {
+       "t": "Entertainment",
+       "done": false
+      },
+      {
+       "t": "On-day operations plan",
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "New Online Ad Campaign",
+   "tasks": [
+    {
+     "t": "New campaign — Wellness theme",
+     "note": "Science | Art | Soul",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Creative concept from Science | Art | Soul",
+       "done": false
+      },
+      {
+       "t": "Landing Page",
+       "done": false
+      },
+      {
+       "t": "Ad copy and visuals produced",
+       "done": false
+      },
+      {
+       "t": "Launch",
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Marketing Collateral",
+   "tasks": [
+    {
+     "t": "PATAMA Residences CGIs",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Quotation and timeline",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Brief renderer: views, mood, count",
+       "done": false
+      },
+      {
+       "t": "Draft review rounds",
+       "done": false
+      },
+      {
+       "t": "Final delivery",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Tower Sign",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Signage design with logos",
+       "done": false
+      },
+      {
+       "t": "Tri Vananda + CLP confirm logo",
+       "done": false
+      },
+      {
+       "t": "Update quotation and timeline",
+       "done": false
+      },
+      {
+       "t": "Select contractor",
+       "done": false
+      },
+      {
+       "t": "CEO approval",
+       "done": false
+      },
+      {
+       "t": "Fabrication and installation oversight",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "New Asset Library",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Audit existing assets",
+       "done": false
+      },
+      {
+       "t": "Define folder and naming structure",
+       "done": false
+      },
+      {
+       "t": "Migrate and tag",
+       "done": false
+      },
+      {
+       "t": "Share access guide",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Nanda A6 photos",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tung",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Shot list and styling",
+       "done": false
+      },
+      {
+       "t": "Shoot",
+       "done": false
+      },
+      {
+       "t": "Select and retouch",
+       "done": false
+      },
+      {
+       "t": "Add to asset library",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Nanda G88 photos",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tung",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Shot list and styling",
+       "done": false
+      },
+      {
+       "t": "Shoot",
+       "done": false
+      },
+      {
+       "t": "Select and retouch",
+       "done": false
+      },
+      {
+       "t": "Add to asset library",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Marketing Item Directory",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Inventory all marketing items",
+       "done": false
+      },
+      {
+       "t": "Build directory: location, owner, stock",
+       "done": false
+      },
+      {
+       "t": "Set review cadence",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Event Co-ordination SOP",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Map event workflow: brief → budget → vendors → on-day → wrap",
+       "done": false
+      },
+      {
+       "t": "Templates and checklists",
+       "done": false
+      },
+      {
+       "t": "Circulate and train",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Giveaways order — Tote bags",
+     "note": "Two versions: one premium, one giveaway",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Fon",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Get quotations and create email with details",
+       "done": false
+      },
+      {
+       "t": "Send to Khun Kitt for approval",
+       "done": false
+      },
+      {
+       "t": "Place order: premium + giveaway versions",
+       "done": false
+      },
+      {
+       "t": "QC on delivery",
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Content Marketing",
+   "tasks": [
+    {
+     "t": "Q3–Q4 2026 social media plans",
+     "note": "Monthly plans through year-end, aligned to Sep–Dec launch arc",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Monthly themes aligned to Sep–Dec launch arc",
+       "done": false
+      },
+      {
+       "t": "Content calendar per month",
+       "done": false
+      },
+      {
+       "t": "Production and scheduling",
+       "done": false
+      },
+      {
+       "t": "Monthly review",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Q3 2026 Quarterly Newsletter",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Yaya",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Story selection",
+       "done": false
+      },
+      {
+       "t": "Copy and design",
+       "done": false
+      },
+      {
+       "t": "Approval",
+       "done": false
+      },
+      {
+       "t": "Send and report",
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PR",
+   "tasks": [
+    {
+     "t": "Secure contract with J/PR",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Finalize scope and fees",
+       "done": false
+      },
+      {
+       "t": "Contract review",
+       "done": false
+      },
+      {
+       "t": "Sign and kickoff",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Q3–Q4 2026 PR strategy and plan",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Narrative and key messages",
+       "done": false
+      },
+      {
+       "t": "Channel and media targets",
+       "done": false
+      },
+      {
+       "t": "Agency brief",
+       "done": false
+      },
+      {
+       "t": "Approve plan",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Press kit / media fact sheet refresh",
+     "note": "Ready for J/PR the day the contract signs",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Audit current kit",
+       "done": false
+      },
+      {
+       "t": "Update facts, bios, images",
+       "done": false
+      },
+      {
+       "t": "Package ready for J/PR day one",
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "PATAMA",
+   "tasks": [
+    {
+     "t": "Source creative agency",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Shortlist",
+       "done": false
+      },
+      {
+       "t": "Brief and proposals",
+       "done": false
+      },
+      {
+       "t": "Select and contract",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "YPO Retreat Package",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Define programme and inclusions",
+       "done": false
+      },
+      {
+       "t": "Pricing",
+       "done": false
+      },
+      {
+       "t": "Sales one-pager",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "GWS Retreat Package",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Define programme and inclusions (tailored to GWS delegates)",
+       "done": false
+      },
+      {
+       "t": "Pricing",
+       "done": false
+      },
+      {
+       "t": "Sales one-pager",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Marketing collateral",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Website",
+       "done": false
+      },
+      {
+       "t": "PATAMA Brochure — CLP Retreat",
+       "done": false
+      },
+      {
+       "t": "PATAMA Brochure — Trisara Retreat",
+       "done": false
+      },
+      {
+       "t": "PATAMA Wellness at Trisara menu",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Social media",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Channel setup / handle strategy",
+       "done": false
+      },
+      {
+       "t": "Launch content set",
+       "done": false
+      },
+      {
+       "t": "Ongoing calendar",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Digital ad campaign",
+     "note": "",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Audience and budget",
+       "done": false
+      },
+      {
+       "t": "Creative",
+       "done": false
+      },
+      {
+       "t": "Launch and optimize",
+       "done": false
+      }
+     ]
+    },
+    {
+     "t": "Products for sale and giveaway",
+     "note": "From local suppliers — e.g. wan sao long",
+     "st": "ns",
+     "pr": "High",
+     "ow": "Tree",
+     "due": "",
+     "link": "",
+     "isNew": false,
+     "subs": [
+      {
+       "t": "Source local suppliers (wan sao long etc.)",
+       "done": false
+      },
+      {
+       "t": "Select and price",
+       "done": false
+      },
+      {
+       "t": "Order and packaging",
+       "done": false
+      }
+     ]
+    }
+   ]
   }
-  return{sections,keyDates:keyDates.length?keyDates:DEFAULT_DATA.keyDates};
-}
+ ],
+ "keyDates": [
+  {
+   "l": "Marketing Plan xlsx due",
+   "d": "2026-07-14"
+  },
+  {
+   "l": "BEING 2026",
+   "d": "2026-09-02"
+  },
+  {
+   "l": "PRU Farm Festival",
+   "d": "2026-11-01"
+  },
+  {
+   "l": "GWS Tour — Farm",
+   "d": "2026-11-09"
+  },
+  {
+   "l": "GWS Tour — Local Roots",
+   "d": "2026-11-14"
+  }
+ ]
+};
 
 /* ══════════ rendering ══════════ */
 function daysTo(d){const now=new Date();now.setHours(0,0,0,0);return Math.round((new Date(d+"T00:00:00")-now)/864e5)}
@@ -455,67 +1246,9 @@ function render(data){
   document.getElementById("cDn").textContent=dn;
 }
 
-/* ══════════ update button — file handle persistence ══════════ */
-const CACHE_KEY="tv-dashboard-2026";
-const btn=document.getElementById("btnUpdate"),meta=document.getElementById("syncMeta"),err=document.getElementById("syncErr");
-
-function idb(){return new Promise((res,rej)=>{const r=indexedDB.open("tv-dash",1);
-  r.onupgradeneeded=()=>r.result.createObjectStore("kv");
-  r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-async function idbGet(k){const db=await idb();return new Promise((res,rej)=>{const t=db.transaction("kv").objectStore("kv").get(k);t.onsuccess=()=>res(t.result);t.onerror=()=>rej(t.error)})}
-async function idbSet(k,v){const db=await idb();return new Promise((res,rej)=>{const t=db.transaction("kv","readwrite").objectStore("kv").put(v,k);t.onsuccess=()=>res();t.onerror=()=>rej(t.error)})}
-
-async function readViaHandle(){
-  let handle=await idbGet("handle").catch(()=>null);
-  if(handle){
-    let perm=await handle.queryPermission({mode:"read"});
-    if(perm!=="granted")perm=await handle.requestPermission({mode:"read"});
-    if(perm!=="granted")handle=null;
-  }
-  if(!handle){
-    const[h]=await window.showOpenFilePicker({types:[{description:"Excel",accept:{"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":[".xlsx"]}}]});
-    handle=h;await idbSet("handle",handle).catch(()=>{});
-  }
-  return handle.getFile();
-}
-function readViaInput(){
-  return new Promise((res,rej)=>{
-    const inp=document.getElementById("fileFallback");
-    inp.onchange=()=>inp.files[0]?res(inp.files[0]):rej(new Error("No file chosen"));
-    inp.click();
-  });
-}
-async function doUpdate(){
-  err.textContent="";btn.disabled=true;btn.textContent="Updating…";
-  try{
-    const file=window.showOpenFilePicker?await readViaHandle():await readViaInput();
-    const buf=await file.arrayBuffer();
-    const wb=XLSX.read(buf); /* raw serials — toISO handles conversion */
-    const data=parseWorkbook(wb);
-    render(data);
-    const ts=new Date();
-    const stamp=ts.toLocaleDateString("en-GB",{day:"numeric",month:"short"})+" · "+ts.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
-    localStorage.setItem(CACHE_KEY,JSON.stringify({data,ts:stamp,fname:file.name}));
-    meta.innerHTML="Synced <b>"+stamp+"</b><br>"+file.name;
-  }catch(e){
-    if(e&&e.name==="AbortError"){/* user cancelled */}
-    else err.textContent=e.message||"Could not read the file.";
-  }
-  btn.disabled=false;btn.textContent="Update from Excel";
-}
-btn.addEventListener("click",doUpdate);
 
 /* ══════════ boot ══════════ */
-(function(){
-  let cached=null;
-  try{cached=JSON.parse(localStorage.getItem(CACHE_KEY))}catch(e){}
-  if(cached&&cached.data&&cached.data.sections){
-    render(cached.data);
-    meta.innerHTML="Last synced <b>"+cached.ts+"</b><br>"+(cached.fname||"");
-  }else{
-    render(DEFAULT_DATA);
-  }
-})();
+render(DATA);
 </script>
 </body>
 </html>
