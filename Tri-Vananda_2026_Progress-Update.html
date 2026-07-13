@@ -228,63 +228,114 @@ footer .f{font-weight:200;font-size:.58rem;letter-spacing:.24em;text-transform:u
 const DATA_FILE="Tri-Vananda_2026_Task-Data.xlsx";
 function T(t,o){return Object.assign({t:t,note:"",st:"ns",pr:"High",ow:"",due:"",link:"",isNew:false,subs:[]},o||{})}
 function S(t,done){return{t:t,done:!!done}}
+const TOUR_PREP="Event preparation with budget, co-ordinate with working team — Intro session at CLP (masterplan + Residential Villa showcase) · CLP estate tour · Buggy cruise through Tri Vananda landscape · Farm tour · Move to Trisara: PATAMA wellness tour and lunch · Guest logistics: transport, timing, pax";
 const DEFAULT_DATA={sections:[
 {name:"Task Management",tasks:[
- T("Update 20251201 Tri Vananda Marketing Plan.xlsx",{due:"2026-07-14",link:DATA_FILE}),
- T("Create Master Strategic Campaign — Montara perspective",{note:"Science | Art | Soul framework across all brands and touchpoints"}),
+ T("Update 20251201 Tri Vananda Marketing Plan.xlsx",{due:"2026-07-14",link:DATA_FILE,subs:[
+   S("Update due date, and calendar for H2"),
+   S("Update budgets, and performance by channels")]}),
+ T("Create Master Strategic Campaign — Montara perspective",{note:"Science | Art | Soul framework across all brands and touchpoints",subs:[
+   S("Define Science | Art | Soul framework"),
+   S("Map framework across all brands and touchpoints"),
+   S("Draft campaign narrative and creative territories"),
+   S("Present for approval")]}),
 ]},
 {name:"Events",tasks:[
- T("Secure GWS Collaboration contract",{note:"Foundation for all GWS activity — prioritise"}),
+ T("Secure GWS Collaboration contract",{note:"Foundation for all GWS activity — prioritise",subs:[
+   S("Agree scope and format of collaboration"),
+   S("Negotiate commercial terms"),
+   S("Legal review"),
+   S("Sign contract")]}),
  T("BEING 2026",{note:"Wednesday 2 September 2026",due:"2026-09-02",subs:[
-   S("Booth showcasing Tri Vananda with the most updated information"),
+   S("Get booth and sponsorship package"),
+   S("Booth production, design and collateral preparation"),
+   S("Collateral print"),
+   S("Giveaway"),
    S("PRU Farm Festival advertising at the booth"),
-   S("Booth production — design, build quotation, collateral print (lead time before 2 Sep)")]}),
+   S("CEO approval"),
+   S("Secure contract"),
+   S("Lead-capture method ready"),
+   S("Post-event follow-up")]}),
  T("PRU Farm Festival",{note:"Sunday 1 November 2026 — collaborate to support them",due:"2026-11-01",subs:[
-   S("Vendor co-ordination support"),S("Activities support"),S("Manpower support")]}),
+   S("Agree support scope with festival team"),
+   S("Align with the working team — Vendor co-ordination support · Activities support · Manpower support · TVND brand presence at festival"),
+   S("Event preparation with budget"),
+   S("CEO approval"),
+   S("Secure sponsorship with PRU"),
+   S("On-day operations plan")]}),
  T("GWS Tours — CLP / Farm",{note:"Monday 9 November 2026",due:"2026-11-09",subs:[
-   S("Introducing session at CLP — Masterplan + TV showcasing Residential Villa"),
-   S("CLP estate tour"),S("Buggy cruise through Tri Vananda landscape"),S("Farm tour"),
-   S("Move to Trisara — PATAMA wellness tour and lunch")]}),
- T("Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14"}),
+   S(TOUR_PREP),
+   S("CEO approval"),
+   S("Full run-of-show rehearsal")]}),
+ T("Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14",subs:[
+   S("Confirm event format and venue"),
+   S("Programme and vendors"),
+   S("TVND integration and guest flow"),
+   S("On-day operations plan")]}),
  T("GWS Tours — CLP / Local Roots",{note:"Saturday 14 November 2026",due:"2026-11-14",subs:[
-   S("Introducing session at CLP — Masterplan + TV showcasing Residential Villa"),
-   S("CLP estate tour"),S("Buggy cruise through Tri Vananda landscape"),S("Local Roots"),
-   S("Move to Trisara — PATAMA wellness tour and lunch")]}),
+   S(TOUR_PREP),
+   S("CEO approval"),
+   S("Full run-of-show rehearsal")]}),
  T("Exclusive Dinner at the Farm — GWS",{note:"Date TBC",subs:[
-   S("Farm tour"),S("Cocktail reception"),S("Dinner"),S("Entertainment")]}),
- T("Exclusive Dinner at the Farm — Potential Buyers, Partners & Media",{note:"Date TBC",subs:[
-   S("Property tour"),S("Cocktail reception"),S("Dinner"),S("Entertainment")]}),
+   S("Confirm date"),S("CEO approval"),S("Collaborate with partners for guest list"),
+   S("Invitations out"),S("Menu with Alberto and Chef Im"),S("Farm tour"),
+   S("Cocktail reception"),S("Dinner"),S("Entertainment"),S("On-day operations plan")]}),
+ T("Exclusive Dinner — Buyers, Partners & Media",{note:"Date TBC",subs:[
+   S("Confirm date"),S("CEO approval"),S("Collaborate with partners for guest list"),
+   S("Invitations out"),S("Menu with Alberto and Chef Im"),S("Property tour (CLP + Tri Vananda)"),
+   S("Cocktail reception"),S("Dinner"),S("Entertainment"),S("On-day operations plan")]}),
 ]},
 {name:"New Online Ad Campaign",tasks:[
- T("New campaign — Wellness theme",{note:"Science | Art | Soul"}),
- T("Audience targeting",{note:"Luxury-wellness expats in Thailand, Southeast Asia and Australia"}),
- T("Campaign infrastructure",{note:"Landing page, lead capture, KPI targets, budget approval — before launch",isNew:true}),
+ T("New campaign — Wellness theme",{note:"Science | Art | Soul",subs:[
+   S("Creative concept from Science | Art | Soul"),
+   S("Landing Page"),
+   S("Ad copy and visuals produced"),
+   S("Launch")]}),
 ]},
 {name:"Marketing Collateral",tasks:[
- T("PATAMA Residences CGIs"),
- T("Tower Sign",{subs:[S("Signage design with logos"),S("Tri Vananda and CLP to confirm logo"),
-   S("Update quotation and timeline"),S("Select contractor"),S("Get approval from CEO")]}),
- T("New Asset Library"),T("Nanda A6 photos"),T("Nanda G88 photos"),
- T("Marketing Item Directory"),T("Event Co-ordination SOP"),
+ T("PATAMA Residences CGIs",{subs:[
+   S("Quotation and timeline"),S("CEO approval"),S("Brief renderer: views, mood, count"),
+   S("Draft review rounds"),S("Final delivery")]}),
+ T("Tower Sign",{subs:[S("Signage design with logos"),S("Tri Vananda + CLP confirm logo"),
+   S("Update quotation and timeline"),S("Select contractor"),S("CEO approval"),
+   S("Fabrication and installation oversight")]}),
+ T("New Asset Library",{subs:[S("Audit existing assets"),S("Define folder and naming structure"),
+   S("Migrate and tag"),S("Share access guide")]}),
+ T("Nanda A6 photos",{subs:[S("Shot list and styling"),S("Shoot"),S("Select and retouch"),S("Add to asset library")]}),
+ T("Nanda G88 photos",{subs:[S("Shot list and styling"),S("Shoot"),S("Select and retouch"),S("Add to asset library")]}),
+ T("Marketing Item Directory",{subs:[S("Inventory all marketing items"),
+   S("Build directory: location, owner, stock"),S("Set review cadence")]}),
+ T("Event Co-ordination SOP",{subs:[S("Map event workflow: brief → budget → vendors → on-day → wrap"),
+   S("Templates and checklists"),S("Circulate and train")]}),
  T("Giveaways order — Tote bags",{note:"Two versions: one premium, one giveaway",subs:[
-   S("Get quotations and create email with details"),S("Send to Khun Kitt for approval")]}),
+   S("Get quotations and create email with details"),S("Send to Khun Kitt for approval"),
+   S("Place order: premium + giveaway versions"),S("QC on delivery")]}),
 ]},
 {name:"Content Marketing",tasks:[
- T("Q3–Q4 2026 social media plans",{note:"Monthly plans through year-end, aligned to Sep–Dec launch arc"}),
- T("Q3 2026 Quarterly Newsletter"),
+ T("Q3–Q4 2026 social media plans",{note:"Monthly plans through year-end, aligned to Sep–Dec launch arc",subs:[
+   S("Monthly themes aligned to Sep–Dec launch arc"),S("Content calendar per month"),
+   S("Production and scheduling"),S("Monthly review")]}),
+ T("Q3 2026 Quarterly Newsletter",{subs:[
+   S("Story selection"),S("Copy and design"),S("Approval"),S("Send and report")]}),
 ]},
 {name:"PR",tasks:[
- T("Secure contract with J/PR"),
- T("Q3–Q4 2026 PR strategy and plan"),
- T("Strategic launch Sep–Oct, full amplification Nov–Dec"),
- T("Press kit / media fact sheet refresh",{note:"Ready for J/PR the day the contract signs",isNew:true}),
+ T("Secure contract with J/PR",{subs:[
+   S("Finalize scope and fees"),S("Contract review"),S("Sign and kickoff")]}),
+ T("Q3–Q4 2026 PR strategy and plan",{subs:[
+   S("Narrative and key messages"),S("Channel and media targets"),S("Agency brief"),S("Approve plan")]}),
+ T("Press kit / media fact sheet refresh",{note:"Ready for J/PR the day the contract signs",subs:[
+   S("Audit current kit"),S("Update facts, bios, images"),S("Package ready for J/PR day one")]}),
 ]},
 {name:"PATAMA",tasks:[
- T("Source creative agency"),T("YPO Retreat Package"),T("GWS Retreat Package"),
+ T("Source creative agency",{subs:[S("Shortlist"),S("Brief and proposals"),S("Select and contract")]}),
+ T("YPO Retreat Package",{subs:[S("Define programme and inclusions"),S("Pricing"),S("Sales one-pager")]}),
+ T("GWS Retreat Package",{subs:[S("Define programme and inclusions (tailored to GWS delegates)"),S("Pricing"),S("Sales one-pager")]}),
  T("Marketing collateral",{subs:[S("Website"),S("PATAMA Brochure — CLP Retreat"),
    S("PATAMA Brochure — Trisara Retreat"),S("PATAMA Wellness at Trisara menu")]}),
- T("Social media"),T("Digital ad campaign"),
- T("Products for sale and giveaway",{note:"From local suppliers — e.g. wan sao long"}),
+ T("Social media",{subs:[S("Channel setup / handle strategy"),S("Launch content set"),S("Ongoing calendar")]}),
+ T("Digital ad campaign",{subs:[S("Audience and budget"),S("Creative"),S("Launch and optimize")]}),
+ T("Products for sale and giveaway",{note:"From local suppliers — e.g. wan sao long",subs:[
+   S("Source local suppliers (wan sao long etc.)"),S("Select and price"),S("Order and packaging")]}),
 ]},
 ],keyDates:[
  {l:"Marketing Plan xlsx due",d:"2026-07-14"},
@@ -330,7 +381,8 @@ function parseWorkbook(wb){
         due:toISO(r["Due Date"]),link:"",isNew:/^y/i.test(String(r.New||"")),subs:[]};
       map[sec].tasks.push(last);
     }else if(last){
-      last.subs.push({t:sub,done:normSt(r.Status)==="dn"});
+      const sn=String(r.Notes||"").trim(); /* nested components live in the subtask's Notes cell */
+      last.subs.push({t:sn?sub+" — "+sn:sub,done:normSt(r.Status)==="dn"});
     }
   });
   if(!sections.length)throw new Error("No task rows found — check the Tasks sheet columns.");
