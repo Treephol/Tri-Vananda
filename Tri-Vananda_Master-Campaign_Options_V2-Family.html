@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Strategic Campaign V2 — Family · Three Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#233f2f;
+  --ink-soft:#3d5344;
+  --terra:#CF554E;
+  --paper:#f2efe9;
+  --paper-deep:#e9e5dc;
+  --line:#d4cfc2;
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Fraunces',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{max-width:960px;margin:0 auto;padding:0 48px}
+@media(max-width:640px){.page{padding:0 24px}}
+
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.k.terra{color:var(--terra)}
+h1{font-size:clamp(40px,6.5vw,72px);font-weight:300;line-height:1.05;letter-spacing:-.01em}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:300}
+h2{font-size:clamp(28px,4vw,42px);font-weight:300;line-height:1.12}
+h3{font-size:22px;font-weight:500;line-height:1.3}
+p.lede{font-size:19px;font-weight:300;line-height:1.6;color:var(--ink-soft)}
+p{font-size:16px;color:var(--ink-soft)}
+b,strong{font-weight:600;color:var(--ink)}
+
+header.doc{padding:64px 0 0}
+.chip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra);padding:5px 12px;border-radius:2px;margin-bottom:36px}
+.cover{padding:20px 0 72px;border-bottom:1px solid var(--ink)}
+.cover-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:44px}
+
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:40px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--terra)}
+
+.fw{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.fw>div{background:var(--paper);padding:32px 26px}
+.fw h3{margin:10px 0 12px;font-weight:500}
+.fw p{font-size:14.5px}
+@media(max-width:640px){.fw{grid-template-columns:1fr}}
+
+.opt{padding:96px 0;border-bottom:1px solid var(--line)}
+.opt-tag{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.opt-num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:52px;color:var(--terra);line-height:1}
+.opt h2{max-width:760px}
+.opt .one-line{font-size:20px;font-style:italic;font-weight:300;color:var(--ink);max-width:680px;margin:26px 0 0;padding-left:22px;border-left:2px solid var(--terra)}
+.opt-body{display:grid;grid-template-columns:5fr 4fr;gap:56px;margin-top:56px}
+@media(max-width:760px){.opt-body{grid-template-columns:1fr;gap:40px}}
+.field{margin-bottom:34px}
+.field .k{display:block;margin-bottom:9px}
+.field p{font-size:15.5px}
+.names{background:var(--paper-deep);padding:24px 26px;margin-bottom:34px}
+.names p{font-size:15px}
+.names .lead-name{font-size:19px;font-weight:600;color:var(--ink);font-style:normal}
+.sasrow{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sasrow:last-child{border-bottom:none}
+.sasrow .k{display:block;margin-bottom:5px}
+.sasrow p{font-size:14.5px}
+.moments{margin-top:8px}
+.moments li{list-style:none;font-size:14.5px;color:var(--ink-soft);padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:14px}
+.moments li:last-child{border-bottom:none}
+.moments .d{font-family:var(--mono);font-size:11px;color:var(--terra);white-space:nowrap;padding-top:3px;min-width:64px}
+.risk{background:var(--paper-deep);padding:22px 24px;margin-top:10px}
+.risk p{font-size:14px}
+
+table{width:100%;border-collapse:collapse;margin-top:40px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:12px 14px;border-bottom:1px solid var(--ink)}
+td{font-size:14.5px;color:var(--ink-soft);padding:14px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+
+.reco{background:var(--ink);color:var(--paper);padding:72px 56px;margin:88px 0}
+@media(max-width:640px){.reco{padding:48px 28px}}
+.reco .k{color:#a8bfae}
+.reco h2{color:var(--paper);margin:16px 0 24px}
+.reco p{color:#c9d6cc;font-size:16.5px;max-width:640px}
+.reco p b{color:var(--paper)}
+
+.steps li{list-style:none;display:flex;gap:22px;padding:18px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--ink-soft)}
+.steps .d{font-family:var(--mono);font-size:11px;color:var(--terra);padding-top:4px;min-width:28px}
+
+footer{padding:56px 0 72px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="doc">
+  <div class="chip">Internal only · not for client use</div>
+  <div class="cover">
+    <div class="k">Montara Hospitality Group · Tri Vananda · Master Campaign V2</div>
+    <h1 style="margin-top:22px">Family is the key.<br><em>Three campaigns built on it.</em></h1>
+    <p class="lede" style="max-width:660px;margin-top:30px">The direction is set: family leads. Three territories, each running the <b>Science&nbsp;|&nbsp;Art&nbsp;|&nbsp;Soul</b> framework through a different truth about family — what we pass down, whom we spend our years with, and who built this place. All campaign names are public-safe.</p>
+    <div class="cover-meta">
+      <span class="k">Draft for review · July 2026</span>
+      <span class="k">Owner · Tree</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ why family ══════════ -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Why family wins. <em>The truth only we own.</em></h2></div>
+  <p class="lede" style="max-width:700px">Every longevity brand can claim science. Every resort can claim craft. No competitor can claim what is written into our name: <b>Tri</b> — three sons. A brand born from one family's illness and recovery, built as a multigenerational community, on an estate designed for every age at once.</p>
+  <p style="max-width:700px;margin-top:22px">Family is also the sharpest commercial lens — the residence buyer decides as a parent and a child at once, and the existing brand voice ("Live Connected, Together" · multigenerational well-living) is already fluent in it. This is not a pivot; it is a focus.</p>
+
+  <div style="margin-top:64px" class="k terra">The framework, read through family</div>
+  <div class="fw">
+    <div>
+      <span class="k">Science</span>
+      <h3>Years for the elders</h3>
+      <p>Clinique La Prairie's clinical layer, reframed: longevity not as personal optimisation but as more shared time — grandparents present for more of their grandchildren's lives.</p>
+    </div>
+    <div>
+      <span class="k">Art</span>
+      <h3>The table between them</h3>
+      <p>PRU and Trisara as the crafts that gather generations — the meal, the welcome, the ritual. Art is what makes shared time worth sharing.</p>
+    </div>
+    <div>
+      <span class="k">Soul</span>
+      <h3>What gets passed down</h3>
+      <p>Tri Vananda as the place where a family's practice — habits, tables, mornings, land — is kept and handed on. The inheritance no lawyer drafts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ option 1 ══════════ -->
+<section class="opt">
+  <div class="opt-tag"><span class="opt-num">I</span><span class="k terra">Option One · The legacy story</span></div>
+  <h2>The Living Inheritance. <em>What we pass on.</em></h2>
+  <p class="one-line">Wealthy families plan the transfer of everything — assets, houses, boards. Except the one inheritance that decides how all the rest is enjoyed.</p>
+
+  <div class="opt-body">
+    <div>
+      <div class="names">
+        <span class="k terra" style="display:block;margin-bottom:10px">Public campaign names</span>
+        <p><span class="lead-name">The Living Inheritance</span><br>Alternates: <em>What We Pass On</em> · <em>Worth Passing On</em><br>Ad-system adaptation: <em>Live What You Leave</em></p>
+      </div>
+      <div class="field">
+        <span class="k">The single insight</span>
+        <p>People believe legacy is what is written in the will. But health, habits and shared time are the inheritance that determines whether any of the rest matters — and it can only be transferred while you are alive.</p>
+      </div>
+      <div class="field">
+        <span class="k">The single feeling</span>
+        <p><b>Devotion.</b> The weight and warmth of realising the most valuable thing you can give your children is the way you live.</p>
+      </div>
+      <div class="field">
+        <span class="k">The idea in practice</span>
+        <p>Wellbeing framed as the family's true estate. The campaign borrows the language of wealth transfer and turns it human: assets that appreciate (Sunday breakfasts, morning walks, a grandmother's recipe), a portfolio measured in shared years. The residence becomes the legacy home — the place where the inheritance is practised, not just stored.</p>
+      </div>
+      <div class="field">
+        <span class="k">Signature executions</span>
+        <p>Campaign film "The Will" — a patriarch reads his true bequest: not money, but mornings · print series in balance-sheet language ("Asset: dinner together, appreciating annually") · GWS panel on health as generational wealth · residence sales narrative rebuilt around legacy, not lifestyle.</p>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="k">Science | Art | Soul mapping</span>
+        <div class="sasrow"><span class="k">Science</span><p>The elders' longevity programme — protecting the giver of the inheritance.</p></div>
+        <div class="sasrow"><span class="k">Art</span><p>The rituals worth inheriting — PRU's table, Trisara's way of welcoming.</p></div>
+        <div class="sasrow"><span class="k">Soul</span><p>The handover itself — practices kept, land tended, standards taught.</p></div>
+      </div>
+      <div class="field">
+        <span class="k">How it lands on the calendar</span>
+        <ul class="moments">
+          <li><span class="d">SEP 02</span>BEING 2026 — "the inheritance audit": what are you actually passing on?</li>
+          <li><span class="d">SEP–OCT</span>Wellness launch at Trisara — the first rituals of the inheritance, bookable</li>
+          <li><span class="d">NOV 01</span>CLP opening — science in service of more years to give</li>
+          <li><span class="d">NOV 09–14</span>GWS week — tours told as a walk through a family's living estate</li>
+        </ul>
+      </div>
+      <div class="risk">
+        <span class="k">What it demands · the risk</span>
+        <p>Speaks most directly to the residence buyer (legacy psychology) — but can skew older and solemn if the wit is lost. Needs lightness: inheritance as joy, not mortality. Strongest sales-conversion logic of the three.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ option 2 ══════════ -->
+<section class="opt">
+  <div class="opt-tag"><span class="opt-num">II</span><span class="k terra">Option Two · The togetherness argument</span></div>
+  <h2>More Years, Together. <em>Whom are your years for?</em></h2>
+  <p class="one-line">The longevity industry sells extra years to individuals. Nobody asks the better question: whom are those years with?</p>
+
+  <div class="opt-body">
+    <div>
+      <div class="names">
+        <span class="k terra" style="display:block;margin-bottom:10px">Public campaign names</span>
+        <p><span class="lead-name">More Years, Together</span><br>Alternates: <em>Whom Are Your Years For?</em> · <em>The Years, Together</em><br>Ad-system adaptation: <em>Live Connected, Together</em> (existing line — the campaign gives it new depth)</p>
+      </div>
+      <div class="field">
+        <span class="k">The single insight</span>
+        <p>The tension is — every wellness destination separates the family to serve it: mother to the spa, children to the kids' club, grandfather to the clinic. The industry optimises individuals and abandons the unit that makes long life worth living.</p>
+      </div>
+      <div class="field">
+        <span class="k">The single feeling</span>
+        <p><b>Warmth.</b> The exhale of everyone under one roof — three generations, one table, nobody checking the time.</p>
+      </div>
+      <div class="field">
+        <span class="k">The idea in practice</span>
+        <p>Position the estate as the answer the longevity movement forgot: the first wellness community designed for the whole family at once. Longevity is reframed as shared time — the point of more years is more years <em>with each other</em>. Every proof point already exists: multigenerational programming, the farm, the lakes, homes built for three generations.</p>
+      </div>
+      <div class="field">
+        <span class="k">Signature executions</span>
+        <p>Manifesto film shot around one long table, ages seven to seventy · "Whom are your years for?" — founder essay and GWS keynote provocation · social series: real three-generation days on the estate, documentary not staged · hosted GWS experiences run family-style, never conference-style.</p>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="k">Science | Art | Soul mapping</span>
+        <div class="sasrow"><span class="k">Science</span><p>CLP makes the together-years possible — more life in every generation.</p></div>
+        <div class="sasrow"><span class="k">Art</span><p>PRU and Trisara make them delicious — the crafts of gathering.</p></div>
+        <div class="sasrow"><span class="k">Soul</span><p>Tri Vananda makes them home — the community where together is daily.</p></div>
+      </div>
+      <div class="field">
+        <span class="k">How it lands on the calendar</span>
+        <ul class="moments">
+          <li><span class="d">SEP–OCT</span>Wellness launch at Trisara — first "together" retreats for families</li>
+          <li><span class="d">NOV 01</span>CLP opening + PRU Farm Festival — the clinic and the family festival, same day: the argument staged as an event</li>
+          <li><span class="d">NOV 09–14</span>GWS week — the question put to the industry on home ground</li>
+          <li><span class="d">2027</span>Carries into wellness facilities opening — together, made permanent</li>
+        </ul>
+      </div>
+      <div class="risk">
+        <span class="k">What it demands · the risk</span>
+        <p>The most newsworthy and the most competitive positioning — it names an industry blind spot. Must stay generous in tone (an invitation, not an attack). Needs true multigenerational programming at every hero moment to back the claim. Highest editorial upside.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ option 3 ══════════ -->
+<section class="opt">
+  <div class="opt-tag"><span class="opt-num">III</span><span class="k terra">Option Three · The provenance story</span></div>
+  <h2>Built for Our Own. <em>From our family to yours.</em></h2>
+  <p class="one-line">Before this was a destination, it was one family's answer to illness — built for their own, then opened to those who live the same way.</p>
+
+  <div class="opt-body">
+    <div>
+      <div class="names">
+        <span class="k terra" style="display:block;margin-bottom:10px">Public campaign names</span>
+        <p><span class="lead-name">Built for Our Own</span><br>Alternates: <em>From Our Family to Yours</em> · <em>A Family's Answer</em><br>Ad-system adaptation: <em>Live Like Family</em></p>
+      </div>
+      <div class="field">
+        <span class="k">The single insight</span>
+        <p>People trust what a family builds for itself more than anything a company sells to strangers. In a category of invented wellness brands, a real origin — illness, recovery, three sons in the name — is the one asset that cannot be copied.</p>
+      </div>
+      <div class="field">
+        <span class="k">The single feeling</span>
+        <p><b>Trust.</b> The difference between checking into a resort and being welcomed into a household.</p>
+      </div>
+      <div class="field">
+        <span class="k">The idea in practice</span>
+        <p>The founder family's journey told plainly and generously — the illness that started it, the healing that reshaped how they live, the estate built so their children and grandchildren could keep it. Every brand becomes a room in the household: the clinic they chose for their own parents, the restaurant that feeds them, the community they invited in. The anti-launch: discovery, never announcement.</p>
+      </div>
+      <div class="field">
+        <span class="k">Signature executions</span>
+        <p>Documentary film series — the family, the land, the practice · founder-told story placed with the incoming U.S. PR partner as their launch brief · guest communications and collateral signed "from our family to yours" · intimate family-hosted dinners as the campaign's true media.</p>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="k">Science | Art | Soul mapping</span>
+        <div class="sasrow"><span class="k">Science</span><p>The rigour the family demanded for itself — why CLP was chosen as partner.</p></div>
+        <div class="sasrow"><span class="k">Art</span><p>The care in how they host — PRU and Trisara as the family's own standard.</p></div>
+        <div class="sasrow"><span class="k">Soul</span><p>The why — a name that carries three sons and a promise across generations.</p></div>
+      </div>
+      <div class="field">
+        <span class="k">How it lands on the calendar</span>
+        <ul class="moments">
+          <li><span class="d">Q3</span>U.S. PR partner appointed — this story is briefed as the foundation</li>
+          <li><span class="d">SEP–OCT</span>Wellness launch at Trisara — introduced as the family's own practice, opened</li>
+          <li><span class="d">NOV 01</span>CLP opening — event series in our style: wellbeing-led, for selected wise voices, hosted like family</li>
+          <li><span class="d">NOV 09–14</span>GWS tours — guests received as houseguests, not delegates</li>
+        </ul>
+      </div>
+      <div class="risk">
+        <span class="k">What it demands · the risk</span>
+        <p>Requires the family to be visible and to stay visible — the campaign is only as strong as their presence in it. Slowest burn, deepest root: the strongest long-term trust builder and the natural spine for U.S. press.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ comparison ══════════ -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Side by side.</h2></div>
+  <table>
+    <tr><th style="width:22%"></th><th>I · The Living Inheritance</th><th>II · More Years, Together</th><th>III · Built for Our Own</th></tr>
+    <tr><td>Family truth</td><td>What we pass down</td><td>Whom our years are with</td><td>Who built this, and why</td></tr>
+    <tr><td>Feeling</td><td>Devotion</td><td>Warmth</td><td>Trust</td></tr>
+    <tr><td>Speaks loudest to</td><td>Residence buyers · legacy planners</td><td>Press · industry · retreat guests</td><td>U.S. media · community members</td></tr>
+    <tr><td>Best channel</td><td>Film + sales collateral</td><td>Editorial + experiential</td><td>Documentary + PR</td></tr>
+    <tr><td>2026 momentum</td><td>Medium — converts steadily</td><td>High — rides CLP + GWS news cycle</td><td>Medium — compounds into 2027</td></tr>
+    <tr><td>Primary risk</td><td>Solemnity</td><td>Claim must be backed daily</td><td>Family exposure</td></tr>
+  </table>
+</section>
+
+<!-- ══════════ recommendation ══════════ -->
+<div class="reco">
+  <span class="k">A note on choosing</span>
+  <h2>One family, three tenses.<br><em>Future, present, past.</em></h2>
+  <p>The three options are the same family truth in three tenses. <b>The Living Inheritance</b> is the future — what will be passed on. <b>More Years, Together</b> is the present — the shared time happening now. <b>Built for Our Own</b> is the past — the origin that makes it all credible.</p>
+  <p style="margin-top:20px">They nest naturally: lead the 2026 season with <b>More Years, Together</b> — it is the most newsworthy, it lands exactly on CLP + GWS, and the existing "Live Connected, Together" line already belongs to it. Run <b>Built for Our Own</b> beneath it as the proof layer for the U.S. PR launch, and hold <b>The Living Inheritance</b> as the residence-sales narrative it was born to be.</p>
+</div>
+
+<!-- ══════════ next steps ══════════ -->
+<section style="border-bottom:none">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Next steps.</h2></div>
+  <ul class="steps">
+    <li><span class="d">01</span>Confirm lead territory and the nested model — CEO review</li>
+    <li><span class="d">02</span>Verify multigenerational programming is in place at each hero moment (the Option II claim must be lived, not stated)</li>
+    <li><span class="d">03</span>Family alignment on visibility — how present, in which executions, told by whom</li>
+    <li><span class="d">04</span>Develop chosen territory into full creative brief and map across all touchpoints — GWS tours, BEING, Farm Festival, event series, social, sales</li>
+    <li><span class="d">05</span>Brief U.S. PR partner with Built for Our Own as launch-programme foundation</li>
+  </ul>
+</section>
+
+<footer>
+  <span class="k">Montara · Master Strategic Campaign V2 — Family · Internal draft · Jul 2026</span>
+  <span class="k">Supersedes · Tri-Vananda_Master-Campaign_Options.html</span>
+</footer>
+
+</div>
+</body>
+</html>

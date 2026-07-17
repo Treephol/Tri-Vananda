@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Strategic Campaign — Montara / PATAMA · Three Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#233f2f;
+  --ink-soft:#3d5344;
+  --terra:#CF554E;
+  --paper:#f2efe9;
+  --paper-deep:#e9e5dc;
+  --line:#d4cfc2;
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Fraunces',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{max-width:960px;margin:0 auto;padding:0 48px}
+@media(max-width:640px){.page{padding:0 24px}}
+
+/* type */
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.k.terra{color:var(--terra)}
+h1{font-size:clamp(40px,6.5vw,72px);font-weight:300;line-height:1.05;letter-spacing:-.01em}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:300}
+h2{font-size:clamp(28px,4vw,42px);font-weight:300;line-height:1.12}
+h3{font-size:22px;font-weight:500;line-height:1.3}
+p.lede{font-size:19px;font-weight:300;line-height:1.6;color:var(--ink-soft)}
+p{font-size:16px;color:var(--ink-soft)}
+b,strong{font-weight:600;color:var(--ink)}
+
+/* header */
+header.doc{padding:64px 0 0}
+.chip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra);padding:5px 12px;border-radius:2px;margin-bottom:36px}
+.cover{padding:20px 0 72px;border-bottom:1px solid var(--ink)}
+.cover-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:44px}
+
+/* sections */
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:40px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--terra)}
+
+/* framework row */
+.fw{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.fw>div{background:var(--paper);padding:32px 26px}
+.fw h3{margin:10px 0 12px;font-weight:500}
+.fw p{font-size:14.5px}
+@media(max-width:640px){.fw{grid-template-columns:1fr}}
+
+/* option chapters */
+.opt{padding:96px 0;border-bottom:1px solid var(--line)}
+.opt-tag{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.opt-num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:52px;color:var(--terra);line-height:1}
+.opt h2{max-width:760px}
+.opt .one-line{font-size:20px;font-style:italic;font-weight:300;color:var(--ink);max-width:680px;margin:26px 0 0;padding-left:22px;border-left:2px solid var(--terra)}
+.opt-body{display:grid;grid-template-columns:5fr 4fr;gap:56px;margin-top:56px}
+@media(max-width:760px){.opt-body{grid-template-columns:1fr;gap:40px}}
+.field{margin-bottom:34px}
+.field .k{display:block;margin-bottom:9px}
+.field p{font-size:15.5px}
+.sasrow{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sasrow:last-child{border-bottom:none}
+.sasrow .k{display:block;margin-bottom:5px}
+.sasrow p{font-size:14.5px}
+.moments{margin-top:8px}
+.moments li{list-style:none;font-size:14.5px;color:var(--ink-soft);padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:14px}
+.moments li:last-child{border-bottom:none}
+.moments .d{font-family:var(--mono);font-size:11px;color:var(--terra);white-space:nowrap;padding-top:3px;min-width:64px}
+.risk{background:var(--paper-deep);padding:22px 24px;margin-top:10px}
+.risk p{font-size:14px}
+
+/* compare table */
+table{width:100%;border-collapse:collapse;margin-top:40px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:12px 14px;border-bottom:1px solid var(--ink)}
+td{font-size:14.5px;color:var(--ink-soft);padding:14px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+
+/* recommendation */
+.reco{background:var(--ink);color:var(--paper);padding:72px 56px;margin:88px 0}
+@media(max-width:640px){.reco{padding:48px 28px}}
+.reco .k{color:#a8bfae}
+.reco h2{color:var(--paper);margin:16px 0 24px}
+.reco p{color:#c9d6cc;font-size:16.5px;max-width:640px}
+.reco p b{color:var(--paper)}
+
+/* next steps */
+.steps li{list-style:none;display:flex;gap:22px;padding:18px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--ink-soft)}
+.steps .d{font-family:var(--mono);font-size:11px;color:var(--terra);padding-top:4px;min-width:28px}
+
+footer{padding:56px 0 72px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="doc">
+  <div class="chip">Internal only · not for client use</div>
+  <div class="cover">
+    <div class="k">Montara Hospitality Group · Tri Vananda · PATAMA</div>
+    <h1 style="margin-top:22px">The Master Strategic Campaign.<br><em>Three ways to tell one story.</em></h1>
+    <p class="lede" style="max-width:640px;margin-top:30px">One group. One estate. One framework — <b>Science&nbsp;|&nbsp;Art&nbsp;|&nbsp;Soul</b> — expressed across every brand and touchpoint. Three campaign territories for decision.</p>
+    <div class="cover-meta">
+      <span class="k">Draft for review · July 2026</span>
+      <span class="k">Owner · Tree</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ context ══════════ -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Why now. <em>The season everything arrives.</em></h2></div>
+  <p class="lede" style="max-width:700px">Between September and November 2026, the group's whole thesis becomes visible at once: PATAMA Wellness launches at Trisara, Clinique La Prairie opens its health resort, PRU hosts the Farm Festival, and the Global Wellness Summit brings the industry's most influential people to our door.</p>
+  <p style="max-width:700px;margin-top:22px">Today these read as separate events with separate audiences. A master campaign makes them chapters of a single story — so that every tour, dinner, booth and press release compounds instead of competes. The campaign speaks from the <b>Montara / PATAMA perspective</b>: the group as author, the estate as proof.</p>
+
+  <div style="margin-top:64px" class="k terra">The framework · Science | Art | Soul</div>
+  <div class="fw">
+    <div>
+      <span class="k">Science</span>
+      <h3>The evidence</h3>
+      <p>Clinique La Prairie's clinical and longevity layer — measurable, credible, globally established. The proof that wellbeing here is real, not rhetorical.</p>
+    </div>
+    <div>
+      <span class="k">Art</span>
+      <h3>The craft</h3>
+      <p>Trisara's hospitality and PRU's Michelin-starred, farm-driven cuisine — the made things. Wellbeing practised with the care of a craft, not administered as a service.</p>
+    </div>
+    <div>
+      <span class="k">Soul</span>
+      <h3>The meaning</h3>
+      <p>Tri Vananda and PATAMA — family, nature, community, a practice kept across generations. The reason the science and the craft exist at all.</p>
+    </div>
+  </div>
+  <p style="margin-top:26px;font-size:14.5px">Every option below runs on this framework. What differs is the <b>angle of entry</b> — which truth leads, and what the audience is asked to feel.</p>
+</section>
+
+<!-- ══════════ option 1 ══════════ -->
+<section class="opt">
+  <div class="opt-tag"><span class="opt-num">I</span><span class="k terra">Option One · The portfolio story</span></div>
+  <h2>The Weave. <em>All the good things, together.</em></h2>
+  <p class="one-line">A life well lived is not one thing — it is many good things, woven together. Only Montara weaves them at one address.</p>
+
+  <div class="opt-body">
+    <div>
+      <div class="field">
+        <span class="k">The single insight</span>
+        <p>People believe wellness demands a choice — the clinic or the beach, discipline or joy, science or pleasure. The truly well never choose. They weave.</p>
+      </div>
+      <div class="field">
+        <span class="k">The single feeling</span>
+        <p><b>Fullness.</b> The quiet completeness of a day where the body, the table, the family and the forest all had their place.</p>
+      </div>
+      <div class="field">
+        <span class="k">The idea in practice</span>
+        <p>Drawn directly from the PATAMA manifesto — eight threads, turned on their side, becoming infinity. The campaign follows real days on the estate where Science, Art and Soul cross: a morning diagnostic, a lunch grown fifty metres from the table, an evening with three generations. No single thread makes the story. The weave does.</p>
+      </div>
+      <div class="field">
+        <span class="k">Signature executions</span>
+        <p>A campaign film shot as one continuous day across the estate · a woven visual identity system carried through GWS booth, tour collateral and social · "The Weave" editorial series — one thread per month, one real person per thread.</p>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="k">Science | Art | Soul mapping</span>
+        <div class="sasrow"><span class="k">Science</span><p>CLP appears as one thread among eight — essential, never dominant.</p></div>
+        <div class="sasrow"><span class="k">Art</span><p>PRU and Trisara carry the sensory chapters — cuisine, hospitality, place.</p></div>
+        <div class="sasrow"><span class="k">Soul</span><p>PATAMA is the loom — the philosophy holding every thread in tension.</p></div>
+      </div>
+      <div class="field">
+        <span class="k">How it lands on the calendar</span>
+        <ul class="moments">
+          <li><span class="d">SEP 02</span>BEING 2026 — introduce the eight threads as an experience, not a booth</li>
+          <li><span class="d">SEP–OCT</span>PATAMA at Trisara launch — the first thread made tangible</li>
+          <li><span class="d">NOV 01</span>CLP opening + PRU Farm Festival — science and soul open on the same day; the weave made literal</li>
+          <li><span class="d">NOV 09–14</span>GWS week — tours and hosted experiences staged as a walk through the threads</li>
+        </ul>
+      </div>
+      <div class="risk">
+        <span class="k">What it demands · the risk</span>
+        <p>The most complete expression of brand architecture — and the most abstract. Lives or dies on craft: without exceptional imagery and restraint it softens into wellness poetry. Strongest as a 3–5 year platform, slower to spike short-term sales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ option 2 ══════════ -->
+<section class="opt">
+  <div class="opt-tag"><span class="opt-num">II</span><span class="k terra">Option Two · The category argument</span></div>
+  <h2>What Are the Years For? <em>Science extends life. PATAMA fills it.</em></h2>
+  <p class="one-line">The longevity industry has promised the world more years. It has stayed silent on what fills them. We are the answer to the question longevity forgot to ask.</p>
+
+  <div class="opt-body">
+    <div>
+      <div class="field">
+        <span class="k">The single insight</span>
+        <p>The tension is — billions are spent adding years to life, almost nothing on adding life to years. Every longevity clinic sells the extension. No one owns the content of the extended life.</p>
+      </div>
+      <div class="field">
+        <span class="k">The single feeling</span>
+        <p><b>Recognition.</b> The exhale of hearing someone finally say the thing you had quietly suspected about the longevity race.</p>
+      </div>
+      <div class="field">
+        <span class="k">The idea in practice</span>
+        <p>A point-of-view campaign timed to the moment CLP's science arrives on our estate. We embrace the science completely — then complete it. The clinic gives you the years; the farm, the table, the family and the forest are what the years are for. Editorial-first: essays, talks and one provocation put directly to the wellness industry at GWS.</p>
+      </div>
+      <div class="field">
+        <span class="k">Signature executions</span>
+        <p>A manifesto film asking one question — "What are the years for?" · founder essay placed in tier-one media at CLP opening · GWS keynote / panel positioning Montara as the philosophical counterweight · print series pairing one clinical fact with one lived answer.</p>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="k">Science | Art | Soul mapping</span>
+        <div class="sasrow"><span class="k">Science</span><p>CLP is the springboard — the credibility that earns the right to the question.</p></div>
+        <div class="sasrow"><span class="k">Art</span><p>PRU and Trisara are the evidence — years filled with craft, taste and care.</p></div>
+        <div class="sasrow"><span class="k">Soul</span><p>PATAMA delivers the answer — the practice that gives extended life its content.</p></div>
+      </div>
+      <div class="field">
+        <span class="k">How it lands on the calendar</span>
+        <ul class="moments">
+          <li><span class="d">SEP–OCT</span>PATAMA at Trisara launch — the philosophy arrives before the clinic does</li>
+          <li><span class="d">NOV 01</span>CLP opening — the question posed the day the science arrives; PATAMA-style event series, wellbeing-led, for selected wise voices</li>
+          <li><span class="d">NOV 10–13</span>GWS — the argument made to the industry itself, on home ground</li>
+          <li><span class="d">Q1 2027</span>Editorial follow-through as PATAMA facilities near completion</li>
+        </ul>
+      </div>
+      <div class="risk">
+        <span class="k">What it demands · the risk</span>
+        <p>Sharpest and most newsworthy — and the most delicate. Must read as <b>completing</b> the science, never correcting it; CLP alignment on tone is a precondition. Demands a confident public voice from the group. Highest editorial upside of the three.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ option 3 ══════════ -->
+<section class="opt">
+  <div class="opt-tag"><span class="opt-num">III</span><span class="k terra">Option Three · The origin story</span></div>
+  <h2>A Standard Kept. <em>One family's practice, opened to the world.</em></h2>
+  <p class="one-line">PATAMA is a family name and a long-held practice. This is not a brand launched — it is a standard kept for generations, now opened to those who share it.</p>
+
+  <div class="opt-body">
+    <div>
+      <div class="field">
+        <span class="k">The single insight</span>
+        <p>People believe what a family does for itself over what a company sells to strangers. In a category crowded with invented wellness brands, provenance is the rarest asset — and ours is real.</p>
+      </div>
+      <div class="field">
+        <span class="k">The single feeling</span>
+        <p><b>Trust.</b> The sense of being invited into something that existed long before you — and will outlast you.</p>
+      </div>
+      <div class="field">
+        <span class="k">The idea in practice</span>
+        <p>Documentary-led storytelling from the family's own journey — illness, recovery, and the standard that grew from it: rigour in what is built, care in how it is made, meaning in why. Every brand in the portfolio becomes a chapter of one household's practice. Quiet, human, unhurried — the anti-launch. Discovery, never announcement.</p>
+      </div>
+      <div class="field">
+        <span class="k">Signature executions</span>
+        <p>A craft-documentary film series (the land, the table, the practice) · founder-told story for U.S. tier-one press — made for the incoming PR partner's mandate · "kept standards" content pillar: real people, real dates, real proof · intimate hosted dinners as the campaign's true media.</p>
+      </div>
+    </div>
+    <div>
+      <div class="field">
+        <span class="k">Science | Art | Soul mapping</span>
+        <div class="sasrow"><span class="k">Science</span><p>Rigour — the family standard for evidence; why CLP was chosen as partner.</p></div>
+        <div class="sasrow"><span class="k">Art</span><p>Care — PRU and Trisara as the standard practised daily, plate by plate.</p></div>
+        <div class="sasrow"><span class="k">Soul</span><p>Meaning — the name itself: Patama, a practice kept across generations.</p></div>
+      </div>
+      <div class="field">
+        <span class="k">How it lands on the calendar</span>
+        <ul class="moments">
+          <li><span class="d">Q3</span>U.S. PR partner appointed — this story is their launch brief</li>
+          <li><span class="d">SEP–OCT</span>PATAMA at Trisara — told as the family practice made public</li>
+          <li><span class="d">NOV 01</span>CLP opening + Farm Festival — the standard's two halves, side by side</li>
+          <li><span class="d">NOV 09–14</span>GWS tours — guests walk the story: CLP, buggy cruise, Community House, Trisara</li>
+        </ul>
+      </div>
+      <div class="risk">
+        <span class="k">What it demands · the risk</span>
+        <p>Depends on the family's willingness to be visible and stay visible. A slow-burn trust builder — the strongest foundation for residence sales and membership, the least splashy at launch. Authenticity is its entire currency; it cannot be faked or delegated.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ comparison ══════════ -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Side by side.</h2></div>
+  <table>
+    <tr><th style="width:22%"></th><th>I · The Weave</th><th>II · What Are the Years For?</th><th>III · A Standard Kept</th></tr>
+    <tr><td>Leads with</td><td>Soul — the philosophy</td><td>Science — then the counterpoint</td><td>Soul — the provenance</td></tr>
+    <tr><td>Feeling</td><td>Fullness</td><td>Recognition</td><td>Trust</td></tr>
+    <tr><td>Best channel</td><td>Film + experiential</td><td>Editorial + thought leadership</td><td>Documentary + PR</td></tr>
+    <tr><td>2026 momentum</td><td>Medium — builds steadily</td><td>High — rides CLP + GWS news cycle</td><td>Medium — compounds into 2027</td></tr>
+    <tr><td>Long-term equity</td><td>Highest — a 3–5 year platform</td><td>High — owns a category question</td><td>Highest — unfakeable provenance</td></tr>
+    <tr><td>Primary risk</td><td>Abstraction</td><td>Partner sensitivity</td><td>Family exposure</td></tr>
+    <tr><td>Serves best</td><td>Brand architecture · GWS experience</td><td>Global press · category authority</td><td>Residence sales · U.S. PR launch</td></tr>
+  </table>
+</section>
+
+<!-- ══════════ recommendation ══════════ -->
+<div class="reco">
+  <span class="k">A note on choosing</span>
+  <h2>These are not three campaigns.<br><em>They are one story at three altitudes.</em></h2>
+  <p>The Weave is the <b>brand platform</b> — the long-term architecture. What Are the Years For? is the <b>2026 campaign</b> — the sharp, newsworthy expression timed to CLP and GWS. A Standard Kept is the <b>proof layer</b> — the origin story that makes both believable, and the natural brief for the incoming U.S. PR partner.</p>
+  <p style="margin-top:20px">The recommendation: choose the lead altitude for Sep–Nov 2026, knowing the other two can nest beneath it. If forced to one: <b>Option II</b> for this season — it converts the calendar we already have into an argument only we can make.</p>
+</div>
+
+<!-- ══════════ next steps ══════════ -->
+<section style="border-bottom:none">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Next steps.</h2></div>
+  <ul class="steps">
+    <li><span class="d">01</span>Select lead territory (or confirm the nested model) — CEO review</li>
+    <li><span class="d">02</span>Align with CLP on tone and framing before any Option II language goes public</li>
+    <li><span class="d">03</span>Develop the chosen territory into full creative brief — insight, guardrails, deliverables per channel</li>
+    <li><span class="d">04</span>Map framework across all brand touchpoints (per Master Campaign task) — GWS tours, BEING, Farm Festival, event series, social, sales collateral</li>
+    <li><span class="d">05</span>Hand origin-story brief to appointed U.S. PR partner as launch programme foundation</li>
+  </ul>
+</section>
+
+<footer>
+  <span class="k">Montara / PATAMA · Master Strategic Campaign · Internal draft · Jul 2026</span>
+  <span class="k">Source · Tri-Vananda_2026_Progress-Update.html</span>
+</footer>
+
+</div>
+</body>
+</html>

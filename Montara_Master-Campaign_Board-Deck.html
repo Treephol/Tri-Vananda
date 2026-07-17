@@ -1,0 +1,597 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Will We Become? · Master Strategic Campaign · Montara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f2ecdf; --paper:#f9f5ea; --ink:#241f15; --ink2:#4c4536;
+  --gold:#9c7a45; --gold-lt:#c9a76b; --sage:#75815c; --stone:#a3977f;
+  --terra:#a5603a; --ocean:#5c7360;
+  --line:rgba(36,31,21,.16); --line2:rgba(36,31,21,.08);
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+
+/* ── chrome ── */
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.42em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone)}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2)}
+.mh-folio b{color:var(--gold);font-weight:500}
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.nav-mid{display:flex;align-items:center;gap:18px;flex:1;justify-content:center;padding:0 26px}
+.prog{width:min(340px,40vw);height:2px;background:rgba(36,31,21,.14);cursor:pointer;position:relative}
+.prog-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;transition:width .4s ease}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone);white-space:nowrap}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:78px clamp(34px,5vw,78px) 86px;position:relative}
+.media{position:relative;background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03) brightness(1.02)}
+.media .cap{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12)}
+
+/* reveal */
+.panel>*,.fw>*,.inkwrap>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*,.slide.active .fw>*,.slide.active .inkwrap>*{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1),.slide.active .fw>*:nth-child(1),.slide.active .inkwrap>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2),.slide.active .fw>*:nth-child(2),.slide.active .inkwrap>*:nth-child(2){transition-delay:.16s}
+.slide.active .panel>*:nth-child(3),.slide.active .fw>*:nth-child(3),.slide.active .inkwrap>*:nth-child(3){transition-delay:.24s}
+.slide.active .panel>*:nth-child(4),.slide.active .fw>*:nth-child(4),.slide.active .inkwrap>*:nth-child(4){transition-delay:.32s}
+.slide.active .panel>*:nth-child(5),.slide.active .fw>*:nth-child(5),.slide.active .inkwrap>*:nth-child(5){transition-delay:.40s}
+.slide.active .panel>*:nth-child(6),.slide.active .fw>*:nth-child(6),.slide.active .inkwrap>*:nth-child(6){transition-delay:.48s}
+.slide.active .panel>*:nth-child(7),.slide.active .fw>*:nth-child(7),.slide.active .inkwrap>*:nth-child(7){transition-delay:.56s}
+.slide.active .panel>*:nth-child(8),.slide.active .fw>*:nth-child(8){transition-delay:.62s}
+
+/* type */
+.kick{font-size:.64rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold)}
+.num{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,7vw,5.4rem);color:rgba(158,146,130,.32);line-height:.8;margin-bottom:6px}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.02;letter-spacing:.005em;
+  font-size:clamp(2rem,4.4vw,3.5rem)}
+h1 em{font-style:italic}
+.hr{width:54px;height:1px;background:var(--gold);margin:24px 0}
+p.body{font-family:var(--sans);font-weight:300;font-size:clamp(.84rem,.98vw,.96rem);line-height:1.88;
+  color:var(--ink2);max-width:46ch}
+.pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.6vw,1.42rem);line-height:1.34;margin-top:20px;max-width:30ch}
+.svc-label{font-size:.68rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px}
+.svc{display:grid;grid-template-columns:1fr;gap:0;max-width:56ch}
+.svc.two{grid-template-columns:1fr 1fr;gap:0 30px}
+.svc li{list-style:none;display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:1px solid var(--line2);
+  font-size:.82rem;font-weight:400;color:var(--ink);letter-spacing:.01em;line-height:1.5}
+.svc li::before{content:"";width:5px;height:5px;background:var(--gold);flex:0 0 5px;transform:rotate(45deg);margin-top:6px}
+.measure{margin-top:14px;font-family:var(--sans);font-weight:300;font-size:.74rem;letter-spacing:.02em;color:var(--ink2);line-height:1.6;max-width:46ch;border-left:1px solid var(--gold);padding-left:14px}
+.measure b{font-weight:500;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.6rem;display:block;margin-bottom:4px}
+.credit{font-size:.56rem;letter-spacing:.13em;color:var(--stone);margin-top:16px;max-width:56ch;line-height:1.65}
+
+/* cover */
+.cover .panel{justify-content:space-between;padding-top:96px;padding-bottom:96px}
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);line-height:1.7;max-width:34ch}
+.q-word{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:clamp(2.6rem,5.6vw,4.6rem);line-height:1.02}
+.cover .tag{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.9vw,1.5rem);margin-top:18px;max-width:28ch;line-height:1.3}
+.loc{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink2)}
+.chip{display:inline-block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra);padding:5px 11px;margin-top:14px}
+
+/* ink slides */
+.inkslide{height:100%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.inkwrap{text-align:center;padding:0 24px;max-width:920px}
+.inkwrap .kick{justify-content:center;color:var(--gold-lt)}
+.inkwrap .kick::before{background:var(--gold-lt)}
+.ink-q{font-family:var(--serif);font-weight:400;color:var(--cream);font-size:clamp(2.4rem,6vw,5rem);line-height:1.1}
+.ink-q em{font-style:italic}
+.ink-sub{font-family:var(--sans);font-weight:300;color:rgba(242,236,223,.62);font-size:clamp(.78rem,.95vw,.92rem);line-height:1.9;margin-top:28px;max-width:58ch;margin-left:auto;margin-right:auto}
+
+/* full-width */
+.fw{height:100%;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(34px,5vw,72px) 88px}
+.lead{font-family:var(--sans);font-weight:300;font-size:clamp(.84rem,.98vw,.96rem);line-height:1.88;color:var(--ink2);max-width:66ch}
+
+/* timeline */
+.tl{margin-top:30px}
+.tl-track{margin-bottom:18px}
+.tl-name{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tl-bar{padding:8px 12px;font-size:.66rem;letter-spacing:.05em;line-height:1.45;border:1px solid var(--line);color:var(--ink);background:var(--paper)}
+.tl-bar small{display:block;font-size:.56rem;color:var(--stone);letter-spacing:.04em;margin-top:2px}
+.tl-bar.gold{background:rgba(156,122,69,.14);border-color:rgba(156,122,69,.4)}
+.tl-bar.sage{background:rgba(117,129,92,.14);border-color:rgba(117,129,92,.4)}
+.tl-bar.terra{background:rgba(165,96,58,.14);border-color:rgba(165,96,58,.45)}
+.tl-bar.hot{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.tl-bar.hot small{color:rgba(242,236,223,.65)}
+.tl-axis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.tl-axis span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
+
+/* cols */
+.cols{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.cols.c3{grid-template-columns:1fr 1fr 1fr}
+.cols.c4{grid-template-columns:repeat(4,1fr)}
+.cols>div{background:var(--paper);padding:24px 20px}
+.cols h3{font-family:var(--serif);font-weight:500;font-size:1.04rem;color:var(--ink);line-height:1.3;margin-bottom:9px}
+.cols p{font-size:.72rem;font-weight:300;line-height:1.7;color:var(--ink2)}
+.cols .tagk{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
+
+/* promises grid */
+.p8{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:26px}
+.p8>div{background:var(--paper);padding:18px 16px}
+.p8 .pn{font-size:.58rem;letter-spacing:.22em;color:var(--gold)}
+.p8 h4{font-family:var(--serif);font-weight:500;font-size:1.1rem;color:var(--ink);margin:6px 0 6px}
+.p8 p{font-size:.66rem;font-weight:300;line-height:1.6;color:var(--ink2)}
+.p8-side{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin:24px 0 8px}
+
+/* promises summary table */
+.ptab{width:100%;max-width:900px;border-collapse:collapse;margin-top:28px}
+.ptab td{padding:11px 16px;border-bottom:1px solid var(--line2);vertical-align:baseline}
+.ptab .pt-no{font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;color:var(--gold);white-space:nowrap;width:40px}
+.ptab .pt-nm{font-family:var(--serif);font-weight:500;font-size:1.06rem;color:var(--ink);white-space:nowrap;width:150px}
+.ptab .pt-pr{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.98rem;line-height:1.5;color:var(--sage)}
+
+/* loop graphic */
+.loopslide{height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px clamp(28px,5vw,72px) 72px}
+.loopslide .loopimg{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.loopslide .loopimg img{max-width:100%;max-height:100%;object-fit:contain}
+
+/* route */
+.route{display:flex;align-items:stretch;gap:0;margin-top:22px;flex-wrap:wrap}
+.route .stop{flex:1;min-width:130px;border:1px solid var(--line);background:var(--paper);padding:14px 13px;position:relative}
+.route .stop+.stop{margin-left:-1px}
+.route .rn{font-size:.56rem;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.route h4{font-family:var(--serif);font-weight:500;font-size:.95rem;color:var(--ink);margin:5px 0 4px;line-height:1.25}
+.route p{font-size:.62rem;font-weight:300;line-height:1.55;color:var(--ink2)}
+
+/* two-list layout for task slides */
+.tasks2{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:6px;max-width:110ch}
+@media(max-width:820px){
+  .split,.split.rev{grid-template-columns:1fr;grid-template-rows:34vh 1fr}
+  .split.rev .panel{order:2}.split.rev .media{order:1}
+  .panel{padding:22px 26px 90px;justify-content:flex-start;overflow-y:auto}
+  .cols.c3,.cols.c4,.p8{grid-template-columns:1fr 1fr}
+  .fw{overflow-y:auto;justify-content:flex-start;padding-top:70px}
+  .tasks2{grid-template-columns:1fr}
+}
+</style></head>
+<body>
+<div class="deck">
+
+<div class="masthead">
+  <div class="mark">MONTARA</div>
+  <div class="mh-sec" id="mhSec">Cover</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioTot">00</span></div>
+</div>
+
+<!-- ═══ 01 · COVER ═══ -->
+<section class="slide active cover" data-sec="Master Strategic Campaign">
+  <div class="split">
+    <div class="panel">
+      <div>
+        <div class="eyebrow">Montara Hospitality Group<br>Master Strategic Campaign · 2026–2027</div>
+        <div class="chip">Internal · Board alignment · not for client use</div>
+      </div>
+      <div>
+        <div class="q-word">What will<br>we become?</div>
+      </div>
+      <div class="loc">Phuket · July 2026 · For review</div>
+    </div>
+    <div class="media" style="background-image:url('image-bank/Hideaway-014.jpg')"><span class="cap">Tri Vananda · the estate</span></div>
+  </div>
+</section>
+
+<!-- ═══ 02 · TIMELINE ═══ -->
+<section class="slide" data-sec="The 2026 Plan"><div class="fw">
+  <div class="kick">The 2026 plan</div>
+  <h1>PATAMA &amp; Tri Vananda movements.</h1>
+  <div class="tl">
+    <div class="tl-track">
+      <div class="tl-name">Business Development &amp; Branding</div>
+      <div class="tl-grid">
+        <div class="tl-bar gold">New Wellness Brand Development<small>Brand, naming &amp; identity</small></div>
+        <div class="tl-bar gold" style="grid-column:2/span 2">Marketing Collateral Preparation<small>Renderings · photos · videos · masterplan model</small></div>
+        <div class="tl-bar hot">Clinique La Prairie Health Resort Opening<small>1 Nov</small></div>
+      </div>
+      <div class="tl-grid" style="margin-top:6px">
+        <div class="tl-bar" style="border:none;background:none"></div>
+        <div class="tl-bar" style="border:none;background:none"></div>
+        <div class="tl-bar gold">PATAMA Wellness at Trisara Launch<small>Sep – Oct</small></div>
+        <div class="tl-bar gold">PATAMA Wellness at Tri Vananda<small>Construction begins · 2026 → 2027</small></div>
+      </div>
+    </div>
+    <div class="tl-track">
+      <div class="tl-name">PR &amp; Communications</div>
+      <div class="tl-grid">
+        <div class="tl-bar sage" style="grid-column:1/span 4">Always-On Digital &amp; Communications<small>Paid ads · social · organic · running throughout 2026</small></div>
+      </div>
+      <div class="tl-grid" style="margin-top:6px">
+        <div class="tl-bar sage">PR Agency Selection<small>Closed shortlist</small></div>
+        <div class="tl-bar sage">Planning PR Strategy<small>Narrative · channels · agency brief</small></div>
+        <div class="tl-bar sage" style="grid-column:3/span 2">PR Campaign<small>Sustained Sep – Dec 2026</small></div>
+      </div>
+    </div>
+    <div class="tl-track">
+      <div class="tl-name">Activations</div>
+      <div class="tl-grid">
+        <div class="tl-bar terra">GWS Collaboration<small>Connect · format of collaboration</small></div>
+        <div class="tl-bar terra">BEING 2026<small>2 Sep</small></div>
+        <div class="tl-bar terra">Pre-Summit Setup<small>Format · event organizer · experience design</small></div>
+        <div class="tl-bar hot">PRU Farm Festival + GWS<small>Festival 1 Nov · Exhibitor 10–13 Nov · Tours 9 &amp; 14 Nov</small></div>
+      </div>
+      <div class="tl-axis"><span>May – Jun 2026</span><span>Jul – Aug</span><span>Sep – Oct</span><span>Nov – Dec</span></div>
+    </div>
+  </div>
+  <p class="credit">Source · Tri-Vananda_2026_Task-Data.xlsx · Jul 2026</p>
+</div></section>
+
+<!-- ═══ 03 · THE STRATEGIC MOMENT ═══ -->
+<section class="slide" data-sec="The Strategic Moment">
+  <div class="split rev">
+    <div class="media" style="background-image:url('image-bank/_DSC9828.jpg')"><span class="cap">Tri Vananda</span></div>
+    <div class="panel">
+      <div class="kick">The strategic moment</div>
+      <h1>This window will not repeat.</h1>
+      <div class="hr"></div>
+      <ul class="svc" style="margin-top:4px">
+        <li>The Global Wellness Summit marks its 20th Anniversary in Phuket — 7–15 November 2026</li>
+        <li>The Clinique La Prairie Health Resort opens — 1 November</li>
+        <li>PATAMA Wellness launches at Trisara — Sep–Oct</li>
+        <li>The masterplan unfolds — new wellness functions enter communication</li>
+      </ul>
+      <p class="body" style="margin-top:18px">GWS will not return to Phuket for years. The Health Resort opens once. The masterplan unfolds once. The brand has not yet caught up to the product — the Summit window is the moment to close that gap.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 · THE CAMPAIGN ═══ -->
+<section class="slide" data-sec="The Master Campaign">
+  <div class="inkslide"><div class="inkwrap">
+    <div class="kick">The master campaign</div>
+    <div class="ink-q">What will <em>we</em> become?</div>
+    <div class="ink-sub">One question, asked by Montara across all brands and touchpoints — Science | Art | Soul.</div>
+  </div></div>
+</section>
+
+<!-- ═══ 05 · WHY IT EXISTS ═══ -->
+<section class="slide" data-sec="Why It Exists">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Why it exists</div>
+      <h1>The question every child is asked.</h1>
+      <div class="hr"></div>
+      <ul class="svc" style="margin-top:4px">
+        <li>The question every child is asked | returned to every generation | asked of the child, the parent, the grandparent | answered together, as families</li>
+        <li>Family is the key — and Montara itself is a family, the first to ask what it will become</li>
+        <li>The campaign never answers its own question aloud | everything on the estate answers it quietly, always the same way: <b>a more meaningful way to live</b></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/family.jpg')"><span class="cap">Every generation</span></div>
+  </div>
+</section>
+
+<!-- ═══ 06 · WHY MONTARA ═══ -->
+<section class="slide" data-sec="Why Montara Leads It">
+  <div class="split rev">
+    <div class="media" style="background-image:url('image-bank/Trisara by Johannes 0089.jpg')"><span class="cap">Trisara · since 2004</span></div>
+    <div class="panel">
+      <div class="kick">Why Montara leads it</div>
+      <h1>What will <em>Montara</em> become?</h1>
+      <div class="hr"></div>
+      <ul class="svc" style="margin-top:4px">
+        <li>Montara is a Thai family-owned hospitality group — the owner and developer of Phuket's most personal luxury destinations, since Trisara opened in 2004.</li>
+        <li>This is a portfolio story, not a property story — only the group can credibly ask one question across a clinic, a Michelin-starred restaurant, a resort and a residential community.</li>
+        <li>Brand sequencing: Montara asks → the estate answers → PATAMA is revealed later as the name of the practice behind the question.</li>
+        <li>One owner across every doorstep means one standard of care, from arrival to farewell.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 · SOURCE DIVIDER ═══ -->
+<section class="slide" data-sec="The Brand">
+  <div class="inkslide"><div class="inkwrap">
+    <div class="kick">The brand behind the question</div>
+    <div class="ink-q" style="letter-spacing:.14em">PATAMA</div>
+    <div class="ink-sub">The Principles of Living Well · The wellbeing brand of Montara Hospitality Group<br>Threading all the good things in life together.</div>
+  </div></div>
+</section>
+
+<!-- ═══ 08 · THE IDEA & NAME ═══ -->
+<section class="slide" data-sec="PATAMA · The Name">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">The idea &amp; the name</div>
+      <h1>One word, three readings.</h1>
+      <div class="hr"></div>
+      <p class="body">Looking after yourself and your family takes more than one form. PATAMA brings these together into one way of living well, across our places in Phuket — not an occasional escape, but the shape of an ordinary day.</p>
+      <ul class="svc" style="margin-top:18px">
+        <li><b>I · The Beginning</b> | wellbeing in everyday life — the table, the body, the family | Pali</li>
+        <li><b>II · The Lotus</b> | the daily waking of the practice — body and land emerging together | Sanskrit</li>
+        <li><b>III · The Family's Name</b> | a name held across generations — a way of living, still lived | Thai · <i>patama</i></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/tv-01-nature.jpg')"><span class="cap">PATAMA · Phuket</span></div>
+  </div>
+</section>
+
+<!-- ═══ 09 · KEY CONCEPT ═══ -->
+<section class="slide" data-sec="PATAMA · Key Concept">
+  <div class="inkslide"><div class="inkwrap">
+    <div class="kick">Key concept</div>
+    <div class="ink-q">You are <em>always</em> becoming.</div>
+    <div class="ink-sub">There is no final destination — only a continuous unfolding. At the heart of PATAMA is a single idea: a life is never finished. Grounded in science: our bodies and minds can keep changing and growing at any age. What will you become?</div>
+  </div></div>
+</section>
+
+<!-- ═══ 10 · EIGHT PROMISES OVERVIEW · loop graphic (from the brand deck) ═══ -->
+<section class="slide" data-sec="PATAMA · The Eight Promises"><div class="loopslide">
+  <div class="loopimg"><img src="images/infinity-loop-promises.svg" alt="The eight promises &mdash; a more meaningful way to live, between the inner life and the outer world, with Becoming at the centre"></div>
+</div></section>
+
+<!-- ═══ 11–18 · PROMISE DETAILS (from the brand deck) ═══ -->
+<section class="slide" data-sec="Promise · Vitality"><div class="split"><div class="panel">
+  <div class="num">01</div><div class="kick">The Inner Life</div><h1>Vitality</h1><div class="hr"></div>
+  <p class="body">The body is not a vehicle to be maintained until it fails. It is a biological system that responds to daily inputs &mdash; movement, nourishment and rest can influence how a person ages.</p>
+  <div class="pull">Your body will function at its best &mdash; energised, strong, biologically younger.</div>
+</div><div class="media" style="background-image:url('images/tv-03-movement.jpg')"><span class="cap">Vitality</span></div></div></section>
+
+<section class="slide" data-sec="Promise · Serenity"><div class="split rev"><div class="media" style="background-image:url('images/sunset.jpg')"><span class="cap">Serenity</span></div><div class="panel">
+  <div class="num">02</div><div class="kick">The Inner Life</div><h1>Serenity</h1><div class="hr"></div>
+  <p class="body">Serenity is not the absence of stress. It is the practised capacity to absorb life's pressures and return to equilibrium &mdash; without being diminished by them.</p>
+  <div class="pull">You will face life's pressures without being defined by them.</div>
+</div></div></section>
+
+<section class="slide" data-sec="Promise · Clarity"><div class="split"><div class="panel">
+  <div class="num">03</div><div class="kick">The Inner Life</div><h1>Clarity</h1><div class="hr"></div>
+  <p class="body">A mind that is sharp, regulated and free from unnecessary noise is the instrument through which all other wellbeing is reached. Attention and resilience are trainable capacities.</p>
+  <div class="pull">Your mind will become sharper, calmer, and more certain.</div>
+</div><div class="media" style="background-image:url('images/03 Conscious Mind.jpg')"><span class="cap">Clarity</span></div></div></section>
+
+<section class="slide" data-sec="Promise · Growth"><div class="split rev"><div class="media" style="background-image:url('images/tv-05-education.jpg')"><span class="cap">Growth</span></div><div class="panel">
+  <div class="num">04</div><div class="kick">The Inner Life</div><h1>Growth</h1><div class="hr"></div>
+  <p class="body">The person who stops becoming begins to contract. Personal growth is a core dimension of a well-lived life &mdash; and uniquely, it has no ceiling. It is not a destination, but a way of inhabiting life.</p>
+  <div class="pull">You will keep becoming &mdash; stretching, discovering, expanding &mdash; for the rest of your life.</div>
+</div></div></section>
+
+<section class="slide" data-sec="Promise · Belonging"><div class="split"><div class="panel">
+  <div class="num">05</div><div class="kick">The Outer World</div><h1>Belonging</h1><div class="hr"></div>
+  <p class="body">One of the longest studies of adult life reaches a conclusion that supersedes most others: the quality of relationships shapes the quality of life. Community is not an amenity. It is a determinant of how long and how well people live.</p>
+  <div class="pull">You will be held by relationships and a community that strengthen you.</div>
+</div><div class="media" style="background-image:url('images/tv-06-belonging.jpg')"><span class="cap">Belonging</span></div></div></section>
+
+<section class="slide" data-sec="Promise · Sanctuary"><div class="split rev"><div class="media" style="background-image:url('images/tv-01-nature.jpg')"><span class="cap">Sanctuary</span></div><div class="panel">
+  <div class="num">06</div><div class="kick">The Outer World</div><h1>Sanctuary</h1><div class="hr"></div>
+  <p class="body">The places people live are not neutral containers for health; they are active determinants of it. Through biophilic design, the architecture of where you live can shape the biology of how you age.</p>
+  <div class="pull">Your environment &mdash; physical, natural and social &mdash; will protect and restore you.</div>
+</div></div></section>
+
+<section class="slide" data-sec="Promise · Purpose"><div class="split"><div class="panel">
+  <div class="num">07</div><div class="kick">The Outer World</div><h1>Purpose</h1><div class="hr"></div>
+  <p class="body">A life directed by what matters most is associated with greater health, resilience and longevity. Purpose is not ambition. It is the quiet, clarifying sense of <i>why</i> that filters every decision and makes ordinary life meaningful.</p>
+  <div class="pull">You will live with a clear sense of why &mdash; and it will shape every day.</div>
+</div><div class="media" style="background-image:url('image-bank/Trisara by Johannes 6186.jpg')"><span class="cap">Purpose</span></div></div></section>
+
+<section class="slide" data-sec="Promise · Wonder"><div class="split rev"><div class="media" style="background-image:url('images/pru.jpg')"><span class="cap">Wonder</span></div><div class="panel">
+  <div class="num">08</div><div class="kick">The Outer World</div><h1>Wonder</h1><div class="hr"></div>
+  <p class="body">Human beings are meaning-making creatures who need encounters with beauty, culture and the extraordinary to feel fully alive. Wonder is the practice of encountering the extraordinary &mdash; cultivated, not merely consumed.</p>
+  <div class="pull">You will encounter beauty and transcendence that expand what you believe is possible.</div>
+</div></div></section>
+
+<!-- ═══ EIGHT PROMISES · SUMMARY ═══ -->
+<section class="slide" data-sec="The Eight Promises · Summary"><div class="fw">
+  <div class="kick">The Eight Promises · in summary</div>
+  <h1>Eight promises, one by one.</h1>
+  <table class="ptab">
+    <tr><td class="pt-no">01</td><td class="pt-nm">Vitality</td><td class="pt-pr">Your body will function at its best — energised, strong, biologically younger.</td></tr>
+    <tr><td class="pt-no">02</td><td class="pt-nm">Serenity</td><td class="pt-pr">You will face life's pressures without being defined by them.</td></tr>
+    <tr><td class="pt-no">03</td><td class="pt-nm">Clarity</td><td class="pt-pr">Your mind will become sharper, calmer, and more certain.</td></tr>
+    <tr><td class="pt-no">04</td><td class="pt-nm">Growth</td><td class="pt-pr">You will keep becoming — stretching, discovering, expanding — for the rest of your life.</td></tr>
+    <tr><td class="pt-no">05</td><td class="pt-nm">Belonging</td><td class="pt-pr">You will be held by relationships and a community that strengthen you.</td></tr>
+    <tr><td class="pt-no">06</td><td class="pt-nm">Sanctuary</td><td class="pt-pr">Your environment — physical, natural and social — will protect and restore you.</td></tr>
+    <tr><td class="pt-no">07</td><td class="pt-nm">Purpose</td><td class="pt-pr">You will live with a clear sense of why — and it will shape every day.</td></tr>
+    <tr><td class="pt-no">08</td><td class="pt-nm">Wonder</td><td class="pt-pr">You will encounter beauty and transcendence that expand what you believe is possible.</td></tr>
+  </table>
+</div></section>
+
+<!-- ═══ 20 · SCIENCE ART SOUL ═══ -->
+<section class="slide" data-sec="Science | Art | Soul"><div class="fw">
+  <div class="kick">Aligned with the Global Wellness Summit</div>
+  <h1>The Science, Art and Soul of Wellness.</h1>
+  <p class="lead" style="margin-top:12px">The Summit marks its 20th Anniversary in Phuket under this theme. Each dimension of the 2026 theme lives at one of the Group's properties — and carries the Eight Promises across them.</p>
+  <div class="cols c3">
+    <div>
+      <div class="tagk">01 · Science</div><h3>The science of longevity</h3>
+      <p>Personalised, evidence-based wellbeing, delivered at the Health Resort by Clinique La Prairie at Tri Vananda.</p>
+      <div class="svc-label" style="margin:16px 0 6px">The promises it carries</div>
+      <p><b>01 Vitality</b> — energised, strong, and resilient<br><b>02 Serenity</b> — measured, in biofeedback and recovery<br><b>03 Clarity</b> — sharp, calm, and certain</p>
+    </div>
+    <div>
+      <div class="tagk">02 · Art</div><h3>The art of wellness</h3>
+      <p>Hospitality, nature, cuisine and connection, refined over two decades on a private bay above the Andaman.</p>
+      <div class="svc-label" style="margin:16px 0 6px">The promises it carries</div>
+      <p><b>02 Serenity</b> — healing rituals, practised as craft<br><b>04 Growth</b> — expanding, without a ceiling<br><b>08 Wonder</b> — open to beauty and the extraordinary</p>
+    </div>
+    <div>
+      <div class="tagk">03 · Soul</div><h3>The soul of wellness</h3>
+      <p>A living community of forests and lakes, where Thai care and long-term stewardship shape everyday life.</p>
+      <div class="svc-label" style="margin:16px 0 6px">The promises it carries</div>
+      <p><b>05 Belonging</b> — strengthened by the people around you<br><b>06 Sanctuary</b> — protected and restored<br><b>07 Purpose</b> — a clear sense of why</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ═══ 21 · PR / J-PR ═══ -->
+<section class="slide" data-sec="PR · J/PR"><div class="fw">
+  <div class="kick">PR &amp; Communications</div>
+  <h1>J/PR — one narrative, ready day one.</h1>
+  <ul class="svc" style="margin-top:20px;max-width:70ch">
+    <li>Single, world-class PR partner leading the relaunch — contract in progress</li>
+    <li>Q3–Q4 2026 PR strategy and plan — narrative and key messages, with the campaign question as the spine</li>
+    <li>Sustained PR campaign Sep – Dec 2026</li>
+  </ul>
+</div></section>
+
+<!-- ═══ 22 · BEING ═══ -->
+<section class="slide" data-sec="Events · BEING 2026">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Wednesday 2 September 2026</div>
+      <h1>BEING 2026.</h1>
+      <div class="hr"></div>
+      <p class="body">The first public appearance of the campaign question, ahead of the Sep–Dec launch arc.</p>
+      <ul class="svc" style="margin-top:14px">
+        <li>Booth and sponsorship presence</li>
+        <li>Campaign collateral and giveaway</li>
+        <li>PRU Farm Festival advertising at the booth</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('image-bank/IMGL3744-2.jpg')"><span class="cap">BEING · 2 Sep</span></div>
+  </div>
+</section>
+
+<!-- ═══ 23 · PATAMA AT TRISARA ═══ -->
+<section class="slide" data-sec="PATAMA Wellness at Trisara">
+  <div class="split rev">
+    <div class="media" style="background-image:url('image-bank/Trisara_Highlight-20.jpg')"><span class="cap">Trisara · Sep – Oct</span></div>
+    <div class="panel">
+      <div class="kick">September – October · Launch</div>
+      <h1>PATAMA Wellness at Trisara.</h1>
+      <div class="hr"></div>
+      <p class="body">The brand's first expression in practice.</p>
+      <ul class="svc" style="margin-top:14px">
+        <li>PATAMA Wellness at Trisara menu and retreat brochures (CLP Retreat · Trisara Retreat)</li>
+        <li>YPO Retreat Package</li>
+        <li>GWS Retreat Package — tailored to GWS delegates</li>
+        <li>Website and social channels</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 24 · CLP OPENING ═══ -->
+<section class="slide" data-sec="Clinique La Prairie Opening">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">1 November · Tri Vananda</div>
+      <h1>Clinique La Prairie launch — event series, PATAMA style.</h1>
+      <div class="hr"></div>
+      <p class="body">Not a conventional luxury property launch (no fancy-dress glamour theme) — wellbeing-led, intimate, for selected groups of wise voices in wellbeing.</p>
+      <ul class="svc" style="margin-top:14px">
+        <li>A series of events, in PATAMA style</li>
+        <li>Guests — selected wellbeing thought leaders and practitioners</li>
+        <li>In alignment with Clinique La Prairie on positioning and calendar</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/Clinique La Prairie.jpg')"><span class="cap">Clinique La Prairie</span></div>
+  </div>
+</section>
+
+<!-- ═══ 25 · FARM FESTIVAL ═══ -->
+<section class="slide" data-sec="PRU Farm Festival">
+  <div class="split rev">
+    <div class="media" style="background-image:url('image-bank/Chef-Im-444.jpg')"><span class="cap">The farm</span></div>
+    <div class="panel">
+      <div class="kick">Sunday 1 November 2026</div>
+      <h1>PRU Farm Festival.</h1>
+      <div class="hr"></div>
+      <p class="body">Supporting activation — collaborate to support the festival team, same day as the Health Resort opening.</p>
+      <ul class="svc" style="margin-top:14px">
+        <li>TVND brand presence at the festival</li>
+        <li>Activities, vendor and manpower support</li>
+        <li>Sponsorship with PRU</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 26 · MASTERPLAN UPDATE ═══ -->
+<section class="slide" data-sec="Masterplan Update Communications">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Time · TBC</div>
+      <h1>Tri Vananda · masterplan update communications.</h1>
+      <div class="hr"></div>
+      <ul class="svc" style="margin-top:4px">
+        <li>Updated project masterplan + upgraded Wellspring content — leads all communication (and opens every GWS tour)</li>
+        <li>Open Experience — a taste, no commitment</li>
+        <li>Membership Wellness Club — the practice made daily</li>
+        <li>Wellness Retreat offering — a deeper journey</li>
+        <li>Residence — one of several ways to belong</li>
+      </ul>
+      <p class="credit">Forward items are planned and in development — indicative, not committed. Internal until each is cleared for announcement.</p>
+    </div>
+    <div class="media" style="background-image:url('image-bank/renderings/cropped/r28-28.jpg');background-position:center 30%"><span class="cap">Tri Vananda · masterplan</span></div>
+  </div>
+</section>
+
+<!-- ═══ 27 · GWS COLLABORATION ═══ -->
+<section class="slide" data-sec="GWS · Collaboration"><div class="fw">
+  <div class="kick">7 – 15 November 2026 · Phuket</div>
+  <h1>Global Wellness Summit Collaborations.</h1>
+  <p class="lead" style="margin-top:12px">Four areas proposed to the Summit for its 20th Anniversary edition — a customised package, shaped together with GWS. Exhibitor presence 10–13 November.</p>
+  <div class="cols c4">
+    <div><div class="tagk">01</div><h3>Brand awareness of the Montara Group</h3><p>Montara as one group with three complementary properties — four brands, presented together across official GWS channels.</p></div>
+    <div><div class="tagk">02</div><h3>A hosted farm-to-table dinner at Tri Vananda</h3><p>An intimate farm-to-table dinner reception for selected Global Wellness Summit delegates.</p></div>
+    <div><div class="tagk">03</div><h3>Montara experiences within official GWS tours</h3><p>Selected Montara experiences within the official delegate tours — 9 and 14 November 2026.</p></div>
+    <div><div class="tagk">04</div><h3>Leadership participation &amp; narrative positioning</h3><p>Montara and Clinique La Prairie joining the official Summit programme.</p></div>
+  </div>
+  <p class="credit" style="margin-top:24px">GWS collaboration contract — foundation for all GWS activity.</p>
+</div></section>
+
+<section class="slide" data-sec="Always-On"><div class="fw">
+  <div class="kick">September – December · always-on</div>
+  <h1>Always-on digital &amp; communications.</h1>
+  <ul class="svc" style="margin-top:20px;max-width:72ch">
+    <li>New online ad campaign — wellness theme, creative concept from Science | Art | Soul</li>
+    <li>Q3–Q4 social media — monthly themes aligned to the Sep–Dec launch arc, one promise surfaced per month</li>
+    <li>Q3 2026 Quarterly Newsletter</li>
+    <li>Supporting collateral — PATAMA Residences CGIs · Tower Sign (Tri Vananda + CLP) · new photography</li>
+  </ul>
+</div></section>
+
+<div class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">←</button>
+  <div class="nav-mid">
+    <div class="prog" id="prog"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px">
+    <span class="hint">← → to navigate</span>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+</div>
+
+</div>
+<script>(function(){
+ var slides=[].slice.call(document.querySelectorAll('.slide'));var i=0,n=slides.length;
+ var prev=document.getElementById('prev'),next=document.getElementById('next');
+ var fill=document.getElementById('progFill'),prog=document.getElementById('prog'),sec=document.getElementById('mhSec');
+ var fNow=document.getElementById('folioNow'),fTot=document.getElementById('folioTot');
+ fTot.textContent=('0'+n).slice(-2);
+ prog.onclick=function(e){var r=prog.getBoundingClientRect();go(Math.round((e.clientX-r.left)/r.width*(n-1)))};
+ function go(k){k=Math.max(0,Math.min(n-1,k));slides[i].classList.remove('active');slides[k].classList.add('active');i=k;fill.style.width=(n>1?(i/(n-1))*100:100)+'%';sec.innerHTML=slides[i].getAttribute('data-sec');fNow.textContent=('0'+(i+1)).slice(-2);prev.disabled=(i===0);next.disabled=(i===n-1);}
+ prev.onclick=function(){go(i-1)};next.onclick=function(){go(i+1)};
+ document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){go(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(i-1)}else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(n-1)}});
+ var x0=null;document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+ document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?go(i+1):go(i-1)}x0=null},{passive:true});
+ go(0);})();</script>
+</body></html>
