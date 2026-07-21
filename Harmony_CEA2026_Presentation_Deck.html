@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tri Vananda Harmony · Creative Excellence Awards 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f2ecdf; --paper:#f9f5ea; --ink:#241f15; --ink2:#4c4536;
+  --gold:#9c7a45; --gold-lt:#c9a76b; --sage:#75815c; --stone:#a3977f;
+  --terra:#a5603a; --ocean:#5c7360;
+  --line:rgba(36,31,21,.16); --line2:rgba(36,31,21,.08);
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+
+/* ── chrome ── */
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.masthead .mark{justify-self:start}
+.masthead .mh-sec{justify-self:center;text-align:center}
+.masthead .mh-folio{justify-self:end;text-align:right}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.42em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone)}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2)}
+.mh-folio b{color:var(--gold);font-weight:500}
+
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.nav>#prev{justify-self:start}
+.nav .nav-mid{justify-self:center}
+.nav>div:last-child{justify-self:end}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.nav-mid{display:flex;align-items:center;gap:18px}
+.dots{display:flex;gap:7px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(11,15,19,.2);cursor:pointer;transition:.3s}
+.dot.on{background:var(--gold);transform:scale(1.35)}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone)}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1;background:var(--cream)}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:70px clamp(34px,5vw,78px) 80px;position:relative}
+.media{position:relative;background-color:var(--sage);background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03) brightness(1.02);overflow:hidden}
+.media .cap{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.5);z-index:3}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12);pointer-events:none}
+.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media.clean{background:var(--cream)}
+.media.clean::after{display:none}
+.full{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;
+  padding:82px clamp(30px,4.5vw,70px) 90px;text-align:center;position:relative}
+
+/* reveal */
+.panel>*,.full>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*,.slide.active .full>*{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1),.slide.active .full>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2),.slide.active .full>*:nth-child(2){transition-delay:.16s}
+.slide.active .panel>*:nth-child(3),.slide.active .full>*:nth-child(3){transition-delay:.24s}
+.slide.active .panel>*:nth-child(4),.slide.active .full>*:nth-child(4){transition-delay:.32s}
+.slide.active .panel>*:nth-child(5),.slide.active .full>*:nth-child(5){transition-delay:.40s}
+.slide.active .panel>*:nth-child(6),.slide.active .full>*:nth-child(6){transition-delay:.48s}
+.slide.active .panel>*:nth-child(7),.slide.active .full>*:nth-child(7){transition-delay:.56s}
+
+/* type */
+.kick{font-size:.64rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold)}
+.full .kick{justify-content:center}.full .kick::before{display:none}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.0;letter-spacing:.005em;
+  font-size:clamp(2.3rem,5vw,4rem)}
+.panel h1{font-size:clamp(1.9rem,3.4vw,2.9rem)}
+.hr{width:54px;height:1px;background:var(--gold);margin:20px 0}
+.full .hr{margin:22px auto}
+p.body{font-family:var(--sans);font-weight:300;font-size:clamp(.82rem,.95vw,.92rem);line-height:1.75;
+  color:var(--ink2);max-width:52ch}
+p.body i{font-family:var(--serif);font-style:italic;color:var(--sage)}
+.pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.34;margin-top:22px;max-width:30ch}
+
+/* logic list */
+.logic{max-width:58ch}
+.logic li{list-style:none;padding:9px 0;border-bottom:1px solid var(--line2);display:grid;
+  grid-template-columns:110px 1fr;gap:16px;align-items:baseline}
+.logic li:first-child{border-top:1px solid var(--line2)}
+.logic .who{font-size:.6rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.logic .what{font-family:var(--sans);font-weight:300;font-size:.79rem;line-height:1.6;color:var(--ink2)}
+.logic .what b{font-weight:500;color:var(--ink)}
+.logic .what i{font-family:var(--serif);font-style:italic;color:var(--sage)}
+
+/* frequency cards row */
+.cardrow{display:flex;gap:18px;align-items:flex-start;justify-content:center;width:100%;margin:6px 0 4px}
+.cardrow figure{display:flex;flex-direction:column;align-items:center;gap:14px}
+.cardrow img{height:min(34vh,300px);box-shadow:0 12px 34px rgba(36,31,21,.28);border-radius:3px}
+.cardrow figcaption{font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2);text-align:center}
+.talk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line);
+  background:var(--paper);max-width:1240px;width:100%;margin-top:26px}
+.talk .t{padding:16px 20px;border-right:1px solid var(--line);text-align:left}
+.talk .t:last-child{border-right:none}
+.talk .tk{font-size:.56rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.talk .tv{font-family:var(--sans);font-weight:300;font-size:.73rem;line-height:1.6;color:var(--ink2)}
+.talk .tv b{font-weight:500;color:var(--ink)}
+
+/* reveal sample card */
+.panel.compact{padding-top:60px;padding-bottom:70px}
+.panel.compact h1{font-size:clamp(1.4rem,2.2vw,1.9rem)}
+.panel.compact .kick{margin-bottom:16px}
+.panel.compact .hr{margin:14px 0}
+.panel.compact p.body{font-size:.76rem;line-height:1.6}
+.panel.compact .logic li{padding:5px 0;grid-template-columns:96px 1fr}
+.panel.compact .logic .what{font-size:.7rem;line-height:1.5}
+.panel.compact .logic .who{font-size:.55rem}
+.card-sample{border:1px solid var(--line);background:var(--paper);padding:22px 26px;max-width:54ch;margin-top:18px}
+.card-sample .cs-t{font-family:var(--serif);font-weight:500;font-size:clamp(1.1rem,1.6vw,1.4rem);letter-spacing:.08em;color:var(--ink)}
+.card-sample .cs-s{font-size:.58rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:4px 0 12px}
+.card-sample .cs-q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(.92rem,1.15vw,1.05rem);line-height:1.55;color:var(--ink2)}
+.card-sample .cs-m{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-top:14px;line-height:2}
+.card-sample .cs-m b{color:var(--terra);font-weight:500}
+
+/* impact hero */
+.hero{position:relative;height:100%;background-size:cover;background-position:center}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(rgba(22,17,10,.5),rgba(22,17,10,.74))}
+.hero .inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:96px clamp(30px,6vw,90px)}
+.hero .inner>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .hero .inner>*{opacity:1;transform:none}
+.slide.active .hero .inner>*:nth-child(1){transition-delay:.08s}
+.slide.active .hero .inner>*:nth-child(2){transition-delay:.18s}
+.slide.active .hero .inner>*:nth-child(3){transition-delay:.28s}
+.slide.active .hero .inner>*:nth-child(4){transition-delay:.38s}
+.slide.active .hero .inner>*:nth-child(5){transition-delay:.48s}
+.hero .kick{color:var(--gold-lt)}
+.hero h1{color:var(--cream);max-width:22ch}
+.hero .hr{background:var(--gold-lt)}
+.bignums{display:flex;gap:clamp(40px,7vw,110px);margin-top:34px}
+.bn .n{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,8vw,7rem);color:var(--gold-lt);line-height:1}
+.bn .l{font-size:.6rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(242,236,223,.85);margin-top:12px;line-height:1.9}
+.hero .pull{color:rgba(242,236,223,.92);max-width:40ch}
+
+/* impact stats */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);background:var(--paper);
+  max-width:56ch;margin:8px 0 20px}
+.stat{padding:22px 24px 18px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .n{font-family:var(--serif);font-weight:500;font-size:clamp(2.2rem,3.6vw,3.4rem);color:var(--gold);line-height:1}
+.stat .l{font-size:.58rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);margin-top:10px;line-height:1.7}
+.stat .d{font-family:var(--sans);font-weight:300;font-size:.72rem;line-height:1.6;color:var(--ink2);margin-top:8px}
+
+/* cover */
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);line-height:1.9;max-width:40ch}
+.cover .panel{justify-content:space-between;padding-top:96px;padding-bottom:96px}
+.wordmark{font-family:var(--serif);font-weight:600;letter-spacing:.16em;color:var(--ink);
+  font-size:clamp(2.6rem,6vw,5rem);line-height:1.02}
+.cover .tag{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.9vw,1.55rem);margin-top:14px}
+.meta{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink2);line-height:2}
+.meta b{color:var(--gold);font-weight:500}
+
+@media (max-width:900px){
+  .split,.split.rev{grid-template-columns:1fr}
+  .media{min-height:230px;order:1}.panel{order:2;padding:40px 26px 100px}
+  .stats{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid var(--line)}
+  .talk{grid-template-columns:1fr}.talk .t{border-right:none;border-bottom:1px solid var(--line)}
+  .cardrow{flex-wrap:wrap}.cardrow img{height:120px}
+}
+</style></head>
+<body>
+<div class="deck">
+
+<header class="masthead">
+  <div class="mark">TRI VANANDA</div>
+  <div class="mh-sec" id="mhSec">Harmony</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioAll">06</span></div>
+</header>
+
+<!-- 01 · COVER -->
+<section class="slide active cover" data-sec="Harmony">
+  <div class="split">
+    <div class="panel">
+      <div class="eyebrow">2025 Signature Marketing Campaign<br>Dragonfly Summit · Bangkok</div>
+      <div>
+        <div class="wordmark">TRI VANANDA<br>HARMONY</div>
+      </div>
+      <div class="meta"><b>Creative Excellence Awards 2026</b> · Creative Campaign Award<br>Final presentation round</div>
+    </div>
+    <div class="media clean">
+      <video autoplay muted loop playsinline style="object-fit:contain">
+        <source src="images/Harmony.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · TRI VANANDA -->
+<section class="slide" data-sec="Tri Vananda">
+  <div class="split rev">
+    <div class="panel">
+      <div class="kick">Introducing Tri Vananda</div>
+      <h1>A well-living community in Phuket.</h1>
+      <div class="hr"></div>
+      <p class="body">Tri Vananda is a well-living community taking shape on 230 acres in Phuket, Thailand — 85% of the land preserved as forest, wetlands and lakes.</p>
+      <ul class="logic" style="margin-top:16px">
+        <li><span class="who">Residences</span><span class="what"><b>Residential villas</b> designed for multigenerational living, set within nature.</span></li>
+        <li><span class="who">Wellness</span><span class="what"><b>The Health Resort by Clinique La Prairie</b> — the Swiss pioneer of longevity.</span></li>
+        <li><span class="who">The land</span><span class="what"><b>Forest, wetlands and farm</b> — a landscape that shapes daily life, from food to movement to rest.</span></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/Key Visual - Entire Project 02 (1).jpg')">
+      <div class="cap">Tri Vananda · Phuket, Thailand</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · WHY TRI VANANDA AT DRAGONFLY -->
+<section class="slide" data-sec="Why Dragonfly">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Why Tri Vananda at Dragonfly</div>
+      <h1>True leadership begins with wellbeing.</h1>
+      <div class="hr"></div>
+      <p class="body">Dragonfly is Asia's leading leadership summit. Tri Vananda joined it to champion a shared belief: that conscious leadership and meaningful growth begin with how well — and how connected — we live.</p>
+      <ul class="logic" style="margin-top:16px">
+        <li><span class="who">The bridge</span><span class="what"><b>Trust connects wellness and leadership.</b> It improves mental health, deepens relationships, and creates cultures where people feel safe to grow, share and lead.</span></li>
+        <li><span class="who">The room</span><span class="what"><b>Exactly our audience</b> — opinion leaders, business owners, potential buyers and the media and influencers who reach them.</span></li>
+        <li><span class="who">The role</span><span class="what"><b>Not an exhibitor — a thought leader.</b> A differentiated experience positioning Tri Vananda at the intersection of trust, leadership and wellness.</span></li>
+        <li><span class="who">The takeaway</span><span class="what"><b>Insights guests apply in life and work</b> — so the brand is remembered for what it gave, not what it sold.</span></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('image-bank/dragonfly/dragonfly I.jpg')">
+      <div class="cap">Live Well, Lead Well · Dragonfly main stage</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · THE IDEA — TRUST FREQUENCY -->
+<section class="slide" data-sec="The Idea">
+  <div class="split rev">
+    <div class="panel">
+      <div class="kick">Harmony · Discover your Trust Frequency</div>
+      <h1>Trust has a frequency. We built a way to find yours.</h1>
+      <div class="hr"></div>
+      <p class="body">Trust is the foundation of Tri Vananda — and of every healthy team, family and community. Yet at leadership summits it stays a word on a slide. So we turned to the beehive: a hive thrives not because its bees are the same, but because seven different roles find rhythm together. From that truth came seven <b>Trust Frequencies</b> — the distinct way each of us gives and earns trust.</p>
+      <ul class="logic" style="margin-top:16px">
+        <li><span class="who">The Maze</span><span class="what"><b>The Bee Maze</b> — a walk-through game that turned trust from something you hear about into something you <i>do</i>.</span></li>
+        <li><span class="who">The Reveal</span><span class="what"><b>A personal frequency card</b> — Forager, Nurse, Architect, Queen's Whisperer, Pollinator, Sentinel or Harmonizer.</span></li>
+        <li><span class="who">The Bar</span><span class="what"><b>JAMPA Bar</b> — a botanical drink composed to your tune, and a conversation that flowed naturally to the sales gallery.</span></li>
+      </ul>
+      <p class="pull">Harmony is trust in motion.</p>
+    </div>
+    <div class="media" style="background-image:url('deck-assets/706912736_1453649210111911_3723436824050780809_n.jpg')">
+      <div class="cap">The hive · Nature's model of trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · THE SEVEN TRUST FREQUENCIES -->
+<section class="slide" data-sec="The Trust Frequencies">
+  <div class="full" style="justify-content:center">
+    <div class="kick">The Idea, in your hands · Seven Trust Frequencies</div>
+    <h1 style="font-size:clamp(1.7rem,3vw,2.6rem)">Find your Trust Frequency.</h1>
+    <div class="cardrow" style="margin-top:30px">
+      <figure><img src="deck-assets/card-forager.jpg" alt="The Forager"><figcaption>The Forager</figcaption></figure>
+      <figure><img src="deck-assets/card-nurse.jpg" alt="The Nurse"><figcaption>The Nurse</figcaption></figure>
+      <figure><img src="deck-assets/card-architect.jpg" alt="The Architect"><figcaption>The Architect</figcaption></figure>
+      <figure><img src="deck-assets/card-whisperer.jpg" alt="The Queen's Whisperer"><figcaption>The Queen's Whisperer</figcaption></figure>
+      <figure><img src="deck-assets/card-pollinator.jpg" alt="The Pollinator"><figcaption>The Pollinator</figcaption></figure>
+      <figure><img src="deck-assets/card-sentinel.jpg" alt="The Sentinel"><figcaption>The Sentinel</figcaption></figure>
+      <figure><img src="deck-assets/card-harmonizer.jpg" alt="The Harmonizer"><figcaption>The Harmonizer</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · THE BEE MAZE (VIDEO) -->
+<section class="slide" data-sec="The Bee Maze">
+  <div class="split rev">
+    <div class="panel">
+      <div class="kick">The centerpiece · Trust Frequency Bee Maze</div>
+      <h1>A game you walk through. A mirror you leave with.</h1>
+      <div class="hr"></div>
+      <p class="body">Eight hexagon rooms, built like cells of a hive. Guests entered with an empty basket and moved room to room — playing, choosing, collecting tokens. No right answers, no score. At the end, the tokens poured into bowls and an archetype appeared: <i>recognition, not judgment.</i></p>
+      <ul class="logic" style="margin-top:16px">
+        <li><span class="who">Earn trust</span><span class="what">Texture of Trust · Path of Trust · Flower of Choice · Echo of Trust — <b>four rooms on credibility and reliability.</b></span></li>
+        <li><span class="who">Give trust</span><span class="what">Plant a Word · Face of Trust · Your Intimacy Space · Gesture of Trust — <b>four rooms on openness and care.</b></span></li>
+        <li><span class="who">Leave with</span><span class="what"><b>Your Trust Frequency</b> — a card, a matched JAMPA drink, and a language for how you connect.</span></li>
+      </ul>
+    </div>
+    <div class="media">
+      <video autoplay muted loop playsinline poster="deck-assets/booth-perspective.jpg" style="object-position:center 72%">
+        <source src="images/Harmony at Dragonfly.mp4" type="video/mp4">
+      </video>
+      <div class="cap">The Bee Maze film · Dragonfly Summit 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · THE REVEAL -->
+<section class="slide" data-sec="The Reveal">
+  <div class="split">
+    <div class="panel compact">
+      <div class="kick">The Reveal</div>
+      <h1>A sample of the result.</h1>
+      <div class="hr"></div>
+      <div class="card-sample" style="max-width:64ch;padding:14px 20px">
+        <div class="cs-t">THE NURSE</div>
+        <div class="cs-s">Safe · Emotionally present</div>
+        <div class="cs-q" style="font-size:.76rem;line-height:1.5">This frequency is safe and emotionally present. They build trust by showing up with consistent care and empathy, earning deep trust over time through their steady presence and quiet support. While they may not always lead from the front, their strength is felt in the spaces they nurture. Their Trust Gift is Care, and their Leadership Cue is to remember that their quiet consistency is powerful, emphasizing the impact of small, steady acts.</div>
+        <ul class="logic" style="margin-top:12px;max-width:none">
+          <li><span class="who">Gives trust</span><span class="what">To those who show care through experience, not theory — who nurture trust through small, steady actions, show empathy without judgment, and give consistent, nurturing support.</span></li>
+          <li><span class="who">Earns trust</span><span class="what">By sharing knowledge with care and empathy, building trust gradually, and nurturing it through care and presence — emotionally present, steady, quietly supportive.</span></li>
+          <li><span class="who">In leadership</span><span class="what">Trusts leaders who are the heart of an operation — remembering details, showing support, balancing care with clarity and accountability.</span></li>
+          <li><span class="who">Cue</span><span class="what">Quiet consistency is powerful — never underestimate small, steady acts. Balance nurturing support with clear communication and, when necessary, accountability: boundaries and honest feedback show you care enough to ensure growth.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="media" style="background-image:url('image-bank/dragonfly/dragonfly II-692.jpg')">
+      <div class="cap">The reveal · “Your frequency: The Nurse”</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · THE HARMONY RESONANCE (IMPACT) -->
+<section class="slide" data-sec="The Harmony Resonance">
+  <div class="hero" style="background-image:url('deck-assets/page-8.webp');background-position:center bottom">
+    <div class="scrim"></div>
+    <div class="inner">
+      <div class="kick">The Harmony Resonance · Impact</div>
+      <h1>The signal carried far beyond the summit.</h1>
+      <div class="hr"></div>
+      <div class="bignums">
+        <div class="bn">
+          <div class="n">700+</div>
+          <div class="l">Guests registered at Dragonfly<br>Opinion leaders · Business owners · Influencers</div>
+        </div>
+        <div class="bn">
+          <div class="n">3,000+</div>
+          <div class="l">Online Trust Frequency leads<br>Registered after the summit</div>
+        </div>
+      </div>
+      <p class="pull">Knowledge that passes person to person —<br>the way trust itself does.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · BACK COVER -->
+<section class="slide" data-sec="Thank You">
+  <div class="full">
+    <div class="kick">Tri Vananda · Creative Excellence Awards 2026</div>
+    <div class="wordmark">TRI VANANDA<br>HARMONY</div>
+    <div class="hr"></div>
+    <p class="pull" style="text-align:center;max-width:34ch">When trust flows,<br>our impact amplifies.</p>
+  </div>
+</section>
+
+</div>
+
+<nav class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">←</button>
+  <div class="nav-mid"><div class="dots" id="dots"></div></div>
+  <div style="display:flex;align-items:center;gap:22px">
+    <span class="hint">← → to navigate</span>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+</nav>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const dotsEl=document.getElementById('dots');
+const folioNow=document.getElementById('folioNow');
+const folioAll=document.getElementById('folioAll');
+const mhSec=document.getElementById('mhSec');
+const prev=document.getElementById('prev'),next=document.getElementById('next');
+let i=0;
+folioAll.textContent=String(slides.length).padStart(2,'0');
+slides.forEach((s,k)=>{const d=document.createElement('div');d.className='dot'+(k===0?' on':'');
+  d.addEventListener('click',()=>go(k));dotsEl.appendChild(d)});
+function go(k){
+  if(k<0||k>=slides.length)return;
+  slides[i].classList.remove('active');i=k;slides[i].classList.add('active');
+  [...dotsEl.children].forEach((d,x)=>d.classList.toggle('on',x===i));
+  folioNow.textContent=String(i+1).padStart(2,'0');
+  mhSec.textContent=slides[i].dataset.sec;
+  prev.disabled=i===0;next.disabled=i===slides.length-1;
+  const v=slides[i].querySelector('video');if(v)v.play().catch(()=>{});
+}
+prev.addEventListener('click',()=>go(i-1));
+next.addEventListener('click',()=>go(i+1));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(i+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')go(i-1);
+});
+let tx=null;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null)return;
+  const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(i+(dx<0?1:-1));tx=null},{passive:true});
+go(0);
+</script>
+</body></html>
