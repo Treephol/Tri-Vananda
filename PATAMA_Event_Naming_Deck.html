@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Name · An Annual Culinary Gathering · Presented by PRU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f2ecdf; --paper:#f9f5ea; --ink:#241f15; --ink2:#4c4536;
+  --gold:#9c7a45; --gold-lt:#c9a76b; --sage:#75815c; --stone:#a3977f;
+  --terra:#a5603a; --ocean:#5c7360;
+  --line:rgba(36,31,21,.16); --line2:rgba(36,31,21,.08);
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+
+/* ── chrome ── */
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.42em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone)}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2)}
+.mh-folio b{color:var(--gold);font-weight:500}
+
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.nav-mid{display:flex;align-items:center;gap:18px}
+.dots{display:flex;gap:7px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(11,15,19,.2);cursor:pointer;transition:.3s}
+.dot.on{background:var(--gold);transform:scale(1.35)}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone)}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1;background:var(--cream)}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:70px clamp(34px,5vw,78px) 80px;position:relative}
+.media{position:relative;background-color:var(--sage);background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03) brightness(1.02)}
+.media .cap{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12)}
+.full{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;
+  padding:96px clamp(34px,6vw,90px);text-align:center;position:relative}
+
+/* reveal */
+.panel>*,.full>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*,.slide.active .full>*{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1),.slide.active .full>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2),.slide.active .full>*:nth-child(2){transition-delay:.16s}
+.slide.active .panel>*:nth-child(3),.slide.active .full>*:nth-child(3){transition-delay:.24s}
+.slide.active .panel>*:nth-child(4),.slide.active .full>*:nth-child(4){transition-delay:.32s}
+.slide.active .panel>*:nth-child(5),.slide.active .full>*:nth-child(5){transition-delay:.40s}
+.slide.active .panel>*:nth-child(6),.slide.active .full>*:nth-child(6){transition-delay:.48s}
+.slide.active .panel>*:nth-child(7),.slide.active .full>*:nth-child(7){transition-delay:.56s}
+
+/* type */
+.kick{font-size:.64rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold)}
+.full .kick{justify-content:center}.full .kick::before{display:none}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.0;letter-spacing:.005em;
+  font-size:clamp(2.3rem,5vw,4rem)}
+.panel h1{font-size:clamp(1.9rem,3.4vw,2.9rem)}
+.sub{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.2rem,2.1vw,1.7rem);margin-top:10px}
+.hr{width:54px;height:1px;background:var(--gold);margin:20px 0}
+.full .hr{margin:26px auto}
+p.body{font-family:var(--sans);font-weight:300;font-size:clamp(.82rem,.95vw,.92rem);line-height:1.75;
+  color:var(--ink2);max-width:52ch}
+.pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.34;margin-top:22px;max-width:26ch}
+
+/* candidate wordmark slides */
+.cand-name{font-family:var(--serif);font-weight:500;letter-spacing:.14em;color:var(--ink);
+  font-size:clamp(3.2rem,9vw,7.2rem);line-height:.95}
+.dict{font-family:var(--sans);font-weight:300;font-size:clamp(.78rem,.95vw,.92rem);color:var(--ink2);
+  letter-spacing:.04em;line-height:1.9;max-width:58ch;margin-top:8px}
+.dict i{font-style:italic;color:var(--stone)}
+.dict-hw{font-weight:500;color:var(--ink);letter-spacing:.14em}
+
+/* logic list */
+.logic{max-width:56ch}
+.logic li{list-style:none;padding:9px 0;border-bottom:1px solid var(--line2);display:grid;
+  grid-template-columns:96px 1fr;gap:16px;align-items:baseline}
+.logic li:first-child{border-top:1px solid var(--line2)}
+.logic .who{font-size:.6rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.logic .what{font-family:var(--sans);font-weight:300;font-size:.79rem;line-height:1.6;color:var(--ink2)}
+.logic .what b{font-weight:500;color:var(--ink)}
+
+/* lockup card */
+.lockup{border:1px solid var(--line);padding:30px 34px;margin:6px 0 22px;max-width:46ch;background:var(--paper)}
+.lockup .lu-name{font-family:var(--serif);font-weight:500;letter-spacing:.12em;font-size:clamp(1.5rem,2.4vw,2.1rem);color:var(--ink)}
+.lockup .lu-line{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink2);margin-top:10px}
+.lockup .lu-line b{color:var(--gold);font-weight:500}
+.use{max-width:56ch}
+.use li{list-style:none;padding:11px 0;border-bottom:1px solid var(--line2);display:grid;
+  grid-template-columns:140px 1fr;gap:16px;align-items:baseline}
+.use .u-k{font-size:.58rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--stone)}
+.use .u-v{font-family:var(--sans);font-weight:300;font-size:.84rem;line-height:1.7;color:var(--ink2)}
+.use .u-v b{font-family:var(--serif);font-weight:500;font-size:1rem;color:var(--ink);letter-spacing:.06em}
+.use .u-v i{font-family:var(--serif);font-style:italic;color:var(--sage)}
+
+/* comparison */
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);background:var(--paper);max-width:1180px;width:100%}
+.col{padding:30px 26px 26px;border-right:1px solid var(--line);text-align:left;display:flex;flex-direction:column;gap:0}
+.col:last-child{border-right:none}
+.col h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,1.9vw,1.7rem);letter-spacing:.1em;color:var(--ink)}
+.col .role{font-size:.58rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:6px 0 16px}
+.crow{padding:10px 0;border-top:1px solid var(--line2)}
+.crow .ck{font-size:.55rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
+.crow .cv{font-family:var(--sans);font-weight:300;font-size:.78rem;line-height:1.65;color:var(--ink2)}
+.crow .cv b{font-weight:500;color:var(--ink)}
+.crow .cv i{font-family:var(--serif);font-style:italic;color:var(--sage)}
+
+/* footer meta on cover */
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);line-height:1.9;max-width:38ch}
+.cover .panel{justify-content:space-between;padding-top:96px;padding-bottom:96px}
+.wordmark{font-family:var(--serif);font-weight:600;letter-spacing:.16em;color:var(--ink);
+  font-size:clamp(3rem,7vw,5.8rem);line-height:.95}
+.cover .tag{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.9vw,1.55rem);margin-top:14px}
+.meta{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink2);line-height:2}
+.meta b{color:var(--gold);font-weight:500}
+
+@media (max-width:900px){
+  .split,.split.rev{grid-template-columns:1fr}
+  .media{min-height:230px;order:1}.panel{order:2;padding:40px 26px 100px}
+  .cols{grid-template-columns:1fr}.col{border-right:none;border-bottom:1px solid var(--line)}
+}
+</style></head>
+<body>
+<div class="deck">
+
+<header class="masthead">
+  <div class="mark">PRU</div>
+  <div class="mh-sec" id="mhSec">The Name</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioAll">14</span></div>
+</header>
+
+<!-- 01 · COVER -->
+<section class="slide active cover" data-sec="The Name">
+  <div class="split">
+    <div class="panel">
+      <div class="eyebrow">PRU presents<br>An annual culinary gathering · Phuket<br>Five nights at PRU · One day at The Farm at Tri Vananda</div>
+      <div>
+        <div class="wordmark">THE NAME</div>
+        <div class="tag">Three candidates, built for the long run.</div>
+      </div>
+      <div class="meta"><b>Naming &amp; identity</b> · Internal working document · July 2026<br>Understory · Further · The Discovery Feast</div>
+    </div>
+    <div class="media" style="background-image:url('image-bank/Chef-Im-178.jpg')">
+      <div class="cap">Fire · The oldest reason to gather</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · THE TASK -->
+<section class="slide" data-sec="The Task">
+  <div class="split rev">
+    <div class="panel">
+      <div class="kick">What the name must carry</div>
+      <h1>Born from ten years of PRU.<br>Built to outgrow them.</h1>
+      <div class="hr"></div>
+      <p class="body">One master name for a permanent annual platform: five nights of collaborative dinners at PRU, and a farm gathering of twenty chefs and 150 guests at Tri Vananda — presented by PRU, returning every year.</p>
+      <ul class="logic" style="margin-top:16px">
+        <li><span class="who">Feel</span><span class="what"><b>Discovery without saying it.</b> The philosophy performed, not announced.</span></li>
+        <li><span class="who">Hold</span><span class="what"><b>Two rooms at once.</b> Nights of collaboration dinners and a food festival in the farm.</span></li>
+        <li><span class="who">Last</span><span class="what"><b>Editions, like vintages.</b> The anniversary is year one's theme — never the name.</span></li>
+        <li><span class="who">Travel</span><span class="what"><b>International mouth-feel.</b> Easy in London, Tokyo, Sydney — unmistakably of Phuket.</span></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/pru.jpg')">
+      <div class="cap">PRU · Plant · Raise · Understand</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · PHILOSOPHY -->
+<section class="slide" data-sec="The Philosophy">
+  <div class="full">
+    <div class="kick">The idea beneath all three</div>
+    <h1 style="max-width:20ch">Food is the shortest distance between us and the world.</h1>
+    <div class="hr"></div>
+    <p class="body" style="max-width:62ch;text-align:center">Every dish begins somewhere we cannot see — in soil and rain, in the hands that planted and raised it. To taste with attention is to discover: the land and what it remembers, the people beside us, the senses we had stopped noticing, and a fuller way of being alive. Each candidate name below is a different door into this same idea.</p>
+    <p class="pull" style="max-width:40ch;text-align:center">The place · The movement · The statement</p>
+  </div>
+</section>
+
+<!-- 04 · UNDERSTORY WORDMARK -->
+<section class="slide" data-sec="Candidate 01">
+  <div class="full">
+    <div class="kick">Candidate 01 · The Place</div>
+    <div class="cand-name">UNDERSTORY</div>
+    <div class="hr"></div>
+    <p class="dict"><span class="dict-hw">un·der·sto·ry</span> <i>· noun ·</i> the living layer beneath the forest canopy, where regeneration begins — and, read again, <i>the story underneath</i>: the hidden narrative inside every ingredient, every place, every person at the table.</p>
+    <p class="pull" style="text-align:center">Discovery as depth,<br>not distance.</p>
+  </div>
+</section>
+
+<!-- 05 · UNDERSTORY LOGIC -->
+<section class="slide" data-sec="Candidate 01 · Logic">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Understory · The logic</div>
+      <h1>The richest layer is the one you have to look for.</h1>
+      <div class="hr"></div>
+      <ul class="logic">
+        <li><span class="who">Food</span><span class="what">Flavour literally lives beneath the surface — roots, broths, ferments, terroir. <b>A chef's work is excavation.</b></span></li>
+        <li><span class="who">PRU</span><span class="what">Plant · Raise · <b>Understand</b> is a method of going below the obvious. Ten years of digging deeper into Thai ingredients.</span></li>
+        <li><span class="who">Tri Vananda</span><span class="what"><i>Vana</i> means forest — and the understory is <b>where a forest renews itself</b>. The Farm is a soil-first place.</span></li>
+        <li><span class="who">PATAMA</span><span class="what">Wonder, Growth, Sanctuary: <b>a fuller life is found beneath the surface of ordinary days.</b></span></li>
+        <li><span class="who">Long run</span><span class="what">Inexhaustible editorial depth — each edition peels back <b>a new layer</b>: soil, water, roots, night.</span></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/init-c2-pru-festival.jpg')">
+      <div class="cap">Hands in the ground · Where every menu begins</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · FURTHER WORDMARK -->
+<section class="slide" data-sec="Candidate 02">
+  <div class="full">
+    <div class="kick">Candidate 02 · The Movement</div>
+    <div class="cand-name">FURTHER</div>
+    <div class="hr"></div>
+    <p class="dict"><span class="dict-hw">fur·ther</span> <i>· adverb ·</i> beyond the point already reached. The one-word answer to an anniversary: not a look back at ten years, but the promise that the exploration has only begun.</p>
+    <p class="pull" style="text-align:center">Discovery as a direction,<br>not a destination.</p>
+  </div>
+</section>
+
+<!-- 08 · FURTHER LOGIC -->
+<section class="slide" data-sec="Candidate 02 · Logic">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Further · The logic</div>
+      <h1>Ten years on — further still.</h1>
+      <div class="hr"></div>
+      <ul class="logic">
+        <li><span class="who">Food</span><span class="what">How far can an ingredient go? <b>Every collaboration pushes a flavour past its known edge.</b></span></li>
+        <li><span class="who">PRU</span><span class="what">A decade of refusing to be satisfied — <b>experimentation as posture</b>, celebrated by continuing it.</span></li>
+        <li><span class="who">Tri Vananda</span><span class="what">The festival literally goes further afield — <b>out of the dining room, into the land.</b></span></li>
+        <li><span class="who">PATAMA</span><span class="what">Growth and Becoming: <b>a life that keeps moving toward a fuller version of itself.</b></span></li>
+        <li><span class="who">Watch-out</span><span class="what">Abstract on its own — no food, no place in the word. <b>The programme names do the anchoring</b>, and the lockup with PRU matters more than for the other two.</span></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/depth.jpg')">
+      <div class="cap">The horizon line · Tri Vananda</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · THE DISCOVERY FEAST WORDMARK -->
+<section class="slide" data-sec="Candidate 03">
+  <div class="full">
+    <div class="kick">Candidate 03 · The Statement</div>
+    <div class="cand-name" style="font-size:clamp(2.6rem,6.6vw,5.4rem)">THE DISCOVERY<br>FEAST</div>
+    <div class="hr"></div>
+    <p class="dict"><span class="dict-hw">the dis·cov·er·y feast</span> <i>· noun ·</i> a feast held in the name of finding — new ingredients, new people, new perspectives. The philosophy said in plain words, and “The” claiming it as the one that matters.</p>
+    <p class="pull" style="text-align:center">Discovery as an open invitation,<br>understood everywhere.</p>
+  </div>
+</section>
+
+<!-- 11 · THE DISCOVERY FEAST LOGIC -->
+<section class="slide" data-sec="Candidate 03 · Logic">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">The Discovery Feast · The logic</div>
+      <h1>The philosophy, said out loud.</h1>
+      <div class="hr"></div>
+      <ul class="logic">
+        <li><span class="who">Food</span><span class="what"><b>Feast is the most generous word in food</b> — abundance, occasion, a table with room for everyone. Warmer and more premium than “fest.”</span></li>
+        <li><span class="who">PRU</span><span class="what">The direct heir of <i>A Decade of Discovery</i> — <b>ten years of discovery through food</b>, carried forward instead of closed.</span></li>
+        <li><span class="who">Tri Vananda</span><span class="what">A feast held <b>on the land itself</b> — long tables, open sky, the farm as host.</span></li>
+        <li><span class="who">PATAMA</span><span class="what">Wonder and Growth <b>stated literally</b> — discovery is the promise, the feast is how it's kept.</span></li>
+        <li><span class="who">Watch-out</span><span class="what">It says the philosophy rather than performs it. “Discovery” is category vocabulary — <b>hardest of the three to own and protect</b> over a decade.</span></li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('image-bank/Chef-Im-633.jpg')">
+      <div class="cap">The raw material of discovery</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · THE POSTER TEST -->
+<section class="slide" data-sec="The Poster Test">
+  <div class="full" style="justify-content:center;padding-top:78px;padding-bottom:86px">
+    <div class="kick">The Poster Test</div>
+    <div style="display:flex;gap:26px;align-items:flex-start;justify-content:center">
+      <img src="posters/poster-understory.jpg" alt="The Understory poster" style="height:56vh;box-shadow:0 14px 40px rgba(36,31,21,.3)">
+      <img src="posters/poster-further.jpg" alt="Further poster" style="height:56vh;box-shadow:0 14px 40px rgba(36,31,21,.3)">
+      <img src="posters/poster-discovery-feast.jpg" alt="The Discovery Feast poster" style="height:56vh;box-shadow:0 14px 40px rgba(36,31,21,.3)">
+    </div>
+  </div>
+</section>
+
+</div>
+
+<nav class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">←</button>
+  <div class="nav-mid"><div class="dots" id="dots"></div></div>
+  <div style="display:flex;align-items:center;gap:22px">
+    <span class="hint">← → to navigate</span>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+</nav>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const dotsEl=document.getElementById('dots');
+const folioNow=document.getElementById('folioNow');
+const folioAll=document.getElementById('folioAll');
+const mhSec=document.getElementById('mhSec');
+const prev=document.getElementById('prev'),next=document.getElementById('next');
+let i=0;
+folioAll.textContent=String(slides.length).padStart(2,'0');
+slides.forEach((s,k)=>{const d=document.createElement('div');d.className='dot'+(k===0?' on':'');
+  d.addEventListener('click',()=>go(k));dotsEl.appendChild(d)});
+function go(k){
+  if(k<0||k>=slides.length)return;
+  slides[i].classList.remove('active');i=k;slides[i].classList.add('active');
+  [...dotsEl.children].forEach((d,x)=>d.classList.toggle('on',x===i));
+  folioNow.textContent=String(i+1).padStart(2,'0');
+  mhSec.textContent=slides[i].dataset.sec;
+  prev.disabled=i===0;next.disabled=i===slides.length-1;
+}
+prev.addEventListener('click',()=>go(i-1));
+next.addEventListener('click',()=>go(i+1));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(i+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')go(i-1);
+});
+let tx=null;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null)return;
+  const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(i+(dx<0?1:-1));tx=null},{passive:true});
+go(0);
+</script>
+</body></html>
