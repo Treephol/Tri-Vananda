@@ -108,7 +108,9 @@ p.body i{font-family:var(--serif);font-style:italic;color:var(--sage)}
 .cardrow{display:flex;gap:18px;align-items:flex-start;justify-content:center;width:100%;margin:6px 0 4px}
 .cardrow figure{display:flex;flex-direction:column;align-items:center;gap:14px}
 .cardrow img{height:min(34vh,300px);box-shadow:0 12px 34px rgba(36,31,21,.28);border-radius:3px}
-.cardrow figcaption{font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2);text-align:center}
+.cardrow figcaption{text-align:center;max-width:170px;display:flex;flex-direction:column;gap:6px}
+.cardrow .fname{font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+.cardrow .fdesc{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.72rem;line-height:1.45;color:var(--ink2)}
 .talk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line);
   background:var(--paper);max-width:1240px;width:100%;margin-top:26px}
 .talk .t{padding:16px 20px;border-right:1px solid var(--line);text-align:left}
@@ -275,13 +277,13 @@ p.body i{font-family:var(--serif);font-style:italic;color:var(--sage)}
     <div class="kick">The Idea, in your hands · Seven Trust Frequencies</div>
     <h1 style="font-size:clamp(1.7rem,3vw,2.6rem)">Find your Trust Frequency.</h1>
     <div class="cardrow" style="margin-top:30px">
-      <figure><img src="deck-assets/card-forager.jpg" alt="The Forager"><figcaption>The Forager</figcaption></figure>
-      <figure><img src="deck-assets/card-nurse.jpg" alt="The Nurse"><figcaption>The Nurse</figcaption></figure>
-      <figure><img src="deck-assets/card-architect.jpg" alt="The Architect"><figcaption>The Architect</figcaption></figure>
-      <figure><img src="deck-assets/card-whisperer.jpg" alt="The Queen's Whisperer"><figcaption>The Queen's Whisperer</figcaption></figure>
-      <figure><img src="deck-assets/card-pollinator.jpg" alt="The Pollinator"><figcaption>The Pollinator</figcaption></figure>
-      <figure><img src="deck-assets/card-sentinel.jpg" alt="The Sentinel"><figcaption>The Sentinel</figcaption></figure>
-      <figure><img src="deck-assets/card-harmonizer.jpg" alt="The Harmonizer"><figcaption>The Harmonizer</figcaption></figure>
+      <figure><img src="deck-assets/card-forager.jpg" alt="The Forager"><figcaption><span class="fname">The Forager</span><span class="fdesc">Curious, self-led explorer of ideas and connections.</span></figcaption></figure>
+      <figure><img src="deck-assets/card-nurse.jpg" alt="The Nurse"><figcaption><span class="fname">The Nurse</span><span class="fdesc">Emotionally present and nurturing, builds trust through care.</span></figcaption></figure>
+      <figure><img src="deck-assets/card-architect.jpg" alt="The Architect"><figcaption><span class="fname">The Architect</span><span class="fdesc">Structured, dependable, brings clarity and order.</span></figcaption></figure>
+      <figure><img src="deck-assets/card-whisperer.jpg" alt="The Queen's Whisperer"><figcaption><span class="fname">The Queen's Whisperer</span><span class="fdesc">Purposeful, intuitive, trusted guide behind the scenes.</span></figcaption></figure>
+      <figure><img src="deck-assets/card-pollinator.jpg" alt="The Pollinator"><figcaption><span class="fname">The Pollinator</span><span class="fdesc">Connector and catalyst for collaboration and shared success.</span></figcaption></figure>
+      <figure><img src="deck-assets/card-sentinel.jpg" alt="The Sentinel"><figcaption><span class="fname">The Sentinel</span><span class="fdesc">Protector, loyal guardian of people and principles.</span></figcaption></figure>
+      <figure><img src="deck-assets/card-harmonizer.jpg" alt="The Harmonizer"><figcaption><span class="fname">The Harmonizer</span><span class="fdesc">Steady, balanced, creates calm and belonging.</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -339,7 +341,7 @@ p.body i{font-family:var(--serif);font-style:italic;color:var(--sage)}
   <div class="hero" style="background-image:url('deck-assets/page-8.webp');background-position:center bottom">
     <div class="scrim"></div>
     <div class="inner">
-      <div class="kick">The Harmony Resonance · Impact</div>
+      <div class="kick">The Harmony Resonance</div>
       <h1>The signal carried far beyond the summit.</h1>
       <div class="hr"></div>
       <div class="bignums">
