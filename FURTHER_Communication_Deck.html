@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FURTHER · The Story &amp; Key Messages · by PRU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f2ecdf; --paper:#f9f5ea; --ink:#241f15; --ink2:#4c4536;
+  --gold:#9c7a45; --gold-lt:#c9a76b; --sage:#75815c; --stone:#a3977f;
+  --line:rgba(36,31,21,.16); --line2:rgba(36,31,21,.08);
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.42em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone)}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2)}
+.mh-folio b{color:var(--gold);font-weight:500}
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.dots{display:flex;gap:7px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(11,15,19,.2);cursor:pointer;transition:.3s}
+.dot.on{background:var(--gold);transform:scale(1.35)}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone)}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1;background:var(--cream)}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:70px clamp(34px,5vw,78px) 80px;position:relative}
+.media{position:relative;background-color:var(--sage);background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03) brightness(1.02)}
+.media .cap{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12)}
+.full{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;
+  padding:92px clamp(34px,6vw,90px);text-align:center;position:relative}
+.panel>*,.full>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*,.slide.active .full>*{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1),.slide.active .full>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2),.slide.active .full>*:nth-child(2){transition-delay:.16s}
+.slide.active .panel>*:nth-child(3),.slide.active .full>*:nth-child(3){transition-delay:.24s}
+.slide.active .panel>*:nth-child(4),.slide.active .full>*:nth-child(4){transition-delay:.32s}
+.slide.active .panel>*:nth-child(5),.slide.active .full>*:nth-child(5){transition-delay:.40s}
+.slide.active .panel>*:nth-child(6),.slide.active .full>*:nth-child(6){transition-delay:.48s}
+.kick{font-size:.64rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold)}
+.full .kick{justify-content:center}.full .kick::before{display:none}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.05;letter-spacing:.005em;
+  font-size:clamp(2.3rem,5vw,4rem)}
+.panel h1{font-size:clamp(1.9rem,3.4vw,2.9rem)}
+.hr{width:54px;height:1px;background:var(--gold);margin:20px 0}
+.full .hr{margin:24px auto}
+p.body{font-family:var(--sans);font-weight:300;font-size:clamp(.82rem,.95vw,.92rem);line-height:1.75;
+  color:var(--ink2);max-width:52ch}
+.pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.34;margin-top:22px;max-width:30ch}
+.cand-name{font-family:var(--serif);font-weight:500;letter-spacing:.2em;color:var(--ink);
+  font-size:clamp(3.2rem,9vw,7.2rem);line-height:.95;text-indent:.2em}
+.dict{font-family:var(--sans);font-weight:300;font-size:clamp(.78rem,.95vw,.92rem);color:var(--ink2);
+  letter-spacing:.04em;line-height:1.9;max-width:58ch;margin-top:8px}
+.dict i{font-style:italic;color:var(--stone)}
+.dict-hw{font-weight:500;color:var(--ink);letter-spacing:.14em}
+.logic{max-width:56ch}
+.logic li{list-style:none;padding:9px 0;border-bottom:1px solid var(--line2);display:grid;
+  grid-template-columns:110px 1fr;gap:16px;align-items:baseline}
+.logic li:first-child{border-top:1px solid var(--line2)}
+.logic .who{font-size:.6rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.logic .what{font-family:var(--sans);font-weight:300;font-size:.79rem;line-height:1.6;color:var(--ink2)}
+.logic .what b{font-weight:500;color:var(--ink)}
+.logic .what i{font-family:var(--serif);font-style:italic;color:var(--sage)}
+.lockup{border:1px solid var(--line);padding:28px 32px;margin:6px 0 20px;max-width:46ch;background:var(--paper)}
+.lockup .lu-name{font-family:var(--serif);font-weight:500;letter-spacing:.16em;font-size:clamp(1.5rem,2.4vw,2.1rem);color:var(--ink)}
+.lockup .lu-line{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink2);margin-top:10px}
+.lockup .lu-line b{color:var(--gold);font-weight:500}
+.bigline{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--ink);
+  font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:1.28;max-width:26ch}
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);background:var(--paper);max-width:1180px;width:100%}
+.col{padding:28px 26px 24px;border-right:1px solid var(--line);text-align:left}
+.col:last-child{border-right:none}
+.col h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.05rem,1.6vw,1.45rem);letter-spacing:.08em;color:var(--ink)}
+.col .role{font-size:.58rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:6px 0 14px}
+.crow{padding:9px 0;border-top:1px solid var(--line2)}
+.crow .ck{font-size:.55rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
+.crow .cv{font-family:var(--sans);font-weight:300;font-size:.78rem;line-height:1.6;color:var(--ink2)}
+.crow .cv b{font-weight:500;color:var(--ink)}
+.crow .cv i{font-family:var(--serif);font-style:italic;color:var(--sage)}
+.prog{max-width:1080px;width:100%;border-top:1px solid var(--line)}
+.prog li{list-style:none;display:grid;grid-template-columns:150px 1fr 1.35fr;gap:22px;
+  padding:12px 4px;border-bottom:1px solid var(--line2);align-items:baseline;text-align:left}
+.prog .p-date{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.prog .p-name{font-family:var(--serif);font-weight:500;font-size:clamp(.95rem,1.35vw,1.2rem);color:var(--ink);letter-spacing:.02em}
+.prog .p-name span{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);display:block;margin-top:3px}
+.prog .p-desc{font-family:var(--sans);font-weight:300;font-size:.76rem;line-height:1.6;color:var(--ink2)}
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);line-height:1.9;max-width:38ch}
+.cover .panel{justify-content:space-between;padding-top:96px;padding-bottom:96px}
+.wordmark{font-family:var(--serif);font-weight:600;letter-spacing:.18em;color:var(--ink);
+  font-size:clamp(3rem,7vw,5.8rem);line-height:.95}
+.cover .tag{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.9vw,1.55rem);margin-top:14px}
+.meta{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink2);line-height:2}
+.meta b{color:var(--gold);font-weight:500}
+@media (max-width:900px){
+  .split,.split.rev{grid-template-columns:1fr}
+  .media{min-height:230px;order:1}.panel{order:2;padding:40px 26px 100px}
+  .cols{grid-template-columns:1fr}.col{border-right:none;border-bottom:1px solid var(--line)}
+}
+</style></head>
+<body>
+<div class="deck">
+
+<header class="masthead">
+  <div class="mark">PRU</div>
+  <div class="mh-sec" id="mhSec">Further</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioAll">08</span></div>
+</header>
+
+<!-- 01 · COVER -->
+<section class="slide active cover" data-sec="Further">
+  <div class="split">
+    <div class="panel">
+      <div class="eyebrow">PRU presents<br>Phuket · Thailand<br>Collaborative dinners at PRU · Farm Festival at Tri Vananda</div>
+      <div>
+        <div class="wordmark">FURTHER</div>
+        <div class="tag">An annual collaborative culinary gathering</div>
+      </div>
+      <div class="meta"><b>Communication platform</b> · Working draft · July 2026<br>Built on the team's feedback</div>
+    </div>
+    <div class="media" style="background-image:url('images/depth.jpg')">
+      <div class="cap">The horizon line · Where the name points</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · THE NAME -->
+<section class="slide" data-sec="The Name">
+  <div class="full">
+    <div class="kick">PRU presents</div>
+    <div class="cand-name">FURTHER</div>
+    <div class="hr"></div>
+    <p class="dict"><span class="dict-hw">fur·ther</span> <i>· adverb ·</i> beyond the point already reached. After a decade of discovery in Thailand, the tenth year is not a finish line but a beginning — and the name is a promise: we now go further, and we go together.</p>
+    <p class="pull" style="text-align:center">Discovery as a direction,<br>not a destination.</p>
+  </div>
+</section>
+
+<!-- 02b · THE INTRODUCTION -->
+<section class="slide" data-sec="The Introduction">
+  <div class="split rev">
+    <div class="panel">
+      <div class="kick">The introduction</div>
+      <h1>Ten years in,<br>the journey begins.</h1>
+      <div class="hr"></div>
+      <p class="body">Ten years ago, PRU opened with a stubborn idea: that everything a great restaurant needs was already here in Thailand — waiting to be planted, raised and understood. A decade of discovery proved it, earning Phuket its first Michelin star and a farm that feeds a philosophy. This anniversary is not a look back. It is a departure point.</p>
+      <p class="body" style="margin-top:14px">FURTHER is the week the journey widens: chefs from across Asia and beyond leave their own kitchens to cook side by side at PRU — five collaborative dinners, open-fire lunches with Phuket's rising generation — before the whole community gathers for the Farm Festival at Tri Vananda: twelve chefs, the farmers and makers of the island, one Sunday afternoon in nature. Because if ten years taught us anything, it is this — to go further, you go together.</p>
+    </div>
+    <div class="media" style="background-image:url('image-bank/Chef-Im-178.jpg')">
+      <div class="cap">Over open fire · The Hideaway at PRU</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02c · THE PROGRAMME -->
+<section class="slide" data-sec="The Programme">
+  <div class="full" style="justify-content:center;padding-top:72px;padding-bottom:80px">
+    <div class="kick">The Programme · 26 October – 1 November</div>
+    <h1 style="margin-bottom:24px;font-size:clamp(1.7rem,3vw,2.6rem)">One week. Seven ways further.</h1>
+    <ul class="prog">
+      <li><span class="p-date">Tue 27 Oct</span><span class="p-name">PRU × Haōma × Jampa<span>Green Star Collection</span></span><span class="p-desc">A six-hands collaboration between three Michelin Green Star restaurants to open the week.</span></li>
+      <li><span class="p-date">Wed 28 Oct</span><span class="p-name">PRU × Wana Yook × Thai Library<span>The Thai Connection</span></span><span class="p-desc">The terroir of Phuket meets the celebrated cuisine of Wana Yook, Bangkok.</span></li>
+      <li><span class="p-date">Thu 29 Oct</span><span class="p-name">PRU × Kuma × Cielo &amp; Spice<span>The First Collaboration Returns</span></span><span class="p-desc">A callback to PRU's first-ever collaboration with Chef Riley Sanders — united by Thai produce, joined by Chef Beam.</span></li>
+      <li><span class="p-date">Fri 30 Oct</span><span class="p-name">PRU × Syrco BASE × La Crique<span>The Dutch Connection</span></span><span class="p-desc">Syrco Bakker, formerly of two-Michelin-star Pure C, alongside the chef who grew up in PRU's kitchen and now leads La Crique.</span></li>
+      <li><span class="p-date">Sat 31 Oct</span><span class="p-name">The Grande Finale<span>Five chefs · Ten hands</span></span><span class="p-desc">A celebration of a decade at PRU — each chef cooking a dish they love, with a Mystery Chef to be announced.</span></li>
+      <li><span class="p-date">29 – 31 Oct</span><span class="p-name">Phuket's Rising Stars<span>Jampa × HEH × Royd</span></span><span class="p-desc">The new generation of Phuket's culinary scene — outdoor lunches at The Hideaway, cooked entirely over open fire.</span></li>
+      <li><span class="p-date">Sun 1 Nov</span><span class="p-name">The Farm Festival<span>Tri Vananda · Twelve chefs</span></span><span class="p-desc">Visiting chefs, the group's finest and the island's own — one signature dish each, with farmers, beverage crafters and workshops, on the land.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 03 · THE ONE SENTENCE -->
+<section class="slide" data-sec="The One Sentence">
+  <div class="full">
+    <div class="kick">The philosophy, in one sentence</div>
+    <div class="bigline">“Ten years of discovery taught us one thing — to go further, you go together.”</div>
+    <div class="hr"></div>
+    <p class="body" style="max-width:60ch;text-align:center">This is the line that travels: on the invitation, in the welcome speech, in every chef's caption. It holds the whole story — where we have been (ten years of discovery), what we learned (nothing great is found alone), and where we are going (further). A guest who hears only this sentence understands the event.</p>
+    <p class="body" style="max-width:60ch;text-align:center;margin-top:12px">And together means more than the chefs on the menu — it is the farmers, fishers, foragers, producers and makers across Thailand whose craft passes through every plate. The first decade was built with them. The next goes further with them.</p>
+    <ul class="logic" style="margin-top:20px;text-align:left">
+      <li><span class="who">Shorter</span><span class="what"><i>To go further, go together.</i> — the four-word version for signage and social.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 05 · THE NEXT CHAPTER -->
+<section class="slide" data-sec="The Next Chapter">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">After “A Decade of Discovery”</div>
+      <h1>The first decade discovered.<br>The next goes further.</h1>
+      <div class="hr"></div>
+      <div class="lockup">
+        <div class="lu-line">2016 – 2026</div>
+        <div class="lu-name" style="font-size:clamp(1.1rem,1.8vw,1.5rem)">A DECADE OF DISCOVERY</div>
+        <div class="lu-line" style="margin-top:14px">2026 — onwards · <b>the new chapter</b></div>
+        <div class="lu-name" style="font-size:clamp(1.1rem,1.8vw,1.5rem)">FURTHER, TOGETHER</div>
+      </div>
+      <ul class="logic">
+        <li><span class="who">The chapter line</span><span class="what"><i>Further, Together.</i> — two words that carry the proverb inside them.</span></li>
+      </ul>
+          </div>
+    <div class="media" style="background-image:url('images/pru.jpg')">
+      <div class="cap">PRU · Where chapter one was written</div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · THE POSTER -->
+<section class="slide" data-sec="The Poster">
+  <div class="full" style="justify-content:center;padding:70px clamp(24px,4vw,60px) 74px">
+    <div style="display:flex;gap:40px;align-items:center;justify-content:center;height:100%">
+      <img src="posters/poster-further-v2.jpg" alt="FURTHER poster" style="height:calc(100vh - 132px);max-height:100%;box-shadow:0 14px 40px rgba(36,31,21,.3)">
+      <div style="text-align:left;max-width:32ch">
+        <ul class="logic">
+          <li><span class="who">Name</span><span class="what"><b>FURTHER 2026</b> — presented by PRU · <i>An annual collaborative culinary gathering in Phuket</i>.</span></li>
+          <li><span class="who">Sub-tagline</span><span class="what"><i>After a decade of discovery in Thailand, we now go further — together.</i></span></li>
+          <li><span class="who">When</span><span class="what"><b>26 October – 1 November 2026</b> · Phuket.</span></li>
+          <li><span class="who">Format</span><span class="what">Collaborative Dinners at PRU · Farm Festival at Tri Vananda — <i>full programme to be announced</i>.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<nav class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">←</button>
+  <div class="dots" id="dots"></div>
+  <div style="display:flex;align-items:center;gap:22px">
+    <span class="hint">← → to navigate</span>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+</nav>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const dotsEl=document.getElementById('dots');
+const folioNow=document.getElementById('folioNow');
+const folioAll=document.getElementById('folioAll');
+const mhSec=document.getElementById('mhSec');
+const prev=document.getElementById('prev'),next=document.getElementById('next');
+let i=0;
+folioAll.textContent=String(slides.length).padStart(2,'0');
+slides.forEach((s,k)=>{const d=document.createElement('div');d.className='dot'+(k===0?' on':'');
+  d.addEventListener('click',()=>go(k));dotsEl.appendChild(d)});
+function go(k){
+  if(k<0||k>=slides.length)return;
+  slides[i].classList.remove('active');i=k;slides[i].classList.add('active');
+  [...dotsEl.children].forEach((d,x)=>d.classList.toggle('on',x===i));
+  folioNow.textContent=String(i+1).padStart(2,'0');
+  mhSec.textContent=slides[i].dataset.sec;
+  prev.disabled=i===0;next.disabled=i===slides.length-1;
+}
+prev.addEventListener('click',()=>go(i-1));
+next.addEventListener('click',()=>go(i+1));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(i+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')go(i-1);
+});
+let tx=null;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null)return;
+  const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(i+(dx<0?1:-1));tx=null},{passive:true});
+go(0);
+</script>
+</body></html>
