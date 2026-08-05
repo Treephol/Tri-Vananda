@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri Vananda × PATAMA · Critical Path · Aug – Dec 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--cream:#f4efe5;--white:#faf8f4;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --sage:#8fa584;--sage-lt:#aec2a2;
+  --rust:#c97a54;--rust-lt:#e09772;
+  --line:rgba(184,148,88,.2);
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--ink);color:var(--cream);
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;padding:12px 20px 10px}
+
+header{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  padding-bottom:8px;border-bottom:1px solid var(--gold)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1rem,2.4vh,1.6rem);line-height:1;color:var(--white)}
+h1 .it{font-style:italic;color:var(--gold-lt)}
+.hmeta{font-size:clamp(7.5px,1.2vh,10.5px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,229,.62);text-align:right;line-height:1.7}
+.hmeta b{color:var(--gold-lt);font-weight:400}
+
+.tl{flex:1 1 auto;min-height:0;padding-top:6px}
+.grid{height:100%;display:grid;
+  grid-template-columns:178px repeat(10,1fr);
+  grid-template-rows:auto auto 4px
+    auto auto repeat(2,1fr) auto repeat(2,1fr)
+    auto auto repeat(2,1fr) auto repeat(6,1fr) repeat(6,auto 1fr);
+  gap:2px;align-items:stretch}
+.mhd{padding:3px 2px;font-size:clamp(7.5px,1.25vh,10.5px);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt);text-align:center;background:rgba(184,148,88,.1);display:flex;align-items:center;justify-content:center}
+.hd{padding:3px 2px;font-size:clamp(7px,1.15vh,9.5px);letter-spacing:.07em;text-transform:uppercase;color:rgba(244,239,229,.58);text-align:center;display:flex;align-items:center;justify-content:center}
+.hd.gws{color:#14100a;background:rgba(212,176,122,.9);font-weight:500}
+.rule{grid-column:1/12;background:var(--line);align-self:center;height:1px}
+.lane{grid-column:1/12;font-size:clamp(7.5px,1.3vh,10.5px);letter-spacing:.24em;text-transform:uppercase;
+  display:flex;align-items:flex-end;padding:6px 0 2px;border-bottom:1px solid var(--line)}
+.lane.pa{color:var(--sage-lt)}
+.lane.tv{color:var(--gold-lt)}
+.sub{grid-column:1/12;font-size:clamp(6.5px,1vh,8.5px);letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(244,239,229,.44);display:flex;align-items:flex-end;padding:5px 0 1px}
+
+.cname{grid-column:1/2;padding-right:9px;text-align:right;font-size:clamp(8px,1.3vh,11px);line-height:1.2;color:var(--white);
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.cname small{font-size:clamp(6.5px,1vh,8.5px);letter-spacing:.05em;text-transform:uppercase;color:rgba(244,239,229,.5);margin-top:2px}
+.cname.crit{color:var(--rust-lt)}
+.cname.crit small{color:var(--rust)}
+
+.s{padding:3px 6px;border-radius:2px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.s .w{font-size:clamp(8px,1.25vh,11px);line-height:1.15;color:var(--white);display:block}
+.s .d{font-size:clamp(6.5px,1vh,9px);letter-spacing:.04em;text-transform:uppercase;margin-top:2px;color:rgba(244,239,229,.62);line-height:1.15}
+.s.tv{background:rgba(184,148,88,.17);border-left:2px solid rgba(184,148,88,.6)}
+.s.pa{background:rgba(143,165,132,.17);border-left:2px solid rgba(143,165,132,.6)}
+.s.crit{background:rgba(201,122,84,.26);border-left:2px solid var(--rust)}
+.s.crit .d{color:var(--rust-lt)}
+.s.slack{background:transparent;border:1px dashed rgba(244,239,229,.2)}
+.s.slack .w{color:rgba(244,239,229,.42)}
+.s.gws{background:linear-gradient(135deg,rgba(184,148,88,.82),rgba(212,176,122,.82));border-left:2px solid var(--gold-lt)}
+.s.gws .w{color:#14100a;font-weight:400}
+.s.gws .d{color:rgba(20,16,10,.72)}
+.s.gwsP{background:linear-gradient(135deg,rgba(143,165,132,.8),rgba(174,194,162,.8));border-left:2px solid var(--sage-lt)}
+.s.gwsP .w{color:#12160f;font-weight:400}
+.s.gwsP .d{color:rgba(18,22,15,.72)}
+.s.live{background:rgba(244,239,229,.06);border-left:2px solid rgba(244,239,229,.2)}
+.s.live .w{color:rgba(244,239,229,.7)}
+
+.key{flex:0 0 auto;display:flex;gap:18px;flex-wrap:wrap;margin-top:7px;padding-top:6px;border-top:1px solid var(--line);
+  font-size:clamp(7px,1.1vh,9.5px);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,239,229,.6)}
+.key i{display:inline-block;width:9px;height:9px;margin-right:6px;vertical-align:-1px;font-style:normal}
+.kt{background:rgba(184,148,88,.55)}.kp{background:rgba(143,165,132,.55)}
+.kc{background:rgba(201,122,84,.75)}.ks{border:1px dashed rgba(244,239,229,.4)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Critical <span class="it">path</span> · Aug — Dec 2026</h1>
+  <div class="hmeta">Tri Vananda × PATAMA · Summit <b>10–13 Nov</b> · tours <b>9</b> &amp; <b>14</b> · dinner <b>Wed 11</b></div>
+</header>
+
+<div class="tl"><div class="grid">
+
+  <div></div>
+  <div class="mhd" style="grid-column:2/4">August</div>
+  <div class="mhd" style="grid-column:4/6">September</div>
+  <div class="mhd" style="grid-column:6/8">October</div>
+  <div class="mhd" style="grid-column:8/10">November</div>
+  <div class="mhd" style="grid-column:10/12">December</div>
+
+  <div></div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–30</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd gws">GWS 1–15</div><div class="hd">16–30</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+
+  <div class="rule"></div>
+
+  <div class="lane pa">PATAMA</div>
+
+  <div class="sub">Branding</div>
+
+  <div class="cname">Logo &amp; Guidelines<small>Branding × SRA Studio</small></div>
+  <div class="s pa" style="grid-column:2/3"><span class="w">Brief + concepts</span><span class="d">1–15 Aug</span></div>
+  <div class="s pa" style="grid-column:3/4"><span class="w">Work in process</span><span class="d">16–30 Aug</span></div>
+  <div class="s crit" style="grid-column:4/5"><span class="w">Wordmark out</span><span class="d">15 Sep</span></div>
+  <div class="s pa" style="grid-column:5/6"><span class="w">System development</span><span class="d">16–30 Sep</span></div>
+  <div class="s crit" style="grid-column:6/7"><span class="w">Guidelines out</span><span class="d">15 Oct</span></div>
+  <div class="s live" style="grid-column:7/12"><span class="w">Rollout across touchpoints</span></div>
+
+  <div class="cname">Coffee Table Book Template<small>Branding × SRA Studio</small></div>
+  <div class="s slack" style="grid-column:2/5"><span class="w">float · awaiting the identity system</span></div>
+  <div class="s pa" style="grid-column:5/6"><span class="w">Content + design</span><span class="d">16 – 30 Sep</span></div>
+  <div class="s crit" style="grid-column:6/7"><span class="w">Template out</span><span class="d">15 Oct</span></div>
+
+  <div class="sub">Marketing Collateral</div>
+
+  <div class="cname">PATAMA Website<small>Marketing · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s pa" style="grid-column:4/6"><span class="w">Content</span><span class="d">1 – 30 Sep</span></div>
+  <div class="s pa" style="grid-column:6/7"><span class="w">Website design</span><span class="d">1 – 15 Oct</span></div>
+  <div class="s crit" style="grid-column:7/8"><span class="w">Website out</span><span class="d">31 Oct</span></div>
+
+  <div class="cname">PATAMA Wellness at Trisara<small>Menu &amp; retreat brochure · Marketing × David</small></div>
+  <div class="s pa" style="grid-column:2/5"><span class="w">Regular menu + retreat packages</span><span class="d">1 Aug – 15 Sep</span></div>
+  <div class="s pa" style="grid-column:5/6"><span class="w">Menu &amp; brochure · content + design</span><span class="d">16 – 30 Sep</span></div>
+  <div class="s crit" style="grid-column:6/7"><span class="w">Digital version out</span><span class="d">15 Oct</span></div>
+  <div class="s crit" style="grid-column:7/8"><span class="w">Print version out</span><span class="d">31 Oct</span></div>
+
+  <div class="lane tv">Tri Vananda</div>
+
+  <div class="sub">PR &amp; Communications</div>
+
+  <div class="cname">PR Agency · US<small>Marketing × BPCM</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Contract signed</span><span class="d">15 Aug</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Onboarding + brief</span><span class="d">to 30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/6"><span class="w">PR strategy &amp; plan</span><span class="d">1 – 30 Sep</span></div>
+  <div class="s tv" style="grid-column:6/7"><span class="w">Press kit + imagery</span><span class="d">16 Oct</span></div>
+  <div class="s tv" style="grid-column:7/8"><span class="w">Pitching</span><span class="d">20 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Summit coverage</span><span class="d">10–13 Nov</span></div>
+  <div class="s tv" style="grid-column:9/12"><span class="w">Post-summit coverage</span></div>
+
+  <div class="cname">PR Agency · TH<small>Marketing × Wow PR</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Contract signed</span><span class="d">15 Aug</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Onboarding + brief</span><span class="d">to 30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/6"><span class="w">PR strategy &amp; plan</span><span class="d">1 – 30 Sep</span></div>
+  <div class="s tv" style="grid-column:6/7"><span class="w">Press kit + imagery</span><span class="d">16 Oct</span></div>
+  <div class="s tv" style="grid-column:7/8"><span class="w">Pitching</span><span class="d">20 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Summit coverage</span><span class="d">10–13 Nov</span></div>
+  <div class="s tv" style="grid-column:9/12"><span class="w">Post-summit coverage</span></div>
+
+  <div class="sub">Marketing Collateral</div>
+
+  <div class="cname">PATAMA Residence CGIs<small>Marketing × DOF × Project</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Sign quotation</span><span class="d">15 Aug</span></div>
+  <div class="s crit" style="grid-column:3/4"><span class="w">Finalize details</span><span class="d">30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/6"><span class="w">Production</span><span class="d">1 – 30 Sep</span></div>
+  <div class="s crit" style="grid-column:6/7"><span class="w">Final CGIs out</span><span class="d">15 Oct</span></div>
+
+  <div class="cname">Wellspring Content<small>Eight Threads version · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/12"><span class="w">float · milestones to be set</span></div>
+
+  <div class="cname">Quarterly Newsletter<small>Marketing · unassigned</small></div>
+  <div class="s tv" style="grid-column:2/4"><span class="w">Q3 stories</span><span class="d">1 Aug – 15 Sep</span></div>
+  <div class="s tv" style="grid-column:4/5"><span class="w">Content + design</span><span class="d">16 – 30 Sep</span></div>
+  <div class="s crit" style="grid-column:5/6"><span class="w">Digital version out</span><span class="d">30 Sep</span></div>
+  <div class="s tv" style="grid-column:6/7"><span class="w">Production</span><span class="d">1 – 30 Oct</span></div>
+  <div class="s crit" style="grid-column:7/8"><span class="w">Print version out</span><span class="d">31 Oct</span></div>
+
+  <div class="cname">Farm Product<small>PATAMA version · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/12"><span class="w">float · milestones to be set</span></div>
+
+  <div class="cname">Tote Bag<small>Marketing × Gimmic Talk</small></div>
+  <div class="s tv" style="grid-column:2/6"><span class="w">Production</span><span class="d">1 Aug – 30 Sep</span></div>
+  <div class="s crit" style="grid-column:6/7"><span class="w">Delivery</span><span class="d">15 Oct</span></div>
+
+  <div class="cname crit">Big Logo Signage<small>Critical path · Marketing × unassigned</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Logo approval</span><span class="d">15 Aug</span></div>
+  <div class="s crit" style="grid-column:3/4"><span class="w">Contractor set</span><span class="d">5 Sep</span></div>
+  <div class="s crit" style="grid-column:4/7"><span class="w">Fabrication + installation</span><span class="d">1 Sep – 15 Oct</span></div>
+  <div class="s crit" style="grid-column:7/8"><span class="w">Delivery</span><span class="d">25 Oct</span></div>
+
+  <div class="sub">Activation 01</div>
+
+  <div class="cname">BEING 2026<small>Marketing × PRU</small></div>
+  <div class="s tv" style="grid-column:2/3"><span class="w">Booth + sponsor</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Production</span><span class="d">print 29 Aug</span></div>
+  <div class="s gws" style="grid-column:4/5"><span class="w">BEING 2026</span><span class="d">2 Sep</span></div>
+  <div class="s live" style="grid-column:5/12"><span class="w">Lead nurture into GWS</span></div>
+
+  <div class="sub">Activation 02</div>
+
+  <div class="cname">Art Exhibition<small>Marketing × arc.tribe</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s tv" style="grid-column:4/5"><span class="w">Brief issued</span><span class="d">15 Sep</span></div>
+  <div class="s tv" style="grid-column:5/7"><span class="w">Curation + sourcing</span></div>
+  <div class="s tv" style="grid-column:7/8"><span class="w">Install on site</span><span class="d">30 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Seen on tours</span></div>
+  <div class="s live" style="grid-column:9/12"><span class="w">Rotating programme</span></div>
+
+  <div class="sub">Activation 03</div>
+
+  <div class="cname">PRU Farm Festival<small>Marketing × PRU</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s tv" style="grid-column:4/6"><span class="w">Scope + sponsorship</span><span class="d">30 Sep</span></div>
+  <div class="s tv" style="grid-column:6/8"><span class="w">Preparation + budget</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Festival</span><span class="d">1 Nov</span></div>
+  <div class="s live" style="grid-column:9/12"><span class="w">Wrap + relationship</span></div>
+
+  <div class="sub">Activation 04</div>
+
+  <div class="cname">GWS Tour<small>Marketing × CLP × Trisara</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">GWS contract</span><span class="d">15 Aug</span></div>
+  <div class="s tv" style="grid-column:3/5"><span class="w">Route + content plan</span></div>
+  <div class="s tv" style="grid-column:5/7"><span class="w">Build both venues</span><span class="d">CGIs + masterplan</span></div>
+  <div class="s tv" style="grid-column:7/8"><span class="w">Rehearsal</span><span class="d">30 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">CLP + Community</span><span class="d">9 + 14 Nov</span></div>
+  <div class="s live" style="grid-column:9/12"><span class="w">Lead conversion</span></div>
+
+  <div class="sub">Activation 05</div>
+
+  <div class="cname">GWS Dinner<small>Marketing × Jampa</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s crit" style="grid-column:4/5"><span class="w">Guest list set</span><span class="d">15 Sep</span></div>
+  <div class="s tv" style="grid-column:5/6"><span class="w">Invitations out</span><span class="d">1 Oct</span></div>
+  <div class="s tv" style="grid-column:6/7"><span class="w">RSVP window</span><span class="d">to 25 Oct</span></div>
+  <div class="s tv" style="grid-column:7/8"><span class="w">Run of show</span><span class="d">1 Nov</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Farm dinner</span><span class="d">Wed 11 Nov</span></div>
+  <div class="s live" style="grid-column:9/12"><span class="w">Follow-up in 72 hrs</span></div>
+
+  <div class="sub">Activation 06</div>
+
+  <div class="cname">Weekly Local Roots<small>Marketing · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s tv" style="grid-column:4/7"><span class="w">Format, venue, vendors</span><span class="d">fixed 30 Sep</span></div>
+  <div class="s tv" style="grid-column:7/8"><span class="w">Soft launch one</span><span class="d">25 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Formal launch</span><span class="d">14 Nov</span></div>
+  <div class="s live" style="grid-column:9/12"><span class="w">Weekly through season</span></div>
+
+</div></div>
+
+<div class="key">
+  <span><i class="kc"></i>Zero slack</span>
+  <span><i class="kp"></i>PATAMA</span>
+  <span><i class="kt"></i>Tri Vananda</span>
+  <span><i class="ks"></i>Float</span>
+</div>
+
+</body>
+</html>
