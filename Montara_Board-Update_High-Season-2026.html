@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Montara · Board Update · What Will We Become</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f2ecdf; --paper:#f9f5ea; --ink:#241f15; --ink2:#4c4536;
+  --gold:#9c7a45; --gold-lt:#c9a76b; --sage:#75815c; --stone:#a3977f;
+  --terra:#a5603a; --ocean:#5c7360;
+  --line:rgba(36,31,21,.16); --line2:rgba(36,31,21,.08);
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+
+/* ── chrome ── */
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.42em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone);
+  justify-self:center;text-align:center;text-indent:.34em}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2);justify-self:end}
+.mh-folio b{color:var(--gold);font-weight:500}
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.nav-mid{display:flex;align-items:center;gap:18px;flex:1;justify-content:center;padding:0 26px}
+.prog{width:min(340px,40vw);height:2px;background:rgba(36,31,21,.14);cursor:pointer;position:relative}
+.prog-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;transition:width .4s ease}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone);white-space:nowrap}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.05fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:70px clamp(30px,4.6vw,68px) 78px;position:relative}
+.media{position:relative;background-size:cover;background-position:center;
+  filter:saturate(.97) contrast(1.03) brightness(1.02)}
+.media .cap{position:absolute;left:18px;bottom:16px;font-size:.56rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12)}
+
+/* reveal */
+.panel>*,.fw>*,.inkwrap>*{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*,.slide.active .fw>*,.slide.active .inkwrap>*{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1),.slide.active .fw>*:nth-child(1),.slide.active .inkwrap>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2),.slide.active .fw>*:nth-child(2),.slide.active .inkwrap>*:nth-child(2){transition-delay:.16s}
+.slide.active .panel>*:nth-child(3),.slide.active .fw>*:nth-child(3),.slide.active .inkwrap>*:nth-child(3){transition-delay:.24s}
+.slide.active .panel>*:nth-child(4),.slide.active .fw>*:nth-child(4),.slide.active .inkwrap>*:nth-child(4){transition-delay:.32s}
+.slide.active .panel>*:nth-child(5),.slide.active .fw>*:nth-child(5),.slide.active .inkwrap>*:nth-child(5){transition-delay:.40s}
+.slide.active .panel>*:nth-child(6),.slide.active .fw>*:nth-child(6),.slide.active .inkwrap>*:nth-child(6){transition-delay:.48s}
+.slide.active .panel>*:nth-child(7),.slide.active .fw>*:nth-child(7),.slide.active .inkwrap>*:nth-child(7){transition-delay:.56s}
+.slide.active .panel>*:nth-child(8),.slide.active .fw>*:nth-child(8){transition-delay:.62s}
+
+/* type */
+.kick{font-size:clamp(.78rem,min(1.05vw,1.62vh),1.2rem);font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:clamp(12px,1.9vh,22px)}
+.kick::before{width:34px}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold)}
+.num{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,7vw,5.4rem);color:rgba(158,146,130,.32);line-height:.8;margin-bottom:6px}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.02;letter-spacing:.005em;
+  font-size:clamp(2rem,4.4vw,3.5rem)}
+h1 em{font-style:italic}
+.hr{width:54px;height:1px;background:var(--gold);margin:24px 0}
+p.body{font-family:var(--sans);font-weight:300;font-size:clamp(.84rem,.98vw,.96rem);line-height:1.88;
+  color:var(--ink2);max-width:46ch}
+.pull{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.6vw,1.42rem);line-height:1.34;margin-top:20px;max-width:30ch}
+.svc-label{font-size:.68rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin:22px 0 10px}
+.svc{display:grid;grid-template-columns:1fr;gap:0;max-width:56ch}
+.svc.two{grid-template-columns:1fr 1fr;gap:0 30px}
+.svc li{list-style:none;display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:1px solid var(--line2);
+  font-size:.82rem;font-weight:400;color:var(--ink);letter-spacing:.01em;line-height:1.5}
+.svc li::before{content:"";width:5px;height:5px;background:var(--gold);flex:0 0 5px;transform:rotate(45deg);margin-top:6px}
+.measure{margin-top:14px;font-family:var(--sans);font-weight:300;font-size:.74rem;letter-spacing:.02em;color:var(--ink2);line-height:1.6;max-width:46ch;border-left:1px solid var(--gold);padding-left:14px}
+.measure b{font-weight:500;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;font-size:.6rem;display:block;margin-bottom:4px}
+.credit{font-size:.56rem;letter-spacing:.13em;color:var(--stone);margin-top:16px;max-width:56ch;line-height:1.65}
+
+/* cover */
+.cover .panel{justify-content:space-between;padding-top:96px;padding-bottom:96px}
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);line-height:1.7;max-width:34ch}
+.q-word{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:clamp(2.6rem,5.6vw,4.6rem);line-height:1.02}
+.cover .tag{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--sage);
+  font-size:clamp(1.1rem,1.9vw,1.5rem);margin-top:18px;max-width:28ch;line-height:1.3}
+.loc{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink2)}
+.chip{display:inline-block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra);padding:5px 11px;margin-top:14px}
+
+/* ink slides */
+.inkslide{height:100%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.inkwrap{text-align:center;padding:0 24px;max-width:920px}
+.inkwrap .kick{justify-content:center;color:var(--gold-lt)}
+.inkwrap .kick::before{background:var(--gold-lt)}
+.ink-q{font-family:var(--serif);font-weight:400;color:var(--cream);font-size:clamp(2.4rem,6vw,5rem);line-height:1.1}
+.ink-q em{font-style:italic}
+.ink-sub{font-family:var(--sans);font-weight:300;color:rgba(242,236,223,.62);font-size:clamp(.78rem,.95vw,.92rem);line-height:1.9;margin-top:28px;max-width:58ch;margin-left:auto;margin-right:auto}
+
+/* full-width */
+.fw{height:100%;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(34px,5vw,72px) 88px}
+.lead{font-family:var(--sans);font-weight:300;font-size:clamp(.84rem,.98vw,.96rem);line-height:1.88;color:var(--ink2);max-width:66ch}
+
+/* timeline */
+.tl{margin-top:30px}
+.tl-track{margin-bottom:18px}
+.tl-name{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tl-bar{padding:8px 12px;font-size:.66rem;letter-spacing:.05em;line-height:1.45;border:1px solid var(--line);color:var(--ink);background:var(--paper)}
+.tl-bar small{display:block;font-size:.56rem;color:var(--stone);letter-spacing:.04em;margin-top:2px}
+.tl-bar.gold{background:rgba(156,122,69,.14);border-color:rgba(156,122,69,.4)}
+.tl-bar.sage{background:rgba(117,129,92,.14);border-color:rgba(117,129,92,.4)}
+.tl-bar.terra{background:rgba(165,96,58,.14);border-color:rgba(165,96,58,.45)}
+.tl-bar.hot{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.tl-bar.hot small{color:rgba(242,236,223,.65)}
+.tl-axis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.tl-axis span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone)}
+
+/* cols */
+.cols{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.cols.c3{grid-template-columns:1fr 1fr 1fr}
+.cols.c4{grid-template-columns:repeat(4,1fr)}
+.cols>div{background:var(--paper);padding:24px 20px}
+.cols h3{font-family:var(--serif);font-weight:500;font-size:1.04rem;color:var(--ink);line-height:1.3;margin-bottom:9px}
+.cols p{font-size:.72rem;font-weight:300;line-height:1.7;color:var(--ink2)}
+.cols .tagk{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
+
+/* promises grid */
+.p8{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:26px}
+.p8>div{background:var(--paper);padding:18px 16px}
+.p8 .pn{font-size:.58rem;letter-spacing:.22em;color:var(--gold)}
+.p8 h4{font-family:var(--serif);font-weight:500;font-size:1.1rem;color:var(--ink);margin:6px 0 6px}
+.p8 p{font-size:.66rem;font-weight:300;line-height:1.6;color:var(--ink2)}
+.p8-side{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin:24px 0 8px}
+
+/* promises summary table */
+.ptab{width:100%;max-width:900px;border-collapse:collapse;margin-top:22px}
+.ptab td{padding:9px 16px;border-bottom:1px solid var(--line2);vertical-align:baseline}
+.ptab .pt-no{font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;color:var(--gold);white-space:nowrap;width:40px}
+.ptab .pt-nm{font-family:var(--serif);font-weight:500;font-size:1.06rem;color:var(--ink);white-space:nowrap;width:150px}
+.ptab .pt-pr{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.98rem;line-height:1.5;color:var(--sage)}
+.ptab .pt-grp td{padding:18px 16px 5px;border-bottom:1px solid var(--line)}
+.ptab .pt-grp .g-k{font-family:var(--sans);font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--stone)}
+.ptab .pt-grp .g-h{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1rem;color:var(--sage);margin-left:12px}
+.ptab .pt-grp .g-s{font-family:var(--sans);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);float:right}
+.ptab .pt-loop td{border-bottom:none}
+.ptab .pt-loop .pt-nm{color:var(--gold)}
+.ptab.compact{margin-top:14px}
+.ptab.compact td{padding:6px 10px}
+.ptab.compact .pt-no{width:34px;font-size:.58rem}
+.ptab.compact .pt-nm{font-size:.92rem;width:104px}
+.ptab.compact .pt-pr{font-size:.84rem;line-height:1.45}
+.ptab.compact .pt-grp td{padding:13px 10px 4px}
+.ptab.compact .pt-grp .g-h{font-size:.92rem}
+
+/* loop graphic */
+.loopslide{height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px clamp(28px,5vw,72px) 72px}
+.loopslide .loopimg{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.loopslide .loopimg img{max-width:100%;max-height:100%;object-fit:contain}
+
+/* route */
+.route{display:flex;align-items:stretch;gap:0;margin-top:22px;flex-wrap:wrap}
+.route .stop{flex:1;min-width:130px;border:1px solid var(--line);background:var(--paper);padding:14px 13px;position:relative}
+.route .stop+.stop{margin-left:-1px}
+.route .rn{font-size:.56rem;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.route h4{font-family:var(--serif);font-weight:500;font-size:.95rem;color:var(--ink);margin:5px 0 4px;line-height:1.25}
+.route p{font-size:.62rem;font-weight:300;line-height:1.55;color:var(--ink2)}
+
+/* web frame (live site showcase) */
+.webframe{display:flex;flex-direction:column;height:100%;background:var(--paper);border-left:1px solid var(--line);padding:54px 0 62px}
+.webframe .wf-bar{height:40px;flex:0 0 40px;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 16px}
+.webframe .wf-dot{width:9px;height:9px;border-radius:50%;background:rgba(36,31,21,.16)}
+.webframe .wf-url{flex:1;margin-left:10px;background:var(--cream);border:1px solid var(--line2);font-family:var(--sans);font-size:.6rem;letter-spacing:.08em;color:var(--ink2);padding:5px 13px;white-space:nowrap;overflow:hidden}
+.webframe iframe{flex:1;border:0;width:100%;height:100%;background:#fff}
+
+/* two-list layout for task slides */
+.tasks2{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:6px;max-width:110ch}
+@media(max-width:820px){
+  .split,.split.rev{grid-template-columns:1fr;grid-template-rows:34vh 1fr}
+  .split.rev .panel{order:2}.split.rev .media{order:1}
+  .panel{padding:22px 26px 90px;justify-content:flex-start;overflow-y:auto}
+  .cols.c3,.cols.c4,.p8{grid-template-columns:1fr 1fr}
+  .fw{overflow-y:auto;justify-content:flex-start;padding-top:70px}
+  .tasks2{grid-template-columns:1fr}
+}
+
+/* ── board-update additions ── */
+.btab{width:100%;border-collapse:collapse;margin-top:18px;font-family:var(--sans)}
+.btab th{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone);
+  font-weight:500;text-align:left;padding:0 14px 8px 0;border-bottom:1px solid var(--line)}
+.btab td{font-size:.72rem;font-weight:300;color:var(--ink2);padding:8px 14px 8px 0;
+  border-bottom:1px solid var(--line2);line-height:1.55;vertical-align:baseline}
+.btab td.it{font-weight:400;color:var(--ink)}
+.btab td.n{font-family:var(--sans);color:var(--gold);white-space:nowrap;font-weight:500}
+.btab tr.sum td{border-bottom:none;border-top:1px solid var(--line);padding-top:12px;
+  font-weight:500;color:var(--ink)}
+.btab.sm td{font-size:.66rem;padding:6px 12px 6px 0}
+.btab.sm th{font-size:.53rem;padding-bottom:6px}
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:8px}
+.stat{display:flex;gap:34px;flex-wrap:wrap;margin-top:26px}
+.stat div{border-left:1px solid var(--gold);padding-left:14px}
+.stat .sv{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,2.6vw,2.1rem);color:var(--ink);line-height:1}
+.stat .sl{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);margin-top:7px}
+.note{font-size:.58rem;letter-spacing:.1em;color:var(--stone);margin-top:16px;line-height:1.7;max-width:76ch}
+
+/* ── full-bleed hero ── */
+.hero{height:100%;background-size:cover;background-position:center;position:relative;
+  display:flex;align-items:center;justify-content:center;padding:0 clamp(28px,6vw,90px)}
+.hero::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,17,11,.62),rgba(20,17,11,.46) 45%,rgba(20,17,11,.72))}
+.hero-wrap{position:relative;z-index:2;text-align:center;max-width:980px;
+  opacity:0;transform:translateY(10px);transition:opacity .8s ease,transform .8s ease}
+.slide.active .hero-wrap{opacity:1;transform:none;transition-delay:.12s}
+.hero-wrap .kick{justify-content:center;color:var(--gold-lt)}
+.hero-wrap .kick::before{background:var(--gold-lt)}
+.hero-wrap .chip{color:var(--cream);border-color:rgba(242,236,223,.5);margin:0 0 26px}
+.hero-q{font-family:var(--serif);font-weight:400;color:var(--cream);
+  font-size:clamp(2.1rem,5.4vw,4.4rem);line-height:1.1;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero-q em{font-style:italic}
+.hero-mid{font-family:var(--serif);font-weight:400;font-style:italic;color:rgba(242,236,223,.9);
+  font-size:clamp(1.05rem,1.9vw,1.6rem);line-height:1.6;margin-top:30px}
+.hero-sub{font-family:var(--sans);font-weight:300;color:rgba(242,236,223,.82);
+  font-size:clamp(.72rem,.92vw,.88rem);letter-spacing:.06em;line-height:1.95;margin-top:26px}
+
+/* ── level 1 story headline · level 2 item names · level 3 detail ── */
+.panel h1{font-size:clamp(1.45rem,min(3.5vw,4.5vh),2.95rem);line-height:1.06}
+.why{font-family:var(--sans);font-weight:300;color:var(--ink2);
+  font-size:clamp(.68rem,min(.86vw,1.32vh),.84rem);line-height:1.8;max-width:48ch;margin-top:clamp(9px,1.5vh,16px)}
+.items{list-style:none;margin-top:clamp(6px,1.2vh,14px);max-width:52ch;
+  border-top:1px solid var(--line2)}
+.items li{padding:clamp(6px,1.05vh,10px) 0;border-bottom:1px solid var(--line2);
+  font-family:var(--serif);font-weight:500;color:var(--ink);
+  font-size:clamp(.86rem,min(1.28vw,1.9vh),1.14rem);line-height:1.26;
+  display:flex;align-items:baseline;gap:10px}
+.items li::before{content:"";width:5px;height:5px;background:var(--gold);
+  flex:0 0 5px;transform:rotate(45deg)}
+.media{overflow:hidden}
+.shot{position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;transition:opacity .7s ease;z-index:1}
+.shot.active{opacity:1;z-index:2}
+.shot::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(18,15,10,.74),rgba(18,15,10,.04) 58%)}
+.shot::after{background:linear-gradient(to bottom,rgba(18,15,10,.42),rgba(18,15,10,0) 34%)}
+.shot .cap{position:absolute;top:clamp(14px,1.8vw,22px);right:clamp(14px,1.8vw,22px);left:auto;bottom:auto;z-index:3;
+  font-family:var(--sans);font-weight:400;color:rgba(255,255,255,.92);line-height:1.3;text-align:right;
+  letter-spacing:.2em;text-transform:uppercase;font-size:.54rem;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+/* temp-logo mock on the Brand & Logo shot */
+.logomock{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:clamp(9px,1.2vw,15px);text-align:center;padding:0 9%}
+.mockflag{font-family:var(--sans);font-weight:400;font-size:.5rem;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.46);
+  padding:4px 11px 3px;background:rgba(18,15,10,.4)}
+.logomock .mockflag{margin-bottom:clamp(4px,.8vw,10px)}
+.logomock img{width:min(50%,300px);height:auto;opacity:.97;
+  filter:drop-shadow(0 2px 26px rgba(0,0,0,.85))}
+.logomock .mockrule{width:44px;height:1px;background:rgba(255,255,255,.42)}
+.logomock .mocknote{font-family:var(--sans);font-weight:400;font-size:.52rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.84);line-height:1.7;max-width:24em;
+  text-shadow:0 1px 12px rgba(0,0,0,.9)}
+/* product-name lockup on a shot */
+.shottitle{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:clamp(8px,1vw,13px);text-align:center;padding:0 9%}
+.shottitle .st-main{font-family:var(--serif);font-weight:300;font-size:clamp(1.15rem,2.1vw,1.65rem);
+  line-height:1.2;color:rgba(255,255,255,.97);text-shadow:0 2px 20px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.7)}
+.shottitle .st-rule{width:38px;height:1px;background:rgba(255,255,255,.5)}
+/* heavier halo for a lockup sitting on a busy, mid-tone image */
+.shottitle.onbusy .st-main{text-shadow:0 0 3px rgba(0,0,0,.95),0 0 9px rgba(0,0,0,.92),
+  0 1px 3px rgba(0,0,0,1),0 2px 26px rgba(0,0,0,.95)}
+.shottitle.onbusy .st-sub{color:#fff;text-shadow:0 0 3px rgba(0,0,0,.98),0 0 8px rgba(0,0,0,.95),
+  0 1px 3px rgba(0,0,0,1),0 1px 18px rgba(0,0,0,.95)}
+.shottitle.onbusy .st-rule{background:rgba(255,255,255,.75)}
+/* agency + reference-project caption on a credentials shot */
+.doccap{position:absolute;top:clamp(64px,7.6vh,80px);left:clamp(22px,2.6vw,34px);z-index:3;
+  display:flex;flex-direction:column;gap:7px;align-items:flex-start;text-align:left}
+.doccap .dc-agency{font-family:var(--serif);font-weight:500;font-size:clamp(1rem,1.5vw,1.3rem);
+  line-height:1;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8),0 2px 16px rgba(0,0,0,.75)}
+.doccap .dc-rule{width:34px;height:1px;background:rgba(255,255,255,.55)}
+.doccap .dc-proj{font-family:var(--sans);font-weight:400;font-size:.5rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.88);line-height:1.5;
+  text-shadow:0 1px 3px rgba(0,0,0,.9),0 1px 12px rgba(0,0,0,.85)}
+.doccap.onlight .dc-agency{color:var(--ink);text-shadow:0 1px 6px rgba(249,245,234,.85)}
+.doccap.onlight .dc-rule{background:rgba(36,31,21,.5)}
+.doccap.onlight .dc-proj{color:var(--ink2);text-shadow:0 1px 6px rgba(249,245,234,.9)}
+/* sample remark anchored to the foot of a shot */
+.samplemark{position:absolute;top:clamp(70px,8vh,86px);left:clamp(18px,2.4vw,32px);right:auto;z-index:3;
+  display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-align:left;max-width:62%}
+.samplemark .sm-note{font-family:var(--sans);font-weight:400;font-size:.52rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.88);line-height:1.7;max-width:26em;
+  text-shadow:0 1px 3px rgba(0,0,0,.95),0 1px 14px rgba(0,0,0,.9)}
+/* foot placement, and a dark-ink variant for pale images */
+.samplemark.foot{top:auto;bottom:clamp(78px,11vh,104px)}
+.samplemark.onlight .mockflag{color:var(--ink);border-color:rgba(36,31,21,.42);
+  background:rgba(249,245,234,.55);text-shadow:none}
+.samplemark.onlight .sm-note{color:var(--ink2);text-shadow:0 1px 6px rgba(249,245,234,.9)}
+.shottitle .st-sub{font-family:var(--sans);font-weight:400;font-size:.56rem;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 14px rgba(0,0,0,.95)}
+.items li.on{color:var(--ink)}
+.items li{color:rgba(76,69,54,.5);transition:color .4s ease}
+.items li.on::before{background:var(--gold);transform:rotate(45deg) scale(1.25)}
+.items li::before{background:rgba(156,122,69,.35);transition:.4s ease}
+.dots{display:flex;gap:6px;align-items:center}
+.dots i{width:5px;height:5px;border-radius:50%;background:rgba(36,31,21,.2);transition:.3s ease}
+.dots i.on{background:var(--gold);transform:scale(1.35)}
+.now{margin-top:clamp(10px,1.8vh,20px);border-left:1px solid var(--gold);padding-left:14px;max-width:52ch}
+.now b{display:block;font-family:var(--sans);font-weight:500;font-size:.52rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.now p{font-family:var(--sans);font-weight:300;font-size:clamp(.62rem,min(.74vw,1.14vh),.72rem);
+  line-height:1.74;color:var(--ink2)}
+</style></head>
+<body>
+<div class="deck">
+
+<div class="masthead">
+  <div class="mark">MONTARA</div>
+  <div class="mh-sec" id="mhSec">Cover</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioTot">00</span></div>
+</div>
+
+<!-- 01 COVER -->
+<section class="slide active" data-sec="Board Update">
+  <div class="hero" style="background-image:url('images/Key Visual - Entire Project 02 (1).jpg')">
+    <div class="hero-wrap">
+      <div class="chip">Internal · Board update</div>
+      <div class="hero-q">What will <em>we</em> become?</div>
+      <div class="hero-sub">PATAMA · Montara at the Global Wellness Summit · Tri Vananda Residences</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 THE FRAME -->
+<section class="slide" data-sec="The Frame">
+  <div class="hero" style="background-image:url('images/tv-08-home.jpg')">
+    <div class="hero-wrap">
+      <div class="hero-mid" style="margin-top:0;margin-bottom:26px">Three key things.</div>
+      <div class="hero-q" style="font-size:clamp(1.6rem,3.5vw,2.9rem);line-height:1.28">Launch PATAMA.<br>Take the Group to the Summit.<br>Create demand for a residence.</div>
+      <div class="hero-sub" style="letter-spacing:.3em;text-transform:uppercase;margin-top:34px">High Season 2026 – 2027</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 THE BRAND -->
+<section class="slide" data-sec="The Brand">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">PATAMA · Branding</div>
+      <h1>A story only <em>this</em> family can tell.</h1>
+      <p class="why">The weaving idea is still being developed, but it is not ours alone yet — change the name and the same story would still work. So we go back to the real decisions the family made, and what they gave up to make them, and build the brand on a belief no one else can copy.</p>
+      <div class="hr"></div>
+      <ul class="items">
+        <li>Brand &amp; Logo</li>
+        <li>Guidelines</li>
+        <li>Coffee Table Book Template</li>
+      </ul>
+      <div class="now"><b>Where we are &amp; what happens next</b><p>We are gathering the evidence now: filmed conversations with the family, then interviews across the company about the decisions that built Montara. A workshop turns that evidence into one clear belief. Design starts only after that — the identity first, then the guidelines that make it usable, and the book last, because the book needs a finished brand.</p></div>
+    </div>
+    <div class="media">
+      <div class="shot active" style="background-image:url('images/01 Brand &amp; Logo.jpg')"><span class="cap">Brand &amp; Logo</span>
+        <div class="logomock">
+          <span class="mockflag">Sample</span>
+          <img src="images/PATAMA_wordmark_white.png" alt="PATAMA">
+          <span class="mockrule"></span>
+          <span class="mocknote">Temporary wordmark · indicative placement, not the final identity</span>
+        </div>
+      </div>
+      <div class="shot" style="background-image:url('images/02 Guidelines.png')"><span class="cap">Guidelines</span>
+        <div class="shottitle onbusy">
+          <span class="st-sub">Sample works from the creative agency</span>
+          <span class="st-rule"></span>
+          <span class="st-main">SRA Studio</span>
+        </div>
+      </div>
+      <div class="shot" style="background-image:url('images/03 Coffee Table Book Template.webp')"><span class="cap">Coffee Table Book Template</span>
+        <div class="samplemark onlight foot">
+          <span class="mockflag">Sample</span>
+          <span class="sm-note">Reference format only · not the PATAMA book</span>
+        </div>
+      </div>
+    </div></div>
+</section>
+
+<!-- 04 THE PRODUCT -->
+<section class="slide" data-sec="The Product">
+  <div class="split rev">
+    <div class="media">
+      <div class="shot active" style="background-image:url('images/04 PATAMA Family Journey.jpg')"><span class="cap">PATAMA Family Journey</span>
+        <div class="shottitle">
+          <span class="st-main">PATAMA Family Journey</span>
+          <span class="st-rule"></span>
+          <span class="st-sub">Living Well Together</span>
+        </div>
+      </div>
+      <div class="shot" style="background-image:url('images/05 PATAMA Website.png');background-position:top center"><span class="cap">PATAMA Website</span>
+        <div class="samplemark">
+          <span class="mockflag">Sample</span>
+          <span class="sm-note">Reference direction only · not the PATAMA site</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="kick">PATAMA · Marketing Collateral</div>
+      <h1>One product for <em>families</em>.</h1>
+      <p class="why">We are not waiting for PATAMA to be perfect before we sell it. One paid product, sold and measured honestly, will tell us whether PATAMA creates value we would not have had anyway.</p>
+      <div class="hr"></div>
+      <ul class="items">
+        <li>PATAMA Family Journey — Living Well Together</li>
+        <li>PATAMA Website</li>
+      </ul>
+      <div class="now"><b>Where we are &amp; what happens next</b><p>We are writing the journey now — what a family actually does during a stay, and what it is worth. The brochure follows the content, and the website follows the brochure. We start with families we already know, and spend on reaching new people later.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 FOUR BRANDS -->
+
+
+<!-- 06 FOUR THINGS WITH GWS -->
+<section class="slide" data-sec="Four Areas of Collaboration">
+  <div class="split rev">
+    <div class="media">
+      <div class="shot active" style="background-image:url('images/06 Brand awareness of the Montara Group.jpg');background-position:top center"><span class="cap">Brand awareness of the Montara Group</span></div>
+      <div class="shot" style="background-image:url('images/07 A hosted farm-to-table dinner at Tri Vananda.jpg')"><span class="cap">A hosted farm-to-table dinner</span></div>
+      <div class="shot" style="background-image:url('images/08 Montara experiences within official GWS tours.jpg')"><span class="cap">Montara experiences within GWS tours</span></div>
+      <div class="shot" style="background-image:url('images/09 Leadership participation &amp; narrative positioning.webp')"><span class="cap">Leadership participation</span></div>
+    </div>
+    <div class="panel">
+      <div class="kick">Montara × Global Wellness Summit</div>
+      <h1>Four things we do with the <em>Summit</em>.</h1>
+      <p class="why">The Summit turns twenty this year, and it comes to our island. Its theme — the Science, Art and Soul of wellness — matches our own story. We proposed a package built together with the Summit, so each part of the theme is answered by one of our properties.</p>
+      <div class="hr"></div>
+      <ul class="items">
+        <li>Brand awareness of the Montara Group</li>
+        <li>A hosted farm-to-table dinner at Tri Vananda</li>
+        <li>Montara experiences within official GWS tours</li>
+        <li>Leadership participation &amp; narrative positioning</li>
+      </ul>
+      <div class="now"><b>Where we are &amp; what happens next</b><p>The four areas are agreed in principle, and the tour route is agreed between Tri Vananda, Clinique La Prairie and Trisara. Invitations come next: a guest list for each dinner, then the final programme with the organiser. Everything on the estate has to be finished before the first guest arrives.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PR AFTER GWS -->
+<section class="slide" data-sec="PR &amp; Communications">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Tri Vananda · PR &amp; Communications</div>
+      <h1>One story.<br>Two <em>markets</em>.</h1>
+      <p class="why">The Summit gives us one moment. The agencies make it last. One tells the residence story abroad, to buyers who have never set foot in Phuket. The other builds our name at home, where the project is judged first. Coverage runs before the Summit, during it, and long after — so trust builds instead of spiking once and fading.</p>
+      <div class="hr"></div>
+      <ul class="items">
+        <li>PR Agency · US · BPCM</li>
+        <li>PR Agency · TH · Vivaldi</li>
+      </ul>
+      <div class="now"><b>Where we are &amp; what happens next</b><p>The US agreement is in final review, and the Thai agency has sent its proposal. We expect to appoint both this month. Briefing starts straight away, so the plan is agreed and coverage has already begun when the Summit opens.</p></div>
+    </div>
+    <div class="media">
+      <div class="shot active" style="background-image:url('images/10 PR Agency US BPCM.png')"><span class="cap">PR Agency · US</span>
+        <div class="doccap onlight">
+          <span class="dc-agency">BPCM</span>
+          <span class="dc-rule"></span>
+          <span class="dc-proj">Reference project · Lanserhof Sylt</span>
+        </div>
+      </div>
+      <div class="shot" style="background-image:url('images/11 PR Agency TH Vivaldi.png')"><span class="cap">PR Agency · TH</span>
+        <div class="doccap">
+          <span class="dc-agency">Vivaldi</span>
+          <span class="dc-rule"></span>
+          <span class="dc-proj">Reference project · Upper House Residences, Bangkok</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 THE RESIDENCE -->
+<section class="slide" data-sec="The Residence">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Tri Vananda · Marketing Activities</div>
+      <h1>The residence is the <em>point</em>.</h1>
+      <p class="why">A villa here never stands alone. It comes with all of Tri Vananda &mdash; PATAMA, Clinique La Prairie, Jampa. That is what our marketing shows, and that is what sells the villa.</p>
+      <div class="hr"></div>
+      <ul class="items">
+        <li>PATAMA Residence CGIs</li>
+        <li>Quarterly Newsletter</li>
+        <li>Always-On Digital Marketing</li>
+      </ul>
+      <div class="now"><b>Where we are &amp; what happens next</b><p>A first set of images is going for approval, then into final production, ready for conversations during the Summit. The newsletter is being written and will bring the first PATAMA residence and Clinique La Prairie stories to the people we already know. Always-on digital keeps the story going in between, and sends every enquiry into one pipeline.</p></div>
+    </div>
+    <div class="media">
+      <div class="shot active" style="background-image:url('images/12 PATAMA Residence CGIs.png')"><span class="cap">PATAMA Residence CGIs</span></div>
+      <div class="shot" style="background-image:url('images/13 Quarterly Newsletter.jpg');background-position:top center"><span class="cap">Quarterly Newsletter</span></div>
+      <div class="shot" style="background-image:url('images/14 Always-On Digital Marketing.PNG');background-position:center 5%"><span class="cap">Always-On Digital Marketing</span></div>
+    </div></div>
+</section>
+
+<!-- 10 ALREADY ALIVE -->
+<section class="slide" data-sec="A Place Already Alive">
+  <div class="split rev">
+    <div class="media">
+      <div class="shot active" style="background-image:url('images/14 PRU Farm Festival.jpg')"><span class="cap">PRU Farm Festival</span></div>
+      <div class="shot" style="background-image:url('images/Clinique La Prairie.jpg')"><span class="cap">Clinique La Prairie Phuket Opening</span></div>
+      <div class="shot" style="background-image:url('images/16 Bi-Weekly Local Roots.jpg')"><span class="cap">Bi-Weekly Local Roots</span></div>
+    </div>
+    <div class="panel">
+      <div class="kick">What&rsquo;s Happening at Tri Vananda</div>
+      <h1>A place already <em>alive</em>.</h1>
+      <p class="why">The most convincing thing a buyer can see is ordinary life happening. Each gathering leads to the next, and viewings happen inside a real community, not beside it.</p>
+      <div class="hr"></div>
+      <ul class="items">
+        <li>PRU Farm Festival</li>
+        <li>Clinique La Prairie Phuket Opening at Tri Vananda</li>
+        <li>Bi-Weekly Local Roots</li>
+      </ul>
+      <div class="now"><b>Where we are &amp; what happens next</b><p>The farm festival brings people onto the land and turns interest into a first visit. Bi-Weekly Local Roots then becomes the standing invitation that keeps the estate busy — and visible — through the high season.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 CLOSE -->
+<section class="slide" data-sec="Close">
+  <div class="hero" style="background-image:url('images/tv-06-belonging.jpg')">
+    <div class="hero-wrap">
+      <div class="hero-mid" style="margin-top:0;margin-bottom:26px">What this season delivers</div>
+      <div class="hero-q" style="font-size:clamp(1.6rem,3.5vw,2.9rem);line-height:1.28">A brand that is <em>owned</em>.<br>A group that is <em>known</em>.<br>A residence that is <em>wanted</em>.</div>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">←</button>
+  <div class="nav-mid">
+    <div class="prog" id="prog"><div class="prog-fill" id="progFill"></div></div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px">
+    <span class="hint">← → to navigate</span>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+</div>
+
+</div>
+<script>(function(){
+ var slides=[].slice.call(document.querySelectorAll('.slide'));
+ var steps=[];
+ slides.forEach(function(sl,si){
+   var shots=[].slice.call(sl.querySelectorAll('.shot'));
+   if(shots.length){shots.forEach(function(_,k){steps.push([si,k])})}else{steps.push([si,0])}
+ });
+ var i=0,n=steps.length;
+ var prev=document.getElementById('prev'),next=document.getElementById('next');
+ var fill=document.getElementById('progFill'),prog=document.getElementById('prog'),sec=document.getElementById('mhSec');
+ var fNow=document.getElementById('folioNow'),fTot=document.getElementById('folioTot'),dots=document.getElementById('dots');
+ fTot.textContent=('0'+slides.length).slice(-2);
+ prog.onclick=function(e){var r=prog.getBoundingClientRect();go(Math.round((e.clientX-r.left)/r.width*(n-1)))};
+ function go(k){
+   k=Math.max(0,Math.min(n-1,k));i=k;
+   var si=steps[i][0],sk=steps[i][1];
+   slides.forEach(function(sl,x){sl.classList.toggle('active',x===si)});
+   var shots=[].slice.call(slides[si].querySelectorAll('.shot'));
+   shots.forEach(function(sh,x){sh.classList.toggle('active',x===sk)});
+   fill.style.width=(n>1?(i/(n-1))*100:100)+'%';
+   sec.innerHTML=slides[si].getAttribute('data-sec');
+   fNow.textContent=('0'+(si+1)).slice(-2);
+   var lis=[].slice.call(slides[si].querySelectorAll('.items li'));
+   lis.forEach(function(li,x){li.classList.toggle('on',lis.length!==shots.length||x===sk)});
+   dots.innerHTML=shots.length>1?shots.map(function(_,x){return '<i class="'+(x===sk?'on':'')+'"></i>'}).join(''):'';
+   prev.disabled=(i===0);next.disabled=(i===n-1);
+ }
+ prev.onclick=function(){go(i-1)};next.onclick=function(){go(i+1)};
+ document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){go(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(i-1)}else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(n-1)}});
+ var x0=null;document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+ document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?go(i+1):go(i-1)}x0=null},{passive:true});
+ go(0);})();</script>
+</body></html>

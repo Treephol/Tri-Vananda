@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATAMA · Critical Path · Aug 2026 – Feb 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--cream:#f4efe5;--white:#faf8f4;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --sage:#8fa584;--sage-lt:#aec2a2;
+  --rust:#c97a54;--rust-lt:#e09772;
+  --line:rgba(184,148,88,.2);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--ink);color:var(--cream);min-height:100vh;
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;padding:14px 22px 14px}
+
+header{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  padding-bottom:10px;border-bottom:1px solid var(--gold)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.25rem,2.6vh,1.75rem);line-height:1;color:var(--white)}
+h1 .it{font-style:italic;color:var(--gold-lt)}
+.hmeta{font-size:clamp(9px,1.3vh,11px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,229,.72);text-align:right;line-height:1.7}
+.hmeta b{color:var(--gold-lt);font-weight:400}
+
+.tl{flex:1 1 auto;min-height:0;padding-top:8px;overflow-x:auto}
+.grid{--rh:minmax(44px,1fr);min-height:100%;display:grid;
+  grid-template-columns:196px repeat(14,minmax(58px,1fr)) 232px 122px;
+  grid-template-rows:auto auto 4px
+    auto auto repeat(2,minmax(46px,auto)) repeat(2,var(--rh))
+    auto repeat(2,var(--rh));
+  gap:3px;align-items:stretch}
+
+.mhd,.hd,.crn{position:sticky;z-index:5;background:var(--ink)}
+.crn{top:0}
+.mhd{top:0;padding:5px 2px;font-size:clamp(9px,1.35vh,11px);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt);text-align:center;
+  background-color:#141a20;display:flex;align-items:center;justify-content:center}
+.hd{top:28px;padding:5px 2px;font-size:clamp(8.5px,1.25vh,10px);letter-spacing:.07em;text-transform:uppercase;color:rgba(244,239,229,.7);text-align:center;display:flex;align-items:center;justify-content:center}
+.hd.gws{color:#14100a;background:rgba(212,176,122,.92);font-weight:500}
+.mhd.yr b{font-weight:300;color:rgba(244,239,229,.55)}
+.mhd.wiphd{color:rgba(244,239,229,.55);background-color:var(--ink);letter-spacing:.14em;flex-direction:column;line-height:1.4}
+
+.rule{grid-column:1/18;background:var(--line);align-self:center;height:1px}
+.lane{grid-column:1/18;font-size:clamp(9px,1.45vh,11.5px);letter-spacing:.24em;text-transform:uppercase;
+  display:flex;align-items:flex-end;padding:14px 0 4px;border-bottom:1px solid var(--line)}
+.lane.pa{color:var(--sage-lt)}
+.lane.tv{color:var(--gold-lt)}
+.sub{grid-column:1/18;font-size:clamp(8px,1.1vh,9.5px);letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(244,239,229,.58);display:flex;align-items:flex-end;padding:10px 0 2px}
+
+.cname{grid-column:1/2;padding-right:11px;text-align:right;font-size:clamp(10px,1.45vh,12.5px);line-height:1.25;color:var(--white);
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.cname small{font-size:clamp(8px,1.1vh,9.5px);letter-spacing:.05em;text-transform:uppercase;color:rgba(244,239,229,.62);margin-top:3px}
+.cname.crit{color:var(--rust-lt)}
+.cname.crit small{color:var(--rust)}
+
+.s{padding:5px 8px;border-radius:2px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.s .w{font-size:clamp(10px,1.4vh,12.5px);line-height:1.2;color:var(--white);display:block}
+.s .d{font-size:clamp(8px,1.1vh,10px);letter-spacing:.04em;text-transform:uppercase;margin-top:3px;color:rgba(244,239,229,.72);line-height:1.2}
+.s .w em{font-style:normal;color:rgba(244,239,229,.62)}
+
+
+.prog{grid-column:16/17;padding:5px 10px;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  border-left:1px solid var(--line)}
+.prog .pb{position:relative;padding-left:12px;margin-bottom:6px;color:rgba(244,239,229,.82);
+  font-size:clamp(10px,1.4vh,12.5px);line-height:1.25}
+.prog .pb:last-child{margin-bottom:0}
+.prog .pb em{font-style:normal;color:rgba(244,239,229,.55)}
+.prog .pb::before{content:"";position:absolute;left:0;top:.5em;width:5px;height:1px;background:var(--gold-lt)}
+
+.wip{grid-column:17/18;display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:3px;padding-left:4px}
+.wip a{font-size:clamp(8px,1.1vh,9.5px);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;text-align:center;
+  color:rgba(244,239,229,.34);border:1px dashed rgba(244,239,229,.18);border-radius:2px;padding:4px 6px;transition:.18s ease}
+.wip a:hover{color:var(--gold-lt);border-color:var(--gold-lt);border-style:solid}
+.wip a.set{color:var(--gold-lt);border-style:solid;border-color:rgba(184,148,88,.5);background:rgba(184,148,88,.12)}
+.s.tv{background:rgba(184,148,88,.17);border-left:2px solid rgba(184,148,88,.6)}
+.s.pa{background:rgba(143,165,132,.17);border-left:2px solid rgba(143,165,132,.6)}
+.s.crit{background:rgba(201,122,84,.26);border-left:2px solid var(--rust)}
+.s.crit .d{color:var(--rust-lt)}
+.s.para{background:rgba(143,165,132,.1);border-left:2px dashed rgba(143,165,132,.75)}
+.s.para .w{color:rgba(244,239,229,.9)}
+.s.para .tag{font-size:clamp(7px,.95vh,8.4px);letter-spacing:.2em;text-transform:uppercase;color:var(--sage-lt);margin-right:7px}
+.s.slack{background:transparent;border:1px dashed rgba(244,239,229,.2)}
+.s.slack .w{color:rgba(244,239,229,.42)}
+.s.gws{background:linear-gradient(135deg,rgba(184,148,88,.82),rgba(212,176,122,.82));border-left:2px solid var(--gold-lt)}
+.s.gws .w{color:#14100a;font-weight:400}
+.s.gws .d{color:rgba(20,16,10,.72)}
+.s.gwsP{background:linear-gradient(135deg,rgba(143,165,132,.8),rgba(174,194,162,.8));border-left:2px solid var(--sage-lt)}
+.s.gwsP .w{color:#12160f;font-weight:400}
+.s.gwsP .d{color:rgba(18,22,15,.72)}
+.s.out{background:rgba(212,176,122,.16);border:1px solid rgba(212,176,122,.5);border-left:2px solid var(--gold-lt)}
+.s.out .w{color:var(--gold-lt)}
+.s.out .d{color:rgba(212,176,122,.72)}
+.s.live{background:rgba(244,239,229,.06);border-left:2px solid rgba(244,239,229,.2)}
+.s.live .w{color:rgba(244,239,229,.7)}
+
+.key{flex:0 0 auto;display:flex;gap:22px;flex-wrap:wrap;margin-top:12px;padding-top:9px;border-top:1px solid var(--line);
+  font-size:clamp(8.5px,1.2vh,10.5px);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,239,229,.7)}
+.key i{display:inline-block;width:10px;height:10px;margin-right:7px;vertical-align:-1px;font-style:normal}
+.kt{background:rgba(184,148,88,.55)}.kp{background:rgba(143,165,132,.55)}
+.kc{background:rgba(201,122,84,.75)}.ks{border:1px dashed rgba(244,239,229,.4)}
+.ko{background:rgba(212,176,122,.22);border:1px solid rgba(212,176,122,.7)}
+.kg{background:linear-gradient(135deg,rgba(184,148,88,.85),rgba(212,176,122,.85))}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PATAMA · critical <span class="it">path</span> · Aug 2026 — Feb 2027</h1>
+  <div class="hmeta">Internal · Branding × SRA Studio · Summit <b>10–13 Nov</b> · logo out <b>1 Nov</b></div>
+</header>
+
+<div class="tl"><div class="grid">
+
+  <div class="crn"></div>
+  <div class="mhd" style="grid-column:2/4">August</div>
+  <div class="mhd" style="grid-column:4/6">September</div>
+  <div class="mhd" style="grid-column:6/8">October</div>
+  <div class="mhd" style="grid-column:8/10">November</div>
+  <div class="mhd" style="grid-column:10/12">December</div>
+  <div class="mhd yr" style="grid-column:12/14">January <b>’27</b></div>
+  <div class="mhd yr" style="grid-column:14/16">February <b>’27</b></div>
+  <div class="mhd wiphd" style="grid-column:16/17;grid-row:1/3">Progress<br>update</div>
+  <div class="mhd wiphd" style="grid-column:17/18;grid-row:1/3">WIP<br>files</div>
+
+  <div class="crn" style="top:28px"></div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–30</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd gws">GWS 1–15</div><div class="hd">16–30</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–28</div>
+
+  <div class="rule"></div>
+  <div class="lane pa">PATAMA</div>
+
+  <div class="sub">Branding</div>
+
+  <div class="cname" style="grid-row:6/8">Brand &amp; Logo<small>Phase 1 · Branding × SRA Studio</small></div>
+  <div class="s pa" style="grid-column:3/4;grid-row:6/8"><span class="w">Briefing <em>(gather the evidence)</em></span><span class="d">W1 · 24–28 Aug</span></div>
+  <div class="s pa" style="grid-column:4/5;grid-row:6/8"><span class="w">Summarize brand direction <em>(distil the hypotheses)</em></span><span class="d">W2 · 31 Aug – 4 Sep</span></div>
+  <div class="s pa" style="grid-column:5/8;grid-row:6"><span class="w">Design <em>(translate and validate)</em></span><span class="d">W3–10 · 7 Sep – 30 Oct</span></div>
+  <div class="s out" style="grid-column:8/9;grid-row:6/8"><span class="w">Logo out</span><span class="d">1 Nov</span></div>
+  <div class="s live" style="grid-column:9/12;grid-row:6/8"><span class="w">Rollout across touchpoints</span></div>
+  <div class="s para" style="grid-column:5/8;grid-row:7"><span class="w">Redefine brand messages <em>(prepare GWS and finalise the brand)</em></span><span class="d"><span class="tag">In parallel</span>W3–10 · 7 Sep – 30 Oct</span></div>
+  <div class="prog" style="grid-row:6/8">
+    <div class="pb">Create interview sessions with Khun Narong, Khun Poonsri and Khun Kitt to gather the evidence</div>
+    <div class="pb">Gather more evidence across the company</div>
+    <div class="pb">After that we will host the summarize workshop to distil the hypotheses</div>
+  </div>
+  <div class="wip" style="grid-row:6/8"><a class="set" href="https://drive.google.com/drive/folders/1S7i_v2qvRiAlBNPlfYQLaZDyhzZx4T6L?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">Guidelines<small>Phase 2 · brand graphic system</small></div>
+  <div class="s slack" style="grid-column:2/8"><span class="w">float · follows the identity</span></div>
+  <div class="s pa" style="grid-column:8/9"><span class="w">Graphic elements</span><span class="d">9 – 13 Nov</span></div>
+  <div class="s pa" style="grid-column:9/10"><span class="w">Preview 1–2 + feedback</span><span class="d">16 – 30 Nov</span></div>
+  <div class="s pa" style="grid-column:10/11"><span class="w">Develop + preview 3</span><span class="d">1 – 11 Dec</span></div>
+  <div class="s out" style="grid-column:11/12"><span class="w">Final round + delivery</span><span class="d">22 Dec</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="cname">Coffee Table Book Template<small>Phase 3 · Branding × SRA Studio</small></div>
+  <div class="s slack" style="grid-column:2/11"><span class="w">float · awaiting the graphic system</span></div>
+  <div class="s pa" style="grid-column:11/12"><span class="w">Layout starts</span><span class="d">23 – 31 Dec</span></div>
+  <div class="s pa" style="grid-column:12/13"><span class="w">Layout pp. 1–20 + preview 1</span><span class="d">1 – 14 Jan</span></div>
+  <div class="s pa" style="grid-column:13/15"><span class="w">Develop + previews 2–3 + feedback</span><span class="d">15 Jan – 11 Feb</span></div>
+  <div class="s out" style="grid-column:15/16"><span class="w">Final delivery</span><span class="d">19 Feb</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="sub">Marketing Collateral</div>
+
+  <div class="cname">PATAMA Family Journey · Living Well Together<small>Package brochure · Marketing × Sales × David</small></div>
+  <div class="s pa" style="grid-column:2/5"><span class="w">Content</span><span class="d">1 Aug – 15 Sep</span></div>
+  <div class="s pa" style="grid-column:5/6"><span class="w">Design</span><span class="d">16 – 30 Sep</span></div>
+  <div class="s out" style="grid-column:6/7"><span class="w">Digital version out</span><span class="d">15 Oct</span></div>
+  <div class="s out" style="grid-column:7/8"><span class="w">Print version out</span><span class="d">31 Oct</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="cname">PATAMA Website<small>Marketing · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s pa" style="grid-column:4/6"><span class="w">Content</span><span class="d">1 – 30 Sep</span></div>
+  <div class="s pa" style="grid-column:6/7"><span class="w">Website design</span><span class="d">1 – 15 Oct</span></div>
+  <div class="s out" style="grid-column:7/8"><span class="w">Website out</span><span class="d">31 Oct</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+</div></div>
+
+<div class="key">
+  <span><i class="kc"></i>Zero slack</span>
+  <span><i class="ko"></i>Deliverable out</span>
+  <span><i class="kg"></i>Summit</span>
+  <span><i class="kp"></i>PATAMA</span>
+  <span><i class="ks"></i>Float</span>
+</div>
+
+</body>
+</html>

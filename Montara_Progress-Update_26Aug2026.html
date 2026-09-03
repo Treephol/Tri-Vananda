@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Montara · Progress Update · 26 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f2ecdf; --paper:#f9f5ea; --ink:#241f15; --ink2:#4c4536;
+  --gold:#9c7a45; --gold-lt:#c9a76b; --sage:#75815c; --stone:#a3977f;
+  --terra:#a5603a; --ocean:#5c7360;
+  --line:rgba(36,31,21,.16); --line2:rgba(36,31,21,.08);
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--sans);overflow:hidden}
+.deck{position:fixed;inset:0;background:var(--cream)}
+
+/* ── chrome ── */
+.masthead{position:fixed;top:0;left:0;right:0;height:54px;z-index:40;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 clamp(20px,3.4vw,52px);border-bottom:1px solid var(--line);
+  background:linear-gradient(var(--cream),rgba(244,239,229,.86));backdrop-filter:blur(2px)}
+.mark{font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.42em;color:var(--ink)}
+.mh-sec{font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--stone);
+  justify-self:center;text-align:center;text-indent:.34em}
+.mh-folio{font-family:var(--sans);font-weight:400;font-size:.62rem;letter-spacing:.22em;color:var(--ink2);justify-self:end}
+.mh-folio b{color:var(--gold);font-weight:500}
+.nav{position:fixed;bottom:0;left:0;right:0;height:62px;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3.4vw,52px);border-top:1px solid var(--line);
+  background:linear-gradient(rgba(244,239,229,.86),var(--cream))}
+.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--ink);background:transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
+  transition:.35s ease;font-size:1rem;line-height:1}
+.arrow:hover{background:var(--ink);color:var(--cream)}
+.arrow:disabled{opacity:.22;cursor:default;background:transparent;color:var(--ink)}
+.nav-mid{display:flex;align-items:center;gap:18px;flex:1;justify-content:center;padding:0 26px}
+.prog{width:min(340px,40vw);height:2px;background:rgba(36,31,21,.14);cursor:pointer;position:relative}
+.prog-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;transition:width .4s ease}
+.hint{font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--stone);white-space:nowrap}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease;z-index:1}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.split{display:grid;grid-template-columns:1.62fr 1fr;height:100%}
+.split.rev{grid-template-columns:1fr 1.62fr}
+.split.rev .panel{order:2}.split.rev .media{order:1}
+.panel{display:flex;flex-direction:column;justify-content:center;
+  padding:70px clamp(30px,4.6vw,68px) 78px;position:relative}
+.media{position:relative;background-size:cover;background-position:center;overflow:hidden;
+  background-color:#1a160f;filter:saturate(.97) contrast(1.03) brightness(1.02)}
+.media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.12);
+  background:linear-gradient(to bottom,rgba(18,15,10,.42),rgba(18,15,10,0) 34%)}
+.media .cap{position:absolute;top:clamp(14px,1.8vw,22px);right:clamp(14px,1.8vw,22px);z-index:3;
+  font-family:var(--sans);font-weight:400;color:rgba(255,255,255,.92);line-height:1.3;text-align:right;
+  letter-spacing:.2em;text-transform:uppercase;font-size:.54rem;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+
+/* reveal */
+.panel>*,.hero-wrap{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease}
+.slide.active .panel>*,.slide.active .hero-wrap{opacity:1;transform:none}
+.slide.active .panel>*:nth-child(1){transition-delay:.08s}
+.slide.active .panel>*:nth-child(2){transition-delay:.18s}
+.slide.active .panel>*:nth-child(3){transition-delay:.26s}
+.slide.active .panel>*:nth-child(4){transition-delay:.34s}
+.slide.active .hero-wrap{transition-delay:.12s}
+
+/* type */
+.kick{font-size:clamp(.72rem,min(.95vw,1.5vh),1.02rem);font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:clamp(12px,1.9vh,22px)}
+.kick::before{content:"";width:26px;height:1px;background:var(--gold);flex:0 0 26px}
+h1{font-family:var(--serif);font-weight:500;color:var(--ink);line-height:1.04;letter-spacing:.005em;
+  font-size:clamp(1.5rem,min(3.4vw,4.6vh),2.9rem)}
+h1 em{font-style:italic}
+h1 small{display:block;font-family:var(--sans);font-weight:400;font-size:.6rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--stone);margin-top:12px;line-height:1.6}
+.hr{width:54px;height:1px;background:var(--gold);margin:22px 0 4px}
+
+/* progress-update copy — verbatim from the master timeline */
+.pbs{list-style:none;max-width:48ch;margin-top:clamp(12px,2.2vh,24px)}
+.pbs li{position:relative;padding-left:30px;margin-bottom:clamp(14px,2.3vh,24px);
+  font-family:var(--sans);font-weight:300;color:var(--ink2);
+  font-size:clamp(1.52rem,min(1.88vw,2.88vh),1.84rem);line-height:1.62}
+.pbs li:last-child{margin-bottom:0}
+.pbs li::before{content:"";position:absolute;left:0;top:.82em;width:16px;height:1px;background:var(--gold)}
+.pbs li em{font-style:normal;color:var(--stone)}
+
+/* ── full-bleed hero ── */
+.hero{height:100%;background-size:cover;background-position:center;position:relative;
+  display:flex;align-items:center;justify-content:center;padding:0 clamp(28px,6vw,90px);background-color:#1a160f}
+.hero::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,17,11,.62),rgba(20,17,11,.46) 45%,rgba(20,17,11,.72))}
+.hero-wrap{position:relative;z-index:2;text-align:center;max-width:980px}
+.hero-wrap .chip{display:inline-block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);border:1px solid rgba(242,236,223,.5);padding:5px 11px;margin:0 0 26px}
+.hero-q{font-family:var(--serif);font-weight:400;color:var(--cream);
+  font-size:clamp(2.1rem,5.4vw,4.4rem);line-height:1.1;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero-q em{font-style:italic}
+.hero-sub{font-family:var(--sans);font-weight:300;color:rgba(242,236,223,.82);
+  font-size:clamp(.72rem,.92vw,.88rem);letter-spacing:.06em;line-height:1.95;margin-top:26px}
+
+@media(max-width:820px){
+  .split,.split.rev{grid-template-columns:1fr;grid-template-rows:30vh 1fr}
+  .split.rev .panel{order:2}.split.rev .media{order:1}
+  .panel{padding:22px 26px 90px;justify-content:flex-start;overflow-y:auto}
+}
+</style></head>
+<body>
+<div class="deck">
+
+<div class="masthead">
+  <div class="mark">MONTARA</div>
+  <div class="mh-sec" id="mhSec">Cover</div>
+  <div class="mh-folio"><b id="folioNow">01</b> / <span id="folioTot">00</span></div>
+</div>
+
+<!-- 01 COVER -->
+<section class="slide active" data-sec="Progress Update">
+  <div class="hero" style="background-image:url('images/Key Visual - Entire Project 02 (1).jpg')">
+    <div class="hero-wrap">
+      <div class="chip">Internal · Progress update · 26 August 2026</div>
+      <div class="hero-q">Where we <em>are</em>.</div>
+      <div class="hero-sub">PATAMA · Montara at the Global Wellness Summit · Tri Vananda Residences</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BRAND & LOGO -->
+<section class="slide" data-sec="PATAMA · Branding">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">PATAMA · Branding</div>
+      <h1>Brand &amp; Logo<small>Phase 1 · Branding × SRA Studio</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Create interview sessions with Khun Narong, Khun Poonsri and Khun Kitt to gather the evidence</li>
+        <li>Gather more evidence across the company</li>
+        <li>After that we will host the summarize workshop to distil the hypotheses</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/01 Brand &amp; Logo.jpg')"><span class="cap">Brand &amp; Logo</span></div>
+  </div>
+</section>
+
+<!-- 03 GWS TOUR -->
+<section class="slide" data-sec="Montara × Global Wellness Summit">
+  <div class="split rev">
+    <div class="media" style="background-image:url('images/08 Montara experiences within official GWS tours.jpg')"><span class="cap">GWS Tour · 9 + 14 Nov</span></div>
+    <div class="panel">
+      <div class="kick">Montara × Global Wellness Summit</div>
+      <h1>GWS Tour<small>Marketing × CLP × Trisara</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Schedule agreed across Tri Vananda, CLP and Trisara</li>
+        <li>Journey — arrive at Tri Vananda Villa B1 19–20 &rsaquo; drinks reception and presentation at the villa, plus exhibition content <em>(masterplan and villas; vision, concept and project details)</em> &rsaquo; CLP tour &rsaquo; Community House for farewell &rsaquo; depart for Trisara</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 GWS DINNER -->
+<section class="slide" data-sec="Montara × Global Wellness Summit">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Montara × Global Wellness Summit</div>
+      <h1>GWS Dinner<small>Marketing × Jampa · Wed 11 Nov &amp; Sat 14 Nov</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Event organiser contacted</li>
+        <li>Draft sequence will be sent to the organiser for the quotation process next week</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/07 A hosted farm-to-table dinner at Tri Vananda.jpg')"><span class="cap">GWS Dinner · Tri Vananda Private Dinner</span></div>
+  </div>
+</section>
+
+<!-- 05 PR AGENCY US -->
+<section class="slide" data-sec="PR &amp; Communications">
+  <div class="split rev">
+    <div class="media" style="background-image:url('images/10 PR Agency US BPCM.png')"><span class="cap">PR Agency · US</span></div>
+    <div class="panel">
+      <div class="kick">Tri Vananda · PR &amp; Communications</div>
+      <h1>PR Agency · US<small>Marketing × BPCM</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>The revised agreement is now with Khun Pornsith for final review</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PR AGENCY TH -->
+<section class="slide" data-sec="PR &amp; Communications">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Tri Vananda · PR &amp; Communications</div>
+      <h1>PR Agency · TH<small>Marketing × Vivaldi</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Revised proposal and contract are on the way from Vivaldi</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/11 PR Agency TH Vivaldi.png')"><span class="cap">PR Agency · TH</span></div>
+  </div>
+</section>
+
+<!-- 07 PRESS KIT -->
+<section class="slide" data-sec="PR &amp; Communications">
+  <div class="split rev">
+    <div class="media" style="background-image:url('images/villa-nanda.jpg')"><span class="cap">Press Kit · Nanda Villa</span></div>
+    <div class="panel">
+      <div class="kick">Tri Vananda · PR &amp; Communications</div>
+      <h1>Press Kit<small>Marketing</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Tri Vananda press kit updated with the new completed Nanda Villa images</li>
+        <li>Trisara and Montara press kits received</li>
+        <li>Awaiting the CLP kit, then the full set goes out to GWS</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 08 RESIDENCE CGIs -->
+<section class="slide" data-sec="Marketing Activities · The Residence">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Tri Vananda · Marketing Activities</div>
+      <h1>PATAMA Residence CGIs<small>Marketing × DOF × Project</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>12 images selected — awaiting the designer&rsquo;s comments, then we can confirm the final quotation and start production</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/12 PATAMA Residence CGIs.png')"><span class="cap">PATAMA Residence CGIs</span></div>
+  </div>
+</section>
+
+<!-- 09 QUARTERLY NEWSLETTER -->
+<section class="slide" data-sec="Marketing Activities · The Residence">
+  <div class="split rev">
+    <div class="media" style="background-image:url('images/13 Quarterly Newsletter.jpg');background-position:top center"><span class="cap">Quarterly Newsletter</span></div>
+    <div class="panel">
+      <div class="kick">Tri Vananda · Marketing Activities</div>
+      <h1>Quarterly Newsletter<small>Marketing</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>In drafting — will feature CLP and PATAMA Residence content</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10 ALWAYS-ON DIGITAL -->
+<section class="slide" data-sec="Marketing Activities · The Residence">
+  <div class="split">
+    <div class="panel">
+      <div class="kick">Tri Vananda · Marketing Activities</div>
+      <h1>Always-On Digital Marketing<small>Social content Q3–Q4 · Marketing × Sirinya</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Q3 outline approved — content, images and scheduling in progress</li>
+        <li>Q4 outline approved — content under way; images and scheduling to follow</li>
+      </ul>
+    </div>
+    <div class="media" style="background-image:url('images/14 Always-On Digital Marketing.PNG');background-position:center 5%"><span class="cap">Always-On Digital Marketing</span></div>
+  </div>
+</section>
+
+<!-- 11 BEING 2026 -->
+<section class="slide" data-sec="What&rsquo;s Happening at Tri Vananda">
+  <div class="split rev">
+    <div class="media" style="background-image:url('images/init-c5-being.jpg')"><span class="cap">BEING 2026 · 2 Sep</span></div>
+    <div class="panel">
+      <div class="kick">What&rsquo;s Happening at Tri Vananda</div>
+      <h1>BEING 2026<small>Marketing × PRU</small></h1>
+      <div class="hr"></div>
+      <ul class="pbs">
+        <li>Preparations complete</li>
+        <li>Sales and Marketing will be on site for the event</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <button class="arrow" id="prev" aria-label="Previous">←</button>
+  <div class="nav-mid">
+    <div class="prog" id="prog"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px">
+    <span class="hint">← → to navigate</span>
+    <button class="arrow" id="next" aria-label="Next">→</button>
+  </div>
+</div>
+
+</div>
+<script>(function(){
+ var slides=[].slice.call(document.querySelectorAll('.slide'));
+ var i=0,n=slides.length;
+ var prev=document.getElementById('prev'),next=document.getElementById('next');
+ var fill=document.getElementById('progFill'),prog=document.getElementById('prog'),sec=document.getElementById('mhSec');
+ var fNow=document.getElementById('folioNow'),fTot=document.getElementById('folioTot');
+ fTot.textContent=('0'+n).slice(-2);
+ prog.onclick=function(e){var r=prog.getBoundingClientRect();go(Math.round((e.clientX-r.left)/r.width*(n-1)))};
+ function go(k){
+   k=Math.max(0,Math.min(n-1,k));i=k;
+   slides.forEach(function(sl,x){sl.classList.toggle('active',x===i)});
+   fill.style.width=(n>1?(i/(n-1))*100:100)+'%';
+   sec.innerHTML=slides[i].getAttribute('data-sec');
+   fNow.textContent=('0'+(i+1)).slice(-2);
+   prev.disabled=(i===0);next.disabled=(i===n-1);
+ }
+ prev.onclick=function(){go(i-1)};next.onclick=function(){go(i+1)};
+ document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){go(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(i-1)}else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(n-1)}});
+ var x0=null;document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+ document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?go(i+1):go(i-1)}x0=null},{passive:true});
+ go(0);})();</script>
+</body></html>

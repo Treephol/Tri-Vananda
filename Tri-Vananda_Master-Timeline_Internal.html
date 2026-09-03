@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri Vananda · Critical Path · Aug 2026 – Feb 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0f13;--cream:#f4efe5;--white:#faf8f4;
+  --gold:#b89458;--gold-lt:#d4b07a;
+  --sage:#8fa584;--sage-lt:#aec2a2;
+  --rust:#c97a54;--rust-lt:#e09772;
+  --line:rgba(184,148,88,.2);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--ink);color:var(--cream);min-height:100vh;
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;padding:14px 22px 14px}
+
+header{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  padding-bottom:10px;border-bottom:1px solid var(--gold)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:clamp(1.25rem,2.6vh,1.75rem);line-height:1;color:var(--white)}
+h1 .it{font-style:italic;color:var(--gold-lt)}
+.hmeta{font-size:clamp(9px,1.3vh,11px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,229,.72);text-align:right;line-height:1.7}
+.hmeta b{color:var(--gold-lt);font-weight:400}
+
+.tl{flex:1 1 auto;min-height:0;padding-top:8px;overflow-x:auto}
+.grid{--rh:minmax(44px,1fr);min-height:100%;display:grid;
+  grid-template-columns:196px repeat(14,minmax(58px,1fr)) 232px 122px;
+  grid-template-rows:auto auto 4px
+    auto auto repeat(4,var(--rh))
+    auto repeat(4,var(--rh))
+    auto repeat(3,var(--rh))
+    auto repeat(3,var(--rh))
+    auto repeat(3,var(--rh));
+  gap:3px;align-items:stretch}
+
+.mhd,.hd,.crn{position:sticky;z-index:5;background:var(--ink)}
+.crn{top:0}
+.mhd{top:0;padding:5px 2px;font-size:clamp(9px,1.35vh,11px);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt);text-align:center;
+  background-color:#141a20;display:flex;align-items:center;justify-content:center}
+.hd{top:28px;padding:5px 2px;font-size:clamp(8.5px,1.25vh,10px);letter-spacing:.07em;text-transform:uppercase;color:rgba(244,239,229,.7);text-align:center;display:flex;align-items:center;justify-content:center}
+.hd.gws{color:#14100a;background:rgba(212,176,122,.92);font-weight:500}
+.mhd.yr b{font-weight:300;color:rgba(244,239,229,.55)}
+.mhd.wiphd{color:rgba(244,239,229,.55);background-color:var(--ink);letter-spacing:.14em;flex-direction:column;line-height:1.4}
+
+.rule{grid-column:1/18;background:var(--line);align-self:center;height:1px}
+.lane{grid-column:1/18;font-size:clamp(9px,1.45vh,11.5px);letter-spacing:.24em;text-transform:uppercase;
+  display:flex;align-items:flex-end;padding:14px 0 4px;border-bottom:1px solid var(--line)}
+.lane.pa{color:var(--sage-lt)}
+.lane.tv{color:var(--gold-lt)}
+.sub{grid-column:1/18;font-size:clamp(8px,1.1vh,9.5px);letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(244,239,229,.58);display:flex;align-items:flex-end;padding:10px 0 2px}
+
+.cname{grid-column:1/2;padding-right:11px;text-align:right;font-size:clamp(10px,1.45vh,12.5px);line-height:1.25;color:var(--white);
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.cname small{font-size:clamp(8px,1.1vh,9.5px);letter-spacing:.05em;text-transform:uppercase;color:rgba(244,239,229,.62);margin-top:3px}
+.cname.crit{color:var(--rust-lt)}
+.cname.crit small{color:var(--rust)}
+
+.s{padding:5px 8px;border-radius:2px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.s .w{font-size:clamp(10px,1.4vh,12.5px);line-height:1.2;color:var(--white);display:block}
+.s .d{font-size:clamp(8px,1.1vh,10px);letter-spacing:.04em;text-transform:uppercase;margin-top:3px;color:rgba(244,239,229,.72);line-height:1.2}
+.s .w em{font-style:normal;color:rgba(244,239,229,.62)}
+
+
+.prog{grid-column:16/17;padding:5px 10px;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  border-left:1px solid var(--line)}
+.prog .pb{position:relative;padding-left:12px;margin-bottom:6px;color:rgba(244,239,229,.82);
+  font-size:clamp(10px,1.4vh,12.5px);line-height:1.25}
+.prog .pb:last-child{margin-bottom:0}
+.prog .pb em{font-style:normal;color:rgba(244,239,229,.55)}
+.prog .pb::before{content:"";position:absolute;left:0;top:.5em;width:5px;height:1px;background:var(--gold-lt)}
+
+.wip{grid-column:17/18;display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:3px;padding-left:4px}
+.wip a{font-size:clamp(8px,1.1vh,9.5px);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;text-align:center;
+  color:rgba(244,239,229,.34);border:1px dashed rgba(244,239,229,.18);border-radius:2px;padding:4px 6px;transition:.18s ease}
+.wip a:hover{color:var(--gold-lt);border-color:var(--gold-lt);border-style:solid}
+.wip a.set{color:var(--gold-lt);border-style:solid;border-color:rgba(184,148,88,.5);background:rgba(184,148,88,.12)}
+.s.tv{background:rgba(184,148,88,.17);border-left:2px solid rgba(184,148,88,.6)}
+.s.pa{background:rgba(143,165,132,.17);border-left:2px solid rgba(143,165,132,.6)}
+.s.crit{background:rgba(201,122,84,.26);border-left:2px solid var(--rust)}
+.s.crit .d{color:var(--rust-lt)}
+.s.para{background:rgba(143,165,132,.1);border-left:2px dashed rgba(143,165,132,.75)}
+.s.para .w{color:rgba(244,239,229,.9)}
+.s.para .tag{font-size:clamp(7px,.95vh,8.4px);letter-spacing:.2em;text-transform:uppercase;color:var(--sage-lt);margin-right:7px}
+.s.slack{background:transparent;border:1px dashed rgba(244,239,229,.2)}
+.s.slack .w{color:rgba(244,239,229,.42)}
+.s.gws{background:linear-gradient(135deg,rgba(184,148,88,.82),rgba(212,176,122,.82));border-left:2px solid var(--gold-lt)}
+.s.gws .w{color:#14100a;font-weight:400}
+.s.gws .d{color:rgba(20,16,10,.72)}
+.s.gwsP{background:linear-gradient(135deg,rgba(143,165,132,.8),rgba(174,194,162,.8));border-left:2px solid var(--sage-lt)}
+.s.gwsP .w{color:#12160f;font-weight:400}
+.s.gwsP .d{color:rgba(18,22,15,.72)}
+.s.out{background:rgba(212,176,122,.16);border:1px solid rgba(212,176,122,.5);border-left:2px solid var(--gold-lt)}
+.s.out .w{color:var(--gold-lt)}
+.s.out .d{color:rgba(212,176,122,.72)}
+.s.live{background:rgba(244,239,229,.06);border-left:2px solid rgba(244,239,229,.2)}
+.s.live .w{color:rgba(244,239,229,.7)}
+
+.key{flex:0 0 auto;display:flex;gap:22px;flex-wrap:wrap;margin-top:12px;padding-top:9px;border-top:1px solid var(--line);
+  font-size:clamp(8.5px,1.2vh,10.5px);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,239,229,.7)}
+.key i{display:inline-block;width:10px;height:10px;margin-right:7px;vertical-align:-1px;font-style:normal}
+.kt{background:rgba(184,148,88,.55)}.kp{background:rgba(143,165,132,.55)}
+.kc{background:rgba(201,122,84,.75)}.ks{border:1px dashed rgba(244,239,229,.4)}
+.ko{background:rgba(212,176,122,.22);border:1px solid rgba(212,176,122,.7)}
+.kg{background:linear-gradient(135deg,rgba(184,148,88,.85),rgba(212,176,122,.85))}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Tri Vananda · critical <span class="it">path</span> · Aug 2026 — Feb 2027</h1>
+  <div class="hmeta">Internal · Summit <b>10–13 Nov</b> · tours <b>9</b> &amp; <b>14</b> · dinner <b>Wed 11</b></div>
+</header>
+
+<div class="tl"><div class="grid">
+
+  <div class="crn"></div>
+  <div class="mhd" style="grid-column:2/4">August</div>
+  <div class="mhd" style="grid-column:4/6">September</div>
+  <div class="mhd" style="grid-column:6/8">October</div>
+  <div class="mhd" style="grid-column:8/10">November</div>
+  <div class="mhd" style="grid-column:10/12">December</div>
+  <div class="mhd yr" style="grid-column:12/14">January <b>’27</b></div>
+  <div class="mhd yr" style="grid-column:14/16">February <b>’27</b></div>
+  <div class="mhd wiphd" style="grid-column:16/17;grid-row:1/3">Progress<br>update</div>
+  <div class="mhd wiphd" style="grid-column:17/18;grid-row:1/3">WIP<br>files</div>
+
+  <div class="crn" style="top:28px"></div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–30</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd gws">GWS 1–15</div><div class="hd">16–30</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–31</div>
+  <div class="hd">1–15</div><div class="hd">16–28</div>
+
+  <div class="rule"></div>
+  <div class="lane tv">Tri Vananda</div>
+
+  <div class="sub">Montara × Global Wellness Summit</div>
+
+  <div class="prog" style="grid-row:6/10">
+    <div class="pb">Schedule agreed across Tri Vananda, CLP and Trisara</div>
+    <div class="pb">Invitation strategy provided for both dinners</div>
+    <div class="pb">Draft sequence provided for all events will be sent to the organiser for the quotation before the end of the week</div>
+    <div class="pb">Consult Vivaldi for the press conference sequence</div>
+    <div class="pb">Meeting with CLP Team next week for Simone&rsquo;s available time slots and collaborations</div>
+  </div>
+  <div class="wip" style="grid-row:6/10"><a class="set" href="https://drive.google.com/drive/folders/1GwRFOONLGSuYO98m2v7-xZd5ow2VSmCm?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">GWS Tour<small>Marketing × CLP × Trisara</small></div>
+  <div class="s slack" style="grid-column:2/3"><span class="w">float</span></div>
+  <div class="s crit" style="grid-column:3/4"><span class="w">Organizer Contract signed</span><span class="d">30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/8"><span class="w">Planning</span><span class="d">1 Sep – 30 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">CLP + Community</span><span class="d">9 + 14 Nov</span></div>
+
+  <div class="cname">Press Conference<small>Marketing &times; CLP &times; Vivaldi</small></div>
+  <div class="s slack" style="grid-column:2/4"><span class="w">float</span></div>
+  <div class="s tv" style="grid-column:4/8"><span class="w">Planning</span><span class="d">1 Sep &ndash; 30 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Press conference</span><span class="d">13 Nov</span></div>
+
+  <div class="cname">GWS Dinner<small>Marketing × Jampa</small></div>
+  <div class="s slack" style="grid-column:2/8"><span class="w">float · milestones to be set</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Dinner</span><span class="d">Wed 11 Nov</span></div>
+
+  <div class="cname">Tri Vananda Private Dinner<small>Marketing × Jampa</small></div>
+  <div class="s slack" style="grid-column:2/8"><span class="w">float · milestones to be set</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Dinner</span><span class="d">Sat 14 Nov</span></div>
+
+  <div class="sub">Brand &amp; Site Assets</div>
+
+  <div class="cname crit">Big Logo Signage<small>Critical path · Marketing × unassigned</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Logo approval</span><span class="d">15 Aug</span></div>
+  <div class="s crit" style="grid-column:3/4"><span class="w">Contractor set</span><span class="d">5 Sep</span></div>
+  <div class="s crit" style="grid-column:4/7"><span class="w">Fabrication + installation</span><span class="d">1 Sep – 15 Oct</span></div>
+  <div class="s out" style="grid-column:7/8"><span class="w">Delivery</span><span class="d">25 Oct</span></div>
+  <div class="prog">
+    <div class="pb">Finalising the logo placement design</div>
+  </div>
+  <div class="wip"><a class="set" href="https://drive.google.com/drive/folders/1VAI15CrEPsVPNHf1Ug1p7kJyuj5l1G1M?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">Site Hoarding Reprint<small>Marketing × unassigned</small></div>
+  <div class="s slack" style="grid-column:2/12"><span class="w">float · milestones to be set</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="cname">Tote Bag<small>Marketing × Gimmic Talk</small></div>
+  <div class="s tv" style="grid-column:2/6"><span class="w">Production</span><span class="d">1 Aug – 30 Sep</span></div>
+  <div class="s out" style="grid-column:6/7"><span class="w">Delivery</span><span class="d">15 Oct</span></div>
+  <div class="prog">
+    <div class="pb">In production — delivery expected by November</div>
+  </div>
+  <div class="wip"><a class="set" href="https://drive.google.com/drive/folders/1qARLjDsHdpQlxcdZrmDxVm-e0FJ0GRFR?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">Farm Product<small>PATAMA version · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/12"><span class="w">float · milestones to be set</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="sub">PR &amp; Communications</div>
+
+  <div class="cname">PR Agency · US<small>Marketing × BPCM</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Contract signed</span><span class="d">15 Aug</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Onboarding + brief</span><span class="d">to 30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/5"><span class="w">PR strategy &amp; plan</span><span class="d">1 – 15 Sep</span></div>
+  <div class="s gws" style="grid-column:5/8"><span class="w">Pre-summit coverage</span><span class="d">16 Sep – 31 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Summit coverage</span><span class="d">10–13 Nov</span></div>
+  <div class="s gws" style="grid-column:9/12"><span class="w">Post-summit coverage</span></div>
+  <div class="prog">
+    <div class="pb">The revised agreement is now with Khun Pornsith for final review</div>
+    <div class="pb">Check differences and interesting media from the J/PR proposal</div>
+  </div>
+  <div class="wip"><a class="set" href="https://drive.google.com/drive/folders/1b_IAhNqQS1ReGxDRoAo6Du92Cu8pJuIE?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">PR Agency · TH<small>Marketing × Vivaldi</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Contract signed</span><span class="d">15 Aug</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Onboarding + brief</span><span class="d">to 30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/5"><span class="w">PR strategy &amp; plan</span><span class="d">1 – 15 Sep</span></div>
+  <div class="s gws" style="grid-column:5/8"><span class="w">Pre-summit coverage</span><span class="d">16 Sep – 31 Oct</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Summit coverage</span><span class="d">10–13 Nov</span></div>
+  <div class="s gws" style="grid-column:9/12"><span class="w">Post-summit coverage</span></div>
+  <div class="prog">
+    <div class="pb">Revised proposal and contract are on the way from Vivaldi</div>
+  </div>
+  <div class="wip"><a class="set" href="https://drive.google.com/drive/folders/1paVB1ecUomPn--89473IzjYIurLpjOe3?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">Press Kit<small>Marketing</small></div>
+  <div class="s tv" style="grid-column:2/4"><span class="w">Press kit updated</span><span class="d">✓ Done</span></div>
+  <div class="s live" style="grid-column:4/12"><span class="w">In circulation for GWS and the PR agencies</span></div>
+  <div class="prog">
+    <div class="pb">Tri Vananda press kit updated with the new completed Nanda Villa images</div>
+    <div class="pb">Montara, Trisara, and CLP press kits received</div>
+    <div class="pb">Recheck and finalize content to send out to GWS</div>
+  </div>
+  <div class="wip"><a class="set" href="https://drive.google.com/drive/folders/1CtTFDOi9qIxeHBeTE_LjhIaOd3NImmTg?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="sub">Marketing Activities · The Residence</div>
+
+  <div class="cname">PATAMA Residence CGIs<small>Marketing × DOF × Project</small></div>
+  <div class="s crit" style="grid-column:2/3"><span class="w">Sign quotation</span><span class="d">15 Aug</span></div>
+  <div class="s crit" style="grid-column:3/4"><span class="w">Finalize details</span><span class="d">30 Aug</span></div>
+  <div class="s tv" style="grid-column:4/6"><span class="w">Production</span><span class="d">1 – 30 Sep</span></div>
+  <div class="s out" style="grid-column:6/7"><span class="w">Final CGIs out</span><span class="d">15 Oct</span></div>
+  <div class="prog">
+    <div class="pb">12 images selected — awaiting the designer&rsquo;s comments, then we can confirm the final quotation and start production</div>
+    <div class="pb">Get the quotes from DOF in parallel</div>
+  </div>
+  <div class="wip"><a class="set" href="https://drive.google.com/drive/folders/1AvSJ05zEokmr7rKDWwvtDAVzsjD6ykWF?usp=sharing" target="_blank" rel="noopener">Shared folder</a></div>
+
+  <div class="cname">Quarterly Newsletter<small>Marketing · unassigned</small></div>
+  <div class="s tv" style="grid-column:2/4"><span class="w">Q3 stories</span><span class="d">1 Aug – 15 Sep</span></div>
+  <div class="s tv" style="grid-column:4/5"><span class="w">Content + design</span><span class="d">16 – 30 Sep</span></div>
+  <div class="s out" style="grid-column:5/6"><span class="w">Digital version out</span><span class="d">30 Sep</span></div>
+  <div class="s tv" style="grid-column:6/7"><span class="w">Production</span><span class="d">1 – 30 Oct</span></div>
+  <div class="s out" style="grid-column:7/8"><span class="w">Print version out</span><span class="d">31 Oct</span></div>
+  <div class="prog">
+    <div class="pb">In drafting — will feature CLP and PATAMA Residence content</div>
+  </div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="cname">Always-On Digital Marketing<small>Social content Q3–Q4 · Marketing × Sirinya</small></div>
+  <div class="s tv" style="grid-column:2/3"><span class="w">Q3 content, images + scheduling <em>(in progress)</em></span><span class="d">1 – 15 Aug</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Q4 content creation</span><span class="d">16 – 31 Aug</span></div>
+  <div class="s tv" style="grid-column:4/5"><span class="w">Q4 image selection</span><span class="d">1 – 15 Sep</span></div>
+  <div class="s out" style="grid-column:5/6"><span class="w">Q4 posts scheduled</span><span class="d">30 Sep</span></div>
+  <div class="s live" style="grid-column:6/12"><span class="w">Always-on posting · Q4</span><span class="d">Oct – Dec</span></div>
+  <div class="prog">
+    <div class="pb">Q3 outline approved — content, images and scheduling in progress</div>
+    <div class="pb">Q4 outline approved — content under way; images and scheduling to follow</div>
+  </div>
+  <div class="wip"><a class="set" href="https://montarahospitality-my.sharepoint.com/:p:/g/personal/sirinya_k_trivananda_com/IQC7TiLxqhujQLR6x52sqQh6AY4mhqmEnHYeiKthZWt0NZI?e=8LUqPv" target="_blank" rel="noopener">Q3 deck</a><a class="set" href="https://montarahospitality-my.sharepoint.com/:p:/g/personal/sirinya_k_trivananda_com/IQCIBa42cgmDRrbnrvpR7W5LAXIMKQXpDXgmbfDC9Ig39Wg?e=b004C8" target="_blank" rel="noopener">Q4 deck</a></div>
+
+  <div class="sub">What&rsquo;s Happening at Tri Vananda</div>
+
+  <div class="cname">BEING 2026<small>Marketing × PRU</small></div>
+  <div class="s tv" style="grid-column:2/3"><span class="w">Booth + sponsor</span></div>
+  <div class="s tv" style="grid-column:3/4"><span class="w">Production</span><span class="d">print 29 Aug</span></div>
+  <div class="s gws" style="grid-column:4/5"><span class="w">BEING 2026</span><span class="d">2 Sep</span></div>
+  <div class="s live" style="grid-column:5/12"><span class="w">Lead nurture into PRU Farm Festival</span></div>
+  <div class="prog">
+    <div class="pb">Preparations complete</div>
+    <div class="pb">Sales and Marketing will be on site for the event</div>
+    <div class="pb">Event complete</div>
+  </div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="cname">PRU Farm Festival<small>Marketing × PRU</small></div>
+  <div class="s slack" style="grid-column:2/8"><span class="w">float · milestones to be set</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Festival</span><span class="d">1 Nov</span></div>
+  <div class="prog">
+    <div class="pb">Meeting Alberto for the site survey this Saturday</div>
+    <div class="pb">Handover to Namfon, who will focus on the detailed implementation for this event and Local Roots</div>
+  </div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+  <div class="cname">Bi-Weekly Local Roots<small>Marketing · unassigned</small></div>
+  <div class="s slack" style="grid-column:2/8"><span class="w">float · milestones to be set</span></div>
+  <div class="s gws" style="grid-column:8/9"><span class="w">Formal launch</span><span class="d">14 Nov</span></div>
+  <div class="wip"><a href="#">+ link</a></div>
+
+</div></div>
+
+<div class="key">
+  <span><i class="kc"></i>Zero slack</span>
+  <span><i class="ko"></i>Deliverable out</span>
+  <span><i class="kg"></i>Summit</span>
+  <span><i class="kt"></i>Tri Vananda</span>
+  <span><i class="ks"></i>Float</span>
+</div>
+
+</body>
+</html>
