@@ -1516,6 +1516,8 @@ body{overflow-x:hidden}
 .ldtab th,.ldtab td{border:1px solid rgba(184,148,88,.10);padding:7px 4px;text-align:center;overflow:hidden}
 .ldtab thead th{font-family:'Jost',sans-serif;font-weight:400;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);background:rgba(11,15,19,.68);border-bottom:1px solid rgba(184,148,88,.25);padding:9px 4px}
 .ldtab thead th small{display:block;font-weight:300;font-size:.42rem;letter-spacing:.14em;color:rgba(184,148,88,.6);margin-top:3px}
+.ldtab thead th.ld-src small{letter-spacing:.08em;text-transform:none;font-size:.46rem;color:rgba(212,176,122,.6);font-style:italic;margin-top:5px}
+.ldtab thead th.ld-src small sup{font-style:normal;color:rgba(184,148,88,.85);margin-right:2px}
 .ldtab th.ld-src{text-align:left;width:186px;min-width:186px;max-width:186px;padding-left:16px}
 .ldtab thead th.sum-cell{color:var(--gold-lt);background:rgba(184,148,88,.16)}
 .ldtab th.sum-cell,.ldtab td.sum-cell{border-left:2px solid rgba(184,148,88,.4) !important}
@@ -1539,7 +1541,20 @@ body{overflow-x:hidden}
 .ldtab tr.ld-qual td{background:rgba(11,15,19,.58);font-size:.88rem;color:rgba(212,176,122,.88);font-weight:400}
 .ldtab tr.ld-qual td.nil{color:rgba(255,255,255,.15)}
 .ldtab tr.ld-qual td.sum-cell{background:rgba(184,148,88,.07) !important;color:rgba(212,176,122,.92);font-weight:500;font-size:.95rem}
-.ldtab td.ld-na{background:rgba(11,15,19,.5);color:rgba(212,176,122,.5);font-style:italic;font-weight:300}
+.ldtab tr.ld-break th.ld-src{background:rgba(11,15,19,.96);border-top:2px solid rgba(184,148,88,.42);color:var(--gold-lt);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.95rem;letter-spacing:.02em;text-transform:none}
+.ldtab tr.ld-break th.ld-src small{font-style:normal;letter-spacing:.16em;color:rgba(184,148,88,.6)}
+.ldtab tr.ld-break td{background:rgba(11,15,19,.7);border-top:2px solid rgba(184,148,88,.42);border-right:none;border-bottom:1px solid rgba(184,148,88,.10)}
+.ldtab tr.ld-stat th.ld-src{border-left:3px solid rgba(184,148,88,.3);font-size:.6rem;font-weight:400;color:rgba(255,255,255,.85)}
+.ldtab tr.ld-stat td{background:rgba(11,15,19,.42);font-size:.92rem;color:rgba(255,255,255,.88)}
+.ldtab tr.ld-stat td.sum-cell{font-size:1.02rem}
+.ldtab tr.st-new th.ld-src{border-left-color:rgba(207,148,134,.85);color:#fff}
+.ldtab tr.st-new td{background:rgba(190,90,70,.12);color:#fff;font-weight:500}
+.ldtab tr.st-new td.sum-cell{background:rgba(190,90,70,.26) !important;color:#fff;font-weight:600}
+.ldtab tr.st-good th.ld-src{border-left-color:rgba(110,150,90,.9);color:#cfe2bb}
+.ldtab tr.st-good td{background:rgba(110,150,90,.16);color:#fff;font-weight:500}
+.ldtab tr.st-good td.sum-cell{background:rgba(110,150,90,.3) !important;color:#fff;font-weight:600}
+.ldtab tr.st-dead th.ld-src{border-left-color:rgba(255,255,255,.14);color:rgba(255,255,255,.6)}
+.ldtab tr.st-dead td{color:rgba(255,255,255,.55);font-weight:300}
 .ldtab tr.ld-qual td.ld-na{color:rgba(212,176,122,.5)}
 .ldtab td.ld-na sup{font-style:normal;font-size:.62em;color:rgba(184,148,88,.8);margin-left:2px;vertical-align:super}
 .ldtab tr.ld-qual td.sum-cell.ld-na{background:rgba(184,148,88,.05) !important;color:rgba(212,176,122,.62)}
@@ -2305,10 +2320,10 @@ body{overflow-x:hidden}
     </div>
     <div class="ldg-head-split">
       <div class="ldg-stat"><b>45.7</b><span>Average per month</span></div>
-      <div class="ldg-stat"><b class="good">23</b><span>Qualified &middot; Jan&ndash;Jun</span></div>
-      <div class="ldg-stat"><b>76</b><span>Contactable &middot; Jan&ndash;Jun</span></div>
-      <div class="ldg-stat"><b class="warn">222</b><span>Uncontactable or unqualified &middot; Jan&ndash;Jun</span></div>
-      <div class="ldg-stat"><b class="warn">38</b><span>Never assessed &middot; Jul&ndash;Sep</span></div>
+      <div class="ldg-stat"><b class="good">24</b><span>Qualified &middot; 5.8%</span></div>
+      <div class="ldg-stat"><b>76</b><span>Contactable &middot; 18.5%</span></div>
+      <div class="ldg-stat"><b class="warn">223</b><span>Uncontactable or unqualified &middot; 54.3%</span></div>
+      <div class="ldg-stat"><b class="warn">88</b><span>Still New &middot; never worked</span></div>
     </div>
   </div>
 
@@ -2316,7 +2331,7 @@ body{overflow-x:hidden}
   <table class="ldtab">
   <thead>
     <tr>
-      <th class="ld-src">2026 &middot; Lead Source</th>
+      <th class="ld-src">2026 &middot; Lead Source<small>Leads created, by month</small></th>
       <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th>
       <th>Sep<small>to 11</small></th><th>Oct</th><th>Nov</th><th>Dec</th>
       <th class="sum-cell">YTD</th>
@@ -2324,34 +2339,19 @@ body{overflow-x:hidden}
   </thead>
   <tbody>
     <tr class="ld-digital">
-      <th class="ld-src">Digital<small>73% of all leads</small></th>
-      <td>56</td><td>48</td><td>61</td><td>60</td><td>31</td><td>30</td><td>2</td><td>8</td><td>6</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
-      <td class="sum-cell">302</td>
-    </tr>
-    <tr class="ld-qual">
-      <th class="ld-src">Contactable or qualified</th>
-      <td>8</td><td>9</td><td>6</td><td>8</td><td>2</td><td>4</td><td class="ld-na">2<sup>*</sup></td><td class="ld-na">8<sup>*</sup></td><td class="ld-na">6<sup>*</sup></td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
-      <td class="sum-cell ld-na">53<sup>*</sup></td>
+      <th class="ld-src">Digital<small>86% of all leads</small></th>
+      <td>61</td><td>55</td><td>63</td><td>63</td><td>37</td><td>38</td><td>17</td><td>10</td><td>9</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">353</td>
     </tr>
     <tr class="ld-agent">
       <th class="ld-src">Agent<small>11% of all leads</small></th>
       <td>6</td><td>9</td><td>9</td><td>21</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td>2</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
       <td class="sum-cell">47</td>
     </tr>
-    <tr class="ld-qual">
-      <th class="ld-src">Contactable or qualified</th>
-      <td>6</td><td>9</td><td>9</td><td>21</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-na">2<sup>*</sup></td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
-      <td class="sum-cell ld-na">47<sup>*</sup></td>
-    </tr>
     <tr class="ld-ref">
       <th class="ld-src">Referral<small>Montara employee lead</small></th>
       <td>1</td><td>2</td><td>3</td><td>1</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
       <td class="sum-cell">7</td>
-    </tr>
-    <tr class="ld-minor">
-      <th class="ld-src">Other<small>Unclassified at capture</small></th>
-      <td>5</td><td>7</td><td>2</td><td>3</td><td>6</td><td>8</td><td>15</td><td>2</td><td>3</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
-      <td class="sum-cell">51</td>
     </tr>
     <tr class="ld-minor">
       <th class="ld-src">Event &amp; Tradeshow</th>
@@ -2373,33 +2373,40 @@ body{overflow-x:hidden}
       <td>69</td><td>67</td><td>77</td><td>85</td><td>37</td><td>38</td><td>17</td><td>12</td><td>9</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
       <td class="sum-cell">411</td>
     </tr>
-    <tr class="ld-qual">
+
+    <tr class="ld-break">
+      <th class="ld-src">Lead Status<small>Same 411 leads, as at 11 Sep</small></th>
+      <td colspan="13"></td>
+    </tr>
+    <tr class="ld-stat st-new">
+      <th class="ld-src">New<small>Never worked</small></th>
+      <td>4</td><td>7</td><td>4</td><td>1</td><td>14</td><td>22</td><td>17</td><td>10</td><td>9</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">88</td>
+    </tr>
+    <tr class="ld-stat">
+      <th class="ld-src">Contactable</th>
+      <td>10</td><td>14</td><td>13</td><td>33</td><td>2</td><td>4</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">76</td>
+    </tr>
+    <tr class="ld-stat st-good">
       <th class="ld-src">Qualified</th>
-      <td>8</td><td>7</td><td>8</td><td>0</td><td>0</td><td>0</td><td class="ld-na">17<sup>*</sup></td><td class="ld-na">12<sup>*</sup></td><td class="ld-na">9<sup>*</sup></td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
-      <td class="sum-cell ld-na">61<sup>*</sup></td>
+      <td>8</td><td>7</td><td>8</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td>1</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">24</td>
+    </tr>
+    <tr class="ld-stat st-dead">
+      <th class="ld-src">Uncontactable</th>
+      <td>23</td><td>24</td><td>32</td><td>25</td><td>7</td><td>7</td><td class="nil">&mdash;</td><td>1</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">119</td>
+    </tr>
+    <tr class="ld-stat st-dead">
+      <th class="ld-src">Unqualified</th>
+      <td>24</td><td>15</td><td>20</td><td>26</td><td>14</td><td>5</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">104</td>
     </tr>
   </tbody>
   </table>
   </div>
 
-  <div class="ldg-foot"><sup>*</sup>July&ndash;September: no qualification process was run. Total leads created are shown in place of a status count &mdash; these figures are unworked volume, not assessed quality.</div>
-
-  <div class="ldg-note">
-    <div class="ldg-note-item">
-      <h4>Volume is not the constraint</h4>
-      <p>Digital supplies <em>302 of 411</em> leads. Of the 286 that were actually worked, <em>221 &mdash; more than three in four &mdash;</em> ended uncontactable or unqualified. The channel is buying reach, not intent.</p>
-    </div>
-    <div class="ldg-note-item">
-      <h4>The last three months were never worked</h4>
-      <p><em>38 leads</em> created July&ndash;September sit untouched: no qualification process ran. The apparent collapse in qualified leads is a process gap, not a demand gap &mdash; and it is the first thing to fix.</p>
-    </div>
-    <div class="ldg-note-item">
-      <h4>Agent leads behave differently</h4>
-      <p>Of the <em>45 agent leads</em> created while qualification was still running, every one reached contactable or qualified. The same channel delivers 55 of the 95 walks YTD. Quality enters through the trade, not the ad.</p>
-    </div>
-  </div>
-
-  <div class="ldg-src">Source &middot; CRM export &ldquo;Leads create This year&rdquo; &middot; as of 11 Sep 2026, 10:00 ICT</div>
   <div class="pg">04</div>
 </section>
 
