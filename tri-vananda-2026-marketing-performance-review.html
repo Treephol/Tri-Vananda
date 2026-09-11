@@ -1427,7 +1427,7 @@ body{overflow-x:hidden}
 .tygp-frame::-webkit-scrollbar{height:8px}
 .tygp-frame::-webkit-scrollbar-track{background:rgba(11,15,19,.6)}
 .tygp-frame::-webkit-scrollbar-thumb{background:rgba(184,148,88,.45);border-radius:2px}
-.tygp-inner{min-width:3600px;display:flex;flex-direction:column}
+.tygp-inner{min-width:4000px;display:flex;flex-direction:column}
 .tygp-chart{height:360px;position:relative;padding:24px 30px 16px;border-bottom:1px solid rgba(184,148,88,.18)}
 .tygp-svg{width:100%;height:100%;display:block;overflow:visible}
 .tygp-yearlbl{position:absolute;top:10px;font-family:'Jost',sans-serif;font-weight:200;font-size:.85rem;letter-spacing:.36em;text-transform:uppercase;color:rgba(212,176,122,.85);z-index:3}
@@ -1444,7 +1444,7 @@ body{overflow-x:hidden}
 .tygp-leg-dot.sale{width:14px;height:14px;background:var(--gold);transform:rotate(45deg)}
 .tygp-leg-dot.partial{width:22px;height:16px;background:#b89458;opacity:.55}
 
-.tygp-strip{display:grid;grid-template-columns:repeat(18,1fr);background:rgba(11,15,19,.2)}
+.tygp-strip{display:grid;grid-template-columns:repeat(20,1fr);background:rgba(11,15,19,.2)}
 .tygp-cell{padding:20px 18px 24px;border-right:1px solid rgba(184,148,88,.1);min-height:410px;display:flex;flex-direction:column;gap:9px;position:relative}
 .tygp-cell:last-child{border-right:none}
 .tygp-cell.future{background:rgba(11,15,19,.08);opacity:.5}
@@ -1499,6 +1499,59 @@ body{overflow-x:hidden}
 .jrny-foot-loop{display:inline-flex;align-items:center;gap:10px;color:var(--gold-lt)}
 .jrny-foot-loop::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold)}
 .jrny-loopcap{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:1rem;color:rgba(255,255,255,.55);text-transform:none;letter-spacing:.02em}
+
+/* ═══════════════════ LEAD GENERATION BY MONTH ═══════════════════ */
+.ldg-head{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;margin-top:4px;padding:20px 28px;border:1px solid rgba(184,148,88,.3);background:linear-gradient(135deg,rgba(184,148,88,.08) 0%,rgba(184,148,88,.015) 100%)}
+.ldg-head-num{display:flex;flex-direction:column;gap:4px}
+.ldg-head-num strong{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:200;font-size:3.1rem;color:var(--gold-lt);line-height:1}
+.ldg-head-num span{font-family:'Jost',sans-serif;font-weight:200;font-size:.52rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.ldg-head-split{display:flex;flex-wrap:wrap;gap:14px 36px;padding-left:36px;border-left:1px solid rgba(184,148,88,.22)}
+.ldg-stat{display:flex;flex-direction:column;gap:5px}
+.ldg-stat b{font-family:'Cormorant Garamond',serif;font-weight:200;font-size:1.75rem;color:var(--white);line-height:1}
+.ldg-stat b.good{color:rgba(170,200,150,.95)}
+.ldg-stat b.warn{color:rgba(207,148,134,.92)}
+.ldg-stat span{font-family:'Jost',sans-serif;font-weight:300;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.4}
+
+.ldtab{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:0;border:none}
+.ldtab th,.ldtab td{border:1px solid rgba(184,148,88,.10);padding:7px 4px;text-align:center;overflow:hidden}
+.ldtab thead th{font-family:'Jost',sans-serif;font-weight:400;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);background:rgba(11,15,19,.68);border-bottom:1px solid rgba(184,148,88,.25);padding:9px 4px}
+.ldtab thead th small{display:block;font-weight:300;font-size:.42rem;letter-spacing:.14em;color:rgba(184,148,88,.6);margin-top:3px}
+.ldtab th.ld-src{text-align:left;width:186px;min-width:186px;max-width:186px;padding-left:16px}
+.ldtab thead th.sum-cell{color:var(--gold-lt);background:rgba(184,148,88,.16)}
+.ldtab th.sum-cell,.ldtab td.sum-cell{border-left:2px solid rgba(184,148,88,.4) !important}
+.ldtab tbody th.ld-src{background:rgba(11,15,19,.92);font-family:'Jost',sans-serif;font-weight:500;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;line-height:1.3}
+.ldtab tbody th.ld-src small{display:block;font-family:'Jost',sans-serif;font-weight:300;font-size:.48rem;letter-spacing:.16em;color:rgba(184,148,88,.7);margin-top:4px}
+.ldtab tbody td{background:rgba(11,15,19,.34);font-family:'Jost',sans-serif;font-weight:400;font-size:.98rem;color:#fff;line-height:1}
+.ldtab tbody td.nil{color:rgba(255,255,255,.17);font-weight:300}
+.ldtab tbody td.sum-cell{background:rgba(184,148,88,.14) !important;color:var(--gold-lt);font-weight:600;font-size:1.06rem}
+.ldtab td.ld-future{background:rgba(11,15,19,.55);color:rgba(255,255,255,.2);font-weight:300}
+.ldtab tr.ld-digital th.ld-src{border-left:3px solid rgba(200,150,150,.75)}
+.ldtab tr.ld-agent th.ld-src{border-left:3px solid var(--gold-lt)}
+.ldtab tr.ld-ref th.ld-src{border-left:3px solid rgba(110,130,100,.85)}
+.ldtab tr.ld-minor th.ld-src{border-left:3px solid rgba(184,148,88,.4)}
+.ldtab tr.ld-minor td{background:rgba(11,15,19,.5);font-size:.9rem;color:rgba(255,255,255,.82)}
+.ldtab tr.ld-minor th.ld-src{font-size:.58rem;font-weight:400;color:rgba(255,255,255,.8)}
+.ldtab tr.ld-total th.ld-src{background:rgba(20,32,18,.96);color:#cfe2bb}
+.ldtab tr.ld-total td{background:rgba(110,150,90,.18);font-weight:600;font-size:1.1rem}
+.ldtab tr.ld-total td.sum-cell{background:rgba(110,150,90,.32) !important;color:#fff;font-weight:700;font-size:1.22rem}
+.ldtab tr.ld-qual th.ld-src{background:rgba(11,15,19,.92);padding-left:28px;font-weight:300;font-size:.56rem;color:rgba(255,255,255,.62);letter-spacing:.16em}
+.ldtab tr.ld-qual th.ld-src::before{content:'↳';margin-right:7px;color:rgba(184,148,88,.45);font-weight:300}
+.ldtab tr.ld-qual td{background:rgba(11,15,19,.58);font-size:.88rem;color:rgba(212,176,122,.88);font-weight:400}
+.ldtab tr.ld-qual td.nil{color:rgba(255,255,255,.15)}
+.ldtab tr.ld-qual td.sum-cell{background:rgba(184,148,88,.07) !important;color:rgba(212,176,122,.92);font-weight:500;font-size:.95rem}
+.ldtab td.ld-na{background:rgba(11,15,19,.5);color:rgba(212,176,122,.5);font-style:italic;font-weight:300}
+.ldtab tr.ld-qual td.ld-na{color:rgba(212,176,122,.5)}
+.ldtab td.ld-na sup{font-style:normal;font-size:.62em;color:rgba(184,148,88,.8);margin-left:2px;vertical-align:super}
+.ldtab tr.ld-qual td.sum-cell.ld-na{background:rgba(184,148,88,.05) !important;color:rgba(212,176,122,.62)}
+.ldg-foot{font-family:'Jost',sans-serif;font-weight:300;font-size:.58rem;letter-spacing:.1em;color:rgba(212,176,122,.62);margin-top:10px;font-style:italic}
+.ldg-foot sup{font-style:normal;color:rgba(184,148,88,.85);margin-right:4px}
+
+.ldg-note{display:flex;gap:30px;flex-wrap:wrap;margin-top:18px}
+.ldg-note-item{flex:1 1 260px;padding-left:18px;border-left:1px solid rgba(184,148,88,.28)}
+.ldg-note-item h4{font-family:'Jost',sans-serif;font-weight:400;font-size:.55rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;line-height:1.5}
+.ldg-note-item p{font-family:'Jost',sans-serif;font-weight:300;font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.72)}
+.ldg-note-item p em{color:var(--gold-lt);font-style:italic;font-weight:300}
+.ldg-src{font-family:'Jost',sans-serif;font-weight:200;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(184,148,88,.5);margin-top:16px}
 
 </style>
 </head>
@@ -1782,14 +1835,14 @@ body{overflow-x:hidden}
           </div>
           <div class="tb-chip-body">
             <div class="tb-chip-target">
-              <span class="tbc-block-lbl">Target &middot; as of 30 Jun</span>
-              <span class="tbc-big-num">90</span>
+              <span class="tbc-block-lbl">Target &middot; as of 31 Aug</span>
+              <span class="tbc-big-num">120</span>
               <span class="tbc-sub-meta">of 180 /yr</span>
             </div>
             <div class="tb-chip-actual">
               <span class="tbc-block-lbl">Actual YTD</span>
-              <span class="tbc-big-num">45</span>
-              <span class="tbc-pct-of under">50% of plan</span>
+              <span class="tbc-big-num">55</span>
+              <span class="tbc-pct-of under">46% of plan</span>
             </div>
           </div>
         </div>
@@ -1800,14 +1853,14 @@ body{overflow-x:hidden}
           </div>
           <div class="tb-chip-body">
             <div class="tb-chip-target">
-              <span class="tbc-block-lbl">Target &middot; as of 30 Jun</span>
-              <span class="tbc-big-num">72</span>
+              <span class="tbc-block-lbl">Target &middot; as of 31 Aug</span>
+              <span class="tbc-big-num">96</span>
               <span class="tbc-sub-meta">of 144 /yr</span>
             </div>
             <div class="tb-chip-actual">
               <span class="tbc-block-lbl">Actual YTD</span>
-              <span class="tbc-big-num">24</span>
-              <span class="tbc-pct-of under">33% of plan</span>
+              <span class="tbc-big-num">25</span>
+              <span class="tbc-pct-of under">26% of plan</span>
             </div>
           </div>
         </div>
@@ -1818,14 +1871,14 @@ body{overflow-x:hidden}
           </div>
           <div class="tb-chip-body">
             <div class="tb-chip-target">
-              <span class="tbc-block-lbl">Target &middot; as of 30 Jun</span>
-              <span class="tbc-big-num">18</span>
+              <span class="tbc-block-lbl">Target &middot; as of 31 Aug</span>
+              <span class="tbc-big-num">24</span>
               <span class="tbc-sub-meta">of 36 /yr</span>
             </div>
             <div class="tb-chip-actual">
               <span class="tbc-block-lbl">Actual YTD</span>
-              <span class="tbc-big-num">12</span>
-              <span class="tbc-pct-of">67% of plan</span>
+              <span class="tbc-big-num">15</span>
+              <span class="tbc-pct-of">63% of plan</span>
             </div>
           </div>
         </div>
@@ -1870,7 +1923,7 @@ body{overflow-x:hidden}
   </thead>
   <tbody>
 
-    <!-- ───── TOTAL WALKS · Tgt 30/mo · Real 2026 (all Client viewing incl blanks) 15,14,18,15,14,5 = 81 ───── -->
+    <!-- ───── TOTAL WALKS · Tgt 30/mo · Real 2026 (all Client viewing incl blanks) 15,14,18,15,14,5,11,3 = 95 ───── -->
     <tr class="row-total">
       <th class="row-label"><span class="rl-name">Total Walks</span><span class="rl-sub">30/mo &middot; 360/yr</span></th>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-neg"><span class="val">15</span></td>
@@ -1879,16 +1932,16 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-neg"><span class="val">15</span></td>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-neg"><span class="val">14</span></td>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-neg"><span class="val">5</span></td>
+      <td class="t-col"><span class="val">30</span></td><td class="a-col delta-neg"><span class="val">11</span></td>
+      <td class="t-col"><span class="val">30</span></td><td class="a-col delta-neg"><span class="val">3</span></td>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">30</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">30</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">30</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col sum-cell"><span class="val">360</span></td><td class="a-col sum-cell delta-neg"><span class="val">81</span></td>
+      <td class="t-col sum-cell"><span class="val">360</span></td><td class="a-col sum-cell delta-neg"><span class="val">95</span></td>
     </tr>
 
-    <!-- ───── AGENT · Tgt 15/mo · Real 2026 (all Client viewing) 8,9,8,9,7,4 = 45 ───── -->
+    <!-- ───── AGENT · Tgt 15/mo · Real 2026 (all Client viewing) 8,9,8,9,7,4,9,1 = 55 ───── -->
     <tr class="row-channel">
       <th class="row-label agent"><span class="rl-name">Agent</span><span class="rl-sub">50% &middot; 15/mo &middot; 180/yr</span></th>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-neg"><span class="val">8</span></td>
@@ -1897,16 +1950,16 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-neg"><span class="val">9</span></td>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-neg"><span class="val">7</span></td>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-neg"><span class="val">4</span></td>
+      <td class="t-col"><span class="val">15</span></td><td class="a-col delta-neg"><span class="val">9</span></td>
+      <td class="t-col"><span class="val">15</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">15</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">15</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">15</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col sum-cell"><span class="val">180</span></td><td class="a-col sum-cell delta-neg"><span class="val">45</span></td>
+      <td class="t-col sum-cell"><span class="val">180</span></td><td class="a-col sum-cell delta-neg"><span class="val">55</span></td>
     </tr>
 
-    <!-- ───── DIRECT (parent) · Tgt 12/mo · Real 2026 (incl blanks) 6,3,6,4,4,1 = 24 ───── -->
+    <!-- ───── DIRECT (parent) · Tgt 12/mo · Real 2026 (incl blanks) 6,3,6,4,4,1,1,0 = 25 ───── -->
     <tr class="row-channel">
       <th class="row-label direct"><span class="rl-name">Direct</span><span class="rl-sub">40% &middot; 12/mo &middot; 144/yr</span></th>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-neg"><span class="val">6</span></td>
@@ -1915,16 +1968,16 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-neg"><span class="val">4</span></td>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-neg"><span class="val">4</span></td>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
+      <td class="t-col"><span class="val">12</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
+      <td class="t-col"><span class="val">12</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">12</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">12</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">12</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col sum-cell"><span class="val">144</span></td><td class="a-col sum-cell delta-neg"><span class="val">24</span></td>
+      <td class="t-col sum-cell"><span class="val">144</span></td><td class="a-col sum-cell delta-neg"><span class="val">25</span></td>
     </tr>
 
-    <!-- ───── Direct Inquiry + Other · Tgt 7/mo (84/yr) · Real 2026 (Incoming Call + Walk-in to site + E-mail + blank) 6,3,4,4,4,1 = 22 ───── -->
+    <!-- ───── Direct Inquiry + Other · Tgt 7/mo (84/yr) · Real 2026 (Incoming Call + Walk-in to site + E-mail + blank) 6,3,4,4,4,1,1,0 = 23 ───── -->
     <tr class="row-sub">
       <th class="row-label"><span class="rl-name">Direct Inquiry + Other</span><span class="rl-sub">7/mo &middot; 84/yr</span></th>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-neg"><span class="val">6</span></td>
@@ -1933,16 +1986,16 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-neg"><span class="val">4</span></td>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-neg"><span class="val">4</span></td>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
+      <td class="t-col"><span class="val">7</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
+      <td class="t-col"><span class="val">7</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">7</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">7</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">7</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col sum-cell"><span class="val">84</span></td><td class="a-col sum-cell delta-neg"><span class="val">22</span></td>
+      <td class="t-col sum-cell"><span class="val">84</span></td><td class="a-col sum-cell delta-neg"><span class="val">23</span></td>
     </tr>
 
-    <!-- ───── Event · Tgt 2/mo · Real 2026 acts 0,0,1,0,0,0 = 1 ───── -->
+    <!-- ───── Event · Tgt 2/mo · Real 2026 acts 0,0,1,0,0,0,0,0 = 1 ───── -->
     <tr class="row-sub">
       <th class="row-label"><span class="rl-name">Event</span><span class="rl-sub">2/mo &middot; 24/yr</span></th>
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
@@ -1951,8 +2004,8 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
-      <td class="t-col"><span class="val">2</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">2</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
+      <td class="t-col"><span class="val">2</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
+      <td class="t-col"><span class="val">2</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">2</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
@@ -1960,7 +2013,7 @@ body{overflow-x:hidden}
       <td class="t-col sum-cell"><span class="val">24</span></td><td class="a-col sum-cell delta-neg"><span class="val">1</span></td>
     </tr>
 
-    <!-- ───── Online · Tgt 3/mo · Real 2026 acts 0,0,1,0,0,0 = 1 ───── -->
+    <!-- ───── Online · Tgt 3/mo · Real 2026 acts 0,0,1,0,0,0,0,0 = 1 ───── -->
     <tr class="row-sub">
       <th class="row-label"><span class="rl-name">Online</span><span class="rl-sub">3/mo &middot; 36/yr</span></th>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
@@ -1969,8 +2022,8 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
-      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
+      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
+      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
@@ -1978,7 +2031,7 @@ body{overflow-x:hidden}
       <td class="t-col sum-cell"><span class="val">36</span></td><td class="a-col sum-cell delta-neg"><span class="val">1</span></td>
     </tr>
 
-    <!-- ───── REFERRAL · Tgt 3/mo · Real 2026 acts 1,2,4,2,3,0 = 12 ───── -->
+    <!-- ───── REFERRAL · Tgt 3/mo · Real 2026 acts 1,2,4,2,3,0,1,2 = 15 ───── -->
     <tr class="row-channel">
       <th class="row-label referral"><span class="rl-name">Referral</span><span class="rl-sub">10% &middot; 3/mo &middot; 36/yr</span></th>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
@@ -1987,13 +2040,13 @@ body{overflow-x:hidden}
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val">2</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-hit"><span class="val">3</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val zero">0</span></td>
+      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val">1</span></td>
+      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-neg"><span class="val">2</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
       <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col"><span class="val">3</span></td><td class="a-col delta-future"><span class="val future">—</span></td>
-      <td class="t-col sum-cell"><span class="val">36</span></td><td class="a-col sum-cell delta-neg"><span class="val">12</span></td>
+      <td class="t-col sum-cell"><span class="val">36</span></td><td class="a-col sum-cell delta-neg"><span class="val">15</span></td>
     </tr>
 
   </tbody>
@@ -2016,17 +2069,17 @@ body{overflow-x:hidden}
       <div class="tygp-inner">
 
         <div class="tygp-chart">
-          <span class="tygp-yearlbl" style="left:33.33%;transform:translateX(-50%)">2025</span>
-          <span class="tygp-yearlbl" style="left:83.33%;transform:translateX(-50%)">2026</span>
-          <span class="tygp-divider" style="left:66.67%"></span>
+          <span class="tygp-yearlbl" style="left:30%;transform:translateX(-50%)">2025</span>
+          <span class="tygp-yearlbl" style="left:80%;transform:translateX(-50%)">2026</span>
+          <span class="tygp-divider" style="left:60%"></span>
 
-          <svg class="tygp-svg" viewBox="0 0 1800 220" preserveAspectRatio="none">
+          <svg class="tygp-svg" viewBox="0 0 2000 220" preserveAspectRatio="none">
             <!-- Baseline -->
-            <line x1="0" y1="200" x2="1800" y2="200" stroke="rgba(184,148,88,.3)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="0" y1="200" x2="2000" y2="200" stroke="rgba(184,148,88,.3)" stroke-width="1" vector-effect="non-scaling-stroke"/>
             <!-- 2025 target line (50 walks/mo · y=36.4) -->
             <line x1="0" y1="36.4" x2="1200" y2="36.4" stroke="rgba(110,150,90,.75)" stroke-width="1.6" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
             <!-- 2026 target line (30 walks/mo · y=101.8) -->
-            <line x1="1200" y1="101.8" x2="1800" y2="101.8" stroke="rgba(110,150,90,.75)" stroke-width="1.6" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
+            <line x1="1200" y1="101.8" x2="2000" y2="101.8" stroke="rgba(110,150,90,.75)" stroke-width="1.6" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/>
             <!-- Year divider -->
             <line x1="1200" y1="0" x2="1200" y2="200" stroke="rgba(184,148,88,.4)" stroke-width="1" stroke-dasharray="2 4" vector-effect="non-scaling-stroke"/>
 
@@ -2069,10 +2122,14 @@ body{overflow-x:hidden}
             <g><rect x="1620" y="177.09" width="60" height="22.91" fill="#b89458"/><rect x="1620" y="164.00" width="60" height="13.09" fill="#6e8264"/><rect x="1620" y="154.18" width="60" height="9.82" fill="#d4b07a"/></g>
             <!-- Jun 2026  (A=4, D=1, R=0) -->
             <g><rect x="1720" y="186.91" width="60" height="13.09" fill="#b89458"/><rect x="1720" y="183.64" width="60" height="3.27" fill="#6e8264"/></g>
+            <!-- Jul 2026  (A=9, D=1, R=1) -->
+            <g><rect x="1820" y="170.55" width="60" height="29.45" fill="#b89458"/><rect x="1820" y="167.28" width="60" height="3.27" fill="#6e8264"/><rect x="1820" y="164.01" width="60" height="3.27" fill="#d4b07a"/></g>
+            <!-- Aug 2026  (A=1, D=0, R=2) -->
+            <g><rect x="1920" y="196.73" width="60" height="3.27" fill="#b89458"/><rect x="1920" y="190.18" width="60" height="6.55" fill="#d4b07a"/></g>
           </svg>
 
           <span style="position:absolute;top:9%;left:1.2%;font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(170,200,150,.95);background:rgba(11,15,19,.8);padding:4px 10px">Target &middot; 50 walks/mo</span>
-          <span style="position:absolute;top:32%;left:67.5%;font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(170,200,150,.95);background:rgba(11,15,19,.8);padding:4px 10px">Target &middot; 30/mo</span>
+          <span style="position:absolute;top:32%;left:60.75%;font-family:'Jost',sans-serif;font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(170,200,150,.95);background:rgba(11,15,19,.8);padding:4px 10px">Target &middot; 30/mo</span>
         </div>
 
         <div class="tygp-leg" style="padding:18px 28px 18px;border-bottom:1px solid rgba(184,148,88,.18)">
@@ -2203,11 +2260,25 @@ body{overflow-x:hidden}
             <ul class="tygp-acts"><li>Agent Event at Trisara Villa 12 &middot; 8</li><li>Local Roots Pop-Up at Trisara &middot; 10</li><li>Clinique La Prairie Teaser &middot; 15</li><li>Nestopa Event &middot; 27</li><li class="always">Digital Campaign</li></ul>
           </div>
           <!-- Jun 2026 -->
-          <div class="tygp-cell now">
+          <div class="tygp-cell">
             <div class="tygp-cell-head"><span class="tygp-cell-month">Jun</span><span class="tygp-cell-year">&rsquo;26</span></div>
             <div class="tygp-cell-fig"><span class="tygp-fig-walks">5</span><span class="tygp-fig-walks-lbl">walks</span></div>
             <span class="tygp-cell-tag quiet">Quiet</span>
             <ul class="tygp-acts"><li>C9 Event &middot; 11</li><li>Boulevard Magazine shoot &middot; 12</li><li>More partnership activities TBC</li><li class="always">Digital Campaign</li></ul>
+          </div>
+          <!-- Jul 2026 -->
+          <div class="tygp-cell">
+            <div class="tygp-cell-head"><span class="tygp-cell-month">Jul</span><span class="tygp-cell-year">&rsquo;26</span></div>
+            <div class="tygp-cell-fig"><span class="tygp-fig-walks">11</span><span class="tygp-fig-walks-lbl">walks</span></div>
+            <span class="tygp-cell-tag">Rebound</span>
+            <ul class="tygp-acts"><li>Marketing Collateral Preparation begins</li><li>PR Agency Selection &middot; closed shortlist</li><li>GWS Collaboration discussions</li><li>Partnership Campaign outreach</li><li class="always">Digital Campaign</li></ul>
+          </div>
+          <!-- Aug 2026 -->
+          <div class="tygp-cell now">
+            <div class="tygp-cell-head"><span class="tygp-cell-month">Aug</span><span class="tygp-cell-year">&rsquo;26</span></div>
+            <div class="tygp-cell-fig"><span class="tygp-fig-walks">3</span><span class="tygp-fig-walks-lbl">walks</span></div>
+            <span class="tygp-cell-tag quiet">Low season</span>
+            <ul class="tygp-acts"><li>Marketing Collateral Preparation</li><li>PR Agency Selection concludes</li><li>GWS Collaboration &middot; format agreed</li><li>Partnership Campaign co-creation</li><li class="always">Digital Campaign</li></ul>
           </div>
         </div>
 
@@ -2219,7 +2290,120 @@ body{overflow-x:hidden}
   <div class="pg">03</div>
 </section>
 
-<!-- ═══════════════════ 04 CUSTOMER JOURNEY LOOP · STAGES 1–7 ═══════════════════ -->
+<!-- ═══════════════════ 04 LEAD GENERATION BY MONTH ═══════════════════ -->
+<section class="S ink">
+  <div class="rule"></div>
+
+  <div class="eye">Lead Generation</div>
+  <div class="D2" style="max-width:900px;margin-bottom:10px">Where the <span class="it gd">leads</span> come from.</div>
+  <div class="body" style="max-width:760px">Every lead created in the CRM between January and 11 September 2026 &mdash; by month, by source, and by the status it was left in. This is the top of the funnel that feeds the walk numbers on the previous pages.</div>
+
+  <div class="ldg-head">
+    <div class="ldg-head-num">
+      <strong>411</strong>
+      <span>Leads created &middot; YTD</span>
+    </div>
+    <div class="ldg-head-split">
+      <div class="ldg-stat"><b>45.7</b><span>Average per month</span></div>
+      <div class="ldg-stat"><b class="good">23</b><span>Qualified &middot; Jan&ndash;Jun</span></div>
+      <div class="ldg-stat"><b>76</b><span>Contactable &middot; Jan&ndash;Jun</span></div>
+      <div class="ldg-stat"><b class="warn">222</b><span>Uncontactable or unqualified &middot; Jan&ndash;Jun</span></div>
+      <div class="ldg-stat"><b class="warn">38</b><span>Never assessed &middot; Jul&ndash;Sep</span></div>
+    </div>
+  </div>
+
+  <div class="perf-scroll">
+  <table class="ldtab">
+  <thead>
+    <tr>
+      <th class="ld-src">2026 &middot; Lead Source</th>
+      <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th>
+      <th>Sep<small>to 11</small></th><th>Oct</th><th>Nov</th><th>Dec</th>
+      <th class="sum-cell">YTD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="ld-digital">
+      <th class="ld-src">Digital<small>73% of all leads</small></th>
+      <td>56</td><td>48</td><td>61</td><td>60</td><td>31</td><td>30</td><td>2</td><td>8</td><td>6</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">302</td>
+    </tr>
+    <tr class="ld-qual">
+      <th class="ld-src">Contactable or qualified</th>
+      <td>8</td><td>9</td><td>6</td><td>8</td><td>2</td><td>4</td><td class="ld-na">2<sup>*</sup></td><td class="ld-na">8<sup>*</sup></td><td class="ld-na">6<sup>*</sup></td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell ld-na">53<sup>*</sup></td>
+    </tr>
+    <tr class="ld-agent">
+      <th class="ld-src">Agent<small>11% of all leads</small></th>
+      <td>6</td><td>9</td><td>9</td><td>21</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td>2</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">47</td>
+    </tr>
+    <tr class="ld-qual">
+      <th class="ld-src">Contactable or qualified</th>
+      <td>6</td><td>9</td><td>9</td><td>21</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-na">2<sup>*</sup></td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell ld-na">47<sup>*</sup></td>
+    </tr>
+    <tr class="ld-ref">
+      <th class="ld-src">Referral<small>Montara employee lead</small></th>
+      <td>1</td><td>2</td><td>3</td><td>1</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">7</td>
+    </tr>
+    <tr class="ld-minor">
+      <th class="ld-src">Other<small>Unclassified at capture</small></th>
+      <td>5</td><td>7</td><td>2</td><td>3</td><td>6</td><td>8</td><td>15</td><td>2</td><td>3</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">51</td>
+    </tr>
+    <tr class="ld-minor">
+      <th class="ld-src">Event &amp; Tradeshow</th>
+      <td class="nil">&mdash;</td><td>1</td><td>1</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">2</td>
+    </tr>
+    <tr class="ld-minor">
+      <th class="ld-src">Incoming Call</th>
+      <td class="nil">&mdash;</td><td class="nil">&mdash;</td><td>1</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">1</td>
+    </tr>
+    <tr class="ld-minor">
+      <th class="ld-src">Management</th>
+      <td>1</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="nil">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">1</td>
+    </tr>
+    <tr class="ld-total">
+      <th class="ld-src">Total Leads<small>Created in month</small></th>
+      <td>69</td><td>67</td><td>77</td><td>85</td><td>37</td><td>38</td><td>17</td><td>12</td><td>9</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell">411</td>
+    </tr>
+    <tr class="ld-qual">
+      <th class="ld-src">Qualified</th>
+      <td>8</td><td>7</td><td>8</td><td>0</td><td>0</td><td>0</td><td class="ld-na">17<sup>*</sup></td><td class="ld-na">12<sup>*</sup></td><td class="ld-na">9<sup>*</sup></td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td><td class="ld-future">&mdash;</td>
+      <td class="sum-cell ld-na">61<sup>*</sup></td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+
+  <div class="ldg-foot"><sup>*</sup>July&ndash;September: no qualification process was run. Total leads created are shown in place of a status count &mdash; these figures are unworked volume, not assessed quality.</div>
+
+  <div class="ldg-note">
+    <div class="ldg-note-item">
+      <h4>Volume is not the constraint</h4>
+      <p>Digital supplies <em>302 of 411</em> leads. Of the 286 that were actually worked, <em>221 &mdash; more than three in four &mdash;</em> ended uncontactable or unqualified. The channel is buying reach, not intent.</p>
+    </div>
+    <div class="ldg-note-item">
+      <h4>The last three months were never worked</h4>
+      <p><em>38 leads</em> created July&ndash;September sit untouched: no qualification process ran. The apparent collapse in qualified leads is a process gap, not a demand gap &mdash; and it is the first thing to fix.</p>
+    </div>
+    <div class="ldg-note-item">
+      <h4>Agent leads behave differently</h4>
+      <p>Of the <em>45 agent leads</em> created while qualification was still running, every one reached contactable or qualified. The same channel delivers 55 of the 95 walks YTD. Quality enters through the trade, not the ad.</p>
+    </div>
+  </div>
+
+  <div class="ldg-src">Source &middot; CRM export &ldquo;Leads create This year&rdquo; &middot; as of 11 Sep 2026, 10:00 ICT</div>
+  <div class="pg">04</div>
+</section>
+
+<!-- ═══════════════════ 05 CUSTOMER JOURNEY LOOP · STAGES 1–7 ═══════════════════ -->
 <section class="S ink brief">
   <div class="jrny-table">
     <div class="jrny-row head">
@@ -2307,10 +2491,10 @@ body{overflow-x:hidden}
 
   </div>
 
-  <div class="pg">04</div>
+  <div class="pg">05</div>
 </section>
 
-<!-- ═══════════════════ 05 CUSTOMER JOURNEY LOOP · STAGES 8–14 ═══════════════════ -->
+<!-- ═══════════════════ 06 CUSTOMER JOURNEY LOOP · STAGES 8–14 ═══════════════════ -->
 <section class="S ink brief">
   <div class="jrny-table">
     <div class="jrny-row head">
@@ -2402,10 +2586,10 @@ body{overflow-x:hidden}
 
   </div>
 
-  <div class="pg">05</div>
+  <div class="pg">06</div>
 </section>
 
-<!-- ═══════════════════ 06 TIMELINE ═══════════════════ -->
+<!-- ═══════════════════ 07 TIMELINE ═══════════════════ -->
 <section class="S ink">
   <div class="eye">Timeline</div>
   <div class="D2" style="max-width:920px;margin-bottom:14px">The <span class="it gd">Timeline.</span></div>
@@ -2449,7 +2633,7 @@ body{overflow-x:hidden}
       <div class="tlx-month" style="grid-column:4">Nov – Dec</div>
     </div>
   </div>
-  <div class="pg">06</div>
+  <div class="pg">07</div>
 </section>
 <script>
 (function(){
